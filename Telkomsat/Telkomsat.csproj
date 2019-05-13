@@ -1,0 +1,812 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F1425093-4E8E-46E0-8C69-11489E59F756}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Telkomsat</RootNamespace>
+    <AssemblyName>Telkomsat</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Pagination">
+      <HintPath>..\..\..\..\Downloads\Pagination.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="alldatadua.aspx" />
+    <Content Include="alldata.aspx" />
+    <Content Include="asset\chart.aspx" />
+    <Content Include="asset\chart.js" />
+    <Content Include="asset\coba.aspx" />
+    <Content Include="asset\details.aspx" />
+    <Content Include="asset\edit.aspx" />
+    <Content Include="File\cobasorting.aspx" />
+    <Content Include="File\editad.aspx" />
+    <Content Include="File\editip.aspx" />
+    <Content Include="asset\filter.aspx" />
+    <Content Include="asset\home.aspx" />
+    <Content Include="asset\img\bg.png" />
+    <Content Include="asset\img\logo.png" />
+    <Content Include="asset\img\logo1.png" />
+    <Content Include="asset\img\logo2.png" />
+    <Content Include="asset\img\logo3.png" />
+    <Content Include="asset\img\logotelkomsat.png" />
+    <Content Include="asset\img\user.jpg" />
+    <Content Include="asset\js1.js" />
+    <Content Include="asset\research.aspx" />
+    <Content Include="asset\search.aspx" />
+    <Content Include="asset\searchby.aspx" />
+    <Content Include="asset\semuaasset.aspx" />
+    <Content Include="asset\tambah.aspx" />
+    <Content Include="ChartJS.js" />
+    <Content Include="dashboard.aspx" />
+    <Content Include="dashboard.css" />
+    <Content Include="File\cobain.aspx" />
+    <Content Include="File\dashboard.aspx" />
+    <Content Include="File\file.css" />
+    <Content Include="File\filejs.js" />
+    <Content Include="File\filter.aspx" />
+    <Content Include="File\filter2.aspx" />
+    <Content Include="File\ipaddress.aspx" />
+    <Content Include="File\ipbjm.aspx" />
+    <Content Include="File\ippass.aspx" />
+    <Content Include="File\kategori1.aspx" />
+    <Content Include="File\semuafile.aspx" />
+    <Content Include="File\Style.css" />
+    <Content Include="File\tambah.aspx" />
+    <Content Include="File\tambahip.aspx" />
+    <Content Include="File\tambahip1.aspx" />
+    <Content Include="img\1.jpg" />
+    <Content Include="img\2.jpg" />
+    <Content Include="img\3.jpg" />
+    <Content Include="img\back.png" />
+    <Content Include="img\download.png" />
+    <Content Include="img\logbook.png" />
+    <Content Include="img\logotelkomsat2.png" />
+    <Content Include="knowledge\all.aspx" />
+    <Content Include="knowledge\coba.aspx" />
+    <Content Include="details.aspx" />
+    <Content Include="edit.aspx" />
+    <Content Include="filter.aspx" />
+    <Content Include="home.aspx" />
+    <Content Include="img\bg.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo1.png" />
+    <Content Include="img\logo2.png" />
+    <Content Include="img\logo3.png" />
+    <Content Include="img\logotelkomsat.png" />
+    <Content Include="img\user.jpg" />
+    <Content Include="input.aspx" />
+    <Content Include="JavaScript.js" />
+    <Content Include="knowledge\cobafile.aspx" />
+    <Content Include="knowledge\details1.aspx" />
+    <Content Include="knowledge\file.aspx" />
+    <Content Include="knowledge\knowledge.css" />
+    <Content Include="knowledge\posting.aspx" />
+    <Content Include="knowledge\semua.aspx" />
+    <Content Include="knowledge\tambah.aspx" />
+    <Content Include="knowledge\tambahpost.aspx" />
+    <Content Include="knowledge\tampil.aspx" />
+    <Content Include="logbook1\details.aspx" />
+    <Content Include="logbook1\editlogbook.aspx" />
+    <Content Include="logbook1\filter.aspx" />
+    <Content Include="logbook1\idasset.aspx" />
+    <Content Include="logbook1\iddatabase.aspx" />
+    <Content Include="logbook1\img\bg.png" />
+    <Content Include="logbook1\img\logo.png" />
+    <Content Include="logbook1\img\logo1.png" />
+    <Content Include="logbook1\img\logo2.png" />
+    <Content Include="logbook1\img\logo3.png" />
+    <Content Include="logbook1\img\logotelkomsat.png" />
+    <Content Include="logbook1\img\user.jpg" />
+    <Content Include="logbook1\js2.js" />
+    <Content Include="logbook1\log.css" />
+    <Content Include="logbook1\searchby.aspx" />
+    <Content Include="logbook1\semuadata.aspx" />
+    <Content Include="logbook1\snasset.aspx" />
+    <Content Include="logbook1\tambah.aspx" />
+    <Content Include="logbook\Add.aspx" />
+    <Content Include="logbook\cariby.aspx" />
+    <Content Include="logbook\datalogbook.aspx" />
+    <Content Include="logbook\detail.aspx" />
+    <Content Include="logbook\edit.aspx" />
+    <Content Include="logbook\editlogbook.aspx" />
+    <Content Include="logbook\filter.aspx" />
+    <Content Include="logbook\filterbulan.aspx" />
+    <Content Include="knowledge\img\bg.png" />
+    <Content Include="knowledge\img\logo.png" />
+    <Content Include="knowledge\img\logo1.png" />
+    <Content Include="knowledge\img\logo2.png" />
+    <Content Include="knowledge\img\logo3.png" />
+    <Content Include="knowledge\img\logotelkomsat.png" />
+    <Content Include="knowledge\img\user.jpg" />
+    <Content Include="knowledge\input.aspx" />
+    <Content Include="knowledge\listview.aspx" />
+    <Content Include="logbook\img\bg.png" />
+    <Content Include="logbook\img\logo.png" />
+    <Content Include="logbook\img\logo1.png" />
+    <Content Include="logbook\img\logo2.png" />
+    <Content Include="logbook\img\logo3.png" />
+    <Content Include="logbook\img\logotelkomsat.png" />
+    <Content Include="logbook\img\user.jpg" />
+    <Content Include="logbook\isilogbook.aspx" />
+    <Content Include="logbook\log.css" />
+    <Content Include="logbook\tampildata.aspx" />
+    <Content Include="login.aspx" />
+    <Content Include="knowledge\details.aspx" />
+    <Content Include="RF\downconverter.aspx" />
+    <Content Include="RF\img\bg.png" />
+    <Content Include="RF\img\logo.png" />
+    <Content Include="RF\img\logo1.png" />
+    <Content Include="RF\img\logo2.png" />
+    <Content Include="RF\img\logo3.png" />
+    <Content Include="RF\img\logotelkomsat.png" />
+    <Content Include="RF\img\user.jpg" />
+    <Content Include="RF\upconverter.aspx" />
+    <Content Include="search.aspx" />
+    <Content Include="searchby.aspx" />
+    <Content Include="Style1.css" />
+    <Content Include="Style2.css" />
+    <Content Include="StyleLogBook.css" />
+    <Content Include="stylepagination.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="alldatadua.aspx.cs">
+      <DependentUpon>alldatadua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="alldatadua.aspx.designer.cs">
+      <DependentUpon>alldatadua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="alldata.aspx.cs">
+      <DependentUpon>alldata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="alldata.aspx.designer.cs">
+      <DependentUpon>alldata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ASSET.Master.cs">
+      <DependentUpon>ASSET.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ASSET.Master.designer.cs">
+      <DependentUpon>ASSET.Master</DependentUpon>
+    </Compile>
+    <Compile Include="asset\chart.aspx.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\chart.aspx.designer.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\coba.aspx.cs">
+      <DependentUpon>coba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\coba.aspx.designer.cs">
+      <DependentUpon>coba.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\cobasorting.aspx.cs">
+      <DependentUpon>cobasorting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\cobasorting.aspx.designer.cs">
+      <DependentUpon>cobasorting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\editad.aspx.cs">
+      <DependentUpon>editad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\editad.aspx.designer.cs">
+      <DependentUpon>editad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\editip.aspx.cs">
+      <DependentUpon>editip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\editip.aspx.designer.cs">
+      <DependentUpon>editip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\research.aspx.cs">
+      <DependentUpon>research.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\research.aspx.designer.cs">
+      <DependentUpon>research.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\searchby.aspx.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\searchby.aspx.designer.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\semuaasset.aspx.cs">
+      <DependentUpon>semuaasset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\semuaasset.aspx.designer.cs">
+      <DependentUpon>semuaasset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="asset\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\cobain.aspx.cs">
+      <DependentUpon>cobain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\cobain.aspx.designer.cs">
+      <DependentUpon>cobain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\filter2.aspx.cs">
+      <DependentUpon>filter2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\filter2.aspx.designer.cs">
+      <DependentUpon>filter2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\ipaddress.aspx.cs">
+      <DependentUpon>ipaddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\ipaddress.aspx.designer.cs">
+      <DependentUpon>ipaddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\ipbjm.aspx.cs">
+      <DependentUpon>ipbjm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\ipbjm.aspx.designer.cs">
+      <DependentUpon>ipbjm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\ippass.aspx.cs">
+      <DependentUpon>ippass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\ippass.aspx.designer.cs">
+      <DependentUpon>ippass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\kategori1.aspx.cs">
+      <DependentUpon>kategori1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\kategori1.aspx.designer.cs">
+      <DependentUpon>kategori1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\semuafile.aspx.cs">
+      <DependentUpon>semuafile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\semuafile.aspx.designer.cs">
+      <DependentUpon>semuafile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\tambahip.aspx.cs">
+      <DependentUpon>tambahip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\tambahip.aspx.designer.cs">
+      <DependentUpon>tambahip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="File\tambahip1.aspx.cs">
+      <DependentUpon>tambahip1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="File\tambahip1.aspx.designer.cs">
+      <DependentUpon>tambahip1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KNOWLEDGE.Master.cs">
+      <DependentUpon>KNOWLEDGE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KNOWLEDGE.Master.designer.cs">
+      <DependentUpon>KNOWLEDGE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="KnowledgeFIle.Master.cs">
+      <DependentUpon>KnowledgeFIle.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KnowledgeFIle.Master.designer.cs">
+      <DependentUpon>KnowledgeFIle.Master</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\all.aspx.cs">
+      <DependentUpon>all.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\all.aspx.designer.cs">
+      <DependentUpon>all.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\coba.aspx.cs">
+      <DependentUpon>coba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\coba.aspx.designer.cs">
+      <DependentUpon>coba.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="input.aspx.cs">
+      <DependentUpon>input.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="input.aspx.designer.cs">
+      <DependentUpon>input.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\cobafile.aspx.cs">
+      <DependentUpon>cobafile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\cobafile.aspx.designer.cs">
+      <DependentUpon>cobafile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\details1.aspx.cs">
+      <DependentUpon>details1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\details1.aspx.designer.cs">
+      <DependentUpon>details1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\file.aspx.cs">
+      <DependentUpon>file.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\file.aspx.designer.cs">
+      <DependentUpon>file.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\posting.aspx.cs">
+      <DependentUpon>posting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\posting.aspx.designer.cs">
+      <DependentUpon>posting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\semua.aspx.cs">
+      <DependentUpon>semua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\semua.aspx.designer.cs">
+      <DependentUpon>semua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\tambahpost.aspx.cs">
+      <DependentUpon>tambahpost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\tambahpost.aspx.designer.cs">
+      <DependentUpon>tambahpost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\tampil.aspx.cs">
+      <DependentUpon>tampil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\tampil.aspx.designer.cs">
+      <DependentUpon>tampil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\editlogbook.aspx.cs">
+      <DependentUpon>editlogbook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\editlogbook.aspx.designer.cs">
+      <DependentUpon>editlogbook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\idasset.aspx.cs">
+      <DependentUpon>idasset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\idasset.aspx.designer.cs">
+      <DependentUpon>idasset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\iddatabase.aspx.cs">
+      <DependentUpon>iddatabase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\iddatabase.aspx.designer.cs">
+      <DependentUpon>iddatabase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\searchby.aspx.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\searchby.aspx.designer.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\semuadata.aspx.cs">
+      <DependentUpon>semuadata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\semuadata.aspx.designer.cs">
+      <DependentUpon>semuadata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\snasset.aspx.cs">
+      <DependentUpon>snasset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\snasset.aspx.designer.cs">
+      <DependentUpon>snasset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\cariby.aspx.cs">
+      <DependentUpon>cariby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\cariby.aspx.designer.cs">
+      <DependentUpon>cariby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\datalogbook.aspx.cs">
+      <DependentUpon>datalogbook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\datalogbook.aspx.designer.cs">
+      <DependentUpon>datalogbook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\editlogbook.aspx.cs">
+      <DependentUpon>editlogbook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\editlogbook.aspx.designer.cs">
+      <DependentUpon>editlogbook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\filterbulan.aspx.cs">
+      <DependentUpon>filterbulan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\filterbulan.aspx.designer.cs">
+      <DependentUpon>filterbulan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LOGBOOK.Master.cs">
+      <DependentUpon>LOGBOOK.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LOGBOOK.Master.designer.cs">
+      <DependentUpon>LOGBOOK.Master</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\input.aspx.cs">
+      <DependentUpon>input.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\input.aspx.designer.cs">
+      <DependentUpon>input.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\listview.aspx.cs">
+      <DependentUpon>listview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\listview.aspx.designer.cs">
+      <DependentUpon>listview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\isilogbook.aspx.cs">
+      <DependentUpon>isilogbook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\isilogbook.aspx.designer.cs">
+      <DependentUpon>isilogbook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\tampildata.aspx.cs">
+      <DependentUpon>tampildata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\tampildata.aspx.designer.cs">
+      <DependentUpon>tampildata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="knowledge\details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RF\downconverter.aspx.cs">
+      <DependentUpon>downconverter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RF\downconverter.aspx.designer.cs">
+      <DependentUpon>downconverter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RF\upconverter.aspx.cs">
+      <DependentUpon>upconverter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RF\upconverter.aspx.designer.cs">
+      <DependentUpon>upconverter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="searchby.aspx.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchby.aspx.designer.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="template.Master.cs">
+      <DependentUpon>template.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="template.Master.designer.cs">
+      <DependentUpon>template.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LOGBOOK.Master" />
+    <Content Include="ASSET.Master" />
+    <Content Include="KNOWLEDGE.Master" />
+    <Content Include="KnowledgeFIle.Master" />
+    <None Include="packages.config" />
+    <Content Include="template.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="knowledge\Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8947</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8947/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

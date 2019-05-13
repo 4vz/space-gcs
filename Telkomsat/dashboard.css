@@ -1,0 +1,36 @@
+﻿.box{
+    width:30%;
+    height:60%;
+}
+
+.content{
+    min-height:500px;
+}
+
+.row{
+    height:400px;
+}
+
+.small-box{
+    height:400px;
+    margin-bottom:30px;
+}
+
+    .small-box .icon{
+        padding-top:85px;
+        padding-right:0px;
+    }
+
+    .small-box:hover .icon {
+        padding-top: 95px;
+        padding-right: 0px;
+    }
+
+.main-header .navbar-brand {
+    font-size: 26px;
+    color: #e4e4e4;
+}
+
+.content-wrapper {
+    background-color: #ecf0f5;
+}

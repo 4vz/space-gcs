@@ -1,0 +1,109 @@
+﻿.input-group {
+    width: 50%;
+    vertical-align: middle;
+}
+
+    .input-group .headlb {
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font: bold;
+    }
+
+    .input-group .form-control {
+        width: 70%;
+        float: right;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        vertical-align:middle;
+        top:8px;
+    }
+
+
+.btn {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-style: solid;
+}
+
+.btn-adn {
+    color: red;
+    border: none;
+    background-color: white;
+    border-bottom: 3px solid;
+    border-bottom-color: red;
+}
+
+    .btn-adn:hover {
+        color: darkred;
+        border: none;
+        background-color: white;
+        border-bottom: 3px solid;
+        border-bottom-color: red;
+    }    
+
+    .btn-adn::after {
+        color: red;
+        border: none;
+        background-color: white;
+        border-bottom: 3px solid;
+        border-bottom-color: red;
+    }
+
+.btn-sm {
+    color: darkgray;
+    border: none;
+    background-color: white;
+    font-size:14px;
+    padding:6px 12px;
+}
+
+    .btn-sm:hover {
+        color: dimgray;
+        border: none;
+        background-color: white;
+    }
+
+    .btn-sm::after {
+        color: dimgray;
+        border: none;
+        background-color: white;
+    }
+
+.hrline{
+    position:absolute;
+    top:119px;
+}
+
+.ddl28{
+    color:gray;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:12px;
+}
+
+.btn .btn-file {
+    color: red;
+    border: none;
+    background-color: white;
+}
+
+.btn-file {
+    color: red;
+    border: none;
+    background-color: white;
+}
+
+.btn-file:hover {
+    color: darkred;
+    border: none;
+    background-color: white;
+}
+
+.main-header{
+    max-height:300px;
+}
+
+.main-sidebar{
+    padding-top:150px;
+}

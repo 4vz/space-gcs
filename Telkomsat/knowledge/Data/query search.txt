@@ -1,0 +1,32 @@
+CREATE PROCEDURE CariByID
+@tahun varchar(20) = NULL,
+@bulan varchar(20) = NULL,
+@minggu varchar(20) = NULL,
+@kata1 varchar(20) = NULL,
+@kata2 varchar(20) = NULL,
+@kata3 varchar(20) = NULL,
+@kata4 varchar(20) = NULL,
+@kata5 varchar(20) = NULL,
+@unit varchar(20) = NULL,
+@status varchar(20) = NULL,
+@OS varchar(20) = NULL,
+@OG varchar(20) = NULL
+AS
+BEGIN
+	SELECT TANGGAL, UNIT, EVENT, STATUS, INFO, PIC_OS, PIC_OG, Image1, File1, ID_Log, day(tanggal)
+		FROM logbook1
+	LEFT JOIN Image ON logbook1.ID_Image=Image.ID_Image WHERE
+		(year(tanggal) = @tahun OR @tahun = NULL) and
+		(month(tanggal) = @bulan OR @bulan = NULL) and
+		((@minggu = '1' AND day(tanggal) between '01' and '07') OR
+		(@minggu = '2' AND day(tanggal) between '08' and '14') OR
+		(@minggu = '3' AND day(tanggal) between '15' and '21') OR
+		(@minggu = '4' AND day(tanggal) between '22' and '28') OR
+		(@minggu = '5' AND day(tanggal) between '29' and '31')) and
+		(event LIKE '%' + @kata1 + '%' and event LIKE '%' + @kata2 + '%' and event LIKE '%' + @kata3 + '%' 
+		and event LIKE '%' + @kata4 + '%' and event LIKE '%' + @kata5 + '%') and
+		(UNIT = @unit OR @unit = NULL) and
+		(STATUS = @status OR @status = NULL) and
+		(PIC_OG = @OG OR @OG = NULL) and
+		(PIC_OS = @OS OR @OS = NULL)
+END

@@ -1,0 +1,72 @@
+﻿
+.gview {
+    border-bottom: none;
+    padding-left: 8px;
+    margin: 5px;
+    color: green;
+    font-size: 14px;
+}
+
+    .gview .rows {
+        padding-left: 5px;
+    }
+
+.labelku {
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+
+.datakita .input-group .labelku {
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.input-group{
+    width:55%;
+}
+
+    .input-group .headlb{
+        font-size:20px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font:bold;
+    }
+
+    .input-group .labelku {
+        font-size: 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font: bold;
+    }
+
+    .input-group .form-control {
+        width: 75%;
+        float: right;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+
+.btn {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-style: solid;
+}
+
+    .btn.btn-flat {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border: 1px;
+        border-color: #ccc;
+        border-style: solid;
+    }
+
+.form-control {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

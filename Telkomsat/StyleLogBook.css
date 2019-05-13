@@ -1,0 +1,173 @@
+﻿.bodyLB{
+    left:50px;
+    margin-left:50px;
+}
+
+.bodyLB2{
+    left: 10px;
+    margin-left: 10px;
+}
+
+    .bodyLB2 .headIP{
+        font-size:22px;
+        font-family:'Adobe Caslon Pro';
+        color:dimgray;
+    }
+
+.bodyLB5 {
+    left: 150px;
+    margin-left: 150px;
+}
+
+.bodyLB3 {
+    left: 30px;
+    margin-left: 30px;
+    top:15px;
+    margin-top:15px;
+}
+
+.judulLB1 {
+    font-size: 24px;
+    color: black;
+}
+
+.judulLB {
+    font-size: 20px;
+    color: #da0000;
+}
+
+    .judulLB:hover {
+        font-size: 20px;
+        color: #da0000;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+.list-inline .lbpaging {
+    color: #da0000;
+}
+
+    .list-inline .lbpaging:hover {
+        text-decoration: underline;
+    }
+
+.lbpaging {
+    color: #da0000;
+}
+
+a{
+    color:darkgray;
+}
+
+
+    a:hover{
+        text-decoration:underline;
+    }
+
+    a:hover, a:active, a:focus {
+        color: darkgray;
+    }
+
+    .lbpaging:hover {
+        text-decoration: underline;
+    }
+
+.namaLB {
+    font-size: 12px;
+    color: #6a6a6a;
+    font-weight: bold;
+}
+
+.kategoriLB {
+    font-size: 14px;
+    color: #6a6a6a;
+}
+
+.waktuLB {
+    font-size: 12px;
+    color: #777777;
+}
+
+.aktivitasLB {
+    font-size: 12px;
+    color: #5c5c5c;
+}
+
+.aktivitasLB1 {
+    font-size: 14px;
+    color: #5c5c5c;
+}
+
+.judulDt {
+    font-size: 22px;
+    color:darkgray;
+}
+
+.namaDt {
+    font-size: 12px;
+    color: #6a6a6a;
+    font-weight: bold;
+}
+
+.waktuDt {
+    font-size: 12px;
+    color: #777777;
+}
+
+.kategoriDt {
+    font-size: 14px;
+    color: #6a6a6a;
+}
+
+
+.aktivitasDt {
+    font-size: 13px;
+    color: #5c5c5c;
+    width:500px;
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-image: url("img/back.png");
+
+}
+
+.skin-blue .sidebar-menu > li.header {
+    background: #141517;
+    background-color: #141517;
+}
+
+.skin-blue .sidebar-menu > li > .treeview-menu {
+    background: #212325;
+    background-color: #212325;
+}
+
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li.menu-open > a {
+    background: #2c2f34;
+    background-color: #2c2f34;
+}
+
+
+
+.skin-blue .main-header .navbar {
+    background-color: #2c2f34;
+}
+
+.skin-blue .main-header .logo:hover {
+    background-color: #141517;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #141517;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #141517;
+}
+
+    .skin-blue .main-header .logo:hover {
+        background-color: #141517;
+    }
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: #141517;
+}

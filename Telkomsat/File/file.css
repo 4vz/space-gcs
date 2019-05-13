@@ -1,0 +1,16 @@
+﻿.bodyLB2 {
+    left: 30px;
+    margin-left: 30px;
+}
+
+    .bodyLB2 .headIP {
+        font-size: 22px;
+        font-family: 'Adobe Caslon Pro';
+        color: dimgray;
+    }
+
+.headIP {
+    font-size: 22px;
+    font-family: 'Adobe Caslon Pro';
+    color: dimgray;
+}

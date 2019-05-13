@@ -1,0 +1,161 @@
+﻿
+.text {
+    width: 100%;
+    position: relative;
+    margin-top: -29%;
+    font-size: 16px;
+    margin-left: 10%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: aliceblue;
+}
+
+    .text h3 {
+        text-align: center;
+    }
+
+
+
+.login-box-body, .register-box-body {
+    padding: 30px;
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #be0404;
+}
+
+.skin-blue .main-header .logo:hover {
+    background-color: #990000;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #990000;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #990000;
+}
+
+    .skin-blue .main-header .logo:hover {
+        background-color: #990000;
+    }
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: #990000;
+}
+
+.skin-blue .main-header li.user-header {
+    background-color: #990000;
+}
+
+.content-wrapper {
+    background-color: white;
+}
+
+.masukan {
+    padding-bottom: 15px;
+}
+
+    .masukan .textbox {
+        padding-bottom: 7px;
+        padding-top: 7px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 52%;
+        border-radius: 5px;
+        border-color: gainsboro;
+        border-width: 1px;
+        font-size: 15px;
+        box-shadow: 2px 2px 2px #ccc;
+    }
+
+        .masukan .textbox::-moz-placeholder {
+            font: larger;
+        }
+
+        .masukan .textbox::-webkit-input-placeholder {
+            color: #ccc;
+        }
+
+input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
+    width: 10%;
+}
+
+.btn-default {
+    color: dimgray;
+}
+
+
+.form-group .tdtext {
+    border-color:#ccc;
+}
+
+.pagination-ys {
+    /*display: inline-block;*/
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+    .pagination-ys table > tbody > tr > td {
+        display: inline;
+    }
+
+        .pagination-ys table > tbody > tr > td > a,
+        .pagination-ys table > tbody > tr > td > span {
+            position: relative;
+            float: left;
+            padding: 8px 12px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            color: #dd4814;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            margin-left: -1px;
+        }
+
+        .pagination-ys table > tbody > tr > td > span {
+            position: relative;
+            float: left;
+            padding: 8px 12px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            margin-left: -1px;
+            z-index: 2;
+            color: #aea79f;
+            background-color: #f5f5f5;
+            border-color: #dddddd;
+            cursor: default;
+        }
+
+        .pagination-ys table > tbody > tr > td:first-child > a,
+        .pagination-ys table > tbody > tr > td:first-child > span {
+            margin-left: 0;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+        }
+
+        .pagination-ys table > tbody > tr > td:last-child > a,
+        .pagination-ys table > tbody > tr > td:last-child > span {
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .pagination-ys table > tbody > tr > td > a:hover,
+        .pagination-ys table > tbody > tr > td > span:hover,
+        .pagination-ys table > tbody > tr > td > a:focus,
+        .pagination-ys table > tbody > tr > td > span:focus {
+            color: #97310e;
+            background-color: #eeeeee;
+            border-color: #dddddd;
+        }
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
+    background-image:none;
+}
+
+.headIP{
+    font-family:'Adobe Caslon Pro';
+    font-size:22px;
+    color:dimgrey;
+}
+
