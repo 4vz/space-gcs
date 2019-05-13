@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
+// blablabal
 namespace Telkomsat
 {
     public partial class search : System.Web.UI.Page

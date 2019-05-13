@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 namespace Telkomsat
 {
+    // wildan: halo
     public partial class edit : System.Web.UI.Page
     {
         SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=DATAGCS1; Integrated Security = true;");
