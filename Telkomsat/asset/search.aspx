@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <form id="form1" runat="server">
-    <div style="text-align: left">
+    <div style="text-align: left" class="datakita">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
         </div>
@@ -19,8 +19,8 @@
 
         
         <br />
-        <asp:Button ID="btnExpand" runat="server" Text="Expand" OnClick="Expand_OnClick" class="cssexpand"/>
         <asp:Label ID="lblCount" runat="server" Text="Label" CssClass="count1"></asp:Label>
+        <asp:Button ID="btnExpand" runat="server" Text="Expand" OnClick="Expand_OnClick" class="cssexpand"/>
         <select class="ddl" id="urutkan" onChange="myNewFunction(this);" runat="server">
             <option >-Urutkan-</option>
             <option value="KELOMPOK">Kelompok</option>
@@ -42,7 +42,7 @@
                 <asp:BoundField DataField ="S/N" HeaderText ="S/N" ItemStyle-Width="90px" ItemStyle-CssClass="rows"/>
                 <asp:BoundField DataField ="P/N" HeaderText ="P/N" ItemStyle-Width="120px" ItemStyle-CssClass="rows"/>
                 <asp:BoundField DataField ="SITE" HeaderText ="LOKASI" ItemStyle-Width="70px"  ItemStyle-CssClass="rows"/>
-                <asp:BoundField DataField ="GUDANG" HeaderText ="GUDANG" ItemStyle-Width="90px" ItemStyle-CssClass="rows"/>
+                <asp:BoundField DataField ="GUDANG" HeaderText ="RUANGAN" ItemStyle-Width="90px" ItemStyle-CssClass="rows"/>
                 <asp:BoundField DataField ="RAK" HeaderText ="RAK" ItemStyle-Width="50px" ItemStyle-CssClass="rows"/>
                 <asp:BoundField DataField ="TELKOM2" HeaderText ="TK2" ItemStyle-Width="50px" ItemStyle-CssClass="rows"/>
                 <asp:BoundField DataField ="TELKOM3S" HeaderText ="TK3S" ItemStyle-Width="50px" ItemStyle-CssClass="rows"/>

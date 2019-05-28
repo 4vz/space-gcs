@@ -11,9 +11,9 @@ namespace Telkomsat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            /*lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             if (Session["user"] == null)
-                Response.Redirect("~/login.aspx");
+                Response.Redirect("~/login.aspx");*/
         }
     }
 }

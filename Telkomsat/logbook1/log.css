@@ -25,13 +25,15 @@
 }
 
 .input-group{
-    width:55%;
+    width:60%;
 }
 
+
     .input-group .headlb{
-        font-size:20px;
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font:bold;
+        position:relative;
+        font-size:1.5vw; 
     }
 
     .input-group .labelku {
@@ -41,7 +43,7 @@
     }
 
     .input-group .form-control {
-        width: 75%;
+        width: 65%;
         float: right;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;

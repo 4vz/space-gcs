@@ -1,5 +1,5 @@
 ﻿.input-group {
-    width: 50%;
+    width: 60%;
     vertical-align: middle;
 }
 
@@ -10,7 +10,7 @@
     }
 
     .input-group .form-control {
-        width: 70%;
+        width: 60%;
         float: right;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;

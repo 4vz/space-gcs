@@ -116,9 +116,17 @@ namespace Telkomsat.asset
             {
                 countcmd.Parameters.AddWithValue("@CountGudang", txtGudang.Text.Trim());
             }
-            if (txtTahun.Text.Trim() != "")
+            if (txtDari.Text.Trim() != "")
             {
-                countcmd.Parameters.AddWithValue("@CountTahun", txtTahun.Text.Trim());
+                countcmd.Parameters.AddWithValue("@CountTahunDari", txtDari.Text.Trim());
+            }
+            if (txtKe.Text.Trim() != "")
+            {
+                countcmd.Parameters.AddWithValue("@CountTahunKe", txtKe.Text.Trim());
+            }
+            else
+            {
+                countcmd.Parameters.AddWithValue("@CountTahunKe", txtDari.Text.Trim());
             }
             if (txtFungsi.Text.Trim() != "")
             {
@@ -156,9 +164,17 @@ namespace Telkomsat.asset
             {
                 sqlcmd.Parameters.AddWithValue("@SN", txtSN.Text.Trim());
             }
-            if (txtTahun.Text.Trim() != "")
+            if (txtDari.Text.Trim() != "")
             {
-                sqlcmd.Parameters.AddWithValue("@TAHUN", txtTahun.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("@TAHUNDARI", txtDari.Text.Trim());
+            }
+            if (txtKe.Text.Trim() != "")
+            {
+                sqlcmd.Parameters.AddWithValue("@TAHUNKE", txtKe.Text.Trim());
+            }
+            else
+            {
+                sqlcmd.Parameters.AddWithValue("@TAHUNKE", txtDari.Text.Trim());
             }
             if (txtGudang.Text.Trim() != "")
             {

@@ -109,7 +109,7 @@
             <div class="inner">
               <h3>Database Asset</h3>
                 <div class="icon">
-                    <img src="img/2.jpg" alt="" width="333" height="310"/>
+                    <img src="img/2.jpg" alt="" width="320" height="310"/>
             </div>
             </div>
           </div>
@@ -125,7 +125,7 @@
               <h3>Logbook</h3>
             </div>
             <div class="icon">
-              <img src="img/1.jpg" alt="" width="333" height="310"/>
+              <img src="img/1.jpg" alt="" width="320" height="310"/>
             </div>
           </div>
               </a>
@@ -139,7 +139,7 @@
               <h3>Knowledge</h3>
             </div>
             <div class="icon">
-                <img src="img/3.jpg" alt="" width="333" height="310"/>
+                <img src="img/3.jpg" alt="" width="320" height="310"/>
             </div>
           </div>
             </a>

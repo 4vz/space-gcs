@@ -130,16 +130,16 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../asset/filter.aspx?ID=UPCONVERTER"><i class="fa fa-circle-o"></i> Up Converter</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> Down Converter</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER" title="rfmatrix"><i class="fa fa-circle-o"></i> RF Matrix</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> IF Matrix</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> HPA</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> LNA</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> RCU HPA</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> LNA RSC</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> RCU Up Converter</a></li>
-                  <li><a href="../asset/filter.aspx?ID=DOWNCONVERTER"><i class="fa fa-circle-o"></i> RCU Down Converter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=UP-CONVERTER"><i class="fa fa-circle-o"></i> Up Converter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DOWN-CONVERTER"><i class="fa fa-circle-o"></i> Down Converter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=RF-MATRIX-SWITCH" title="rfmatrix"><i class="fa fa-circle-o"></i> RF Matrix</a></li>
+                  <li><a href="../asset/filter.aspx?ID=IF-MATRIX-SWITCH"><i class="fa fa-circle-o"></i> IF Matrix</a></li>
+                  <li><a href="../asset/filter.aspx?ID=HPA"><i class="fa fa-circle-o"></i> HPA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=LNA"><i class="fa fa-circle-o"></i> LNA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=(RCU)-HPA"><i class="fa fa-circle-o"></i> RCU HPA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=LNA-REDUNDANT-SWITCH"><i class="fa fa-circle-o"></i> LNA RSC</a></li>
+                  <li><a href="../asset/filter.aspx?ID=(RCU)-TX"><i class="fa fa-circle-o"></i> RCU Up Converter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=(RCU)-RX"><i class="fa fa-circle-o"></i> RCU Down Converter</a></li>
               </ul>
             </li>
 
@@ -150,8 +150,9 @@
               </a>
               <ul class="treeview-menu">
                   <li><a href="../asset/filter.aspx?ID=GPS-ANTENA"><i class="fa fa-circle-o"></i> GPS Antena</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> GPS Time Server</a></li>
+                  <li><a href="../asset/filter.aspx?ID=GPS-TIME-SERVER"><i class="fa fa-circle-o"></i> GPS Time Server</a></li>
                   <li><a href="../asset/filter.aspx?ID=BASEBAND"><i class="fa fa-circle-o"></i> Baseband</a></li>
+                  <li><a href="../asset/filter.aspx?ID=IF-MODEM"><i class="fa fa-circle-o"></i> If Modem</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Server & NE
@@ -160,22 +161,21 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  
-                  <li><a href="#"><i class="fa fa-circle-o"></i> VM Hardware</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> NAS Hardware</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> FEP Hardware</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Ethernet HUB</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Ethernet Switch</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Firewall</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Router</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> KVM</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Compass Server</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Device Master</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Adam Unit</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Network Serial Adapter</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> WEB I/O Relay</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Saecams Server</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Sat ID Server</a></li>
+                  <li><a href="../asset/filter.aspx?ID=VM-HARDWARE"><i class="fa fa-circle-o"></i> VM Hardware</a></li>
+                  <li><a href="../asset/filter.aspx?ID=NAS-HARDWARE"><i class="fa fa-circle-o"></i> NAS Hardware</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FEP-HARDWARE"><i class="fa fa-circle-o"></i> FEP Hardware</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ETHERNET-HUB"><i class="fa fa-circle-o"></i> Ethernet HUB</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ETHERNET-SWITCH"><i class="fa fa-circle-o"></i> Ethernet Switch</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FIREWALL"><i class="fa fa-circle-o"></i> Firewall</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ROUTER"><i class="fa fa-circle-o"></i> Router</a></li>
+                  <li><a href="../asset/filter.aspx?ID=KVM"><i class="fa fa-circle-o"></i> KVM</a></li>
+                  <li><a href="../asset/filter.aspx?ID=COMPASS-SERVER"><i class="fa fa-circle-o"></i> Compass Server</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DEVICE-MASTER"><i class="fa fa-circle-o"></i> Device Master</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ADAM-UNIT"><i class="fa fa-circle-o"></i> Adam Unit</a></li>
+                  <li><a href="../asset/filter.aspx?ID=NETWORK-SERIAL"><i class="fa fa-circle-o"></i> Network Serial Adapter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=WEB-RELAY"><i class="fa fa-circle-o"></i> WEB I/O Relay</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SEACAMS-SERVER"><i class="fa fa-circle-o"></i> Saecams Server</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ID-SERVER"><i class="fa fa-circle-o"></i> Sat ID Server</a></li>
               </ul>
             </li>
                 
@@ -185,15 +185,21 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Dehydrator</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Antena</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> RF to Optic Converter</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Acu</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Motor</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Remote Control Unit</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Digital Tracking Receiver</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Monopulse TR</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Dual Channel DC</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DEHYDRATOR"><i class="fa fa-circle-o"></i> Dehydrator</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ANTENNA"><i class="fa fa-circle-o"></i> Antena</a></li>
+                  <li><a href="../asset/filter.aspx?ID=RF-TO-OPTIC"><i class="fa fa-circle-o"></i> RF to Optic Converter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ACU"><i class="fa fa-circle-o"></i> Acu</a></li>
+                  <li><a href="../asset/filter.aspx?ID=MOTOR"><i class="fa fa-circle-o"></i> Motor</a></li>
+                  <li><a href="../asset/filter.aspx?ID=REMOTE-CONTROL"><i class="fa fa-circle-o"></i> Remote Control Unit</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DIGITAL-TRACKING"><i class="fa fa-circle-o"></i> Digital Tracking Receiver</a></li>
+                  <li><a href="../asset/filter.aspx?ID=MONOPULSE"><i class="fa fa-circle-o"></i> Monopulse TR</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DUAL-CHANNEL"><i class="fa fa-circle-o"></i> Dual Channel DC</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SERVO-DRIVES"><i class="fa fa-circle-o"></i> Servo Drives</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SNOW-SENSOR"><i class="fa fa-circle-o"></i> Rain/Snow Sensor</a></li>
+                  <li><a href="../asset/filter.aspx?ID=OPTICAL-ENCODER"><i class="fa fa-circle-o"></i> Optical Encoder</a></li>
+                  <li><a href="../asset/filter.aspx?ID=(ACB)"><i class="fa fa-circle-o"></i> Antena Control Board</a></li>
+                  <li><a href="../asset/filter.aspx?ID=(BDC)"><i class="fa fa-circle-o"></i> Block Down Control</a></li>
+                  <li><a href="../asset/filter.aspx?ID=PHASE-SHIFTER"><i class="fa fa-circle-o"></i> Phase Shifter</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Alat Ukur
@@ -202,10 +208,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Synthesizer Sweeper</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Power Meter</a></li>
+                  <li><a href="../asset/filter.aspx?ID=CIMMUNICATION"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SPEKTRUM"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SYNTHESIZER"><i class="fa fa-circle-o"></i> Synthesizer Sweeper</a></li>
+                  <li><a href="../asset/filter.aspx?ID=POWER-METER"><i class="fa fa-circle-o"></i> Power Meter</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Workstation
@@ -214,9 +220,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Workstation Operasional</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Workstation Engineering</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Workstation Flight Dynamics</a></li>
+                  <li><a href="../asset/filter.aspx?ID=WORKSTATION-OPERASIONAL"><i class="fa fa-circle-o"></i> WS Operasional</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ENGINEERING"><i class="fa fa-circle-o"></i> WS Engineering</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FLIGHT-DYNAMICS"><i class="fa fa-circle-o"></i> WS Flight Dynamics</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> License
@@ -225,25 +231,88 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Epoch Client Licenses</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Epoch Server Licenses</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Ares Licenses</a></li>
+                  <li><a href="../asset/filter.aspx?ID=EPOCH-CLIENT"><i class="fa fa-circle-o"></i> Epoch Client Licenses</a></li>
+                  <li><a href="../asset/filter.aspx?ID=EPOCH-SERVER"><i class="fa fa-circle-o"></i> Epoch Server Licenses</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ARES"><i class="fa fa-circle-o"></i> Ares Licenses</a></li>
               </ul>
             </li>
-            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Mechanincal Electrical
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Electrical
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> UPS</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Trafo</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Genset</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Cubicle</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> ATS</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Apotrans</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> P.MDP</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i> D.UPS</a></li>
+                  <li><a href="../asset/filter.aspx?ID=CUBICLE"><i class="fa fa-circle-o"></i> Cubicle</a></li>
+                  <li><a href="../asset/filter.aspx?ID=TRAFO"><i class="fa fa-circle-o"></i> Trafo</a></li>
+                  <li><a href="../asset/filter.aspx?ID=MDP"><i class="fa fa-circle-o"></i> Main Distribution</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FEEDER"><i class="fa fa-circle-o"></i> Feeder</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AIR-COMPRESSOR"><i class="fa fa-circle-o"></i> Air Compressor</a></li>
+              </ul>
+            </li>
+
+              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Genset
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../asset/filter.aspx?ID=625-KVA"><i class="fa fa-circle-o"></i> Genset 625 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=1500-KVA"><i class="fa fa-circle-o"></i> Genset 1500 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=BBM-TANK"><i class="fa fa-circle-o"></i> BBM Tank</a></li>
+                  <li><a href="../asset/filter.aspx?ID=DAILY-TANK"><i class="fa fa-circle-o"></i> Daily Tank</a></li>
+              </ul>
+            </li>
+              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> UPS
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../asset/filter.aspx?ID=310-KVA"><i class="fa fa-circle-o"></i> UPS 310 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=330-KVA"><i class="fa fa-circle-o"></i> UPS 330 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=3.1-KVA"><i class="fa fa-circle-o"></i> UPS 3.1 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=5-KVA"><i class="fa fa-circle-o"></i> UPS 5 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=10-KVA"><i class="fa fa-circle-o"></i> UPS 10 KVA</a></li>
+                  <li><a href="../asset/filter.aspx?ID=BATTERY-UPS"><i class="fa fa-circle-o"></i> Battery UPS</a></li>
+                  <li><a href="../asset/filter.aspx?ID=APOTRANS"><i class="fa fa-circle-o"></i> Apotrans</a></li>
+              </ul>
+            </li>
+              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Air Conditioning
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../asset/filter.aspx?ID=AC-CHILLER"><i class="fa fa-circle-o"></i> AC Chiller</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AHU"><i class="fa fa-circle-o"></i> AHU</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FAN-COIL"><i class="fa fa-circle-o"></i> Fan Coil</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AC-PRECISION"><i class="fa fa-circle-o"></i> AC Precision</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AC-STANDING-FLOOR"><i class="fa fa-circle-o"></i> AC Standing Floor</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AC-PORTABLE"><i class="fa fa-circle-o"></i> AC Portable</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AC-SPLIT"><i class="fa fa-circle-o"></i> AC Split</a></li>
+                  <li><a href="../asset/filter.aspx?ID=COMPRESSOR"><i class="fa fa-circle-o"></i> Compressor</a></li>
+              </ul>
+            </li>
+              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Hydrant
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../asset/filter.aspx?ID=DIESEL-ENGINE"><i class="fa fa-circle-o"></i> Diesel Engine</a></li>
+                  <li><a href="../asset/filter.aspx?ID=PILLAR-HYDRANT"><i class="fa fa-circle-o"></i> Pillar Hydrant</a></li>
+                  <li><a href="../asset/filter.aspx?ID=WATER-TANK"><i class="fa fa-circle-o"></i> Water Tank</a></li>
+              </ul>
+            </li>
+              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Fire Alarm Protection
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../asset/filter.aspx?ID=HSSD"><i class="fa fa-circle-o"></i> HSSD</a></li>
+                  <li><a href="../asset/filter.aspx?ID=FM200"><i class="fa fa-circle-o"></i> FM 200</a></li>
               </ul>
             </li>
           </ul>

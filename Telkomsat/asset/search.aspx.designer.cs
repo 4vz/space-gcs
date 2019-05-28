@@ -40,15 +40,6 @@ namespace Telkomsat.asset {
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputsearch;
         
         /// <summary>
-        /// btnExpand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExpand;
-        
-        /// <summary>
         /// lblCount control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace Telkomsat.asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCount;
+        
+        /// <summary>
+        /// btnExpand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExpand;
         
         /// <summary>
         /// urutkan control.

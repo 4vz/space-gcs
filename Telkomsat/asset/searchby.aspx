@@ -16,7 +16,7 @@
                 <td style="padding-bottom:5px; padding-right:40px">
                     <asp:Label ID="Label1" runat="server" Text="NAMA EQ"></asp:Label>
                 </td>
-                <td style="padding-bottom:5px;">
+                <td style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtNama" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
@@ -24,7 +24,7 @@
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label2" runat="server" Text="MERK"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtMerk" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
@@ -33,30 +33,24 @@
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label4" runat="server" Text="[S/N]"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtSN" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td class="auto-style1" style="padding-bottom:5px;">
-                    <asp:Label ID="Label8" runat="server" Text="TAHUN"></asp:Label>
-                </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
-                    <asp:TextBox ID="txtTahun" runat="server" Width="200px"></asp:TextBox>
-                </td>
-            </tr>
+            
             <tr>
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label3" runat="server" Text="LOKASI"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtLokasi" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label5" runat="server" Text="GUDANG"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtGudang" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
@@ -64,7 +58,7 @@
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label6" runat="server" Text="FUNGSI"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtFungsi" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
@@ -72,8 +66,27 @@
                 <td class="auto-style1" style="padding-bottom:5px;">
                     <asp:Label ID="Label7" runat="server" Text="STATUS"></asp:Label>
                 </td>
-                <td class="auto-style1" style="padding-bottom:5px;">
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="3">
                     <asp:TextBox ID="txtStatus" runat="server" Width="200px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style1" style="padding-bottom:5px;" colspan="4">
+                    <asp:Label ID="Label8" runat="server" Text="TAHUN PENGADAAN" Font-Bold="True"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style1" style="padding-bottom:5px;">
+                    <asp:Label ID="Label9" runat="server" Text="DARI"></asp:Label>
+                </td>
+                <td style="padding-bottom:5px;">
+                    <asp:TextBox ID="txtDari" runat="server" Width="80px"></asp:TextBox>
+                </td>
+                <td class="auto-style1" style="padding-bottom:5px;">
+                    <asp:Label ID="Label10" runat="server" Text="KE"></asp:Label>
+                </td>
+                <td class="auto-style1" style="padding-bottom:5px; padding-left:10px;">
+                    <asp:TextBox ID="txtKe" runat="server" Width="80px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -90,7 +103,7 @@
         <asp:Label ID="lblnull" align="center" runat="server" Text="" ForeColor="#666666" Font-Bold="true" Font-Size="18px"></asp:Label> 
 
         </div>
-        <asp:Label ID="lblCount" runat="server" Text="Label" CssClass="count"></asp:Label>
+        <asp:Label ID="lblCount" runat="server" Text="Label" CssClass="count1"></asp:Label>
         <asp:Button ID="btnExpand" runat="server" Text="Expand" OnClick="Expand_OnClick" class="cssexpand"/>
         
         <select class="ddl" id="urutkan" onChange="myNewFunction(this);" runat="server">
@@ -105,7 +118,7 @@
         <asp:Button ID="btnurut" runat="server" Text="Button" OnClick="btnurut_click" CssClass="urut"/>
         <hr width="100%" align="center" style="margin-top:0px; margin-bottom:10px;">
         <asp:GridView ID="gvContact" runat="server" AutoGenerateColumns="False" style="margin:0 auto;" Font-Size="13px" BackColor="White"
-            BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" HeaderStyle-HorizontalAlign="Center" AllowPaging="true" PageSize="20" OnPageIndexChanging="OnPaging" OnPreRender="gvContact_PreRender">
+            BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" HeaderStyle-HorizontalAlign="Center" AllowPaging="true" PageSize="30" OnPageIndexChanging="OnPaging" OnPreRender="gvContact_PreRender">
             <Columns>
                 <asp:BoundField DataField ="KELOMPOK" HeaderText ="KELOMPOK" ItemStyle-Width="140px"/>
                 <asp:BoundField DataField ="NAMA" HeaderText ="NAMA" ItemStyle-Width="160px" />
@@ -114,7 +127,7 @@
                 <asp:BoundField DataField ="S/N" HeaderText ="S/N" ItemStyle-Width="90px"/>
                 <asp:BoundField DataField ="P/N" HeaderText ="P/N" ItemStyle-Width="120px"/>
                 <asp:BoundField DataField ="SITE" HeaderText ="LOKASI" ItemStyle-Width="70px" />
-                <asp:BoundField DataField ="GUDANG" HeaderText ="GUDANG" ItemStyle-Width="90px"/>
+                <asp:BoundField DataField ="GUDANG" HeaderText ="RUANGAN" ItemStyle-Width="90px"/>
                 <asp:BoundField DataField ="RAK" HeaderText ="RAK" ItemStyle-Width="50px"/>
                 <asp:BoundField DataField ="TELKOM2" HeaderText ="TK2" ItemStyle-Width="50px"/>
                 <asp:BoundField DataField ="TELKOM3S" HeaderText ="TK3S" ItemStyle-Width="50px"/>
@@ -128,9 +141,10 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-            <FooterStyle BackColor="#FFFFCC" ForeColor="#ffffff"/>
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#fafafa" />
-            <PagerStyle BackColor="White" CssClass="pagination-ys" HorizontalAlign="Right" Height="50px" VerticalAlign="Bottom"/>
+            <FooterStyle BackColor="Yellow" ForeColor="Yellow" BorderStyle="Double" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#fafafa"/>
+            <PagerStyle BackColor="White" CssClass="pagination-ys" HorizontalAlign="Right" Height="70px" VerticalAlign="Middle" 
+                 BorderColor="White" BorderStyle="None" BorderWidth="0" />
             <PagerSettings Mode="Numeric" PageButtonCount="4" FirstPageText="1" />
             <RowStyle BackColor="White" ForeColor="#1b1b1b" />
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

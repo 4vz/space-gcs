@@ -77,7 +77,7 @@ namespace Telkomsat.asset
             chart += kelompok;
             chart += "\",";
             chart += "borderColor: \"#3e95cd\",fill: true}";
-            chart += "]},options: { title: { display: true,text: 'Nama Equipment'} }"; // Chart title
+            chart += "]},options: { title: { display: true,text: 'Nama Equipment'}, scales: { xAxes: [{ ticks: { beginAtZero: true } }] } }"; // Chart title
             chart += "});";
             chart += "</script>";
             if (chart.Length == 0 || value.Length == 0)

@@ -46,24 +46,21 @@ namespace Telkomsat.asset
                 string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM2 = 'V'";
                 SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
                 int value = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + value.ToString() + " hasil ditemukan untuk "
-                + '"' + result + '"';
+                lblCount.Text = "Terdapat " + value.ToString() + " hasil untuk " + '"' + result + '"';
             }
             else if (result == "TELKOM 3S")
             {
                 string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM3S = 'V'";
                 SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
                 int value = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + value.ToString() + " hasil ditemukan untuk "
-                + '"' + result + '"';
+                lblCount.Text = "Terdapat " + value.ToString() + " hasil untuk " + '"' + result + '"';
             }
             else if (result == "MPSAT")
             {
                 string querytk2 = "SELECT Count(*) FROM Asset1 WHERE MPSAT = 'V'";
                 SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
                 int value = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + value.ToString() + " hasil ditemukan untuk "
-                + '"' + result + '"';
+                lblCount.Text = "Terdapat " + value.ToString() + " hasil untuk " + '"' + result + '"';
             }
             else
             {
@@ -71,8 +68,7 @@ namespace Telkomsat.asset
                 countcmd.CommandType = CommandType.StoredProcedure;
                 countcmd.Parameters.AddWithValue("@CountAll", result);
                 int valuecount = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil ditemukan untuk "
-                    + '"' + result + '"';
+                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + result + '"';
             }
             fillGridView1();
         }

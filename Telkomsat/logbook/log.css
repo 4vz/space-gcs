@@ -28,10 +28,11 @@
     width:55%;
 }
 
-    .input-group .headlb{
-        font-size:20px;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font:bold;
+    .input-group .headlb {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font: bold;
+        position: relative;
+        font-size: 1.3vw;
     }
 
     .input-group .labelku {

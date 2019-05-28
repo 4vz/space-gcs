@@ -178,12 +178,12 @@ table {
 }
 .ddl{
     width:102px;
-    float:right;
+    float:left;
     position:relative;
-    right:173px;
+    right:auto;
+    left:42%;
     bottom:5px;
     font-size:13px;
-    height:23px;
 }
 
 .ddl1 {
@@ -203,18 +203,19 @@ table {
 }
 
 .count1 {
-    width: 120px;
+    float: left;
+    width: 320px;
     position: relative;
-    left: 170px;
+    left: 15%;
     bottom: 5px;
 }
 
 .cssexpand {
-    float:right;
+    float:left;
     position: relative;
     bottom:5px;
-    right: 360px;
-    left:auto;
+    right: auto;
+    left:40%;
     font-size:13px;
     height:23px;
     border-width:1px;
