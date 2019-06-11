@@ -19,8 +19,11 @@ namespace Telkomsat.logbook1
         protected void Page_Load(object sender, EventArgs e)
         {
             txtTanggal.Enabled = false;
-            txtTanggal.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
             fillgridview();
+            txtOS.Text = Session["user"].ToString();
+            Response.Write(Session["user"].ToString());
+            Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {

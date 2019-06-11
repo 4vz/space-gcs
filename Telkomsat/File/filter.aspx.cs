@@ -107,7 +107,7 @@ namespace Telkomsat.File
 
         protected void btnTambah_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/File/semuafile.aspx");
+            Response.Redirect("~/File/tambah.aspx");
         }
 
         protected void linkDownloadFile_Click(object sender, EventArgs e)

@@ -248,6 +248,7 @@
                   <li><a href="../asset/filter.aspx?ID=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
                   <li><a href="../asset/filter.aspx?ID=FEEDER"><i class="fa fa-circle-o"></i> Feeder</a></li>
                   <li><a href="../asset/filter.aspx?ID=AIR-COMPRESSOR"><i class="fa fa-circle-o"></i> Air Compressor</a></li>
+                  <li><a href="../asset/filter.aspx?ID=ESSENSIAL-PANEL"><i class="fa fa-circle-o"></i> Essensial Panel</a></li>
               </ul>
             </li>
 
@@ -292,6 +293,7 @@
                   <li><a href="../asset/filter.aspx?ID=AC-PORTABLE"><i class="fa fa-circle-o"></i> AC Portable</a></li>
                   <li><a href="../asset/filter.aspx?ID=AC-SPLIT"><i class="fa fa-circle-o"></i> AC Split</a></li>
                   <li><a href="../asset/filter.aspx?ID=COMPRESSOR"><i class="fa fa-circle-o"></i> Compressor</a></li>
+                  <li><a href="../asset/filter.aspx?ID=AC-PACKAGE"><i class="fa fa-circle-o"></i> AC Package</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Hydrant
