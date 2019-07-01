@@ -25,14 +25,32 @@ namespace Telkomsat
         {
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
-            string query = "SELECT COUNT(*) FROM Login WHERE user_name='" + inEmail.Value + "' AND password ='" + inPass.Value + " '";
+            string query = "SELECT COUNT(*) FROM Profile WHERE user_name='" + inEmail.Value + "' AND password ='" + inPass.Value + " '";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             string output = cmd.ExecuteScalar().ToString();
 
             if (output == "1")
             {
-                Session["user"] = inEmail.Value;
+                
+                if (sqlCon.State == ConnectionState.Closed)
+                    sqlCon.Open();
+                SqlDataAdapter sqlda = new SqlDataAdapter("ProViewByUser", sqlCon);
+                sqlda.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlda.SelectCommand.Parameters.AddWithValue("@user", inEmail.Value);
+                DataTable dtbl = new DataTable();
+                sqlda.Fill(dtbl);
+                sqlCon.Close();
+                Session["username"] = inEmail.Value;
+                //Session["username"] = dtbl.Rows[0]["user_name"].ToString();
+                Session["password"] = dtbl.Rows[0]["password"].ToString();
+                Session["email"] = dtbl.Rows[0]["email"].ToString();
+                Session["jenis1"] = dtbl.Rows[0]["jenis"].ToString();
+                Session["nama"] = dtbl.Rows[0]["nama"].ToString();
+                Session["nomor"] = dtbl.Rows[0]["nomor"].ToString();
+                Session["tanggal"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
+                Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
+                Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
                 Response.Redirect("~/dashboard.aspx");
             }
             else

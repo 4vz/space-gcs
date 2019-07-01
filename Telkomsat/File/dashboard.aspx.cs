@@ -56,6 +56,12 @@ namespace Telkomsat.File
             SqlCommand countpass = new SqlCommand("SELECT Count(*) FROM IPPass", con);
             int valuepass = (int)countpass.ExecuteScalar();
             lblPass.Text = valuepass.ToString();
+            con.Close();
+            con.Open();
+            SqlCommand countpassword = new SqlCommand("SELECT Count(*) FROM Password", con);
+            int valuepassword = (int)countpassword.ExecuteScalar();
+            lblpassword.Text = valuepassword.ToString();
+            con.Close();
         }
 
         protected void btnPosting_Click(object sender, EventArgs e)

@@ -76,6 +76,15 @@ namespace Telkomsat.File {
         protected global::System.Web.UI.WebControls.Label lblPass;
         
         /// <summary>
+        /// lblpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpassword;
+        
+        /// <summary>
         /// lblBuku control.
         /// </summary>
         /// <remarks>

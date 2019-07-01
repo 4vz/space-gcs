@@ -16,7 +16,7 @@
             <asp:Label ID="POSTINGLabel" runat="server" class="POSTINGLB" Text='<%# Eval("POSTING").ToString().Length > 200 ? 
                     Eval("POSTING").ToString().Substring(0,200)+"..." : Eval("POSTING")%>' />
             
-            <br />
+             <br />
             <br />
         </ItemTemplate>
 

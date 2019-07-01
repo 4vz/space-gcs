@@ -36,7 +36,11 @@
       <ul class="sidebar-menu">
           <li class="treeview"><a href="../File/ippass.aspx">
            
-            <i class="fa fa-file-text-o"></i><span><b>IP Password</b></span></a>
+            <i class="fa fa-file-text-o"></i><span><b>IP</b></span></a>
+        </li>
+          <li class="treeview"><a href="../password/semuasoftware.aspx">
+           
+            <i class="fa fa-file-archive-o"></i><span><b>Password</b></span></a>
         </li>
           <li class="treeview"><a href="../File/semuafile.aspx">
            <i class="fa fa-file"></i><span><b>Semua File</b></span></a>

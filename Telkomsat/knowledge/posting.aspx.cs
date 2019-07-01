@@ -16,7 +16,7 @@ namespace Telkomsat.knowledge
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=KNOWLEDGE; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
+            if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
 
             string link = (HttpContext.Current.Request.Url.PathAndQuery);

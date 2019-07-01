@@ -14,6 +14,7 @@ namespace Telkomsat.logbook1
     {
         Nullable<int> i = null;
         Nullable<int> j = null;
+        string tanggal;
         SqlConnection sqlCon2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
@@ -32,12 +33,17 @@ namespace Telkomsat.logbook1
                 txtOS.Text = Session["OS"].ToString();
                 txtInfo.Text = Session["info"].ToString();
                 txtSN.Text = Session["SN"].ToString();
+                txtSN2.Text = Session["SN"].ToString();
+                txtSN3.Text = Session["SN1"].ToString();
+                txtHarga.Text = Session["estimasi"].ToString();
                 ddlKategori.Text = Session["kategori"].ToString();
+
+                    
 
                 //labelID.Visible = true;
 
             }
-            Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
+            //Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
             int ID = Convert.ToInt32(hfContactID.Value);
             if (sqlCon2.State == ConnectionState.Closed)
                 sqlCon2.Open();
@@ -57,6 +63,7 @@ namespace Telkomsat.logbook1
         {
             hfContactID.Value = Session["hf"].ToString();
 
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -133,7 +140,7 @@ namespace Telkomsat.logbook1
                 sqlCmd.Parameters.AddWithValue("@ID_file", j);
             }
 
-            sqlCmd.Parameters.AddWithValue("@Tanggal", txtTanggal.Text.Trim());
+            sqlCmd.Parameters.AddWithValue("@Tanggal", tanggal);
             sqlCmd.Parameters.AddWithValue("@Event", txtEvent.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@PIC_OG", txtOG.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@PIC_OS", txtOS.Text.Trim());
@@ -141,10 +148,19 @@ namespace Telkomsat.logbook1
             sqlCmd.Parameters.AddWithValue("@Status", ddlStatus.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@Unit", ddlUnit.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@kategori", ddlKategori.Text.Trim());
-            if(txtSN.Visible = false || txtSN.Text == "")
-                sqlCmd.Parameters.AddWithValue("@SN", "");
+            if (ddlKategori.Text == "Penggantian")
+                sqlCmd.Parameters.AddWithValue("@SN", txtSN2.Text.Trim());
             else
-                sqlCmd.Parameters.AddWithValue("@SN", txtSN.Text);
+            {
+                if (txtSN.Visible = false || txtSN.Text == "")
+                    sqlCmd.Parameters.AddWithValue("@SN", "");
+                else
+                    sqlCmd.Parameters.AddWithValue("@SN", txtSN.Text);
+            }
+
+            sqlCmd.Parameters.AddWithValue("@SN1", txtSN3.Text.Trim());
+            sqlCmd.Parameters.AddWithValue("@estimasi", txtHarga.Text.Trim());
+            
             sqlCmd.ExecuteNonQuery();
             sqlCon2.Close();
             lblUpdate.Text = "Update Berhasil";

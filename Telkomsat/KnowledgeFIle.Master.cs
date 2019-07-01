@@ -12,8 +12,8 @@ namespace Telkomsat
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
-                Response.Redirect("~/login.aspx");
+            if (Session["username"] == null)
+               Response.Redirect("~/login.aspx");
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

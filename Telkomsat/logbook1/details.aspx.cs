@@ -18,7 +18,7 @@ namespace Telkomsat.logbook1
         {
             string formattanggal = Session["tanggal"].ToString();
             //DateTime newFormat = DateTime.ParseExact("09/12/2019", "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString();
-            string tanggalnew = Convert.ToDateTime(formattanggal).ToString("yyyy/MM/dd");
+            string tanggalnew = Convert.ToDateTime(formattanggal).ToString("dd/MM/yyyy");
             hfContactID.Value = Session["hf"].ToString();
             txtTanggal.Text = tanggalnew;
             txtEvent.Text = Session["event"].ToString();
@@ -29,13 +29,32 @@ namespace Telkomsat.logbook1
             txtInfo.Text = Session["info"].ToString();
             lblKategori.Text = Session["kategori"].ToString();
             lblSN.Text = Session["SN"].ToString();
-            
-            if(lblSN.Text == "")
+            lblSN1.Text = Session["SN1"].ToString();
+            lblEstimasi.Text = Session["estimasi"].ToString();
+
+            if (lblSN.Text == "")
             {
                 tdlabel.Visible = false;
                 tdlabel1.Visible = false;
                 tdlabel2.Visible = false;
             }
+
+            if (lblSN1.Text == "")
+            {
+                td1.Visible = false;
+                td2.Visible = false;
+                td3.Visible = false;
+            }
+
+            if (lblEstimasi.Text == "")
+            {
+                td4.Visible = false;
+                td5.Visible = false;
+                td6.Visible = false;
+            }
+            //if (lblEstimasi.Text == "")
+            //{
+            //}
 
             int ID = Convert.ToInt32(hfContactID.Value);
             if (sqlCon2.State == ConnectionState.Closed)

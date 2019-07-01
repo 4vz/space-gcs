@@ -16,15 +16,17 @@
     <link href="Style1.css" rel="stylesheet" />
     <link href="stylepagination.css" rel="stylesheet" />
     <link href="logbook/log.css" rel="stylesheet" type="text/css"/>
-    <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>
 <body class="skin-blue sidebar-mini" style="height:auto; min-height:100%">
+<form id="form12" runat="server">
 <div class="wrapper">
 <header class="main-header">
+    
     <!-- Logo -->
     <a href="../dashboard.aspx" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -44,7 +46,7 @@
 
     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="../home.aspx"><b>Home </b></a> </li>
+            <li><a href="../asset/home.aspx"><b>Home </b></a> </li>
             <li><a href="../asset/tambah.aspx"><b>Input Database </b></a></li>
             <li><a href="../asset/searchby.aspx"><b>Search by </b></a></li>
         </ul>
@@ -58,15 +60,21 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/user.jpg" class="user-image" alt="User Image"/>
-              <span class="hidden-xs">Admin</span>
+                <asp:Label ID="lblProfile" runat="server" Text="Label" CssClass="hidden-xs"></asp:Label>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/user.jpg" class="img-circle" alt="User Image"/>
+    <asp:DataList runat="server" id="DataList1" Width="100%"> 
+        <ItemTemplate>
+                <div class="widget-user-image">
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                </div>
+        </ItemTemplate>
 
-                <p><a href="../home.aspx">
+    </asp:DataList>
+
+                <p><a href="../asset/home.aspx">
                   Admin- Telkom Satellite
                   <small>2019</small>
                     </a>
@@ -90,6 +98,7 @@
         </ul>
       </div>
     </nav>
+    
   </header>
 
 <aside class="main-sidebar">
@@ -98,10 +107,19 @@
       <!-- Sidebar user panel -->
       <div class="user-panel"> 
         <div class="pull-left image">
-          <img class="img-circle" alt="User Image" src="img/user.jpg" />
+          <asp:DataList runat="server" id="dtContact1" Width="100%">
+        
+        
+        <ItemTemplate>
+                <div class="widget-user-image">
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" Width="45px" Height="45px" class="img-circle" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                </div>
+        </ItemTemplate>
+
+    </asp:DataList>
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+            <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
           <a href="#"></a>
         </div>
       </div>
@@ -113,7 +131,6 @@
       
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-    <form action="home.aspx" method="post">
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">FILTER</li>
         <li class="treeview">
@@ -396,7 +413,6 @@
           </a>
         </li>
         </ul>
-    </form>
     </section>
     <!-- /.sidebar -->
     
@@ -458,5 +474,6 @@
         }
 
 </script>
+</form>
 </body>
 </html>

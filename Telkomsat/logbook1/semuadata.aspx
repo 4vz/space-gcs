@@ -3,7 +3,7 @@
     <link href="log.css" rel="stylesheet" type="text/css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
+
     <div class="datakita" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -59,5 +59,5 @@
         </asp:GridView>
         <asp:Label ID="lblPage" runat="server" Text="Label" CssClass="halaman"></asp:Label>
     </div>
-    </form>
+
 </asp:Content>

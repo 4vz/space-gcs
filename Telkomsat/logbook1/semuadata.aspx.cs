@@ -237,7 +237,9 @@ namespace Telkomsat.logbook1
             Session["OG"] = dtbl.Rows[0]["PIC_OG"].ToString();
             Session["info"] = dtbl.Rows[0]["info"].ToString();
             Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
-
+            Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
+            Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
+            Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
             Response.Redirect("~/logbook1/details.aspx");
 

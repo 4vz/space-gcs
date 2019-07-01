@@ -15,6 +15,8 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Form.DefaultButton = btnSave.UniqueID;
+            txtPIC.Text = Session["username"].ToString();
             if (!IsPostBack)
             {
 

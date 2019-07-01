@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="editlogbook.aspx.cs" Inherits="Telkomsat.logbook1.editlogbook" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js2.js" type="text/javascript"></script>
+    
+
 <script type="text/javascript">
 $(document).ready(function(){
     $("#tr2").hide();
@@ -43,10 +44,11 @@ $(document).ready(function(){
     });
 
 </script>
+    <script src="js4.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="log.css" rel="stylesheet" type="text/css"/>
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -77,7 +79,7 @@ $(document).ready(function(){
                 <td style="padding-bottom:10px;" class="titikdua">
                     <asp:Label ID="Label28" runat="server" >:</asp:Label>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px;" colspan="2">
+                <td class="tdtext" style="padding-bottom:10px;">
                     <asp:DropDownList ID="ddlKategori" runat="server" class="ddl3" Width="120px" onchange="status(this)">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Perbaikan</asp:ListItem>
@@ -87,23 +89,63 @@ $(document).ready(function(){
                         <asp:ListItem>Lain-lain</asp:ListItem>
                     </asp:DropDownList>
                 </td>
+                <td>
 
-                <td class="tdtext" style="padding-bottom:10px; padding-right:30px; padding-left:50px; visibility:hidden" id="labelID">
+                </td>
+                <td class="tdtext" style="padding-bottom:10px; padding-left:50px; padding-right:20px; visibility:hidden" id="labelID">
                     <asp:Label ID="Label29" class="lbl" runat="server">SN Asset  </asp:Label>
                 </td>
-                <td style="padding-bottom:10px; visibility:hidden" id="labelID1" class="titikdua" >
+                <td style="padding-bottom:10px; visibility:hidden" class="titikdua" id="labelID1">
                     <asp:Label ID="Label30" runat="server" >:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px; visibility:hidden" id="labelID2" class="tdtext" colspan="2" >
+                <td style="padding-bottom:10px; visibility:hidden" class="tdtext" id="labelID2" colspan="3">
                     <asp:TextBox ID="txtSN" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+                <td style="padding-bottom:10px; padding-right:5px; height: 32px; visibility:hidden" class="tdtext" id="lblestimasi">
+                    <asp:Label ID="Label35" runat="server" Text="Estimasi Harga"></asp:Label>
+                    <input type="checkbox" id="checkbox1" onchange="validate()"/>
+                </td>
+            </tr>
+            <tr id="trPergantian" style="display:none">
+                <td class="tdtext" style="padding-bottom:10px;">
+                    <asp:Label ID="Label1" class="lbl" runat="server">SN Aset Lama </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label32" runat="server" >:</asp:Label>
+                </td>
+                <td class="tdtext" style="padding-bottom:10px;">
+                    <asp:TextBox ID="txtSN2" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+                <td>
+
+                </td>
+                <td class="tdtext" style="padding-bottom:10px; padding-left:50px;">
+                    <asp:Label ID="Label33" class="lbl" runat="server">SN Aset Baru </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label34" runat="server" >:</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="tdtext">
+                    <asp:TextBox ID="txtSN3" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr id="trEstimasi" style="display:none">
+                <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                    <asp:Label ID="Label36" class="lbl" runat="server">Estimasi Harga</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label37" runat="server" >:</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="tdtext" colspan="7">
+                    <asp:TextBox ID="txtHarga" class="tb1" runat="server" Width="570px" TextMode="Number"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
-                    <asp:Label ID="Label1" class="lbl" runat="server">Event  </asp:Label>
+                    <asp:Label ID="Label9" class="lbl" runat="server">Event  </asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="titikdua">
-                    <asp:Label ID="Label9" runat="server" >:</asp:Label>
+                    <asp:Label ID="Label38" runat="server" >:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="tdtext" colspan="7">
                     <asp:TextBox ID="txtEvent" class="tb1" runat="server" Width="570px"></asp:TextBox>
@@ -147,7 +189,7 @@ $(document).ready(function(){
                     <asp:Label ID="Label5" runat="server" >:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="tdtext">
-                    <asp:TextBox ID="txtOS" class="tb1" runat="server" Width="180px"></asp:TextBox>
+                    <asp:TextBox ID="txtOS" class="tb1" runat="server" Width="160px"></asp:TextBox>
                 </td>
                 <td>
 
@@ -159,7 +201,7 @@ $(document).ready(function(){
                     <asp:Label ID="Label7" runat="server" >:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="tdtext" colspan="2">
-                    <asp:TextBox ID="txtOG" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                    <asp:TextBox ID="txtOG" class="tb1" runat="server" Width="180px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -267,7 +309,7 @@ $(document).ready(function(){
                 <td class="auto-style1">
                     
                 </td>
-                <td class="auto-style1">
+                <td class="auto-style1" colspan="3">
                     <asp:Button ID="Button1" runat="server" Text="Update" class="btn btn-primary" Width="110px" OnClick="btnUpdate_Click" />
                     <asp:Label ID="Label31" runat="server" Text="  |  "></asp:Label>
                     <asp:Button ID="Button2" runat="server" Text="Delete" class="btn btn-default" Width="110px" OnClick="btnDelete_Click" OnClientClick="if (!confirm('Are you sure you want to delete?')) return false;" />
@@ -325,5 +367,5 @@ $(document).ready(function(){
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
       </div>
-</form>
+
 </asp:Content>

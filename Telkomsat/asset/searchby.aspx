@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -156,7 +155,6 @@
         <br />
         <asp:Label ID="lblPage" runat="server" Text="Label" CssClass="halaman"></asp:Label>
     </div>
-</form>
     <script type="text/javascript">
         function myNewFunction(object) {
             var userinput = object.options[object.selectedIndex].value;

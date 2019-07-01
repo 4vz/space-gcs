@@ -13,15 +13,6 @@ namespace Telkomsat.asset {
     public partial class home {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// hfContactID control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace Telkomsat.asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfContactID;
+        
+        /// <summary>
+        /// UserPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel UserPanel;
         
         /// <summary>
         /// txtCari control.

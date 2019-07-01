@@ -20,7 +20,7 @@ namespace Telkomsat.knowledge
         {
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
-            if (Session["user"] == null)
+            if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
         }
 

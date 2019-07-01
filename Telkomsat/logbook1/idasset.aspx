@@ -3,7 +3,7 @@
     <link href="log.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
+
     <asp:Label ID="lblJudul" runat="server" Text="Label" CssClass="tabeljudul"></asp:Label>
     <br />
     <div style="padding-left:100px">
@@ -168,5 +168,5 @@
         </div>
         
     </div>
-</form>
+
 </asp:Content>

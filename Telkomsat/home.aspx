@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
     <div class="tengah">
         <asp:HiddenField ID="hfContactID" runat="server" />
@@ -18,5 +18,5 @@
             <asp:Button ID="btnCari" runat="server" Text="Search" onclick="btnCari_Click" class="btn btn-default btn-block btn-flat" Font-Bold="True"/>
         </div>
     </div>
-</form> 
+
 </asp:Content>

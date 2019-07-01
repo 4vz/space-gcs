@@ -1,0 +1,52 @@
+﻿.content-wrapper {
+    background-color: white;
+}
+
+.login-logo, .register-logo{
+    text-align:left;
+    margin-bottom:7px;
+    margin-top:20px;
+}
+
+.login-box-msg, .register-box-msg{
+    text-align:left;
+}
+
+.login-box, .register-box{
+    text-align:left;
+    margin-top:0%;
+    margin-left:2%;
+}
+
+hr{
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.box{
+    width:100%;
+}
+
+.bg-yellow, .callout.callout-warning, .alert-warning, .label-warning, .modal-warning .modal-body {
+    background-color: #eaeaea !important;
+}
+
+.linkbutton1{
+    font-size:13px;
+    position:absolute;
+    right:0px;
+
+}
+
+.widget-user-2 .widget-user-username, .widget-user-2 .widget-user-desc{
+    margin-left:20px;
+    color:dimgrey;
+}
+
+.widget-user-2 .widget-user-header{
+    padding:15px;
+}
+
+.bg-red, .bg-yellow, .bg-aqua, .bg-blue, .bg-light-blue, .bg-green, .bg-navy, .bg-teal, .bg-olive, .bg-lime, .bg-orange, .bg-fuchsia, .bg-purple, .bg-maroon, .bg-black, .bg-red-active, .bg-yellow-active, .bg-aqua-active, .bg-blue-active, .bg-light-blue-active, .bg-green-active, .bg-navy-active, .bg-teal-active, .bg-olive-active, .bg-lime-active, .bg-orange-active, .bg-fuchsia-active, .bg-purple-active, .bg-maroon-active, .bg-black-active, .callout.callout-danger, .callout.callout-warning, .callout.callout-info, .callout.callout-success, .alert-success, .alert-danger, .alert-error, .alert-warning, .alert-info, .label-danger, .label-info, .label-warning, .label-primary, .label-success, .modal-primary .modal-body, .modal-primary .modal-header, .modal-primary .modal-footer, .modal-warning .modal-body, .modal-warning .modal-header, .modal-warning .modal-footer, .modal-info .modal-body, .modal-info .modal-header, .modal-info .modal-footer, .modal-success .modal-body, .modal-success .modal-header, .modal-success .modal-footer, .modal-danger .modal-body, .modal-danger .modal-header, .modal-danger .modal-footer {
+    color: dimgray !important;
+}

@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
 <link href="log.css" rel="stylesheet" type="text/css"/>
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -23,7 +23,7 @@
                 <td style="padding-bottom:10px; height: 32px;" class="titikdua">
                     <asp:Label ID="Label18" runat="server" >:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px; height: 32px;" class="tdtext">
+                <td style="padding-bottom:10px; height: 32px;" class="tdtext" colspan="7">
                     <asp:Label ID="txtTanggal" class="tb1" runat="server" Width="115px"></asp:Label>
                 </td>
 
@@ -44,8 +44,18 @@
                 <td style="padding-bottom:10px;" class="titikdua" id="tdlabel1" runat="server">
                     <asp:Label ID="Label12" runat="server" >:</asp:Label>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px;" colspan="7" id="tdlabel2" runat="server">
+                <td class="tdtext" style="padding-bottom:10px;" id="tdlabel2" runat="server">
                     <asp:Label ID="lblSN" class="tb1" runat="server" Width="170px"></asp:Label>
+                </td>
+
+                <td class="tdtext" style="padding-bottom:10px; padding-right:30px; padding-left:82px" id="td1" runat="server">
+                    <asp:Label ID="Label15" class="lbl" runat="server">SN Baru  </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua" id="td2" runat="server">
+                    <asp:Label ID="Label16" runat="server" >:</asp:Label>
+                </td>
+                <td class="tdtext" style="padding-bottom:10px;" id="td3" runat="server">
+                    <asp:Label ID="lblSN1" class="tb1" runat="server" Width="170px"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -55,7 +65,7 @@
                 <td style="padding-bottom:10px;" class="titikdua">
                     <asp:Label ID="Label9" runat="server" >:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px;" class="tdtext" colspan="4">
+                <td style="padding-bottom:10px;" class="tdtext" colspan="7">
                     <asp:Label ID="txtEvent" class="tb1" runat="server" Width="570px"></asp:Label>
                 </td>
             </tr>
@@ -66,8 +76,18 @@
                 <td style="padding-bottom:10px;" class="titikdua">
                     <asp:Label ID="Label26" runat="server" >:</asp:Label>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px;" colspan="4">
-                    <asp:Label ID="ddlUnit" class="tb1" runat="server" Width="570px"></asp:Label>
+                <td class="tdtext" style="padding-bottom:10px;" >
+                    <asp:Label ID="ddlUnit" class="tb1" runat="server" Width="170px"></asp:Label>
+                </td>
+
+                <td class="tdtext" style="padding-bottom:10px; padding-right:30px; padding-left:82px" id="td4" runat="server">
+                    <asp:Label ID="Label19" class="lbl" runat="server">Estimasi </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua" id="td5" runat="server">
+                    <asp:Label ID="Label20" runat="server" >:</asp:Label>
+                </td>
+                <td class="tdtext" style="padding-bottom:10px;" colspan="7" id="td6" runat="server">
+                    <asp:Label ID="lblEstimasi" class="tb1" runat="server" Width="170px"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -77,7 +97,7 @@
                 <td style="padding-bottom:10px;" class="titikdua">
                     <asp:Label ID="Label10" runat="server" >:</asp:Label>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px;" colspan="4">
+                <td class="tdtext" style="padding-bottom:10px;" colspan="7">
                     <asp:Label ID="ddlStatus" class="tb1" runat="server" Width="570px"></asp:Label>
                 </td>
             </tr>
@@ -108,7 +128,7 @@
                 <td style="padding-bottom:10px; vertical-align:top;" class="titikdua">
                     <asp:Label ID="Label4" runat="server">:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="tdtext" colspan="4">
+                <td style="padding-bottom:10px; vertical-align:top;" class="tdtext" colspan="7">
                     <asp:Label ID="txtInfo" class="tb1" runat="server" TextMode="MultiLine" Width="570px"></asp:Label>
                 </td>
             </tr>
@@ -120,7 +140,7 @@
                 <td class="auto-style1">
                     
                 </td>
-                <td class="auto-style1">
+                <td class="auto-style1" colspan="7">
                     <asp:Button ID="Button1" runat="server" Text="Edit" class="btn btn-default" Width="110px" onclick="btnEdit_Click"/>
                 </td>
             </tr>
@@ -153,5 +173,5 @@
        </div>     
         
       </div>
-    </form>
+
 </asp:Content>

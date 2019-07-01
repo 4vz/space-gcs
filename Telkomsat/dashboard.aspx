@@ -51,16 +51,23 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/user.jpg" class="user-image" alt="User Image"/>
-              <span class="hidden-xs">Admin</span>
+              
+              <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/user.jpg" class="img-circle" alt="User Image"/>
+    <asp:DataList runat="server" id="dtContact" Width="100%"> 
+        <ItemTemplate>
+                <div class="widget-user-image">
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                </div>
+        </ItemTemplate>
 
-                <p><a href="../home.aspx">
-                  Admin- Telkom Satellite
+    </asp:DataList>
+
+                <p><a href="../profile.aspx">
+                  Edit Profile
                   <small>2019</small>
                     </a>
                 </p>
@@ -100,8 +107,25 @@
       <!-- Main content -->
       <section class="content">
       <div class="row">
+          <div class="col-lg-12 col-xs-12">
+          <div class="box box-default">
+                <div class="box-header with-border">
+                    Gound Control System
+                </div>
+              <a href="profileperson.aspx">
+                <div class="box-body" style="width:100%; margin:0 auto;">
+                    <img src="img/2.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+                </div>
+               </a>
+            </div>
+            </div>
+        </div>
+
+      <div class="row">
         
         <!-- ./col -->
+        
+
         <div class="col-lg-4 col-xs-6">
           <!-- small box -->
             <a href="../asset/home.aspx" class="small-box-footer">

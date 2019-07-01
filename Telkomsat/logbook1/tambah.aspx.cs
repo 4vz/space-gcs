@@ -14,6 +14,7 @@ namespace Telkomsat.logbook1
     {
         Nullable<int> i = null;
         Nullable<int> j = null;
+        string tanggal;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
@@ -21,12 +22,22 @@ namespace Telkomsat.logbook1
             txtTanggal.Enabled = false;
             txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
             fillgridview();
-            txtOS.Text = Session["user"].ToString();
-            Response.Write(Session["user"].ToString());
-            Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
+            if(Session["jenis1"].ToString() == "os")
+            {
+                txtOS.Text = Session["username"].ToString();
+            }
+            else if (Session["jenis1"].ToString() == "og")
+            {
+                txtOG.Text = Session["username"].ToString();
+            }
+
+            //txtOS.Text = Session["user"].ToString();
+
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -101,7 +112,7 @@ namespace Telkomsat.logbook1
                 cmdLog.Parameters.AddWithValue("@ID_file", j);
             }
 
-            cmdLog.Parameters.AddWithValue("@tanggal", txtTanggal.Text.Trim());
+            cmdLog.Parameters.AddWithValue("@tanggal", tanggal);
             cmdLog.Parameters.AddWithValue("@event", txtEvent.Text.Trim());
             cmdLog.Parameters.AddWithValue("@Status", ddlStatus.Text.Trim());
             cmdLog.Parameters.AddWithValue("@Unit", ddlUnit.Text.Trim());
@@ -109,7 +120,29 @@ namespace Telkomsat.logbook1
             cmdLog.Parameters.AddWithValue("@info", txtInfo.Text.Trim());
             cmdLog.Parameters.AddWithValue("@PIC_OS", txtOS.Text.Trim());
             cmdLog.Parameters.AddWithValue("@PIC_OG", txtOG.Text.Trim());
-            cmdLog.Parameters.AddWithValue("@SN", txtSN1.Text.Trim());
+            //cmdLog.Parameters.AddWithValue("@Estimasi", txtHarga.Text.Trim());
+            //if(txtSN1.Text != "")
+            
+            if(ddlKategori.Text == "Penggantian")
+                cmdLog.Parameters.AddWithValue("@SN", txtSN2.Text.Trim());
+            else
+                cmdLog.Parameters.AddWithValue("@SN", txtSN1.Text.Trim());
+
+            cmdLog.Parameters.AddWithValue("@SN1", txtSN3.Text.Trim());
+
+            if (checkbox1.Checked)
+                cmdLog.Parameters.AddWithValue("@estimasi", txtHarga.Text.Trim());
+            else
+                cmdLog.Parameters.AddWithValue("@estimasi", "");
+            //else
+            //cmdLog.Parameters.AddWithValue("@SN", "");
+            /*if(txtSN2.Text != "")
+            {
+                cmdLog.Parameters.AddWithValue("@SN", txtSN2.Text.Trim());
+                cmdLog.Parameters.AddWithValue("@SNB", txtSN3.Text.Trim());
+            }*/
+            //else
+            //cmdLog.Parameters.AddWithValue("@SNB", "");
             cmdLog.ExecuteNonQuery();
             sqlCon.Close();
             fillgridview();
@@ -120,10 +153,11 @@ namespace Telkomsat.logbook1
 
         void fillgridview()
         {
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand("LoViewIDTerakhir", sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@waktu", txtTanggal.Text.Trim());
+            cmd.Parameters.AddWithValue("@waktu", tanggal);
             SqlDataAdapter sqlda = new SqlDataAdapter(cmd);
             sqlda.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -200,6 +234,8 @@ namespace Telkomsat.logbook1
             Session["OG"] = dtbl.Rows[0]["PIC_OG"].ToString();
             Session["info"] = dtbl.Rows[0]["info"].ToString();
             Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
+            Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
+            Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
 
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
             Response.Redirect("~/logbook1/details.aspx");

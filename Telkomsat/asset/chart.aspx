@@ -3,7 +3,7 @@
     <script src="chart.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
+
         <div class="row">
         <div class="col-md-6">
         <asp:DropDownList ID="ddlKelompok" runat="server" onChange="myNewFunction(this);">
@@ -131,7 +131,7 @@
           <!-- /.box -->
         </div>
         </div>
-    </form>
+
     <script src="../ChartJS.js" type="text/javascript"></script>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/Chart.js"></script>

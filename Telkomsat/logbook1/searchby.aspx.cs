@@ -50,17 +50,13 @@ namespace Telkomsat.logbook1
             //string queryequipment = "SELECT * FROM Invest WHERE EQUIPMENT LIKE '%' + @Equipment + '%'";
             SqlCommand sqlcmd = new SqlCommand("LoSearchBy", sqlCon);
             sqlcmd.CommandType = CommandType.StoredProcedure;
-            if (ddlTahun.Text.Trim() != "")
+            if (txtsdate.Text.Trim() != "")
             {
-                sqlcmd.Parameters.AddWithValue("@tahun", ddlTahun.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("@mulai", txtsdate.Text);
             }
-            if (ddlBulan.Text.Trim() != "")
+            if (txtedate.Text.Trim() != "")
             {
-                sqlcmd.Parameters.AddWithValue("@bulan", ddlBulan.SelectedValue);
-            }
-            if (ddlWeek.Text.Trim() != "")
-            {
-                sqlcmd.Parameters.AddWithValue("@minggu", ddlWeek.SelectedValue);
+                sqlcmd.Parameters.AddWithValue("@akhir", txtedate.Text);
             }
             if (ddlUnit.Text.Trim() != "")
             {
@@ -163,7 +159,9 @@ namespace Telkomsat.logbook1
             Session["OG"] = dtbl.Rows[0]["PIC_OG"].ToString();
             Session["info"] = dtbl.Rows[0]["info"].ToString();
             Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
-
+            Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
+            Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
+            Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
             Response.Redirect("~/logbook1/details.aspx");
 

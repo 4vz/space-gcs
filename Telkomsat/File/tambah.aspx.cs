@@ -18,6 +18,7 @@ namespace Telkomsat.File
         //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=KNOWLEDGE; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Form.DefaultButton = btnSave.UniqueID;
             txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 

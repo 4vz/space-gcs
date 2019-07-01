@@ -22,7 +22,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <hr width="100%" align="center" style="margin-top:20px; margin-bottom:0px;" class="hrline">  
+    <hr width="100%" align="center" style="margin-top:20px; margin-bottom:0px;" class="hrline" />  
     <div class="bodyLB3">
     <div class="input-group" style="vertical-align:middle">
         <a href="../dashboard.aspx">

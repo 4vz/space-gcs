@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
+
     <div style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -224,5 +224,4 @@
             <SortedDescendingHeaderStyle BackColor="#242121" />
         </asp:GridView>
     </div>
-</form>
 </asp:Content>

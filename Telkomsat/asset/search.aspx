@@ -2,16 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
     <div style="text-align: left" class="datakita">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
         </div>
         <div class="input-group">
           <span class="headlb">Database Asset</span>
-          <input type="text" name="q" class="form-control" placeholder="Search..." runat="server" id="inputsearch"/>
+          <input type="text" class="form-control" placeholder="Search..." runat="server" id="inputsearch" onkeypress="return runScript(event)"/>
+          
           <span class="input-group-btn">
-                <button type="submit" name="search" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
+                <button type="button" id="myButton" name="search" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
                 </button>
               </span>
             
@@ -70,7 +70,6 @@
         </asp:GridView>
         <asp:Label ID="lblPage" runat="server" Text="Label" CssClass="halaman"></asp:Label>
     </div>
-    </form>
     <script type="text/javascript">
         function myNewFunction(object) {
             var userinput = object.options[object.selectedIndex].value;
@@ -80,5 +79,12 @@
                 document.getElementById('<%=btnurut.ClientID%>').click();
             }
         }
+
+        function runScript(e) {
+            if (e.keyCode == 13) {
+                document.getElementById('<%=myButton.ClientID%>').focus();
+                document.getElementById('<%=myButton.ClientID%>').click(); //javascript
+        }
+    }
     </script>
 </asp:Content>

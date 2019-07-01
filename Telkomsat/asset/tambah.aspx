@@ -3,7 +3,7 @@
     <script type="text/javascript" src="js1.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -331,6 +331,6 @@
         </table>
         </div>
         </div>
-</form>
+
 
 </asp:Content>

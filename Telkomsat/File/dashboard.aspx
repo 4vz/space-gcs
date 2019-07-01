@@ -50,11 +50,26 @@
         <a href="../File/ippass.aspx">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-file-text-o"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">IP</span>
+              <asp:Label ID="lblPass" runat="server" class="info-box-number"></asp:Label>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        </a>
+        <!-- /.col -->
+        <a href="../password/semuasoftware.aspx">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-file-archive-o"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">IP Password</span>
-              <asp:Label ID="lblPass" runat="server" class="info-box-number"></asp:Label>
+              <span class="info-box-text">Password</span>
+              <asp:Label ID="lblpassword" runat="server" class="info-box-number"></asp:Label>
             </div>
             <!-- /.info-box-content -->
           </div>

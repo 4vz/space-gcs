@@ -1,9 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="searchby.aspx.cs" Inherits="Telkomsat.logbook1.searchby" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $('#<%=txtsdate.ClientID%>').datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                onClose: function (selectedDate) {
+                    $('#<%=txtedate.ClientID%>').datepicker("option", "minDate", selectedDate);
+                }
+            });
+
+            $('#<%=txtedate.ClientID%>').datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                onClose: function (selectedDate) {
+                    $('#<%=txtsdate.ClientID%>').datepicker("option", "maxDate", selectedDate);
+                }
+
+            });
+        })
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../logbook/log.css" rel="stylesheet" type="text/css"/>
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -17,50 +45,18 @@
         <table>
             <tr>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px; height: 32px;">
-                    <asp:Label ID="Label17" class="lbl" runat="server">Tahun </asp:Label>
+                    <asp:Label ID="Label17" class="lbl" runat="server">Tanggal Mulai </asp:Label>
                 </td>
                 <td class="tdtext" style="padding-bottom:10px;">
-                    <asp:DropDownList ID="ddlTahun" runat="server" class="ddl3" Width="100px">
-                        <asp:ListItem Value="0">-</asp:ListItem>
-                        <asp:ListItem>2019</asp:ListItem>
-                        <asp:ListItem>2018</asp:ListItem>
-                        <asp:ListItem>2017</asp:ListItem>
-                        <asp:ListItem>2016</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="txtsdate" runat="server" class="tb1"></asp:TextBox>
                 </td>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:20px; height: 32px;">
-                    <asp:Label ID="Label11" class="lbl" runat="server">Bulan </asp:Label>
+                    <asp:Label ID="Label11" class="lbl" runat="server">Tanggal Akhir </asp:Label>
                 </td>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:40px;">
-                    <asp:DropDownList ID="ddlBulan" runat="server" class="ddl3" Width="129px">
-                        <asp:ListItem Value="0">-</asp:ListItem>
-                        <asp:ListItem Value="01">Januari</asp:ListItem>
-                        <asp:ListItem Value="02">Februari</asp:ListItem>
-                        <asp:ListItem Value="03">Maret</asp:ListItem>
-                        <asp:ListItem Value="04">April</asp:ListItem>
-                        <asp:ListItem Value="05">Mei</asp:ListItem>
-                        <asp:ListItem Value="06">Juni</asp:ListItem>
-                        <asp:ListItem Value="07">Juli</asp:ListItem>
-                        <asp:ListItem Value="08">Agustus</asp:ListItem>
-                        <asp:ListItem Value="09">September</asp:ListItem>
-                        <asp:ListItem Value="10">Oktober</asp:ListItem>
-                        <asp:ListItem Value="11">November</asp:ListItem>
-                        <asp:ListItem Value="12">Desember</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="txtedate" runat="server" class="tb1"></asp:TextBox>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px; padding-right:30px; height: 32px;">
-                    <asp:Label ID="Label12" class="lbl" runat="server">Minggu </asp:Label>
-                </td>
-                <td class="tdtext" style="padding-bottom:10px;">
-                    <asp:DropDownList ID="ddlWeek" runat="server" class="ddl3" Width="100px">
-                        <asp:ListItem Value="0">-</asp:ListItem>
-                        <asp:ListItem Value="1">Minggu 1</asp:ListItem>
-                        <asp:ListItem Value="2">Minggu 2</asp:ListItem>
-                        <asp:ListItem Value="3">Minggu 3</asp:ListItem>
-                        <asp:ListItem Value="4">Minggu 4</asp:ListItem>
-                        <asp:ListItem Value="5">Minggu 5</asp:ListItem>
-                    </asp:DropDownList>
-                </td>
+                
 
             </tr>
             <tr>
@@ -95,12 +91,16 @@
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
                     <asp:Label ID="Label25" class="lbl" runat="server">Unit  </asp:Label>
                 </td>
-                <td class="tdtext" style="padding-bottom:10px;" colspan="4">
+                <td class="tdtext" style="padding-bottom:10px;">
                     <asp:DropDownList ID="ddlUnit" runat="server" class="ddl3" Width="100px">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Harkat</asp:ListItem>
                         <asp:ListItem>ME</asp:ListItem>
                     </asp:DropDownList>
+                </td>
+                <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                    <asp:Label ID="Label4" class="lbl" runat="server">Estimasi Harga </asp:Label>
+                    <asp:CheckBox ID="CheckBox1" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -178,6 +178,6 @@
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
       </div>
-</form>
+
 
 </asp:Content>

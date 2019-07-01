@@ -13,15 +13,6 @@ namespace Telkomsat.asset {
     public partial class search {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// hfContactID control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace Telkomsat.asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputsearch;
+        
+        /// <summary>
+        /// myButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton myButton;
         
         /// <summary>
         /// lblCount control.

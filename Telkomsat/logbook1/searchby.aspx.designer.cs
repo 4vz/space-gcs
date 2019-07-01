@@ -13,15 +13,6 @@ namespace Telkomsat.logbook1 {
     public partial class searchby {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// hfContactID control.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,13 @@ namespace Telkomsat.logbook1 {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
-        /// ddlTahun control.
+        /// txtsdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTahun;
+        protected global::System.Web.UI.WebControls.TextBox txtsdate;
         
         /// <summary>
         /// Label11 control.
@@ -76,31 +67,13 @@ namespace Telkomsat.logbook1 {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// ddlBulan control.
+        /// txtedate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBulan;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-        
-        /// <summary>
-        /// ddlWeek control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
+        protected global::System.Web.UI.WebControls.TextBox txtedate;
         
         /// <summary>
         /// Label27 control.
@@ -173,6 +146,24 @@ namespace Telkomsat.logbook1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
+        
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// CheckBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
         
         /// <summary>
         /// Label8 control.

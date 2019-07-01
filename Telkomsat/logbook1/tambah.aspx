@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.logbook1.tambah" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js2.js" type="text/javascript"></script>
+<script src="js3.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -42,11 +42,23 @@ $(document).ready(function(){
         document.getElementById('<%=FileUpload2.ClientID %>').value = '';
     });
     });
+
+    function validate() {
+    var check = document.getElementById('<%=checkbox1.ClientID %>').checked;
+
+    if (check != "") {
+        document.getElementById('trEstimasi').style.display = 'table-row';
+    }
+    else {
+        document.getElementById('trEstimasi').style.display = 'none';
+    }
+}
+
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="log.css" rel="stylesheet" type="text/css"/>
-<form id="form1" runat="server">
+
     <div class="navbar navbar-static-top" style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
@@ -105,8 +117,46 @@ $(document).ready(function(){
                 <td style="padding-bottom:10px; visibility:hidden" class="titikdua" id="labelID1">
                     <asp:Label ID="Label30" runat="server" >:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px; visibility:hidden" class="tdtext" id="labelID2">
+                <td style="padding-bottom:10px; visibility:hidden" class="tdtext" id="labelID2" colspan="3">
                     <asp:TextBox ID="txtSN1" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+                <td style="padding-bottom:10px; padding-right:5px; height: 32px; visibility:hidden" class="tdtext" id="lblestimasi">
+                    <asp:Label ID="Label35" runat="server" Text="Estimasi Harga"></asp:Label>
+                    <input type="checkbox" id="checkbox1" onchange="validate()" runat="server"/>
+                </td>
+            </tr>
+            <tr id="trPergantian" style="display:none">
+                <td class="tdtext" style="padding-bottom:10px;">
+                    <asp:Label ID="Label31" class="lbl" runat="server">SN Aset Lama </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label32" runat="server" >:</asp:Label>
+                </td>
+                <td class="tdtext" style="padding-bottom:10px;">
+                    <asp:TextBox ID="txtSN2" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+                <td>
+
+                </td>
+                <td class="tdtext" style="padding-bottom:10px; padding-left:50px;">
+                    <asp:Label ID="Label33" class="lbl" runat="server">SN Aset Baru </asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label34" runat="server" >:</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="tdtext">
+                    <asp:TextBox ID="txtSN3" class="tb1" runat="server" Width="188px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr id="trEstimasi" style="display:none">
+                <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                    <asp:Label ID="Label36" class="lbl" runat="server">Estimasi Harga</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label37" runat="server" >:</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="tdtext" colspan="7">
+                    <asp:TextBox ID="txtHarga" class="tb1" runat="server" Width="570px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -323,5 +373,5 @@ $(document).ready(function(){
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
       </div>
-</form>
+
 </asp:Content>

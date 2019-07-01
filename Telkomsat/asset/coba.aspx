@@ -9,7 +9,7 @@
     <script src="chart.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
+
         <asp:DropDownList ID="DropDownList1" runat="server" onChange="myNewFunction(this);">
             <asp:ListItem>BASEBAND</asp:ListItem>
             <asp:ListItem>RF EQUIPMENT</asp:ListItem>
@@ -31,7 +31,7 @@
             <asp:Literal ID="ltChart" runat="server"></asp:Literal> 
             <asp:Literal ID="ltChartKel" runat="server"></asp:Literal> 
         </div>
-    </form>
+
 
     <script type="text/javascript">
         function myNewFunction1(object) {

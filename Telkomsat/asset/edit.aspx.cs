@@ -16,7 +16,8 @@ namespace Telkomsat.asset
         protected void Page_Load(object sender, EventArgs e)
         {
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            
+            Page.Form.DefaultButton = btnUpdate.UniqueID;
+
             if (!IsPostBack)
             {
                 hfContactID.Value = Session["hf"].ToString();

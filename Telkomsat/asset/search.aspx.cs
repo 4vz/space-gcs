@@ -17,11 +17,10 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            fillGridView1();
-            fillGridView2();
+            
             if (!IsPostBack)
             {
-
+                inputsearch.Value = Session["cari"].ToString();
                 fillGridView1();
                 gvContact.Columns[0].Visible = false;
                 gvContact.Columns[3].Visible = false;
@@ -35,6 +34,9 @@ namespace Telkomsat.asset
 
 
             }
+
+            fillGridView1();
+            fillGridView2();
             gvContact.Columns[0].Visible = false;
             gvContact.Columns[3].Visible = false;
             gvContact.Columns[5].Visible = false;
@@ -45,92 +47,17 @@ namespace Telkomsat.asset
 
         }
 
-        void fillGridView2()
-        {
-            sqlCon2.Close();
-            sqlCon2.Open();
-
-            if (inputsearch.Value == "")
-            {
-                    cari = Session["cari"] as string;
-
-            }
-
-            else
-            {
-                cari = inputsearch.Value;
-            }
-
-
-
-
-
-            if (cari == "telkom2" || cari == "telkom 2")
-            {
-                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM2 = 'V'";
-                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
-                int valuecount = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + cari.ToString() + '"';
-            }
-            else if (cari == "telkom3s" || cari == "telkom 3s")
-            {
-                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM3S = 'V'";
-                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
-                int valuecount = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + cari.ToString() + '"';
-            }
-            else if (cari == "telkom4" || cari == "telkom 4" || cari == "mpsat" || cari == "mp sat")
-            {
-                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE MPSAT = 'V'";
-                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
-                int valuecount = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + cari.ToString() + '"';
-            }
-
-            else
-            {
-                SqlCommand countcmd = new SqlCommand("AsCountSearch", sqlCon2);
-                countcmd.CommandType = CommandType.StoredProcedure;
-                countcmd.Parameters.AddWithValue("@CountAll", cari);
-                int valuecount = (int)countcmd.ExecuteScalar();
-                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + cari.ToString() + '"';
-                //lblHasil.Text = "hasil";
-                if (gvContact.Rows.Count == 0)
-                {
-                    //lblHead.Text = "Hasil Pencarian Tidak Ditemukan";
-                    lblCount.Visible = false;
-                    btnExpand.Visible = false;
-                    urutkan.Visible = false;
-                    lblPage.Visible = false;
-                }
-                else
-                {
-                    //lblHead.Text = "Database Hasil Pencarian";
-
-                }
-            }
-        }
-
         void fillGridView1()
         {
 
-            if (sqlCon2.State == ConnectionState.Closed)
-                sqlCon2.Open();
+            sqlCon2.Open();
 
-            if (inputsearch.Value == "")
-            {
-
-                    cari = Session["cari"] as string;
-            }
-            else if (inputsearch.Value != null)
-            {
-                cari = inputsearch.Value;
-            }
+            
             /*if (a==0)
                 cari = Session["cari"] as string;           
             else if(a==5)
                 cari = inputsearch.Value;*/
-            if (cari == "telkom2" || cari == "telkom 2")
+            if (inputsearch.Value == "telkom2" || inputsearch.Value == "telkom 2")
             {
                 SqlCommand sqlcmd = new SqlCommand("Telkom2", sqlCon2);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -152,7 +79,7 @@ namespace Telkomsat.asset
 
                 }
             }
-            else if (cari == "telkom3s" || cari == "telkom 3s")
+            else if (inputsearch.Value == "telkom3s" || inputsearch.Value == "telkom 3s")
             {
                 SqlCommand sqlcmd = new SqlCommand("Telkom3S", sqlCon2);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -174,7 +101,7 @@ namespace Telkomsat.asset
 
                 }
             }
-            else if (cari == "telkom4" || cari == "telkom 4" || cari == "mpsat" || cari == "mp sat")
+            else if (inputsearch.Value == "telkom4" || inputsearch.Value == "telkom 4" || inputsearch.Value == "mpsat" || inputsearch.Value == "mp sat")
             {
                 SqlCommand sqlcmd = new SqlCommand("MPSAT", sqlCon2);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -200,7 +127,7 @@ namespace Telkomsat.asset
             {
                 SqlCommand sqlcmd = new SqlCommand("AsFilterAllSort", sqlCon2);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
-                sqlcmd.Parameters.AddWithValue("@FilterAll", cari);
+                sqlcmd.Parameters.AddWithValue("@FilterAll", inputsearch.Value);
                 sqlcmd.Parameters.AddWithValue("@Sort", urutkan.Value);
                 using (SqlDataAdapter da = new SqlDataAdapter(sqlcmd))
                 {
@@ -220,6 +147,79 @@ namespace Telkomsat.asset
                 }
             }
         }
+
+
+        void fillGridView2()
+        {
+            
+            sqlCon2.Open();
+
+            /*if (inputsearch.Value == "")
+            {
+                    inputsearch.Value= Session["cari"] as string;
+
+            }
+
+            else
+            {
+                inputsearch.Value= inputsearch.Value;
+            }*/
+
+
+
+
+
+            if (inputsearch.Value== "telkom2" || inputsearch.Value== "telkom 2")
+            {
+                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM2 = 'V'";
+                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
+                int valuecount = (int)countcmd.ExecuteScalar();
+                sqlCon2.Close();
+                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + inputsearch.Value + '"';
+            }
+            else if (inputsearch.Value== "telkom3s" || inputsearch.Value== "telkom 3s")
+            {
+                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE TELKOM3S = 'V'";
+                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
+                int valuecount = (int)countcmd.ExecuteScalar();
+                sqlCon2.Close();
+                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + inputsearch.Value + '"';
+            }
+            else if (inputsearch.Value== "telkom4" || inputsearch.Value== "telkom 4" || inputsearch.Value== "mpsat" || inputsearch.Value== "mp sat")
+            {
+                string querytk2 = "SELECT Count(*) FROM Asset1 WHERE MPSAT = 'V'";
+                SqlCommand countcmd = new SqlCommand(querytk2, sqlCon2);
+                int valuecount = (int)countcmd.ExecuteScalar();
+                sqlCon2.Close();
+                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + inputsearch.Value + '"';
+            }
+
+            else
+            {
+                SqlCommand countcmd = new SqlCommand("AsCountSearch", sqlCon2);
+                countcmd.CommandType = CommandType.StoredProcedure;
+                countcmd.Parameters.AddWithValue("@CountAll", inputsearch.Value);
+                int valuecount = (int)countcmd.ExecuteScalar();
+                sqlCon2.Close();
+                lblCount.Text = "Terdapat " + valuecount.ToString() + " hasil untuk " + '"' + inputsearch.Value + '"';
+                //lblHasil.Text = "hasil";
+                if (gvContact.Rows.Count == 0)
+                {
+                    //lblHead.Text = "Hasil Pencarian Tidak Ditemukan";
+                    lblCount.Visible = false;
+                    btnExpand.Visible = false;
+                    urutkan.Visible = false;
+                    lblPage.Visible = false;
+                }
+                else
+                {
+                    //lblHead.Text = "Database Hasil Pencarian";
+
+                }
+            }
+        }
+
+        
 
         protected void OnPaging(object sender, GridViewPageEventArgs e)
         {

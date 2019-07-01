@@ -15,9 +15,12 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS1; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(Request.Form.Get("rfmatrix"));
-            Request.Form.Get("tahun");
-        }
+            /*Response.Write(Request.Form.Get("rfmatrix"));
+            Request.Form.Get("tahun");*/
+            Page.Form.DefaultButton = btnCari.UniqueID;
+            //Page.Form.DefaultFocus = txtCari.UniqueID;
+            Page.SetFocus(txtCari);
+        }   
 
         protected void btnCari_Click(object sender, EventArgs e)
         {
