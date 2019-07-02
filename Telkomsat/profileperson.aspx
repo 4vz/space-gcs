@@ -108,7 +108,7 @@
             <div class="box box-widget widget-user-2">
             <div class="widget-user-header bg-yellow">
                 <div class="widget-user-image">
-                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Height="60px" Width="60px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Height="60px" Width="60px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                 </div>
                 <asp:Label class="widget-user-username" Text='<%# Eval("nama") %>' runat="server" Font-Size="16px" Font-Bold="true"/><br />
                 <asp:Label class="widget-user-username" Text="GCS" runat="server" Font-Size="13px" Font-Bold="true"/><br />

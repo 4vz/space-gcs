@@ -14,7 +14,7 @@
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css" rel="stylesheet" />
-    <link href="stylepagination.css" rel="stylesheet" />
+    <link href="stylepagination.css?version=1" rel="stylesheet" />
     <link href="dashboard.css" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 </head>
@@ -60,7 +60,7 @@
     <asp:DataList runat="server" id="dtContact" Width="100%"> 
         <ItemTemplate>
                 <div class="widget-user-image">
-                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                 </div>
         </ItemTemplate>
 
@@ -107,7 +107,7 @@
       <!-- Main content -->
       <section class="content">
       <div class="row">
-          <div class="col-lg-12 col-xs-12">
+          <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
           <div class="box box-default">
                 <div class="box-header with-border">
                     Gound Control System

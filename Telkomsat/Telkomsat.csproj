@@ -120,6 +120,7 @@
     <Content Include="File\tambah.aspx" />
     <Content Include="File\tambahip.aspx" />
     <Content Include="File\tambahip1.aspx" />
+    <Content Include="image\full badan.jpg" />
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
@@ -223,6 +224,7 @@
     <Content Include="Style2.css" />
     <Content Include="StyleLogBook.css" />
     <Content Include="stylepagination.css" />
+    <Content Include="testcropfoto.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -833,6 +835,13 @@
     <Compile Include="template.Master.designer.cs">
       <DependentUpon>template.Master</DependentUpon>
     </Compile>
+    <Compile Include="testcropfoto.aspx.cs">
+      <DependentUpon>testcropfoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testcropfoto.aspx.designer.cs">
+      <DependentUpon>testcropfoto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -863,6 +872,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="cropimag\" />
     <Folder Include="knowledge\Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,22 @@
 
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
+    <script src="js/jquery.min.js"></script>  
+    <script src="js/jquery.Jcrop.js"></script>  
+    <script type="text/javascript">  
+        $(document).ready(function() {  
+            $('#<%=cropimage1.ClientID%>').Jcrop({  
+                onSelect: SelectCropArea  
+            });  
+        });  
+  
+        function SelectCropArea(c) {  
+            $('#<%=coordinate_x.ClientID%>').val(parseInt(c.x));  
+            $('#<%=coordinate_y.ClientID%>').val(parseInt(c.y));  
+            $('#<%=coordinate_w.ClientID%>').val(parseInt(c.w));  
+            $('#<%=coordinate_h.ClientID%>').val(parseInt(c.h));  
+        }  
+        </script>
 <div class="wrapper">
     <form id="form1" runat="server">
   <header class="main-header">
@@ -52,20 +68,13 @@
           <!-- Messages: style can be found in dropdown.less-->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="../profile.aspx" class="dropdown-toggle" data-toggle="dropdown">
               <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <asp:DataList runat="server" id="dtContact" Width="100%"> 
-                    <ItemTemplate>
-                            <div class="widget-user-image">
-                                <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
-                            </div>
-                    </ItemTemplate>
-
-                </asp:DataList>
+                <img src="img/user.jpg" class="img-circle" alt="User Image"/>
 
                 <p><a href="../profile.aspx">
                   Edit Profile
@@ -106,25 +115,33 @@
     </div>
 
   <div class="register-box">
-    <p class="login-box-msg">Edit Foto Profile</p>
+        <asp:Label ID="lblStatus" runat="server" Text="Label" class="login-box-msg"></asp:Label>
+      <br />
       <div>
         <asp:DataList runat="server" id="dtContact1" Width="100%">
         
         
         <ItemTemplate>
                 <div class="widget-user-image">
-                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Height="120px" Width="120px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                    <asp:Image ID="cropimage1" alt="User Avatar" runat="server" Height="300px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                 </div>
         </ItemTemplate>
 
     </asp:DataList>
+          <asp:Image ID="cropimage1" alt="User Avatar" runat="server" Visible="false"/>
+          <asp:Image ID="ImageCrop" alt="User Avatar" runat="server" Visible="false" Height="300px"/>
+              <input type="hidden" id="coordinate_x" runat="server"/>
+              <input type="hidden" id="coordinate_y" runat="server"/>
+              <input type="hidden" id="coordinate_w" runat="server"/>
+              <input type="hidden" id="coordinate_h" runat="server"/>
         <br />
       </div>
       <div class="form-group has-feedback">
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        
-      <div class="row">
           <br />
+        <asp:Button ID="ButtonPilih" OnClick="btnPilih_click" runat="server" Text="Pilih" class="btn btn-default" />
+          <asp:Button ID="ButtonCrop" OnClick="btnCrop_click" runat="server" Text="Crop" class="btn btn-default" />
+      <div class="row">
         <!-- /.col -->
         <div class="col-xs-4">
           <asp:Button ID="btnUpdate" OnClick="btnUpdate_click" runat="server" Text="Update" class="btn btn-primary" />

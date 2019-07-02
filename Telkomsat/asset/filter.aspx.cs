@@ -25,6 +25,10 @@ namespace Telkomsat.asset
                 {
                     array[i] = ' ';
                 }
+                else if (let == '+')
+                {
+                    array[i] = '-';
+                }
             }
             string result = new string(array);
             if (!IsPostBack)
@@ -86,6 +90,10 @@ namespace Telkomsat.asset
                 if (let == '-')
                 {
                     array[i] = ' ';
+                }
+                else if (let == '+')
+                {
+                    array[i] = '-';
                 }
             }
 
@@ -168,6 +176,7 @@ namespace Telkomsat.asset
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 sqlcmd.Parameters.AddWithValue("@FilterAll", result);
                 sqlcmd.Parameters.AddWithValue("@Sort", urutkan.Value);
+                Response.Write(result);
                 using (SqlDataAdapter da = new SqlDataAdapter(sqlcmd))
                 {
                     da.SelectCommand = sqlcmd;

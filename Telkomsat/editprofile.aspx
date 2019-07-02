@@ -38,7 +38,7 @@
                 defaultDate: "+1w",
                 changeMonth: true,
                 changeYear: true,
-                dateFormat: "dd-mm-yy",
+                dateFormat: "dd/mm/yy",
                 onClose: function (selectedDate) {
                     $("#txttanggal").datepicker("option", "maxDate", selectedDate);
                 }

@@ -168,6 +168,12 @@ a{
         background-color: #141517;
     }
 
+.skin-blue .main-header li.user-header {
+    background-color: #141517;
+}
+
 .skin-blue .main-header .navbar .sidebar-toggle:hover {
     background-color: #141517;
 }
+
+

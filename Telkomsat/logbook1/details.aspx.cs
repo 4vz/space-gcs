@@ -55,6 +55,11 @@ namespace Telkomsat.logbook1
             //if (lblEstimasi.Text == "")
             //{
             //}
+            if (txtOS.Text != Session["username"].ToString())
+            {
+                Button1.Visible = false;
+            }
+
 
             int ID = Convert.ToInt32(hfContactID.Value);
             if (sqlCon2.State == ConnectionState.Closed)

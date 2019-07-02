@@ -14,7 +14,7 @@
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css" rel="stylesheet" />
-    <link href="stylepagination.css" rel="stylesheet" />
+    <link href="stylepagination.css?version=1" rel="stylesheet" />
     <link href="profile.css" rel="stylesheet" type="text/css"/>
     <link href="profile2.css" rel="stylesheet" />
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>

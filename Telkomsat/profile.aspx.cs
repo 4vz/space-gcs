@@ -34,12 +34,57 @@ namespace Telkomsat
                 dtContact1.DataSource = dtbl;
                 dtContact1.DataBind();
                 sqlCon.Close();
-                txtnama.Text = Session["nama"].ToString();
-                txtemail.Text = Session["email"].ToString();
-                txtnomor.Text = Session["nomor"].ToString();
-                txttanggal.Text = Session["tanggal"].ToString();
-                txttempat.Text = Session["tempat"].ToString();
-                txtttl.Text = Session["ttl"].ToString();
+                if(Session["nama"].ToString() == null || Session["nama"].ToString() == "")
+                {
+                    txtnama.Text = "Nama";
+                    txtnama.ForeColor = System.Drawing.Color.RosyBrown;
+                }
+                else
+                    txtnama.Text = Session["nama"].ToString();
+                 
+                if (Session["email"].ToString() == null || Session["email"].ToString() == "")
+                {
+                    txtemail.Text = "Email";
+                    txtemail.ForeColor = System.Drawing.Color.RosyBrown;
+                }
+                else
+                    txtemail.Text = Session["email"].ToString();
+
+                if (Session["nomor"].ToString() == null || Session["nomor"].ToString() == "")
+                {
+                    txtnomor.Text = "Nomor HP";
+                    txtnomor.ForeColor = System.Drawing.Color.RosyBrown;
+                }
+                else
+                    txtnomor.Text = Session["nomor"].ToString();
+
+                if (Session["tempat"].ToString() == null || Session["tempat"].ToString() == "")
+                {
+                    txttempat.Text = "Tempat Lahir";
+                    txttempat.ForeColor = System.Drawing.Color.RosyBrown;
+                }               
+                else
+                    txttempat.Text = Session["tempat"].ToString();
+
+                if (Session["tanggal"].ToString() == null || Session["tanggal"].ToString() == "")
+                {
+                    txttanggal.Text = "tanggal Lahir";
+                    txttanggal.ForeColor = System.Drawing.Color.RosyBrown;
+                }
+                else
+                    txttanggal.Text = Convert.ToDateTime(Session["tanggal"].ToString()).ToString("dd/MM/yyyy");
+
+
+                if (Session["ttl"].ToString() == null || Session["ttl"].ToString() == "")
+                {
+                    txtttl.Text = "Tanggal Masuk Telkomsat";
+                    txtttl.ForeColor = System.Drawing.Color.RosyBrown;
+                }
+                else
+                    txtttl.Text = Convert.ToDateTime(Session["ttl"].ToString()).ToString("dd/MM/yyyy");
+                //txtnama.ForeColor = System.Drawing.Color.SandyBrown;
+
+
                 string password1 = Session["password"].ToString();
                 //password1.Replace(password1, "*");
                 /*for(int i = 1; i<=password1.Length; i++)

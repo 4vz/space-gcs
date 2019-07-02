@@ -104,7 +104,7 @@
         <asp:DataList runat="server" id="dtContact1" Width="100%">
         <ItemTemplate>
                 <div class="widget-user-image">
-                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Height="120px" Width="120px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("foto")) %>'/>
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Height="120px" Width="120px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                     
                 </div>
                 <div class="form-group has-feedback" style="margin-left:100px">

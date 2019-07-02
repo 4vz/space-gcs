@@ -37,7 +37,7 @@ namespace Telkomsat.logbook1
         protected void btnSave_Click(object sender, EventArgs e)
         {
             
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("MM/dd/yyyy");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;

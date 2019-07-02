@@ -29,9 +29,11 @@ namespace Telkomsat
                 txtnama.Value = Session["nama"].ToString();
                 txtemail.Value = Session["email"].ToString();
                 txtnomor.Value = Session["nomor"].ToString();
-                txttanggal.Value = Session["tanggal"].ToString();
                 txttempat.Value = Session["tempat"].ToString();
-                txtttl.Value = Session["ttl"].ToString();
+                if(Session["tanggal"].ToString() != null || Session["tanggal"].ToString() != "")
+                    txttanggal.Value = Session["tanggal"].ToString();
+                if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
+                    txtttl.Value = Session["ttl"].ToString();
             }
             lblProfile1.Text = Session["username"].ToString();
         }
@@ -46,15 +48,41 @@ namespace Telkomsat
             sqlCmd2.Parameters.AddWithValue("@nama", txtnama.Value);
             sqlCmd2.Parameters.AddWithValue("@email", txtemail.Value);
             sqlCmd2.Parameters.AddWithValue("@nomor", txtnomor.Value);
-            sqlCmd2.Parameters.AddWithValue("@tanggal", txttanggal.Value);
+            if(txttanggal.Value == "")
+                sqlCmd2.Parameters.AddWithValue("@tanggal", DBNull.Value);
+            else
+                sqlCmd2.Parameters.AddWithValue("@tanggal", txttanggal.Value);
+
             sqlCmd2.Parameters.AddWithValue("@tempat", txttempat.Value);
-            sqlCmd2.Parameters.AddWithValue("@ttl", txtttl.Value);
+
+            if (txtttl.Value == "")
+                sqlCmd2.Parameters.AddWithValue("@ttl", DBNull.Value);
+            else
+                sqlCmd2.Parameters.AddWithValue("@ttl", txtttl.Value);
             sqlCmd2.ExecuteNonQuery();
             sqlCon2.Close();
             lblUpdate.Visible = true;
             lblUpdate.Text = "Berhasil Update";
             lblUpdate.ForeColor = System.Drawing.Color.GreenYellow;
             clear();
+
+            if (sqlCon2.State == ConnectionState.Closed)
+                sqlCon2.Open();
+            SqlDataAdapter sqlda = new SqlDataAdapter("ProViewByUser", sqlCon2);
+            sqlda.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlda.SelectCommand.Parameters.AddWithValue("@user", Session["username"].ToString());
+            DataTable dtbl = new DataTable();
+            sqlda.Fill(dtbl);
+            sqlCon2.Close();
+            
+            //Session["username"] = dtbl.Rows[0]["user_name"].ToString();
+            Session["email"] = dtbl.Rows[0]["email"].ToString();
+            Session["jenis1"] = dtbl.Rows[0]["jenis"].ToString();
+            Session["nama"] = dtbl.Rows[0]["nama"].ToString();
+            Session["nomor"] = dtbl.Rows[0]["nomor"].ToString();
+            Session["tanggal"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
+            Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
+            Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
         }
 
         void clear()
