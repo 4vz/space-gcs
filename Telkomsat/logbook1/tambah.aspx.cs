@@ -174,8 +174,6 @@ namespace Telkomsat.logbook1
 
         void clear()
         {
-            txtOG.Text = "";
-            txtOS.Text = "";
             txtEvent.Text = "";
             txtInfo.Text = "";
             ddlStatus.Text = "";

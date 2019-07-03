@@ -176,7 +176,7 @@ namespace Telkomsat.asset
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 sqlcmd.Parameters.AddWithValue("@FilterAll", result);
                 sqlcmd.Parameters.AddWithValue("@Sort", urutkan.Value);
-                Response.Write(result);
+                //Response.Write(result);
                 using (SqlDataAdapter da = new SqlDataAdapter(sqlcmd))
                 {
                     da.SelectCommand = sqlcmd;
