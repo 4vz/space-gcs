@@ -154,7 +154,9 @@
                   <li><a href="../asset/filter.aspx?ID=HPA"><i class="fa fa-circle-o"></i> HPA</a></li>
                   <li><a href="../asset/filter.aspx?ID=LNA"><i class="fa fa-circle-o"></i> LNA</a></li>
                   <li><a href="../asset/filter.aspx?ID=(RCU)-HPA"><i class="fa fa-circle-o"></i> RCU HPA</a></li>
-                  <li><a href="../asset/filter.aspx?ID=RSC"><i class="fa fa-circle-o"></i> LNA RSC</a></li>
+                  <li><a href="../asset/filter.aspx?ID=RSC"><i class="fa fa-circle-o"></i> Redudant Switch Control</a></li>
+                  <li><a href="../asset/filter.aspx?ID=TLT"><i class="fa fa-circle-o"></i> Test Loop Translator</a></li>
+                  <li><a href="../asset/filter.aspx?ID=Test-Loop-Switch "><i class="fa fa-circle-o"></i> Test Loop Switch</a></li>
                   <li><a href="../asset/filter.aspx?ID=RCU+TX"><i class="fa fa-circle-o"></i> RCU Up Converter</a></li>
                   <li><a href="../asset/filter.aspx?ID=RCU+RX"><i class="fa fa-circle-o"></i> RCU Down Converter</a></li>
               </ul>
@@ -169,7 +171,7 @@
                   <li><a href="../asset/filter.aspx?ID=GPS-ANTENA"><i class="fa fa-circle-o"></i> GPS Antena</a></li>
                   <li><a href="../asset/filter.aspx?ID=GPS-TIME-SERVER"><i class="fa fa-circle-o"></i> GPS Time Server</a></li>
                   <li><a href="../asset/filter.aspx?ID=BASEBAND"><i class="fa fa-circle-o"></i> Baseband</a></li>
-                  <li><a href="../asset/filter.aspx?ID=IF-MODEM"><i class="fa fa-circle-o"></i> If Modem</a></li>
+                  <li><a href="../asset/filter.aspx?ID=MODEM"><i class="fa fa-circle-o"></i> Modem</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Server & NE

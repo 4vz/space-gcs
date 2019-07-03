@@ -114,7 +114,7 @@
                 </div>
               <a href="profileperson.aspx">
                 <div class="box-body" style="width:100%; margin:0 auto;">
-                    <img src="img/2.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+                    <img src="img/capture.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
                 </div>
                </a>
             </div>
@@ -133,7 +133,7 @@
             <div class="inner">
               <h3>Database Asset</h3>
                 <div class="icon">
-                    <img src="img/2.jpg" alt="" width="320" height="310"/>
+                    <img src="img/download.png" alt="" width="320" height="310"/>
             </div>
             </div>
           </div>
@@ -149,7 +149,7 @@
               <h3>Logbook</h3>
             </div>
             <div class="icon">
-              <img src="img/1.jpg" alt="" width="320" height="310"/>
+              <img src="img/logbook.jpg" alt="" width="320" height="310"/>
             </div>
           </div>
               </a>
@@ -163,7 +163,7 @@
               <h3>Knowledge</h3>
             </div>
             <div class="icon">
-                <img src="img/3.jpg" alt="" width="320" height="310"/>
+                <img src="img/book.png" alt="" width="320" height="310"/>
             </div>
           </div>
             </a>

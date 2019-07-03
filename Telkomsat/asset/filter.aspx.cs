@@ -68,7 +68,7 @@ namespace Telkomsat.asset
             }
             else
             {
-                SqlCommand countcmd = new SqlCommand("AsCountAll", sqlCon2);
+                SqlCommand countcmd = new SqlCommand("AsCountSearch", sqlCon2);
                 countcmd.CommandType = CommandType.StoredProcedure;
                 countcmd.Parameters.AddWithValue("@CountAll", result);
                 int valuecount = (int)countcmd.ExecuteScalar();

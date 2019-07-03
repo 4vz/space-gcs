@@ -214,7 +214,10 @@ namespace Telkomsat.asset
                 else
                 {
                     //lblHead.Text = "Database Hasil Pencarian";
-
+                    lblCount.Visible = true;
+                    btnExpand.Visible = true;
+                    urutkan.Visible = true;
+                    lblPage.Visible = true;
                 }
             }
         }
