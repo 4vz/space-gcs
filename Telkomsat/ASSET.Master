@@ -85,7 +85,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                    <button onclick="signout()" value="signout" class="btn btn-default"> Sign Out </button>
+                    <a href="../login.aspx?out" class="btn btn-default btn-flat">Sign out</a>
                   
                 </div>
               </li>
