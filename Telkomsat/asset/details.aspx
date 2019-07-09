@@ -97,7 +97,7 @@
                     </tr>
                     <tr>
                         <td class="tbl" style="padding-bottom:5px; padding-left:35px">
-                            <asp:Label ID="Label13" runat="server" Text="Gudang" class="tb"></asp:Label>
+                            <asp:Label ID="Label13" runat="server" Text="Ruangan" class="tb"></asp:Label>
                         </td>
                         <td class="tbl" style="padding-bottom:5px;">
                             <asp:Label ID="lblGudang" runat="server" Text="" Width="200px" class="tb"></asp:Label>

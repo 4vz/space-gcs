@@ -51,7 +51,7 @@
             </li>
         </ul>
         </div>
-        <span class="headIP">IP Password</span>
+        <span class="headIP">Password</span>
         <br />
         <ul class="list-inline">
             <li style="margin-right:20px;">

@@ -11,13 +11,16 @@ namespace Telkomsat.asset
 {
     public partial class edit : System.Web.UI.Page
     {
+        string status;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         //SqlConnection  = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             Page.Form.DefaultButton = btnUpdate.UniqueID;
+            txtPIC.Text = Session["username"].ToString();
 
+            status = Session["status"].ToString();
             if (!IsPostBack)
             {
                 hfContactID.Value = Session["hf"].ToString();
@@ -84,21 +87,21 @@ namespace Telkomsat.asset
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID_Asset", (hfContactID.Value == "" ? 0 : Convert.ToInt32(hfContactID.Value)));
                 cmd.Parameters.AddWithValue("@tanggal1", Waktu);
-                cmd.Parameters.AddWithValue("Site1", Session["site"].ToString());
-                cmd.Parameters.AddWithValue("Gudang1", Session["gudang"].ToString());
-                cmd.Parameters.AddWithValue("Rak1", Session["rak"].ToString());
-                cmd.Parameters.AddWithValue("Fungsi1", Session["fungsi"].ToString());
-                cmd.Parameters.AddWithValue("Status1", Session["status"].ToString());
-                cmd.Parameters.AddWithValue("Keterangan1", Session["keterangan"].ToString());
+                cmd.Parameters.AddWithValue("@Site1", Session["site"].ToString());
+                cmd.Parameters.AddWithValue("@Gudang1", Session["gudang"].ToString());
+                cmd.Parameters.AddWithValue("@Rak1", Session["rak"].ToString());
+                cmd.Parameters.AddWithValue("@Fungsi1", Session["fungsi"].ToString());
+                cmd.Parameters.AddWithValue("@Status1", Session["status"].ToString());
+                cmd.Parameters.AddWithValue("@Keterangan1", Session["keterangan"].ToString());
                 cmd.ExecuteNonQuery();
                 sqlCon.Close();
 
-                if(ddlStatus.Text == "BAIK")
+                if(status == "BAIK")
                 {
                     sqlCon.Open();
                     SqlCommand cmd1 = new SqlCommand("AsAddStatus", sqlCon);
                     cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.AddWithValue("@ID_Asset", (hfContactID.Value == "" ? 0 : Convert.ToInt32(hfContactID.Value)));
+                    cmd1.Parameters.AddWithValue("@ID_Asset1", (hfContactID.Value == "" ? 0 : Convert.ToInt32(hfContactID.Value)));
                     cmd1.Parameters.AddWithValue("@Status2", ddlStatus.Text);
                     cmd1.ExecuteNonQuery();
                     sqlCon.Close();
