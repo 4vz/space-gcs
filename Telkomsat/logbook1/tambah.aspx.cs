@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace Telkomsat.logbook1
 {
@@ -36,8 +38,12 @@ namespace Telkomsat.logbook1
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("MM/dd/yyyy");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("dd/MM/yyyy");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
