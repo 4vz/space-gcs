@@ -43,11 +43,8 @@ namespace Telkomsat.logbook1
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
 
-            tanggal = txtTanggal.Text;
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -164,11 +161,7 @@ namespace Telkomsat.logbook1
 
         void fillgridview()
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            tanggal = txtTanggal.Text;
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand("LoViewIDTerakhir", sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
