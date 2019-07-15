@@ -46,8 +46,20 @@
     font-size:11px;
 }
 
+.waktudashboard2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #a9a9a9;
+    font-size: 14px;
+}
+
 .eventdashboard{
     font-family:Cambria;
 
 
+}
+
+.dtAssets{
+    position:relative;
+    margin-right:10px;
+    margin-left:10px;
 }

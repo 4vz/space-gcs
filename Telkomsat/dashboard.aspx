@@ -15,7 +15,7 @@
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css" rel="stylesheet" />
     <link href="stylepagination.css?version=1" rel="stylesheet" />
-    <link href="dashboard.css?version=3" rel="stylesheet" type="text/css"/>
+    <link href="dashboard.css?version=6" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -127,7 +127,7 @@
                 </div>
               <a href="profileperson.aspx">
                 <div class="box-body" style="width:100%; margin:0 auto;">
-                    Hari ini ada acara olahraga
+                    Tidak ada acara
                 </div>
                </a>
             </div>
@@ -140,15 +140,28 @@
         
 
         <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-          <div class="box box-default" style="min-height:600px">
+          <div class="box box-default" style="min-height:600px;">
                 <div class="box-header with-border">
                     Pemberitahuan
                 </div>
-              <a href="profileperson.aspx">
-                <div class="box-body" style="width:100%; margin:0 auto; height:430px">
-                    Tidak ada perubahan data asset bulan ini
-                </div>
-               </a>
+              <div style="margin-left:5px;">
+          <asp:Label ID="lblAsset" runat="server" Text="Label" Visible="false" CssClass="waktudashboard2"></asp:Label>
+              <asp:DataList runat="server" id="dtAsset" CssClass="dtAssets">
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" class="waktudashboard" Text='<%# ((DateTime)Eval("TANGGAL")).ToString("dd/MM/yyyy") %>'/>
+                        <br />
+                        <asp:Image ID="Image2" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl="~/img/download.png"/>
+                        <asp:Label Text='<%# Eval("user_name") %>' runat="server" class="namadashboard" />
+                        <asp:Label Text=" melakukan perubahan data " runat="server" />
+                        <asp:Label ID="NAMALabel" runat="server" class="waktudashboard" Text='<%# Eval("NAMA") %>'/>
+                        <asp:Label Text=" dengan SN " runat="server" />
+                        <asp:Label ID="AKTIVITASLabel" runat="server" class="waktudashboard" Text='<%# Eval("[S/N]") %>' />
+                        <br />
+                        <hr width="100%" />
+                    </ItemTemplate>
+
+                </asp:DataList>
+                  </div>
             </div>
             </div>
                 
@@ -160,9 +173,10 @@
                     <span style="margin-left:10px; font-size:14px; color:darkslateblue; margin-bottom:10px">Aktivitas GCS</span>
                     <hr width="100%" />
           <div class="tab-content">
-              <div class="active tab-pane" id="activity" style="margin-left:15px">
+              <div class="active tab-pane" id="activity" style="margin-left:5px">
                 <!-- Post -->
-            <asp:DataList runat="server" id="dtLogbook" Width="650px">
+                  <asp:Label ID="lblLogbook" runat="server" Text="Label" Visible="false" CssClass="waktudashboard2"></asp:Label>
+            <asp:DataList runat="server" id="dtLogbook" CssClass="dtAssets">
                     <ItemTemplate>
                         <asp:Image ID="Image2" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                         <asp:Label Text='<%# Eval("nama") %>' runat="server" class="namadashboard" />

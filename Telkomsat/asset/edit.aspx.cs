@@ -93,6 +93,7 @@ namespace Telkomsat.asset
                 cmd.Parameters.AddWithValue("@Fungsi1", Session["fungsi"].ToString());
                 cmd.Parameters.AddWithValue("@Status1", Session["status"].ToString());
                 cmd.Parameters.AddWithValue("@Keterangan1", Session["keterangan"].ToString());
+                //cmd.Parameters.AddWithValue("@pichi", txtPIC.Text.Trim());
                 cmd.ExecuteNonQuery();
                 sqlCon.Close();
 

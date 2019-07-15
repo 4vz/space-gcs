@@ -45,9 +45,7 @@ namespace Telkomsat.logbook1
                 //labelID.Visible = true;
 
             }
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
+
             //Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
             int ID = Convert.ToInt32(hfContactID.Value);
             if (sqlCon2.State == ConnectionState.Closed)
@@ -67,13 +65,10 @@ namespace Telkomsat.logbook1
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
 
             hfContactID.Value = Session["hf"].ToString();
 
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("dd/MM/yyyy");
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;

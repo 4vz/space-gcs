@@ -37,7 +37,7 @@ namespace Telkomsat
                 sqlCon.Close();
             }
 
-            string tanggal = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy")).ToString("yyyy/MM/dd");
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             var kemarin = DateTime.Now.AddDays(-2).ToString("yyyy/MM/dd");
             sqlCon.Open();
             SqlDataAdapter sqlCmd2 = new SqlDataAdapter("dashLogbook", sqlCon);
@@ -51,6 +51,32 @@ namespace Telkomsat
             //DataList2.DataSource = dtbl1;
             //DataList2.DataBind();
             sqlCon.Close();
+
+            var minggu = DateTime.Now.AddDays(-3).ToString("yyyy/MM/dd");
+            sqlCon.Open();
+            SqlDataAdapter sqlCmd1 = new SqlDataAdapter("dashAsset", sqlCon);
+            sqlCmd1.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlCmd1.SelectCommand.Parameters.AddWithValue("@mulai1", minggu);
+            sqlCmd1.SelectCommand.Parameters.AddWithValue("@akhir1", tanggal);
+            DataTable dtbl3 = new DataTable();
+            sqlCmd1.Fill(dtbl3);
+            dtAsset.DataSource = dtbl3;
+            dtAsset.DataBind();
+            //DataList2.DataSource = dtbl1;
+            //DataList2.DataBind();
+            sqlCon.Close();
+
+            if (dtAsset.Items.Count == 0)
+            {
+                lblAsset.Visible = true;
+                lblAsset.Text = "Tidak ada pembaruan data";
+            }
+
+            if (dtLogbook.Items.Count == 0)
+            {
+                lblLogbook.Visible = true;
+                lblLogbook.Text = "Tidak ada penambahan logbook";
+            }
 
             lblProfile1.Text = Session["username"].ToString();
         }
