@@ -15,7 +15,7 @@
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css" rel="stylesheet" />
     <link href="stylepagination.css?version=1" rel="stylesheet" />
-    <link href="dashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="dashboard.css?version=3" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -94,7 +94,7 @@
     </nav>
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="min-height:1300px;">
     <div class="container">
       <!-- Content Header (Page header) -->
       <section class="content-header">
@@ -106,8 +106,8 @@
 
       <!-- Main content -->
       <section class="content">
-      <div class="row">
-          <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+      <div class="row" style="height:auto">
+          <div class="col-lg-9 col-xs-9 col-sm-9 col-md-9">
           <div class="box box-default">
                 <div class="box-header with-border">
                     Gound Control System
@@ -119,6 +119,19 @@
                </a>
             </div>
             </div>
+
+          <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+          <div class="box box-default" style="max-height:450px; height:auto; min-height:300px">
+                <div class="box-header with-border">
+                    Acara Kegiatan
+                </div>
+              <a href="profileperson.aspx">
+                <div class="box-body" style="width:100%; margin:0 auto;">
+                    Hari ini ada acara olahraga
+                </div>
+               </a>
+            </div>
+            </div>
         </div>
 
       <div class="row">
@@ -126,50 +139,54 @@
         <!-- ./col -->
         
 
-        <div class="col-lg-4 col-xs-6">
-          <!-- small box -->
-            <a href="../asset/home.aspx" class="small-box-footer">
-          <div class="small-box bg-red-active">
-            <div class="inner">
-              <h3>Database Asset</h3>
-                <div class="icon">
-                    <img src="img/download.png" alt="" width="320" height="310"/>
+        <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
+          <div class="box box-default" style="min-height:600px">
+                <div class="box-header with-border">
+                    Pemberitahuan
+                </div>
+              <a href="profileperson.aspx">
+                <div class="box-body" style="width:100%; margin:0 auto; height:430px">
+                    Tidak ada perubahan data asset bulan ini
+                </div>
+               </a>
             </div>
             </div>
-          </div>
-        </a>
-        </div>
                 
         <!-- ./col -->
-        <div class="col-lg-4 col-xs-6">
+        <div class="col-lg-8 col-xs-8">
           <!-- small box -->
-          <a href="../logbook1/semuadata.aspx" class="small-box-footer">
-          <div class="small-box bg-black">
-            <div class="inner">
-              <h3>Logbook</h3>
+            <div class="box box-primary" style="min-height:600px;">
+                <br />
+                    <span style="margin-left:10px; font-size:14px; color:darkslateblue; margin-bottom:10px">Aktivitas GCS</span>
+                    <hr width="100%" />
+          <div class="tab-content">
+              <div class="active tab-pane" id="activity" style="margin-left:15px">
+                <!-- Post -->
+            <asp:DataList runat="server" id="dtLogbook" Width="650px">
+                    <ItemTemplate>
+                        <asp:Image ID="Image2" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
+                        <asp:Label Text='<%# Eval("nama") %>' runat="server" class="namadashboard" />
+                        <br />
+                        <asp:Label ID="NAMALabel" runat="server" class="waktudashboard" Text='<%# ((DateTime)Eval("TANGGAL")).ToString("dd/MM/yyyy") %>'/>
+                        <br />
+                        <asp:Label ID="AKTIVITASLabel" runat="server" class="eventdashboard" Text='<%# Eval("EVENT") %>' />
+                        <br />
+                        <hr width="100%" />
+                    </ItemTemplate>
+
+                </asp:DataList>
+                <!-- Post -->
+                <!-- /.post -->
+              </div>
+              <!-- /.tab-pane -->
+             <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
             </div>
-            <div class="icon">
-              <img src="img/logbook.jpg" alt="" width="320" height="310"/>
             </div>
-          </div>
-              </a>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-6">
-          <!-- small box -->
-        <a href="../knowledge/semua.aspx" class="small-box-footer">
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>Knowledge</h3>
-            </div>
-            <div class="icon">
-                <img src="img/book.png" alt="" width="320" height="310"/>
-            </div>
           </div>
-            </a>
-        </div>
         <!-- ./col -->
-      </div>
         
         
         

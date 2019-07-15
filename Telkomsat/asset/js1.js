@@ -124,5 +124,262 @@ var barChartOptions = {
 
 barChartOptions.datasetFill = false
 barChart.Bar(barChartData, barChartOptions)
-  })
+})
 
+function GetTeam(obj) {
+    var selectbox = obj;
+    var userinput = selectbox.options[selectbox.selectedIndex].value;
+    //alert(userinput);
+    if (userinput == "RF EQUIPMENT") {
+        //alert("bisa");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'table-row';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "BASEBAND") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'table-row';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "SERVER & NETWORK ELEMENT") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'table-row';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "MEASURING INSTRUMENT") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'table-row';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "ANTENNA") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'table-row';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "WORKSTATION") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'table-row';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "LICENSE") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'table-row';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "ACCESORIES") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'table-row';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "ELECTRICAL") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'table-row';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "GENSET") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'table-row';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "AIR CONDITIONING") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'table-row';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "UPS") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'table-row';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'none';
+    }
+    else if (userinput == "FIRE ALARM PROTECTION") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'none';
+        document.getElementById('trFi').style.display = 'table-row';
+    }
+    else if (userinput == "HYDRANT") {
+        //alert("bb");
+        document.getElementById('trDf').style.display = 'none';
+        document.getElementById('trRF').style.display = 'none';
+        document.getElementById('trBB').style.display = 'none';
+        document.getElementById('trSN').style.display = 'none';
+        document.getElementById('trAntena').style.display = 'none';
+        document.getElementById('trMI').style.display = 'none';
+        document.getElementById('trWo').style.display = 'none';
+        document.getElementById('trLi').style.display = 'none';
+        document.getElementById('trAcc').style.display = 'none';
+        document.getElementById('trEl').style.display = 'none';
+        document.getElementById('trGe').style.display = 'none';
+        document.getElementById('trUPS').style.display = 'none';
+        document.getElementById('trAC').style.display = 'none';
+        document.getElementById('trHy').style.display = 'table-row';
+        document.getElementById('trFi').style.display = 'none';
+    }
+}

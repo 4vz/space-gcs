@@ -21,6 +21,8 @@ namespace Telkomsat.logbook1
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             txtTanggal.Enabled = false;
             txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
             fillgridview();
@@ -33,17 +35,17 @@ namespace Telkomsat.logbook1
                 txtOG.Text = Session["username"].ToString();
             }
 
+            if(!IsPostBack)
+                fillgridview();
+
             //txtOS.Text = Session["user"].ToString();
 
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
 
 
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("dd/MM/yyyy");
+            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -151,10 +153,11 @@ namespace Telkomsat.logbook1
             //cmdLog.Parameters.AddWithValue("@SNB", "");
             cmdLog.ExecuteNonQuery();
             sqlCon.Close();
-            fillgridview();
+            
             lblUpdate.Text = "Berhasil Menyimpan";
             lblUpdate.ForeColor = System.Drawing.Color.Green;
             clear();
+            fillgridview();
         }
 
         void fillgridview()

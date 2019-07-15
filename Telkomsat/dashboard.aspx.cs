@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace Telkomsat
 {
@@ -33,6 +36,21 @@ namespace Telkomsat
                 //DataList2.DataBind();
                 sqlCon.Close();
             }
+
+            string tanggal = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy")).ToString("yyyy/MM/dd");
+            var kemarin = DateTime.Now.AddDays(-2).ToString("yyyy/MM/dd");
+            sqlCon.Open();
+            SqlDataAdapter sqlCmd2 = new SqlDataAdapter("dashLogbook", sqlCon);
+            sqlCmd2.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlCmd2.SelectCommand.Parameters.AddWithValue("@mulai", kemarin);
+            sqlCmd2.SelectCommand.Parameters.AddWithValue("@akhir", tanggal);
+            DataTable dtbl = new DataTable();
+            sqlCmd2.Fill(dtbl);
+            dtLogbook.DataSource = dtbl;
+            dtLogbook.DataBind();
+            //DataList2.DataSource = dtbl1;
+            //DataList2.DataBind();
+            sqlCon.Close();
 
             lblProfile1.Text = Session["username"].ToString();
         }

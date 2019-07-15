@@ -26,7 +26,7 @@ namespace Telkomsat.asset
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtKelompok.Text == "" || txtNama.Text == "" || txtNama.Text == "" || txtPIC.Text == "")
+            if (txtKelompok.Text == "" || txtPIC.Text == "")
             {
                 lblUpdate.Text = "Tanda * Wajib Diisi";
                 lblUpdate.ForeColor = System.Drawing.Color.Red;
@@ -39,7 +39,33 @@ namespace Telkomsat.asset
                 sqlCmd.CommandType = CommandType.StoredProcedure;
                 sqlCmd.Parameters.AddWithValue("@ID", (hfContactID.Value == "" ? 0 : Convert.ToInt32(hfContactID.Value)));
                 sqlCmd.Parameters.AddWithValue("@Kelompok", txtKelompok.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@Nama", txtNama.Text.Trim());
+                if(txtKelompok.Text == "RF EQUIPMENT")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtNama.Text.Trim());
+                else if (txtKelompok.Text == "BASEBAND")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamabb.Text.Trim());
+                else if (txtKelompok.Text == "SERVER & NETWORK ELEMENT")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamasn.Text.Trim());
+                else if (txtKelompok.Text == "MEASURING INSTRUMENT")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaMI.Text.Trim());
+                else if (txtKelompok.Text == "ANTENNA")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaantena.Text.Trim());
+                else if (txtKelompok.Text == "WORKSTATION")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaWo.Text.Trim());
+                else if (txtKelompok.Text == "LICENSE")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaLi.Text.Trim());
+                else if (txtKelompok.Text == "ACCESORIES")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaAcc.Text.Trim());
+                else if (txtKelompok.Text == "ELECTRICAL")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaEl.Text.Trim());
+                else if (txtKelompok.Text == "GENSET")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaGe.Text.Trim());
+                else if (txtKelompok.Text == "AIR CONDITIONING")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaAC.Text.Trim());
+                else if (txtKelompok.Text == "UPS")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaUPS.Text.Trim());
+                else if (txtKelompok.Text == "FIRE ALARM PROTECTION")
+                    sqlCmd.Parameters.AddWithValue("@Nama", txtnamaFi.Text.Trim());
+
                 sqlCmd.Parameters.AddWithValue("@Merk", txtMerk.Text.Trim());
                 sqlCmd.Parameters.AddWithValue("@Model", txtModel.Text.Trim());
                 sqlCmd.Parameters.AddWithValue("@SN", txtSN.Text.Trim());

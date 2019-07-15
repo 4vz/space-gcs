@@ -7,22 +7,36 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace Telkomsat
 {
     public partial class editprofile : System.Web.UI.Page
     {
         string user;
+        
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         SqlConnection sqlCon2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            string ttl;
+            string tanggal;
+
             Page.Form.DefaultButton = btnUpdate.ID;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
 
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
 
             user = Session["username"].ToString();
+            tanggal = Session["tanggal"].ToString();
+            ttl = Session["ttl"].ToString();
+
+            string tanggalmasuk = tanggal.Remove(10, 9);
+            string tanggallahir = ttl.Remove(10, 9);
             //txtnama.Value = Session["username"].ToString();
             if (!IsPostBack)
             {
@@ -30,16 +44,21 @@ namespace Telkomsat
                 txtemail.Value = Session["email"].ToString();
                 txtnomor.Value = Session["nomor"].ToString();
                 txttempat.Value = Session["tempat"].ToString();
-                if(Session["tanggal"].ToString() != null || Session["tanggal"].ToString() != "")
-                    txttanggal.Value = Session["tanggal"].ToString();
+                if (Session["tanggal"].ToString() != null || Session["tanggal"].ToString() != "")
+                    txttanggal.Value = tanggalmasuk;
                 if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
-                    txtttl.Value = Session["ttl"].ToString();
+                    txtttl.Value = tanggallahir;
             }
+
             lblProfile1.Text = Session["username"].ToString();
         }
 
         protected void btnUpdate_click(object sender, EventArgs e)
         {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
             user = Session["username"].ToString();
             sqlCon2.Open();
             SqlCommand sqlCmd2 = new SqlCommand("ProUpdate", sqlCon2);
@@ -51,14 +70,14 @@ namespace Telkomsat
             if(txttanggal.Value == "")
                 sqlCmd2.Parameters.AddWithValue("@tanggal", DBNull.Value);
             else
-                sqlCmd2.Parameters.AddWithValue("@tanggal", txttanggal.Value);
+                sqlCmd2.Parameters.AddWithValue("@tanggal", DateTime.ParseExact(txttanggal.Value, "dd/MM/yyyy", null));
 
             sqlCmd2.Parameters.AddWithValue("@tempat", txttempat.Value);
 
             if (txtttl.Value == "")
                 sqlCmd2.Parameters.AddWithValue("@ttl", DBNull.Value);
             else
-                sqlCmd2.Parameters.AddWithValue("@ttl", txtttl.Value);
+                sqlCmd2.Parameters.AddWithValue("@ttl", DateTime.ParseExact(txtttl.Value, "dd/MM/yyyy", null));
             sqlCmd2.ExecuteNonQuery();
             sqlCon2.Close();
             lblUpdate.Visible = true;

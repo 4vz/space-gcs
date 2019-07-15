@@ -45,6 +45,9 @@ namespace Telkomsat.logbook1
                 //labelID.Visible = true;
 
             }
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
             //Response.Write(Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd"));
             int ID = Convert.ToInt32(hfContactID.Value);
             if (sqlCon2.State == ConnectionState.Closed)
@@ -185,6 +188,19 @@ namespace Telkomsat.logbook1
             hfContactID.Value = ID.ToString();
             dtContact.DataSource = dtbl;
             dtContact.DataBind();
+
+            if (sqlCon2.State == ConnectionState.Closed)
+                sqlCon2.Open();
+            SqlCommand cmd = new SqlCommand("LoViewByID", sqlCon2);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID", ID);
+            SqlDataAdapter sqlda1 = new SqlDataAdapter(cmd);
+            sqlda1.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            sqlda1.Fill(dt);
+            gvLog.DataSource = dt;
+            gvLog.DataBind();
+            sqlCon2.Close();
 
         }
 

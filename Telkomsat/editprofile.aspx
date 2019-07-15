@@ -154,11 +154,11 @@
         <span class="glyphicon glyphicon-globe form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="datetime" class="form-control" placeholder="Tanggal Lahir" id="txtttl" runat="server" onkeypress="return runScript(event)"/>
+        <input type="text" class="form-control" placeholder="Tanggal Lahir" id="txtttl" runat="server" onkeypress="return runScript(event)"/>
         <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="datetime" class="form-control" placeholder="Tanggal Masuk" id="txttanggal" runat="server" onkeypress="return runScript(event)"/>
+        <input type="text" class="form-control" placeholder="Tanggal Masuk" id="txttanggal" runat="server" onkeypress="return runScript(event)"/>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

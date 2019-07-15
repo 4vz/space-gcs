@@ -68,7 +68,7 @@ namespace Telkomsat
 
                 if (Session["tanggal"].ToString() == null || Session["tanggal"].ToString() == "")
                 {
-                    txttanggal.Text = "tanggal Lahir";
+                    txttanggal.Text = "Tanggal Masuk Telkomsat";
                     txttanggal.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
@@ -77,7 +77,7 @@ namespace Telkomsat
 
                 if (Session["ttl"].ToString() == null || Session["ttl"].ToString() == "")
                 {
-                    txtttl.Text = "Tanggal Masuk Telkomsat";
+                    txtttl.Text = "Tanggal Lahir";
                     txtttl.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else

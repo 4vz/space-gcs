@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.asset.tambah" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="js1.js"></script>
+    <script type="text/javascript" src="js1.js?version=2"></script>
+    <script>
+        
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -17,26 +20,339 @@
         <table>
             <tr>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
-                    <asp:Label ID="Label17" class="lbl" runat="server">Kelompok <span class="spn"> * </span></asp:Label>
+                    <asp:Label ID="Label17" class="lbl" runat="server">Jenis Equipment <span class="spn"> * </span></asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="titikdua">
                     <asp:Label ID="Label18" runat="server" >:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="tdtext">
-                    <asp:TextBox ID="txtKelompok" class="tb1" runat="server" Width="340px"></asp:TextBox>
+                    <asp:DropDownList ID="txtKelompok" runat="server" CssClass="tb1" Width="340px" onchange="GetTeam(this);">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>RF EQUIPMENT</asp:ListItem>
+                        <asp:ListItem>BASEBAND</asp:ListItem>
+                        <asp:ListItem>SERVER & NETWORK ELEMENT</asp:ListItem>
+                        <asp:ListItem>MEASURING INSTRUMENT</asp:ListItem>
+                        <asp:ListItem>ANTENNA</asp:ListItem>
+                        <asp:ListItem>WORKSTATION</asp:ListItem>
+                        <asp:ListItem>LICENSE</asp:ListItem>
+                        <asp:ListItem>ACCESORIES</asp:ListItem>
+                        <asp:ListItem>ELECTRICAL</asp:ListItem>
+                        <asp:ListItem>GENSET</asp:ListItem>
+                        <asp:ListItem>AIR CONDITIONING</asp:ListItem>
+                        <asp:ListItem>UPS</asp:ListItem>
+                        <asp:ListItem>HYDRANT</asp:ListItem>
+                        <asp:ListItem>FIRE ALARM PROTECTION</asp:ListItem>
+                    </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
+            <tr id="trDf" style="display:table-row">
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
-                    <asp:Label ID="Label1" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                    <asp:Label ID="Label44" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="titikdua">
-                    <asp:Label ID="Label9" runat="server" >:</asp:Label>
+                    <asp:Label ID="Label45" runat="server" >:</asp:Label>
                 </td>
-                <td style="padding-bottom:10px;" class="tdtext">
-                    <asp:TextBox ID="txtNama" class="tb1" runat="server" Width="340px"></asp:TextBox>
-                </td>
+                <td style="padding-bottom:10px" class="tdtext">
+                    <asp:DropDownList ID="DropDownList1" runat="server" class="ddl3" Width="340px">
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
+                    </td>
             </tr>
+                    <tr id="trRF" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label1" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label9" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px" class="tdtext">
+                            <asp:DropDownList ID="txtNama" runat="server" class="ddl3" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>UP CONVERTER</asp:ListItem>
+                                <asp:ListItem>DOWN CONVERTER</asp:ListItem>
+                                <asp:ListItem>MATRIX SWITCH</asp:ListItem>
+                                <asp:ListItem>REDUNDANCY CONTROL UNIT (RCU)</asp:ListItem>
+                                <asp:ListItem>REDUNDANT SYSTEM CONTROL (RSC)</asp:ListItem>
+                                <asp:ListItem>TEST LOOP TRANSLATOR (TLT)</asp:ListItem>
+                                <asp:ListItem>TEST LOOP SWITCH</asp:ListItem>
+                                <asp:ListItem>BAND PASS FILTER</asp:ListItem>
+                            </asp:DropDownList>
+                            </td>
+                    </tr>
+                    <tr id="trBB" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label38" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label39" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamabb" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>GPS ANTENNA</asp:ListItem>
+                                <asp:ListItem>GPS TIME SERVER</asp:ListItem>
+                                <asp:ListItem>BASEBAND</asp:ListItem>
+                                <asp:ListItem>MODEM</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="trSN" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label40" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label41" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamasn" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>VM HARDWARE</asp:ListItem>
+                                <asp:ListItem>NAS HARDWARE</asp:ListItem>
+                                <asp:ListItem>FEP HARDWARE</asp:ListItem>
+                                <asp:ListItem>ETHERNET HUB</asp:ListItem>
+                                <asp:ListItem>ETHERNET SWITCH</asp:ListItem>
+                                <asp:ListItem>FIREWALL</asp:ListItem>
+                                <asp:ListItem>ROUTER</asp:ListItem>
+                                <asp:ListItem>KVM</asp:ListItem>
+                                <asp:ListItem>COMPASS SERVER</asp:ListItem>
+                                <asp:ListItem>DEVICE MASTER</asp:ListItem>
+                                <asp:ListItem>DIGITAL I/O MODULE</asp:ListItem>
+                                <asp:ListItem>NETWORK SERIAL ADAPTER </asp:ListItem>
+                                <asp:ListItem>WEB I/O RELAY</asp:ListItem>
+                                <asp:ListItem>SEACAMS SERVER</asp:ListItem>
+                                <asp:ListItem>SAT-ID SERVER</asp:ListItem>
+                                <asp:ListItem>SERVER UNIT</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="trAntena" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label42" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label43" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaantena" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>ANTENNA</asp:ListItem>
+                                <asp:ListItem>MOTOR</asp:ListItem>
+                                <asp:ListItem>ANTENNA CONTROL UNIT (ACU)</asp:ListItem>
+                                <asp:ListItem>MANUAL CONTROL UNIT (MCU)</asp:ListItem>
+                                <asp:ListItem>REMOTE CONTROL UNIT</asp:ListItem>
+                                <asp:ListItem>ANTENA DRIVE UNIT (ADU)</asp:ListItem>
+                                <asp:ListItem>SERVO DRIVES/ AMPLIFIER</asp:ListItem>
+                                <asp:ListItem>DIGITAL TRACKING RECEIVER (DTR)</asp:ListItem>
+                                <asp:ListItem>MONOPULSE TRACKING RECEIVER (MTR)</asp:ListItem>
+                                <asp:ListItem>DUAL CHANNEL DOWN CONVERTER</asp:ListItem>
+                                <asp:ListItem>OPTICAL ENCODER</asp:ListItem>
+                                <asp:ListItem>TRACKING DOWN CONVERTER</asp:ListItem>
+                                <asp:ListItem>RAIN /SNOW SENSOR</asp:ListItem>
+                                <asp:ListItem>ANTENA CONTROL BOARD (ACB)</asp:ListItem>
+                                <asp:ListItem>BLOCK DOWN CONTROL (BDC)</asp:ListItem>
+                                <asp:ListItem>PHASE SHIFTER</asp:ListItem>
+                                <asp:ListItem>LIMIT SWITCH</asp:ListItem>
+                                <asp:ListItem>MOTOR</asp:ListItem>
+                                <asp:ListItem>MOTOR</asp:ListItem>
+                                <asp:ListItem>MOTOR</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trMI" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label46" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label47" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaMI" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>COMMUNICATION ANALYZER</asp:ListItem>
+                                <asp:ListItem>SPECTRUM ANALYZER</asp:ListItem>
+                                <asp:ListItem>SYNTHESIZER SWEEPER</asp:ListItem>
+                                <asp:ListItem>POWER METER</asp:ListItem>
+                                <asp:ListItem>POWER SENSOR</asp:ListItem>
+                                <asp:ListItem>OSCILLOSCOPE</asp:ListItem>
+                                <asp:ListItem>SYNCHROSCOPE</asp:ListItem>
+                                <asp:ListItem>MULTIMETER</asp:ListItem>
+                                <asp:ListItem>FREQUENCY COUNTER</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trWo" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label48" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label49" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaWo" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>WORKSTATION OPERASIONAL</asp:ListItem>
+                                <asp:ListItem>WORKSTATION ENGINEERING</asp:ListItem>
+                                <asp:ListItem>WORKSTATION FLIGHT DYNAMICS</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trLi" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label50" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label51" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaLi" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>EPOCH CLIENT LICENSES</asp:ListItem>
+                                <asp:ListItem>EPOCH SERVER LICENSES</asp:ListItem>
+                                <asp:ListItem>ARES LICENSES</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trAcc" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label52" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label53" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaAcc" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>WAVEGUIDE</asp:ListItem>
+                                <asp:ListItem>POWER SUPPLY</asp:ListItem>
+                                <asp:ListItem>EXHAUST FAN</asp:ListItem>
+                                <asp:ListItem>DUMMYLOAD</asp:ListItem>
+                                <asp:ListItem>FAN BLOWER</asp:ListItem>
+                                <asp:ListItem>HARDISK</asp:ListItem>
+                                <asp:ListItem>MODULE</asp:ListItem>
+                                <asp:ListItem>CPU</asp:ListItem>
+                                <asp:ListItem>MONITOR</asp:ListItem>
+                                <asp:ListItem>SWITCH CONTROL</asp:ListItem>
+                                <asp:ListItem>SWITCH POWER</asp:ListItem>
+                                <asp:ListItem>PRINTER</asp:ListItem>
+                                <asp:ListItem>LAPTOP</asp:ListItem>
+                                <asp:ListItem>DEHYDRATOR</asp:ListItem>
+                                <asp:ListItem>RF TO OPTIC CONVERTER</asp:ListItem>
+                                <asp:ListItem>SIGNAL GENERATOR</asp:ListItem>
+                                <asp:ListItem>PROTECTION SWITCH </asp:ListItem>
+                                <asp:ListItem>PATCH PANEL</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trEl" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label54" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label55" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaEl" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>CUBICLE</asp:ListItem>
+                                <asp:ListItem>TRAFO</asp:ListItem>
+                                <asp:ListItem>MAIN DISTRIBUTION</asp:ListItem>
+                                <asp:ListItem>ATS</asp:ListItem>
+                                <asp:ListItem>FEEDER</asp:ListItem>
+                                <asp:ListItem>AIR COMPRESSOR</asp:ListItem>
+                                <asp:ListItem>ESSENTIAL PANEL</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trGe" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label56" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label57" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaGe" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>GENSET 625 KVA</asp:ListItem>
+                                <asp:ListItem>GENSET 1500 KVA</asp:ListItem>
+                                <asp:ListItem>BBM TANK</asp:ListItem>
+                                <asp:ListItem>DAILY TANK</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trUPS" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label58" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label59" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaUPS" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>UPS 310 KVA</asp:ListItem>
+                                <asp:ListItem>UPS 330 KVA</asp:ListItem>
+                                <asp:ListItem>UPS 3.1 KVA</asp:ListItem>
+                                <asp:ListItem>UPS 5 KVA</asp:ListItem>
+                                <asp:ListItem>UPS 10 KVA</asp:ListItem>
+                                <asp:ListItem>BATTERY UPS</asp:ListItem>
+                                <asp:ListItem>APOTRANS</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trAC" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label60" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label61" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaAC" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>AC CHILLER</asp:ListItem>
+                                <asp:ListItem>AHU</asp:ListItem>
+                                <asp:ListItem>FAN COIL</asp:ListItem>
+                                <asp:ListItem>AC PRECISION</asp:ListItem>
+                                <asp:ListItem>AC STANDING FLOOR</asp:ListItem>
+                                <asp:ListItem>AC PORTABLE</asp:ListItem>
+                                <asp:ListItem>AC SPLIT</asp:ListItem>
+                                <asp:ListItem>COMPRESSOR</asp:ListItem>
+                                <asp:ListItem>AC PACKAGE</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trHy" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label62" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label63" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaHy" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>DIESEL ENGINE</asp:ListItem>
+                                <asp:ListItem>PILLAR HYDRANT</asp:ListItem>
+                                <asp:ListItem>WATER TANK</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
+                    <tr id="trFi" style="display:none">
+                        <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                            <asp:Label ID="Label64" class="lbl" runat="server">Nama Equipment<span class="spn"> * </span></asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="titikdua">
+                            <asp:Label ID="Label65" runat="server" >:</asp:Label>
+                        </td>
+                        <td style="padding-bottom:10px;" class="tdtext">
+                            <asp:DropDownList ID="txtnamaFi" runat="server" CssClass="tb1" Width="340px">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>HSSD</asp:ListItem>
+                                <asp:ListItem>FM 200</asp:ListItem>
+                            </asp:DropDownList>  
+                        </td>
+                    </tr>
             <tr>
                 <td class="tdtext" style="padding-bottom:10px;">
                     <asp:Label ID="Label2" runat="server" class="lbl">Merk <span class="spn"> * </span></asp:Label>
@@ -446,5 +762,5 @@
         </div>
         </div>
 
-
+    
 </asp:Content>

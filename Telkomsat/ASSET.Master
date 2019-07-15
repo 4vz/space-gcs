@@ -389,7 +389,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="../asset/filter.aspx?ID=baik"><i class="fa fa-circle-o"></i> Baik</a></li>
-            <li><a href="../asset/filter.aspx?ID=Perbaikan"><i class="fa fa-circle-o"></i> Kurang Baik</a></li>
+            <li><a href="../asset/filter.aspx?ID=Perbaikan"><i class="fa fa-circle-o"></i> Perbaikan</a></li>
             <li><a href="../asset/filter.aspx?ID=rusak"><i class="fa fa-circle-o"></i> Rusak</a></li>
           </ul>
         </li>

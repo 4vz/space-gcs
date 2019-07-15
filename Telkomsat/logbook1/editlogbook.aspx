@@ -349,7 +349,7 @@ $(document).ready(function(){
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID ="InkView" runat ="server" CommandArgument='<%# Eval("ID_Log") %>'> edit </asp:LinkButton>
+                        <asp:LinkButton ID ="InkView" runat ="server" CommandArgument='<%# Eval("ID_Logbook") %>'> edit </asp:LinkButton>
 
                     </ItemTemplate>
                 </asp:TemplateField>
