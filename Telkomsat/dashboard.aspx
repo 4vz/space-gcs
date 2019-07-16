@@ -123,11 +123,11 @@
           <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
           <div class="box box-default" style="max-height:450px; height:auto; min-height:300px">
                 <div class="box-header with-border">
-                    Acara Kegiatan
+                    Event
                 </div>
               <a href="profileperson.aspx">
                 <div class="box-body" style="width:100%; margin:0 auto;">
-                    Tidak ada acara
+                    Tidak ada event
                 </div>
                </a>
             </div>
@@ -150,7 +150,7 @@
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" class="waktudashboard" Text='<%# ((DateTime)Eval("TANGGAL")).ToString("dd/MM/yyyy") %>'/>
                         <br />
-                        <asp:Image ID="Image2" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl="~/img/download.png"/>
+                        <asp:Image ID="Image2" runat="server" class="img-circle" Height="20px" Width="20px" ImageUrl="~/img/download.png"/>
                         <asp:Label Text='<%# Eval("user_name") %>' runat="server" class="namadashboard" />
                         <asp:Label Text=" melakukan perubahan data " runat="server" />
                         <asp:Label ID="NAMALabel" runat="server" class="waktudashboard" Text='<%# Eval("NAMA") %>'/>

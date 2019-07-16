@@ -16,15 +16,15 @@ namespace Telkomsat.logbook1
     {
         Nullable<int> i = null;
         Nullable<int> j = null;
-        string tanggal;
+        //string tanggal;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
 
             txtTanggal.Enabled = false;
-            txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            //tanggal = DateTime.Now.ToString("dd/MM/yyyy");
+            
             fillgridview();
             if(Session["jenis1"].ToString() == "os")
             {
@@ -35,8 +35,12 @@ namespace Telkomsat.logbook1
                 txtOG.Text = Session["username"].ToString();
             }
 
-            if(!IsPostBack)
-                fillgridview();
+            if (!IsPostBack)
+            {
+                txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                fillgridview(); 
+            }
+                
 
             //txtOS.Text = Session["user"].ToString();
 
@@ -44,7 +48,7 @@ namespace Telkomsat.logbook1
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
+            //tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -119,7 +123,7 @@ namespace Telkomsat.logbook1
                 cmdLog.Parameters.AddWithValue("@ID_file", j);
             }
 
-            cmdLog.Parameters.AddWithValue("@tanggal", tanggal);
+            cmdLog.Parameters.AddWithValue("@tanggal", txtTanggal.Text);
             cmdLog.Parameters.AddWithValue("@event", txtEvent.Text.Trim());
             cmdLog.Parameters.AddWithValue("@Status", ddlStatus.Text.Trim());
             cmdLog.Parameters.AddWithValue("@Unit", ddlUnit.Text.Trim());
@@ -161,7 +165,8 @@ namespace Telkomsat.logbook1
 
         void fillgridview()
         {
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+            //tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand("LoViewIDTerakhir", sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;

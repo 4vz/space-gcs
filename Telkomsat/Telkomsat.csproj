@@ -125,6 +125,7 @@
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
     <Content Include="img\back.png" />
+    <Content Include="img\capture.jpg" />
     <Content Include="img\download.png" />
     <Content Include="img\logbook.png" />
     <Content Include="img\logotelkomsat2.png" />

@@ -30,7 +30,7 @@
                 changeYear: true,
                 dateFormat: "dd/mm/yy",
                 onClose: function (selectedDate) {
-                    $("#txtttl").datepicker("option", "minDate", selectedDate);
+                    $("#txtttl").datepicker("option", "setDate", selectedDate);
                 }
             });
 
@@ -40,7 +40,7 @@
                 changeYear: true,
                 dateFormat: "dd/mm/yy",
                 onClose: function (selectedDate) {
-                    $("#txttanggal").datepicker("option", "maxDate", selectedDate);
+                    $("#txttanggal").datepicker("option", "setDate", selectedDate);
                 }
 
             });

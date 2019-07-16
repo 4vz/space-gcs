@@ -43,7 +43,7 @@ namespace Telkomsat.File
             Response.Redirect("~/File/tambah.aspx");
         }
 
-        protected void btnGanti_Click(object sender, EventArgs e)
+        /*protected void btnGanti_Click(object sender, EventArgs e)
         {
             if (ddlKategori.Text == "Buku Manual")
             {
@@ -58,7 +58,7 @@ namespace Telkomsat.File
                 Response.Write(ddlPelatihan1.Text);
             }
                 
-        }
+        }*/
 
         protected void btnSave_Click(object sender, EventArgs e)
         {

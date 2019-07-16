@@ -118,8 +118,8 @@
                 <ul class="nav nav-stacked">
                 <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Nomor HP<span class="pull-right" style="margin-right:10px;"><asp:Label ID="KATEGORILabel" runat="server" Text='<%# Eval("nomor") %>' /></span> </li>
                 <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Email<span class="pull-right" style="margin-right:10px;"><asp:Label ID="WAKTULabel" runat="server" Text='<%# Eval("email") %>' /></span> </li>
-                <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Tanggal Lahir<span class="pull-right" style="margin-right:10px;"><asp:Label ID="Label1" runat="server" Text='<%# Eval("ttl")==DBNull.Value ? null : ((DateTime)Eval("ttl")).ToString("dd/MM/yyyy") %>' /></span> </li>
-                <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Tanggal Masuk<span class="pull-right" style="margin-right:10px;"><asp:Label ID="Label2" runat="server" Text='<%# Eval("tanggal_masuk")==DBNull.Value ? null : ((DateTime)Eval("tanggal_masuk")).ToString("dd/MM/yyyy") %>' /></span></li>
+                <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Tanggal Lahir<span class="pull-right" style="margin-right:10px;"><asp:Label ID="Label1" runat="server" Text='<%# Eval("ttl")==DBNull.Value ? null : ((DateTime)Eval("ttl")).ToString("dd MMM yyyy") %>' /></span> </li>
+                <li style="padding-left:20px; padding-top:7px; padding-bottom:7px">Tanggal Masuk<span class="pull-right" style="margin-right:10px;"><asp:Label ID="Label2" runat="server" Text='<%# Eval("tanggal_masuk")==DBNull.Value ? null : ((DateTime)Eval("tanggal_masuk")).ToString("dd MMM yyyy") %>' /></span></li>
                 </ul>
             </div>
             

@@ -58,6 +58,8 @@ namespace Telkomsat.logbook1
             if (txtOS.Text != Session["username"].ToString())
             {
                 Button1.Visible = false;
+                if (Session["jenis1"].ToString() == "og")
+                    Button1.Visible = true;
             }
 
 

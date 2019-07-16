@@ -59,7 +59,6 @@
                 </td>
                 <td style="padding-bottom:10px; height: 32px;" class="tdtext" >
                     <asp:TextBox ID="txtTanggal" class="tb1" runat="server" Width="115px"></asp:TextBox>
-                    <asp:Button ID="Button2" runat="server" Text="Ganti" OnClick="btnGanti_Click"/>
                 </td>
                 
             </tr>
