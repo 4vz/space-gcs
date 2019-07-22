@@ -13,5 +13,14 @@ namespace Telkomsat
         {
 
         }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Response.Write(txtLokasi.Text);
+            if (Request.Form["icon"] != null)
+            {
+                string pilihicon = Request.Form["icon"].ToString();
+                Response.Write(pilihicon);
+            }
+        }
     }
 }

@@ -15,15 +15,22 @@
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css" rel="stylesheet" />
     <link href="stylepagination.css?version=1" rel="stylesheet" />
-    <link href="dashboard.css?version=6" rel="stylesheet" type="text/css"/>
+    <link href="dashboard.css?version=7" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
+        media="screen" />
+    
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
+    <form id="form1" runat="server">
 <div class="wrapper">
 
   <header class="main-header">
     <nav class="navbar navbar-static-top">
-        <form id="form1" runat="server">
+        
       <div class="container">
         <div class="navbar-header">
           <a href="../dashboard.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
@@ -90,9 +97,10 @@
       </div>
     </div>
       <!-- /.container-fluid -->
-            </form>
+            
     </nav>
   </header>
+
   <!-- Full Width Column -->
   <div class="content-wrapper" style="min-height:1300px;">
     <div class="container">
@@ -114,22 +122,90 @@
                 </div>
               <a href="profileperson.aspx">
                 <div class="box-body" style="width:100%; margin:0 auto;">
-                    <img src="img/capture.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+                    		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>	
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+			</ol>
+ 
+			<!-- deklarasi carousel -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="img/capture.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					<div class="carousel-caption">
+						<h3>Satellite Operation Cibinong</h3>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/ba.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					<div class="carousel-caption">
+						<p>Saling berbagi kesusahan dan kemudahan</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/bb.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					<div class="carousel-caption">
+						<p>Saling terbuka untuk menjadi lebih baik</p>
+					</div>
+				</div>		
+                <div class="item">
+					<img src="img/bc.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					<div class="carousel-caption">
+						<p>Kehangatan dan kebersamaan tidak hanya didapat di kantor</p>
+					</div>
+				</div>			
+			</div>
+ 
+			<!-- membuat panah next dan previous -->
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+                    
                 </div>
                </a>
             </div>
             </div>
-
+          <button type="button" visible="false" id="Button1" style="float:right; color:darkred; background-color:transparent" data-toggle="modal" data-target="#exampleModalButton" class="btn-file" runat="server"><i class="fa fa-plus" style="font-size:12px"></i>
+                </button>
           <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
           <div class="box box-default" style="max-height:450px; height:auto; min-height:300px">
                 <div class="box-header with-border">
-                    Event
+                    Event 
+                <button type="button" id="btnModal" style="float:right; color:darkred; background-color:transparent" onserverclick="btnModal_ServerClick" class="btn-file" runat="server"><i class="fa fa-plus" style="font-size:12px"></i>
+                </button>
                 </div>
-              <a href="profileperson.aspx">
                 <div class="box-body" style="width:100%; margin:0 auto;">
-                    Tidak ada event
+                    <asp:Label ID="lblEvent" runat="server" Text="Tidak ada event" CssClass="waktudashboard2"></asp:Label>
+                    <asp:DataList runat="server" id="dtEvent" CssClass="dtAssets" OnItemCommand="DataList1_ItemCommand" OnItemDataBound="dtEvent_ItemDataBound">
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" runat="server" class="img-circle" Height="20px" Width="20px" ImageUrl='<%# Eval("icon")==DBNull.Value ? null : Eval("icon") %>'/>
+                        <asp:Label Text='<%# Eval("event") %>' runat="server" class="namadashboard" />
+                        <asp:Label Text='<%# " diselenggarakan oleh " + Eval("penyelenggara") %>' runat="server" class="event" />
+                        <br />
+                        <i class="fa fa-clock-o" style="color:#777777"></i>
+                        <asp:Label ID="Label1" runat="server" class="waktudashboard" Text='<%# ((DateTime)Eval("tanggal")).ToString("dd MMM yyyy") %>'/>
+                        <asp:Label Text='<%# Eval("jam") %>' runat="server" class="waktudashboard" />
+                        <br />
+                        <i class="fa fa-map-marker" style="color:#777777"></i>
+                        <asp:Label ID="lokasi" runat="server" Text='<%# Eval("lokasi") %>' Font-Size="14px" />
+                        <br />
+                        <asp:LinkButton Text="sunting" runat="server" class="a" CommandArgument='<%# Eval("ID_Event") %>' CommandName="id" ID="lbSunting"
+                            Visible='<%# Eval("statususer").ToString() != Session["jenis1"].ToString() ? false : true %>'/>
+                        <hr width="100%" />
+                    </ItemTemplate>
+
+                </asp:DataList>
                 </div>
-               </a>
             </div>
             </div>
         </div>
@@ -157,6 +233,7 @@
                         <asp:Label Text=" dengan SN " runat="server" />
                         <asp:Label ID="AKTIVITASLabel" runat="server" class="waktudashboard" Text='<%# Eval("[S/N]") %>' />
                         <br />
+                       
                         <hr width="100%" />
                     </ItemTemplate>
 
@@ -178,7 +255,7 @@
                   <asp:Label ID="lblLogbook" runat="server" Text="Label" Visible="false" CssClass="waktudashboard2"></asp:Label>
             <asp:DataList runat="server" id="dtLogbook" CssClass="dtAssets">
                     <ItemTemplate>
-                        <asp:Image ID="Image2" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
+                        <asp:Image ID="Image3" runat="server" class="img-circle" Height="30px" Width="30px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                         <asp:Label Text='<%# Eval("nama") %>' runat="server" class="namadashboard" />
                         <br />
                         <asp:Label ID="NAMALabel" runat="server" class="waktudashboard" Text='<%# ((DateTime)Eval("TANGGAL")).ToString("dd/MM/yyyy") %>'/>
@@ -222,15 +299,181 @@
     <!-- /.container -->
   </footer>
 </div>
+        <div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height:400px;">
+       <div class="modal-header" style="background-color:darkred">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title" style="color:ghostwhite">Tambah Event</h4>
+            </div>
+      <div class="modal-body">
+          <div class="divtabel">
+          <table align="center">
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Pilih Icon</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;" colspan="5">
+                      <div class="select-sim" id="select-color">
+                          <div class="options">
+                            <div class="option">
+                              <input type="radio" name="icon" value="sport" id="color-" />
+                              <label for="color-">
+                                <img src="img/sport.png" alt="" width="20" height="20" /> Olahraga
+                              </label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" name="icon" value="rapat" id="color-red" />
+                              <label for="color-red">
+                                <img src="img/meeting.png" alt="" width="20" height="20" /> Rapat
+                              </label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" name="icon" value="makan" id="color-green" />
+                              <label for="color-green">
+                                <img src="img/makan.png" alt="" width="20" height="20" /> Makan-makan
+                              </label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" name="icon" value="holiday" id="color-blue" />
+                              <label for="color-blue">
+                                <img src="img/holiday.jpg" alt="" width="20" height="20" /> Liburan
+                              </label>
+                            </div>
+                              </div>
+                          </div>
+
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Nama Event</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;"" colspan="3">
+                      <asp:TextBox ID="txtEven" class="tb1" runat="server" Width="300px" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                  </td>
+              </tr>
+              <tr>
+                  <td  style="text-align:right; padding-bottom:15px;">
+                      <label style="text-align:right">Lokasi</label>
+                  </td>
+                  <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
+                      <asp:TextBox ID="txtLokasi" class="tb1" runat="server" Width="300px"></asp:TextBox>
+                  </td>
+              </tr>
+              <tr>
+                  <td  style="text-align:right; padding-bottom:15px;">
+                      <label style="text-align:right">Tanggal</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;">
+                      <input type="text" id="txtttl" runat="server" class="tb1" onkeypress="return runScript(event)" />
+                      
+                  </td>
+                  <td style="padding-bottom:15px;">
+                      <asp:DropDownList ID="ddlJam" runat="server" class="ddl3" Width="70px">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>00:00</asp:ListItem>
+                        <asp:ListItem>00:30</asp:ListItem>
+                        <asp:ListItem>01:00</asp:ListItem>
+                        <asp:ListItem>01:30</asp:ListItem>
+                        <asp:ListItem>02:00</asp:ListItem>
+                        <asp:ListItem>02:30</asp:ListItem>
+                        <asp:ListItem>03:00</asp:ListItem>
+                        <asp:ListItem>03:30</asp:ListItem>
+                        <asp:ListItem>04:00</asp:ListItem>
+                        <asp:ListItem>04:30</asp:ListItem>
+                        <asp:ListItem>05:00</asp:ListItem>
+                        <asp:ListItem>05:30</asp:ListItem>
+                        <asp:ListItem>06:00</asp:ListItem>
+                        <asp:ListItem>06:30</asp:ListItem>
+                        <asp:ListItem>07:00</asp:ListItem>
+                        <asp:ListItem>07:30</asp:ListItem>
+                        <asp:ListItem>08:00</asp:ListItem>
+                        <asp:ListItem>08:30</asp:ListItem>
+                        <asp:ListItem>09:00</asp:ListItem>
+                        <asp:ListItem>09:30</asp:ListItem>
+                        <asp:ListItem>10:00</asp:ListItem>
+                        <asp:ListItem>10:30</asp:ListItem>
+                        <asp:ListItem>11:00</asp:ListItem>
+                        <asp:ListItem>11:30</asp:ListItem>
+                        <asp:ListItem>12:00</asp:ListItem>
+                        <asp:ListItem>12:30</asp:ListItem>
+                        <asp:ListItem>13:00</asp:ListItem>
+                        <asp:ListItem>13:30</asp:ListItem>
+                        <asp:ListItem>14:00</asp:ListItem>
+                        <asp:ListItem>14:30</asp:ListItem>
+                        <asp:ListItem>15:00</asp:ListItem>
+                        <asp:ListItem>15:30</asp:ListItem>
+                        <asp:ListItem>16:00</asp:ListItem>
+                        <asp:ListItem>16:30</asp:ListItem>
+                        <asp:ListItem>17:00</asp:ListItem>
+                        <asp:ListItem>17:30</asp:ListItem>
+                        <asp:ListItem>18:00</asp:ListItem>
+                        <asp:ListItem>18:30</asp:ListItem>
+                        <asp:ListItem>19:00</asp:ListItem>
+                        <asp:ListItem>19:30</asp:ListItem>
+                        <asp:ListItem>20:00</asp:ListItem>
+                        <asp:ListItem>20:30</asp:ListItem>
+                        <asp:ListItem>21:00</asp:ListItem>
+                        <asp:ListItem>21:30</asp:ListItem>
+                        <asp:ListItem>22:00</asp:ListItem>
+                        <asp:ListItem>22:30</asp:ListItem>
+                        <asp:ListItem>23:00</asp:ListItem>
+                        <asp:ListItem>23:30</asp:ListItem>
+
+                      </asp:DropDownList>
+                  </td>
+              </tr>
+              <tr>
+                  <td  style="text-align:right; padding-bottom:15px;">
+                      <label style="text-align:right">Penyelenggara</label>
+                  </td>
+                  <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
+                      <asp:TextBox ID="txtPenyelenggara" class="tb1" runat="server" Width="300px"></asp:TextBox>
+                  </td>
+              </tr>
+          </table>
+              </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <asp:Button runat="server" Text="submit" class="btn btn-primary" OnClick="btnSubmit" Visible="false" ID="btntambah" />
+          <asp:Button runat="server" Text="edit" class="btn btn-success" OnClick="Unnamed_Click" Visible="false" ID="btnedit"/>
+          <asp:Button runat="server" Text="hapus" class="btn btn-success" OnClick="btnDelete_Click" Visible="false" ID="btnhapus" />
+        <!-- <button type="button" class="btn btn-primary">Button</button> -->
+      </div>
+    </div>
+  </div>
+
+        </form>
+
+
 <!-- ./wrapper -->
 
-<script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
-    <script src="JavaScript.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   <script>
+        $(function () {
+            $("#txtttl").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy",
+                onClose: function (selectedDate) {
+                    $("#txtttl").datepicker("option", "minDate", "19/07/2019", selectedDate);
+                }
+            });
+       })
+    </script>
 </body>
 </html>

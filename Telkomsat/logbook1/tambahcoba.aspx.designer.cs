@@ -10,7 +10,7 @@
 namespace Telkomsat.logbook1 {
     
     
-    public partial class tambah {
+    public partial class tambahcoba {
         
         /// <summary>
         /// hfContactID control.

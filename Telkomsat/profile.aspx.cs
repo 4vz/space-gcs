@@ -34,13 +34,13 @@ namespace Telkomsat
                 dtContact1.DataSource = dtbl;
                 dtContact1.DataBind();
                 sqlCon.Close();
-                if(Session["nama"].ToString() == null || Session["nama"].ToString() == "")
+                if(Session["nama1"].ToString() == null || Session["nama1"].ToString() == "")
                 {
                     txtnama.Text = "Nama";
                     txtnama.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txtnama.Text = Session["nama"].ToString();
+                    txtnama.Text = Session["nama1"].ToString();
                  
                 if (Session["email"].ToString() == null || Session["email"].ToString() == "")
                 {
@@ -66,13 +66,13 @@ namespace Telkomsat
                 else
                     txttempat.Text = Session["tempat"].ToString();
 
-                if (Session["tanggal"].ToString() == null || Session["tanggal"].ToString() == "")
+                if (Session["tanggal1"].ToString() == null || Session["tanggal1"].ToString() == "")
                 {
                     txttanggal.Text = "Tanggal Masuk Telkomsat";
                     txttanggal.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txttanggal.Text = Convert.ToDateTime(Session["tanggal"].ToString()).ToString("dd/MM/yyyy");
+                    txttanggal.Text = Convert.ToDateTime(Session["tanggal1"].ToString()).ToString("dd/MM/yyyy");
 
 
                 if (Session["ttl"].ToString() == null || Session["ttl"].ToString() == "")

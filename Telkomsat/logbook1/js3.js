@@ -10,6 +10,7 @@
         document.getElementById('lblcari').style.visibility = 'visible';
         document.getElementById('trPergantian').style.display = 'none';
         document.getElementById('lblestimasi').style.visibility = 'visible';
+        document.getElementById('trPerangkat').style.display = 'table-row';
         //alert("bisa");
     }
     else if (statuslogbook == "Pointing Antena") {
@@ -20,6 +21,7 @@
         document.getElementById('lblestimasi').style.visibility = 'hidden';
         document.getElementById('lblcari').style.visibility = 'hidden';
         document.getElementById('trPergantian').style.display = 'none';
+        document.getElementById('trPerangkat').style.display = 'none';
     }
     else if (statuslogbook == "Penggantian") {
         //alert("bisa");
@@ -30,6 +32,7 @@
         document.getElementById('lblcari').style.visibility = 'hidden';
         document.getElementById('lblestimasi').style.visibility = 'hidden';
         document.getElementById('trPergantian').style.display = 'table-row';
+        document.getElementById('trPerangkat').style.display = 'none';
     }
     else if (statuslogbook == "Lain-lain"){
         document.getElementById('labelID').style.visibility = 'hidden';
@@ -39,6 +42,8 @@
         document.getElementById('lblestimasi').style.visibility = 'hidden';
         document.getElementById('lblcari').style.visibility = 'hidden';
         document.getElementById('trPergantian').style.display = 'none';
+        document.getElementById('trPerangkat').style.display = 'none';
+
     }
 }
 

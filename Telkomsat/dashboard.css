@@ -57,6 +57,11 @@
 
 
 }
+.event {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #808080;
+    font-size: 14px;
+}
 
 .dtAssets{
     position:relative;

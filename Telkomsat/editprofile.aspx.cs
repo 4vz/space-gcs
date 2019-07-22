@@ -32,7 +32,7 @@ namespace Telkomsat
                 Response.Redirect("~/login.aspx");
 
             user = Session["username"].ToString();
-            tanggal = Session["tanggal"].ToString();
+            tanggal = Session["tanggal1"].ToString();
             ttl = Session["ttl"].ToString();
 
             string tanggalmasuk = tanggal.Remove(10, 9);
@@ -40,11 +40,11 @@ namespace Telkomsat
             //txtnama.Value = Session["username"].ToString();
             if (!IsPostBack)
             {
-                txtnama.Value = Session["nama"].ToString();
+                txtnama.Value = Session["nama1"].ToString();
                 txtemail.Value = Session["email"].ToString();
                 txtnomor.Value = Session["nomor"].ToString();
                 txttempat.Value = Session["tempat"].ToString();
-                if (Session["tanggal"].ToString() != null || Session["tanggal"].ToString() != "")
+                if (Session["tanggal1"].ToString() != null || Session["tanggal1"].ToString() != "")
                     txttanggal.Value = tanggalmasuk;
                 if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
                     txtttl.Value = tanggallahir;
@@ -97,9 +97,9 @@ namespace Telkomsat
             //Session["username"] = dtbl.Rows[0]["user_name"].ToString();
             Session["email"] = dtbl.Rows[0]["email"].ToString();
             Session["jenis1"] = dtbl.Rows[0]["jenis"].ToString();
-            Session["nama"] = dtbl.Rows[0]["nama"].ToString();
+            Session["nama1"] = dtbl.Rows[0]["nama"].ToString();
             Session["nomor"] = dtbl.Rows[0]["nomor"].ToString();
-            Session["tanggal"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
+            Session["tanggal1"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
             Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
             Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
         }

@@ -124,11 +124,18 @@
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
+    <Content Include="img\ba.jpg" />
     <Content Include="img\back.png" />
+    <Content Include="img\bb.jpg" />
+    <Content Include="img\bc.jpg" />
     <Content Include="img\capture.jpg" />
     <Content Include="img\download.png" />
+    <Content Include="img\holiday.jpg" />
     <Content Include="img\logbook.png" />
     <Content Include="img\logotelkomsat2.png" />
+    <Content Include="img\makan.png" />
+    <Content Include="img\meeting.png" />
+    <Content Include="img\sport.png" />
     <Content Include="knowledge\all.aspx" />
     <Content Include="knowledge\coba.aspx" />
     <Content Include="details.aspx" />
@@ -173,6 +180,7 @@
     <Content Include="logbook1\semuadata.aspx" />
     <Content Include="logbook1\snasset.aspx" />
     <Content Include="logbook1\tambah.aspx" />
+    <Content Include="logbook1\tambahcoba.aspx" />
     <Content Include="logbook\Add.aspx" />
     <Content Include="logbook\cariby.aspx" />
     <Content Include="logbook\datalogbook.aspx" />
@@ -652,6 +660,13 @@
     </Compile>
     <Compile Include="logbook1\tambah.aspx.designer.cs">
       <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logbook1\tambahcoba.aspx.cs">
+      <DependentUpon>tambahcoba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook1\tambahcoba.aspx.designer.cs">
+      <DependentUpon>tambahcoba.aspx</DependentUpon>
     </Compile>
     <Compile Include="logbook\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>

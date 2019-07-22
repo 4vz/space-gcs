@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
+
 namespace Telkomsat
 {
     public partial class ASSET : System.Web.UI.MasterPage
@@ -17,12 +18,13 @@ namespace Telkomsat
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["username"] == null)
-                Response.Redirect("~/login.aspx");
+                Response.Redirect("~/login.aspx", true);
+            else
+                user = Session["username"].ToString();
 
-
-            user = Session["username"].ToString();
             if (!IsPostBack)
             {
+
                 sqlCon.Open();
                 SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon);
                 sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -46,7 +48,7 @@ namespace Telkomsat
             DataList1.DataBind();
 
             lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            
+
 
             lblProfile.Text = Session["username"].ToString();
             lblProfile1.Text = Session["username"].ToString();

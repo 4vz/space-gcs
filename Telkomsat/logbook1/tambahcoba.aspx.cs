@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Telkomsat.logbook1
 {
-    public partial class tambah : System.Web.UI.Page
+    public partial class tambahcoba : System.Web.UI.Page
     {
         Nullable<int> i = null;
         Nullable<int> j = null;
@@ -24,23 +24,23 @@ namespace Telkomsat.logbook1
 
             txtTanggal.Enabled = false;
             //tanggal = DateTime.Now.ToString("dd/MM/yyyy");
-            
+
             fillgridview();
-            if(Session["jenis1"].ToString() == "os")
+            /*if (Session["jenis1"].ToString() == "os")
             {
                 txtOS.Text = Session["username"].ToString();
             }
             else if (Session["jenis1"].ToString() == "og")
             {
                 txtOG.Text = Session["username"].ToString();
-            }
-            
+            }*/
+
             if (!IsPostBack)
             {
                 txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                fillgridview(); 
+                fillgridview();
             }
-                
+
 
             //txtOS.Text = Session["user"].ToString();
 
@@ -75,16 +75,16 @@ namespace Telkomsat.logbook1
                 ImgUpload1.HasFile == true || ImgUpload2.HasFile == true)
             {
                 sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("LoAddGambar", sqlCon);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.Parameters.AddWithValue("@File1", File1);
-                sqlCmd.Parameters.AddWithValue("@File2", File2);
-                sqlCmd.Parameters.AddWithValue("@Gambar1", image1);
-                sqlCmd.Parameters.AddWithValue("@Gambar2", image2);
-                sqlCmd.Parameters.AddWithValue("@Gambar3", image3);
-                sqlCmd.Parameters.AddWithValue("@Gambar4", image4);
+                SqlCommand sqlCmd1 = new SqlCommand("LoAddGambar", sqlCon);
+                sqlCmd1.CommandType = CommandType.StoredProcedure;
+                sqlCmd1.Parameters.AddWithValue("@File1", File1);
+                sqlCmd1.Parameters.AddWithValue("@File2", File2);
+                sqlCmd1.Parameters.AddWithValue("@Gambar1", image1);
+                sqlCmd1.Parameters.AddWithValue("@Gambar2", image2);
+                sqlCmd1.Parameters.AddWithValue("@Gambar3", image3);
+                sqlCmd1.Parameters.AddWithValue("@Gambar4", image4);
 
-                i = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                i = Convert.ToInt32(sqlCmd1.ExecuteScalar());
             }
 
             if (FileUpload1.HasFile == true || FileUpload2.HasFile == true)
@@ -93,13 +93,13 @@ namespace Telkomsat.logbook1
                 FN = Path.GetFileName(FileUpload1.PostedFile.FileName);
                 sqlCon.Close();
                 sqlCon.Open();
-                SqlCommand sqlCmd = new SqlCommand("LoAddFile", sqlCon);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.Parameters.AddWithValue("@Nama", FN);
-                sqlCmd.Parameters.AddWithValue("@File1", File1);
-                sqlCmd.Parameters.AddWithValue("@File2", File2);
+                SqlCommand sqlCmd1 = new SqlCommand("LoAddFile", sqlCon);
+                sqlCmd1.CommandType = CommandType.StoredProcedure;
+                sqlCmd1.Parameters.AddWithValue("@Nama", FN);
+                sqlCmd1.Parameters.AddWithValue("@File1", File1);
+                sqlCmd1.Parameters.AddWithValue("@File2", File2);
 
-                j = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                j = Convert.ToInt32(sqlCmd1.ExecuteScalar());
             }
 
             sqlCon.Close();
@@ -136,8 +136,8 @@ namespace Telkomsat.logbook1
             cmdLog.Parameters.AddWithValue("@PIC_OG", txtOG.Text.Trim());
             //cmdLog.Parameters.AddWithValue("@Estimasi", txtHarga.Text.Trim());
             //if(txtSN1.Text != "")
-            
-            if(ddlKategori.Text == "Penggantian")
+
+            if (ddlKategori.Text == "Penggantian")
                 cmdLog.Parameters.AddWithValue("@SN", txtSN2.Text.Trim());
             else
                 cmdLog.Parameters.AddWithValue("@SN", txtSN1.Text.Trim());
@@ -160,7 +160,7 @@ namespace Telkomsat.logbook1
             cmdLog.ExecuteNonQuery();
             sqlCon.Close();
 
-            if (ddlKategori.Text == "Perbaikan" || ddlKategori.Text == "Perawatan")
+            if(ddlKategori.Text == "Perbaikan" || ddlKategori.Text == "Perawatan")
             {
                 if (txtSN1.Text != "")
                 {
@@ -218,6 +218,7 @@ namespace Telkomsat.logbook1
                     }
                 }
             }
+            //Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
 
             lblUpdate.Text = "Berhasil Menyimpan";
             lblUpdate.ForeColor = System.Drawing.Color.Green;

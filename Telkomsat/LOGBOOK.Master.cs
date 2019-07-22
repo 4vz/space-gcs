@@ -17,9 +17,8 @@ namespace Telkomsat
         {
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
-
-
-            user = Session["username"].ToString();
+            else
+                user = Session["username"].ToString();
             if (!IsPostBack)
             {
                 sqlCon.Open();

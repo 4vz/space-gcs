@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.logbook1.tambah" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambahcoba.aspx.cs" Inherits="Telkomsat.logbook1.tambahcoba" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js3.js?version=2"></script>
+<script src="js3.js?version=1"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -369,7 +369,7 @@ $(document).ready(function(){
                 <asp:TemplateField HeaderText="Attach">
                     <ItemTemplate>
                         <asp:Label ID="lblImage" runat="server" Text='<%# Eval("Image1")!=DBNull.Value ? "@" : " " %>'></asp:Label>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("FileA")!=DBNull.Value ? "*" : " " %>'></asp:Label>
+                        <asp:Label ID="Label38" runat="server" Text='<%# Eval("FileA")!=DBNull.Value ? "*" : " " %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>

@@ -444,7 +444,7 @@
                                     <asp:Label ID="Label24" runat="server">:</asp:Label>
                                 </td>
                                 <td class="tdtext" style="padding-bottom:10px; visibility:hidden;" id="gudang">
-                                    <asp:DropDownList ID="ddlGudang" runat="server" class="ddl3" Width="70px">
+                                    <asp:DropDownList ID="ddlGudang" runat="server" class="ddl3" Width="170px">
                                         <asp:ListItem></asp:ListItem>
                                         <asp:ListItem>AHRA</asp:ListItem>
                                         <asp:ListItem>AHRB</asp:ListItem>
@@ -522,7 +522,7 @@
                                     <asp:Label ID="Label26" runat="server">:</asp:Label>
                                 </td>
                                 <td class="tdtext" style="padding-bottom:10px; visibility:hidden;" id="rak">
-                                    <asp:DropDownList ID="ddlRak" runat="server" class="ddl3" Width="60px">
+                                    <asp:DropDownList ID="ddlRak" runat="server" class="ddl3" Width="160px">
                                         <asp:ListItem></asp:ListItem>
                                         <asp:ListItem>1</asp:ListItem>
                                         <asp:ListItem>2</asp:ListItem>
