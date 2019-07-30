@@ -17,10 +17,12 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Page.Form.DefaultButton = myButton.UniqueID;
+
             if (!IsPostBack)
             {
-                inputsearch.Value = Session["cari"].ToString();
+                if(Session["cari"] != null)
+                    inputsearch.Value = Session["cari"].ToString();
                 fillGridView1();
                 gvContact.Columns[0].Visible = false;
                 gvContact.Columns[3].Visible = false;
@@ -268,7 +270,7 @@ namespace Telkomsat.asset
             Session["Waktu"] = dtbl.Rows[0]["Waktu"].ToString();
             Session["PIC"] = dtbl.Rows[0]["PIC"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
-            Response.Redirect("~/asset/details.aspx");
+            Response.Redirect("~/asset/details.aspx", false);
         }
 
         protected void Expand_OnClick(object sender, EventArgs e)
@@ -307,5 +309,6 @@ namespace Telkomsat.asset
         {
 
         }
+
     }
 }

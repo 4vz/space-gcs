@@ -24,7 +24,7 @@ namespace Telkomsat
             string tanggal;
 
             Page.Form.DefaultButton = btnUpdate.ID;
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 
@@ -35,8 +35,8 @@ namespace Telkomsat
             tanggal = Session["tanggal1"].ToString();
             ttl = Session["ttl"].ToString();
 
-            string tanggalmasuk = tanggal.Remove(10, 9);
-            string tanggallahir = ttl.Remove(10, 9);
+            //string tanggalmasuk = tanggal.Remove(10, 9);
+            //string tanggallahir = ttl.Remove(10, 9);
             //txtnama.Value = Session["username"].ToString();
             if (!IsPostBack)
             {
@@ -45,9 +45,13 @@ namespace Telkomsat
                 txtnomor.Value = Session["nomor"].ToString();
                 txttempat.Value = Session["tempat"].ToString();
                 if (Session["tanggal1"].ToString() != null || Session["tanggal1"].ToString() != "")
-                    txttanggal.Value = tanggalmasuk;
+                    txttanggal.Value = tanggal;
+                else
+                    txttanggal.Value = "";
                 if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
-                    txtttl.Value = tanggallahir;
+                    txtttl.Value = ttl;
+                else
+                    txtttl.Value = "";
             }
 
             lblProfile1.Text = Session["username"].ToString();
@@ -55,7 +59,7 @@ namespace Telkomsat
 
         protected void btnUpdate_click(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 
@@ -67,17 +71,37 @@ namespace Telkomsat
             sqlCmd2.Parameters.AddWithValue("@nama", txtnama.Value);
             sqlCmd2.Parameters.AddWithValue("@email", txtemail.Value);
             sqlCmd2.Parameters.AddWithValue("@nomor", txtnomor.Value);
-            if(txttanggal.Value == "")
-                sqlCmd2.Parameters.AddWithValue("@tanggal", DBNull.Value);
+            if(txtttl.Value != Session["ttl"].ToString())
+            {
+                sqlCmd2.Parameters.AddWithValue("@ubahttl", "ubah");
+                if (txtttl.Value == "")
+                    sqlCmd2.Parameters.AddWithValue("@ttl", DBNull.Value);
+                else
+                    sqlCmd2.Parameters.AddWithValue("@ttl", DateTime.ParseExact(txtttl.Value, "dd/MM/yyyy", null));
+            }
             else
-                sqlCmd2.Parameters.AddWithValue("@tanggal", DateTime.ParseExact(txttanggal.Value, "dd/MM/yyyy", null));
+            {
+                sqlCmd2.Parameters.AddWithValue("@ubahttl", "ubah1");
+                sqlCmd2.Parameters.AddWithValue("@ttl", DBNull.Value);
+            }
+
+            if (txttanggal.Value != Session["tanggal1"].ToString())
+            {
+                sqlCmd2.Parameters.AddWithValue("@ubahtanggal", "ubah2");
+                if (txttanggal.Value == "")
+                    sqlCmd2.Parameters.AddWithValue("@tanggal", DBNull.Value);
+                else
+                    sqlCmd2.Parameters.AddWithValue("@tanggal", DateTime.ParseExact(txttanggal.Value, "dd/MM/yyyy", null));
+            }
+            else
+            {
+                sqlCmd2.Parameters.AddWithValue("@ubahtanggal", "ubah3");
+                sqlCmd2.Parameters.AddWithValue("@tanggal", DBNull.Value);
+            }
 
             sqlCmd2.Parameters.AddWithValue("@tempat", txttempat.Value);
 
-            if (txtttl.Value == "")
-                sqlCmd2.Parameters.AddWithValue("@ttl", DBNull.Value);
-            else
-                sqlCmd2.Parameters.AddWithValue("@ttl", DateTime.ParseExact(txtttl.Value, "dd/MM/yyyy", null));
+            
             sqlCmd2.ExecuteNonQuery();
             sqlCon2.Close();
             lblUpdate.Visible = true;

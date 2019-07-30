@@ -21,25 +21,39 @@ namespace Telkomsat.logbook1
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
 
             txtTanggal.Enabled = false;
             //tanggal = DateTime.Now.ToString("dd/MM/yyyy");
             
             fillgridview();
-            if(Session["jenis1"].ToString() == "os")
+            if(Session["username"] == null)
             {
-                txtOS.Text = Session["username"].ToString();
+                Response.Redirect("~/login.aspx");
             }
-            else if (Session["jenis1"].ToString() == "og")
+            else
             {
-                txtOG.Text = Session["username"].ToString();
+                if (Session["jenis1"].ToString() == "os")
+                {
+                    txtOS.Text = Session["username"].ToString();
+                }
+                else if (Session["jenis1"].ToString() == "og")
+                {
+                    txtOG.Text = Session["username"].ToString();
+                }
+
+                if (!IsPostBack)
+                {
+                    txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    fillgridview();
+                }
             }
             
-            if (!IsPostBack)
-            {
-                txtTanggal.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                fillgridview(); 
-            }
                 
 
             //txtOS.Text = Session["user"].ToString();
@@ -47,6 +61,13 @@ namespace Telkomsat.logbook1
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
@@ -290,6 +311,9 @@ namespace Telkomsat.logbook1
 
         protected void Ink_OnClick1(object sender, EventArgs e)
         {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
             int ID = Convert.ToInt32((sender as LinkButton).CommandArgument);
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
@@ -311,11 +335,12 @@ namespace Telkomsat.logbook1
             Session["OG"] = dtbl.Rows[0]["PIC_OG"].ToString();
             Session["info"] = dtbl.Rows[0]["info"].ToString();
             Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
+            //Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
             Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
             Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
-
+            //Response.Write(Session["tanggal"]);
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
-            Response.Redirect("~/logbook1/details.aspx");
+            Response.Redirect("~/logbook1/details.aspx", false);
 
         }
 

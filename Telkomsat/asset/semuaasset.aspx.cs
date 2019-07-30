@@ -16,7 +16,7 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //Response.Write(Session["usertest"]);
             if (!IsPostBack)
             {
                 fillGridView();
@@ -100,7 +100,7 @@ namespace Telkomsat.asset
             Session["Waktu"] = dtbl.Rows[0]["Waktu"].ToString();
             Session["PIC"] = dtbl.Rows[0]["PIC"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
-            Response.Redirect("~/asset/details.aspx");
+            Response.Redirect("~/asset/details.aspx", false);
 
         }
         protected void Expand_OnClick(object sender, EventArgs e)

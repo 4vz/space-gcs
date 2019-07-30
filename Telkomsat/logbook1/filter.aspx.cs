@@ -185,7 +185,7 @@ namespace Telkomsat.logbook1
             Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
             Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
-            Response.Redirect("~/logbook1/details.aspx");
+            Response.Redirect("~/logbook1/details.aspx", false);
 
         }
 

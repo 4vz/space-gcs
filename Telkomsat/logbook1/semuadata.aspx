@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="semuadata.aspx.cs" Inherits="Telkomsat.logbook1.semuadata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="log.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .btncari1{
+            color:white;
+            background-color:white;
+            border-color:transparent;
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -14,10 +22,11 @@
           <span class="headlb">Logbook GCS</span>
           <input type="text" name="q" class="form-control" placeholder="Search..." runat="server" id="inputsearch"/>
           <span class="input-group-btn">
-                <button type="submit" name="search" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
+                <button type="submit" name="search" id="btncari1" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
                 </button>
+              
               </span>
-            
+            <asp:Button ID="btncari" runat="server" Text="Button" OnClick="btnSearch_Click" Width="5px" Height="5px" CssClass="btncari1" />
         </div>     
         <br />
         <hr width="100%" align="center" style="margin-top:0px; margin-bottom:10px;">

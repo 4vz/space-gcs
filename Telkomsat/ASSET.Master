@@ -85,7 +85,8 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                    <a href="../login.aspx?out" class="btn btn-default btn-flat">Sign out</a>
+                    <asp:Button runat="server" Text="Sign Out" class="btn btn-default btn-flat" OnClick="btnSignOut_Click" />
+                   
                   
                 </div>
               </li>
@@ -227,8 +228,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../asset/filter.aspx?ID=CIMMUNICATION"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
-                  <li><a href="../asset/filter.aspx?ID=SPEKTRUM"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
+                  <li><a href="../asset/filter.aspx?ID=COMMUNICATION-ANALYZER"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
+                  <li><a href="../asset/filter.aspx?ID=SPECTRUM"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
                   <li><a href="../asset/filter.aspx?ID=SYNTHESIZER"><i class="fa fa-circle-o"></i> Synthesizer Sweeper</a></li>
                   <li><a href="../asset/filter.aspx?ID=POWER-METER"><i class="fa fa-circle-o"></i> Power Meter</a></li>
               </ul>

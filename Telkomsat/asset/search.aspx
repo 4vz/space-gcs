@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="search.aspx.cs" Inherits="Telkomsat.asset.search" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .btncari1{
+            color:white;
+            background-color:white;
+            border-color:transparent;
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align: left" class="datakita">
@@ -11,8 +19,9 @@
           <input type="text" class="form-control" placeholder="Search..." runat="server" id="inputsearch" onkeypress="return runScript(event)"/>
           
           <span class="input-group-btn">
-                <button type="button" id="myButton" name="search" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
+                <button type="button" id="Button1" name="search" class="btn btn-flat" runat="server" onserverclick="btnSearch_Click"><i class="fa fa-search"></i>
                 </button>
+              <asp:Button ID="myButton" runat="server" Text="Button" OnClick="btnSearch_Click" Width="5px" Height="5px" CssClass="btncari1" />
               </span>
             
         </div>     

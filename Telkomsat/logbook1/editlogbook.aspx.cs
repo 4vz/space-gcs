@@ -21,11 +21,17 @@ namespace Telkomsat.logbook1
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
             if (!IsPostBack)
             {
                 string formattanggal = Session["tanggal"].ToString();
                 //DateTime newFormat = DateTime.ParseExact("09/12/2019", "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString();
-                string tanggalnew = Convert.ToDateTime(formattanggal).ToString("yyyy/MM/dd");
+                //string tanggalnew = Convert.ToDateTime(formattanggal).ToString("yyyy/MM/dd");
                 hfContactID.Value = Session["hf"].ToString();
                 txtTanggal.Text = Convert.ToDateTime(formattanggal).ToString("dd/MM/yyyy");
                 txtEvent.Text = Session["event"].ToString();
@@ -64,11 +70,20 @@ namespace Telkomsat.logbook1
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
 
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
 
             hfContactID.Value = Session["hf"].ToString();
 
-            tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
+            //tanggal = Convert.ToDateTime(txtTanggal.Text).ToString("yyyy/MM/dd");
             Byte[] File1, File2, image1, image2, image3, image4;
             Stream s1 = FileUpload1.PostedFile.InputStream;
             Stream s2 = FileUpload2.PostedFile.InputStream;
@@ -145,7 +160,7 @@ namespace Telkomsat.logbook1
                 sqlCmd.Parameters.AddWithValue("@ID_file", j);
             }
 
-            sqlCmd.Parameters.AddWithValue("@Tanggal", tanggal);
+            sqlCmd.Parameters.AddWithValue("@Tanggal", txtTanggal.Text);
             sqlCmd.Parameters.AddWithValue("@Event", txtEvent.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@PIC_OG", txtOG.Text.Trim());
             sqlCmd.Parameters.AddWithValue("@PIC_OS", txtOS.Text.Trim());

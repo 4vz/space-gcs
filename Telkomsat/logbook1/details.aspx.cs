@@ -16,6 +16,13 @@ namespace Telkomsat.logbook1
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
             string formattanggal = Session["tanggal"].ToString();
             //DateTime newFormat = DateTime.ParseExact("09/12/2019", "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString();
             string tanggalnew = Convert.ToDateTime(formattanggal).ToString("dd/MM/yyyy");

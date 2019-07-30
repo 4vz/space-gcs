@@ -16,6 +16,13 @@ namespace Telkomsat.asset
         //SqlConnection  = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             Page.Form.DefaultButton = btnUpdate.UniqueID;
             txtPIC.Text = Session["username"].ToString();
@@ -58,6 +65,13 @@ namespace Telkomsat.asset
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
             string Waktu = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             if (txtPIC.Text == "")
             {

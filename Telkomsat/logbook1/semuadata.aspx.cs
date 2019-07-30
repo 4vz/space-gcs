@@ -11,12 +11,16 @@ namespace Telkomsat.logbook1
 {
     public partial class semuadata : System.Web.UI.Page
     {
+        
         string bulan;
         string tahun = "";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Page.Form.DefaultButton = btncari.UniqueID;
+
             if (!IsPostBack)
             {
                 fillGridView();
@@ -237,11 +241,11 @@ namespace Telkomsat.logbook1
             Session["OG"] = dtbl.Rows[0]["PIC_OG"].ToString();
             Session["info"] = dtbl.Rows[0]["info"].ToString();
             Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
-            Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
+            //Session["SN"] = dtbl.Rows[0]["S/N"].ToString();
             Session["SN1"] = dtbl.Rows[0]["SN"].ToString();
             Session["estimasi"] = dtbl.Rows[0]["estimasi"].ToString();
             //Response.Redirect("~/details.aspx?" + dtbl.Rows[0]["Merk"].ToString());
-            Response.Redirect("~/logbook1/details.aspx");
+            Response.Redirect("~/logbook1/details.aspx", false);
 
         }
 

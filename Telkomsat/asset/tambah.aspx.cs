@@ -16,6 +16,12 @@ namespace Telkomsat.asset
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Form.DefaultButton = btnSave.UniqueID;
+            if(Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
             txtPIC.Text = Session["username"].ToString();
             if (!IsPostBack)
             {
@@ -26,7 +32,14 @@ namespace Telkomsat.asset
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtKelompok.Text == "" || txtPIC.Text == "")
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
+            if (txtKelompok.Text == "" || txtPIC.Text == "" || txtNama.Text == "" || txtMerk.Text == "")
             {
                 lblUpdate.Text = "Tanda * Wajib Diisi";
                 lblUpdate.ForeColor = System.Drawing.Color.Red;

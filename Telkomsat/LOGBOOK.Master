@@ -84,7 +84,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="../login.aspx?out" class="btn btn-default btn-flat">Sign out</a>
+                  <asp:Button runat="server" Text="Sign Out" class="btn btn-default btn-flat" OnClick="btnSignOut_Click" />
                 </div>
               </li>
             </ul>
@@ -128,7 +128,7 @@
       
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-    <form action="search.aspx" method="post">
+    
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">FILTER</li>
         <li class="treeview">
@@ -251,7 +251,7 @@
         
              
       </ul>
-    </form>
+
     </section>
     <!-- /.sidebar -->
     

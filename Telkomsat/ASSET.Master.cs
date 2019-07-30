@@ -17,10 +17,18 @@ namespace Telkomsat
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("~/login.aspx", true);
-            else
+            if (Session["username"] != null)
+            {
                 user = Session["username"].ToString();
+                
+            }
+
+            else
+            {
+                Response.Redirect("~/login.aspx", true);
+                //Response.Write(Session["usertest"]);
+            }
+                
 
             if (!IsPostBack)
             {
@@ -54,5 +62,11 @@ namespace Telkomsat
             lblProfile1.Text = Session["username"].ToString();
         }
 
+        protected void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Redirect("~/login.aspx");
+        }
     }
 }

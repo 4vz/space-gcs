@@ -15,6 +15,13 @@ namespace Telkomsat.asset
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Session.Abandon();
+                Session.Clear();
+                Response.Redirect("~/error.aspx");
+            }
+
             hfContactID.Value = Session["hf"].ToString();
             lblKelompok.Text = Session["kelompok"].ToString();
             lblNama.Text = Session["nama"].ToString();

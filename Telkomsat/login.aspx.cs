@@ -15,10 +15,8 @@ namespace Telkomsat
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS1; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            string link = (HttpContext.Current.Request.Url.PathAndQuery);
-            string parse = link.Remove(0, 11);
-            if (parse == "?out")
-                Session.Abandon();
+           
+                
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -41,7 +39,8 @@ namespace Telkomsat
                 DataTable dtbl = new DataTable();
                 sqlda.Fill(dtbl);
                 sqlCon.Close();
-                Session["username"] = inEmail.Value;
+                Session["username"] = dtbl.Rows[0]["user_name"].ToString();
+                Session["usertest"] = Convert.ToString(Guid.NewGuid());
                 //Session["username"] = dtbl.Rows[0]["user_name"].ToString();
                 Session["password"] = dtbl.Rows[0]["password"].ToString();
                 Session["email"] = dtbl.Rows[0]["email"].ToString();
@@ -51,12 +50,12 @@ namespace Telkomsat
                 Session["tanggal1"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
                 Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
                 Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
-                Response.Redirect("~/dashboard.aspx");
+                Response.Redirect("~/dashboard.aspx", false);
             }
             else
             {
                 lblGagal.Visible = true;
-                Response.Write(output);
+                //Response.Write(output);
             }
         }
     }

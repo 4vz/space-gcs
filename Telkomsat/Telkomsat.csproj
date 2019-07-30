@@ -84,6 +84,7 @@
     <Content Include="editfoto.aspx" />
     <Content Include="editpassword.aspx" />
     <Content Include="editprofile.aspx" />
+    <Content Include="error.aspx" />
     <Content Include="File\cobasorting.aspx" />
     <Content Include="File\editad.aspx" />
     <Content Include="File\editip.aspx" />
@@ -218,15 +219,6 @@
     <Content Include="profile.css" />
     <Content Include="profile2.css" />
     <Content Include="profileperson.aspx" />
-    <Content Include="RF\downconverter.aspx" />
-    <Content Include="RF\img\bg.png" />
-    <Content Include="RF\img\logo.png" />
-    <Content Include="RF\img\logo1.png" />
-    <Content Include="RF\img\logo2.png" />
-    <Content Include="RF\img\logo3.png" />
-    <Content Include="RF\img\logotelkomsat.png" />
-    <Content Include="RF\img\user.jpg" />
-    <Content Include="RF\upconverter.aspx" />
     <Content Include="search.aspx" />
     <Content Include="searchby.aspx" />
     <Content Include="Style1.css" />
@@ -317,6 +309,13 @@
     </Compile>
     <Compile Include="editprofile.aspx.designer.cs">
       <DependentUpon>editprofile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
     </Compile>
     <Compile Include="File\cobasorting.aspx.cs">
       <DependentUpon>cobasorting.aspx</DependentUpon>
@@ -815,20 +814,6 @@
     </Compile>
     <Compile Include="knowledge\details.aspx.designer.cs">
       <DependentUpon>details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RF\downconverter.aspx.cs">
-      <DependentUpon>downconverter.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RF\downconverter.aspx.designer.cs">
-      <DependentUpon>downconverter.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RF\upconverter.aspx.cs">
-      <DependentUpon>upconverter.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RF\upconverter.aspx.designer.cs">
-      <DependentUpon>upconverter.aspx</DependentUpon>
     </Compile>
     <Compile Include="search.aspx.cs">
       <DependentUpon>search.aspx</DependentUpon>

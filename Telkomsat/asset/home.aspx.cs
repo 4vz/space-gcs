@@ -29,7 +29,7 @@ namespace Telkomsat.asset
             SqlCommand sqlcmd = new SqlCommand("FilterAll", sqlCon);
             sqlcmd.CommandType = CommandType.StoredProcedure;
             Session["cari"] = txtCari.Text.Trim();
-            Response.Redirect("~/asset/search.aspx");
+            Response.Redirect("~/asset/search.aspx", false);
         }
     }
 }
