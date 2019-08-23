@@ -24,6 +24,7 @@
         media="screen" />
     
 </head>
+
 <body class="hold-transition skin-blue layout-top-nav">
     <form id="form1" runat="server">
 <div class="wrapper">
@@ -45,6 +46,7 @@
             <li><a href="../asset/home.aspx">Data Asset</a></li>
               <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
+              <li><a href="../checklist/checklistgcs.aspx">Checklist</a></li>
           </ul>
           
         </div>

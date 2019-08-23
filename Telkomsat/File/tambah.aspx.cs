@@ -125,13 +125,20 @@ namespace Telkomsat.File
                 }
 
                 cmd.Parameters.AddWithValue("@Waktu", Tanggal);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                lblBerhasil.Visible = true;
+                lblBerhasil.ForeColor = System.Drawing.Color.Green;
+                lblBerhasil.Text = "Berhasil Tambah";
+            }
+            else
+            {
+                lblBerhasil.Visible = true;
+                lblBerhasil.ForeColor = System.Drawing.Color.DarkRed;
+                lblBerhasil.Text = "Masukkan FIle";
             }
 
-            cmd.ExecuteNonQuery();
-            con.Close();
-            lblBerhasil.Visible = true;
-            lblBerhasil.ForeColor = System.Drawing.Color.Green;
-            lblBerhasil.Text = "Berhasil Tambah";
+            
         }
     }
 }

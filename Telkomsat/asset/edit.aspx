@@ -121,7 +121,7 @@
                                     <asp:DropDownList ID="ddlSite" runat="server" class="ddl3" onchange="GetTeamUsersByTeamID(this);">
                                         <asp:ListItem></asp:ListItem>
                                         <asp:ListItem>CBI</asp:ListItem>
-                                        <asp:ListItem>BJR</asp:ListItem>
+                                        <asp:ListItem>BJM</asp:ListItem>
                                         <asp:ListItem>MDN</asp:ListItem>
                                         <asp:ListItem>MDO</asp:ListItem>
                                     </asp:DropDownList>

@@ -19,7 +19,7 @@ namespace Telkomsat
         protected void Page_Load(object sender, EventArgs e)
         {
             //int ID = Convert.ToInt32(hfContactID.Value);
-            if (sqlCon2.State == ConnectionState.Closed)
+           /* if (sqlCon2.State == ConnectionState.Closed)
                 sqlCon2.Open();
             SqlDataAdapter sqlda = new SqlDataAdapter("LoViewByIDSorting", sqlCon2);
             sqlda.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -29,13 +29,13 @@ namespace Telkomsat
             sqlCon2.Close();
             //hfContactID.Value = ID.ToString();
             dtContact.DataSource = dtbl;
-            dtContact.DataBind();
+            dtContact.DataBind();*/
         }
 
         protected void btnModal_ServerClick(object sender, EventArgs e)
         {
 
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModalButton').modal('show')", true);
+           // ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModalButton').modal('show')", true);
         }
 
     }

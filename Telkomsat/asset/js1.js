@@ -5,10 +5,12 @@
     if (userinput == "CBI" || userinput == "BJR") {
         document.getElementById('gudang').style.visibility = 'visible';
         document.getElementById('rak').style.visibility = 'visible';
+        document.getElementById('myImg').src = '/img/SR1.jpg';
     }
     else {
         document.getElementById('gudang').style.visibility = 'hidden';
         document.getElementById('rak').style.visibility = 'hidden';
+        document.getElementById('myImg').src = '../img/SR2.jpg'
     }
 }
 
@@ -125,6 +127,8 @@ var barChartOptions = {
 barChartOptions.datasetFill = false
 barChart.Bar(barChartData, barChartOptions)
 })
+
+
 
 function GetTeam(obj) {
     var selectbox = obj;

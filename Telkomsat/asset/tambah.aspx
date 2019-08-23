@@ -1,13 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.asset.tambah" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="js1.js?version=2"></script>
-    <script>
-        
-    </script>
+    <link type="text/css" rel="stylesheet" href="StyleSheet1.css?version=8" />
+    <script type="text/javascript" src="js1.js?version=4"></script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <div class="navbar navbar-static-top" style="text-align: left">
+    
+    <div style="text-align: left">
         <div class="tengah">
             <asp:HiddenField ID="hfContactID" runat="server" />
             <asp:Label ID="lblWaktu" runat="server" Text="Label" Visible="False"></asp:Label>
@@ -43,6 +42,9 @@
                         <asp:ListItem>HYDRANT</asp:ListItem>
                         <asp:ListItem>FIRE ALARM PROTECTION</asp:ListItem>
                     </asp:DropDownList>
+                </td>
+                <td rowspan="18" style="padding-left:70px">
+                    <img id="myImg" src="" style="width:400px"/>
                 </td>
             </tr>
             <tr id="trDf" style="display:table-row">
@@ -762,5 +764,32 @@
         </div>
         </div>
 
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01" src="">
+      <div id="caption"></div>
+    </div>
     
+    <script>
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById("myImg");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+    </script>
 </asp:Content>

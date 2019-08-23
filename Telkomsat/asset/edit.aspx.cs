@@ -132,7 +132,7 @@ namespace Telkomsat.asset
                 txtKeterangan.Enabled = false;
                 txtPIC.Enabled = false;
                 btnUpdate.Enabled = false;
-                Session["Update"] = "Update Berhasil";
+                //Session["Update"] = "Update Berhasil";
                 //Response.Redirect("~/details.aspx");
             }
 

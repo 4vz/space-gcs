@@ -81,6 +81,15 @@
     <Content Include="asset\coba.aspx" />
     <Content Include="asset\details.aspx" />
     <Content Include="asset\edit.aspx" />
+    <Content Include="asset\StyleSheet1.css" />
+    <Content Include="checklist\check.css" />
+    <Content Include="checklist\checklist.aspx" />
+    <Content Include="checklist\checklistgcs.aspx" />
+    <Content Include="checklist\checklistme.aspx" />
+    <Content Include="checklist\harkatt2.aspx" />
+    <Content Include="checklist\harkatt3sku.aspx" />
+    <Content Include="checklist\view.aspx" />
+    <Content Include="css\bs-stepper.css" />
     <Content Include="editfoto.aspx" />
     <Content Include="editpassword.aspx" />
     <Content Include="editprofile.aspx" />
@@ -137,6 +146,8 @@
     <Content Include="img\makan.png" />
     <Content Include="img\meeting.png" />
     <Content Include="img\sport.png" />
+    <Content Include="img\SR1.jpg" />
+    <Content Include="img\SR2.jpg" />
     <Content Include="knowledge\all.aspx" />
     <Content Include="knowledge\coba.aspx" />
     <Content Include="details.aspx" />
@@ -231,6 +242,7 @@
     </Content>
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
+    <Content Include="WebForm3.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="alldatadua.aspx.cs">
@@ -288,6 +300,55 @@
     </Compile>
     <Compile Include="asset\edit.aspx.designer.cs">
       <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CHECKLIST.Master.cs">
+      <DependentUpon>CHECKLIST.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHECKLIST.Master.designer.cs">
+      <DependentUpon>CHECKLIST.Master</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\checklist.aspx.cs">
+      <DependentUpon>checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\checklist.aspx.designer.cs">
+      <DependentUpon>checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\checklistgcs.aspx.cs">
+      <DependentUpon>checklistgcs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\checklistgcs.aspx.designer.cs">
+      <DependentUpon>checklistgcs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\checklistme.aspx.cs">
+      <DependentUpon>checklistme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\checklistme.aspx.designer.cs">
+      <DependentUpon>checklistme.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatt2.aspx.cs">
+      <DependentUpon>harkatt2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatt2.aspx.designer.cs">
+      <DependentUpon>harkatt2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatt3sku.aspx.cs">
+      <DependentUpon>harkatt3sku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatt3sku.aspx.designer.cs">
+      <DependentUpon>harkatt3sku.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\view.aspx.designer.cs">
+      <DependentUpon>view.aspx</DependentUpon>
     </Compile>
     <Compile Include="editfoto.aspx.cs">
       <DependentUpon>editfoto.aspx</DependentUpon>
@@ -857,12 +918,20 @@
     <Compile Include="WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LOGBOOK.Master" />
     <Content Include="ASSET.Master" />
     <Content Include="KNOWLEDGE.Master" />
     <Content Include="KnowledgeFIle.Master" />
+    <Content Include="CHECKLIST.Master" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <None Include="Web.Debug.config">

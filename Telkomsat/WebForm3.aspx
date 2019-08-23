@@ -1,11 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/KNOWLEDGE.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Telkomsat.WebForm1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs" Inherits="Telkomsat.WebForm3" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
     <title>Bootstrap Part 14 : Membuat Carousel dengan Bootstrap</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>	
     <style type="text/css">
-    
+    body {font-family: Arial, Helvetica, sans-serif;}
+
 #myImg {
   border-radius: 5px;
   cursor: pointer;
@@ -92,24 +97,26 @@
   }
 }
 </style>
-    
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="form1" runat="server">
-    
- <img id="myImg" src="../img/SR1.jpg" alt="Snow" style="width:100%;max-width:300px">
+
+
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <img id="myImg" src="../img/SR1.jpg" alt="Snow" style="width:100%;max-width:300px">
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-  
-  <img class="modal-content" id="img01">
-    <span class="close">&times;</span>
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01" src="">
   <div id="caption"></div>
 </div>
-</form>
 
-    <script type="text/javascript">
-       var modal = document.getElementById("myModal");
+    </form>
+
+    <script>
+
+var modal = document.getElementById("myModal");
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
 var img = document.getElementById("myImg");
@@ -125,8 +132,10 @@ img.onclick = function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
 </script>
-</asp:Content>
+</body>
+</html>

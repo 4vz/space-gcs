@@ -1,0 +1,212 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CHECKLIST.master.cs" Inherits="Telkomsat.CHECKLIST" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="./assets/plugins/AdminLTE/AdminLTE.min.css" rel="stylesheet" />
+    <link href="./assets/plugins/AdminLTE/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="./assets/plugins/pace/pace.min.css" rel="stylesheet" />
+    <link href="./assets/css/style.min.css" rel="stylesheet" />
+    <link href="checklist/check.css?version=8" rel="stylesheet"/>
+    <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <style type="text/css">
+        tr:nth-child(even) {
+          background-color: #f2f2f2
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<form id="form1" runat="server">
+        <div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+        
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../dashboard.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../checklist/checklistgcs.aspx">Tambah Checklist</a></li>
+              <li><a href="../checklist/view.aspx">Data</a></li>
+          </ul>
+          
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+        
+        <ul class="nav navbar-nav">
+            
+          <!-- Messages: style can be found in dropdown.less-->
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              
+              <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+
+                <p><a href="../profile.aspx">
+                  Edit Profile
+                  <small>2019</small>
+                    </a>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-right">
+                    <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default"/>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+      <!-- /.container-fluid -->
+            
+    </nav>
+  </header>
+    <div class="content-wrapper" style="min-height:1300px;">
+    <div class="container">
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-gradient">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">CHECKLIST</span>
+
+              <p>Harian</p>
+
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
+
+              <p>Mingguan</p>
+
+            </div>
+            
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
+
+              <p>Bulanan</p>
+            </div>
+            
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
+
+              <p>3 Bulanan</p>
+            </div>
+            
+          </div>
+        </div>
+
+          <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
+
+              <p>6 Bulanan</p>
+            </div>
+            
+          </div>
+        </div>
+
+          <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
+
+              <p>1 Tahun</p>
+            </div>
+            
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+        <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-6 connectedSortable" style="min-height:50px">
+            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-bottom:15px; padding-right:15px">
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem></asp:ListItem>
+                <asp:ListItem>Telkom 2</asp:ListItem>
+                <asp:ListItem>T3S Ku-Band</asp:ListItem>
+            </asp:DropDownList>
+                </div>
+             <div class="col-lg-4 col-xs-6" style="padding-bottom:15px;">
+            <asp:DropDownList ID="DropDownList2" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem></asp:ListItem>
+                <asp:ListItem>Harkat</asp:ListItem>
+                <asp:ListItem>ME</asp:ListItem>
+            </asp:DropDownList>
+            </div>
+             <div class="col-lg-4 col-xs-12" style="padding-bottom:15px; ">
+            <asp:Button ID="Button1" runat="server" Text="Pilih" CssClass="btn btn-success btn-xs" OnClick="Pilih_Click" Width="100%"/>
+            </div>
+        </section>
+        </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </section>
+        </div>
+        </div>
+        </div>
+
+    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="../assets/bower_components/PACE/pace.min.js"></script>
+    <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
+    <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    </form>
+</body>
+</html>
