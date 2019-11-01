@@ -27,7 +27,7 @@ namespace Telkomsat
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             string output = cmd.ExecuteScalar().ToString();
-
+            sqlCon.Close();
             if (output == "1")
             {
                 

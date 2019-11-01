@@ -18,7 +18,7 @@ namespace Telkomsat
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=KNOWLEDGE; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 

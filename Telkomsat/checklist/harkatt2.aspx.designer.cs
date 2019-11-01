@@ -13,31 +13,49 @@ namespace Telkomsat.checklist {
     public partial class harkatt2 {
         
         /// <summary>
-        /// ddl1SD1 control.
+        /// Label22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl1SD1;
+        protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// Label6 control.
+        /// lblstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lblstatus;
         
         /// <summary>
-        /// ddl1HPA1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl1HPA1;
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// lbl1rcu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1rcu;
+        
+        /// <summary>
+        /// ddl1RCU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl1RCU;
         
         /// <summary>
         /// Label7 control.
@@ -47,6 +65,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// lbl1uc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1uc1;
         
         /// <summary>
         /// ddl1UC1 control.
@@ -67,13 +94,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// txtUC1fr control.
+        /// txt1UC1fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC1fr;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC1fr;
         
         /// <summary>
         /// Label46 control.
@@ -85,13 +112,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label46;
         
         /// <summary>
-        /// txtUC1at control.
+        /// txt1UC1at control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC1at;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC1at;
         
         /// <summary>
         /// Label47 control.
@@ -103,13 +130,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label47;
         
         /// <summary>
-        /// ddl1SOU1 control.
+        /// lbl1rcu1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl1SOU1;
+        protected global::System.Web.UI.WebControls.Label lbl1rcu1;
+        
+        /// <summary>
+        /// ddl1RCU1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl1RCU1;
         
         /// <summary>
         /// Label48 control.
@@ -121,22 +157,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label48;
         
         /// <summary>
-        /// txtSOU1c control.
+        /// txt1SOU1c control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOU1c;
+        protected global::System.Web.UI.WebControls.TextBox txt1SOU1c;
         
         /// <summary>
-        /// txtSOU1fr control.
+        /// txt1SOU1fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOU1fr;
+        protected global::System.Web.UI.WebControls.TextBox txt1SOU1fr;
         
         /// <summary>
         /// Label49 control.
@@ -148,13 +184,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label49;
         
         /// <summary>
-        /// txtSOU1pr control.
+        /// txt1SOU1pr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOU1pr;
+        protected global::System.Web.UI.WebControls.TextBox txt1SOU1pr;
         
         /// <summary>
         /// Label50 control.
@@ -166,13 +202,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label50;
         
         /// <summary>
-        /// txtSOU1ad control.
+        /// txt1SOU1ad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOU1ad;
+        protected global::System.Web.UI.WebControls.TextBox txt1SOU1ad;
         
         /// <summary>
         /// Label51 control.
@@ -184,13 +220,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label51;
         
         /// <summary>
-        /// txtSOU1at control.
+        /// txt1SOU1at control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOU1at;
+        protected global::System.Web.UI.WebControls.TextBox txt1SOU1at;
         
         /// <summary>
         /// Label52 control.
@@ -202,6 +238,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label52;
         
         /// <summary>
+        /// lbl1uc2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1uc2;
+        
+        /// <summary>
         /// ddl1UC2 control.
         /// </summary>
         /// <remarks>
@@ -211,13 +256,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.DropDownList ddl1UC2;
         
         /// <summary>
-        /// txtUC2fr control.
+        /// txt1UC2fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC2fr;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC2fr;
         
         /// <summary>
         /// Label53 control.
@@ -229,13 +274,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label53;
         
         /// <summary>
-        /// txtUC2at control.
+        /// txt1UC2at control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC2at;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC2at;
         
         /// <summary>
         /// Label54 control.
@@ -247,6 +292,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label54;
         
         /// <summary>
+        /// lbl1uc3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1uc3;
+        
+        /// <summary>
         /// ddl1UC3 control.
         /// </summary>
         /// <remarks>
@@ -256,13 +310,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.DropDownList ddl1UC3;
         
         /// <summary>
-        /// txtUC3fr control.
+        /// txt1UC3fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC3fr;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC3fr;
         
         /// <summary>
         /// Label55 control.
@@ -274,13 +328,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label55;
         
         /// <summary>
-        /// txtUC3at control.
+        /// txt1UC3at control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUC3at;
+        protected global::System.Web.UI.WebControls.TextBox txt1UC3at;
         
         /// <summary>
         /// Label56 control.
@@ -292,6 +346,69 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label56;
         
         /// <summary>
+        /// lbl1mo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1mo;
+        
+        /// <summary>
+        /// ddl1Mo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl1Mo;
+        
+        /// <summary>
+        /// txt1MoFr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt1MoFr;
+        
+        /// <summary>
+        /// Label19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label19;
+        
+        /// <summary>
+        /// txt1MoPo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt1MoPo;
+        
+        /// <summary>
+        /// Label20 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label20;
+        
+        /// <summary>
+        /// lbl1de control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1de;
+        
+        /// <summary>
         /// ddl1De1 control.
         /// </summary>
         /// <remarks>
@@ -301,6 +418,24 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.DropDownList ddl1De1;
         
         /// <summary>
+        /// txt1DePr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt1DePr;
+        
+        /// <summary>
+        /// Label21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label21;
+        
+        /// <summary>
         /// Button5 control.
         /// </summary>
         /// <remarks>
@@ -308,6 +443,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button5;
+        
+        /// <summary>
+        /// lbl2pm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2pm;
         
         /// <summary>
         /// ddl2PM1 control.
@@ -328,13 +472,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label57;
         
         /// <summary>
-        /// txtPM1lv control.
+        /// txt2PM1lv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPM1lv;
+        protected global::System.Web.UI.WebControls.TextBox txt2PM1lv;
         
         /// <summary>
         /// Label58 control.
@@ -344,6 +488,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label58;
+        
+        /// <summary>
+        /// lbl2tlt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2tlt;
         
         /// <summary>
         /// ddl2TLT1 control.
@@ -364,6 +517,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label59;
         
         /// <summary>
+        /// lbl2rs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2rs;
+        
+        /// <summary>
         /// ddl2RS1 control.
         /// </summary>
         /// <remarks>
@@ -380,6 +542,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label60;
+        
+        /// <summary>
+        /// lbl2dtr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2dtr;
         
         /// <summary>
         /// ddlDTR1 control.
@@ -400,13 +571,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label61;
         
         /// <summary>
-        /// txtDTR1fr control.
+        /// txt2DTR1fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDTR1fr;
+        protected global::System.Web.UI.WebControls.TextBox txt2DTR1fr;
         
         /// <summary>
         /// Label62 control.
@@ -418,13 +589,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label62;
         
         /// <summary>
-        /// txtDTR1c control.
+        /// txt2DTR1c control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDTR1c;
+        protected global::System.Web.UI.WebControls.TextBox txt2DTR1c;
         
         /// <summary>
         /// Label63 control.
@@ -436,13 +607,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label63;
         
         /// <summary>
-        /// txtDTR1tx control.
+        /// txt2DTR1tx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDTR1tx;
+        protected global::System.Web.UI.WebControls.TextBox txt2DTR1tx;
         
         /// <summary>
         /// Label64 control.
@@ -454,13 +625,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label64;
         
         /// <summary>
-        /// txtDTR1dac control.
+        /// txt2DTR1dac control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDTR1dac;
+        protected global::System.Web.UI.WebControls.TextBox txt2DTR1dac;
         
         /// <summary>
         /// Label65 control.
@@ -470,6 +641,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label65;
+        
+        /// <summary>
+        /// lbl2mrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2mrc;
         
         /// <summary>
         /// ddl2MRC1 control.
@@ -490,6 +670,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label66;
         
         /// <summary>
+        /// lbl2acu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2acu;
+        
+        /// <summary>
         /// ddl2ACU control.
         /// </summary>
         /// <remarks>
@@ -508,13 +697,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label67;
         
         /// <summary>
-        /// txtACU2fr control.
+        /// txt2ACU2fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtACU2fr;
+        protected global::System.Web.UI.WebControls.TextBox txt2ACU2fr;
         
         /// <summary>
         /// Label68 control.
@@ -526,13 +715,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label68;
         
         /// <summary>
-        /// txtACU2az control.
+        /// txt2ACU2az control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtACU2az;
+        protected global::System.Web.UI.WebControls.TextBox txt2ACU2az;
         
         /// <summary>
         /// Label69 control.
@@ -544,13 +733,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label69;
         
         /// <summary>
-        /// txtACU2el control.
+        /// txt2ACU2el control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtACU2el;
+        protected global::System.Web.UI.WebControls.TextBox txt2ACU2el;
         
         /// <summary>
         /// Label70 control.
@@ -562,13 +751,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label70;
         
         /// <summary>
-        /// txtACU2po control.
+        /// txt2ACU2po control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtACU2po;
+        protected global::System.Web.UI.WebControls.TextBox txt2ACU2po;
         
         /// <summary>
         /// Label71 control.
@@ -580,13 +769,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label71;
         
         /// <summary>
-        /// txtACU2rf control.
+        /// txt2ACU2rf control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtACU2rf;
+        protected global::System.Web.UI.WebControls.TextBox txt2ACU2rf;
         
         /// <summary>
         /// Label72 control.
@@ -598,22 +787,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label72;
         
         /// <summary>
-        /// ddl2MR1 control.
+        /// lbl2dc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl2MR1;
-        
-        /// <summary>
-        /// Label73 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label73;
+        protected global::System.Web.UI.WebControls.Label lbl2dc;
         
         /// <summary>
         /// ddl2DC1 control.
@@ -625,13 +805,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.DropDownList ddl2DC1;
         
         /// <summary>
-        /// txtDC1fr control.
+        /// txt2DC1fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDC1fr;
+        protected global::System.Web.UI.WebControls.TextBox txt2DC1fr;
         
         /// <summary>
         /// Label74 control.
@@ -643,13 +823,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label74;
         
         /// <summary>
-        /// txtDC1at control.
+        /// txt2DC1at control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDC1at;
+        protected global::System.Web.UI.WebControls.TextBox txt2DC1at;
         
         /// <summary>
         /// Label75 control.
@@ -661,13 +841,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label75;
         
         /// <summary>
-        /// ddl2SOU1 control.
+        /// lbl2rcu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl2SOU1;
+        protected global::System.Web.UI.WebControls.Label lbl2rcu;
+        
+        /// <summary>
+        /// ddl2RCU1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl2RCU1;
         
         /// <summary>
         /// Label76 control.
@@ -760,6 +949,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label80;
         
         /// <summary>
+        /// lbl2dc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2dc1;
+        
+        /// <summary>
         /// ddl2DC2 control.
         /// </summary>
         /// <remarks>
@@ -803,6 +1001,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label82;
+        
+        /// <summary>
+        /// lbl2dc2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2dc2;
         
         /// <summary>
         /// ddl2DC3 control.
@@ -868,13 +1075,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// ddl3KPA1 control.
+        /// lbl3hpa1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl3KPA1;
+        protected global::System.Web.UI.WebControls.Label lbl3hpa1;
+        
+        /// <summary>
+        /// ddl3HPA1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl3HPA1;
         
         /// <summary>
         /// Label1 control.
@@ -893,6 +1109,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt3KPA1rf;
+        
+        /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// txt3KPA1kc control.
@@ -1057,6 +1282,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
+        /// lbl3aps control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl3aps;
+        
+        /// <summary>
         /// ddl3AC control.
         /// </summary>
         /// <remarks>
@@ -1084,13 +1318,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Button Button8;
         
         /// <summary>
-        /// ddl4KPA1 control.
+        /// lbl4hpa1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl4KPA1;
+        protected global::System.Web.UI.WebControls.Label lbl4hpa1;
+        
+        /// <summary>
+        /// ddl4HPA1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl4HPA1;
         
         /// <summary>
         /// Label9 control.
@@ -1109,6 +1352,15 @@ namespace Telkomsat.checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt4KPA1rf;
+        
+        /// <summary>
+        /// Label23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
         /// txt4KPA1kc control.
@@ -1273,6 +1525,15 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label90;
         
         /// <summary>
+        /// lbl4ps control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl4ps;
+        
+        /// <summary>
         /// ddl4AC1 control.
         /// </summary>
         /// <remarks>
@@ -1291,13 +1552,22 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// ddl4KPA2 control.
+        /// lbl4hpa2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl4KPA2;
+        protected global::System.Web.UI.WebControls.Label lbl4hpa2;
+        
+        /// <summary>
+        /// ddl4HPA2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl4HPA2;
         
         /// <summary>
         /// Label91 control.
@@ -1318,22 +1588,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.TextBox txt4KPA2rf;
         
         /// <summary>
-        /// txt4KPA2kc control.
+        /// Label24 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2kc;
-        
-        /// <summary>
-        /// Label92 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label92;
+        protected global::System.Web.UI.WebControls.Label Label24;
         
         /// <summary>
         /// txt4KPA2at control.
@@ -1345,103 +1606,13 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.TextBox txt4KPA2at;
         
         /// <summary>
-        /// Label93 control.
+        /// Label92 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label93;
-        
-        /// <summary>
-        /// txt4KPA2bc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2bc;
-        
-        /// <summary>
-        /// Label94 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label94;
-        
-        /// <summary>
-        /// txt4KPA2ct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2ct;
-        
-        /// <summary>
-        /// Label95 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label95;
-        
-        /// <summary>
-        /// txt4KPA2ot control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2ot;
-        
-        /// <summary>
-        /// Label96 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label96;
-        
-        /// <summary>
-        /// txt4KPA2bv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2bv;
-        
-        /// <summary>
-        /// Label97 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label97;
-        
-        /// <summary>
-        /// txt4KPA2hv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt4KPA2hv;
-        
-        /// <summary>
-        /// Label98 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label98;
+        protected global::System.Web.UI.WebControls.Label Label92;
         
         /// <summary>
         /// txt4KPA2rrf control.
@@ -1453,49 +1624,49 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.TextBox txt4KPA2rrf;
         
         /// <summary>
-        /// Label99 control.
+        /// Label93 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label99;
+        protected global::System.Web.UI.WebControls.Label Label93;
         
         /// <summary>
-        /// TextBoxtxt4KPA2boc83 control.
+        /// txt4KPA2hc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxtxt4KPA2boc83;
+        protected global::System.Web.UI.WebControls.TextBox txt4KPA2hc;
         
         /// <summary>
-        /// Label100 control.
+        /// Label94 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label100;
+        protected global::System.Web.UI.WebControls.Label Label94;
         
         /// <summary>
-        /// ddl4AC2 control.
+        /// txt4KPA2hv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl4AC2;
+        protected global::System.Web.UI.WebControls.TextBox txt4KPA2hv;
         
         /// <summary>
-        /// Label101 control.
+        /// Label95 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label101;
+        protected global::System.Web.UI.WebControls.Label Label95;
         
         /// <summary>
         /// Button9 control.
@@ -1507,12 +1678,21 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Button Button9;
         
         /// <summary>
-        /// Button10 control.
+        /// btnsave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button10;
+        protected global::System.Web.UI.WebControls.Button btnsave;
+        
+        /// <summary>
+        /// btnedit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnedit;
     }
 }

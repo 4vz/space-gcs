@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Dashboard</title>
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
@@ -13,21 +13,26 @@
     <link href="./assets/plugins/pace/pace.min.css" rel="stylesheet" />
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link href="Style2.css" rel="stylesheet" />
-    <link href="Style1.css" rel="stylesheet" />
-    <link href="stylepagination.css?version=1" rel="stylesheet" />
-    <link href="dashboard.css?version=7" rel="stylesheet" type="text/css"/>
+    <link href="Style1.css?version2" rel="stylesheet" />
+    <link href="stylepagination.css?version=2" rel="stylesheet" />
+    <link href="dashboard.css?version=8" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
     <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
         media="screen" />
+    <style type="text/css">
+        #example2 th, td {
+            white-space: nowrap;
+        }
+    </style>
     
 </head>
 
 <body class="hold-transition skin-blue layout-top-nav">
     <form id="form1" runat="server">
-<div class="wrapper">
+<div class="wrapper" style="height:auto">
 
   <header class="main-header">
     <nav class="navbar navbar-static-top">
@@ -47,6 +52,7 @@
               <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
               <li><a href="../checklist/checklistgcs.aspx">Checklist</a></li>
+              <li><a href="../ticket/ticket.aspx">Ticket</a></li>
           </ul>
           
         </div>
@@ -104,7 +110,7 @@
   </header>
 
   <!-- Full Width Column -->
-  <div class="content-wrapper" style="min-height:1300px;">
+  <div class="content-wrapper" style="height:auto;">
     <div class="container">
       <!-- Content Header (Page header) -->
       <section class="content-header">
@@ -117,7 +123,7 @@
       <!-- Main content -->
       <section class="content">
       <div class="row" style="height:auto">
-          <div class="col-lg-9 col-xs-9 col-sm-9 col-md-9">
+          <div class="col-lg-9 col-xs-12 col-sm-9 col-md-9">
           <div class="box box-default">
                 <div class="box-header with-border">
                     Gound Control System
@@ -172,14 +178,13 @@
 			</a>
 		</div>
 
-                    
                 </div>
                </a>
             </div>
             </div>
           <button type="button" visible="false" id="Button1" style="float:right; color:darkred; background-color:transparent" data-toggle="modal" data-target="#exampleModalButton" class="btn-file" runat="server"><i class="fa fa-plus" style="font-size:12px"></i>
                 </button>
-          <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+          <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3">
           <div class="box box-default" style="max-height:450px; height:auto; min-height:300px">
                 <div class="box-header with-border">
                     Event 
@@ -217,8 +222,8 @@
         <!-- ./col -->
         
 
-        <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-          <div class="box box-default" style="min-height:600px;">
+        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
+          <div class="box box-success" style="min-height:600px;">
                 <div class="box-header with-border">
                     Pemberitahuan
                 </div>
@@ -245,9 +250,26 @@
             </div>
                 
         <!-- ./col -->
-        <div class="col-lg-8 col-xs-8">
+           
+        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
           <!-- small box -->
-            <div class="box box-primary" style="min-height:600px;">
+            
+
+            <div class="box box-danger" style="min-height:400px;">
+                <div class="box-header with-border">
+                    Ticket
+                    </div>
+                <div class="box-body">
+                    <div class="table-responsive mailbox-messages">
+                    <div class="table table-responsive">
+                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+                    </div>
+                </div>
+            <!-- /.col -->
+            </div>
+                </div>
+
+            <div class="box box-primary" style="height:300px;">
                 <br />
                     <span style="margin-left:10px; font-size:14px; color:darkslateblue; margin-bottom:10px">Aktivitas GCS</span>
                     <hr width="100%" />
@@ -277,11 +299,11 @@
               <!-- /.tab-pane -->
             </div>
             </div>
-        </div>
+
           </div>
         <!-- ./col -->
         
-        
+        </div>
         
         <!-- /.box -->
       </section>
@@ -291,17 +313,16 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="container">
+
       <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
       </div>
       <strong>Copyright &copy; 2019 <a href="https://www.telkomsat.co.id">Telkomsat</a>.</strong> All rights
       reserved.
-    </div>
     <!-- /.container -->
   </footer>
 </div>
-        <div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="height:400px;">
        <div class="modal-header" style="background-color:darkred">
@@ -449,6 +470,67 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modaltiket" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog">
+                <div class="modal-content">
+                <section class="panel panel-danger">
+      <header class="panel-heading" style="background-color:darkred; border-color:darkred;">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title" style="color:ghostwhite">Ticket</h4>
+            </header>
+      <div class="panel-body">
+          <div class="divtabel">
+          <table align="center">
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Nama</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;" colspan="5">
+                      <asp:TextBox ID="txt2nama" CssClass="form-control" runat="server"></asp:TextBox>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Nomor HP</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;" colspan="5">
+                      <asp:TextBox ID="txt2No" CssClass="form-control" runat="server"></asp:TextBox>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Subject</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;"" colspan="3">
+                      <asp:TextBox ID="txt2subject" CssClass="form-control" runat="server" Width="300px" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                  </td>
+              </tr>
+              <tr>
+                  <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
+                      <label>Keterangan</label>
+                  </td>
+                  <td style="padding-left:40px; padding-bottom:15px;" colspan="3">
+                      <asp:TextBox ID="txt2keterangan" CssClass="form-control" runat="server" Width="300px" TextMode="MultiLine" Height="200px"></asp:TextBox>
+                  </td>
+              </tr>
+              
+          </table>
+              </div>
+        </div>
+        <footer class="panel-footer">
+                        <div class="row" style="height:auto">
+                            <div class="col-md-12 text-right">
+                                <button class="btn btn-primary" type="submit" runat="server" onserverclick="saveticket">Submit</button>
+                                <button class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </footer>
+                </section>
+      </div>
+    </div>
+  </div>
 
         </form>
 
@@ -456,15 +538,31 @@
 <!-- ./wrapper -->
 
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!--<script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
    <script>
+       $(function () {
+          $("#example2").DataTable({
+          "paging": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "scrollX": true
+          });
+           $('.dataTables_length').addClass('bs-select');
+       });
+
+       
         $(function () {
             $("#txtttl").datepicker({
                 defaultDate: "+1w",

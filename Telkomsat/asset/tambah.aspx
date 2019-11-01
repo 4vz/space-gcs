@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.asset.tambah" %>
+﻿<%@ Page Title="Tambah Data" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.asset.tambah" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link type="text/css" rel="stylesheet" href="StyleSheet1.css?version=8" />
     <script type="text/javascript" src="js1.js?version=4"></script>

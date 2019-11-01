@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\admin.aspx" />
     <Content Include="alldatadua.aspx" />
     <Content Include="alldata.aspx" />
     <Content Include="asset\asset1.aspx" />
@@ -86,7 +87,14 @@
     <Content Include="checklist\checklist.aspx" />
     <Content Include="checklist\checklistgcs.aspx" />
     <Content Include="checklist\checklistme.aspx" />
+    <Content Include="checklist\cobalooping.aspx" />
+    <Content Include="checklist\gantiperangkat.aspx" />
+    <Content Include="checklist\harkatbbu.aspx" />
+    <Content Include="checklist\harkatfma11.aspx" />
+    <Content Include="checklist\harkathpa.aspx" />
+    <Content Include="checklist\harkatmpsat.aspx" />
     <Content Include="checklist\harkatt2.aspx" />
+    <Content Include="checklist\harkatt3sc.aspx" />
     <Content Include="checklist\harkatt3sku.aspx" />
     <Content Include="checklist\view.aspx" />
     <Content Include="css\bs-stepper.css" />
@@ -237,6 +245,21 @@
     <Content Include="StyleLogBook.css" />
     <Content Include="stylepagination.css" />
     <Content Include="testcropfoto.aspx" />
+    <Content Include="ticket\accepted.aspx" />
+    <Content Include="ticket\complete.aspx" />
+    <Content Include="ticket\detail.aspx" />
+    <Content Include="ticket\download.aspx" />
+    <Content Include="ticket\editicket.aspx" />
+    <Content Include="ticket\favorit.aspx" />
+    <Content Include="ticket\file.aspx" />
+    <Content Include="ticket\reject.aspx" />
+    <Content Include="ticket\spam.aspx" />
+    <Content Include="ticket\tambah.aspx" />
+    <Content Include="ticket\tambahticket.aspx" />
+    <Content Include="ticket\ticket.aspx" />
+    <Content Include="ticket\tiketku.aspx" />
+    <Content Include="ticket\ticket.css" />
+    <Content Include="ticket\viewticket.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -245,6 +268,13 @@
     <Content Include="WebForm3.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\admin.aspx.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin.aspx.designer.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="alldatadua.aspx.cs">
       <DependentUpon>alldatadua.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -329,12 +359,61 @@
     <Compile Include="checklist\checklistme.aspx.designer.cs">
       <DependentUpon>checklistme.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklist\cobalooping.aspx.cs">
+      <DependentUpon>cobalooping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\cobalooping.aspx.designer.cs">
+      <DependentUpon>cobalooping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\gantiperangkat.aspx.cs">
+      <DependentUpon>gantiperangkat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\gantiperangkat.aspx.designer.cs">
+      <DependentUpon>gantiperangkat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatbbu.aspx.cs">
+      <DependentUpon>harkatbbu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatbbu.aspx.designer.cs">
+      <DependentUpon>harkatbbu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatfma11.aspx.cs">
+      <DependentUpon>harkatfma11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatfma11.aspx.designer.cs">
+      <DependentUpon>harkatfma11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkathpa.aspx.cs">
+      <DependentUpon>harkathpa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkathpa.aspx.designer.cs">
+      <DependentUpon>harkathpa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatmpsat.aspx.cs">
+      <DependentUpon>harkatmpsat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatmpsat.aspx.designer.cs">
+      <DependentUpon>harkatmpsat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checklist\harkatt2.aspx.cs">
       <DependentUpon>harkatt2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="checklist\harkatt2.aspx.designer.cs">
       <DependentUpon>harkatt2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklist\harkatt3sc.aspx.cs">
+      <DependentUpon>harkatt3sc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklist\harkatt3sc.aspx.designer.cs">
+      <DependentUpon>harkatt3sc.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklist\harkatt3sku.aspx.cs">
       <DependentUpon>harkatt3sku.aspx</DependentUpon>
@@ -343,6 +422,7 @@
     <Compile Include="checklist\harkatt3sku.aspx.designer.cs">
       <DependentUpon>harkatt3sku.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklist\JsonResult.cs" />
     <Compile Include="checklist\view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -904,6 +984,111 @@
     <Compile Include="testcropfoto.aspx.designer.cs">
       <DependentUpon>testcropfoto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TICKETMASTER.Master.cs">
+      <DependentUpon>TICKETMASTER.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TICKETMASTER.Master.designer.cs">
+      <DependentUpon>TICKETMASTER.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\accepted.aspx.cs">
+      <DependentUpon>accepted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\accepted.aspx.designer.cs">
+      <DependentUpon>accepted.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\complete.aspx.cs">
+      <DependentUpon>complete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\complete.aspx.designer.cs">
+      <DependentUpon>complete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\editicket.aspx.cs">
+      <DependentUpon>editicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\editicket.aspx.designer.cs">
+      <DependentUpon>editicket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\favorit.aspx.cs">
+      <DependentUpon>favorit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\favorit.aspx.designer.cs">
+      <DependentUpon>favorit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\file.aspx.cs">
+      <DependentUpon>file.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\file.aspx.designer.cs">
+      <DependentUpon>file.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\reject.aspx.cs">
+      <DependentUpon>reject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\reject.aspx.designer.cs">
+      <DependentUpon>reject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\spam.aspx.cs">
+      <DependentUpon>spam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\spam.aspx.designer.cs">
+      <DependentUpon>spam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\tambahticket.aspx.cs">
+      <DependentUpon>tambahticket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\tambahticket.aspx.designer.cs">
+      <DependentUpon>tambahticket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\ticket.aspx.cs">
+      <DependentUpon>ticket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\ticket.aspx.designer.cs">
+      <DependentUpon>ticket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\tiketku.aspx.cs">
+      <DependentUpon>tiketku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\tiketku.aspx.designer.cs">
+      <DependentUpon>tiketku.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\viewticket.aspx.cs">
+      <DependentUpon>viewticket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\viewticket.aspx.designer.cs">
+      <DependentUpon>viewticket.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -934,6 +1119,7 @@
     <Content Include="CHECKLIST.Master" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
+    <Content Include="TICKETMASTER.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -942,7 +1128,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="affident\" />
     <Folder Include="cropimag\" />
+    <Folder Include="fileupload\" />
     <Folder Include="knowledge\Data\" />
   </ItemGroup>
   <ItemGroup>

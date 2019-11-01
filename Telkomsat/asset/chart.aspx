@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="chart.aspx.cs" Inherits="Telkomsat.asset.chart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Chart History</title>
     <script src="chart.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

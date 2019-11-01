@@ -11,27 +11,58 @@ namespace Telkomsat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["mastershelter"] != null)
+            if (!IsPostBack)
             {
-                DropDownList1.Text = Session["mastershelter"].ToString();
-                DropDownList2.Text = Session["masterdivisi"].ToString();
+                if (Session["mastershelter"] != null)
+                {
+                    DropDownList1.Text = Session["mastershelter"].ToString();
+                    DropDownList2.Text = Session["masterdivisi"].ToString();
+                }
             }
         }
 
         protected void Pilih_Click(object sender, EventArgs e)
         {
-            if (DropDownList1.Text == "Telkom 2" && DropDownList2.Text == "Harkat")
+            if (DropDownList2.Text == "Harkat")
             {
-                Session["mastershelter"] = DropDownList1.Text;
-                Session["masterdivisi"] = DropDownList2.Text;
-                Response.Redirect("~/checklist/harkatt2.aspx", false);
-            }
+                if (DropDownList1.Text == "Telkom 2")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkatt2.aspx", false);
+                }
 
-            if (DropDownList1.Text == "T3S Ku-Band" && DropDownList2.Text == "Harkat")
-            {
-                Session["mastershelter"] = DropDownList1.Text;
-                Session["masterdivisi"] = DropDownList2.Text;
-                Response.Redirect("~/checklist/harkatt3sku.aspx", false);
+                else if (DropDownList1.Text == "T3S Ku-Band")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkatt3sku.aspx", false);
+                }
+                else if (DropDownList1.Text == "T3S Ku-Band")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkatt3sku.aspx", false);
+                }
+                else if (DropDownList1.Text == "T3S C-Band")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkatt3sc.aspx", false);
+                }
+                else if (DropDownList1.Text == "FMA 11")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkatfma11.aspx", false);
+                }
+                else if (DropDownList1.Text == "HPA")
+                {
+                    Session["mastershelter"] = DropDownList1.Text;
+                    Session["masterdivisi"] = DropDownList2.Text;
+                    Response.Redirect("~/checklist/harkathpa.aspx", false);
+                }
+
             }
         }
     }

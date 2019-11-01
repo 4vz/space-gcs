@@ -40,40 +40,40 @@ namespace Telkomsat.checklist {
         protected global::System.Web.UI.WebControls.Button btn;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlShelter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlShelter;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// ddlDivisi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivisi;
         
         /// <summary>
-        /// DropDownList3 control.
+        /// ddlBulan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBulan;
         
         /// <summary>
-        /// DropDownList4 control.
+        /// ddlTahun control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList4;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTahun;
         
         /// <summary>
         /// Button1 control.

@@ -13,12 +13,21 @@ namespace Telkomsat
     {
         string user;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["username"] == null || Session["username"].ToString() == "")
+            {
+                Response.Redirect("~/login.aspx", true);
+            }
+
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("~/login.aspx");
-            else
-                user = Session["username"].ToString();
+            user = Session["username"].ToString();
+            
             if (!IsPostBack)
             {
                 sqlCon.Open();

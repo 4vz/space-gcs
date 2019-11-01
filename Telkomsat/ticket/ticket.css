@@ -1,0 +1,172 @@
+﻿@media all and (min-width:1500px) {
+    .container {
+        width:1330px;
+    }
+}
+@media all and (min-width:1700px) {
+    .container {
+        width: 1560px;
+    }
+}
+
+.bodyLB {
+    left: 50px;
+    margin-left: 50px;
+}
+
+.bodyLB2 {
+    left: 10px;
+    margin-left: 10px;
+}
+
+.pdg{
+    padding-right:5px;
+    padding-bottom:15px;
+    margin-left:10px;
+    position:relative;
+}
+
+    .bodyLB2 .headIP {
+        font-size: 22px;
+        font-family: 'Adobe Caslon Pro';
+        color: dimgray;
+    }
+
+.bodyLB5 {
+    left: 150px;
+    margin-left: 150px;
+}
+
+.bodyLB3 {
+    left: 30px;
+    margin-left: 30px;
+    top: 15px;
+    margin-top: 15px;
+}
+
+.judulLB1 {
+    font-size: 20px;
+    color: black;
+}
+
+.judulLB2 {
+    font-size: 15px;
+    color: black;
+}
+
+.judulLB {
+    font-size: 20px;
+    color: #da0000;
+}
+
+    .judulLB:hover {
+        font-size: 20px;
+        color: #da0000;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+.list-inline .lbpaging {
+    color: #da0000;
+}
+
+    .list-inline .lbpaging:hover {
+        text-decoration: underline;
+    }
+
+.lbpaging {
+    color: #da0000;
+}
+
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+.lbpaging:hover {
+    text-decoration: underline;
+}
+
+.namaLB {
+    font-size: 12px;
+    color: #6a6a6a;
+    font-weight: bold;
+}
+
+.kategoriLB {
+    font-size: 14px;
+    color: #6a6a6a;
+}
+
+.waktuLB {
+    font-size: 12px;
+    color: #777777;
+}
+
+.aktivitasLB {
+    font-size: 12px;
+    color: #5c5c5c;
+}
+
+.aktivitasLB1 {
+    font-size: 14px;
+    color: #5c5c5c;
+}
+
+.judulDt {
+    font-size: 22px;
+    color: darkgray;
+}
+
+.namaDt {
+    font-size: 12px;
+    color: #6a6a6a;
+    font-weight: bold;
+}
+
+.waktuDt {
+    font-size: 12px;
+    color: #777777;
+}
+
+.kategoriDt {
+    font-size: 14px;
+    color: #6a6a6a;
+}
+
+
+.aktivitasDt {
+    font-size: 13px;
+    color: #5c5c5c;
+    width: 500px;
+}
+
+.btn1{
+    border-radius:10px;
+    width:100px;
+    min-width:100px;
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #2a4a6c;
+}
+
+.btn-primary {
+    background-color: #264362;
+    border-color: #264362;
+}
+
+    .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+        background-color: #172739;
+        border-color: #264362;
+    }
+
+.box.box-primary {
+    border-top-color: #2a4a6c;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #264362;
+    border-color: #264362;
+}

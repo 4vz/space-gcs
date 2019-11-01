@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tampildata.aspx.cs" Inherits="Telkomsat.logbook.tampildata" %>
+﻿<%@ Page Title="Logbook" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tampildata.aspx.cs" Inherits="Telkomsat.logbook.tampildata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link href="log.css" rel="stylesheet" type="text/css"/>
 </asp:Content>

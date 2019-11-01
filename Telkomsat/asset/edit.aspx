@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="edit.aspx.cs" Inherits="Telkomsat.asset.edit" %>
+﻿<%@ Page Title="Edit" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="edit.aspx.cs" Inherits="Telkomsat.asset.edit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../JavaScript.js" type="text/javascript"></script>
 </asp:Content>

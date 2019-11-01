@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Login</title>
     <link href="./assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />

@@ -47,7 +47,7 @@ namespace Telkomsat.logbook1
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 
@@ -228,7 +228,7 @@ namespace Telkomsat.logbook1
 
         void fillgridview()
         {
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 

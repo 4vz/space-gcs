@@ -13,7 +13,7 @@
     <link href="./assets/plugins/pace/pace.min.css" rel="stylesheet" />
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link href="Style2.css" rel="stylesheet" />
-    <link href="Style1.css" rel="stylesheet" />
+    <link href="Style1.css?version=5" rel="stylesheet" />
     <link href="StyleLogBook.css?version=1" rel="stylesheet" />
     <link href="stylepagination.css" rel="stylesheet" />
     <script src="~/assets/plugins/jQuery/jquery-2.2.3.min.js"></script>

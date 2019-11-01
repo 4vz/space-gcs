@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Globalization;
 using System.Threading;
+using System.Text;
 
 namespace Telkomsat
 {
@@ -17,6 +18,10 @@ namespace Telkomsat
         string user;
         string pilihicon;
         string icon1;
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        StringBuilder htmlTable = new StringBuilder();
+        string querytiket, IDdata = "kitaa", statuss="st", style1="a", style2 = "a", prioritas ="a", jenis="", jenisedit="", jenisview="";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +29,9 @@ namespace Telkomsat
 
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
+
+
+            tableticket();
 
             user = Session["username"].ToString();
             if (!IsPostBack)
@@ -113,10 +121,102 @@ namespace Telkomsat
             }
         }
 
+        void tableticket()
+        {
+            querytiket = @"SELECT * FROM ticket_user WHERE statusticket != 'delete'
+                        and status != 'reject' and status != 'confirm'
+                        ORDER BY id_ticket desc";
+            SqlCommand cmd = new SqlCommand(querytiket, sqlCon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable.Append("<thead>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Nama User</th><th>Nomor HP</th><th>Subject</th><th>Keterangan</th><th>Status</th><th>Prioritas</th><th>Action</th></tr>");
+            htmlTable.Append("</thead>");
+
+            htmlTable.Append("<tbody>");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        /*string a = ds.Tables[0].Rows[i]["Perangkat"].ToString();
+                        string b = a.Replace(' ', '#');
+                        char[] array = a.ToCharArray();
+                        for (int j = 0; j < a.Length; j++)
+                        {
+                            char let = array[j];
+                            if (let == ' ')
+                            {
+                                array[j] = '+';
+                            }
+                        }
+                        Session["snperangkat"] = ds.Tables[0].Rows[i]["S/N"];
+                        string result = new string(array);*/
+                        IDdata = ds.Tables[0].Rows[i]["id_ticket"].ToString();
+                        statuss = ds.Tables[0].Rows[i]["status"].ToString();
+                        prioritas = ds.Tables[0].Rows[i]["prioritas"].ToString();
+                        if (statuss == "sent")
+                            style1 = "btn-default";
+                        else if (statuss == "accept")
+                            style1 = "btn-primary";
+                        else if (statuss == "reject")
+                            style1 = "btn-danger";
+                        else if (statuss == "complete")
+                            style1 = "btn-success";
+                        else if (statuss == "reject")
+                            style1 = "btn-danger";
+
+                        int index = Convert.ToInt32(ds.Tables[0].Rows[i]["id_ticket"].ToString());
+
+                        if (prioritas == "Low")
+                            style2 = "btn-default";
+                        else if (prioritas == "Medium")
+                            style2 = "btn-success";
+                        else if (prioritas == "High")
+                            style2 = "btn-danger";
+                        //HiddenField1.Value = IDdata;
+                        htmlTable.Append("<tr>");
+                        htmlTable.Append("<td>" + ds.Tables[0].Rows[i]["tanggal"] + "</td>");
+                        htmlTable.Append("<td>" + ds.Tables[0].Rows[i]["nama_user"] + "</td>");
+                        htmlTable.Append("<td>" + ds.Tables[0].Rows[i]["nomor_hp"] + "</td>");
+                        htmlTable.Append("<td>" + ds.Tables[0].Rows[i]["subject"] + "</td>");
+                        htmlTable.Append("<td>" + ds.Tables[0].Rows[i]["keterangan"] + "</td>");
+                        htmlTable.Append("<td>" + $"<label class=\"btn btn-sm {style1}\" style=\"pointer-events:none; width:70px;\">" + ds.Tables[0].Rows[i]["status"] + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label class=\"btn btn-sm {style2}\" style=\"pointer-events:none; width:70px;\">" + ds.Tables[0].Rows[i]["prioritas"] + "</label>" + "</td>");
+                        htmlTable.Append($"<td style=\"visibility: {jenisview};\"> " + $"<a href=\"../ticket/detail.aspx?id={index}\" value='ID_Perangkat' id=aku CommandArgument=");
+                        htmlTable.Append((ds.Tables[0].Rows[i]["subject"]));
+                        htmlTable.Append(" > View</a>" + "</td>");
+                        htmlTable.Append("<td>" + "</td>");
+                        htmlTable.Append("</tr>");
+                    }
+                    htmlTable.Append("</tbody>");
+                    htmlTable.Append("</table>");
+                    DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
+                }
+            }
+        }
+
         protected void btnSignOut(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("~/login.aspx");
+        }
+
+        protected void saveticket(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            SqlCommand sqlCmd = new SqlCommand($@"INSERT INTO ticket_user (nama_user, tanggal, nomor_hp, subject, keterangan)
+                                            VALUES ('{txt2nama.Text}','{datetime1}', '{txt2No.Text}', '{txt2subject.Text}', '{txt2keterangan.Text}')", sqlCon);
+            sqlCmd.ExecuteNonQuery();
+            sqlCon.Close();
+            
         }
 
         protected void btnSubmit(object sender, EventArgs e)

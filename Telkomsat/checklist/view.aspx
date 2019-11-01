@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>View Checklist</title>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="../assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
@@ -166,39 +166,42 @@
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable" style="min-height:40px">
             <div class="col-lg-3 col-xs-6" style="padding-bottom:5px; ">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ddl" Width="100%">
-                <asp:ListItem></asp:ListItem>
-                <asp:ListItem>Telkom 2</asp:ListItem>
-                <asp:ListItem Value="LMA 11M">T3S Ku-Band</asp:ListItem>
+            <asp:DropDownList ID="ddlShelter" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
+                <asp:ListItem Value="T2">Telkom 2</asp:ListItem>
+                <asp:ListItem Value="T3S-C">Telkom 3S C-Band </asp:ListItem>
+                <asp:ListItem Value="T3S-Ku">Telkom 3S Ku-Band</asp:ListItem>
+                <asp:ListItem Value="mpsat">MPSat</asp:ListItem>
+                <asp:ListItem Value="FMA-11">FMA 11</asp:ListItem>
             </asp:DropDownList>
                 </div>
              <div class="col-lg-3 col-xs-6" style="padding-bottom:5px;">
-            <asp:DropDownList ID="DropDownList2" runat="server" CssClass="ddl" Width="100%">
-                <asp:ListItem></asp:ListItem>
+            <asp:DropDownList ID="ddlDivisi" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem>-Pilih Divisi-</asp:ListItem>
                 <asp:ListItem>Harkat</asp:ListItem>
                 <asp:ListItem>ME</asp:ListItem>
             </asp:DropDownList>
             </div>
             <div class="col-lg-3 col-xs-6" style="padding-bottom:5px;">
-            <asp:DropDownList ID="DropDownList3" runat="server" CssClass="ddl" Width="100%">
-                <asp:ListItem></asp:ListItem>
-                <asp:ListItem>Januari</asp:ListItem>
-                <asp:ListItem>Februari</asp:ListItem>
-                <asp:ListItem>Maret</asp:ListItem>
-                <asp:ListItem>April</asp:ListItem>
-                <asp:ListItem>Mei</asp:ListItem>
-                <asp:ListItem>Juni</asp:ListItem>
-                <asp:ListItem>Juli</asp:ListItem>
-                <asp:ListItem>Agustus</asp:ListItem>
-                <asp:ListItem>September</asp:ListItem>
-                <asp:ListItem>Oktober</asp:ListItem>
-                <asp:ListItem>November</asp:ListItem>
-                <asp:ListItem>Desember</asp:ListItem>
+            <asp:DropDownList ID="ddlBulan" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem>-Pilih Bulan-</asp:ListItem>
+                <asp:ListItem Value="01">Januari</asp:ListItem>
+                <asp:ListItem Value="02">Februari</asp:ListItem>
+                <asp:ListItem Value="03">Maret</asp:ListItem>
+                <asp:ListItem Value="04">April</asp:ListItem>
+                <asp:ListItem Value="05">Mei</asp:ListItem>
+                <asp:ListItem Value="06">Juni</asp:ListItem>
+                <asp:ListItem Value="07">Juli</asp:ListItem>
+                <asp:ListItem Value="08">Agustus</asp:ListItem>
+                <asp:ListItem Value="09">September</asp:ListItem>
+                <asp:ListItem Value="10">Oktober</asp:ListItem>
+                <asp:ListItem Value="11">November</asp:ListItem>
+                <asp:ListItem Value="12">Desember</asp:ListItem>
             </asp:DropDownList>
             </div>
             <div class="col-lg-3 col-xs-6" style="padding-bottom:5px;">
-            <asp:DropDownList ID="DropDownList4" runat="server" CssClass="ddl" Width="100%">
-                <asp:ListItem></asp:ListItem>
+            <asp:DropDownList ID="ddlTahun" runat="server" CssClass="ddl" Width="100%">
+                <asp:ListItem>-Pilih Tahun-</asp:ListItem>
                 <asp:ListItem>2019</asp:ListItem>
                 <asp:ListItem>2020</asp:ListItem>
             </asp:DropDownList>

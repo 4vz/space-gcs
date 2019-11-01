@@ -103,6 +103,15 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.DataList dtAsset;
         
         /// <summary>
+        /// DBDataPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
+        
+        /// <summary>
         /// lblLogbook control.
         /// </summary>
         /// <remarks>
@@ -191,5 +200,41 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnhapus;
+        
+        /// <summary>
+        /// txt2nama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt2nama;
+        
+        /// <summary>
+        /// txt2No control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt2No;
+        
+        /// <summary>
+        /// txt2subject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt2subject;
+        
+        /// <summary>
+        /// txt2keterangan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt2keterangan;
     }
 }
