@@ -18,14 +18,14 @@ namespace Telkomsat
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            /*if (Session["username"] == null || Session["username"].ToString() == "")
+            if (Session["username"] == null || Session["username"].ToString() == "")
             {
                 Response.Redirect("~/login.aspx", true);
-            }*/
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*user = Session["username"].ToString();
+            user = Session["username"].ToString();
             if (!IsPostBack)
             {
 
@@ -55,7 +55,7 @@ namespace Telkomsat
 
 
             lblProfile.Text = Session["username"].ToString();
-            lblProfile1.Text = Session["username"].ToString();*/
+            lblProfile1.Text = Session["username"].ToString();
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="filter.aspx.cs" Inherits="Telkomsat.dataasset.filter" %>
+﻿<%@ Page Title="Filter" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="filter.aspx.cs" Inherits="Telkomsat.dataasset.filter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,6 +8,7 @@
         <div class="box box-danger">
         <div class="box-header with-border">
             <asp:Label ID="lblfilter" runat="server" Text="Label"></asp:Label>
+            <button type="button" id="btnexpand" class="showHideColumn btn btn-sm btn-primary pull-right">Expand</button> 
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
@@ -62,7 +63,6 @@
         </div>
 
     <!-- /.col -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         $('#<%=so2.ClientID %>').change(function () {
             var id = $(this).val();
@@ -75,14 +75,48 @@
              });
 
 
-          $("#example2").DataTable({
+          var datatableInstance = $("#example2").DataTable({
           "paging": true,
           "searching": true,
           "info": true,
           "autoWidth": true,
           "scrollX": true
           });
-           $('.dataTables_length').addClass('bs-select');
+            $('.dataTables_length').addClass('bs-select');
+             datatableInstance.column('0').visible(!datatableInstance.column('0').visible());
+            datatableInstance.column('3').visible(!datatableInstance.column('3').visible());
+            datatableInstance.column('4').visible(!datatableInstance.column('4').visible());
+            datatableInstance.column('5').visible(!datatableInstance.column('5').visible());
+            datatableInstance.column('8').visible(!datatableInstance.column('8').visible());
+            datatableInstance.column('10').visible(!datatableInstance.column('10').visible());
+            datatableInstance.column('12').visible(!datatableInstance.column('12').visible());
+            datatableInstance.column('13').visible(!datatableInstance.column('13').visible());
+            datatableInstance.column('14').visible(!datatableInstance.column('14').visible());
+
+            var isExpand=false;
+            $('.showHideColumn').on('click', function (e) {
+                var this1 = $(this);
+                if(isExpand)
+                {
+                  isExpand=false;
+                  this1.text('Expand'); 
+                }else{
+                  isExpand=true;
+                  this1.text('Reduce'); 
+                }
+                e.preventDefault();
+                datatableInstance.column('0').visible(!datatableInstance.column('0').visible());
+                datatableInstance.column('3').visible(!datatableInstance.column('3').visible());
+                datatableInstance.column('4').visible(!datatableInstance.column('4').visible());
+                datatableInstance.column('5').visible(!datatableInstance.column('5').visible());
+                datatableInstance.column('8').visible(!datatableInstance.column('8').visible());
+                datatableInstance.column('8').visible(!datatableInstance.column('10').visible());
+                datatableInstance.column('10').visible(!datatableInstance.column('10').visible());
+                datatableInstance.column('12').visible(!datatableInstance.column('12').visible());
+                datatableInstance.column('13').visible(!datatableInstance.column('13').visible());
+                datatableInstance.column('14').visible(!datatableInstance.column('14').visible());
+
+            });
         });
 
 

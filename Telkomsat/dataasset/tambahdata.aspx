@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambahdata.aspx.cs" Inherits="Telkomsat.dataasset.tambahdata" %>
+﻿<%@ Page Title="Tambah Data" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="tambahdata.aspx.cs" Inherits="Telkomsat.dataasset.tambahdata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
 body {font-family: Arial, Helvetica, sans-serif;}

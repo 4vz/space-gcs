@@ -56,7 +56,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../asset/home.aspx">Data Asset</a></li>
+            <li><a href="../dataasset/alldata.aspx">Data Asset</a></li>
               <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
               <li><a href="../checklistme/harian.aspx">Checklist</a></li>

@@ -49,6 +49,15 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.TextBox txtsatelit;
         
         /// <summary>
+        /// UserPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel UserPanel;
+        
+        /// <summary>
         /// txtdevice1 control.
         /// </summary>
         /// <remarks>
@@ -130,13 +139,13 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.TextBox txtsampai;
         
         /// <summary>
-        /// btnfilter control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnfilter;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// DBDataPlaceHolder control.
@@ -146,5 +155,14 @@ namespace Telkomsat.dataasset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
+        
+        /// <summary>
+        /// lblpencarian control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpencarian;
     }
 }

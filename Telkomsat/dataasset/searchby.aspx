@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="searchby.aspx.cs" Inherits="Telkomsat.dataasset.searchby" %>
+﻿<%@ Page Title="Search By" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="searchby.aspx.cs" Inherits="Telkomsat.dataasset.searchby" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
 </asp:Content>
@@ -14,6 +14,7 @@
     <ul class="nav nav-tabs pull-right">
         <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>
     </ul>
+    <asp:Panel ID="UserPanel" runat="server" DefaultButton="Button1">
     <div class="tab-content no-padding">
         <!-- Morris chart - Sales -->
         <div class="box-body">
@@ -111,8 +112,9 @@
            
                <br />
             <div class="form-group">
-                     <button type="button" class="btn btn-info pull-right" id="btnfilter" onserverclick="Filter_Click" runat="server" style="width:30%">Filter</button>
+                <asp:Button ID="Button1" class="btn btn-info pull-right" OnClick="Filter_Click" runat="server" Text="Button"  style="width:30%" />
             </div>
+        </asp:Panel>
     </div>
     </div>
 
@@ -127,7 +129,8 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table">
-                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>
+        <asp:Label ID="lblpencarian" runat="server" Text="Data pencarian tidak ditemukan" Visible="false"></asp:Label>
             </div>
             <!-- /.table -->
             <!-- /.mail-box-messages -->

@@ -134,7 +134,7 @@ namespace Telkomsat.dataasset
 
         void tableticket()
         {
-            query = $@"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
+            query = $@"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, b.nama_bangunan, m.nama_merk, d.nama_jenis_device, r.image, p.* 
                     from as_perangkat p join as_jenis_device d on p.id_jenis_device = d.id_jenis_device left
                     join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
 					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
@@ -155,7 +155,8 @@ namespace Telkomsat.dataasset
             style3 = "font-weight:normal; font-size:14px;";
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Device</th><th>Merk</th><th>S/N</th><th>Site</th><th>Ruangan</th><th>Fungsi</th>><th>Action</th>");
+            htmlTable.Append("<tr><th>Equipment</th><th>Device</th><th>Merk</th><th>Tipe</th><th>Model</th><th>P/N</th><th>S/N</th><th>Site</th>" +
+                 "<th>Gedung</th><th>Ruangan</th><th>Rak</th><th>Fungsi</th><th>Status</th><th>Satelit</th><th>Tahun</th><th>Action</th>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -167,12 +168,21 @@ namespace Telkomsat.dataasset
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         IDdata = ds.Tables[0].Rows[i]["id_perangkat"].ToString();
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_jenis_equipment"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_merk"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["tipe_perangkat"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["model"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["pn"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_wilayah"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_bangunan"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_ruangan"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_rak"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["fungsi"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["satelit"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["tahun_pengadaan"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<a href=\"../dataasset/detail.aspx?id={IDdata}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");
 
                         htmlTable.Append("</tr>");

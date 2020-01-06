@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="alldata.aspx.cs" Inherits="Telkomsat.dataasset.alldata" %>
+﻿<%@ Page Title="Data Asset" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="alldata.aspx.cs" Inherits="Telkomsat.dataasset.alldata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -24,7 +24,7 @@ namespace Telkomsat.dataasset
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Form.DefaultButton = btnfilter.UniqueID;
+            Page.Form.DefaultButton = Button1.UniqueID;
         }
 
         public class inisial
@@ -148,7 +148,7 @@ namespace Telkomsat.dataasset
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-
+                    lblpencarian.Visible = false;
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         IDdata = ds.Tables[0].Rows[i]["id_perangkat"].ToString();
@@ -174,6 +174,10 @@ namespace Telkomsat.dataasset
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
                     DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
+                }
+                else
+                {
+                    lblpencarian.Visible = true;
                 }
             }
         }

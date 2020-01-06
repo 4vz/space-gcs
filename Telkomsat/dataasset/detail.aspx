@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="detail.aspx.cs" Inherits="Telkomsat.dataasset.detail" %>
+﻿<%@ Page Title="Detail" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="detail.aspx.cs" Inherits="Telkomsat.dataasset.detail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         #myImg {
