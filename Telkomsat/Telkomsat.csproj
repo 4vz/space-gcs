@@ -73,7 +73,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="3monthhk\add.aspx" />
+    <Content Include="3monthhk\isidata.aspx" />
     <Content Include="admin\admin.aspx" />
+    <Content Include="admin\dashboard.aspx" />
+    <Content Include="admin\dashboard.js" />
+    <Content Include="admin\datapemasukan.aspx" />
+    <Content Include="admin\detail.aspx" />
+    <Content Include="admin\download.aspx" />
+    <Content Include="admin\nominal.js" />
+    <Content Include="admin\pemasukan.aspx" />
+    <Content Include="admin\pemindahan.aspx" />
+    <Content Include="admin\pengeluaran.aspx" />
+    <Content Include="admin\pengembalian.aspx" />
+    <Content Include="admin\penyetoran.aspx" />
     <Content Include="alldatadua.aspx" />
     <Content Include="alldata.aspx" />
     <Content Include="asset\asset1.aspx" />
@@ -83,6 +96,28 @@
     <Content Include="asset\details.aspx" />
     <Content Include="asset\edit.aspx" />
     <Content Include="asset\StyleSheet1.css" />
+    <Content Include="check.aspx" />
+    <Content Include="checkhk\dataharian.aspx" />
+    <Content Include="checkhk\harian.aspx" />
+    <Content Include="checkhk\viewharian.aspx" />
+    <Content Include="checklist.css" />
+    <Content Include="checklistme\chart.aspx" />
+    <Content Include="checklistme\checkharian.aspx" />
+    <Content Include="checklistme\checklist.aspx" />
+    <Content Include="checklistme\dataharian.aspx" />
+    <Content Include="checklistme\editharian.aspx" />
+    <Content Include="checklistme\harian.aspx" />
+    <Content Include="checklistme\month\data.aspx" />
+    <Content Include="checklistme\month\isidata.aspx" />
+    <Content Include="checklistme\semester\data.aspx" />
+    <Content Include="checklistme\semester\isidata.aspx" />
+    <Content Include="checklistme\viewharian.aspx" />
+    <Content Include="checklistme\week\data.aspx" />
+    <Content Include="checklistme\week\data2.aspx" />
+    <Content Include="checklistme\week\isidata.aspx" />
+    <Content Include="checklistme\week\tes.aspx" />
+    <Content Include="checklistme\year\data.aspx" />
+    <Content Include="checklistme\year\isidata.aspx" />
     <Content Include="checklist\check.css" />
     <Content Include="checklist\checklist.aspx" />
     <Content Include="checklist\checklistgcs.aspx" />
@@ -98,6 +133,26 @@
     <Content Include="checklist\harkatt3sku.aspx" />
     <Content Include="checklist\view.aspx" />
     <Content Include="css\bs-stepper.css" />
+    <Content Include="dataasset\alldata.aspx" />
+    <Content Include="dataasset\bangunan.aspx" />
+    <Content Include="dataasset\bangunanadd.aspx" />
+    <Content Include="dataasset\data.aspx" />
+    <Content Include="dataasset\dataaset.css" />
+    <Content Include="dataasset\detail.aspx" />
+    <Content Include="dataasset\edit.aspx" />
+    <Content Include="dataasset\EmployeeService.asmx" />
+    <Content Include="dataasset\equipment.aspx" />
+    <Content Include="dataasset\filter.aspx" />
+    <Content Include="dataasset\hapus.aspx" />
+    <Content Include="dataasset\rack.aspx" />
+    <Content Include="dataasset\rackadd.aspx" />
+    <Content Include="dataasset\ruangan.aspx" />
+    <Content Include="dataasset\ruanganadd.aspx" />
+    <Content Include="dataasset\searchby.aspx" />
+    <Content Include="dataasset\serverside.aspx" />
+    <Content Include="dataasset\site.aspx" />
+    <Content Include="dataasset\siteadd.aspx" />
+    <Content Include="dataasset\tambahdata.aspx" />
     <Content Include="editfoto.aspx" />
     <Content Include="editpassword.aspx" />
     <Content Include="editprofile.aspx" />
@@ -252,6 +307,7 @@
     <Content Include="ticket\editicket.aspx" />
     <Content Include="ticket\favorit.aspx" />
     <Content Include="ticket\file.aspx" />
+    <Content Include="ticket\prioritas.aspx" />
     <Content Include="ticket\reject.aspx" />
     <Content Include="ticket\spam.aspx" />
     <Content Include="ticket\tambah.aspx" />
@@ -266,14 +322,106 @@
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebForm3.aspx" />
+    <Content Include="WebForm4.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="3MONTH.Master.cs">
+      <DependentUpon>3MONTH.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3MONTH.Master.designer.cs">
+      <DependentUpon>3MONTH.Master</DependentUpon>
+    </Compile>
+    <Compile Include="3monthhk\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3monthhk\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3monthhk\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3monthhk\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN.Master.cs">
+      <DependentUpon>ADMIN.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADMIN.Master.designer.cs">
+      <DependentUpon>ADMIN.Master</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin.aspx.cs">
       <DependentUpon>admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\datapemasukan.aspx.cs">
+      <DependentUpon>datapemasukan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\datapemasukan.aspx.designer.cs">
+      <DependentUpon>datapemasukan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\pemasukan.aspx.cs">
+      <DependentUpon>pemasukan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pemasukan.aspx.designer.cs">
+      <DependentUpon>pemasukan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\pemindahan.aspx.cs">
+      <DependentUpon>pemindahan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pemindahan.aspx.designer.cs">
+      <DependentUpon>pemindahan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\pengeluaran.aspx.cs">
+      <DependentUpon>pengeluaran.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pengeluaran.aspx.designer.cs">
+      <DependentUpon>pengeluaran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\pengembalian.aspx.cs">
+      <DependentUpon>pengembalian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pengembalian.aspx.designer.cs">
+      <DependentUpon>pengembalian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\penyetoran.aspx.cs">
+      <DependentUpon>penyetoran.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\penyetoran.aspx.designer.cs">
+      <DependentUpon>penyetoran.aspx</DependentUpon>
     </Compile>
     <Compile Include="alldatadua.aspx.cs">
       <DependentUpon>alldatadua.aspx</DependentUpon>
@@ -331,12 +479,173 @@
     <Compile Include="asset\edit.aspx.designer.cs">
       <DependentUpon>edit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="check.aspx.cs">
+      <DependentUpon>check.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="check.aspx.designer.cs">
+      <DependentUpon>check.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkhk\dataharian.aspx.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\dataharian.aspx.designer.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkhk\harian.aspx.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\harian.aspx.designer.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkhk\viewharian.aspx.cs">
+      <DependentUpon>viewharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\viewharian.aspx.designer.cs">
+      <DependentUpon>viewharian.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CHECKLIST.Master.cs">
       <DependentUpon>CHECKLIST.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CHECKLIST.Master.designer.cs">
       <DependentUpon>CHECKLIST.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CHECKLISTHK.Master.cs">
+      <DependentUpon>CHECKLISTHK.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHECKLISTHK.Master.designer.cs">
+      <DependentUpon>CHECKLISTHK.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CHECKLISTME.Master.cs">
+      <DependentUpon>CHECKLISTME.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHECKLISTME.Master.designer.cs">
+      <DependentUpon>CHECKLISTME.Master</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\chart.aspx.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\chart.aspx.designer.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\checkharian.aspx.cs">
+      <DependentUpon>checkharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\checkharian.aspx.designer.cs">
+      <DependentUpon>checkharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\checklist.aspx.cs">
+      <DependentUpon>checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\checklist.aspx.designer.cs">
+      <DependentUpon>checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\dataharian.aspx.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\dataharian.aspx.designer.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\editharian.aspx.cs">
+      <DependentUpon>editharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\editharian.aspx.designer.cs">
+      <DependentUpon>editharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\harian.aspx.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\harian.aspx.designer.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\month\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\month\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\semester\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\semester\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\semester\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\semester\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\viewharian.aspx.cs">
+      <DependentUpon>viewharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\viewharian.aspx.designer.cs">
+      <DependentUpon>viewharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\week\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\week\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\week\data2.aspx.cs">
+      <DependentUpon>data2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\week\data2.aspx.designer.cs">
+      <DependentUpon>data2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\week\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\week\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\week\tes.aspx.cs">
+      <DependentUpon>tes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\week\tes.aspx.designer.cs">
+      <DependentUpon>tes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\year\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\year\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\year\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\year\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklist\checklist.aspx.cs">
       <DependentUpon>checklist.aspx</DependentUpon>
@@ -429,6 +738,158 @@
     </Compile>
     <Compile Include="checklist\view.aspx.designer.cs">
       <DependentUpon>view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CHECKMEWEEK.Master.cs">
+      <DependentUpon>CHECKMEWEEK.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHECKMEWEEK.Master.designer.cs">
+      <DependentUpon>CHECKMEWEEK.Master</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\alldata.aspx.cs">
+      <DependentUpon>alldata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\alldata.aspx.designer.cs">
+      <DependentUpon>alldata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\bangunan.aspx.cs">
+      <DependentUpon>bangunan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\bangunan.aspx.designer.cs">
+      <DependentUpon>bangunan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\bangunanadd.aspx.cs">
+      <DependentUpon>bangunanadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\bangunanadd.aspx.designer.cs">
+      <DependentUpon>bangunanadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\EmployeeService.asmx.cs">
+      <DependentUpon>EmployeeService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dataasset\equipment.aspx.cs">
+      <DependentUpon>equipment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\equipment.aspx.designer.cs">
+      <DependentUpon>equipment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\Handler1.ashx.cs">
+      <DependentUpon>Handler1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\Handler3.ashx.cs">
+      <DependentUpon>Handler3.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\HandlerDevice.ashx.cs">
+      <DependentUpon>HandlerDevice.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\HandlerSite.ashx.cs">
+      <DependentUpon>HandlerSite.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\HandlerSN.ashx.cs">
+      <DependentUpon>HandlerSN.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\hapus.aspx.cs">
+      <DependentUpon>hapus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\hapus.aspx.designer.cs">
+      <DependentUpon>hapus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\rack.aspx.cs">
+      <DependentUpon>rack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\rack.aspx.designer.cs">
+      <DependentUpon>rack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\rackadd.aspx.cs">
+      <DependentUpon>rackadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\rackadd.aspx.designer.cs">
+      <DependentUpon>rackadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\ruangan.aspx.cs">
+      <DependentUpon>ruangan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\ruangan.aspx.designer.cs">
+      <DependentUpon>ruangan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\ruanganadd.aspx.cs">
+      <DependentUpon>ruanganadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\ruanganadd.aspx.designer.cs">
+      <DependentUpon>ruanganadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\searchby.aspx.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\searchby.aspx.designer.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\serverside.aspx.cs">
+      <DependentUpon>serverside.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\serverside.aspx.designer.cs">
+      <DependentUpon>serverside.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\site.aspx.cs">
+      <DependentUpon>site.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\site.aspx.designer.cs">
+      <DependentUpon>site.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\siteadd.aspx.cs">
+      <DependentUpon>siteadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\siteadd.aspx.designer.cs">
+      <DependentUpon>siteadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\tambahdata.aspx.cs">
+      <DependentUpon>tambahdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\tambahdata.aspx.designer.cs">
+      <DependentUpon>tambahdata.aspx</DependentUpon>
     </Compile>
     <Compile Include="editfoto.aspx.cs">
       <DependentUpon>editfoto.aspx</DependentUpon>
@@ -1040,6 +1501,13 @@
     <Compile Include="ticket\file.aspx.designer.cs">
       <DependentUpon>file.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ticket\prioritas.aspx.cs">
+      <DependentUpon>prioritas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\prioritas.aspx.designer.cs">
+      <DependentUpon>prioritas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ticket\reject.aspx.cs">
       <DependentUpon>reject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1110,6 +1578,13 @@
     <Compile Include="WebForm3.aspx.designer.cs">
       <DependentUpon>WebForm3.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm4.aspx.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm4.aspx.designer.cs">
+      <DependentUpon>WebForm4.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LOGBOOK.Master" />
@@ -1117,6 +1592,16 @@
     <Content Include="KNOWLEDGE.Master" />
     <Content Include="KnowledgeFIle.Master" />
     <Content Include="CHECKLIST.Master" />
+    <Content Include="ADMIN.Master" />
+    <Content Include="CHECKLISTME.Master" />
+    <Content Include="CHECKMEWEEK.Master" />
+    <Content Include="CHECKLISTHK.Master" />
+    <Content Include="3MONTH.Master" />
+    <Content Include="dataasset\Handler1.ashx" />
+    <Content Include="dataasset\Handler3.ashx" />
+    <Content Include="dataasset\HandlerDevice.ashx" />
+    <Content Include="dataasset\HandlerSite.ashx" />
+    <Content Include="dataasset\HandlerSN.ashx" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <Content Include="TICKETMASTER.Master" />
@@ -1130,6 +1615,7 @@
   <ItemGroup>
     <Folder Include="affident\" />
     <Folder Include="cropimag\" />
+    <Folder Include="evidence\" />
     <Folder Include="fileupload\" />
     <Folder Include="knowledge\Data\" />
   </ItemGroup>

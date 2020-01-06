@@ -31,7 +31,7 @@
                 <asp:ListItem>--Kategori--</asp:ListItem>
                 <asp:ListItem>Quality factor data ranging</asp:ListItem>
                 <asp:ListItem>Readiness perangkat ranging</asp:ListItem>
-                <asp:ListItem>readiness perangkat pengendalian MCS</asp:ListItem>
+                <asp:ListItem>Readiness perangkat pengendalian MCS</asp:ListItem>
                 <asp:ListItem>Readiness perangkat pengendalian BCS</asp:ListItem>
                 <asp:ListItem>Perangkat Engineering</asp:ListItem>
                 <asp:ListItem>Readiness perangkat monitoring transponder</asp:ListItem>

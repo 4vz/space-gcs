@@ -1,0 +1,35 @@
+﻿h4 {
+    position: relative;
+    font-size: 16px;
+    font-family:Constantia;
+    z-index: 1;
+    overflow: hidden;
+    text-align: center;
+}
+
+    h4:before, h4:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 50%;
+        height: 1px;
+        content: '\a0';
+        background-color: gray;
+    }
+
+    h4:before {
+        margin-left: -50%;
+        text-align: right;
+    }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    background-color:gray;
+}
+
+.ddlasset{
+    width:100%;
+}
+
+.alert{
+    padding:5px;
+}

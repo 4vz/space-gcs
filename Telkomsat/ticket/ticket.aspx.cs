@@ -108,7 +108,7 @@ namespace Telkomsat.ticket
                             style1 = "label-info";
                         else if (statuss == "incomplete")
                             style1 = "label-warning";
-                        else if (statuss == "confirm")
+                        else if (statuss == "close")
                             style1 = "label-success";
 
                         int index = Convert.ToInt32(ds.Tables[0].Rows[i]["id_ticket"].ToString());

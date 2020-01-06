@@ -66,7 +66,8 @@
             <br />
             <asp:Label ID="WAKTULabel" runat="server" class="waktuLB" Text='<%# ((DateTime)Eval("WAKTU")).ToString("dd/MM/yyyy") %>' />
             <br />
-            <asp:Label ID="AKTIVITASLabel" runat="server" class="aktivitasLB1" Text='<%# Eval("POSTING") %>' />
+            <br />
+            <asp:Label ID="AKTIVITASLabel" runat="server" style="white-space: pre-line;" class="aktivitasLB1" Text='<%# Eval("POSTING") %>' />
             <br />
             <asp:Image ID="Image1" runat="server" Height="300px" ImageUrl='<%# Eval("GAMBAR1")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("GAMBAR1")) %>'/>
             <asp:Image ID="Image2" runat="server" Height="300px" ImageUrl='<%# Eval("GAMBAR2")==DBNull.Value ? null : "data:Image/png;base64,"+Convert.ToBase64String((byte[])Eval("GAMBAR2")) %>'/>

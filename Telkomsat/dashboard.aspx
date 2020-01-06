@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Dashboard</title>
+    <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
@@ -25,6 +28,11 @@
     <style type="text/css">
         #example2 th, td {
             white-space: nowrap;
+        }
+        #peta {
+          width: 100%;
+          height: 400px;
+
         }
     </style>
     
@@ -51,7 +59,7 @@
             <li><a href="../asset/home.aspx">Data Asset</a></li>
               <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
-              <li><a href="../checklist/checklistgcs.aspx">Checklist</a></li>
+              <li><a href="../checklistme/harian.aspx">Checklist</a></li>
               <li><a href="../ticket/ticket.aspx">Ticket</a></li>
           </ul>
           
@@ -124,62 +132,71 @@
       <section class="content">
       <div class="row" style="height:auto">
           <div class="col-lg-9 col-xs-12 col-sm-9 col-md-9">
-          <div class="box box-default">
-                <div class="box-header with-border">
-                    Gound Control System
-                </div>
-              <a href="profileperson.aspx">
-                <div class="box-body" style="width:100%; margin:0 auto;">
+          <div class="nav-tabs-custom">
+
+                    <ul class="nav nav-tabs pull-right">
+                      <li class="active"><a href="#foto" data-toggle="tab">Dokumentasi</a></li>
+                      <li><a href="#lokasi" data-toggle="tab">Lokasi</a></li>
+                      <li class="pull-left header"><i class="fa fa-inbox"></i> Ground Control System</li>
+                    </ul>
+              
+                <div class="tab-content no-padding">
+                    <div id="lokasi" class="tab-pane fade">
+                        <div id="peta"></div>
+                    </div>
+                    <div id="foto" class="tab-pane fade in active">
+                        <a href="profileperson.aspx">
                     		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>	
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-			</ol>
+			                <ol class="carousel-indicators">
+				                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				                <li data-target="#myCarousel" data-slide-to="1"></li>
+				                <li data-target="#myCarousel" data-slide-to="2"></li>	
+                                <li data-target="#myCarousel" data-slide-to="3"></li>
+			                </ol>
  
-			<!-- deklarasi carousel -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="img/capture.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
-					<div class="carousel-caption">
-						<h3>Satellite Operation Cibinong</h3>
-					</div>
-				</div>
-				<div class="item">
-					<img src="img/ba.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
-					<div class="carousel-caption">
-						<p>Saling berbagi kesusahan dan kemudahan</p>
-					</div>
-				</div>
-				<div class="item">
-					<img src="img/bb.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
-					<div class="carousel-caption">
-						<p>Saling terbuka untuk menjadi lebih baik</p>
-					</div>
-				</div>		
-                <div class="item">
-					<img src="img/bc.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
-					<div class="carousel-caption">
-						<p>Kehangatan dan kebersamaan tidak hanya didapat di kantor</p>
-					</div>
-				</div>			
-			</div>
+			                <!-- deklarasi carousel -->
+			                <div class="carousel-inner" role="listbox">
+				                <div class="item active">
+					                <img src="img/capture.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					                <div class="carousel-caption">
+						                <h3>Satellite Operation Cibinong</h3>
+					                </div>
+				                </div>
+				                <div class="item">
+					                <img src="img/ba.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					                <div class="carousel-caption">
+						                <p>Saling berbagi kesusahan dan kemudahan</p>
+					                </div>
+				                </div>
+				                <div class="item">
+					                <img src="img/bb.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					                <div class="carousel-caption">
+						                <p>Saling terbuka untuk menjadi lebih baik</p>
+					                </div>
+				                </div>		
+                                <div class="item">
+					                <img src="img/bc.jpg" alt="" style="max-height:100%; max-width:100%" width="1100"/>
+					                <div class="carousel-caption">
+						                <p>Kehangatan dan kebersamaan tidak hanya didapat di kantor</p>
+					                </div>
+				                </div>			
+			                </div>
  
-			<!-- membuat panah next dan previous -->
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
-
+			                <!-- membuat panah next dan previous -->
+			                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				                <span class="sr-only">Previous</span>
+			                </a>
+			                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				                <span class="sr-only">Next</span>
+			                </a>
+		                </div>
+                        </a>
+                    </div>
                 </div>
-               </a>
+               
             </div>
             </div>
           <button type="button" visible="false" id="Button1" style="float:right; color:darkred; background-color:transparent" data-toggle="modal" data-target="#exampleModalButton" class="btn-file" runat="server"><i class="fa fa-plus" style="font-size:12px"></i>
@@ -548,7 +565,63 @@
     <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXJtWR3xFFcpCXG971HMX6zdCjm8BRHzU&libraries=places,geometry&v=3"></script>
+   <script type="text/javascript">
+       (function() {
+  window.onload = function() {
+var map;
+    //Parameter Google maps
+    var options = {
+      zoom: 5, //level zoom
+	  //posisi tengah peta
+      center: new google.maps.LatLng(-1.104140,113.769642),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+	
+	 // Buat peta di 
+    var map = new google.maps.Map(document.getElementById('peta'), options);
+	 // Tambahkan Marker 
+     var locations = [
+               		    ['Telkom Cibinong', -6.4480592, 106.9362584],
+                   		['Telkom Banjarmasin', -3.328096, 114.583624],
+                   		['Telkom Manado', 1.4868708, 124.8432774],
+                   		['Telkom Medan', 3.5827399, 98.6896095], 		
     
+    ];
+	  var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+     /* kode untuk menampilkan banyak marker */
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+		 icon: 'anten.png'
+      });
+     /* menambahkan event clik untuk menampikan
+     	 infowindows dengan isi sesuai denga
+	    marker yang di klik */
+		
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  
+
+  };
+})();
+
+	</script>
+    <script>
+        $(document).ready(function(){
+          $(".nav-tabs a").click(function(){
+            $(this).tab('show');
+          });
+        });
+</script>
    <script>
        $(function () {
           $("#example2").DataTable({

@@ -21,7 +21,6 @@ namespace Telkomsat.knowledge
 
             string link = (HttpContext.Current.Request.Url.PathAndQuery);
             string parse = link.Remove(0, 27);
-            Response.Write(parse);
             int ID = Convert.ToInt32(parse);
             if (sqlCon2.State == ConnectionState.Closed)
                 sqlCon2.Open();

@@ -19,6 +19,8 @@ namespace Telkomsat.checklist
         string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, divisi = "", style2 = "a", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
         string Parameter = "a", divisireply = "A", idddl = "s", value = "1", idtxt = "A", loop="";
         string[] words = { "a", "a" };
+        string[] akhir;
+        int j = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
@@ -61,7 +63,10 @@ namespace Telkomsat.checklist
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Write(HiddenField1.Value);
+            string data = string.Join("\n", akhir);
+            string query1 = $"insert into check (a,b,v) values {data}";
+            Response.Write(query1);
+
         }
 
 
@@ -76,7 +81,8 @@ namespace Telkomsat.checklist
                             where(ID_tgl = (select max(ID_tgl)from check_status s join check_parameter r on r.ID_Parameter = s.ID_paramater
                             join check_perangkat p on p.ID_Perangkat = r.ID_Perangkat where p.Shelter = 'mpsat')) and p.Shelter = 'mpsat' order by p.Rack, r.ID_Parameter";
             //else
-              //  query = $"SELECT * FROM ticket_user WHERE statusticket != 'delete' and divisiuser = '{divisi}' order by id_ticket desc";
+            //  query = $"SELECT * FROM ticket_user WHERE statusticket != 'delete' and divisiuser = '{divisi}' order by id_ticket desc";
+            string tanggal = DateTime.Now.ToString("dd/MM/yyyy");
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -84,17 +90,7 @@ namespace Telkomsat.checklist
             sqlCon.Open();
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            /*if (Session["jenis1"].ToString() == "tcc")
-            {
-                jenisedit = "visible";
-                jenisview = "hidden";
-            }
-            else
-            {
-                jenisedit = "hidden";
-                jenisview = "visible";
-            }*/
-            
+
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
@@ -102,6 +98,10 @@ namespace Telkomsat.checklist
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
+
+            int count = ds.Tables[0].Rows.Count;
+            string[] looping = new string[count];
+            akhir = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -129,11 +129,16 @@ namespace Telkomsat.checklist
                         else
                             style3 = "font-weight:normal";
 
+                        if (Perangkat == "UP CONVERTER")
+                            style1 = "2";
+                        else
+                            style1 = "0";
+
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + $"<input type =\"checkbox\" runat=\"server\" class=\"chkCheckBoxId\" name=\"idticket\" value={IDdata}>" + " </td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["Perangkat"] + "</label>" + "</td>");
+                        htmlTable.Append($"<td rowspan=\"{style1}\">" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["Perangkat"] + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["S/N"] + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["Parameter"] + "</label>" + "</td>");
                         if (Parameter != "Status")
@@ -143,14 +148,15 @@ namespace Telkomsat.checklist
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];
                         //Response.Write(value);
-                        
+
+                        looping[i] = IDdata;
                         
                         //Response.Write( "bisa" + words[1]);
                         int j = i - 1;
                         //Response.Write(seats);
                         //looping = "('" + IDdata + "'," + seats + "),";
-                        loop = loop + "," + IDdata;
-
+                        loop = IDdata + "," + loop;
+                        
                     }
                     if (value != null)
                     {
@@ -159,9 +165,11 @@ namespace Telkomsat.checklist
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
+                            akhir[j] = "(" + "'" + looping[j] + "'," + "'" + tanggal + "'," + line + "), ";
+                            j++;
                         }
                     }
-                    Response.Write(value);
+                    //Response.Write(string.Join("\n", akhir));
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
                     

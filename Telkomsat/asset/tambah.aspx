@@ -19,6 +19,21 @@
         <table>
             <tr>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
+                    <asp:Label ID="Label66" class="lbl" runat="server">Jenis <span class="spn"> * </span></asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="titikdua">
+                    <asp:Label ID="Label67" runat="server" >:</asp:Label>
+                </td>
+                <td style="padding-bottom:10px;" class="tdtext">
+                    <asp:DropDownList ID="ddlperangkat" runat="server" CssClass="tb1" Width="340px" onchange="GetTeam(this);">
+                    </asp:DropDownList>
+                </td>
+                <td rowspan="18" style="padding-left:70px">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
                     <asp:Label ID="Label17" class="lbl" runat="server">Jenis Equipment <span class="spn"> * </span></asp:Label>
                 </td>
                 <td style="padding-bottom:10px;" class="titikdua">
@@ -38,7 +53,7 @@
                         <asp:ListItem>ELECTRICAL</asp:ListItem>
                         <asp:ListItem>GENSET</asp:ListItem>
                         <asp:ListItem>AIR CONDITIONING</asp:ListItem>
-                        <asp:ListItem>UPS</asp:ListItem>
+                        <asp:ListItem>UPS</asp:ListItem> 
                         <asp:ListItem>HYDRANT</asp:ListItem>
                         <asp:ListItem>FIRE ALARM PROTECTION</asp:ListItem>
                     </asp:DropDownList>

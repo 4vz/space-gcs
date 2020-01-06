@@ -4,7 +4,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
     <title>Login</title>
+    <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link href="./assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />

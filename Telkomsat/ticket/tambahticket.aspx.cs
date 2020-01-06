@@ -32,8 +32,8 @@ namespace Telkomsat.ticket
 
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            SqlCommand sqlCmd = new SqlCommand($@"INSERT INTO ticket_user (nama_user, tanggal, nomor_hp, subject, keterangan, prioritas, status, statusticket, divisiuser, divisireply)
-                                            VALUES ('{nama.Value}','{datetime1}', '{nomor.Value}', '{subject.Value}', '{keterangan.Value}', '{radio}', 'sent', 'unread', '{divisiuser}', '{divisiuser}'); Select Scope_Identity();", sqlCon);
+            SqlCommand sqlCmd = new SqlCommand($@"INSERT INTO ticket_user (nama_user, kategori, tanggal, nomor_hp, subject, keterangan, prioritas, status, statusticket, divisiuser, divisireply)
+                                            VALUES ('{nama.Value}', '{ddlKategori.Text}', '{datetime1}', '{nomor.Value}', '{subject.Value}', '{keterangan.Value}', '{radio}', 'sent', 'unread', '{divisiuser}', '{divisiuser}'); Select Scope_Identity();", sqlCon);
             int i = Convert.ToInt32(sqlCmd.ExecuteScalar());
             sqlCon.Close();
             

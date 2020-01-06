@@ -110,7 +110,7 @@ namespace Telkomsat.ticket
                             style1 = "btn-info";
                         else if (statuss == "incomplete")
                             style1 = "btn-warning";
-                        else if (statuss == "confirm")
+                        else if (statuss == "close")
                             style1 = "btn-success";
 
                         int index = Convert.ToInt32(ds.Tables[0].Rows[i]["id_ticket"].ToString());

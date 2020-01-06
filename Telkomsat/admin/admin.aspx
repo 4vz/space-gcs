@@ -40,8 +40,6 @@
     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="../asset/home.aspx"><b>Home </b></a> </li>
-            <li><a href="../asset/tambah.aspx"><b>Input Database </b></a></li>
-            <li><a href="../asset/searchby.aspx"><b>Search by </b></a></li>
         </ul>
     </div>
 
@@ -129,17 +127,17 @@
         <li class="header">PENGELOLAAN</li>
         <li class="treeview">
           <a href="../asset/chart.aspx">
-            <i class="fa fa-space-shuttle"></i> <span>Pemasukan</span>
+            <i class="fa fa-arrow-right"></i> <span>Pemasukan</span>
           </a>
         </li>
         <li class="treeview">
           <a href="../asset/chart.aspx">
-            <i class="fa fa-space-shuttle"></i> <span>Pengeluaran</span>
+            <i class="fa fa-arrow-left"></i> <span>Pengeluaran</span>
           </a>
         </li>
           <li class="treeview">
           <a href="../asset/chart.aspx">
-            <i class="fa fa-space-shuttle"></i> <span>Pemindahan</span>
+            <i class="fa fa-exchange"></i> <span>Pemindahan</span>
           </a>
         </li>
         
@@ -157,11 +155,17 @@
     
   </aside>
     
-        <div class="content-wrapper">
+<div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Administrator
+            <small>GCS</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><asp:Label ID="lblTime" class="waktu" runat="server" Text="Label"></asp:Label> </li>
+          </ol>
+        </section>
             <section class="content">
-            <div class="waktu">
-                <asp:Label ID="lblTime" runat="server" Text="Label"></asp:Label>  
-            </div>
                 <div class="row">
                     <div class="col-lg-4 col-xs-12">
                       <!-- small box -->
@@ -246,6 +250,145 @@
                         </div>
                       </div>
                     </section>
+                    <section class="col-lg-5 connectedSortable">
+
+            <div class="box box-solid">
+            <div class="box-header">
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-default btn-sm pull-right" data-widget="collapse"
+                        data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+              <!-- /. tools -->
+
+              <i class="fa fa-newspaper-o"></i>
+
+              <h3 class="box-title">
+                Update Info
+              </h3>
+            </div>
+            <div class="box-body">
+              <div style="height: 250px; width: 100%;"></div>
+            </div>
+            <!-- /.box-body-->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div class="knob-label">Visitors</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div class="knob-label">Online</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <div class="knob-label">Exists</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+
+
+          <div class="box box-solid">
+            <div class="box-header">
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-default btn-sm pull-right" data-widget="collapse"
+                        data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+              <!-- /. tools -->
+
+              <i class="fa fa-map-marker"></i>
+
+              <h3 class="box-title">
+                Saldo
+              </h3>
+            </div>
+            <div class="box-body">
+              <div id="world-map" style="height: 250px; width: 100%;"></div>
+            </div>
+            <!-- /.box-body-->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div id="sparkline-1"></div>
+                  <div class="knob-label">Visitors</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <div id="sparkline-2"></div>
+                  <div class="knob-label">Online</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <div id="sparkline-3"></div>
+                  <div class="knob-label">Exists</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.box -->
+
+          <!-- solid sales graph -->
+          
+          <!-- /.box -->
+
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Browser Usage</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="chart-responsive">
+                    <canvas id="pieChart" height="150"></canvas>
+                  </div>
+                  <!-- ./chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
+                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
+                    <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
+                    <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
+                    <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                  </ul>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">United States of America
+                  <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
+                <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+                </li>
+                <li><a href="#">China
+                  <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+              </ul>
+            </div>
+            <!-- /.footer -->
+          </div>
+          <!-- /.box -->
+
+        </section>
                 </div>
             </section>
         </div>
@@ -276,7 +419,7 @@
         $('.ajax-content').html('<hr>Ajax Request Completed !')
       }
     })
-        })
+  })
 
         function btnsubmit() {
             var inputdata = document.getElementById("inp").value;

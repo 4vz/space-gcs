@@ -247,7 +247,7 @@ namespace Telkomsat.ticket
         protected void Confirm_ServerClick(object sender, EventArgs e)
         {
             sqlCon2.Open();
-            queryupdate = $"UPDATE ticket_user SET status = 'confirm' WHERE id_ticket = {ID}";
+            queryupdate = $"UPDATE ticket_user SET status = 'close' WHERE id_ticket = {ID}";
             SqlCommand cmd = new SqlCommand(queryupdate, sqlCon2);
             cmd.ExecuteNonQuery();
             sqlCon2.Close();

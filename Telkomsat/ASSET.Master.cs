@@ -15,21 +15,17 @@ namespace Telkomsat
     {
         string user;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["username"] != null)
-            {
-                user = Session["username"].ToString();
-                
-            }
 
-            else
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            /*if (Session["username"] == null || Session["username"].ToString() == "")
             {
                 Response.Redirect("~/login.aspx", true);
-                //Response.Write(Session["usertest"]);
-            }
-                
-
+            }*/
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            /*user = Session["username"].ToString();
             if (!IsPostBack)
             {
 
@@ -55,11 +51,11 @@ namespace Telkomsat
             DataList1.DataSource = dtbl;
             DataList1.DataBind();
 
-            lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            //lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
 
             lblProfile.Text = Session["username"].ToString();
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile1.Text = Session["username"].ToString();*/
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

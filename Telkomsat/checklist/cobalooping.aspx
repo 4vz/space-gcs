@@ -35,6 +35,7 @@
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <input type="button" value="display" id="disp1" runat="server" onserverclick="disp_ServerClick" style="visibility:hidden"/>
     <input type="button" value="display" runat="server" id="dispdelete1" onserverclick="dispdelete_ServerClick"/>
+    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
     <!-- /.col -->
     
     <script type="text/javascript">
@@ -102,7 +103,7 @@
             }
         }
     }
-        }
+}
 
        
     </script>

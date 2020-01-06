@@ -51,6 +51,7 @@
         <asp:Label ID="lblStatus" runat="server" class="kategoriLB" Text='<%# Eval("status") %>' />
     </span>
     <br />
+        <asp:Label ID="Label3" style="white-space: pre-line; font-size:13px" runat="server" class="aktivitasLB1 pdg" Text='<%# Eval("kategori") %>' />
         <br />
         <br />
     <asp:Label ID="AKTIVITASLabel" style="white-space: pre-line;" runat="server" class="aktivitasLB1 pdg" Text='<%# Eval("keterangan") %>' />
@@ -80,7 +81,7 @@
             <button type="button" id="btnreject" class="btn btn-danger" runat="server" onclick="if (confirm('Sure reject?')) return" onserverclick="Rejected_ServerClick"><i class="fa fa-close"></i> Rejected</button>
             <button type="button" id="btncomplete" class="btn btn-success" runat="server" visible="false" data-toggle="modal" data-target="#modaltiket"><i class="fa fa-check"></i> Completed</button>
             
-            <button type="button" id="btnconfirm" class="btn btn-info" runat="server" visible="false" onclick="if (confirm('Sure confirm?')) return" onserverclick="Confirm_ServerClick"><i class="fa fa-check-square"></i> Confirm</button>
+            <button type="button" id="btnconfirm" class="btn btn-info" runat="server" visible="false" onclick="if (confirm('Sure confirm?')) return" onserverclick="Confirm_ServerClick"><i class="fa fa-check-square"></i> Close</button>
                 
         </div>
         <button type="button" class="btn btn-default" onclick="reply()"><i class="fa fa-reply"></i> Reply</button>

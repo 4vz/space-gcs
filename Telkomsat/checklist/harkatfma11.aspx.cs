@@ -18,6 +18,7 @@ namespace Telkomsat.checklist
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
         DataSet dst = new DataSet();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM check_perangkat WHERE Shelter = 'FMA-11' ORDER BY Rack, ID_Perangkat", con);

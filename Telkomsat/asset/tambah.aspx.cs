@@ -27,6 +27,16 @@ namespace Telkomsat.asset
             {
 
             }
+            string com = "SELECT NAMA FROM Asset1 WHERE NAMA IS NOT NULL group by NAMA";
+            SqlDataAdapter adpt = new SqlDataAdapter(com, sqlCon);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            ddlperangkat.DataSource = dt;
+            ddlperangkat.DataBind();
+            ddlperangkat.DataTextField = "NAMA";
+            ddlperangkat.DataValueField = "NAMA";
+            ddlperangkat.DataBind();
+
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
 
