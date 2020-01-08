@@ -17,13 +17,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Start Date</label>
-                        <input type="text" class="form-control pull-right" id="txtsdate" runat="server"/>
+                        <input type="text" class="form-control pull-right" id="txtsdate" autocomplete="off" runat="server"/>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">End Date</label>
-                        <input type="text" class="form-control pull-right" id="dateend" runat="server"/>
+                        <input type="text" class="form-control pull-right" id="dateend" autocomplete="off" runat="server"/>
                     </div>
                 </div>
                 <div class="col-md-4">

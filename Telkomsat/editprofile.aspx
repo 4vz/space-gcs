@@ -95,7 +95,14 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/user.jpg" class="img-circle" alt="User Image"/>
+                <asp:DataList runat="server" id="dtContact" Width="100%"> 
+        <ItemTemplate>
+                <div class="widget-user-image">
+                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
+                </div>
+        </ItemTemplate>
+
+    </asp:DataList>
 
                 <p><a href="../profile.aspx">
                   Edit Profile

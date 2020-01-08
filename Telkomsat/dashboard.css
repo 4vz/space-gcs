@@ -49,15 +49,15 @@
     font-size: 14px;
 }
 
-.eventdashboard{
-    font-family:Cambria;
-
-
+.eventdashboard {
+    font-family: Cambria;
+    max-width: 100%;
 }
 .event {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #808080;
     font-size: 14px;
+    max-width:100%;
 }
 
 .dtAssets{

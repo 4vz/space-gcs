@@ -112,7 +112,7 @@
            
                <br />
             <div class="form-group">
-                <asp:Button ID="Button1" class="btn btn-info pull-right" OnClick="Filter_Click" runat="server" Text="Button"  style="width:30%" />
+                <asp:Button ID="Button1" class="btn btn-info pull-right" OnClick="Filter_Click" runat="server" Text="Filter"  style="width:30%" />
             </div>
         </asp:Panel>
     </div>

@@ -85,7 +85,7 @@
             </li>
         </ul>
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KNOWLEDGEConnectionString2 %>" SelectCommand="SELECT * FROM [LOGBOOK]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GCSConnectionString %>" SelectCommand="SELECT * FROM [LOGBOOK]"></asp:SqlDataSource>
 </form>
 </body>
 </html>

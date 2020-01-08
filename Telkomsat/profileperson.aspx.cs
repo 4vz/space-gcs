@@ -37,6 +37,22 @@ namespace Telkomsat
             dtContact.DataBind();
             lblProfile1.Text = Session["username"].ToString();
 
+            if (!IsPostBack)
+            {
+                sqlCon2.Open();
+                SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon2);
+                sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlCmd.SelectCommand.Parameters.AddWithValue("@user", lblProfile1.Text);
+                DataTable dtbl1 = new DataTable();
+                sqlCmd.Fill(dtbl1);
+                DataList1.DataSource = dtbl1;
+                DataList1.DataBind();
+                //DataList2.DataSource = dtbl1;
+                //DataList2.DataBind();
+                sqlCon2.Close();
+            }
+
+
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {

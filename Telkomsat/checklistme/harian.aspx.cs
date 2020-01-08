@@ -17,7 +17,7 @@ namespace Telkomsat.checklistme
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-
+        string saat, user;
         
         string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
         string[] words = { "a", "a" };
@@ -37,6 +37,10 @@ namespace Telkomsat.checklistme
                 Button1.Visible = false;
             }
 
+            if(Session["iduser"] != null)
+            {
+                user = Session["iduser"].ToString();
+            }
 
             date = DateTime.Now.ToString("yyyy/MM/dd");
 
@@ -49,17 +53,17 @@ namespace Telkomsat.checklistme
             {
                 if ((now > satu) && (now < dua))
                 {
-                    ddlwaktu.Text = "pagi";
+                    DropDownList1.Text = "pagi";
                     waktu = "pagi";
                 }
                 if ((now > dua) && (now < tiga))
                 {
-                    ddlwaktu.Text = "siang";
+                    DropDownList1.Text = "siang";
                     waktu = "siang";
                 }
                 if ((now > tiga) && (now < satu))
                 {
-                    ddlwaktu.Text = "malam";
+                    DropDownList1.Text = "malam";
                     waktu = "malem";
                 }
             }
@@ -89,7 +93,7 @@ namespace Telkomsat.checklistme
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"editharian.aspx?room={room}&waktu={ddlwaktu.Text}");
+            Response.Redirect($"editharian.aspx?room={room}&waktu={saat}");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -109,7 +113,7 @@ namespace Telkomsat.checklistme
             sqlCon.Close();
 
             Session["inisial"] = null;
-
+            lblsave.Visible = true;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 
@@ -234,7 +238,7 @@ namespace Telkomsat.checklistme
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] +  "','" + ddlwaktu.Text + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + user + "','" + looping[j] +  "','" + DropDownList1.Text + "','" + line + "')";
                             j++;
                         }
                     }

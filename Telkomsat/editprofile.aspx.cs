@@ -52,6 +52,18 @@ namespace Telkomsat
                     txtttl.Value = ttl;
                 else
                     txtttl.Value = "";
+
+                sqlCon2.Open();
+                SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon2);
+                sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlCmd.SelectCommand.Parameters.AddWithValue("@user", user);
+                DataTable dtbl1 = new DataTable();
+                sqlCmd.Fill(dtbl1);
+                dtContact.DataSource = dtbl1;
+                dtContact.DataBind();
+                //DataList2.DataSource = dtbl1;
+                //DataList2.DataBind();
+                sqlCon2.Close();
             }
 
             lblProfile1.Text = Session["username"].ToString();

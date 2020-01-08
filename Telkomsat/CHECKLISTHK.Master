@@ -64,6 +64,8 @@
           <ul class="nav navbar-nav">
             <li><a href="../checkhk/harian.aspx">Tambah Checklist</a></li>
               <li><a href="../checkhk/dataharian.aspx">Data</a></li>
+              <li><a href="../checkhk/harian.aspx">Harkat</a></li>
+            <li><a href="../checklistme/harian.aspx">ME</a></li>
           </ul>
           
         </div>

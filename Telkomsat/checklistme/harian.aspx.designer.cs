@@ -13,6 +13,15 @@ namespace Telkomsat.checklistme {
     public partial class harian {
         
         /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
         /// lblroom control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace Telkomsat.checklistme {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// ddlwaktu control.
+        /// lblsave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlwaktu;
+        protected global::System.Web.UI.WebControls.Label lblsave;
         
         /// <summary>
         /// lbledit control.

@@ -20,12 +20,10 @@
     <link href="stylepagination.css" rel="stylesheet" />
     <link href="profile.css" rel="stylesheet" type="text/css"/>
     <link href="profile2.css" rel="stylesheet" />
-    <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
     <script src="js/jquery.min.js"></script>  
-    <script src="js/jquery.Jcrop.js"></script>  
+    <script src="js/jquery.Jcrop.min.js"></script>  
     <script type="text/javascript">  
         $(document).ready(function() {  
             $('#<%=cropimage1.ClientID%>').Jcrop({  
@@ -56,9 +54,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../asset/home.aspx">Data Asset</a></li>
+             <li><a href="../dataasset/alldata.aspx">Data Asset</a></li>
               <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
+              <li><a href="../checklistme/harian.aspx">Checklist</a></li>
+              <li><a href="../ticket/ticket.aspx">Ticket</a></li>
           </ul>
           
         </div>
@@ -77,7 +77,14 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/user.jpg" class="img-circle" alt="User Image"/>
+                <asp:DataList runat="server" id="dtContact" Width="100%"> 
+                    <ItemTemplate>
+                            <div class="widget-user-image">
+                                <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
+                            </div>
+                    </ItemTemplate>
+
+                </asp:DataList>
 
                 <p><a href="../profile.aspx">
                   Edit Profile
@@ -174,7 +181,7 @@
 </div>
 <!-- ./wrapper -->
 
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>

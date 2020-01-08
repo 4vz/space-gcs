@@ -14,9 +14,10 @@ namespace Telkomsat.dataasset
 {
     public partial class detail : System.Web.UI.Page
     {
-        SqlDataAdapter da, da1;
+        SqlDataAdapter da, da1, da2;
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
+        DataSet ds2 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         string IDdata, hfungsi = "st", hstatus = "a", hketerangan, htanggal = "", queryhf = "a", queryhl, query5 = "a", statusticket = "a", tanggal, queydel, jenisview = "";
@@ -168,8 +169,8 @@ namespace Telkomsat.dataasset
                       h.id_perangkat = p.id_perangkat where p.id_perangkat = '{idaset}' order by tanggal desc";
 
             SqlCommand cmd = new SqlCommand(queryhf, sqlCon);
-            da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
+            da2 = new SqlDataAdapter(cmd);
+            da2.Fill(ds2);
             sqlCon.Open();
             cmd.ExecuteNonQuery();
             sqlCon.Close();
@@ -180,20 +181,20 @@ namespace Telkomsat.dataasset
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
-            if (!object.Equals(ds.Tables[0], null))
+            if (!object.Equals(ds2.Tables[0], null))
             {
-                if (ds.Tables[0].Rows.Count > 0)
+                if (ds2.Tables[0].Rows.Count > 0)
                 {
 
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
                     {
-                        hstatus = ds.Tables[0].Rows[i]["status"].ToString();
-                        hfungsi = ds.Tables[0].Rows[i]["fungsi"].ToString();
-                        hketerangan = ds.Tables[0].Rows[i]["keterangan"].ToString();
-                        htanggal = ds.Tables[0].Rows[i]["tanggal"].ToString();
+                        hstatus = ds2.Tables[0].Rows[i]["status"].ToString();
+                        hfungsi = ds2.Tables[0].Rows[i]["fungsi"].ToString();
+                        hketerangan = ds2.Tables[0].Rows[i]["keterangan"].ToString();
+                        htanggal = ds2.Tables[0].Rows[i]["tanggal"].ToString();
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + ds.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style}\">" + ds.Tables[0].Rows[i]["username"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + ds2.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style}\">" + ds2.Tables[0].Rows[i]["username"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hfungsi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hstatus + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hketerangan + "</label>" + "</td>");

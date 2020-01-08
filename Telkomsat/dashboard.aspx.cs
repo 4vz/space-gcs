@@ -20,6 +20,7 @@ namespace Telkomsat
         string icon1;
         SqlDataAdapter da;
         DataSet ds = new DataSet();
+        DataSet ds5 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string querytiket, IDdata = "kitaa", statuss="st", style1="a", style2 = "a", prioritas ="a", jenis="", jenisedit="", jenisview="";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
@@ -63,6 +64,26 @@ namespace Telkomsat
             //DataList2.DataSource = dtbl1;
             //DataList2.DataBind();
             sqlCon.Close();
+
+            sqlCon.Open();
+            string querycheck = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '2020/01/08' group by ruangan, nama, waktu
+                                    order by waktu desc";
+            SqlDataAdapter sqlCmd5 = new SqlDataAdapter(querycheck, sqlCon);
+            sqlCmd5.Fill(ds5);
+            DataTable dtbl5 = new DataTable();
+            SqlCommand cmd5 = new SqlCommand(querycheck, sqlCon);
+            sqlCon.Close();
+            sqlCon.Open();
+            string query = $@"select count(*) from (select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                        on p.id_perangkat = r.id_perangkat left join Profile l on l.id_profile = d.id_profile where d.tanggal = '{tanggal}' group by ruangan, nama, waktu) q1";
+            SqlCommand cmd6 = new SqlCommand(query, sqlCon);
+            string output = cmd6.ExecuteScalar().ToString();
+            sqlCon.Close();
+            lboleh.Text = ds5.Tables[0].Rows[0]["nama"].ToString();
+            lbwaktu.Text = ds5.Tables[0].Rows[0]["waktu"].ToString();
+            lbprogress.Text = output;
+            
 
             var minggu = DateTime.Now.AddDays(-3).ToString("yyyy/MM/dd");
             sqlCon.Open();
@@ -142,22 +163,9 @@ namespace Telkomsat
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-
+                    lblticket.Visible = false;
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        /*string a = ds.Tables[0].Rows[i]["Perangkat"].ToString();
-                        string b = a.Replace(' ', '#');
-                        char[] array = a.ToCharArray();
-                        for (int j = 0; j < a.Length; j++)
-                        {
-                            char let = array[j];
-                            if (let == ' ')
-                            {
-                                array[j] = '+';
-                            }
-                        }
-                        Session["snperangkat"] = ds.Tables[0].Rows[i]["S/N"];
-                        string result = new string(array);*/
                         IDdata = ds.Tables[0].Rows[i]["id_ticket"].ToString();
                         statuss = ds.Tables[0].Rows[i]["status"].ToString();
                         prioritas = ds.Tables[0].Rows[i]["prioritas"].ToString();
@@ -198,6 +206,10 @@ namespace Telkomsat
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
                     DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
+                }
+                else
+                {
+                    lblticket.Visible = true;
                 }
             }
         }
@@ -250,6 +262,7 @@ namespace Telkomsat
             sqlCmd.Parameters.AddWithValue("@statususer", Session["jenis1"]);
             sqlCmd.ExecuteNonQuery();
             sqlCon.Close();
+            Response.Redirect("dashboard.aspx");
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
@@ -284,6 +297,7 @@ namespace Telkomsat
             sqlCmd5.Parameters.AddWithValue("@icon", icon1);
             sqlCmd5.ExecuteNonQuery();
             sqlCon.Close();
+            Response.Redirect("dashboard.aspx");
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -297,6 +311,7 @@ namespace Telkomsat
             sqlCmd5.Parameters.AddWithValue("@ID", IDEdit);
             sqlCmd5.ExecuteNonQuery();
             sqlCon.Close();
+            Response.Redirect("dashboard.aspx");
         }
 
         protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)

@@ -18,9 +18,10 @@
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css?version2" rel="stylesheet" />
     <link href="stylepagination.css?version=2" rel="stylesheet" />
-    <link href="dashboard.css?version=8" rel="stylesheet" type="text/css"/>
+    <link href="dashboard.css?version=10" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="./assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
     <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
     <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
@@ -201,7 +202,7 @@
             </div>
           <button type="button" visible="false" id="Button1" style="float:right; color:darkred; background-color:transparent" data-toggle="modal" data-target="#exampleModalButton" class="btn-file" runat="server"><i class="fa fa-plus" style="font-size:12px"></i>
                 </button>
-          <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3">
+          <div class="col-lg-3 col-xs-12 col-sm-12 col-md-3">
           <div class="box box-default" style="max-height:450px; height:auto; min-height:300px">
                 <div class="box-header with-border">
                     Event 
@@ -214,6 +215,7 @@
                     <ItemTemplate>
                         <asp:Image ID="Image1" runat="server" class="img-circle" Height="20px" Width="20px" ImageUrl='<%# Eval("icon")==DBNull.Value ? null : Eval("icon") %>'/>
                         <asp:Label Text='<%# Eval("event") %>' runat="server" class="namadashboard" />
+                        <br />
                         <asp:Label Text='<%# " diselenggarakan oleh " + Eval("penyelenggara") %>' runat="server" class="event" />
                         <br />
                         <i class="fa fa-clock-o" style="color:#777777"></i>
@@ -262,6 +264,15 @@
                     </ItemTemplate>
 
                 </asp:DataList>
+                  <br />
+                  <asp:Image ID="Image2" runat="server" class="img-circle" Height="20px" Width="20px" ImageUrl="~/img/check.png"/>
+                        <asp:Label Text=" telah dilakukan checklist ME oleh " runat="server" />
+                        <asp:Label Text="" ID="lboleh" runat="server" class="namadashboard" />
+                        <asp:Label Text=" untuk kategori waktu " runat="server" />
+                        <asp:Label ID="lbwaktu" runat="server" class="waktudashboard"/>
+                        <asp:Label Text=" dengan progress " runat="server" />
+                        <asp:Label ID="lbprogress" runat="server" class="namadashboard" ForeColor="LawnGreen" />
+                        <br />
                   </div>
             </div>
             </div>
@@ -279,6 +290,7 @@
                 <div class="box-body">
                     <div class="table-responsive mailbox-messages">
                     <div class="table table-responsive">
+                        <asp:Label ID="lblticket" runat="server" Visible="false" Text="Tidak ada ticket" CssClass="waktudashboard2"></asp:Label>
                 <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                     </div>
                 </div>
@@ -339,17 +351,16 @@
     <!-- /.container -->
   </footer>
 </div>
-  <div class="modal fade" id="exampleModalButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="height:400px;">
+  <div class="modal fade" id="exampleModalButton" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
        <div class="modal-header" style="background-color:darkred">
                 <button type="button" class="close" data-dismiss="modal">
                     &times;
                 </button>
                 <h4 class="modal-title" style="color:ghostwhite">Tambah Event</h4>
-            </div>
+        </div>
       <div class="modal-body">
-          <div class="divtabel">
           <table align="center">
               <tr>
                   <td style="text-align:right; vertical-align:text-top; padding-bottom:15px;">
@@ -392,7 +403,7 @@
                       <label>Nama Event</label>
                   </td>
                   <td style="padding-left:40px; padding-bottom:15px;"" colspan="3">
-                      <asp:TextBox ID="txtEven" class="tb1" runat="server" Width="300px" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                      <asp:TextBox ID="txtEven" class="form-control" runat="server" Width="300px" TextMode="MultiLine" Height="60px"></asp:TextBox>
                   </td>
               </tr>
               <tr>
@@ -400,7 +411,7 @@
                       <label style="text-align:right">Lokasi</label>
                   </td>
                   <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
-                      <asp:TextBox ID="txtLokasi" class="tb1" runat="server" Width="300px"></asp:TextBox>
+                      <asp:TextBox ID="txtLokasi" class="form-control" runat="server" Width="300px"></asp:TextBox>
                   </td>
               </tr>
               <tr>
@@ -408,11 +419,11 @@
                       <label style="text-align:right">Tanggal</label>
                   </td>
                   <td style="padding-left:40px; padding-bottom:15px;">
-                      <input type="text" id="txtttl" runat="server" class="tb1" onkeypress="return runScript(event)" />
+                      <input type="text" id="txtttl" runat="server" class="form-control" autocomplete="off" />
                       
                   </td>
                   <td style="padding-bottom:15px;">
-                      <asp:DropDownList ID="ddlJam" runat="server" class="ddl3" Width="70px">
+                      <asp:DropDownList ID="ddlJam" CssClass="form-control" runat="server" class="ddl3" Width="70px">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>00:00</asp:ListItem>
                         <asp:ListItem>00:30</asp:ListItem>
@@ -471,14 +482,11 @@
                       <label style="text-align:right">Penyelenggara</label>
                   </td>
                   <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
-                      <asp:TextBox ID="txtPenyelenggara" class="tb1" runat="server" Width="300px"></asp:TextBox>
+                      <asp:TextBox ID="txtPenyelenggara" class="form-control" runat="server" Width="300px"></asp:TextBox>
                   </td>
               </tr>
           </table>
-              </div>
         </div>
-
-      </div>
       <div class="modal-footer">
           <asp:Button runat="server" Text="submit" class="btn btn-primary" OnClick="btnSubmit" Visible="false" ID="btntambah" />
           <asp:Button runat="server" Text="edit" class="btn btn-success" OnClick="Unnamed_Click" Visible="false" ID="btnedit"/>
@@ -486,6 +494,7 @@
         <!-- <button type="button" class="btn btn-primary">Button</button> -->
       </div>
     </div>
+      </div>
   </div>
   <div class="modal fade" id="modaltiket" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog">
@@ -555,8 +564,7 @@
 <!-- ./wrapper -->
 
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <!--<script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
@@ -565,6 +573,7 @@
     <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXJtWR3xFFcpCXG971HMX6zdCjm8BRHzU&libraries=places,geometry&v=3"></script>
    <script type="text/javascript">
        (function() {
@@ -620,6 +629,12 @@ var map;
           $(".nav-tabs a").click(function(){
             $(this).tab('show');
           });
+        });
+
+        $('#<%=txtttl.ClientID%>').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',
+            orientation: "bottom"
         });
 </script>
    <script>

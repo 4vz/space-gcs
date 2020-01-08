@@ -13,6 +13,8 @@ namespace Telkomsat
     public partial class profile : System.Web.UI.Page
     {
         string user;
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
         Nullable<int> i = null;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
@@ -34,21 +36,24 @@ namespace Telkomsat
                 dtContact1.DataSource = dtbl;
                 dtContact1.DataBind();
                 sqlCon.Close();
-                if(Session["nama1"].ToString() == null || Session["nama1"].ToString() == "")
+
+                sqlCmd2.Fill(ds);
+                if (Session["nama1"].ToString() == null || Session["nama1"].ToString() == "")
                 {
                     txtnama.Text = "Nama";
                     txtnama.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txtnama.Text = Session["nama1"].ToString();
-                 
+                    txtnama.Text = ds.Tables[0].Rows[0]["nama"].ToString();
+
+
                 if (Session["email"].ToString() == null || Session["email"].ToString() == "")
                 {
                     txtemail.Text = "Email";
                     txtemail.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txtemail.Text = Session["email"].ToString();
+                    txtemail.Text = ds.Tables[0].Rows[0]["email"].ToString();
 
                 if (Session["nomor"].ToString() == null || Session["nomor"].ToString() == "")
                 {
@@ -56,7 +61,7 @@ namespace Telkomsat
                     txtnomor.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txtnomor.Text = Session["nomor"].ToString();
+                    txtnomor.Text = ds.Tables[0].Rows[0]["nomor"].ToString();
 
                 if (Session["tempat"].ToString() == null || Session["tempat"].ToString() == "")
                 {
@@ -64,7 +69,7 @@ namespace Telkomsat
                     txttempat.ForeColor = System.Drawing.Color.RosyBrown;
                 }               
                 else
-                    txttempat.Text = Session["tempat"].ToString();
+                    txttempat.Text = ds.Tables[0].Rows[0]["tempat"].ToString();
 
                 if (Session["tanggal1"].ToString() == null || Session["tanggal1"].ToString() == "")
                 {
@@ -72,7 +77,7 @@ namespace Telkomsat
                     txttanggal.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txttanggal.Text = Convert.ToDateTime(Session["tanggal1"].ToString()).ToString("dd/MM/yyyy");
+                    txttanggal.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["tanggal_masuk"].ToString()).ToString("dd/MM/yyyy");
 
 
                 if (Session["ttl"].ToString() == null || Session["ttl"].ToString() == "")
@@ -81,7 +86,7 @@ namespace Telkomsat
                     txtttl.ForeColor = System.Drawing.Color.RosyBrown;
                 }
                 else
-                    txtttl.Text = Convert.ToDateTime(Session["ttl"].ToString()).ToString("dd/MM/yyyy");
+                    txtttl.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["ttl"].ToString()).ToString("dd/MM/yyyy");
                 //txtnama.ForeColor = System.Drawing.Color.SandyBrown;
 
 
@@ -96,6 +101,16 @@ namespace Telkomsat
                         txtpass.Text = b;
                 }*/
                 txtpass.Text = "******";
+
+                sqlCon.Open();
+                SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon);
+                sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlCmd.SelectCommand.Parameters.AddWithValue("@user", user);
+                DataTable dtbl1 = new DataTable();
+                sqlCmd.Fill(dtbl1);
+                dtContact.DataSource = dtbl1;
+                dtContact.DataBind();
+                sqlCon.Close();
             }
         }
         protected void lbFoto_Click(object sender, EventArgs e)

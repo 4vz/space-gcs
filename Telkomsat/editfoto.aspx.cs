@@ -33,6 +33,8 @@ namespace Telkomsat
                 sqlCmd2.Fill(dtbl);
                 dtContact1.DataSource = dtbl;
                 dtContact1.DataBind();
+                dtContact.DataSource = dtbl;
+                dtContact.DataBind();
                 sqlCon.Close();
             }
             ButtonCrop.Visible = false;
@@ -57,7 +59,7 @@ namespace Telkomsat
                 Image outputfile = Image.FromFile(filePath);
                 Rectangle cropcoordinate = new Rectangle(Convert.ToInt32(coordinate_x.Value), Convert.ToInt32(coordinate_y.Value), Convert.ToInt32(coordinate_w.Value), Convert.ToInt32(coordinate_h.Value));
                 string confilename, confilepath;
-                Bitmap bitmap = new Bitmap(cropcoordinate.Width, cropcoordinate.Height, outputfile.PixelFormat);
+                Bitmap bitmap = new Bitmap(cropcoordinate.Width, cropcoordinate.Height);
                 Graphics grapics = Graphics.FromImage(bitmap);
                 grapics.DrawImage(outputfile, new Rectangle(0, 0, bitmap.Width, bitmap.Height), cropcoordinate, GraphicsUnit.Pixel);
                 confilename = "Crop_" + fileName;
@@ -159,7 +161,7 @@ namespace Telkomsat
                             ButtonPilih.Visible = false;
                             ButtonCrop.Visible = true;
                             lblStatus.ForeColor = System.Drawing.Color.MediumVioletRed;
-                            lblStatus.Text = "Silahkan crop gambar";
+                            lblStatus.Text = "Silahkan crop gambar yang akan ditampilkan";
                         }
                         catch (Exception)
                         {

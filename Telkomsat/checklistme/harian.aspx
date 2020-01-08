@@ -2,23 +2,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:DropDownList ID="DropDownList1" runat="server" Visible="false">
+        <asp:ListItem>pagi</asp:ListItem>
+        <asp:ListItem>siang</asp:ListItem>
+        <asp:ListItem>malam</asp:ListItem>
+    </asp:DropDownList>
 <div class="col-md-12">
         <div class="box box-primary">
         <div class="box-header with-border">
-            <asp:Label ID="lblroom" runat="server" Text="Checklist" Font-Size="Large" Font-Bold="true"></asp:Label>
+            <asp:Label ID="lblroom" runat="server" Text="Checklist ME" Font-Size="Large" Font-Bold="true"></asp:Label>
             <asp:Button ID="Button2" runat="server" Text="Copy From The Last" OnClick="inisialisasi_Click" CssClass="btn btn-sm btn-primary pull-right"  />
-            <asp:DropDownList ID="ddlwaktu" runat="server" CssClass=" form-control pull-right" Width="150px" Visible="false">
-                <asp:ListItem>pagi</asp:ListItem>
-                <asp:ListItem>siang</asp:ListItem>
-                <asp:ListItem>malam</asp:ListItem>
-            </asp:DropDownList>
+            <asp:Label ID="lblsave" runat="server" Text=" Berhasil disimpan" ForeColor="YellowGreen" Visible="false"></asp:Label>
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table-responsive mailbox-messages">
             <div class="table table-responsive">
-                <asp:Label ID="lbledit" Visible="false" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lbledit" runat="server" Visible="false" Text="Label"></asp:Label>               
                 <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Visible="false">lihat</asp:LinkButton>
                 <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                     </div>

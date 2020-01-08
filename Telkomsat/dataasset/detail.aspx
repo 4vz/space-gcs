@@ -271,7 +271,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>x</button>
+                  <span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title">Harkat</h3>
               </div>
               <div class="modal-body">
@@ -334,7 +334,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>x</button>
+                  <span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title">Harkat</h3>
               </div>
               <div class="modal-body">
@@ -394,7 +394,6 @@
           </div>
         </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         var modal = document.getElementById("myModal");
         var img = document.getElementById('<%= myImg.ClientID%>');

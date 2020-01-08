@@ -39,8 +39,8 @@ namespace Telkomsat
                 DataTable dtbl = new DataTable();
                 sqlda.Fill(dtbl);
                 sqlCon.Close();
+                Session["iduser"] = dtbl.Rows[0]["id_profile"].ToString();
                 Session["username"] = dtbl.Rows[0]["user_name"].ToString();
-                Session["usertest"] = Convert.ToString(Guid.NewGuid());
                 //Session["username"] = dtbl.Rows[0]["user_name"].ToString();
                 Session["password"] = dtbl.Rows[0]["password"].ToString();
                 Session["email"] = dtbl.Rows[0]["email"].ToString();
