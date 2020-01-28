@@ -50,7 +50,7 @@ namespace Telkomsat
                 Session["tanggal1"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
                 Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
                 Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();
-                Response.Redirect("~/dashboard.aspx", false);
+                Response.Redirect("~/dashboard2.aspx", false);
             }
             else
             {

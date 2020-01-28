@@ -20,12 +20,11 @@
     <link href="stylepagination.css?version=2" rel="stylesheet" />
     <link href="dashboard.css?version=10" rel="stylesheet" type="text/css"/>
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="./assets/mylibrary/jquery-ui.css" />
     <link rel="stylesheet" href="./assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
-    <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
-    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
-        media="screen" />
+    <link rel="stylesheet" href="assets/mylibrary/bootstrap.min.css" />
+    <script type="text/javascript" src="../assets/mylibrary/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../assets/mylibrary/bootstrap.min.js"></script>
     <style type="text/css">
         #example2 th, td {
             white-space: nowrap;
@@ -58,7 +57,7 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="../dataasset/alldata.aspx">Data Asset</a></li>
-              <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
+              <li><a href="../datalogbook/data.aspx">Logbook</a></li>
               <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
               <li><a href="../checklistme/harian.aspx">Checklist</a></li>
               <li><a href="../ticket/ticket.aspx">Ticket</a></li>
@@ -271,7 +270,7 @@
                         <asp:Label Text=" untuk kategori waktu " runat="server" />
                         <asp:Label ID="lbwaktu" runat="server" class="waktudashboard"/>
                         <asp:Label Text=" dengan progress " runat="server" />
-                        <asp:Label ID="lbprogress" runat="server" class="namadashboard" ForeColor="LawnGreen" />
+                        <asp:Label ID="lbprogress" runat="server" class="namadashboard" ForeColor="Green" />
                         <br />
                   </div>
             </div>
@@ -574,7 +573,7 @@
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXJtWR3xFFcpCXG971HMX6zdCjm8BRHzU&libraries=places,geometry&v=3"></script>
+    <script type="text/javascript" src="../assets/mylibrary/js.js"></script>
    <script type="text/javascript">
        (function() {
   window.onload = function() {

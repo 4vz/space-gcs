@@ -15,7 +15,7 @@ namespace Telkomsat.admin
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (Session["username"] != null)
+            if (Session["username"] != null)
             {
                 user = Session["username"].ToString();
 
@@ -53,7 +53,7 @@ namespace Telkomsat.admin
             dtContact1.DataSource = dtbl;
             DataList1.DataSource = dtbl;
             DataList1.DataBind();
-            */
+            
             lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
 

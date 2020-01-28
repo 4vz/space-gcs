@@ -80,7 +80,7 @@
                 <label for="exampleInputEmail1">Attachment  : </label>
         </div>
         <div class="col-md-6" style="padding-right:0px; padding-bottom:15px;">
-                <asp:FileUpload ID="FileUpload2" runat="server" Width="100%" />
+                <input type="file" id="myfile" style="width:100%">
         </div>
         <div class="col-md-12" style="padding-bottom:12px;">
             <button type="button" style="width:100%" class="btn btn-success add-row"  value="Add Row"><i class="fa fa-plus-circle"></i> Add Row
@@ -90,21 +90,11 @@
         <thead>
             <tr>
                 <th>Select</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Keterangan</th>
+                <th>Nominal</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type='checkbox' name='record'></td>
-                <td>kitaa</td>
-                <td>120000</td>
-            </tr>
-            <tr>
-                <td><input type='checkbox' name='record'></td>
-                <td>kdgd</td>
-                <td>121200</td>
-            </tr>
         </tbody>
     </table>
     <button type="button" class="delete-row btn-danger">Delete Row</button>
@@ -129,6 +119,7 @@
         $(".add-row").click(function(){
             var datainput = $("#datainput").val();
             var nilaidata = $("#nilaidata").val();
+            var myfile = $("#myfile").val();
             var panjar = $('#' + '<%= txtpengeluaran.ClientID%>').val();
             
 
@@ -141,12 +132,19 @@
             total = Number(panjar1) - nilai
             console.log(total);
             var txttotal = $('#' + '<%= txttotal1.ClientID%>').val(Number(total).toLocaleString('id'));
-            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + datainput + "</td><td>" + nilaidata + "</td></tr>";
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + "<input type='text' readonly class='form-control' name='mypanjar' value='" + datainput + "' />" + "</td>" +
+                "<td>" + "<input type='text' readonly class='form-control' name='mydatapanjar' value='" + nilaidata + "' />" + "</td>" +
+                "<td>" + '<div class="btn btn-default btn-file">' + '<i class="fa fa-paperclip myi"></i>' + '<input type="file" class="fileku" name="fileinput"/>' + '</div>' + "</td>";
+            console.log(myfile);
             $('#' + '<%= tableku.ClientID%>').append(markup);
             $("#datainput").val('');
             $("#nilaidata").val('');
-        });
-        
+            });
+
+            $(".myfiles").change(function () {
+                $(".myi").css("color", "green");
+                alert("bisa");
+            });
         // Find and remove selected table rows
         $(".delete-row").click(function(){
             $("table tbody").find('input[name="record"]').each(function(){

@@ -7,8 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Globalization;
-
+using System.IO;
 
 namespace Telkomsat.admin
 {
@@ -22,8 +23,16 @@ namespace Telkomsat.admin
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         string nama, status, keterangan, lblcolor, iddata, querymodal;
-        string querypanjar, tanggal = "", totalpanjar, input = "";
+        string querypanjar, tanggal = "", totalpanjar, input = "", nilai;
+        int a, b, c;
+        string[] myket, mynominal, mylast;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.Form.Enctype = "multipart/form-data";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
@@ -48,7 +57,64 @@ namespace Telkomsat.admin
         protected void Save_ServerClick(object sender, EventArgs e)
         {
             int dataku = tableku.Rows.Count;
-            Response.Write(hfnama.Value + "hidden");
+            string mydata;
+            //Response.Write("bibi  " + Request.Form["mypanjar"] + "data : " + Request.Form["mydatapanjar"] + "File : " + fileinput.Value);
+            //HttpPostedFile postedFile = Request.Files["fileinput"];
+            //Response.Write("file " + postedFile.FileName);
+            string keterangan = Request.Form["mypanjar"];
+            string nominal = Request.Form["mydatapanjar"];
+            mylast = new string[Request.Files.Count];
+            myket = new string[Request.Files.Count];
+            mynominal = new string[Request.Files.Count];
+            a = b = c = 0;
+            if (nominal != null)
+            {
+                string[] lines = Regex.Split(nominal, ",");
+
+                foreach (string line in lines)
+                {
+                    myket[a] = line;
+                    a++;
+                }
+            }
+
+            if (keterangan != null)
+            {
+                string[] lines = Regex.Split(keterangan, ",");
+
+                foreach (string line in lines)
+                {
+                    mynominal[b] = line;
+                    b++;
+                }
+            }
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                HttpPostedFile file = Request.Files[i];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    string filePath = Server.MapPath("~/evidence/") + Path.GetFileName(file.FileName);
+                    //file.SaveAs(filePath);
+                    mylast[i] = "('" + myket[i] + "', '" + mynominal[i] + "', '" + Path.GetFileName(file.FileName) + "')";
+                }
+                else
+                {
+                    mylast[i] = "('" + myket[i] + "', '" + mynominal[i] + "', '" + "')";
+                }
+                
+            }
+            mydata = string.Join(",", mylast);
+            Response.Write(mydata);
+            /*if (postedFile != null && postedFile.ContentLength > 0)
+            {
+                //Save the File.
+                Response.Write("file " + postedFile.FileName);
+            }
+            else
+            {
+                Response.Write("kosong");
+            }*/
         }
 
         void tablepanjar()
@@ -96,7 +162,7 @@ namespace Telkomsat.admin
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + keterangan + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{lblcolor}\">" + status + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + nama + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + totalpanjar + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\" name=\"record1\">" + totalpanjar + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + $"<a class=\"btn btn-info btn-sm\" href=\"../admin/pengembalian.aspx?id={iddata}\" value='ID_Perangkat' id=aku > View</a>" + "</td>");
                         htmlTable1.Append("</tr>");
                     }

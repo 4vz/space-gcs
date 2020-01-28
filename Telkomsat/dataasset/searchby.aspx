@@ -140,7 +140,7 @@
         <!-- /. box -->
     </div>
     </div>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../assets/mylibrary/jquery-ui-1-12-1.js"></script>
     <script type="text/javascript">
         $(function () {
           var datatableInstance = $("#example2").DataTable({

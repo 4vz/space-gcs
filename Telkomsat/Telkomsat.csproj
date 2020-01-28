@@ -6376,6 +6376,14 @@
     <Content Include="assets\Jcrop-master\examples\svg.html" />
     <Content Include="assets\Jcrop-master\MIT-LICENSE.txt" />
     <Content Include="assets\Jcrop-master\webpack.config.babel.js" />
+    <Content Include="assets\mylibrary\bootstrap.min.css" />
+    <Content Include="assets\mylibrary\bootstrap.min.js" />
+    <Content Include="assets\mylibrary\jquery-1.8.3.min.js" />
+    <Content Include="assets\mylibrary\jquery-ui-1-12-1.css" />
+    <Content Include="assets\mylibrary\jquery-ui-1-12-1.js" />
+    <Content Include="assets\mylibrary\jquery-ui.css" />
+    <Content Include="assets\mylibrary\js.js" />
+    <Content Include="assets\mylibrary\sweetalert.min.js" />
     <Content Include="assets\plugins\AdminLTE\AdminLTE.min.css" />
     <Content Include="assets\plugins\AdminLTE\js\adminlte.js" />
     <Content Include="assets\plugins\AdminLTE\js\adminlte.min.js" />
@@ -6840,6 +6848,7 @@
     <Content Include="cropimag\Crop_f81d520b-fed4-4e30-941d-409460c0f698.png" />
     <Content Include="cropimag\Crop_full badan.jpg" />
     <Content Include="css\bs-stepper.css" />
+    <Content Include="dashboard2.aspx" />
     <Content Include="dataasset\alldata.aspx" />
     <Content Include="dataasset\bangunan.aspx" />
     <Content Include="dataasset\bangunanadd.aspx" />
@@ -6860,6 +6869,15 @@
     <Content Include="dataasset\site.aspx" />
     <Content Include="dataasset\siteadd.aspx" />
     <Content Include="dataasset\tambahdata.aspx" />
+    <Content Include="datalogbook\action.aspx" />
+    <Content Include="datalogbook\data.aspx" />
+    <Content Include="datalogbook\detail.aspx" />
+    <Content Include="datalogbook\download.aspx" />
+    <Content Include="datalogbook\edit.aspx" />
+    <Content Include="datalogbook\filter.aspx" />
+    <Content Include="datalogbook\onprogress.aspx" />
+    <Content Include="datalogbook\searchby.aspx" />
+    <Content Include="datalogbook\tambah.aspx" />
     <Content Include="editfoto.aspx" />
     <Content Include="editpassword.aspx" />
     <Content Include="editprofile.aspx" />
@@ -6957,6 +6975,7 @@
     <Content Include="img\RO-WS-BJM.jpg" />
     <Content Include="img\RO-WS-ME.jpeg" />
     <Content Include="img\RO-WTT.jpeg" />
+    <Content Include="img\rocket.png" />
     <Content Include="img\SH-exT1.jpg" />
     <Content Include="img\SH-FMA11.jpg" />
     <Content Include="img\SH-MPSAT.jpg" />
@@ -6976,6 +6995,7 @@
     <Content Include="img\SR-ME.jpeg" />
     <Content Include="img\SR1.jpg" />
     <Content Include="img\SR2.jpg" />
+    <Content Include="img\vendor.png" />
     <Content Include="js\jquery.color.js" />
     <Content Include="js\jquery.Jcrop.js" />
     <Content Include="js\jquery.Jcrop.min.js" />
@@ -7068,6 +7088,9 @@
     <Content Include="Style2.css" />
     <Content Include="StyleLogBook.css" />
     <Content Include="stylepagination.css" />
+    <Content Include="superadmin\hapus.aspx" />
+    <Content Include="superadmin\shiftme.aspx" />
+    <Content Include="superadmin\viewshift.aspx" />
     <Content Include="testcropfoto.aspx" />
     <Content Include="ticket\accepted.aspx" />
     <Content Include="ticket\complete.aspx" />
@@ -7191,6 +7214,9 @@
     </Compile>
     <Compile Include="admin\penyetoran.aspx.designer.cs">
       <DependentUpon>penyetoran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="allasset.ashx.cs">
+      <DependentUpon>allasset.ashx</DependentUpon>
     </Compile>
     <Compile Include="alldatadua.aspx.cs">
       <DependentUpon>alldatadua.aspx</DependentUpon>
@@ -7515,6 +7541,13 @@
     <Compile Include="CHECKMEWEEK.Master.designer.cs">
       <DependentUpon>CHECKMEWEEK.Master</DependentUpon>
     </Compile>
+    <Compile Include="dashboard2.aspx.cs">
+      <DependentUpon>dashboard2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard2.aspx.designer.cs">
+      <DependentUpon>dashboard2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dataasset\alldata.aspx.cs">
       <DependentUpon>alldata.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7659,6 +7692,69 @@
     </Compile>
     <Compile Include="dataasset\tambahdata.aspx.designer.cs">
       <DependentUpon>tambahdata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\action.aspx.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\action.aspx.designer.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\data.aspx.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\data.aspx.designer.cs">
+      <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\filter.aspx.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\filter.aspx.designer.cs">
+      <DependentUpon>filter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\onprogress.aspx.cs">
+      <DependentUpon>onprogress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\onprogress.aspx.designer.cs">
+      <DependentUpon>onprogress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\searchby.aspx.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\searchby.aspx.designer.cs">
+      <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\tambah.aspx.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\tambah.aspx.designer.cs">
+      <DependentUpon>tambah.aspx</DependentUpon>
     </Compile>
     <Compile Include="editfoto.aspx.cs">
       <DependentUpon>editfoto.aspx</DependentUpon>
@@ -8199,6 +8295,27 @@
     </Compile>
     <Compile Include="searchby.aspx.designer.cs">
       <DependentUpon>searchby.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\hapus.aspx.cs">
+      <DependentUpon>hapus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\hapus.aspx.designer.cs">
+      <DependentUpon>hapus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\shiftme.aspx.cs">
+      <DependentUpon>shiftme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\shiftme.aspx.designer.cs">
+      <DependentUpon>shiftme.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\viewshift.aspx.cs">
+      <DependentUpon>viewshift.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\viewshift.aspx.designer.cs">
+      <DependentUpon>viewshift.aspx</DependentUpon>
     </Compile>
     <Compile Include="template.Master.cs">
       <DependentUpon>template.Master</DependentUpon>
@@ -8939,6 +9056,7 @@
     <Content Include="assets\plugins\ionicons\fonts\ionicons.eot" />
     <Content Include="assets\plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="assets\plugins\ionicons\fonts\ionicons.woff" />
+    <Content Include="allasset.ashx" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <Content Include="TICKETMASTER.Master" />

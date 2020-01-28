@@ -9,7 +9,7 @@
             
     <div class="bodyLB3">
     <div class="input-group" style="vertical-align:middle">
-        <a href="../dashboard.aspx">
+        <a href="../dashboard2.aspx">
           <img src="../img/logotelkomsat2.png" alt="Alternate Text" height="50"/></a>
           <input type="text" name="q" class="form-control" placeholder="Search..." runat="server" id="txtMaster" style="vertical-align:middle"/>
           <span class="input-group-btn">

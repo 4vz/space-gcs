@@ -20,7 +20,7 @@ namespace Telkomsat
             {
                 Response.Redirect("~/login.aspx", true);
             }
-
+            
 
         }
 

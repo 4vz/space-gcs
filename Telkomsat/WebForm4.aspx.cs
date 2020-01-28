@@ -17,10 +17,33 @@ namespace Telkomsat
     public partial class WebForm4 : System.Web.UI.Page
     {
         //SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+        int a = 3;
+        int b = 5;
         protected void Page_Load(object sender, EventArgs e)
         {
             string file = Request.QueryString["id"];
-            Response.Write(file);
+            double c = (double)a / b;
+
+            DateTime awal = DateTime.Now;
+            DateTime akhir = DateTime.Now.AddDays(1);
+
+            TimeSpan t = akhir - awal;
+            Response.Write(t.Days);
+            Response.Write(akhir);
+        }
+
+        protected void Upload(object sender, EventArgs e)
+        {
+            //Access the File using the Name of HTML INPUT File.
+            HttpPostedFile postedFile = Request.Files["fileinputt"];
+            Response.Write(postedFile.FileName);
+            //Check if File is available.
+            /*if (postedFile != null && postedFile.ContentLength > 0)
+            {
+                //Save the File.
+                string filePath = Server.MapPath("~/evidence/") + Path.GetFileName(postedFile.FileName);
+                postedFile.SaveAs(filePath);
+            }*/
         }
 
         public class Customer

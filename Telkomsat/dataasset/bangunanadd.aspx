@@ -47,8 +47,6 @@
         <!-- /. box -->
     </div>
     </div>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
     <script type="text/javascript">  
         function fungsi() {
             alert("Berhasil Disimpan");
@@ -94,7 +92,6 @@
         $('#<%=so2.ClientID %>').select2().on('change', function () {
             var id = $(this).val();
             $('#<%=TextBox2.ClientID %>').val(id);
-            alert("bisa");
         });
     </script>
 </asp:Content>

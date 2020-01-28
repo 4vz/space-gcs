@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
     <script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({ selector: 'textarea', width: 500 });
@@ -21,7 +22,7 @@
     
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enctype="multipart/form-data">
     <div id = "dvCustomers">
     <table class="tblCustomer" cellpadding="2" cellspacing="0" border="1">
     <tr>
@@ -46,17 +47,23 @@
                 <option></option>
                 <option></option>
             </select>
+            <input type="file" name="fileinputt" />
         </div>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+        <asp:Button ID="Button2" Text="Upload" runat="server" OnClick="Upload" />
+        <input type="text" class="datepick" />
     </form>
-
+    
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
+    $(".datepick").datepicker({startDate:'2020-01-02',autoclose: true,
+            format: 'yyyy/mm/dd' ,endDate :'2020-02-03'});
     $(function () {
        /* $.ajax({
             type: "POST",

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/bower_components/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="./assets/mylibrary/jquery-ui-1-12-1.css"/>
     <link href="Style2.css" rel="stylesheet" />
     <link href="Style1.css?version=5" rel="stylesheet" />
     <link href="stylepagination.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
 <header class="main-header">
     
     <!-- Logo -->
-    <a href="../dashboard.aspx" class="logo">
+    <a href="../dashboard2.aspx" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>T</b>SA</span>
       <!-- logo for regular state and mobile devices -->

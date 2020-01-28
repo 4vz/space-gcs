@@ -237,7 +237,7 @@
         </div>
 
     <div class="row" runat="server" id="divhistory" visible="false">
-        <div class="col-md-7">
+        <div class="col-md-7 col-lg-7 col-sm-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
                     <h4 class="box-title">History Mutasi</h4>
@@ -249,7 +249,7 @@
                  
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-lg-5 col-sm-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
                     <h4 class="box-title">History Fungsional</h4>
@@ -281,7 +281,7 @@
                                 <h4>Lokasi Sebelum</h4>
                             </div>
                             <div class="form-group">
-                                <label style="font-size:16px; font-weight:bold">Nama Wilayah :</label>
+                                <label style="font-size:16px; font-weight:bold; colo">Nama Wilayah :</label>
                                 <asp:Label ID="lblwilayah" runat="server" Text="Label"></asp:Label>
                             </div>
                             <div class="form-group">
@@ -427,7 +427,13 @@
               "autoWidth": true,
               "scrollX": true
             });
-            $("#example2").DataTable({});
+           $("#example2").DataTable({
+              "paging": true,
+              "searching": true,
+              "info": true,
+              "autoWidth": true,
+              "scrollX": true
+            });
            $('.dataTables_length').addClass('bs-select');
 
             $('#<%=slsite.ClientID %>').change(function () {

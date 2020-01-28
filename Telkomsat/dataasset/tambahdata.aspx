@@ -93,7 +93,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <link rel="stylesheet" href="dataaset.css?version=2" />
     <asp:TextBox ID="txtdevice" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtruangan" runat="server" CssClass="hidden"></asp:TextBox>

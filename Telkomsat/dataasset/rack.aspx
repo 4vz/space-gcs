@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../assets/mylibrary/sweetalert.min.js"></script>
 
     <div class="col-md-9">
         <div class="box box-danger">
@@ -70,8 +70,6 @@
           <!-- /.modal-dialog -->
         </div>
 
-    <!-- /.col -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         $('#<%=so2.ClientID %>').change(function () {
             var id = $(this).val();

@@ -19,7 +19,7 @@ namespace Telkomsat.checkhk
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
 
 
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial, rack;
+        string Parameter = "a", iduser, query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial, rack;
         string[] words = { "a", "a" };
         string[] akhir;
         int j = 0, k;
@@ -35,6 +35,11 @@ namespace Telkomsat.checkhk
             else
             {
                 Button1.Visible = false;
+            }
+
+            if(Session["iduser"] != null)
+            {
+                iduser = Session["iduser"].ToString();
             }
 
             date = DateTime.Now.ToString("yyyy/MM/dd");
@@ -202,7 +207,7 @@ namespace Telkomsat.checkhk
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "')";
                             j++;
                         }
                     }

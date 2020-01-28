@@ -74,16 +74,15 @@ namespace Telkomsat
             DataTable dtbl5 = new DataTable();
             SqlCommand cmd5 = new SqlCommand(querycheck, sqlCon);
             sqlCon.Close();
-            sqlCon.Open();
-            string query = $@"select count(*) from (select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
-                        on p.id_perangkat = r.id_perangkat left join Profile l on l.id_profile = d.id_profile where d.tanggal = '{tanggal}' group by ruangan, nama, waktu) q1";
-            SqlCommand cmd6 = new SqlCommand(query, sqlCon);
-            string output = cmd6.ExecuteScalar().ToString();
-            sqlCon.Close();
-            lboleh.Text = ds5.Tables[0].Rows[0]["nama"].ToString();
-            lbwaktu.Text = ds5.Tables[0].Rows[0]["waktu"].ToString();
-            lbprogress.Text = output;
-            
+            int output = ds5.Tables[0].Rows.Count;
+            if (output > 0)
+            {
+                lboleh.Text = ds5.Tables[0].Rows[0]["nama"].ToString();
+                lbwaktu.Text = ds5.Tables[0].Rows[0]["waktu"].ToString();
+                double hasil = ((double)output / 16) * 100;
+                lbprogress.Text = hasil.ToString() + "%";
+            }
+                
 
             var minggu = DateTime.Now.AddDays(-3).ToString("yyyy/MM/dd");
             sqlCon.Open();
@@ -121,20 +120,7 @@ namespace Telkomsat
             sqlCmd4.Fill(dtbl4);
             dtEvent.DataSource = dtbl4;
             dtEvent.DataBind();
-            //DataList2.DataSource = dtbl1;
-            //DataList2.DataBind();
             sqlCon.Close();
-
-            /*foreach (DataListItem item in dtEvent.Items)
-            {
-                LinkButton btn = item.FindControl("lbSunting") as LinkButton;
-                if (dtbl4.Rows[0]["penyelenggara"].ToString() == "GCS")
-                {
-                    btn.Visible = true;
-                }
-                else
-                    btn.Visible = false;
-            }*/
 
             if (dtEvent.Items.Count != 0)
             {

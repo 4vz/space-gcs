@@ -40,6 +40,41 @@ namespace Telkomsat.dataasset
             public string status { get; set; }
             public string action { get; set; }
             public string tipe { get; set; }
+            public string tipesn { get; set; }
+        }
+
+        public class inisial
+        {
+            public string idwilayah { get; set; }
+            public string wilayah1 { get; set; }
+        }
+
+        [WebMethod]
+        public static List<inisial> GetID()
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * from as_wilayah"))
+                {
+                    cmd.Connection = con;
+                    List<inisial> mydata = new List<inisial>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            mydata.Add(new inisial
+                            {
+                                idwilayah = sdr["id_wilayah"].ToString(),
+                                wilayah1 = sdr["nama_wilayah"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return mydata;
+                }
+            }
         }
 
         [WebMethod]
@@ -60,6 +95,32 @@ namespace Telkomsat.dataasset
             }
 
             return listStudentNames;
+        }
+
+        [WebMethod]
+        public static List<Employee> GetSN(string term)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand($"select count(*) from as_perangkat where sn = '{term}'", con);
+                List<Employee> mydata = new List<Employee>();
+                con.Open();
+                SqlDataAdapter da1 = new SqlDataAdapter(cmd);
+                DataSet ds1 = new DataSet();
+                da1.Fill(ds1);
+                cmd.ExecuteNonQuery();
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+                    mydata.Add(new Employee {tipesn = "sama"});                       
+                }
+                else
+                {
+                    mydata.Add(new Employee { tipesn = "tidak" });
+                }
+                con.Close();
+                return mydata;
+            }
         }
 
         [WebMethod]
