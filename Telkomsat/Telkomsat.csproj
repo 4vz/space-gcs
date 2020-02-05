@@ -6854,6 +6854,10 @@
     <Content Include="assets\plugins\pace\pace.js" />
     <Content Include="assets\plugins\pace\pace.min.css" />
     <Content Include="assets\plugins\pace\pace.min.js" />
+    <Content Include="assets\plugins\timepicker\bootstrap-timepicker.css" />
+    <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
+    <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="asset\asset1.aspx" />
     <Content Include="asset\chart.aspx" />
     <Content Include="asset\chart.js" />
