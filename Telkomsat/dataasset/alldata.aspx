@@ -62,6 +62,9 @@
             </div>
             <!-- /.mail-box-messages -->
         </div>
+            <div class="box-footer">
+                <asp:Button ID="Button2" runat="server" Text="Export to Excel" CssClass="btn btn-default pull-right" OnClick="ExportExcel" />
+            </div>
         <!-- /.box-body -->
         </div>
         <!-- /. box -->

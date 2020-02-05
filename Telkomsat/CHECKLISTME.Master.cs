@@ -9,6 +9,14 @@ namespace Telkomsat
 {
     public partial class CHECKLISTME : System.Web.UI.MasterPage
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["username"] == null || Session["username"].ToString() == "")
+            {
+                Response.Redirect("~/login.aspx", true);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,6 +26,7 @@ namespace Telkomsat
                     DropDownList1.Text = Session["mastershelterme"].ToString();
                 }
             }
+            lblProfile1.Text = Session["nama1"].ToString();
 
             string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 1];
             if (thisURL.ToLower() == "checkharian.aspx") divddl.Visible = false;

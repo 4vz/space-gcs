@@ -28,7 +28,7 @@ namespace Telkomsat
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
 
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile1.Text = Session["nama1"].ToString();
 
             user = Session["username"].ToString();
             if (!IsPostBack)
@@ -68,7 +68,7 @@ namespace Telkomsat
                                 (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan = 'mutasi')[mutasi],
                                 (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan= 'lain-lain')[lain-lain],
                                 (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan= 'fungsi & status')[status]
-                                from table_pekerjaan";
+                                from tabel_logbook l full join table_pekerjaan p on p.id_logbook=l.id_logbook";
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             SqlDataAdapter da;
             DataSet ds = new DataSet();
@@ -330,14 +330,14 @@ namespace Telkomsat
         void tableshift()
         {
             var mulai = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
+            var sekarang = DateTime.Now.ToString("yyyy/MM/dd");
             var akhir = DateTime.Now.AddDays(1).ToString("yyyy/MM/dd");
             querylain = $@"SELECT m.tanggal_shift, jadwal, STUFF((SELECT ',  ' + p.petugas 
                       FROM shiftme s left join shiftme_petugas p on s.id_petugas = p.id_petugas
 					  WHERE m.jadwal = s.jadwal and m.tanggal_shift = s.tanggal_shift
                       FOR XML PATH('')), 1, 1, '') [petugas] FROm shiftme m WHERE tanggal_shift >= '{mulai}' and tanggal_shift <= '{akhir}'
 					  group by tanggal_shift, jadwal
-                      order by tanggal_shift asc, jadwal asc 
-";
+                      order by tanggal_shift asc, jadwal asc ";
 
             SqlCommand cmd = new SqlCommand(querylain, sqlCon);
             dashift = new SqlDataAdapter(cmd);
@@ -349,7 +349,23 @@ namespace Telkomsat
 
             for (int i = 0; i < dsshift.Tables[0].Rows.Count; i++)
             {
-                if(i==0)
+                DateTime datee = (DateTime)dsshift.Tables[0].Rows[i]["tanggal_shift"];
+                string mydate = datee.ToString("yyyy/MM/dd");
+                string myjadwal = dsshift.Tables[0].Rows[i]["jadwal"].ToString();
+                if (mydate == mulai && myjadwal == "Pagi")
+                    pagikemaren.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+                else if (mydate == mulai && myjadwal == "Sore")
+                    sorekemaren.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+                else if (mydate == sekarang && myjadwal == "Pagi")
+                    paginow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+                else if (mydate == sekarang && myjadwal == "Sore")
+                    sorenow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+                else if (mydate == akhir && myjadwal == "Pagi")
+                    pagitomorrow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+                else if (mydate == mulai && myjadwal == "Sore")
+                    soretomorrow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
+
+                /*if (i==0)
                     pagikemaren.InnerHtml = dsshift.Tables[0].Rows[0]["petugas"].ToString();
                 else if(i==1)
                     sorekemaren.InnerHtml = dsshift.Tables[0].Rows[1]["petugas"].ToString();
@@ -360,7 +376,7 @@ namespace Telkomsat
                 else if (i == 4)
                     pagitomorrow.InnerHtml = dsshift.Tables[0].Rows[4]["petugas"].ToString();
                 else if (i == 5)
-                    soretomorrow.InnerHtml = dsshift.Tables[0].Rows[5]["petugas"].ToString();
+                    soretomorrow.InnerHtml = dsshift.Tables[0].Rows[5]["petugas"].ToString();*/
             }
         }
 

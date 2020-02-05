@@ -25,6 +25,17 @@
     <link rel="stylesheet" href="assets/mylibrary/bootstrap.min.css" />
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <style type="text/css">
+        @media all and (min-width:1500px) {
+            .container {
+                width:1330px;
+            }
+        }
+        @media all and (min-width:1700px) {
+            .container {
+                width: 1560px;
+            }
+        }
+
         #example2 th, td {
             white-space: nowrap;
         }
@@ -160,7 +171,7 @@
               </header>
 
         <div class="content-wrapper" style="height:auto;">
-            <div class="container">
+            <div class="container no-padding">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
@@ -169,14 +180,14 @@
                     <asp:Label CssClass="breadcrumb" ID="lblwaktu1" runat="server" Text="Label" Font-Bold="true" ForeColor="#808080" Font-Size="Large"></asp:Label>
         
                 </section>
-            <asp:TextBox ID="txtpie" CssClass="hidden" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtpie" CssClass="hidden" runat="server" Text=""></asp:TextBox>
                 <asp:TextBox ID="txtsent" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtconfirm" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtcomplete" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtreject" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtaccept" CssClass="hidden" runat="server"></asp:TextBox>
                 <!-- Main content -->
-                <section class="content">
+                <section class="content no-padding">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box bg-aqua">

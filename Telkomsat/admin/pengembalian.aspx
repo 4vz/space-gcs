@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:TextBox ID="TextBox1" runat="server" CssClass="hidden"></asp:TextBox>
 <section class="col-lg-7 connectedSortable">
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
@@ -76,12 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="padding-left:0px; padding-bottom:15px;">
-                <label for="exampleInputEmail1">Attachment  : </label>
-        </div>
-        <div class="col-md-6" style="padding-right:0px; padding-bottom:15px;">
-                <input type="file" id="myfile" style="width:100%">
-        </div>
+        
         <div class="col-md-12" style="padding-bottom:12px;">
             <button type="button" style="width:100%" class="btn btn-success add-row"  value="Add Row"><i class="fa fa-plus-circle"></i> Add Row
           </button>
@@ -105,6 +101,19 @@
 
      <asp:HiddenField ID="hfnama" runat="server" Value="wildan " />
 </section>
+
+    <div class="row" runat="server" id="divrinci" visible="false">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    Rincian Sebelumnya
+                </div>
+                <div class="box-body">
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
@@ -119,7 +128,7 @@
         $(".add-row").click(function(){
             var datainput = $("#datainput").val();
             var nilaidata = $("#nilaidata").val();
-            var myfile = $("#myfile").val();
+            
             var panjar = $('#' + '<%= txtpengeluaran.ClientID%>').val();
             
 
@@ -129,13 +138,14 @@
             var nilai1 = $("#nilaidata").val().replace(/\./g, '');
             var panjar1 = panjar.replace(/\./g, '');
             nilai = (Number(nilai) + Number(nilai1));
-            total = Number(panjar1) - nilai
+            total = Number(panjar1) - nilai;
             console.log(total);
+            $('#<%=TextBox1.ClientID%>').val(total);
             var txttotal = $('#' + '<%= txttotal1.ClientID%>').val(Number(total).toLocaleString('id'));
             var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + "<input type='text' readonly class='form-control' name='mypanjar' value='" + datainput + "' />" + "</td>" +
                 "<td>" + "<input type='text' readonly class='form-control' name='mydatapanjar' value='" + nilaidata + "' />" + "</td>" +
-                "<td>" + '<div class="btn btn-default btn-file">' + '<i class="fa fa-paperclip myi"></i>' + '<input type="file" class="fileku" name="fileinput"/>' + '</div>' + "</td>";
-            console.log(myfile);
+                "<td>" + '<div class="btn btn-default btn-file">' + '<i class="fa fa-paperclip myi"></i>' + '<input type="file" class="fileku" name="fileinput"/>' + '</div>' + "</td>" + "</tr>";
+           
             $('#' + '<%= tableku.ClientID%>').append(markup);
             $("#datainput").val('');
             $("#nilaidata").val('');

@@ -15,6 +15,9 @@ namespace Telkomsat.datalogbook
         string queryupdate, queryupdatel, queryupdatem, queryupdatef;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string idapprove = Request.QueryString["ida"];
+            string idadmin = Request.QueryString["idadmin"];
+
             string idkonfig = Request.QueryString["idk"];
             string idlain = Request.QueryString["idl"];
             string idmutasi = Request.QueryString["idm"];
@@ -47,6 +50,35 @@ namespace Telkomsat.datalogbook
                 }
 
                 Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=K");
+            }
+
+            if (idapprove != null)
+            {
+                string query = $"UPDATE admindetail SET d_approve = 'approve' WHERE id_detail = '{idapprove}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+
+                string querybef = $"select d.id_detail from administrator r left join admindetail d on d.id_admin=r.id_admin WHERE r.id_admin = '{idadmin}' and d.d_approve = 'not approve'";
+                DataSet ds5 = new DataSet();
+                sqlCon.Open();
+                SqlCommand cmd = new SqlCommand(querybef, sqlCon);
+                SqlDataAdapter da5 = new SqlDataAdapter(cmd);
+                da5.Fill(ds5);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                int output = ds5.Tables[0].Rows.Count;
+                if (output == 0)
+                {
+                    queryupdate = $"UPDATE administrator SET status = 'approve' WHERE id_admin = '{idapprove}'";
+                    SqlCommand sqlcmd2 = new SqlCommand(queryupdate, sqlCon);
+                    sqlCon.Open();
+                    sqlcmd2.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+
+                Response.Redirect($"../admin/approve.aspx");
             }
 
             if (idlain != null)

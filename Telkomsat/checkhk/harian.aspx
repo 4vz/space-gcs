@@ -23,7 +23,7 @@
             </div>
         </section>
         </div>
-<div class="col-md-12">
+<div class="col-md-12 no-padding">
         <div class="box box-primary">
         <div class="box-header with-border">
             <asp:Label ID="lblroom" runat="server" Text="Checklist Harkat" Font-Size="Large" Font-Bold="true"></asp:Label>

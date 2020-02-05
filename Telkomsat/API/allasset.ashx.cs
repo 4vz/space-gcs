@@ -5,14 +5,17 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using System.Configuration;
+using System.Web.Http.Cors;
 
 namespace Telkomsat
 {
+    [EnableCors(origins: "http://example.com", headers: "*", methods: "*")]
     /// <summary>
     /// Summary description for allasset
     /// </summary>
     public class allasset : IHttpHandler
     {
+        string query;
         public class Employee
         {
             public int idperangkat { get; set; }
@@ -44,11 +47,23 @@ namespace Telkomsat
             string cs = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string query = @"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
+                if(term == "")
+                {
+                    query = @"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
                     from as_perangkat p join as_jenis_device d on p.id_jenis_device = d.id_jenis_device left
                     join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
 					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
                      join as_jenis_equipment e on e.id_jenis_equipment = d.id_jenis_equipment join as_wilayah w on w.id_wilayah = b.id_wilayah";
+                }
+                else
+                {
+                    query = $@"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
+                    from as_perangkat p join as_jenis_device d on p.id_jenis_device = d.id_jenis_device left
+                    join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
+					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
+                     join as_jenis_equipment e on e.id_jenis_equipment = d.id_jenis_equipment join as_wilayah w on w.id_wilayah = b.id_wilayah WHERE nama_wilayah='{term}'";
+                }
+                
 
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();

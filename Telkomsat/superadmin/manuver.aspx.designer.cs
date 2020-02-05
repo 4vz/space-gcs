@@ -7,108 +7,144 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin {
+namespace Telkomsat.superadmin {
     
     
-    public partial class pengeluaran {
+    public partial class manuver {
         
         /// <summary>
-        /// lblstatus control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblstatus;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// keterangan control.
+        /// lblProfile1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText keterangan;
+        protected global::System.Web.UI.WebControls.Label lblProfile1;
         
         /// <summary>
-        /// nominal control.
+        /// dtContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nominal;
+        protected global::System.Web.UI.WebControls.DataList dtContact;
         
         /// <summary>
-        /// ddlKategori control.
+        /// btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlKategori;
+        protected global::System.Web.UI.WebControls.Button btn;
         
         /// <summary>
-        /// ddljenis control.
+        /// txtsatelit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddljenis;
+        protected global::System.Web.UI.WebControls.TextBox txtsatelit;
         
         /// <summary>
-        /// ddluser control.
+        /// txtid1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddluser;
+        protected global::System.Web.UI.WebControls.TextBox txtid1;
         
         /// <summary>
-        /// ddldetail control.
+        /// txtid2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldetail;
+        protected global::System.Web.UI.WebControls.TextBox txtid2;
         
         /// <summary>
-        /// tableku control.
+        /// divsuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tableku;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divsuccess;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// slos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slos;
         
         /// <summary>
-        /// Label1 control.
+        /// slog control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slog;
         
         /// <summary>
-        /// datalist1 control.
+        /// txttanggal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList datalist1;
+        protected global::System.Web.UI.WebControls.TextBox txttanggal;
+        
+        /// <summary>
+        /// txtjam1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtjam1;
+        
+        /// <summary>
+        /// txtketerangan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtketerangan;
+        
+        /// <summary>
+        /// btnadd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnadd;
+        
+        /// <summary>
+        /// DBDataPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
     }
 }

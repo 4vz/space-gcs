@@ -54,8 +54,8 @@ namespace Telkomsat
             //lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
 
-            lblProfile.Text = Session["username"].ToString();
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile.Text = Session["nama1"].ToString();
+            lblProfile1.Text = Session["nama1"].ToString();
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

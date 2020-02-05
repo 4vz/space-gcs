@@ -171,7 +171,7 @@ namespace Telkomsat.checklistme
                         tipe = ds.Tables[0].Rows[i]["tipe"].ToString();
                         satuan = ds.Tables[0].Rows[i]["satuan"].ToString();
 
-                        style3 = "font-weight:normal";
+                        style3 = "font-weight:normal; font-size:12px;";
 
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;

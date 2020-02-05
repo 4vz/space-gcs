@@ -9,9 +9,17 @@ namespace Telkomsat
 {
     public partial class CHECKLISTHK : System.Web.UI.MasterPage
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["username"] == null || Session["username"].ToString() == "")
+            {
+                Response.Redirect("~/login.aspx", true);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblProfile1.Text = Session["nama1"].ToString();
         }
     }
 }

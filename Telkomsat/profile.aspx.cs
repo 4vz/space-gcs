@@ -23,7 +23,7 @@ namespace Telkomsat
                 Response.Redirect("~/login.aspx");
 
             user = Session["username"].ToString();
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile1.Text = Session["nama1"].ToString();
             //string a;
             if (!IsPostBack)
             {

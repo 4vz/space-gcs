@@ -7,7 +7,7 @@
         <asp:ListItem>siang</asp:ListItem>
         <asp:ListItem>malam</asp:ListItem>
     </asp:DropDownList>
-<div class="col-md-12">
+<div class="col-md-12 no-padding">
         <div class="box box-primary">
         <div class="box-header with-border">
             <asp:Label ID="lblroom" runat="server" Text="Checklist ME" Font-Size="Large" Font-Bold="true"></asp:Label>

@@ -35,6 +35,7 @@ namespace Telkomsat
                 licomplete.Style["display"] = "none";
             }
 
+            lblProfile1.Text = Session["nama1"].ToString();
 
             if (divisi == "os" || divisi == "og")
             {
@@ -63,7 +64,7 @@ namespace Telkomsat
             if (thisURL.ToLower() == "favorit.aspx") lifavorit.Attributes.Add("class", "active");
 
             user = Session["username"].ToString();
-            lblProfile1.Text = user;
+            lblProfile1.Text = Session["nama1"].ToString();
 
             if (!IsPostBack)
             {

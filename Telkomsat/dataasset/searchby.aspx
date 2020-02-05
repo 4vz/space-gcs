@@ -123,24 +123,48 @@
         <div class="box box-danger">
         <div class="box-header with-border">
             <h3 class="box-title">Data Asset</h3>
+        
             <button type="button" id="btnexpand" class="showHideColumn btn btn-sm btn-primary pull-right">Expand</button> 
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table">
-                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>
-        <asp:Label ID="lblpencarian" runat="server" Text="Data pencarian tidak ditemukan" Visible="false"></asp:Label>
+                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder> 
+                <asp:Label ID="lblpencarian" runat="server" Text="Data pencarian tidak ditemukan" Visible="false"></asp:Label>
             </div>
-            <!-- /.table -->
-            <!-- /.mail-box-messages -->
         </div>
+            <div class="box-footer">
+                <asp:Button ID="Button2" runat="server" Text="Export to Excel" CssClass="btn btn-default pull-right" OnClick="ExportExcel" />
+            </div>
         <!-- /.box-body -->
         </div>
         <!-- /. box -->
     </div>
     </div>
     <script src="../assets/mylibrary/jquery-ui-1-12-1.js"></script>
+    <script>
+			$(function() {
+                $(".exportToExcel").click(function (e) {
+                    $('#example2').table2excel({
+							exclude: ".noExl",
+							name: "Excel Document Name",
+							filename: "myFileName" + new Date().toISOString().replace(/[\-\:\.]/g, "") + ".xls",
+							fileext: ".xls",
+							exclude_img: true,
+							exclude_links: true,
+							exclude_inputs: true,
+							preserveColors: preserveColors
+						});
+					var table = $(this).prev('#example2');
+					if(table && table.length){
+						var preserveColors = (table.hasClass('table2excel_with_colors') ? true : false);
+						
+					}
+				});
+				
+			});
+		</script>
     <script type="text/javascript">
         $(function () {
           var datatableInstance = $("#example2").DataTable({

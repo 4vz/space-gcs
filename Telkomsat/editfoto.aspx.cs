@@ -43,7 +43,7 @@ namespace Telkomsat
 
             lblStatus.ForeColor = System.Drawing.Color.Green;
             lblStatus.Text = "Pilih gambar untuk foto profile <font color='red'><b>Max(700kb).</b></font>";
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile1.Text = Session["nama1"].ToString();
         }
 
         protected void btnCrop_click(object sender, EventArgs e)

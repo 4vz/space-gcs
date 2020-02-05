@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Web.Services;
 using System.Configuration;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace Telkomsat.dataasset
 {
@@ -25,6 +27,84 @@ namespace Telkomsat.dataasset
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Form.DefaultButton = Button1.UniqueID;
+        }
+
+        protected void ExportExcel(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                SqlCommand sqlcmd = new SqlCommand("aset_searchby", sqlCon);
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                if (txtdevice1.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@device", txtdevice1.Text);
+                }
+                if (txtmerk.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@merk", txtmerk.Text);
+                }
+                if (txtsn.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@sn", txtsn.Text);
+                }
+                if (txfungsi.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@fungsi", txfungsi.Text);
+                }
+                if (txstatus.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@status", txstatus.Text);
+                }
+                if (txtwilaya.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@wilayah", txtwilaya.Text);
+                }
+                if (txtruang.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@ruang", txtruang.Text);
+                }
+
+                if (txtmulai.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@awal", txtmulai.Text);
+                }
+                if (txtsampai.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@akhir", txtsampai.Text);
+                }
+                else
+                {
+                    sqlcmd.Parameters.AddWithValue("@akhir", txtmulai.Text);
+                }
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sqlcmd.Connection = con;
+                    sda.SelectCommand = sqlcmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            wb.Worksheets.Add(dt, "Asset");
+
+                            Response.Clear();
+                            Response.Buffer = true;
+                            Response.Charset = "";
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            Response.AddHeader("content-disposition", "attachment;filename=DataAsset.xlsx");
+                            using (MemoryStream MyMemoryStream = new MemoryStream())
+                            {
+                                wb.SaveAs(MyMemoryStream);
+                                MyMemoryStream.WriteTo(Response.OutputStream);
+                                Response.Flush();
+                                Response.End();
+                            }
+                        }
+                    }
+                }
+                
+            }
         }
 
         public class inisial

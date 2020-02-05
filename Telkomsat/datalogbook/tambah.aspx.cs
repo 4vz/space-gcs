@@ -408,7 +408,7 @@ namespace Telkomsat.datalogbook
         void tableticket()
         {
             var datenow = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"select * from tabel_logbook order by id_logbook desc";
+            query = $@"select * from tabel_logbook where tanggal = '{datenow}' order by id_logbook desc";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);

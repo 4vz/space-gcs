@@ -121,7 +121,7 @@
     </nav>
   </header>
     <div class="content-wrapper"  style="min-height:800px;">
-    <div class="container">
+    <div class="container no-padding">
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">

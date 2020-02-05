@@ -60,76 +60,91 @@
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
     <form id="form1" runat="server">
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
+             <header class="main-header">
+                <nav class="navbar navbar-static-top">
         
-      <div class="container">
-        <div class="navbar-header">
-          <a href="../dashboard.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
+                  <div class="container">
+                    <div class="navbar-header">
+                      <a href="../dashboard2.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                      </button>
+                    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="../asset/home.aspx">Data Asset</a></li>
-              <li><a href="../logbook1/semuadata.aspx">Logbook</a></li>
-              <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
-          </ul>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                      <ul class="nav navbar-nav">
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fitur GCS <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a href="../dataasset/alldata.aspx">Data Asset</a></li>
+                                <li><a href="../datalogbook/data.aspx">Logbook</a></li>
+                                <li><a href="../admin/dashboard.aspx">Administrator</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="test" tabindex="-1" href="#">Checklist <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../checkhk/harian.aspx">Harkat</a></li>
+                                        <li><a href="../checklistme/harian.aspx">ME</a></li>
+                                    </ul>
+                                </li>
+                              </ul>
+                          </li>
+                          <li><a href="../knowledge/semua.aspx">Knowledge</a></li>
+                          <li><a href="../ticket/ticket.aspx">Ticket</a></li>
+                      </ul>
           
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
         
-        <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
             
-          <!-- Messages: style can be found in dropdown.less-->
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <asp:DataList runat="server" id="dtContact" Width="100%"> 
-        <ItemTemplate>
-                <div class="widget-user-image">
-                    <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
-                </div>
-        </ItemTemplate>
-
-    </asp:DataList>
-
-                <p><a href="../profile.aspx">
-                  Edit Profile
-                  <small>2019</small>
-                    </a>
-                </p>
-              </li>
-              <!-- Menu Body -->
+                      <!-- Messages: style can be found in dropdown.less-->
+                      <!-- User Account: style can be found in dropdown.less -->
+                      <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-right">
-                    <asp:Button ID="btn" runat="server" Text="Sign Out" OnClick="btnSignOut" CssClass="btn btn-default"/>
+                          <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <!-- User image -->
+                          <li class="user-header">
+                            <asp:DataList runat="server" id="dtContact" Width="100%"> 
+                                <ItemTemplate>
+                                        <div class="widget-user-image">
+                                            <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
+                                        </div>
+                                </ItemTemplate>
+
+                            </asp:DataList>
+                            <p><a href="../profile.aspx">
+                              Edit Profile
+                              <small>2019</small>
+                                </a>
+                            </p>
+                          </li>
+                          <!-- Menu Body -->
+              
+                          <!-- Menu Footer-->
+                          <li class="user-footer">
+                            <div class="pull-right">
+                                <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default" />
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <!-- Control Sidebar Toggle Button -->
+                      <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
+                  <!-- /.container-fluid -->
+            
+                </nav>
+              </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
     <div class="container">

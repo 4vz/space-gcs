@@ -60,96 +60,18 @@
         </div>
         <div class="form-group" id="tabledetail"  style="display:none">
             <label for="exampleInputPassword1">Table</label><button id="show" type="button" class="btn-xs btn-primary pull-right"><i class="fa fa-plus"></i></button> 
-            <table class="table table-bordered">
+            <table class="table table-bordered kita" id="tableku" runat="server">
                 <thead>
                     <tr>
-                        <th> Keterangan</th>
-                        <th> Nilai</th>
-                        <th> Bukti</th>
+                        <th>#</th>
+                        <th>Keterangan</th>
+                        <th>Nilai</th>
+                        <th>Bukti</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="tr1">
-                        <td>
-                            <asp:TextBox ID="txtketerangan1" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal1" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload2" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr2">
-                        <td>
-                            <asp:TextBox ID="txtketerangan2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal2" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload3" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr3">
-                        <td>
-                            <asp:TextBox ID="txtketerangan3" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal3" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload4" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr4">
-                        <td>
-                            <asp:TextBox ID="txtketerangan4" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal4" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload5" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr5">
-                        <td>
-                            <asp:TextBox ID="txtketerangan5" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal5" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload6" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr6">
-                        <td>
-                            <asp:TextBox ID="txtketerangan6" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal6" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload7" runat="server" />
-                        </td>
-                    </tr>
-                    <tr id="tr7">
-                        <td>
-                            <asp:TextBox ID="txtketerangan7" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtnominal7" runat="server" CssClass="form-control" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:FileUpload ID="FileUpload8" runat="server" />
-                        </td>
-                    </tr>
                 </tbody>
-                
             </table>
-        
         </div>
         <div class="form-group" id="file" style="display:none">
             <label for="exampleInputFile">File input</label>
@@ -231,37 +153,32 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#tr2").hide();
-            $("#tr3").hide();
-            $("#tr4").hide();
-            $("#tr5").hide();
-            $("#tr6").hide();
-            $("#tr7").hide();
             var i = 0;
             $("#show").click(function () {
-                i = i + 1;
-                if (i == 1) {
-                    $("#tr2").show(700);
-                }
-                if (i == 2) {
-                    $("#tr3").show(700);
-                }
-                if (i == 3) {
-                    $("#tr4").show(700);
-                }
-                if (i == 4) {
-                    $("#tr5").show(700);
-                }
-                if (i == 5) {
-                    $("#tr6").show(700);
-                }
-                if (i == 6) {
-                    $("#tr7").show(700);
-                    $("#show").attr("disabled", true);
-                }
-
+                var myfile = $("#myfile").val();
+                var markup = "<tr><td><input type='button' onclick='remove(this);' class='close' value='x' name='record'></td><td>" + "<input type='text' class='form-control' name='mypanjar' />" + "</td>" +
+                    "<td>" + "<input type='text' class='form-control' name='mydatapanjar' onkeydown='return numbersonly(this, event);' onkeyup='javascript:tandaPemisahTitik(this);' />" + "</td>" +
+                    "<td>" + '<input type="file" class="fileku" name="fileinput"/>' + "</td>" + "</tr>";
+                console.log(myfile);
+                $('#' + '<%= tableku.ClientID%>').append(markup);
+                $("#datainput").val('');
+                $("#nilaidata").val('');
             });
         });
+
+        function remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(1).html();
+            if (confirm("Do you want to delete: " + name)) {
+ 
+                //Get the reference of the Table.
+                var table = $('#' + '<%= tableku.ClientID%>')[0];
+ 
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+            }
+        };
     </script>
 
 </asp:Content>

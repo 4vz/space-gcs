@@ -66,7 +66,7 @@ namespace Telkomsat
                 sqlCon2.Close();
             }
 
-            lblProfile1.Text = Session["username"].ToString();
+            lblProfile1.Text = Session["nama1"].ToString();
         }
 
         protected void btnUpdate_click(object sender, EventArgs e)
