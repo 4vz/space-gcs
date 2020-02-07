@@ -42,32 +42,37 @@ namespace Telkomsat.checklistme
                 user = Session["iduser"].ToString();
             }
 
-            date = DateTime.Now.ToString("yyyy/MM/dd");
-
             TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
             TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
-            TimeSpan tiga = new TimeSpan(18, 0, 0); //12 o'clock
-            TimeSpan now = DateTime.Now.TimeOfDay;
-
+            TimeSpan tiga = new TimeSpan(19, 0, 0); //12 o'clock
+            TimeSpan empat = new TimeSpan(24, 0, 0);
+            
             if (!IsPostBack)
             {
-                if ((now > satu) && (now < dua))
+                DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
+                TimeSpan wibTime = wib.TimeOfDay;
+
+                if ((wibTime >= satu) && (wibTime < dua))
                 {
-                    DropDownList1.Text = "pagi";
+                    date = wib.ToString("yyyy/MM/dd");
                     waktu = "pagi";
                 }
-                if ((now > dua) && (now < tiga))
+                else if ((wibTime >= dua) && (wibTime < tiga))
                 {
-                    DropDownList1.Text = "siang";
+                    date = wib.ToString("yyyy/MM/dd");
                     waktu = "siang";
                 }
-                if ((now > tiga) && (now < satu))
+                else if ((wibTime >= tiga) && (wibTime < empat))
                 {
-                    DropDownList1.Text = "malam";
-                    waktu = "malem";
+                    date = wib.ToString("yyyy/MM/dd");
+                    waktu = "malam";
+                }
+                else
+                {
+                    date = (wib - new TimeSpan(1, 0, 0, 0)).ToString("yyyy/MM/dd");
+                    waktu = "malam";
                 }
             }
-
 
             query2 = $@"select count(*) from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
