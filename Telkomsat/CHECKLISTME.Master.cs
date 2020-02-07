@@ -40,5 +40,11 @@ namespace Telkomsat
             Session["inisial"] = null;
         }
 
+        protected void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Redirect("~/login.aspx");
+        }
     }
 }

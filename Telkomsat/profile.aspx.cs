@@ -127,9 +127,10 @@ namespace Telkomsat
             Response.Redirect("~/editpassword.aspx");
         }
 
-        protected void btnSignOut(object sender, EventArgs e)
+        protected void btnSignOut_Click(object sender, EventArgs e)
         {
             Session.Abandon();
+            Session.Clear();
             Response.Redirect("~/login.aspx");
         }
     }

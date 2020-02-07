@@ -93,7 +93,26 @@ namespace Telkomsat.checklistme
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"editharian.aspx?room={room}&waktu={saat}");
+            TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
+            TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
+            TimeSpan tiga = new TimeSpan(18, 0, 0); //12 o'clock
+            TimeSpan now = DateTime.Now.TimeOfDay;
+            if ((now > satu) && (now < dua))
+            {
+                DropDownList1.Text = "pagi";
+                waktu = "pagi";
+            }
+            if ((now > dua) && (now < tiga))
+            {
+                DropDownList1.Text = "siang";
+                waktu = "siang";
+            }
+            if ((now > tiga) && (now < satu))
+            {
+                DropDownList1.Text = "malam";
+                waktu = "malem";
+            }
+            Response.Redirect($"editharian.aspx?room={room}&waktu={waktu}");
         }
 
         protected void Button1_Click(object sender, EventArgs e)

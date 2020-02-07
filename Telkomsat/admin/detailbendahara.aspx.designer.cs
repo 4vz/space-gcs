@@ -7,81 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat {
+namespace Telkomsat.admin {
     
     
-    public partial class ASSET {
+    public partial class detailbendahara {
         
         /// <summary>
-        /// head control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// form12 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form12;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// lblProfile control.
+        /// lblketerangan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfile;
+        protected global::System.Web.UI.WebControls.Label lblketerangan;
         
         /// <summary>
-        /// DataList1 control.
+        /// Label8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// dtContact1 control.
+        /// lblkategori control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtContact1;
+        protected global::System.Web.UI.WebControls.Label lblkategori;
         
         /// <summary>
-        /// lblProfile1 control.
+        /// Label10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfile1;
+        protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// divadmin control.
+        /// lblnominal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divadmin;
+        protected global::System.Web.UI.WebControls.Label lblnominal;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// lblpic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpic;
+        
+        /// <summary>
+        /// lblstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblstatus;
+        
+        /// <summary>
+        /// DBDataPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
     }
 }

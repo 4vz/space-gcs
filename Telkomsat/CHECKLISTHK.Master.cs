@@ -21,5 +21,12 @@ namespace Telkomsat
         {
             lblProfile1.Text = Session["nama1"].ToString();
         }
+
+        protected void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Redirect("~/login.aspx");
+        }
     }
 }

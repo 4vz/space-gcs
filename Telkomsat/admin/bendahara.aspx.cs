@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Telkomsat.admin
 {
-    public partial class listpengeluaran : System.Web.UI.Page
+    public partial class bendahara : System.Web.UI.Page
     {
         SqlDataAdapter da, da1, damodal;
         DataSet ds = new DataSet();
@@ -83,7 +83,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + nominal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\" class=\"{style}\">" + approve + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/admin/approve.aspx?id={IDdata}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/admin/detailbendahara.aspx?id={IDdata}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

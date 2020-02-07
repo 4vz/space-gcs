@@ -7,81 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat {
+namespace Telkomsat.checkhk {
     
     
-    public partial class ASSET {
+    public partial class editharian {
         
         /// <summary>
-        /// head control.
+        /// divddl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divddl;
         
         /// <summary>
-        /// form12 control.
+        /// ddlruang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form12;
+        protected global::System.Web.UI.WebControls.DropDownList ddlruang;
         
         /// <summary>
-        /// lblProfile control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfile;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// DataList1 control.
+        /// lblroom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.Label lblroom;
         
         /// <summary>
-        /// dtContact1 control.
+        /// lbledit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtContact1;
+        protected global::System.Web.UI.WebControls.Label lbledit;
         
         /// <summary>
-        /// lblProfile1 control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProfile1;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
-        /// divadmin control.
+        /// DBDataPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divadmin;
+        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
     }
 }

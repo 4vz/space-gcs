@@ -94,7 +94,7 @@
                           <!-- Menu Footer-->
                           <li class="user-footer">
                             <div class="pull-right">
-                                <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default" />
+                                <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default" OnClick="btnSignOut_Click" />
                             </div>
                           </li>
                         </ul>

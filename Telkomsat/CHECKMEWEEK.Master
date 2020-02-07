@@ -54,7 +54,7 @@
         
       <div class="container">
         <div class="navbar-header">
-          <a href="../dashboard2.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
+          <a href="../../dashboard2.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -104,7 +104,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                    <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default"/>
+                    <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default"  OnClick="btnSignOut_Click"/>
                 </div>
               </li>
             </ul>

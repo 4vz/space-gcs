@@ -20,6 +20,22 @@ namespace Telkomsat.superadmin
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["username"] == null)
+                Response.Redirect("~/login.aspx");
+
+            if (Session["previllage"].ToString() == "adminme" || Session["username"].ToString() == "super")
+            {
+
+            }
+            else
+            {
+                Response.Redirect("~/dashboard2.aspx");
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             tableticket();
@@ -179,11 +195,12 @@ namespace Telkomsat.superadmin
                         jadwal = ds.Tables[0].Rows[i]["jadwal"].ToString();
                         DateTime tshift = (DateTime)ds.Tables[0].Rows[i]["tanggal_shift"];
                         tanggal = tshift.ToString("dddd, dd MMMM yyyy");
+                        string mytanggal = tshift.ToString("yyyy/MM/dd");
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + jadwal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + petugas + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a onclick=\"confirmdelete('../superadmin/hapus.aspx?tanggalsh={ds.Tables[0].Rows[i]["tanggal_shift"].ToString()}&jadwalsh={jadwal}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "Delete" + "</a>" + "</td>");
+                        htmlTable.Append("<td>" + $"<a onclick=\"confirmdelete('../superadmin/hapus.aspx?tanggalsh={mytanggal}&jadwalsh={jadwal}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "Delete" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

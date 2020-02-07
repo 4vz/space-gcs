@@ -275,7 +275,8 @@
                                         <asp:TextBox ID="txtalasan" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnupdate_Click" />
+                                        <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="btnupdate_Click" UseSubmitBehavior="false"
+                                            OnClientClick="this.disabled='true'; this.value='Please wait...';"  />
                                     </div>
                                 </div>
                             </div>

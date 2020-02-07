@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace Telkomsat.admin
 {
-    public partial class approve : System.Web.UI.Page
+    public partial class detailbendahara : System.Web.UI.Page
     {
         SqlDataAdapter da, da1, da2;
         DataSet ds = new DataSet();
@@ -19,7 +19,7 @@ namespace Telkomsat.admin
         DataSet ds2 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string IDdata = "kitaa", total = "", keterangan, tanggal = "", id, dketerangan, dnominal,dfile, dapprove, brame, style, input = "", kategori = "", input1 = "", kategori1 = "", query;
+        string IDdata = "kitaa", total = "", keterangan, tanggal = "", id, dketerangan, dnominal, dfile, dapprove, brame, style, input = "", kategori = "", input1 = "", kategori1 = "", query;
         string start = "01/01/2019", end = "01/12/2048";
 
 
@@ -28,7 +28,7 @@ namespace Telkomsat.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             tableticket();
-            if(Request.QueryString["id"] != null)
+            if (Request.QueryString["id"] != null)
             {
                 id = Request.QueryString["id"].ToString();
             }
@@ -48,7 +48,7 @@ namespace Telkomsat.admin
             lblnominal.Text = ds1.Tables[0].Rows[0]["input"].ToString();
             lblpic.Text = ds1.Tables[0].Rows[0]["nama"].ToString();
 
-            if(ds1.Tables[0].Rows[0]["gm"].ToString() == "unread")
+            if (ds1.Tables[0].Rows[0]["gm"].ToString() == "unread")
             {
                 sqlCon.Open();
                 SqlCommand cmd3 = new SqlCommand(myquery, sqlCon);
@@ -70,7 +70,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Keterangan</th><th>Nominal</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -88,7 +88,7 @@ namespace Telkomsat.admin
                         dfile = ds.Tables[0].Rows[i]["d_file"].ToString();
                         dapprove = ds.Tables[0].Rows[i]["d_approve"].ToString();
                         dnominal = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(ds.Tables[0].Rows[i]["d_nominal"].ToString()));
-                        
+
                         if (kategori == "pemasukan")
                             style = "label-info";
                         else if (kategori == "pengeluaran")
@@ -100,10 +100,6 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + dketerangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + dnominal + "</label>" + "</td>");
-                        if (dapprove != "approve")
-                            htmlTable.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?ida={IDdata}&idadmin={IDdata}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "APPROVE" + "</a>" + "</td>");
-                        else
-                            htmlTable.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "TERAPPROVE" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
@@ -113,6 +109,5 @@ namespace Telkomsat.admin
                 }
             }
         }
-
     }
 }

@@ -41,6 +41,10 @@ namespace Telkomsat
                 //DataList2.DataBind();
                 sqlCon.Close();
             }
+
+            if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "adminhk" || Session["previllage"].ToString() == "super"
+                || Session["previllage"].ToString() == "bendahara")
+                divadmin.Visible = true;
             sqlCon.Open();
             SqlDataAdapter sqlCmd2 = new SqlDataAdapter("ProViewByUser", sqlCon);
             sqlCmd2.SelectCommand.CommandType = CommandType.StoredProcedure;

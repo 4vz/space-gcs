@@ -47,6 +47,7 @@ namespace Telkomsat
                 Session["jenis1"] = dtbl.Rows[0]["jenis"].ToString();
                 Session["nama1"] = dtbl.Rows[0]["nama"].ToString();
                 Session["nomor"] = dtbl.Rows[0]["nomor"].ToString();
+                Session["previllage"] = dtbl.Rows[0]["previllage"].ToString();
                 Session["tanggal1"] = dtbl.Rows[0]["tanggal_masuk"].ToString();
                 Session["tempat"] = dtbl.Rows[0]["tempat"].ToString();
                 Session["ttl"] = dtbl.Rows[0]["ttl"].ToString();

@@ -20,8 +20,8 @@ namespace Telkomsat
             if (thisURL.ToLower() == "pemindahan.aspx") lipemindahan.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pengembalian.aspx") lipengembalian.Attributes.Add("class", "active");
 
-            lblProfile.Text = Session["nama1"].ToString();
-            lblProfile1.Text = Session["nama1"].ToString();
+            //lblProfile.Text = Session["nama1"].ToString();
+            //lblProfile1.Text = Session["nama1"].ToString();
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

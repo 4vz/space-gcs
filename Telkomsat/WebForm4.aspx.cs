@@ -28,8 +28,32 @@ namespace Telkomsat
             DateTime akhir = DateTime.Now.AddDays(1);
 
             TimeSpan t = akhir - awal;
-            Response.Write(t.Days);
-            Response.Write(akhir);
+
+            int day = DateTime.DaysInMonth(2020, 02);
+            int days, j;
+            j = 16;
+            days = day - 15;
+            string[] tanggalku = new string[days];
+            for(int i = 0; i < days; i++)
+            {
+                tanggalku[i] = $@"sum(case 
+				when s.tanggal_shift = '2020-02-{j}' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '2020-02-{j}' and s.jadwal = 'Sore' then 2 else 0 end) as '{j}'";
+                j++;
+            }
+
+            string datatanggal = string.Join(",", tanggalku);
+
+            string query1 = $@"SELECT p.petugas,{datatanggal}
+		            FROM shiftme s
+	            left JOIN shiftme_petugas p ON s.id_petugas=p.id_petugas
+	                group by p.petugas";
+
+
+
+            Response.Write(query1);
+            //Response.Write(t.Days);
+            //Response.Write(akhir);
         }
 
         protected void Upload(object sender, EventArgs e)

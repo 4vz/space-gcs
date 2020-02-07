@@ -166,10 +166,12 @@
     <Content Include="3monthhk\isidata.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\approve.aspx" />
+    <Content Include="admin\bendahara.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\dashboard.js" />
     <Content Include="admin\datapemasukan.aspx" />
     <Content Include="admin\detail.aspx" />
+    <Content Include="admin\detailbendahara.aspx" />
     <Content Include="admin\download.aspx" />
     <Content Include="admin\listpengeluaran.aspx" />
     <Content Include="admin\nominal.js" />
@@ -6867,6 +6869,7 @@
     <Content Include="asset\StyleSheet1.css" />
     <Content Include="check.aspx" />
     <Content Include="checkhk\dataharian.aspx" />
+    <Content Include="checkhk\editharian.aspx" />
     <Content Include="checkhk\harian.aspx" />
     <Content Include="checkhk\viewharian.aspx" />
     <Content Include="checklist.css" />
@@ -7255,6 +7258,13 @@
     <Compile Include="admin\approve.aspx.designer.cs">
       <DependentUpon>approve.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\bendahara.aspx.cs">
+      <DependentUpon>bendahara.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\bendahara.aspx.designer.cs">
+      <DependentUpon>bendahara.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7275,6 +7285,13 @@
     </Compile>
     <Compile Include="admin\detail.aspx.designer.cs">
       <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\detailbendahara.aspx.cs">
+      <DependentUpon>detailbendahara.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detailbendahara.aspx.designer.cs">
+      <DependentUpon>detailbendahara.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\download.aspx.cs">
       <DependentUpon>download.aspx</DependentUpon>
@@ -7398,6 +7415,13 @@
     </Compile>
     <Compile Include="checkhk\dataharian.aspx.designer.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkhk\editharian.aspx.cs">
+      <DependentUpon>editharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\editharian.aspx.designer.cs">
+      <DependentUpon>editharian.aspx</DependentUpon>
     </Compile>
     <Compile Include="checkhk\harian.aspx.cs">
       <DependentUpon>harian.aspx</DependentUpon>

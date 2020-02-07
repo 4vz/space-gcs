@@ -437,7 +437,7 @@
         </li>
         </ul>
 
-        <ul class="sidebar-menu" data-widget="tree">
+        <ul class="sidebar-menu" data-widget="tree" runat="server" id="divadmin" visible="false">
         <li class="header">ADMIN</li>     
           <li class="treeview">
           <a href="#">

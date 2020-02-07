@@ -23,10 +23,14 @@ namespace Telkomsat
         StringBuilder htmlDeadline = new StringBuilder();
         StringBuilder htmlNow = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
+
+            if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "super")
+                ashiftme.Visible = true;
 
             lblProfile1.Text = Session["nama1"].ToString();
 
@@ -59,6 +63,13 @@ namespace Telkomsat
             lognow();
             checklist();
             ticket();
+        }
+
+        protected void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Redirect("~/login.aspx");
         }
 
         void logbookonprogress()
@@ -327,6 +338,61 @@ namespace Telkomsat
             //Response.Write(output);
         }
 
+        protected void Edit_Click(object sender, EventArgs e)
+        {
+            if (Request.Form["icon"] != null)
+            {
+                pilihicon = Request.Form["icon"].ToString();
+                //Response.Write(pilihicon);
+            }
+
+            if (pilihicon == "sport")
+                icon1 = "~/img/sport.png";
+            else if (pilihicon == "makan")
+                icon1 = "~/img/makan.png";
+            else if (pilihicon == "rapat")
+                icon1 = "~/img/meeting.png";
+            else if (pilihicon == "holiday")
+                icon1 = "~/img/holiday.jpg";
+            else if (pilihicon == "manuver")
+                icon1 = "~/img/rocket.png";
+            else if (pilihicon == "vendor")
+                icon1 = "~/img/vendor.png";
+
+            string indexedit = Session["indexEvent"].ToString();
+
+            int IDEdit = Convert.ToInt32(indexedit);
+            sqlCon.Open();
+            SqlCommand sqlCmd5 = new SqlCommand("EvUpdate", sqlCon);
+            sqlCmd5.CommandType = CommandType.StoredProcedure;
+            sqlCmd5.Parameters.AddWithValue("@ID", IDEdit);
+            sqlCmd5.Parameters.AddWithValue("@event", txtEven.Text);
+            sqlCmd5.Parameters.AddWithValue("@penyelenggara", txtPenyelenggara.Text);
+            sqlCmd5.Parameters.AddWithValue("@jam", txttime.Value);
+            sqlCmd5.Parameters.AddWithValue("@lokasi", txtLokasi.Text);
+            sqlCmd5.Parameters.AddWithValue("@tanggal2", txtttl.Value);
+            sqlCmd5.Parameters.AddWithValue("@icon", icon1);
+            sqlCmd5.Parameters.AddWithValue("@statususer", Session["jenis1"].ToString());
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon.Close();
+            Response.Redirect("dashboard2.aspx");
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            string indexedit = Session["indexEvent"].ToString();
+
+            int IDEdit = Convert.ToInt32(indexedit);
+            sqlCon.Open();
+            SqlCommand sqlCmd5 = new SqlCommand("EvDelete", sqlCon);
+            sqlCmd5.CommandType = CommandType.StoredProcedure;
+            sqlCmd5.Parameters.AddWithValue("@ID", IDEdit);
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon.Close();
+            Response.Redirect("dashboard2.aspx");
+        }
+
+
         void tableshift()
         {
             var mulai = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
@@ -362,7 +428,7 @@ namespace Telkomsat
                     sorenow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
                 else if (mydate == akhir && myjadwal == "Pagi")
                     pagitomorrow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
-                else if (mydate == mulai && myjadwal == "Sore")
+                else if (mydate == akhir && myjadwal == "Sore")
                     soretomorrow.InnerHtml = dsshift.Tables[0].Rows[i]["petugas"].ToString();
 
                 /*if (i==0)
@@ -406,7 +472,7 @@ namespace Telkomsat
                 btnhapus.Visible = true;
                 btntambah.Visible = false;
 
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModalButton').modal('show')", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#modalupdate1').modal('show')", true);
 
                 Session["indexEvent"] = index;
                 //Label labelEdit = (Label)e.Item.FindControl("lbEdit");

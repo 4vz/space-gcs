@@ -153,7 +153,7 @@
                           <!-- Menu Footer-->
                           <li class="user-footer">
                             <div class="pull-right">
-                                <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default" />
+                                <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default" OnClick="btnSignOut_Click" />
                             </div>
                           </li>
                         </ul>
@@ -189,6 +189,7 @@
                 <!-- Main content -->
                 <section class="content no-padding">
                     <div class="row">
+                        <a href="checkhk/harian.aspx">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box bg-aqua">
                             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
@@ -206,7 +207,9 @@
                         </div>
                         <!-- /.info-box -->
                     </div>
+                    </a>
             <!-- /.col -->
+                     <a href="checklistme/harian.aspx">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
@@ -224,6 +227,8 @@
                         </div>
                         <!-- /.info-box -->
                     </div>
+                        </a>
+                        <a href="checklistme/harian.aspx">
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
@@ -242,6 +247,8 @@
                         </div>
                         <!-- /.info-box -->
                     </div>
+                       </a>
+                        <a href="checklistme/harian.aspx">     
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-red">
@@ -260,8 +267,10 @@
                         </div>
                         <!-- /.info-box -->
                     </div>
+                            </a>
                     <!-- /.col -->
                     </div>
+                        
                     <div class="row">
                     <div class="col-lg-8 col-md-12">
                         <div class="box box-danger">
@@ -320,7 +329,7 @@
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs pull-right">
                               <li class="pull-left header"><i class="fa fa-check-circle"></i> Shift ME</li>
-                                <a href="superadmin/shiftme.aspx" class="pull-right" runat="server">Add</a>
+                                <a href="superadmin/shiftme.aspx" id="ashiftme" visible="false" class="pull-right" runat="server">Add</a>
                             </ul>
                             <div class="tab-content no-padding">
                         <div class="tab-pane fade in active">
@@ -401,7 +410,7 @@
                         <div class="col-md-4">
                                 <div class="box box-default">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Saldo</h3>
+                                        <h3 class="box-title">Ticket</h3>
 
                                         <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -621,8 +630,8 @@
         </div>
       <div class="modal-footer">
           <asp:Button runat="server" Text="submit" class="btn btn-primary" style="display:none" ID="btntambah" OnClick="btntambah_Click" />
-          <asp:Button runat="server" Text="edit" class="btn btn-success" Visible="false" ID="btnedit"/>
-          <asp:Button runat="server" Text="hapus" class="btn btn-success" Visible="false" ID="btnhapus" />
+          <asp:Button runat="server" Text="edit" class="btn btn-success" Visible="false" ID="btnedit" OnClick="Edit_Click"/>
+          <asp:Button runat="server" Text="hapus" class="btn btn-success" Visible="false" ID="btnhapus" OnClick="btnDelete_Click" />
         <!-- <button type="button" class="btn btn-primary">Button</button> -->
       </div>
     </div>

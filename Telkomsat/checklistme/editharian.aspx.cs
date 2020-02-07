@@ -13,13 +13,15 @@ namespace Telkomsat.checklistme
 {
     public partial class editharian : System.Web.UI.Page
     {
-        SqlDataAdapter da;
+        SqlDataAdapter da, da2;
         DataSet ds = new DataSet();
+        DataSet ds2 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
+        string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, query5, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
         string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
+        string myid;
         string[] words = { "a", "a" };
-        string[] akhir;
+        string[] akhir, dataku;
         int j = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
@@ -38,15 +40,48 @@ namespace Telkomsat.checklistme
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string data = string.Join(",", akhir);
+            /*string data = string.Join(",", akhir);
             query1 = $"insert into checkme_data (tanggal, id_profile, id_parameter, waktu, nilai) values {data}";
             //Console.Write(query1);
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            Session["inisial"] = null;
+            Session["inisial"] = null;*/
+            query5 = $@"select d.id_datame, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
+                    checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by r.id_perangkat";
 
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+
+            SqlCommand cmd = new SqlCommand(query5, sqlCon);
+            da2 = new SqlDataAdapter(cmd);
+            da2.Fill(ds2);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            int p;
+            if (!object.Equals(ds2.Tables[0], null))
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+                    {
+                        myid = ds2.Tables[0].Rows[i]["id_datame"].ToString();
+                        string myquery1 = $@"UPDATE checkme_data SET nilai = '{dataku[i]}' WHERE id_datame = '{myid}'";
+                        sqlCon.Open();
+                        SqlCommand sqlcmd = new SqlCommand(myquery1, sqlCon);
+                        sqlcmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+
+                    foreach(string daku in dataku)
+                    {
+                        //Response.Write(daku);
+                    }
+                }
+            }
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 
@@ -76,6 +111,7 @@ namespace Telkomsat.checklistme
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
             akhir = new string[count];
+            dataku = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -125,6 +161,7 @@ namespace Telkomsat.checklistme
                         {
                             //Response.Write(line);
                             akhir[j] = "(" + "'" + looping[j] + "','" + line + "')";
+                            dataku[j] = line;
                             j++;
                         }
                     }

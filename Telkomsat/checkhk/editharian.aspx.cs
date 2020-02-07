@@ -11,17 +11,18 @@ using System.Text.RegularExpressions;
 
 namespace Telkomsat.checkhk
 {
-    public partial class harian : System.Web.UI.Page
+    public partial class editharian : System.Web.UI.Page
     {
-        SqlDataAdapter da;
+        SqlDataAdapter da, da2;
         DataSet ds = new DataSet();
+        DataSet ds2 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
+        string myid, query5, IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
 
 
         string Parameter = "a", iduser, query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial, rack;
         string[] words = { "a", "a" };
-        string[] akhir;
+        string[] akhir, dataku;
         int j = 0, k;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
@@ -32,12 +33,8 @@ namespace Telkomsat.checkhk
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
             }
-            else
-            {
-                Button1.Visible = false;
-            }
 
-            if(Session["iduser"] != null)
+            if (Session["iduser"] != null)
             {
                 iduser = Session["iduser"].ToString();
             }
@@ -52,18 +49,7 @@ namespace Telkomsat.checkhk
             string output = cmd5.ExecuteScalar().ToString();
             int jenischeck = Convert.ToInt32(output);
             sqlCon.Close();
-            if (jenischeck >= 1)
-            {
-                lbledit.Visible = true;
-                lbledit.Text = $"Data checklist sudah terisi untuk tanggal {date} pada waktu {waktu} klik untuk ";
-                LinkButton1.Visible = true;
-                Button1.Visible = false;
-            }
-            else
-            {
-
-                tableticket();
-            }
+            tableticket();
 
             if (!IsPostBack)
             {
@@ -83,27 +69,45 @@ namespace Telkomsat.checkhk
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"editharian.aspx?tanggal={date}&room={room}");
+            Response.Redirect($"editharian.aspx?room={room}&waktu=sds");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            querytanggal = $"insert into checkhk_tanggal (tanggalhk, id_profile) values ('{date}', '3')";
-            //Console.Write(query1);
-            sqlCon.Open();
-            SqlCommand cmd7 = new SqlCommand(querytanggal, sqlCon);
-            cmd7.ExecuteNonQuery();
-            sqlCon.Close();
+            query5 = $@"select d.id_data, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
+                    checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter=r.id_parameter
+					where shelter = '{room}' and d.tanggal > '{date} 00:00' and d.tanggal < '{date} 23:59' order by p.rack, r.id_perangkat";
 
-            string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_data (tanggal, id_profile, id_parameter, data) values {data}";
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+
+            SqlCommand cmd = new SqlCommand(query5, sqlCon);
+            da2 = new SqlDataAdapter(cmd);
+            da2.Fill(ds2);
             sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
+            int p;
+            if (!object.Equals(ds2.Tables[0], null))
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
 
-            //Response.Write(data);
-            Session["inisialhk"] = null;
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+                    {
+                        myid = ds2.Tables[0].Rows[i]["id_data"].ToString();
+                        string myquery1 = $@"UPDATE checkhk_data SET data = '{dataku[i]}' WHERE id_data = '{myid}'";
+                        sqlCon.Open();
+                        SqlCommand sqlcmd = new SqlCommand(myquery1, sqlCon);
+                        sqlcmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+
+                    foreach (string daku in dataku)
+                    {
+                        //Response.Write(daku);
+                    }
+                }
+            }
 
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
@@ -116,15 +120,9 @@ namespace Telkomsat.checkhk
 
         void tableticket()
         {
-            if (Session["inisialhk"] != null)
-                query = $@"select d.tanggal, d.data, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe from checkhk_parameter r left join
-                        checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
-						where shelter = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkhk_data d join checkhk_parameter r 
-					    on r.id_parameter=d.id_parameter left join checkhk_perangkat p on p.id_perangkat = r.id_perangkat
-					    where p.shelter = '{room}' and d.data is not null) order by p.rack, r.id_perangkat";
-            else
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe from checkhk_parameter r left join
-                        checkhk_perangkat p on p.id_perangkat = r.id_perangkat where shelter = '{room}' order by p.rack, r.id_perangkat";
+            query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
+                    checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter=r.id_parameter
+					where shelter = '{room}' and d.tanggal > '{date} 00:00' and d.tanggal < '{date} 23:59' order by p.rack, r.id_perangkat ";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
@@ -147,6 +145,7 @@ namespace Telkomsat.checkhk
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
             akhir = new string[count];
+            dataku = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -168,8 +167,7 @@ namespace Telkomsat.checkhk
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if (Session["inisialhk"] != null)
-                            nilai = ds.Tables[0].Rows[i]["data"].ToString();
+                        nilai = ds.Tables[0].Rows[i]["data"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
@@ -191,7 +189,7 @@ namespace Telkomsat.checkhk
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"OK\" > OK </option><option value =\"BAD\"> BAD </option></select > " + " </td>");
                         else if (tipe == "OO")
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"ON\" > ON </option><option value =\"OFF\"> OFF </option></select > " + " </td>");
-                        
+
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];
@@ -208,6 +206,7 @@ namespace Telkomsat.checkhk
                         {
                             //Response.Write(line);
                             akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "')";
+                            dataku[j] = line;
                             j++;
                         }
                     }
