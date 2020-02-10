@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace Telkomsat
 {
-    [EnableCors(origins: "http://example.com", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     /// <summary>
     /// Summary description for allasset
     /// </summary>

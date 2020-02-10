@@ -56,16 +56,19 @@ namespace Telkomsat.checklistme
                 {
                     date = wib.ToString("yyyy/MM/dd");
                     waktu = "pagi";
+                    DropDownList1.Text = "pagi";
                 }
                 else if ((wibTime >= dua) && (wibTime < tiga))
                 {
                     date = wib.ToString("yyyy/MM/dd");
                     waktu = "siang";
+                    DropDownList1.Text = "siang";
                 }
                 else if ((wibTime >= tiga) && (wibTime < empat))
                 {
                     date = wib.ToString("yyyy/MM/dd");
                     waktu = "malam";
+                    DropDownList1.Text = "malam";
                 }
                 else
                 {

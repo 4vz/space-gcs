@@ -35,6 +35,7 @@ namespace Telkomsat.checklistme
                 tanggal1 = Request.QueryString["tanggal"];
             }
             tanggalku = tanggal1;
+            
             if (!IsPostBack)
             {
                 query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe from checkme_parameter r INNER join
@@ -54,7 +55,7 @@ namespace Telkomsat.checklistme
                 tableticket();
             }
 
-            
+
         }
 
         protected void Filter_ServerClick(object sender, EventArgs e)
@@ -161,7 +162,7 @@ namespace Telkomsat.checklistme
             sqlCon.Close();
 
 
-            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-striped\">");
             htmlTable.Append("<thead>");
             htmlTable.Append("<tr><th>Ruangan</th><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th>Pagi</th><th>Siang</th><th>Malam</th><th>Satuan</th></tr>");
             htmlTable.Append("</thead>");
@@ -242,16 +243,16 @@ namespace Telkomsat.checklistme
                             }
                         }
 
-                        style3 = "font-weight:normal";
+                        style3 = "font-weight:normal; font-size:12px;";
 
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ruangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Perangkat + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + SN + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">{nilai}</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">{siang}</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">{malam}</label>" + "</td>");
+                        htmlTable.Append("<td style=\"border-right:3px solid #dddddd;\">" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
+                        htmlTable.Append("<td style=\"border-right:3px solid #dddddd;\">" + $"<label style=\"{style3}\">{nilai}</label>" + "</td>");
+                        htmlTable.Append("<td style=\"border-right:3px solid #dddddd;\">" + $"<label style=\"{style3}\">{siang}</label>" + "</td>");
+                        htmlTable.Append("<td style=\"border-right:3px solid #dddddd;\">" + $"<label style=\"{style3}\">{malam}</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];

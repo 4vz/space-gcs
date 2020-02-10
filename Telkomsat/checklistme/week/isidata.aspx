@@ -11,7 +11,6 @@
                 <asp:ListItem>RO-GST</asp:ListItem>
                 <asp:ListItem>RO-HYD</asp:ListItem>
                 <asp:ListItem>RO-BTT</asp:ListItem>
-                <asp:ListItem>RO-UPS</asp:ListItem>
                 
             </asp:DropDownList>
                 </div>

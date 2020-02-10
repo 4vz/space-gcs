@@ -69,7 +69,7 @@
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
-              "rowsGroup": [0, 1],
+              "rowsGroup": [0, 1, 2],
           "ordering": false,
           "pageLength": 100,
           "columnDefs": [

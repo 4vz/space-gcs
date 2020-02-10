@@ -31,17 +31,17 @@
                         <label for="exampleInputEmail1">Kategori</label>
                         <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server" onchange="status(this)">
                             <asp:ListItem Value="nama">--Petugas--</asp:ListItem>
-                            <asp:ListItem Value="'sumanto'">Sumanto</asp:ListItem>
-                            <asp:ListItem Value="'putra'">Pratama Putra</asp:ListItem>
-                            <asp:ListItem Value="'herman'">Herman</asp:ListItem>
-                            <asp:ListItem Value="'maman'">Maman</asp:ListItem>
-                            <asp:ListItem Value="'slamet'">Slamet</asp:ListItem>
-                            <asp:ListItem Value="'soeryana'">Soeryana</asp:ListItem>
-                            <asp:ListItem Value="'radius'">Radius</asp:ListItem>
-                            <asp:ListItem Value="'saeful'">Saeful</asp:ListItem>
-                            <asp:ListItem Value="'dodo'">Dodo</asp:ListItem>
-                            <asp:ListItem Value="'ibnu'">Ibnu</asp:ListItem>
-                            <asp:ListItem Value="'syehab'">Syehab</asp:ListItem>
+                            <asp:ListItem Value="sumanto">Sumanto</asp:ListItem>
+                            <asp:ListItem Value="putra">Pratama Putra</asp:ListItem>
+                            <asp:ListItem Value="herman">Herman</asp:ListItem>
+                            <asp:ListItem Value="maman">Maman</asp:ListItem>
+                            <asp:ListItem Value="carla">Carla</asp:ListItem>
+                            <asp:ListItem Value="soeryana">Soeryana</asp:ListItem>
+                            <asp:ListItem Value="radius">Radius</asp:ListItem>
+                            <asp:ListItem Value="saepul">Saepul</asp:ListItem>
+                            <asp:ListItem Value="dodo">Dodo</asp:ListItem>
+                            <asp:ListItem Value="ibnu">Ibnu</asp:ListItem>
+                            <asp:ListItem Value="syehab">Syehab</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

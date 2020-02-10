@@ -171,7 +171,7 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            if (ds.Tables[0].Rows[i]["id_logbook"].ToString() == "Selesai")
+                            if (ds.Tables[0].Rows[i]["status"].ToString() == "Selesai")
                             {
                                 stylebg = "bg-green";
                                 stylecolor = "progress-bar-success";

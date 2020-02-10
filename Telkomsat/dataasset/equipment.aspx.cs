@@ -33,11 +33,11 @@ namespace Telkomsat.dataasset
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            string query = $@"UPDATE as_wilayah SET nama_wilayah = '{txtwiayah.Text}' where id_wilayah = '{txtid.Text}'";
+            string query = $@"UPDATE as_jenis_equipment SET nama_jenis_equipment = '{txtequip.Text}' where id_jenis_equipment = '{txtid.Text}'";
             SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
             sqlcmd.ExecuteNonQuery();
             sqlCon.Close();
-            Response.Redirect("../dataasset/site.aspx");
+            Response.Redirect("../dataasset/equipment.aspx");
         }
 
         public class datawilayah
@@ -47,12 +47,12 @@ namespace Telkomsat.dataasset
         }
 
         [WebMethod]
-        public static List<datawilayah> GetWilayah(string videoid)
+        public static List<datawilayah> GetEquip(string videoid)
         {
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM as_wilayah where id_wilayah = '{videoid}'"))
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM as_jenis_equipment where id_jenis_equipment = '{videoid}'"))
                 {
                     cmd.Connection = con;
                     List<datawilayah> dawilayah = new List<datawilayah>();
@@ -63,8 +63,8 @@ namespace Telkomsat.dataasset
                         {
                             dawilayah.Add(new datawilayah
                             {
-                                idwilayah = sdr["id_wilayah"].ToString(),
-                                wilayah = sdr["nama_wilayah"].ToString(),
+                                idwilayah = sdr["id_jenis_equipment"].ToString(),
+                                wilayah = sdr["nama_jenis_equipment"].ToString(),
                             });
                         }
                     }
@@ -81,7 +81,7 @@ namespace Telkomsat.dataasset
 
         void tableticket()
         {
-            query = "select * from as_wilayah";
+            query = "select * from as_jenis_equipment";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -91,7 +91,7 @@ namespace Telkomsat.dataasset
             sqlCon.Close();
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Nama Wilayah</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Equipment</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -102,11 +102,9 @@ namespace Telkomsat.dataasset
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        IDdata = ds.Tables[0].Rows[i]["id_wilayah"].ToString();
-                        wilayah = ds.Tables[0].Rows[i]["nama_wilayah"].ToString();
-                        tanggal = ds.Tables[0].Rows[i]["tanggal"].ToString();
+                        IDdata = ds.Tables[0].Rows[i]["id_jenis_equipment"].ToString();
+                        wilayah = ds.Tables[0].Rows[i]["nama_jenis_equipment"].ToString();
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + ds.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + wilayah + "</label>" + "</td>");
                         htmlTable.Append($"<td style=\"visibility: {jenisview};\"> " + $"<a onclick=\"confirmdelete('../dataasset/hapus.aspx?idwilayah={IDdata}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "Delete" + "</a>");
                         htmlTable.Append($"<button type=\"button\"  value=\"{IDdata}\" class=\"btn btn-sm btn-warning datawil\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "Edit" + "</button></td>");

@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
-
+    <div class="row">
     <div class="col-md-9">
         <div class="box box-danger">
         <div class="box-header with-border">
@@ -30,6 +30,7 @@
         </div>
         <!-- /. box -->
     </div>
+    </div>
     <asp:HiddenField ID="HiddenField1" runat="server" Value="bisa" />
     <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
     <div class="modal fade" id="modalupdate">
@@ -42,12 +43,12 @@
               </div>
               <div class="modal-body">
                   <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">ID Wilayah :</label>
+                    <label style="font-size:16px; font-weight:bold">ID Equipment :</label>
                     <asp:Label ID="lblid" runat="server" style="font-size:16px; font-weight:bold"></asp:Label>
                 </div>
                 <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">Nama Wilayah :</label>
-                    <asp:TextBox ID="txtwiayah" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label style="font-size:16px; font-weight:bold">Nama Equipment :</label>
+                    <asp:TextBox ID="txtequip" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
               </div>
               <div class="modal-footer">
@@ -103,7 +104,7 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "site.aspx/GetWilayah",
+                url: "equipment.aspx/GetEquip",
                 contentType: "application/json; charset=utf-8",
                 data: '{videoid:"' + id + '"}',
                 dataType: "json",
@@ -112,7 +113,7 @@
                     var data = response.d;
                     $(data).each(function () {
                         console.log(this.wilayah);
-                        $('#<%=txtwiayah.ClientID %>').val(this.wilayah);
+                        $('#<%=txtequip.ClientID %>').val(this.wilayah);
                         $('#<%=lblid.ClientID %>').html(this.idwilayah);
                         $('#<%=txtid.ClientID %>').val(this.idwilayah);
                     });

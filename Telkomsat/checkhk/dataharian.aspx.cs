@@ -28,8 +28,8 @@ namespace Telkomsat.checkhk
         {
             if (!IsPostBack)
             {
-                query = @"select d.tanggalhk, p.nama from checkhk_tanggal d left join Profile p on d.id_profile = p.id_profile
-                        group by tanggalhk, nama order by d.tanggalhk desc";
+                query = @"select d.tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+                        group by d.tanggal, nama order by d.tanggal desc";
                 tableticket();
             }
         }
@@ -56,7 +56,7 @@ namespace Telkomsat.checkhk
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggalhk"];
+                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = date1.ToString("yyyy/MM/dd");
                         petugas = ds.Tables[0].Rows[i]["nama"].ToString();
 
@@ -80,9 +80,9 @@ namespace Telkomsat.checkhk
                 start = txtsdate.Value;
             if (dateend.Value != "")
                 end = dateend.Value;
-            query = $@"select d.tanggalhk, p.nama from checkhk_tanggal d left join Profile p on d.id_profile = p.id_profile
-                            where (tanggalhk BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama = {ddlKategori.SelectedValue}
-                            group by tanggalhk, nama order by d.tanggalhk desc";
+            query = $@"select d.tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+                            where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama like + '%' + {ddlKategori.SelectedValue}
+                            group by tanggal, nama order by d.tanggal desc";
             tableticket();
         }
     }

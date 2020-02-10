@@ -124,7 +124,7 @@ namespace Telkomsat.datalogbook
             sqlCon.Open();
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            style1 = "font-size:14px";
+            style1 = "font-size:14px; padding-bottom:10px";
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table\">");
            
             htmlTable.Append("<tbody>");
@@ -210,10 +210,10 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            htmlTable.Append($"<td colspan\"3\">" + "Tidak ada subpekerjaan" + "</td>");
+                            htmlTable.Append($"<td colspan\"3\">" + ds.Tables[0].Rows[i]["status"].ToString() + "</td>");
                         }
-                        htmlTable.Append("</tr>" +
-                            "<tr>" + $"<td style=\"{style1}\">" + "Agenda" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + dataagenda + "</td>" + "</tr>" +
+                        htmlTable.Append("</tr>" + "<tr rowspan=\"2\"></tr>" +
+                            "<tr>" + $"<td style=\"{style1}\">" + "Agenda" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}; white-space: pre-line;\">" + dataagenda + "</td>" + "</tr>" +
                             "<tr>");
                         if (jumlahlog > 0)
                         {
