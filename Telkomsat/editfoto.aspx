@@ -131,7 +131,7 @@
       <!-- Content Header (Page header) -->
       <div>
   <div class="register-logo">
-    <a href="../../index2.html"><b>Edit</b> Profile</a>
+     <a href="../../profile.aspx"><b>Edit</b> Profile</a>
   </div>
     <div>
         <hr width="100%" />

@@ -26,7 +26,7 @@ namespace Telkomsat.superadmin
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
 
-            if (Session["previllage"].ToString() == "adminme" || Session["username"].ToString() == "super")
+            if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "super")
             {
 
             }

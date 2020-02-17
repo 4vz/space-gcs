@@ -45,11 +45,11 @@ namespace Telkomsat
                 txtnomor.Value = Session["nomor"].ToString();
                 txttempat.Value = Session["tempat"].ToString();
                 if (Session["tanggal1"].ToString() != null || Session["tanggal1"].ToString() != "")
-                    txttanggal.Value = tanggal;
+                    txttanggal.Value = Convert.ToDateTime(Session["tanggal1"].ToString()).ToString("dd/MM/yyyy");
                 else
                     txttanggal.Value = "";
                 if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
-                    txtttl.Value = ttl;
+                    txtttl.Value = Convert.ToDateTime(Session["ttl"].ToString()).ToString("dd/MM/yyyy");
                 else
                     txtttl.Value = "";
 

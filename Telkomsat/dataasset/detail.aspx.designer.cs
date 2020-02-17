@@ -112,6 +112,15 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.Label lblmerk;
         
         /// <summary>
+        /// lbltipe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltipe;
+        
+        /// <summary>
         /// lblmodel control.
         /// </summary>
         /// <remarks>
@@ -227,6 +236,15 @@ namespace Telkomsat.dataasset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblpic;
+        
+        /// <summary>
+        /// btnedit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnedit;
         
         /// <summary>
         /// Button1 control.

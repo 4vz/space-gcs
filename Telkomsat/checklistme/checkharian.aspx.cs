@@ -19,7 +19,7 @@ namespace Telkomsat.checklistme
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string IDdata = "kitaa", total = "", petugas, tanggal = "", query;
+        string IDdata = "kitaa", total = "", petugas, tanggal = "", query, query1;
         string start = "01/01/2019", end = "01/12/2048";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         int rek1harkat, rek2harkat, rek1me, rek2me, harkat, me;
@@ -30,13 +30,15 @@ namespace Telkomsat.checklistme
             {
                 query = @"select d.tanggal, p.nama from checkme_data d inner join Profile p on d.id_profile = p.id_profile
                         group by tanggal, nama order by d.tanggal desc";
-                tableticket();
+                query1 = @"select r.tanggal, p1.nama as pagi, p2.nama as siang, p3.nama as malam from checkme_rekap r left join Profile p1 on p1.id_profile=r.pagi left join
+                            Profile p2 on p2.id_profile = r.siang left join Profile p3 on p3.id_profile = r.malam order by r.tanggal desc";
+                tabledata();
             }
         }
 
         void tableticket()
         {
-            SqlCommand cmd = new SqlCommand(query, sqlCon);
+            /*SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
             sqlCon.Open();
@@ -68,11 +70,54 @@ namespace Telkomsat.checklistme
                     }
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
-                    DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
+                    //DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
+
+                }
+            }*/
+        }
+
+        void tabledata()
+        {
+            SqlCommand cmd = new SqlCommand(query1, sqlCon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+
+            htmlTable1.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable1.Append("<thead>");
+            htmlTable1.Append("<tr><th></th><th colspan=\"3\" style=\"text-align:center\">Petugas</th><th></th>");
+            htmlTable1.Append("<tr><th>Tanggal</th><th>Pagi</th><th>Siang</th><th>Malam</th><th>Action</th></tr>");
+            htmlTable1.Append("</thead>");
+
+            htmlTable1.Append("<tbody>");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
+                        tanggal = date1.ToString("yyyy/MM/dd");
+
+                        htmlTable1.Append("<tr>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checklistme/dataharian.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable1.Append("</tr>");
+                    }
+                    htmlTable1.Append("</tbody>");
+                    htmlTable1.Append("</table>");
+                    DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable1.ToString() });
 
                 }
             }
         }
+
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
@@ -83,7 +128,13 @@ namespace Telkomsat.checklistme
             query = $@"select d.tanggal, p.nama from checkme_data d left join Profile p on d.id_profile = p.id_profile
                             where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama like '%' + '{ddlKategori.SelectedValue}' 
                             group by tanggal, nama order by d.tanggal desc";
-            tableticket();
+
+            query1 = $@"select r.tanggal, p1.nama as pagi, p2.nama as siang, p3.nama as malam from checkme_rekap r left join Profile p1 on p1.id_profile=r.pagi left join
+                            Profile p2 on p2.id_profile = r.siang left join Profile p3 on p3.id_profile = r.malam
+                            where (r.tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) 
+							and (p1.nama like '%' + '{ddlKategori.SelectedValue}' + '%' or p2.nama like '%' + '{ddlKategori.SelectedValue}' + '%' or p3.nama like '%' + '{ddlKategori.SelectedValue}' + '%')
+                            order by r.tanggal desc";
+            tabledata();
         }
 
     }

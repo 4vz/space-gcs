@@ -191,7 +191,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             </div>
             <div class="form-group">
                 <div class="col-sm-4">
-                    <label for="inputEmail3">Ruangan</label><span style="color:red"> *</span>
+                    <label for="inputEmail3">Ruangan</label>
                 </div>   
                 <div class="col-sm-8">
                     <select id="slruangan" runat="server" class="form-control" style="width: 100%;"></select>
@@ -226,7 +226,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 </div>   
                 <div class="col-sm-8">
                     <asp:DropDownList ID="txtfungsi" runat="server" CssClass="form-control">
-                    <asp:ListItem>--Pilih Fungsi--</asp:ListItem>
+                        <asp:ListItem Value="">--Pilih Fungsi--</asp:ListItem>
                         <asp:ListItem>OPERASIONAL</asp:ListItem>
                         <asp:ListItem>BACKUP</asp:ListItem>
                         <asp:ListItem>SPARE</asp:ListItem>
@@ -240,7 +240,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 </div>   
                 <div class="col-sm-8">
                 <asp:DropDownList ID="txtstatus" runat="server" CssClass="form-control">
-                    <asp:ListItem>--Pilih Status--</asp:ListItem>
+                    <asp:ListItem Value="">--Pilih Status--</asp:ListItem>
                     <asp:ListItem>BAIK</asp:ListItem>
                     <asp:ListItem>RUSAK</asp:ListItem>
                     <asp:ListItem>PERBAIKAN</asp:ListItem>
@@ -320,6 +320,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
         $('#<%=slrak.ClientID %>').change(function () {
             var id = $(this).val();
             $('#<%=txtrak.ClientID %>').val(id);
+        });
+
+         $('#<%=slmerk.ClientID %>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtmerk.ClientID %>').val(id);
         });
 
         $.ajax({
@@ -462,11 +467,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 data: '{soruangan:"' + id + '"}',
                 dataType: "json",
                 success: function (response) {
-                    var customers = response.d;
-                    $(customers).each(function () {
-                        $("#myImg").attr("src", this.image);
-                        console.log(this.image);
-                    });
+                    if (this.image != '') {
+                        var customers = response.d;
+                        $(customers).each(function () {
+                            if (this.image == '') {
+                                $("#myImg").attr("src", "../img/CIBINONG.jpg");
+                            }
+                            else {
+                                $("#myImg").attr("src", this.image);
+                            console.log(this.image);
+                            }
+                        });  
+                    }                    
                 },
                 failure: function (response) {
                     alert(response.d);

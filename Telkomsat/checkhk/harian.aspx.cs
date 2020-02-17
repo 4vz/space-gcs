@@ -55,7 +55,7 @@ namespace Telkomsat.checkhk
             if (jenischeck >= 1)
             {
                 lbledit.Visible = true;
-                lbledit.Text = $"Data checklist sudah terisi untuk tanggal {date} pada waktu {waktu} klik untuk ";
+                lbledit.Text = $"Data checklist sudah terisi untuk tanggal {date} klik untuk ";
                 LinkButton1.Visible = true;
                 Button1.Visible = false;
             }

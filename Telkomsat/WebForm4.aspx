@@ -49,8 +49,11 @@
             </select>
             <input type="file" name="fileinputt" />
         </div>
+        <div>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        </div>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-        <asp:Button ID="Button2" Text="Upload" runat="server" OnClick="Upload" />
+        <asp:Button ID="Button2" Text="Upload" runat="server" OnClick="Hash" />
         <input type="text" class="datepick" />
     </form>
     

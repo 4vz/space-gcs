@@ -22,6 +22,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.TextBox txtdevice;
         
         /// <summary>
+        /// txtdevice1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdevice1;
+        
+        /// <summary>
         /// txtsite control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtidp;
+        
+        /// <summary>
+        /// txtidpfung control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtidpfung;
         
         /// <summary>
         /// txtidl control.

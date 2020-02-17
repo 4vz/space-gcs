@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Telkomsat
 {
@@ -19,11 +21,28 @@ namespace Telkomsat
                 
         }
 
+        static string ToMD5Hash(string source)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] md5HashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(source));
+
+                foreach (byte b in md5HashBytes)
+                {
+                    sb.Append(b.ToString("X2")); // print byte as Hexadecimal string
+                }
+            }
+
+            return sb.ToString();
+        }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
-            string query = "SELECT COUNT(*) FROM Profile WHERE user_name='" + inEmail.Value + "' AND password ='" + inPass.Value + " '";
+            string query = "SELECT COUNT(*) FROM Profile WHERE user_name='" + inEmail.Value + "' AND password ='" + ToMD5Hash(ToMD5Hash(inPass.Value)) + " '";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             string output = cmd.ExecuteScalar().ToString();

@@ -188,9 +188,10 @@ namespace Telkomsat.datalogbook
                         txtend.Text = end.ToString("yyyy/MM/dd");
                         //Response.Write(queryhistory);
                         htmlTable.Append("<td>" + "<label style=\"font-size:18px\">" + ds.Tables[0].Rows[i]["judul_logbook"].ToString() + "</label>");
-                        if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser)
+                        if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser || Session["previllage"].ToString() == "super")
                         {
-                            htmlTable.Append($"<a class=\"btn btn-sm btn-info pull-right\" href =\"../datalogbook/edit.aspx?idlog={ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" style=\"margin-right:10px\">" + "Edit" + "</a>");
+                            htmlTable.Append($"<a class=\"btn btn-sm btn-danger pull-right\" onclick=\"confirmdelete('../datalogbook/action.aspx?hapus={ds.Tables[0].Rows[i]["id_logbook"].ToString()}')\" style=\"margin-right:10px\">" + "Hapus" + "</a>");
+                            htmlTable.Append($"<a class=\"btn btn-sm btn-info pull-right\" href=\"../datalogbook/edit.aspx?idlog={ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" style=\"margin-right:10px\">" + "Edit" + "</a>");
                         }
                         htmlTable.Append("<br />" + "<label style=\"font-size:16px; color:gray;\">" + ds.Tables[0].Rows[i]["tipe_logbook"].ToString() + "</label>" + "<br/>" +
                             "<table style=\"width:100%\">" +
@@ -262,7 +263,7 @@ namespace Telkomsat.datalogbook
                         as_bangunan b1 on b1.id_bangunan=r1.id_bangunan full join as_wilayah w1 on w1.id_wilayah=b1.id_wilayah
                         full join as_rak k1 on k1.id_rak=h.id_rakbef full join as_jenis_device d on d.id_jenis_device = p.id_jenis_device
                         left join table_pekerjaan n on n.id_perangkat=p.id_perangkat
-						 where h.id_reference = '{idlog}'";
+						 where h.id_reference = '{idlog}' and n.jenis_pekerjaan = 'Mutasi'";
 
             SqlCommand cmd = new SqlCommand(querymutasi, sqlCon);
             damutasi = new SqlDataAdapter(cmd);
@@ -472,8 +473,8 @@ namespace Telkomsat.datalogbook
 
         void tablefungsi()
         {
-            queryfungsi = $@"select p.id_perangkat, d.nama_jenis_device, p.sn, f.*, n.id_pekerjaan from as_history_fungsi f join as_perangkat p on p.id_perangkat = f.id_perangkat join
-                    as_jenis_device d on d.id_jenis_device = p.id_jenis_device left join table_pekerjaan n on n.id_perangkat=p.id_perangkat where id_reference = '{idlog}'";
+            queryfungsi = $@"select p.id_perangkat, n.status as statuskerja, d.nama_jenis_device, p.sn, f.*, n.id_pekerjaan from as_history_fungsi f join as_perangkat p on p.id_perangkat = f.id_perangkat join
+                    as_jenis_device d on d.id_jenis_device = p.id_jenis_device left join table_pekerjaan n on n.id_perangkat=p.id_perangkat where id_reference = '{idlog}' and n.jenis_pekerjaan ='Fungsi & Status'";
 
             SqlCommand cmd = new SqlCommand(queryfungsi, sqlCon);
             dafungsi = new SqlDataAdapter(cmd);
@@ -484,7 +485,7 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableFungsi.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableFungsi.Append("<thead>");
-            htmlTableFungsi.Append("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Fungsi</th><th>Status Asset</th>");
+            htmlTableFungsi.Append("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Fungsi</th><th>Status Asset</th><th>#</th>");
             htmlTableFungsi.Append("</thead>");
 
             htmlTableFungsi.Append("<tbody>");
@@ -501,7 +502,7 @@ namespace Telkomsat.datalogbook
                         htmlTableFungsi.Append("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsfungsi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsfungsi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
                         htmlTableFungsi.Append("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["fungsi"].ToString() + "</label>" + "</td>");
                         htmlTableFungsi.Append("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
-                        if (dsfungsi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                        if (dsfungsi.Tables[0].Rows[i]["statuskerja"].ToString() != "Selesai")
                             htmlTableFungsi.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dsfungsi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
                         else
                             htmlTableFungsi.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
@@ -529,6 +530,7 @@ namespace Telkomsat.datalogbook
             public string ruanganid { get; set; }
             public string rakid { get; set; }
             public string idperangkat { get; set; }
+            public string idperangkatfung { get; set; }
             public string idwilayah { get; set; }
             public string wilayah { get; set; }
             public string idbangunan { get; set; }
@@ -541,6 +543,7 @@ namespace Telkomsat.datalogbook
             public string equipment { get; set; }
             public string iddevice { get; set; }
             public string device { get; set; }
+            public string devicefung { get; set; }
             public string imgruang { get; set; }
             public string image { get; set; }
             public string fungsi { get; set; }
@@ -689,6 +692,7 @@ namespace Telkomsat.datalogbook
                                 idperangkat = sdr["id_perangkat"].ToString(),
                                 ruanganid = sdr["id_ruangan"].ToString(),
                                 rakid = sdr["id_rak"].ToString(),
+                                device = sdr["nama_jenis_device"].ToString(),
                             });
                         }
                     }
@@ -704,7 +708,7 @@ namespace Telkomsat.datalogbook
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"select fungsi, status from as_perangkat where sn = '{idf}'"))
+                using (SqlCommand cmd = new SqlCommand($@"select id_perangkat, fungsi, status, d.nama_jenis_device from as_perangkat p left join as_jenis_device d on d.id_jenis_device=p.id_jenis_device where sn = '{idf}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();
@@ -715,8 +719,10 @@ namespace Telkomsat.datalogbook
                         {
                             mydata.Add(new inisial
                             {
+                                idperangkatfung = sdr["id_perangkat"].ToString(),
                                 fungsi = sdr["fungsi"].ToString(),
                                 status = sdr["status"].ToString(),
+                                devicefung = sdr["nama_jenis_device"].ToString(),
                             });
                         }
                     }
@@ -730,22 +736,22 @@ namespace Telkomsat.datalogbook
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}','{txtidp.Text}', '{idlog}', 'Fungsi & Status', '{txtsdatefung.Value}', '{txtedatefung.Value}', '{ddlstatusf.Text}', '{datetime1}')";
+            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal, deskripsi) VALUES
+                               ('{iduser}','{txtidpfung.Text}', '{idlog}', 'Fungsi & Status', '{txtsdatefung.Value}', '{txtedatefung.Value}', '{ddlstatusf.Text}', '{datetime1}', '{txtdevice1.Text}')";
             SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
             sqlcmd5.ExecuteNonQuery();
             sqlCon.Close();
 
             sqlCon.Open();
             string query = $@"INSERT INTO as_history_fungsi (id_profile, id_perangkat, id_reference, fungsi, status, keterangan, tanggal) VALUES
-                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{ddlFungsifung.Text}', '{ddlStatusfung.Text}', '{txtKet.Text}', '{datetime1}')";
+                               ('{iduser}', '{txtidpfung.Text}', '{txtidl.Text}', '{ddlFungsifung.Text}', '{ddlStatusfung.Text}', '{txtKet.Text}', '{datetime1}')";
             SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
             sqlcmd.ExecuteNonQuery();
             sqlCon.Close();
 
             sqlCon.Open();
             string queryupdate = $@"update as_perangkat set fungsi='{ddlFungsifung.Text}', status='{ddlStatusfung.Text}', tanggal='{datetime1}'
-                                    where id_perangkat = '{txtidp.Text}'";
+                                    where id_perangkat = '{txtidpfung.Text}'";
             SqlCommand sqlcmd1 = new SqlCommand(queryupdate, sqlCon);
             sqlcmd1.ExecuteNonQuery();
             sqlCon.Close();
@@ -835,8 +841,8 @@ namespace Telkomsat.datalogbook
             sqlCon.Close();
 
             sqlCon.Open();
-            string query5 = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{txtjenispekerjaan.Text}', '{txtsdate.Value}', '{txtedate.Value}', '{ddlstatusmut.Text}', '{datetime1}')";
+            string query5 = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal, deskripsi) VALUES
+                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{txtjenispekerjaan.Text}', '{txtsdate.Value}', '{txtedate.Value}', '{ddlstatusmut.Text}', '{datetime1}', '{txtdevice.Text}')";
             SqlCommand sqlcmd5 = new SqlCommand(query5, sqlCon);
             sqlcmd5.ExecuteNonQuery();
             sqlCon.Close();

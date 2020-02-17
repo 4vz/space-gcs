@@ -18,7 +18,18 @@ namespace Telkomsat.dataasset
             string bangunan = Request.QueryString["idbangunan"];
             string ruangan = Request.QueryString["idruangan"];
             string rak = Request.QueryString["idrak"];
+            string equipment = Request.QueryString["idequipment"];
 
+
+            if (equipment != null)
+            {
+                string query = $"DELETE FROM as_jenis_equipment WHERE id_jenis_equipment = '{equipment}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("../dataasset/equipment.aspx");
+            }
             if (wilayah != null)
             {
                 string query = $"DELETE FROM as_wilayah WHERE id_wilayah = '{wilayah}'";

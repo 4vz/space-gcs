@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Services;
 using System.Configuration;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Telkomsat
 {
@@ -51,7 +53,7 @@ namespace Telkomsat
 
 
 
-            Response.Write(query1);
+            //Response.Write(query1);
             //Response.Write(t.Days);
             //Response.Write(akhir);
         }
@@ -68,6 +70,28 @@ namespace Telkomsat
                 string filePath = Server.MapPath("~/evidence/") + Path.GetFileName(postedFile.FileName);
                 postedFile.SaveAs(filePath);
             }*/
+        }
+
+        protected void Hash(object sender, EventArgs e)
+        {
+            Response.Write(TextBox1.Text + ":  " + ToMD5Hash(ToMD5Hash(TextBox1.Text)));
+        }
+
+        static string ToMD5Hash(string source)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] md5HashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(source));
+
+                foreach (byte b in md5HashBytes)
+                {
+                    sb.Append(b.ToString("X2")); // print byte as Hexadecimal string
+                }
+            }
+
+            return sb.ToString();
         }
 
         public class Customer

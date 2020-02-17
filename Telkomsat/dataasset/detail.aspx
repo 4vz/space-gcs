@@ -129,6 +129,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">Tipe Perangkat</label>
+                <div class="col-sm-8">
+                    <asp:Label ID="lbltipe" runat="server" Text="Label"></asp:Label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Model</label>
                 <div class="col-sm-8">
                     <asp:Label ID="lblmodel" runat="server" Text="Label"></asp:Label>
@@ -221,8 +227,7 @@
             <!-- /.mail-box-messages -->
         </div>
         <div class="box-footer">
-            <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#modalupdate" style="margin-right:10px">Mutasi</button>
-            <button type="button" class="btn btn-warning pull-left" data-toggle="modal" data-target="#modalfungsi">Edit Fungsi</button>
+            <button type="submit" class="btn btn-success pull-left" runat="server" onserverclick="Lok_ServerClick" id="btnedit" visible="false" style="margin-right:10px">Edit</button>
                 <asp:Button ID="Button1" runat="server" Text="History" CssClass="btn btn-info pull-right" OnClick="History_Click" />
             <!-- /.pull-right -->
         </div>

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Telkomsat
 {
@@ -41,6 +43,23 @@ namespace Telkomsat
             lblProfile1.Text = Session["nama1"].ToString();
         }
 
+        static string ToMD5Hash(string source)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] md5HashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(source));
+
+                foreach (byte b in md5HashBytes)
+                {
+                    sb.Append(b.ToString("X2")); // print byte as Hexadecimal string
+                }
+            }
+
+            return sb.ToString();
+        }
+
         protected void btnUpdate_click(object sender, EventArgs e)
         {
             user = Session["username"].ToString();
@@ -48,7 +67,7 @@ namespace Telkomsat
             SqlCommand sqlCmd2 = new SqlCommand("ProUpdatePass", sqlCon2);
             sqlCmd2.CommandType = CommandType.StoredProcedure;
             sqlCmd2.Parameters.AddWithValue("@user", user);
-            if(txtpass.Value != Session["password"].ToString())
+            if(ToMD5Hash(ToMD5Hash(txtpass.Value)) != Session["password"].ToString())
             {
                 lblUpdate.Visible = true;
                 lblUpdate.Text = "Password lama salah";
@@ -57,7 +76,7 @@ namespace Telkomsat
             else { 
                 if(txtpass1.Value == txtpass2.Value)
                 {
-                    sqlCmd2.Parameters.AddWithValue("@pass", txtpass1.Value);
+                    sqlCmd2.Parameters.AddWithValue("@pass", ToMD5Hash(ToMD5Hash(txtpass1.Value)));
                     sqlCmd2.ExecuteNonQuery();
                     sqlCon2.Close();
                     lblUpdate.Visible = true;

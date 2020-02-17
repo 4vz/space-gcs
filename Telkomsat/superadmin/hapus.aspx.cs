@@ -23,8 +23,8 @@ namespace Telkomsat.superadmin
                 sqlCon.Open();
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
-                //Response.Redirect("../superadmin/shiftme.aspx");
-                Response.Write(tanggalsh + "  " + jadwalsh);
+                Response.Redirect("../superadmin/shiftme.aspx");
+                //Response.Write(tanggalsh + "  " + jadwalsh);
             }
         }
     }

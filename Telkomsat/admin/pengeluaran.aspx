@@ -12,13 +12,24 @@
     <!-- /.box-header -->
     <!-- form start -->
         <div class="box-body">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Keterangan</label>
-            <input type="text" class="form-control" id="keterangan" runat="server" placeholder="Keterangan"/>
+
+        <div class="form-group" id="userupd">
+            <label for="exampleInputPassword1">Nama</label>
+            <asp:DropDownList ID="ddlnama" runat="server" class="form-control" Width="100%" onchange="status(this)">
+                        <asp:ListItem>--user--</asp:ListItem>
+                        <asp:ListItem Value="8">Budi</asp:ListItem>
+                        <asp:ListItem Value="2">Rokhman</asp:ListItem>
+                        <asp:ListItem Value="3">Aceng</asp:ListItem>
+            </asp:DropDownList>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Nominal</label>
-            <input type="text" class="form-control" id="nominal" runat="server" placeholder="Nominal" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+        <div class="form-group" id="divisi" style="display:none">
+            <label for="exampleInputPassword1">Divisi</label>
+            <asp:DropDownList ID="ddldivisi" runat="server" class="form-control" Width="100%" onchange="status(this)">
+                        <asp:ListItem>--user--</asp:ListItem>
+                        <asp:ListItem>Harkat</asp:ListItem>
+                        <asp:ListItem>ME</asp:ListItem>
+                        <asp:ListItem>Lain-lain</asp:ListItem>
+            </asp:DropDownList>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Kategori</label>
@@ -32,22 +43,24 @@
                 <asp:ListItem>Brankas ME</asp:ListItem>
             </asp:DropDownList>
         </div>
-        
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nominal</label>
+            <input type="text" class="form-control" id="nominal" runat="server" placeholder="Nominal" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Referensi</label>
+            <input type="text" class="form-control" id="txtreferensi" runat="server" placeholder="Referensi"/>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Keterangan</label>
+            <input type="text" class="form-control" id="keterangan" runat="server" placeholder="Keterangan"/>
+        </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Jenis</label>
             <asp:DropDownList ID="ddljenis" runat="server" class="form-control" Width="120px" onchange="status(this)">
                         <asp:ListItem>--jenis--</asp:ListItem>
                         <asp:ListItem>Cash</asp:ListItem>
                         <asp:ListItem>Panjar</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-        <div class="form-group" id="user" style="display:none">
-            <label for="exampleInputPassword1">User</label>
-            <asp:DropDownList ID="ddluser" runat="server" class="form-control" Width="100%" onchange="status(this)">
-                        <asp:ListItem>--user--</asp:ListItem>
-                        <asp:ListItem Value="8">Budi</asp:ListItem>
-                        <asp:ListItem Value="2">Rokhman</asp:ListItem>
-                        <asp:ListItem Value="3">Aceng</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="form-group" id="detaill" style="display:none">

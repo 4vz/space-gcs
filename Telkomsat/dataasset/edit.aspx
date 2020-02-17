@@ -108,6 +108,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+            <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
+                <h5><span class="fa fa-check"> Berhasil diedit</span></h5>
+            </div>
             <div>
                 <h4>Equipment</h4>
             </div>
@@ -130,27 +133,33 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 </div>
             </div>
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">Tipe Perangkat</label>
+                <div class="col-sm-8">
+                    <asp:Label ID="lbltipe" runat="server" Text="Label"></asp:Label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Model</label>
                 <div class="col-sm-8">
-                    <asp:Label ID="lblmodel" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="txtmodel" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Product Number</label>
                 <div class="col-sm-8">
-                    <asp:Label ID="lblpn" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="txtpn" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Serial Number</label>
                 <div class="col-sm-8">
-                    <asp:Label ID="lblsn" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="txtsn" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Tahun Pengadaan</label>
                 <div class="col-sm-8">
-                    <asp:Label ID="lbltahun" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="txttahunpengadaan" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
             <div>
@@ -159,25 +168,25 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Site</label>
                 <div class="col-sm-8">
-                    <select id="slsite" runat="server" class="form-control" style="width: 100%;"></select>
+                    <asp:Label ID="lblsite" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Gedung</label>
                 <div class="col-sm-8">
-                    <select id="slgedung" runat="server" class="form-control" style="width: 100%;"></select>
+                    <asp:Label ID="lblgedung" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Ruangan</label>
                 <div class="col-sm-8">
-                    <select id="slruangan" runat="server" class="form-control" style="width: 100%;"></select>
+                    <asp:Label ID="lblruangan" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Rack</label>
                 <div class="col-sm-8">
-                    <select id="slrak" runat="server" class="form-control" style="width: 100%;"></select>
+                    <asp:Label ID="lblrak" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
             <div>
@@ -213,14 +222,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <!-- /.mail-box-messages -->
         </div>
         <div class="box-footer">
-            <asp:Button ID="Button1" runat="server" Text="Simpan" CssClass="btn btn-success" OnClick="Save_Click" />
+            <asp:Button ID="Button1" runat="server" Text="Simpan" CssClass="btn btn-success" OnClick="Save_Click"/>
             <!-- /.pull-right -->
         </div>
         <!-- /.box-body -->
         </div>
         <!-- /. box -->
     </div>
-
         <div class="col-md-5">
             <img id="myImg" src="" runat="server" style="width:100%"/>
         </div>
@@ -242,6 +250,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
             captionText.innerHTML = this.alt;
          }
 
+        $(function () {
+            $('.select2').select2({
+                allowClear: true,
+                placeholder: "--Wilayah--",
+            });
+        });
                 // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
@@ -250,16 +264,5 @@ body {font-family: Arial, Helvetica, sans-serif;}
           modal.style.display = "none";
         }
 
-        $(function () {
-            $('#<%=slruangan.ClientID %>').change(function () {
-            var id = $(this).val();
-            $('#<%=txtruangan.ClientID %>').val(id);
-        });
-
-        $('#<%=slrak.ClientID %>').change(function () {
-            var id = $(this).val();
-            $('#<%=txtrak.ClientID %>').val(id);
-        }); 
-        }
     </script>
 </asp:Content>

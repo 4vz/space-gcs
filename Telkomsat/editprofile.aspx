@@ -20,42 +20,8 @@
     <link href="stylepagination.css" rel="stylesheet" />
     <link href="profile.css" rel="stylesheet" type="text/css"/>
     <link href="profile2.css" rel="stylesheet" />
-    <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <script>
-        $(function () {
-            $("#txtttl").datepicker({
-                defaultDate: "+1w",
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: "dd/mm/yy",
-                onClose: function (selectedDate) {
-                    $("#txtttl").datepicker("option", "setDate", selectedDate);
-                }
-            });
-
-            $("#txttanggal").datepicker({
-                defaultDate: "+1w",
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: "dd/mm/yy",
-                onClose: function (selectedDate) {
-                    $("#txttanggal").datepicker("option", "setDate", selectedDate);
-                }
-
-            });
-        })
-    </script>
-    <script type="text/javascript">
-        function runScript(e) {
-            if (e.keyCode == 13) {
-                document.getElementById('<%=btnUpdate.ClientID%>').focus();
-                document.getElementById('<%=btnUpdate.ClientID%>').click(); //javascript
-        }
-    </script>
+    <link rel="stylesheet" href="./assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+    
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
@@ -151,7 +117,7 @@
       <!-- Content Header (Page header) -->
       <div>
   <div class="register-logo">
-    <a href="../../index2.html"><b>Edit</b> Profile</a>
+     <a href="../../profile.aspx"><b>Edit</b> Profile</a>
   </div>
     <div>
         <hr width="100%" />
@@ -179,11 +145,11 @@
         <span class="glyphicon glyphicon-globe form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Tanggal Lahir" id="txtttl" runat="server" onkeypress="return runScript(event)"/>
+        <input type="text" class="form-control" placeholder="Tanggal Lahir" id="txtttl" autocomplete="off" runat="server" onkeypress="return runScript(event)"/>
         <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Tanggal Masuk" id="txttanggal" runat="server" onkeypress="return runScript(event)"/>
+        <input type="text" class="form-control" placeholder="Tanggal Masuk" id="txttanggal" autocomplete="off" runat="server" onkeypress="return runScript(event)"/>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -221,5 +187,27 @@
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $("#txtttl").datepicker({
+                format: "dd/mm/yyyy"
+            });
+
+            $("#txttanggal").datepicker({
+                format: "dd/mm/yyyy"
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        function runScript(e) {
+            if (e.keyCode == 13) {
+                document.getElementById('<%=btnUpdate.ClientID%>').focus();
+                document.getElementById('<%=btnUpdate.ClientID%>').click(); //javascript
+        }
+    </script>
 </body>
 </html>

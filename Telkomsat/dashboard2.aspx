@@ -53,6 +53,12 @@
             z-index:2147483647;
         }
 
+        .waktuu{
+            position:absolute !important;
+            right:15px !important;
+            background-color:transparent !important;
+        }
+
         .carousel-indicators .active{
             background-color:transparent;
             border-color:transparent;
@@ -177,7 +183,7 @@
                     <h1>
                         <img src="img/logotelkomsat2.png" height="50" alt="Alternate Text" />
                     </h1>
-                    <asp:Label CssClass="breadcrumb" ID="lblwaktu1" runat="server" Text="Label" Font-Bold="true" ForeColor="#808080" Font-Size="Large"></asp:Label>
+                    <asp:Label CssClass="breadcrumb waktuu" ID="lblwaktu1" runat="server" Text="Label" Font-Bold="true" ForeColor="#808080" Font-Size="Large"></asp:Label>
         
                 </section>
             <asp:TextBox ID="txtpie" CssClass="hidden" runat="server" Text=""></asp:TextBox>

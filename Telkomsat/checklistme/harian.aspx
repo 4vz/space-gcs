@@ -20,7 +20,7 @@
             <div class="table-responsive mailbox-messages">
             <div class="table table-responsive">
                 <asp:Label ID="lbledit" runat="server" Visible="false" Text="Label"></asp:Label>               
-                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Visible="false">lihat</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Visible="false">edit</asp:LinkButton>
                 <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                     </div>
             <!-- /.table -->

@@ -10,6 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="txtdevice" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtdevice1" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtsite" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgedung" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtruangan" runat="server" CssClass="hidden"></asp:TextBox>
@@ -17,6 +18,7 @@
     <asp:TextBox ID="txtruanganid" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtrakid" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidp" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidpfung" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtjenispekerjaan" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtstart" runat="server" CssClass="hidden"></asp:TextBox>
@@ -451,8 +453,14 @@
         });
 
         $(document).ready(function () {
+            var select = false;
+            var select1 = false;
+
             $('#<%=txtruang.ClientID %>').autocomplete({
                 source: '../dataasset/HandlerSN.ashx',
+                autoFocus: true,
+                selectFirst: true,
+                open: function(event, ui) { if(select) select=false; },
                 select: function (event, ui) {
                     console.log(ui.item);
                     if (ui.item) {                     
@@ -473,6 +481,7 @@
                                     $('#<%=txtidp.ClientID %>').val(this.idperangkat);
                                     $('#<%=txtruanganid.ClientID %>').val(this.ruanganid);
                                     $('#<%=txtrakid.ClientID %>').val(this.rakid);
+                                    $('#<%=txtdevice.ClientID %>').val(this.device);
                                 });
                             },
                             failure: function (response) {
@@ -483,11 +492,46 @@
                             }
                         });
                     }
+                    select = true;
                 },
+            }).blur(function(){
+                if (!select) {
+                    $('#<%=txtruang.ClientID %>').val($('ul.ui-autocomplete li.ui-menu-item:first div').text());
+                    var id = $('ul.ui-autocomplete li.ui-menu-item:first div').text();
+                    $.ajax({
+                        type: "POST",
+                        url: "tambah.aspx/Getsn",
+                        contentType: "application/json; charset=utf-8",
+                        data: '{videoid:"' + id + '"}',
+                        dataType: "json",
+                        success: function (response) {
+                            var customers = response.d;
+                            $(customers).each(function () {
+                                $('#<%=lblwilayah.ClientID %>').html(this.site);
+                                $('#<%=lblbangunan.ClientID %>').html(this.bangunan);
+                                $('#<%=lblruangan.ClientID %>').html(this.ruangan);
+                                $('#<%=lblraak.ClientID %>').html(this.rak);
+                                $('#<%=txtidp.ClientID %>').val(this.idperangkat);
+                                $('#<%=txtruanganid.ClientID %>').val(this.ruanganid);
+                                $('#<%=txtrakid.ClientID %>').val(this.rakid);
+                                $('#<%=txtdevice.ClientID %>').val(this.device);
+                            });
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        },
+                        error: function (response) {
+                            alert(response.d);
+                        }
+                    });
+                }
             });
 
             $('#<%=txtsnfung.ClientID %>').autocomplete({
                 source: '../dataasset/HandlerSN.ashx',
+                autoFocus: true,
+                selectFirst: true,
+                open: function(event, ui) { if(select1) select1=false; },
                 select: function (event, ui) {
                     console.log(ui.item);
                     if (ui.item) {                     
@@ -501,8 +545,10 @@
                             success: function (response) {
                                 var customers = response.d;
                                 $(customers).each(function () {
-                                    $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
+                                     $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
                                     $('#<%=lbstatus.ClientID %>').html(this.status);
+                                    $('#<%=txtdevice1.ClientID %>').val(this.devicefung);
+                                    $('#<%=txtidpfung.ClientID %>').val(this.idperangkatfung);
                                 });
                             },
                             failure: function (response) {
@@ -513,7 +559,35 @@
                             }
                         });
                     }
+                    select1 = true;
                 },
+            }).blur(function () {
+                if (!select1) {
+                    $('#<%=txtsnfung.ClientID %>').val($('ul.ui-autocomplete li.ui-menu-item:first div').text());
+                    var id = $('ul.ui-autocomplete li.ui-menu-item:first div').text();
+                    $.ajax({
+                        type: "POST",
+                        url: "tambah.aspx/Getfungsi",
+                        contentType: "application/json; charset=utf-8",
+                        data: '{idf:"' + id + '"}',
+                        dataType: "json",
+                        success: function (response) {
+                            var customers = response.d;
+                            $(customers).each(function () {
+                                 $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
+                                    $('#<%=lbstatus.ClientID %>').html(this.status);
+                                    $('#<%=txtdevice1.ClientID %>').val(this.devicefung);
+                                    $('#<%=txtidpfung.ClientID %>').val(this.idperangkatfung);
+                            });
+                        },
+                        failure: function (response) {
+                            alert(response.d);
+                        },
+                        error: function (response) {
+                            alert(response.d);
+                        }
+                    });
+                }
             });
 
             $.ajax({

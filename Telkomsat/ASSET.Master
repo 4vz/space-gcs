@@ -489,6 +489,37 @@
             </li>
             </ul>           
             </li>
+            <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cubes"></i> <span>Perangkat</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Equipment
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../dataasset/equipment.aspx"><i class="fa fa-circle-o"></i> Data</a></li>
+                  <li><a href="../dataasset/equipmentadd.aspx"><i class="fa fa-circle-o"></i> Tambah</a></li>
+              </ul>
+            </li>
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Device
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="../dataasset/device.aspx"><i class="fa fa-circle-o"></i> Data</a></li>
+                  <li><a href="../dataasset/deviceadd.aspx"><i class="fa fa-circle-o"></i> Tambah</a></li>
+              </ul>
+            </li>
+            
+            </ul>           
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

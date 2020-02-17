@@ -43,22 +43,22 @@ namespace Telkomsat.datalogbook
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', 'Fungsi & Status', '{txtsdatefung.Value}', '{txtedatefung.Value}', '{ddlstatusf.Text}', '{datetime1}')";
+            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal, deskripsi) VALUES
+                               ('{iduser}', '{txtidpfung.Text}', '{txtidl.Text}', 'Fungsi & Status', '{txtsdatefung.Value}', '{txtedatefung.Value}', '{ddlstatusf.Text}', '{datetime1}', '{txtdevice1.Text}')";
             SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
             sqlcmd5.ExecuteNonQuery();
             sqlCon.Close();
 
             sqlCon.Open();
             string query = $@"INSERT INTO as_history_fungsi (id_profile, id_perangkat, id_reference, fungsi, status, keterangan, tanggal) VALUES
-                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{ddlFungsifung.Text}', '{ddlStatusfung.Text}', '{txtKet.Text}', '{datetime1}')";
+                               ('{iduser}', '{txtidpfung.Text}', '{txtidl.Text}', '{ddlFungsifung.Text}', '{ddlStatusfung.Text}', '{txtKet.Text}', '{datetime1}')";
             SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
             sqlcmd.ExecuteNonQuery();
             sqlCon.Close();
 
             sqlCon.Open();
             string queryupdate = $@"update as_perangkat set fungsi='{ddlFungsifung.Text}', status='{ddlStatusfung.Text}', tanggal='{datetime1}'
-                                    where id_perangkat = '{txtidp.Text}'";
+                                    where id_perangkat = '{txtidpfung.Text}'";
             SqlCommand sqlcmd1 = new SqlCommand(queryupdate, sqlCon);
             sqlcmd1.ExecuteNonQuery();
             sqlCon.Close();
@@ -183,8 +183,8 @@ namespace Telkomsat.datalogbook
             sqlCon.Close();
 
             sqlCon.Open();
-            string query5 = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{txtjenispekerjaan.Text}', '{txtsdate.Value}', '{txtedate.Value}', '{ddlstatusmut.Text}', '{datetime1}')";
+            string query5 = $@"INSERT INTO table_pekerjaan (id_profile, id_perangkat, id_logbook, jenis_pekerjaan, startdate, enddate, status, tanggal, deskripsi) VALUES
+                               ('{iduser}', '{txtidp.Text}', '{txtidl.Text}', '{txtjenispekerjaan.Text}', '{txtsdate.Value}', '{txtedate.Value}', '{ddlstatusmut.Text}', '{datetime1}', '{txtdevice.Text}')";
             SqlCommand sqlcmd5 = new SqlCommand(query5, sqlCon);
             sqlcmd5.ExecuteNonQuery();
             sqlCon.Close();
@@ -208,6 +208,7 @@ namespace Telkomsat.datalogbook
             public string ruanganid { get; set; }
             public string rakid { get; set; }
             public string idperangkat { get; set; }
+            public string idperangkatfung { get; set; }
             public string idwilayah { get; set; }
             public string wilayah { get; set; }
             public string idbangunan { get; set; }
@@ -220,6 +221,7 @@ namespace Telkomsat.datalogbook
             public string equipment { get; set; }
             public string iddevice { get; set; }
             public string device { get; set; }
+            public string devicefung { get; set; }
             public string imgruang { get; set; }
             public string image { get; set; }
             public string fungsi { get; set; }
@@ -368,6 +370,7 @@ namespace Telkomsat.datalogbook
                                 idperangkat = sdr["id_perangkat"].ToString(),
                                 ruanganid = sdr["id_ruangan"].ToString(),
                                 rakid = sdr["id_rak"].ToString(),
+                                device = sdr["nama_jenis_device"].ToString(),
                             });
                         }
                     }
@@ -383,7 +386,7 @@ namespace Telkomsat.datalogbook
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"select fungsi, status from as_perangkat where sn = '{idf}'"))
+                using (SqlCommand cmd = new SqlCommand($@"select id_perangkat, fungsi, status, d.nama_jenis_device from as_perangkat p left join as_jenis_device d on d.id_jenis_device=p.id_jenis_device where sn = '{idf}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();
@@ -394,8 +397,10 @@ namespace Telkomsat.datalogbook
                         {
                             mydata.Add(new inisial
                             {
+                                idperangkatfung = sdr["id_perangkat"].ToString(),
                                 fungsi = sdr["fungsi"].ToString(),
                                 status = sdr["status"].ToString(),
+                                devicefung = sdr["nama_jenis_device"].ToString(),
                             });
                         }
                     }

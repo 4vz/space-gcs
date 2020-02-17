@@ -106,7 +106,7 @@ namespace Telkomsat.dataasset
                         wilayah = ds.Tables[0].Rows[i]["nama_jenis_equipment"].ToString();
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + wilayah + "</label>" + "</td>");
-                        htmlTable.Append($"<td style=\"visibility: {jenisview};\"> " + $"<a onclick=\"confirmdelete('../dataasset/hapus.aspx?idwilayah={IDdata}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "Delete" + "</a>");
+                        htmlTable.Append($"<td style=\"visibility: {jenisview};\"> " + $"<a onclick=\"confirmdelete('../dataasset/hapus.aspx?idequipment={IDdata}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "Delete" + "</a>");
                         htmlTable.Append($"<button type=\"button\"  value=\"{IDdata}\" class=\"btn btn-sm btn-warning datawil\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "Edit" + "</button></td>");
                         htmlTable.Append("</tr>");
                     }

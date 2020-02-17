@@ -28,14 +28,13 @@ namespace Telkomsat.dataasset
         {
             if (Session["username"] != null)
             {
-                user = Session["username"].ToString();
+                user = Session["nama1"].ToString();
             }
         }
 
         protected void Save_Click(object sender, EventArgs e)
         {
-            if (txtfungsi.Text == "" || txtsn.Text == "" || txtstatus.Text == "" || txttahun.Text == "" || txtdevice.Text == "" || txtruangan.Text =="" ||
-                txtmerk.Text == "") 
+            if (txtfungsi.Text == "" || txtsn.Text == "" || txtstatus.Text == "" || txttahun.Text == "" || txtdevice.Text == "" || txtmerk.Text == "") 
             {
                 divfail.Visible = true;
             }
@@ -43,7 +42,7 @@ namespace Telkomsat.dataasset
             {
                 var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
                 sqlCon.Open();
-                string query = $@"INSERT INTO as_perangkat (id_profile, id_jenis_device, id_ruangan, id_rak, merk, model, pn, sn, tahun_pengadaan, fungsi, status, info, satelit, tanggal) VALUES
+                string query = $@"INSERT INTO as_perangkat (username, id_jenis_device, id_ruangan, id_rak, id_merk, model, pn, sn, tahun_pengadaan, fungsi, status, info, satelit, tanggal) VALUES
                                ('{user}', '{txtdevice.Text}', '{txtruangan.Text}', '{txtrak.Text}', '{txtmerk.Text}', '{txtmodel.Text}','{txtpn.Text}', '{txtsn.Text}', '{txttahun.Text}',
                                 '{txtfungsi.Text}', '{txtstatus.Text}', '{txtKeterangan.Text}', '{txtsatelit.Text}', '{datetime1}')";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);

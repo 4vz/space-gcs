@@ -58,6 +58,15 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltanggal;
         
         /// <summary>
+        /// divsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divsuccess;
+        
+        /// <summary>
         /// lblequipment control.
         /// </summary>
         /// <remarks>
@@ -85,76 +94,85 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.Label lblmerk;
         
         /// <summary>
-        /// lblmodel control.
+        /// lbltipe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmodel;
+        protected global::System.Web.UI.WebControls.Label lbltipe;
         
         /// <summary>
-        /// lblpn control.
+        /// txtmodel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpn;
+        protected global::System.Web.UI.WebControls.TextBox txtmodel;
         
         /// <summary>
-        /// lblsn control.
+        /// txtpn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsn;
+        protected global::System.Web.UI.WebControls.TextBox txtpn;
         
         /// <summary>
-        /// lbltahun control.
+        /// txtsn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltahun;
+        protected global::System.Web.UI.WebControls.TextBox txtsn;
         
         /// <summary>
-        /// slsite control.
+        /// txttahunpengadaan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slsite;
+        protected global::System.Web.UI.WebControls.TextBox txttahunpengadaan;
         
         /// <summary>
-        /// slgedung control.
+        /// lblsite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slgedung;
+        protected global::System.Web.UI.WebControls.Label lblsite;
         
         /// <summary>
-        /// slruangan control.
+        /// lblgedung control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slruangan;
+        protected global::System.Web.UI.WebControls.Label lblgedung;
         
         /// <summary>
-        /// slrak control.
+        /// lblruangan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slrak;
+        protected global::System.Web.UI.WebControls.Label lblruangan;
+        
+        /// <summary>
+        /// lblrak control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblrak;
         
         /// <summary>
         /// lblsatelit control.

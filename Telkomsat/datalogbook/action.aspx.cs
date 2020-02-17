@@ -17,12 +17,28 @@ namespace Telkomsat.datalogbook
         {
             string idapprove = Request.QueryString["ida"];
             string idadmin = Request.QueryString["idadmin"];
-
+            string hapus = Request.QueryString["hapus"];
             string idkonfig = Request.QueryString["idk"];
             string idlain = Request.QueryString["idl"];
             string idmutasi = Request.QueryString["idm"];
             string idfungsi = Request.QueryString["idf"];
             string idlog = Request.QueryString["idlog"];
+
+            if (hapus != null)
+            {
+                string query = $"DELETE tabel_logbook WHERE id_logbook = '{hapus}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+
+                string query1 = $"DELETE table_pekerjaan WHERE id_logbook = '{hapus}'";
+                SqlCommand sqlcmd1 = new SqlCommand(query1, sqlCon);
+                sqlCon.Open();
+                sqlcmd1.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("../datalogbook/data.aspx");
+            }
             if (idkonfig != null)
             {
                 string query = $"UPDATE table_pekerjaan SET status = 'Selesai' WHERE id_pekerjaan = '{idkonfig}'";

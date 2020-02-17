@@ -103,33 +103,103 @@ namespace Telkomsat.checklistme
         {
             TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
             TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
-            TimeSpan tiga = new TimeSpan(18, 0, 0); //12 o'clock
-            TimeSpan now = DateTime.Now.TimeOfDay;
-            if ((now > satu) && (now < dua))
+            TimeSpan tiga = new TimeSpan(19, 0, 0); //12 o'clock
+            TimeSpan empat = new TimeSpan(24, 0, 0);
+            DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
+            TimeSpan wibTime = wib.TimeOfDay;
+
+            if ((wibTime >= satu) && (wibTime < dua))
             {
-                DropDownList1.Text = "pagi";
+                date = wib.ToString("yyyy/MM/dd");
                 waktu = "pagi";
+                DropDownList1.Text = "pagi";
             }
-            if ((now > dua) && (now < tiga))
+            else if ((wibTime >= dua) && (wibTime < tiga))
             {
-                DropDownList1.Text = "siang";
+                date = wib.ToString("yyyy/MM/dd");
                 waktu = "siang";
+                DropDownList1.Text = "siang";
             }
-            if ((now > tiga) && (now < satu))
+            else if ((wibTime >= tiga) && (wibTime < empat))
             {
+                date = wib.ToString("yyyy/MM/dd");
+                waktu = "malam";
                 DropDownList1.Text = "malam";
-                waktu = "malem";
             }
-            Response.Redirect($"editharian.aspx?room={room}&waktu={waktu}");
+            else
+            {
+                date = (wib - new TimeSpan(1, 0, 0, 0)).ToString("yyyy/MM/dd");
+                waktu = "malam";
+                DropDownList1.Text = "malam";
+            }
+            Response.Redirect($"editharian.aspx?room={room}&waktu={DropDownList1.Text}");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
-        {  
+        {
+            DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
+
+            TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
+            TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
+            TimeSpan tiga = new TimeSpan(19, 0, 0); //12 o'clock
+            TimeSpan empat = new TimeSpan(24, 0, 0);
+            TimeSpan wibTime = wib.TimeOfDay;
+            string mydate = wib.ToString("yyyy/MM/dd");
+
             querytanggal = $"insert into checkme_tanggal (me_tanggal, id_profile) values ('{date}', '3')";
-            //Console.Write(query1);
+            
+                //Console.Write(query1);
             sqlCon.Open();
             SqlCommand cmd7 = new SqlCommand(querytanggal, sqlCon);
             cmd7.ExecuteNonQuery();
+            sqlCon.Close();
+
+            string myquery = $"SELECT * FROM checkme_rekap WHERE tanggal = '{mydate}'";
+            string myquery2;
+            sqlCon.Open();
+            SqlCommand mycmd = new SqlCommand(myquery, sqlCon);
+            SqlDataAdapter da2 = new SqlDataAdapter(mycmd);
+            mycmd.ExecuteNonQuery();
+            sqlCon.Close();
+            DataSet ds2 = new DataSet();
+            da2.Fill(ds2);
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                if ((wibTime >= satu) && (wibTime < dua))
+                {
+                    myquery2 = $"UPDATE checkme_rekap SET pagi={user} WHERE id_rekap = {ds2.Tables[0].Rows[0]["id_rekap"].ToString()}";
+                }
+                else if ((wibTime >= dua) && (wibTime < tiga))
+                {
+                    myquery2 = $"UPDATE checkme_rekap SET siang={user} WHERE id_rekap = {ds2.Tables[0].Rows[0]["id_rekap"].ToString()}";
+                }
+                else if ((wibTime >= tiga) && (wibTime < empat))
+                {
+                    myquery2 = $"UPDATE checkme_rekap SET malam={user} WHERE id_rekap = {ds2.Tables[0].Rows[0]["id_rekap"].ToString()}";
+                }
+                else
+                    myquery2 = $"UPDATE checkme_rekap SET malam={user} WHERE tanggal = '{date}'";
+            }
+            else
+            {
+                if ((wibTime >= satu) && (wibTime < dua))
+                {
+                    myquery2 = $"INSERT INTO checkme_rekap (tanggal, pagi) VALUES ('{mydate}', {user})";
+                }
+                else if ((wibTime >= dua) && (wibTime < tiga))
+                {
+                    myquery2 = $"INSERT INTO checkme_rekap (tanggal, siang) VALUES ('{mydate}', {user})";
+                }
+                else if ((wibTime >= tiga) && (wibTime < empat))
+                {
+                    myquery2 = $"INSERT INTO checkme_rekap (tanggal, malam) VALUES ('{mydate}', {user})";
+                }
+                else
+                    myquery2 = $"INSERT INTO checkme_rekap (tanggal, malam) VALUES ('{date}', {user})";
+            }
+            sqlCon.Open();
+            SqlCommand newcmd = new SqlCommand(myquery2, sqlCon);
+            newcmd.ExecuteNonQuery();
             sqlCon.Close();
 
             string data = string.Join(",", akhir);

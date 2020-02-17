@@ -123,7 +123,7 @@ namespace Telkomsat.admin
             {
 
                 query = $@"INSERT INTO adminuser (id_profile, id_admin)
-                                VALUES ('{ddluser.SelectedValue}', {i})";
+                                VALUES ('{ddlnama.SelectedValue}', {i})";
                 con.Open();
                 SqlCommand cmd1 = new SqlCommand(query, con);
                 cmd1.ExecuteNonQuery();

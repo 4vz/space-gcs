@@ -184,7 +184,7 @@ namespace Telkomsat
         {
             string mytanggal = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
             DateTime sekarang = DateTime.Now;
-            string myquery = $"select * from table_pekerjaan where enddate >= '{mytanggal}'";
+            string myquery = $"select * from table_pekerjaan where enddate >= '{mytanggal}' and status = 'On Progress'";
 
             sqlCon.Open();
             SqlDataAdapter sqlda = new SqlDataAdapter(myquery, sqlCon);
@@ -268,7 +268,7 @@ namespace Telkomsat
             double hasil, tampil;
             if (output > 0)
             {
-                hasil = ((double)output / 16) * 100;
+                hasil = ((double)output / 23) * 100;
                 tampil = Math.Round(hasil);
                 divsiang.Style.Add("width", $"{tampil}%");
                 lblsiangme.Text = $"{tampil}% oleh {ds5.Tables[0].Rows[0]["nama"].ToString()}";
@@ -289,7 +289,7 @@ namespace Telkomsat
             double hasil1, tampil1;
             if (output1 > 0)
             {
-                hasil1 = ((double)output1 / 16) * 100;
+                hasil1 = ((double)output1 / 23) * 100;
                 tampil1 = Math.Round(hasil1);
                 divpagi.Style.Add("width", $"{tampil1}%");
                 lblpagime.Text = $"{tampil1}% oleh {ds6.Tables[0].Rows[0]["nama"].ToString()}";
@@ -309,7 +309,7 @@ namespace Telkomsat
             double hasil2, tampil2;
             if (output2 > 0)
             {
-                hasil2 = ((double)output2 / 16) * 100;
+                hasil2 = ((double)output2 / 23) * 100;
                 tampil2 = Math.Round(hasil2);
                 divmalam.Style.Add("width", $"{tampil2}%");
                 lblmalamme.Text = $"{tampil2}% oleh {ds7.Tables[0].Rows[0]["nama"].ToString()}";
@@ -370,7 +370,7 @@ namespace Telkomsat
             sqlCmd5.Parameters.AddWithValue("@penyelenggara", txtPenyelenggara.Text);
             sqlCmd5.Parameters.AddWithValue("@jam", txttime.Value);
             sqlCmd5.Parameters.AddWithValue("@lokasi", txtLokasi.Text);
-            sqlCmd5.Parameters.AddWithValue("@tanggal2", txtttl.Value);
+            sqlCmd5.Parameters.AddWithValue("@tanggal2", DateTime.ParseExact(txtttl.Value, "dd/MM/yyyy", null));
             sqlCmd5.Parameters.AddWithValue("@icon", icon1);
             sqlCmd5.Parameters.AddWithValue("@statususer", Session["jenis1"].ToString());
             sqlCmd5.ExecuteNonQuery();

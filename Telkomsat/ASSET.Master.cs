@@ -41,10 +41,19 @@ namespace Telkomsat
                 //DataList2.DataBind();
                 sqlCon.Close();
             }
+            string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 1];
 
             if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "adminhk" || Session["previllage"].ToString() == "super"
                 || Session["previllage"].ToString() == "bendahara")
                 divadmin.Visible = true;
+            else
+            {
+                if (thisURL.ToLower() == "edit.aspx" || thisURL.ToLower() == "bangunan.aspx" || thisURL.ToLower() == "bangunanadd.aspx" || thisURL.ToLower() == "equipment.aspx" ||
+                    thisURL.ToLower() == "rack.aspx" || thisURL.ToLower() == "rackadd.aspx" || thisURL.ToLower() == "ruangan.aspx" || thisURL.ToLower() == "ruanganadd.aspx" ||
+                    thisURL.ToLower() == "site.aspx" || thisURL.ToLower() == "siteadd.aspx" || thisURL.ToLower() == "equipmentadd.aspx" || thisURL.ToLower() == "device.aspx"
+                    || thisURL.ToLower() == "deviceadd.aspx")
+                    Response.Redirect("alldata.aspx");
+            }
             sqlCon.Open();
             SqlDataAdapter sqlCmd2 = new SqlDataAdapter("ProViewByUser", sqlCon);
             sqlCmd2.SelectCommand.CommandType = CommandType.StoredProcedure;

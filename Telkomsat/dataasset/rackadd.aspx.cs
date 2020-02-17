@@ -60,7 +60,7 @@ namespace Telkomsat.dataasset
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($"SELECT * from as_ruangan where id_ruangan = '{videoid}'"))
+                using (SqlCommand cmd = new SqlCommand($"SELECT * from as_ruangan where id_bangunan = '{videoid}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();

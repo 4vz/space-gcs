@@ -34,7 +34,7 @@ namespace Telkomsat.dataasset
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                SqlCommand sqlcmd = new SqlCommand("aset_searchby", sqlCon);
+                SqlCommand sqlcmd = new SqlCommand("asset_searchby12", sqlCon);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 if (txtdevice1.Text != "")
                 {

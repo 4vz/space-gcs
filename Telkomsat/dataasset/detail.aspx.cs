@@ -27,6 +27,10 @@ namespace Telkomsat.dataasset
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "adminhk" || Session["previllage"].ToString() == "super"
+                || Session["previllage"].ToString() == "bendahara")
+                btnedit.Visible = true;
+
             if (Request.QueryString["save"] != null)
             {
                 if (Request.QueryString["save"] == "1")
@@ -80,6 +84,7 @@ namespace Telkomsat.dataasset
                     lblpn.Text = ds.Tables[0].Rows[0]["pn"].ToString();
                     lblsn.Text = ds.Tables[0].Rows[0]["sn"].ToString();
                     lblsatelit.Text = ds.Tables[0].Rows[0]["satelit"].ToString();
+                    lbltipe.Text = ds.Tables[0].Rows[0]["tipe_perangkat"].ToString();
                     lbltahun.Text = ds.Tables[0].Rows[0]["tahun_pengadaan"].ToString();
                     lblfungsi.Text = ds.Tables[0].Rows[0]["fungsi"].ToString();
                     lblstatus.Text = ds.Tables[0].Rows[0]["status"].ToString();
@@ -243,22 +248,7 @@ namespace Telkomsat.dataasset
 
         protected void Lok_ServerClick(object sender, EventArgs e)
         {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
-            sqlCon.Open();
-            string query = $@"INSERT INTO as_history_lokasi (username, id_perangkat, id_ruangan, id_rak, wilayah_before, ruangan_before, rak_before, tanggal) VALUES
-                               ('{user}', '{idperangkat}', '{txtruangan.Text}', '{txtrak.Text}', '{bwilayah}', '{bruangan}', '{brak}', '{datetime1}')";
-            SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
-            sqlcmd.ExecuteNonQuery();
-            sqlCon.Close();
-
-            sqlCon.Open();
-            string queryupdate = $@"update as_perangkat set id_ruangan='{txtruangan.Text}', id_rak='{txtrak.Text}', tanggal='{datetime1}'
-                                    where id_perangkat = '{idperangkat}'";
-            SqlCommand sqlcmd1 = new SqlCommand(queryupdate, sqlCon);
-            sqlcmd1.ExecuteNonQuery();
-            sqlCon.Close();
-
-            Response.Redirect($"../dataasset/detail.aspx?save=2&id={idaset}");
+            Response.Redirect($"edit.aspx?id={idaset}");
         }
 
         public class inisial
