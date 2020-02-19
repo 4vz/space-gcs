@@ -163,7 +163,7 @@
         <asp:FileUpload ID="FileUpload1" runat="server" />
           <br />
         <asp:Button ID="ButtonPilih" OnClick="btnPilih_click" runat="server" Text="Pilih" class="btn btn-default" />
-          <asp:Button ID="ButtonCrop" OnClick="btnCrop_click" runat="server" Text="Crop" class="btn btn-default" />
+          <asp:Button ID="ButtonCrop" OnClick="btnCrop_click" runat="server" Text="Crop" class="btn btn-warning" />
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-4">
@@ -200,6 +200,12 @@
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
-    
+    <script>
+        $('#<%=FileUpload1.ClientID%>').on("change", function () { uploadFile(); });
+
+        function uploadFile() {
+            $('#<%=ButtonPilih.ClientID%>').click();
+        }
+    </script>
 </body>
 </html>

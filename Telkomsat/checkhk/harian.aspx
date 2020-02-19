@@ -11,7 +11,7 @@
                 <asp:ListItem>BBU</asp:ListItem>
                 <asp:ListItem>FMA-11</asp:ListItem>
                 <asp:ListItem>HPA</asp:ListItem>
-                <asp:ListItem>LMA 11M</asp:ListItem>
+                <asp:ListItem Value="LMA 11M">eXT1</asp:ListItem>
                 <asp:ListItem>T2</asp:ListItem>
                 <asp:ListItem>T3S-C</asp:ListItem>
                 <asp:ListItem>T3S-KU</asp:ListItem>

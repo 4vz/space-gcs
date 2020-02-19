@@ -84,17 +84,7 @@
     </div>
 </div>
 </div>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/bower_components/PACE/pace.min.js"></script>
-    <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="//cdn.rawgit.com/ashl1/datatables-rowsgroup/v1.0.0/dataTables.rowsGroup.js"></script>
     <script>
         $(function () {
           $("#example2").DataTable({

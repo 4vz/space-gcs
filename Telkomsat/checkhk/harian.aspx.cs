@@ -31,6 +31,8 @@ namespace Telkomsat.checkhk
             {
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
+                if (lblroom.Text == "LMA 11M")
+                    lblroom.Text = "eXT1";
             }
             else
             {
@@ -139,7 +141,7 @@ namespace Telkomsat.checkhk
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th style=\"min-width:100px\">Nilai Parameter</th><th>Satuan</th></tr>");
+            htmlTable.Append("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"text-align:center\" colspan=\"3\">Parameter</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");

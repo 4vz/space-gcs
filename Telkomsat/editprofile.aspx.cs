@@ -30,42 +30,41 @@ namespace Telkomsat
 
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
-
-            user = Session["username"].ToString();
-            tanggal = Session["tanggal1"].ToString();
-            ttl = Session["ttl"].ToString();
-
-            //string tanggalmasuk = tanggal.Remove(10, 9);
-            //string tanggallahir = ttl.Remove(10, 9);
-            //txtnama.Value = Session["username"].ToString();
-            if (!IsPostBack)
+            else
             {
-                txtnama.Value = Session["nama1"].ToString();
-                txtemail.Value = Session["email"].ToString();
-                txtnomor.Value = Session["nomor"].ToString();
-                txttempat.Value = Session["tempat"].ToString();
-                if (Session["tanggal1"].ToString() != null || Session["tanggal1"].ToString() != "")
-                    txttanggal.Value = Convert.ToDateTime(Session["tanggal1"].ToString()).ToString("dd/MM/yyyy");
-                else
-                    txttanggal.Value = "";
-                if (Session["ttl"].ToString() != null || Session["ttl"].ToString() != "")
-                    txtttl.Value = Convert.ToDateTime(Session["ttl"].ToString()).ToString("dd/MM/yyyy");
-                else
-                    txtttl.Value = "";
-
+                user = Session["username"].ToString();
                 sqlCon2.Open();
                 SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon2);
                 sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
                 sqlCmd.SelectCommand.Parameters.AddWithValue("@user", user);
                 DataTable dtbl1 = new DataTable();
                 sqlCmd.Fill(dtbl1);
+                
                 dtContact.DataSource = dtbl1;
                 dtContact.DataBind();
                 //DataList2.DataSource = dtbl1;
                 //DataList2.DataBind();
                 sqlCon2.Close();
+                sqlCon2.Open();
+                SqlCommand mycmd = new SqlCommand($"SELECT * FROM Profile Where user_name = '{user}'", sqlCon2);
+                SqlDataAdapter da2 = new SqlDataAdapter(mycmd);
+                DataSet ds2 = new DataSet();
+                da2.Fill(ds2);
+                mycmd.ExecuteNonQuery();
+                sqlCon2.Close();
+                if (!IsPostBack)
+                {
+                    txtnama.Value = ds2.Tables[0].Rows[0]["nama"].ToString();
+                    txtemail.Value = ds2.Tables[0].Rows[0]["email"].ToString();
+                    txtnomor.Value = ds2.Tables[0].Rows[0]["nomor"].ToString();
+                    txttempat.Value = ds2.Tables[0].Rows[0]["tempat"].ToString();
+                    if (txttanggal.Value != "")
+                        txttanggal.Value = Convert.ToDateTime(ds2.Tables[0].Rows[0]["tanggal_masuk"].ToString()).ToString("dd/MM/yyyy");
+                    if (txttanggal.Value != "")
+                        txtttl.Value = Convert.ToDateTime(ds2.Tables[0].Rows[0]["ttl"].ToString()).ToString("dd/MM/yyyy");
+                }
+                
             }
-
             lblProfile1.Text = Session["nama1"].ToString();
         }
 

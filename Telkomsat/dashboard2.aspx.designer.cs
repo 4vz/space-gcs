@@ -139,6 +139,15 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.Label lblchharkat;
         
         /// <summary>
+        /// amalam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor amalam;
+        
+        /// <summary>
         /// divmalam control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.Label lblmalamme;
         
         /// <summary>
+        /// apagi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor apagi;
+        
+        /// <summary>
         /// divpagi control.
         /// </summary>
         /// <remarks>
@@ -173,6 +191,15 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblpagime;
+        
+        /// <summary>
+        /// asiang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor asiang;
         
         /// <summary>
         /// divsiang control.

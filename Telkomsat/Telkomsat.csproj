@@ -6883,6 +6883,7 @@
     <Content Include="checklistme\month\isidata.aspx" />
     <Content Include="checklistme\semester\data.aspx" />
     <Content Include="checklistme\semester\isidata.aspx" />
+    <Content Include="checklistme\view.aspx" />
     <Content Include="checklistme\viewharian.aspx" />
     <Content Include="checklistme\week\data.aspx" />
     <Content Include="checklistme\week\data2.aspx" />
@@ -7529,6 +7530,13 @@
     </Compile>
     <Compile Include="checklistme\semester\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\view.aspx.designer.cs">
+      <DependentUpon>view.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\viewharian.aspx.cs">
       <DependentUpon>viewharian.aspx</DependentUpon>

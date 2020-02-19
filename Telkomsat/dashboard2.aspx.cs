@@ -254,6 +254,9 @@ namespace Telkomsat
         {
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
             string tanggalkumalam = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
+            DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
+            string mytanggal = wib.ToString("yyyy/MM/dd");
+
             sqlCon.Open();
             string querycheck = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
                                     on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggalku}' and d.waktu = 'siang' group by ruangan, nama, waktu
@@ -272,9 +275,14 @@ namespace Telkomsat
                 tampil = Math.Round(hasil);
                 divsiang.Style.Add("width", $"{tampil}%");
                 lblsiangme.Text = $"{tampil}% oleh {ds5.Tables[0].Rows[0]["nama"].ToString()}";
+                asiang.Attributes["href"] = $"../checklistme/view.aspx?waktu=siang&tanggal={mytanggal}";
+            }
+            else
+            {
+                asiang.Attributes["href"] = "../checklistme/harian.aspx";
             }
 
-
+            
             sqlCon.Open();
             string querycheckpagi = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
                                     on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggalku}' and d.waktu = 'pagi' group by ruangan, nama, waktu
@@ -293,6 +301,11 @@ namespace Telkomsat
                 tampil1 = Math.Round(hasil1);
                 divpagi.Style.Add("width", $"{tampil1}%");
                 lblpagime.Text = $"{tampil1}% oleh {ds6.Tables[0].Rows[0]["nama"].ToString()}";
+                apagi.Attributes["href"] = $"../checklistme/view.aspx?waktu=pagi&tanggal={mytanggal}";
+            }
+            else
+            {
+                apagi.Attributes["href"] = "../checklistme/harian.aspx";
             }
 
             sqlCon.Open();
@@ -313,6 +326,11 @@ namespace Telkomsat
                 tampil2 = Math.Round(hasil2);
                 divmalam.Style.Add("width", $"{tampil2}%");
                 lblmalamme.Text = $"{tampil2}% oleh {ds7.Tables[0].Rows[0]["nama"].ToString()}";
+                amalam.Attributes["href"] = $"../checklistme/view.aspx?waktu=malam&tanggal={tanggalkumalam}";
+            }
+            else
+            {
+                amalam.Attributes["href"] = "../checklistme/harian.aspx";
             }
 
 

@@ -26,7 +26,7 @@ namespace Telkomsat
                     DropDownList1.Text = Session["mastershelterme"].ToString();
                 }
             }
-            lblProfile1.Text = Session["nama1"].ToString();
+            //lblProfile1.Text = Session["nama1"].ToString();
 
             string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 1];
             if (thisURL.ToLower() == "checkharian.aspx") divddl.Visible = false;

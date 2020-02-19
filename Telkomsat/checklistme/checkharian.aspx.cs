@@ -85,10 +85,10 @@ namespace Telkomsat.checklistme
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            htmlTable1.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
-            htmlTable1.Append("<thead>");
-            htmlTable1.Append("<tr><th></th><th colspan=\"3\" style=\"text-align:center\">Petugas</th><th></th>");
-            htmlTable1.Append("<tr><th>Tanggal</th><th>Pagi</th><th>Siang</th><th>Malam</th><th>Action</th></tr>");
+            htmlTable1.Append("<table id=\"example3\" width=\"100%\" class=\"table table-bordered\">");
+            htmlTable1.Append("<thead style=\"background-color:#40cfd8\">");
+            htmlTable1.Append("<tr><th style=\"vertical-align : middle;text-align:center\" rowspan=\"2\">Tanggal</th><th colspan=\"3\" style=\"text-align:center\">Petugas</th><th style=\"vertical-align : middle;text-align:center\" rowspan=\"2\">Action</th>");
+            htmlTable1.Append("<tr><th style=\"background-color:#40cfd8\">Pagi</th><th style=\"background-color:#40cfd8\">Siang</th><th style=\"background-color:#40cfd8\">Malam</th></tr>");
             htmlTable1.Append("</thead>");
 
             htmlTable1.Append("<tbody>");
@@ -103,7 +103,7 @@ namespace Telkomsat.checklistme
                         tanggal = date1.ToString("yyyy/MM/dd");
 
                         htmlTable1.Append("<tr>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</label>" + "</td>");

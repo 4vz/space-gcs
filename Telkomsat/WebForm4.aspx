@@ -55,6 +55,9 @@
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <asp:Button ID="Button2" Text="Upload" runat="server" OnClick="Hash" />
         <input type="text" class="datepick" />
+        <div>
+            <video autoplay="autoplay" style="width:320px; height:240px"></video>
+        </div>
     </form>
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

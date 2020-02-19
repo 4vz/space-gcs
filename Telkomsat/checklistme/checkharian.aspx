@@ -98,17 +98,12 @@
     </script>
     <script>
         $(function () {
-          $("#example2").DataTable({
+          $("#example3").DataTable({
           "paging": true,
           "searching": true,
-          "info": true,
           "autoWidth": true,
           "scrollX": true,
-          "order": [[ 0, 'desc' ]],
-          "columnDefs": [
-              { "orderable": false, "targets": [0] },
-              { "bSort": false, "targets": [0] }
-          ]
+          "order": [[ 0, 'desc' ]]
           });
            $('.dataTables_length').addClass('bs-select');
         });

@@ -215,7 +215,7 @@
                     </div>
                     </a>
             <!-- /.col -->
-                     <a href="checklistme/harian.aspx">
+                     <a id="amalam" runat="server">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-green">
                         <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
@@ -234,8 +234,8 @@
                         <!-- /.info-box -->
                     </div>
                         </a>
-                        <a href="checklistme/harian.aspx">
-                    <!-- /.col -->
+                        <a id="apagi" runat="server">
+                    <!-- /.col --> 
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
                         <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
@@ -254,7 +254,7 @@
                         <!-- /.info-box -->
                     </div>
                        </a>
-                        <a href="checklistme/harian.aspx">     
+                        <a id="asiang" runat="server">   
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-red">
