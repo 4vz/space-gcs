@@ -120,7 +120,7 @@
                             <asp:DataList runat="server" id="dtContact" Width="100%"> 
                                 <ItemTemplate>
                                         <div class="widget-user-image">
-                                            <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" />
+                                            <asp:Image ID="Image5" alt="User Avatar" runat="server" class="img-circle" Width="55px" Height="55px" ImageUrl='<%# Eval("foto")==DBNull.Value ? null : Eval("foto") %>'/>
                                         </div>
                                 </ItemTemplate>
 
@@ -163,9 +163,14 @@
                 </section>
 
                 <!-- Main content -->
-                <div class="content">
-                        <section class="col-lg-6 connectedSortable" style="min-height:50px">
-                            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-bottom:15px; padding-right:15px">
+                <section class="content">
+                    <div class="box box-default">
+                        <div class="box-header">
+                            <h4>Filter</h4>
+                        </div>
+                        <div class="box-body">
+                            <section class="col-lg-12 connectedSortable" style="min-height:50px">
+                            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-right:15px">
                                     <asp:DropDownList ID="ddlBulan" runat="server" Width="100%">
                                         <asp:ListItem>-Pilih Bulan-</asp:ListItem>
                                         <asp:ListItem Value="01">Januari</asp:ListItem>
@@ -182,39 +187,51 @@
                                         <asp:ListItem Value="12">Desember</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                 <div class="col-lg-4 col-xs-6" style="padding-bottom:15px;">
+                                 <div class="col-lg-4 col-xs-6" >
                                     <asp:Button ID="Button1" runat="server" Text="Pilih" OnClick="pilih_Click" CssClass="btn btn-success btn-xs" Width="100%"/>
                                 </div>
                             </section>
-                    <a class="breadcrumb" href="shiftme.aspx">Edit</a>
+                        </div>
+                        
+                        </div>
+                    <a class="btn btn-warning" style="width:100%" runat="server" id="btnedit" href="shiftme.aspx">Edit</a>
+                    <br />
+                    <div class="row">
                         <div class="col-md-12">
-                            <div runat="server" id="divdata" visible="false">
-                                <asp:GridView ID="gvContact" runat="server" BackColor="White"
-                                      BorderColor="#3366CC" BorderStyle="None"  OnRowDataBound="gvContact_RowDataBound"
-                                      BorderWidth="1px" CellPadding="4"
-                                      style="text-align: left; margin-left: 0px" Width="100%">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h4>Jadwal Shift ME</h4>
+                                </div>
+                                <div class="box-body">
+                                      <div runat="server" id="divdata" visible="false">
+                                        <asp:GridView ID="gvContact" runat="server" BackColor="White"
+                                              BorderColor="#3366CC" BorderStyle="None"  OnRowDataBound="gvContact_RowDataBound"
+                                              BorderWidth="1px" CellPadding="4"
+                                              style="text-align: left; margin-left: 0px" Width="100%">
 
-                                      <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
-                                      <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="White" />
-                                      <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
-                                      <RowStyle BackColor="White" ForeColor="#003399" />
-                                      <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                                      <SortedAscendingCellStyle BackColor="#EDF6F6" />
-                                      <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
-                                      <SortedDescendingCellStyle BackColor="#D6DFDF" />
-                                      <SortedDescendingHeaderStyle BackColor="#002876" />
-                                </asp:GridView>
-                                    <br />
-                                    <asp:LinkButton ID="lbnextT3s" runat="server" OnClick="lbnextt3s_Click">next</asp:LinkButton>
-                                    <asp:LinkButton ID="lbprevT3s" runat="server" OnClick="pilih_Click" Visible="false">prev</asp:LinkButton>
+                                              <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+                                              <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="White" />
+                                              <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+                                              <RowStyle BackColor="White" ForeColor="#003399" />
+                                              <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                                              <SortedAscendingCellStyle BackColor="#EDF6F6" />
+                                              <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
+                                              <SortedDescendingCellStyle BackColor="#D6DFDF" />
+                                              <SortedDescendingHeaderStyle BackColor="#002876" />
+                                        </asp:GridView>
+                                            <br />
+                                            <asp:LinkButton ID="lbnextT3s" runat="server" OnClick="lbnextt3s_Click">next</asp:LinkButton>
+                                            <asp:LinkButton ID="lbprevT3s" runat="server" OnClick="pilih_Click" Visible="false">prev</asp:LinkButton>
+                                        </div>
+
+                                </div>
                                 </div>
                                 </div>
                         </div>
+                    </section>
                     </div>
                 </div>
                 </div>
-                </div>
-            </div>
 
     </form>
 </body>

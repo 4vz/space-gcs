@@ -15,6 +15,7 @@
                 <asp:ListItem>T2</asp:ListItem>
                 <asp:ListItem>T3S-C</asp:ListItem>
                 <asp:ListItem>T3S-KU</asp:ListItem>
+                <asp:ListItem>MPSat</asp:ListItem>
                 <asp:ListItem>VSAT</asp:ListItem>
             </asp:DropDownList>
                 </div>

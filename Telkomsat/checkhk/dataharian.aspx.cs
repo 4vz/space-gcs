@@ -28,8 +28,8 @@ namespace Telkomsat.checkhk
         {
             if (!IsPostBack)
             {
-                query = @"select d.tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-                        group by d.tanggal, nama order by d.tanggal desc";
+                query = @"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+                        group by CAST(d.tanggal AS DATE), nama order by CAST(d.tanggal AS DATE) desc";
                 tableticket();
             }
         }

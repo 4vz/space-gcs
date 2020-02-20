@@ -74,6 +74,7 @@ namespace Telkomsat.checklistme
                 {
                     date = (wib - new TimeSpan(1, 0, 0, 0)).ToString("yyyy/MM/dd");
                     waktu = "malam";
+                    DropDownList1.Text = "malam";
                 }
             }
 
@@ -126,7 +127,7 @@ namespace Telkomsat.checklistme
                 waktu = "malam";
                 DropDownList1.Text = "malam";
             }
-            else
+            else if ((wibTime >= empat) && (wibTime < satu))
             {
                 date = (wib - new TimeSpan(1, 0, 0, 0)).ToString("yyyy/MM/dd");
                 waktu = "malam";

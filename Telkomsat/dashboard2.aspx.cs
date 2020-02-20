@@ -348,7 +348,7 @@ namespace Telkomsat
             double hasil3, tampil3;
             if (output3 > 0)
             {
-                hasil3 = ((double)output3 / 8) * 100;
+                hasil3 = ((double)output3 / 9) * 100;
                 tampil3 = Math.Round(hasil3);
                 divhk.Style.Add("width", $"{tampil3}%");
                 lblchharkat.Text = $"{tampil3}% oleh {ds8.Tables[0].Rows[0]["nama"].ToString()}";

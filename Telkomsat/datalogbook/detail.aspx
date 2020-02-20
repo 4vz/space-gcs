@@ -3,6 +3,84 @@
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <style>
         .ui-autocomplete { z-index:2147483647; }
+        .gambar {
+          float: left;
+          padding:10px;
+        }
+        .myImg {
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .myImg:hover {opacity: 0.7;}
+
+        /* The Modal (background) */
+        .modal1 {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (image) */
+        .modal-content1 {
+          margin: auto;
+          display: block;
+          width: 80%;
+          max-width: 700px;
+        }
+
+        
+        /* Add Animation */
+        .modal-content1, #caption {  
+          -webkit-animation-name: zoom;
+          -webkit-animation-duration: 0.6s;
+          animation-name: zoom;
+          animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+          from {-webkit-transform:scale(0)} 
+          to {-webkit-transform:scale(1)}
+        }
+
+        @keyframes zoom {
+          from {transform:scale(0)} 
+          to {transform:scale(1)}
+        }
+
+        /* The Close Button */
+        .close1 {
+            position: absolute;
+            top: 65px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+            .close1:hover,
+            .close1:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px) {
+            .modal-content1 {
+                width: 100%;
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -30,6 +108,10 @@
             <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
             <br />
             <h4 runat="server" id="hlampiran" style="font-weight:bold">Lampiran-lampiran</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+            </div>
+            <br />
             <asp:GridView ID="DataList3a" runat="server" AutoGenerateColumns="False" style="margin:0;" Font-Size="13px" BackColor="White"
                 BorderColor="White" BorderStyle="None" BorderWidth="0px" Visible="false" OnRowCommand="GridView1_RowCommand">
                 <Columns>
@@ -43,6 +125,11 @@
             <RowStyle BackColor="White" ForeColor="#1b1b1b" />
             </asp:GridView>
         </div>
+    </div>
+    <div class="modal modal1" id="myModal">
+          <span class="close close1">&times;</span>
+            <img class="modal-content modal-content1" id="img01" src=""/>
+          <div id="caption"></div>
     </div>
     <div class="row" style="height:auto">
         <div class="col-md-12">
@@ -368,6 +455,27 @@
 
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
+        var modal = document.getElementById("myModal");
+        var img = document.getElementsByClassName("myImg");
+        var modalImg = document.getElementById("img01");
+        var i;
+        for (i = 0; i < img.length; i++) {
+            img[i].onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+            }
+          }
+        
+                // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+
+
         $(document).on("click", "#btnmutasi", function () {
             var id = $(this).data('id');
             console.log(id);

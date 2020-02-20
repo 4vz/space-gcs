@@ -14,20 +14,38 @@ namespace Telkomsat.superadmin
 
         string bulan { get; set; }
         string shelter { get; set; }
+        string user;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         int total;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
+            else
+                user = Session["nama1"].ToString();
 
-            if (Session["previllage"].ToString() == "adminme" || Session["username"].ToString() == "super")
+            lblProfile1.Text = user;
+
+            if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "super")
             {
-
+               
             }
             else
             {
-                Response.Redirect("~/dashboard2.aspx");
+                btnedit.Visible = false;
+            }
+
+            if (!IsPostBack)
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon);
+                sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlCmd.SelectCommand.Parameters.AddWithValue("@user", user);
+                DataTable dtbl1 = new DataTable();
+                sqlCmd.Fill(dtbl1);
+                dtContact.DataSource = dtbl1;
+                dtContact.DataBind();
+                sqlCon.Close();
             }
         }
 

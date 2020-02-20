@@ -156,12 +156,13 @@ namespace Telkomsat.datalogbook
                 {
                     filecount += 1;
                     string filename = Path.GetFileName(file.FileName);
+                    string extension = Path.GetExtension(filename);
                     string filepath = "~/fileupload/" + filename;
                     file.SaveAs(physicalpath + filename);
                     string s = Convert.ToString(i);
                     sqlCon.Open();
-                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, files, namafiles, kategori)
-                                        VALUES ('{s}', '{filepath}', '{filename}', 'utama')";
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, files, namafiles, kategori, ekstension)
+                                        VALUES ('{s}', '{filepath}', '{filename}', 'utama', '{extension}')";
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
                     sqlCmd1.ExecuteNonQuery();

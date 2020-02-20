@@ -26,6 +26,7 @@ namespace Telkomsat.datalogbook
         DataSet dsflain = new DataSet();
         string query, iduser, tanggal, style1, style3, style2, agenda, dataagenda, idlog, style, querymutasi, queryhistory, querylain, querykonfig, queryfungsi, addwork, queryfilekon, queryfilelain;
         StringBuilder htmlTable = new StringBuilder();
+        StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTableMutasi = new StringBuilder();
         StringBuilder htmlTableKonfigurasi = new StringBuilder();
         StringBuilder htmlTableFungsi = new StringBuilder();
@@ -76,6 +77,7 @@ namespace Telkomsat.datalogbook
             tablefungsi();
             tablekonfigurasi();
             tablelain();
+            mytable();
 
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
@@ -86,7 +88,7 @@ namespace Telkomsat.datalogbook
 
             if (output1 >= 1)
             {
-                string queryfile = $"select * from table_log_file WHERE id_logbook = '{idlog}' and kategori='utama'";
+                string queryfile = $"select * from table_log_file WHERE id_logbook = '{idlog}' and kategori='utama' and (ekstension not in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg'))";
                 DataList3a.Visible = true;
                 sqlCon.Open();
                 SqlDataAdapter sqlda1 = new SqlDataAdapter(queryfile, sqlCon);
@@ -101,6 +103,40 @@ namespace Telkomsat.datalogbook
                 hlampiran.Visible = false;
             }
 
+        }
+
+        void mytable()
+        {
+            SqlDataAdapter da, da1;
+            DataSet ds = new DataSet();
+            DataSet ds1 = new DataSet();
+            string myquery, query, color, namaall, ext, namafile;
+
+            myquery = $@"select * from table_log_file WHERE  id_logbook = '{idlog}' and kategori='utama' and (ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg'))";
+
+            SqlCommand cmd = new SqlCommand(myquery, sqlCon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+
+            htmlTable1.Append("<ul>");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        namaall = ds.Tables[0].Rows[i]["files"].ToString();
+                        namafile = namaall.Replace("~", "..");
+                        ext = Path.GetExtension(namaall);
+                        htmlTable1.Append($"<li class=\"gambar\"><img style=\"display:block\" class=\"myImg\" src=\"{namafile}\" height=\"200\" /></li>");
+                    }
+                    htmlTable.Append("</ul>");
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTable1.ToString() });
+                }
+            }
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)

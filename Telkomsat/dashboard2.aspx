@@ -338,6 +338,7 @@
                                 <a href="superadmin/shiftme.aspx" id="ashiftme" visible="false" class="pull-right" runat="server">Add</a>
                             </ul>
                             <div class="tab-content no-padding">
+                        <a href="superadmin/viewshift.aspx" style="color:black" onmouseover="this.style.color='black'">
                         <div class="tab-pane fade in active">
                     		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -383,12 +384,15 @@
 			                </a>
 		                </div>
                     </div>
+                        </a>
                     </div>
                     </div>
                         <div class="box box-solid bg-light-blue-gradient">
-                            <div class="box-body" style="max-width:100%; margin:0px">
+                            <div class="box-header">
                                 <asp:Label ID="lblwaktu" runat="server" Text="Event" Font-Bold="true" Font-Size="Large"></asp:Label>
                                 <button type="button" class="btn btn-sm btn-primary pull-right" id="btnadd" data-toggle="modal" data-target="#modalupdate1">ADD</button>
+                            </div>
+                            <div class="box-body" style="height: 220px; overflow-y:scroll; max-width:100%; margin:0px">
                                     <div class="row">
                                         <asp:DataList runat="server" id="dtEvent" CssClass="table" OnItemCommand="DataList1_ItemCommand" style="max-width:100%; position:relative">
                                         <ItemTemplate>
@@ -408,7 +412,6 @@
                                     </asp:DataList>
                                 </div>
                             </div>
-                            <div class="weather-report" style="height:78px; width:100%;"></div>
                         </div>
                     </div>
                 </div>

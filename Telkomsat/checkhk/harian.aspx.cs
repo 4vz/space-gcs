@@ -141,7 +141,7 @@ namespace Telkomsat.checkhk
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"text-align:center\" colspan=\"3\">Parameter</th></tr>");
+            htmlTable.Append("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th>Nilai</th><th>Satuan</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
