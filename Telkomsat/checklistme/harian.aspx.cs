@@ -228,10 +228,10 @@ namespace Telkomsat.checklistme
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
                     where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
 					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
-					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'PAGI' order by r.id_perangkat, r.urutan";
+					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'PAGI' order by r.urutan, r.id_perangkat";
             else
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
-                        checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.id_perangkat, r.urutan";
+                        checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.urutan, r.id_perangkat";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");

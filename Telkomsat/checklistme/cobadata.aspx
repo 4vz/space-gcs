@@ -1,16 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="dataharian.aspx.cs" Inherits="Telkomsat.checklistme.dataharian" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <style type="text/css">
-            td {
-                border-top: 3px solid #dddddd;
-                border-bottom: 3px solid #dddddd;
-                border-right: 3px solid #dddddd;
-            }
-        </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-<div class="row" style="padding:20px">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cobadata.aspx.cs" Inherits="Telkomsat.checklistme.cobadata" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="content-wrapper" style="min-height:1300px;">
+            <div class="container no-padding">
+            <section class="content">
+                <div class="row" style="padding:20px">
 <div class="nav-tabs-custom col-lg-12">
     <!-- Tabs within a box -->
     <ul class="nav nav-tabs pull-right">
@@ -105,4 +106,9 @@
            $('.dataTables_length').addClass('bs-select');
         });
     </script>
-</asp:Content>
+            </section>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -152,7 +152,7 @@ namespace Telkomsat.datalogbook
 
         void tableticket()
         {
-            query = $@"select * from tabel_logbook where id_logbook = '{idlog}'";
+            query = $@"select t.*, p.nama from tabel_logbook t join Profile p on p.id_profile=t.id_user where id_logbook = '{idlog}'";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -249,7 +249,7 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTable.Append($"<td colspan\"3\">" + ds.Tables[0].Rows[i]["status"].ToString() + "</td>");
                         }
-                        htmlTable.Append("</tr>" + "<tr rowspan=\"2\"></tr>" +
+                        htmlTable.Append("</tr>" + "<tr>" + $"<td style=\"{style1}\">" + "Dibuat Oleh" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + ds.Tables[0].Rows[i]["nama"].ToString() + "</td>" + "</tr>" +
                             "<tr>" + $"<td style=\"{style1}\">" + "Agenda" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}; white-space: pre-line;\">" + dataagenda + "</td>" + "</tr>" +
                             "<tr>");
                         if (jumlahlog > 0)

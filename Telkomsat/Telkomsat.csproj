@@ -6876,6 +6876,7 @@
     <Content Include="checklistme\chart.aspx" />
     <Content Include="checklistme\checkharian.aspx" />
     <Content Include="checklistme\checklist.aspx" />
+    <Content Include="checklistme\cobadata.aspx" />
     <Content Include="checklistme\dataharian.aspx" />
     <Content Include="checklistme\editharian.aspx" />
     <Content Include="checklistme\harian.aspx" />
@@ -7365,7 +7366,6 @@
     <Compile Include="API\ValuesController1.cs" />
     <Compile Include="ASSET.Master.cs">
       <DependentUpon>ASSET.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ASSET.Master.designer.cs">
       <DependentUpon>ASSET.Master</DependentUpon>
@@ -7481,6 +7481,13 @@
     </Compile>
     <Compile Include="checklistme\checklist.aspx.designer.cs">
       <DependentUpon>checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\cobadata.aspx.cs">
+      <DependentUpon>cobadata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\cobadata.aspx.designer.cs">
+      <DependentUpon>cobadata.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\dataharian.aspx.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>

@@ -11,6 +11,28 @@ using System.IO;
 
 namespace Telkomsat
 {
+    public static class HelpernyaWildan
+    {
+
+        public static bool IsIn(this string ygdicek, string[] daftar)
+        {
+            bool benarkah = false;
+
+            foreach (string d in daftar)
+            {
+                if (ygdicek == d)
+                {
+                    benarkah = true;
+                    break;
+                }
+            }
+
+            return benarkah;
+        }
+
+    }
+
+
     public partial class ASSET : System.Web.UI.MasterPage
     {
         string user;
@@ -48,11 +70,18 @@ namespace Telkomsat
                 divadmin.Visible = true;
             else
             {
-                if (thisURL.ToLower() == "edit.aspx" || thisURL.ToLower() == "bangunan.aspx" || thisURL.ToLower() == "bangunanadd.aspx" || thisURL.ToLower() == "equipment.aspx" ||
+                if (thisURL.ToLower().IsIn(new string[]{ "edit.aspx", "bangunan.aspx", "bangunanadd.aspx", "equipment.aspx", "rack.aspx", "rackadd.aspx",
+                "ruangan.aspx", "ruanganadd.aspx", "site.aspx", "siteadd.aspx", "equipment.aspx", "equipmentadd.aspx", "device.aspx", "deviceadd.aspx"}))
+                {
+                    Response.Redirect("alldata.aspx");
+                }
+
+
+                /*if (thisURL.ToLower() == "edit.aspx" || thisURL.ToLower() == "bangunan.aspx" || thisURL.ToLower() == "bangunanadd.aspx" || thisURL.ToLower() == "equipment.aspx" ||
                     thisURL.ToLower() == "rack.aspx" || thisURL.ToLower() == "rackadd.aspx" || thisURL.ToLower() == "ruangan.aspx" || thisURL.ToLower() == "ruanganadd.aspx" ||
                     thisURL.ToLower() == "site.aspx" || thisURL.ToLower() == "siteadd.aspx" || thisURL.ToLower() == "equipmentadd.aspx" || thisURL.ToLower() == "device.aspx"
                     || thisURL.ToLower() == "deviceadd.aspx")
-                    Response.Redirect("alldata.aspx");
+                    Response.Redirect("alldata.aspx");*/
             }
             sqlCon.Open();
             SqlDataAdapter sqlCmd2 = new SqlDataAdapter("ProViewByUser", sqlCon);
