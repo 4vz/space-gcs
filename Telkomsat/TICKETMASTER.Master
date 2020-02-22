@@ -19,6 +19,7 @@
     <link href="ticket/ticket.css?version=4" rel="stylesheet" />
     <script src="../assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <link rel="stylesheet" href="./assets/mylibrary/jquery-ui.css"/>
+    <link rel="stylesheet" href="./assets/mylibrary/fontgoogle.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -167,8 +168,7 @@
             <div class="pull-right hidden-xs">
               <b>Version</b> 2.4.0
             </div>
-            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-            reserved.
+            <strong>Copyright 2019-2020 <a href="gcs.telkom.space/dashboard.aspx">GCS Telkomsat</a>.</strong> 
           </footer>
 
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>

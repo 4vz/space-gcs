@@ -50,7 +50,7 @@ namespace Telkomsat.checklistme
             Session["inisial"] = null;*/
             query5 = $@"select d.id_datame, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by r.id_perangkat";
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by  r.urutan, r.id_perangkat";
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 
@@ -89,7 +89,7 @@ namespace Telkomsat.checklistme
         {
             query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by r.id_perangkat";
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by  r.urutan, r.id_perangkat";
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 

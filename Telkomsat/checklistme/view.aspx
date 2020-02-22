@@ -47,4 +47,30 @@
         </div>
 
     </div>
+    <script src="../assets/mylibrary/rowsgroup.js"></script>
+    <script type="text/javascript">
+       $(function () {
+          $("#example2").DataTable({
+          "autoWidth": true,
+          "scrollX": true,
+          "rowsGroup": [0, 1, 2],
+          "pageLength": 100,
+          "ordering": false
+          });
+           $('.dataTables_length').addClass('bs-select');
+        });
+
+        $(document).ready(function () {
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked"))
+                    $('.chkCheckBoxId').prop('checked', true);
+                else
+                    $('.chkCheckBoxId').prop('checked', false);
+            });
+        });
+
+        function fungsi() {
+            alert("Berhasil Disimpan");
+        }   
+    </script>
 </asp:Content>

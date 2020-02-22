@@ -39,19 +39,19 @@ namespace Telkomsat.checklistme
             if (!IsPostBack)
             {
                 query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe from checkme_parameter r INNER join
-                    checkme_perangkat p on p.id_perangkat = r.id_perangkat order by r.id_perangkat";
+                    checkme_perangkat p on p.id_perangkat = r.id_perangkat order by p.ruangan, r.urutan, r.id_perangkat";
 
                 querysm = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where d.tanggal = '{tanggalku}' and d.waktu = 'pagi' order by r.id_perangkat";
+                    where d.tanggal = '{tanggalku}' and d.waktu = 'pagi' order by p.ruangan, r.urutan, r.id_perangkat";
 
                 querys = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where d.tanggal = '{tanggalku}' and d.waktu = 'siang' order by r.id_perangkat";
+                    where d.tanggal = '{tanggalku}' and d.waktu = 'siang' order by p.ruangan, r.urutan, r.id_perangkat";
 
                 querym = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where d.tanggal = '{tanggalku}' and d.waktu = 'malam' order by r.id_perangkat";
+                    where d.tanggal = '{tanggalku}' and d.waktu = 'malam' order by p.ruangan, r.urutan, r.id_perangkat";
                 tableticket();
             }
 
@@ -66,19 +66,19 @@ namespace Telkomsat.checklistme
                 room = "'" + ddlKategori.Text + "'";
 
             query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe from checkme_parameter r INNER join
-                    checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = {room} order by r.id_perangkat";
+                    checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = {room} order by p.ruangan, r.urutan, r.id_perangkat";
 
             querysm = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'pagi' order by r.id_perangkat";
+                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'pagi' order by p.ruangan, r.urutan, r.id_perangkat";
 
             querys = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'siang' order by r.id_perangkat";
+                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'siang' order by p.ruangan, r.urutan, r.id_perangkat";
 
             querym = $@"select d.waktu, d.nilai, r.id_parameter from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'malam' order by r.id_perangkat";
+                    where ruangan = {room} AND d.tanggal = '{tanggalku}' and d.waktu = 'malam' order by p.ruangan, r.urutan, r.id_perangkat";
             tableticket();
         }
 

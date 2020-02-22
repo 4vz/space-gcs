@@ -77,7 +77,7 @@
     </div>
 </div>
 </div>
-    <script src="//cdn.rawgit.com/ashl1/datatables-rowsgroup/v1.0.0/dataTables.rowsGroup.js"></script>
+    <script src="../assets/mylibrary/rowsgroup.js"></script>
     <script>
         $('#<%=txtsdate.ClientID%>').datepicker({
             autoclose: true,

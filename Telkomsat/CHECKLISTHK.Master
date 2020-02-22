@@ -18,7 +18,7 @@
     <link href="checklist/check.css?version=8" rel="stylesheet"/>
     <link rel="stylesheet" href="./assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
-
+    <link rel="stylesheet" href="./assets/mylibrary/fontgoogle.css" />
     <style type="text/css">
         tr:nth-child(even) {
           background-color: #f2f2f2

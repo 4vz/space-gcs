@@ -39,7 +39,7 @@
     </div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <!-- /.col -->
-    <script src="//cdn.rawgit.com/ashl1/datatables-rowsgroup/v1.0.0/dataTables.rowsGroup.js"></script>
+    <script src="../assets/mylibrary/rowsgroup.js"></script>
     <script type="text/javascript">
        $(function () {
           $("#example2").DataTable({

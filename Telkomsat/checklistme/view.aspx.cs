@@ -41,7 +41,7 @@ namespace Telkomsat.checklistme
 
             query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where d.tanggal = '{datee}' and d.waktu = '{waktu}' order by r.id_perangkat";
+                    where d.tanggal = '{datee}' and d.waktu = '{waktu}' order by p.ruangan, r.urutan, r.id_perangkat";
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 

@@ -42,6 +42,7 @@
                             <asp:ListItem Value="dodo">Dodo</asp:ListItem>
                             <asp:ListItem Value="ibnu">Ibnu</asp:ListItem>
                             <asp:ListItem Value="syehab">Syehab</asp:ListItem>
+                            <asp:ListItem Value="Badru">Badrudin</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
