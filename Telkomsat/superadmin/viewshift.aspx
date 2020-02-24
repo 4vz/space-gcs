@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>Data Shift ME</title>
     <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
@@ -232,6 +233,15 @@
                     </div>
                 </div>
                 </div>
+    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/bower_components/PACE/pace.min.js"></script>
+    <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
+    <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script src="../assets/dist/js/adminlte.min.js"></script>
+    <script src="../assets/plugins/jQuery-ui/js/jquery-ui.min.js"></script>
 
     </form>
 </body>

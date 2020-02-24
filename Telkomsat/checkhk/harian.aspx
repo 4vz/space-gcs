@@ -57,6 +57,10 @@
     <!-- /.col -->
     <script src="../assets/mylibrary/rowsgroup.js"></script>
     <script type="text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=Button1.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
        $(function () {
           $("#example2").DataTable({
           "autoWidth": true,

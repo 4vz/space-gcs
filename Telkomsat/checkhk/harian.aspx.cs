@@ -106,7 +106,7 @@ namespace Telkomsat.checkhk
 
             //Response.Write(data);
             Session["inisialhk"] = null;
-
+            Button1.Enabled = true;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 

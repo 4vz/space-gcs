@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="dataharian.aspx.cs" Inherits="Telkomsat.checklistme.dataharian" %>
+﻿<%@ Page Title="Data Harian ME" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="dataharian.aspx.cs" Inherits="Telkomsat.checklistme.dataharian" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <style type="text/css">
             td {
@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <div class="row" style="padding:20px">
-<div class="nav-tabs-custom col-lg-12">
+<div class="nav-tabs-custom col-lg-12 no-padding">
     <!-- Tabs within a box -->
     <ul class="nav nav-tabs pull-right">
         <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>

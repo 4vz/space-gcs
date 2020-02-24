@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="view.aspx.cs" Inherits="Telkomsat.checklistme.view" %>
+﻿<%@ Page Title="Checklist ME" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="view.aspx.cs" Inherits="Telkomsat.checklistme.view" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .box .border-right{
@@ -27,7 +27,7 @@
     <br />
 
     <div class="row">
-        <div class="col-lg-12 connectedSortable">
+        <div class="col-lg-12  no-padding connectedSortable">
                 <!-- Custom tabs (Charts with tabs)-->
             <div class="box box-primary">
             <!-- Tabs within a box -->

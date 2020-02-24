@@ -15,9 +15,10 @@ namespace Telkomsat.checklistme
     {
         SqlDataAdapter da;
         DataSet ds = new DataSet();
+        StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string saat, user;
+        string saat, user, datee;
         
         string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
         string[] words = { "a", "a" };
@@ -97,6 +98,7 @@ namespace Telkomsat.checklistme
             {           
                  tableticket();
             }
+            mytable();
                
         }
 
@@ -212,7 +214,9 @@ namespace Telkomsat.checklistme
 
             Session["inisial"] = null;
             lblsave.Visible = true;
+            Button1.Enabled = true;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+            //Response.Redirect("harian.aspx");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
@@ -220,6 +224,59 @@ namespace Telkomsat.checklistme
             Session["inisial"] = "buka";
           
         }
+
+        void mytable()
+        {
+            SqlDataAdapter da, da1;
+            DataSet ds = new DataSet();
+            DataSet ds1 = new DataSet();
+            string myquery, query, color, namaall, room;
+
+            myquery = $@"select ruangan from checkme_perangkat group by ruangan";
+
+            SqlCommand cmd = new SqlCommand(myquery, sqlCon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+
+            htmlTable1.Append("<ul class=\"uli\">");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        room = ds.Tables[0].Rows[i]["ruangan"].ToString();
+                        ds1.Clear();
+                        namaall = ds.Tables[0].Rows[i]["ruangan"].ToString();
+                        query = $@"select t.ruangan from checkme_data d join checkme_parameter p on p.ID_Parameter=d.id_parameter join checkme_perangkat t
+                                on t.id_perangkat=p.ID_Perangkat where d.tanggal = '{date}' and d.waktu = '{waktu}' and t.ruangan = '{namaall}'  group by t.ruangan";
+
+                        SqlCommand cmd1 = new SqlCommand(query, sqlCon);
+                        da1 = new SqlDataAdapter(cmd1);
+                        da1.Fill(ds1);
+                        sqlCon.Open();
+                        cmd1.ExecuteNonQuery();
+                        sqlCon.Close();
+
+                        if (ds1.Tables[0].Rows.Count > 0)
+                        {
+                            color = "green; color:white";
+                        }
+                        else
+                        {
+                            color = "white; color:black";
+                        }
+                        htmlTable1.Append($"<li class=\"myli\" style=\"background-color:{color}\"><a style=\"color:{color}\" href=\"harian.aspx?room={room}\">{room}</a></li>");
+                    }
+                    htmlTable1.Append("</ul>");
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTable1.ToString() });
+                }
+            }
+        }
+
 
         void tableticket()
         {

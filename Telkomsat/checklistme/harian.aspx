@@ -1,7 +1,30 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="harian.aspx.cs" Inherits="Telkomsat.checklistme.harian" %>
+﻿<%@ Page Title="Checklist Harian ME" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="harian.aspx.cs" Inherits="Telkomsat.checklistme.harian" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .box .border-right{
+            border-right: 3px solid #e2e2e2;
+        }
+        .uli {
+          padding: 5px;
+        }
+
+        .myli {
+          float: left;
+          border: 1px solid #e2e2e2;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 16px;
+          text-decoration: none;
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="row">
+        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+    </div>
+    <br />
     <asp:DropDownList ID="DropDownList1" runat="server" Visible="false">
         <asp:ListItem>pagi</asp:ListItem>
         <asp:ListItem>siang</asp:ListItem>
@@ -41,6 +64,10 @@
     <!-- /.col -->
     <script src="../assets/mylibrary/rowsgroup.js"></script>
     <script type="text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=Button1.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
        $(function () {
           $("#example2").DataTable({
           "autoWidth": true,
@@ -64,8 +91,10 @@
 
 
         function fungsi() {
+            //setTimeout(function () { alert("Berhasil Disimpan"); }, 3000)
             alert("Berhasil Disimpan");
-        }
+            location.href = "harian.aspx";
+        };
 
       
 

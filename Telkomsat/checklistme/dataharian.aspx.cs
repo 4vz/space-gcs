@@ -147,8 +147,8 @@ namespace Telkomsat.checklistme
             {
                 for (int runs = 0; runs < countm; runs++)
                 {
-                    datamalam[b] = dsm.Tables[0].Rows[runs]["nilai"].ToString();
-                    tipem[b] = dsm.Tables[0].Rows[runs]["id_parameter"].ToString();
+                    datamalam[runs] = dsm.Tables[0].Rows[runs]["nilai"].ToString();
+                    tipem[runs] = dsm.Tables[0].Rows[runs]["id_parameter"].ToString();
                     b++;
                 }
             }

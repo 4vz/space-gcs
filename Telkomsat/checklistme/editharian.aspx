@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="col-md-12">
+<div class="col-md-12 no-padding">
         <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">Edit Checklist</h3>
