@@ -6873,6 +6873,7 @@
     <Content Include="asset\edit.aspx" />
     <Content Include="asset\StyleSheet1.css" />
     <Content Include="check.aspx" />
+    <Content Include="checkbjm\harian.aspx" />
     <Content Include="checkhk\dataharian.aspx" />
     <Content Include="checkhk\editharian.aspx" />
     <Content Include="checkhk\harian.aspx" />
@@ -6886,6 +6887,7 @@
     <Content Include="checklistme\editharian.aspx" />
     <Content Include="checklistme\harian.aspx" />
     <Content Include="checklistme\month\data.aspx" />
+    <Content Include="checklistme\month\editmonthly.aspx" />
     <Content Include="checklistme\month\isidata.aspx" />
     <Content Include="checklistme\semester\data.aspx" />
     <Content Include="checklistme\semester\isidata.aspx" />
@@ -6893,6 +6895,7 @@
     <Content Include="checklistme\viewharian.aspx" />
     <Content Include="checklistme\week\data.aspx" />
     <Content Include="checklistme\week\data2.aspx" />
+    <Content Include="checklistme\week\edit.aspx" />
     <Content Include="checklistme\week\isidata.aspx" />
     <Content Include="checklistme\week\tes.aspx" />
     <Content Include="checklistme\year\data.aspx" />
@@ -7417,6 +7420,13 @@
     <Compile Include="check.aspx.designer.cs">
       <DependentUpon>check.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkbjm\harian.aspx.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkbjm\harian.aspx.designer.cs">
+      <DependentUpon>harian.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checkhk\dataharian.aspx.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7451,6 +7461,13 @@
     </Compile>
     <Compile Include="CHECKLIST.Master.designer.cs">
       <DependentUpon>CHECKLIST.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CHECKLISTBJM.Master.cs">
+      <DependentUpon>CHECKLISTBJM.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CHECKLISTBJM.Master.designer.cs">
+      <DependentUpon>CHECKLISTBJM.Master</DependentUpon>
     </Compile>
     <Compile Include="CHECKLISTHK.Master.cs">
       <DependentUpon>CHECKLISTHK.Master</DependentUpon>
@@ -7522,6 +7539,13 @@
     <Compile Include="checklistme\month\data.aspx.designer.cs">
       <DependentUpon>data.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklistme\month\editmonthly.aspx.cs">
+      <DependentUpon>editmonthly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\editmonthly.aspx.designer.cs">
+      <DependentUpon>editmonthly.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checklistme\month\isidata.aspx.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7570,6 +7594,13 @@
     </Compile>
     <Compile Include="checklistme\week\data2.aspx.designer.cs">
       <DependentUpon>data2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\week\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\week\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\week\isidata.aspx.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
@@ -9235,6 +9266,7 @@
     <Content Include="assets\plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="assets\plugins\ionicons\fonts\ionicons.woff" />
     <Content Include="API\allasset.ashx" />
+    <Content Include="CHECKLISTBJM.Master" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <Content Include="TICKETMASTER.Master" />

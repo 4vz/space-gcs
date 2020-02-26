@@ -37,7 +37,7 @@ namespace Telkomsat
         {
             Session["mastershelterme"] = DropDownList1.Text;
             Response.Redirect($"~/checklistme/harian.aspx?room={DropDownList1.SelectedValue}", false);
-            Session["inisial"] = null;
+            Session["inisialmeh"] = null;
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

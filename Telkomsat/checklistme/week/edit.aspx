@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="isidata.aspx.cs" Inherits="Telkomsat.checklistme.month.isidata" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="edit.aspx.cs" Inherits="Telkomsat.checklistme.week.edit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,21 +8,10 @@
             <div class="col-lg-4 col-xs-12" style="padding-left:0; padding-bottom:15px; padding-right:15px">
             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" Width="100%">
                 <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
-                <asp:ListItem>RO-CHL</asp:ListItem>
-                <asp:ListItem>RO-HPA</asp:ListItem>
-                <asp:ListItem>RO-BBRC</asp:ListItem>
+                <asp:ListItem>RO-GST</asp:ListItem>
+                <asp:ListItem>RO-HYD</asp:ListItem>
+                <asp:ListItem>RO-BTT</asp:ListItem>
                 <asp:ListItem>RO-UPS</asp:ListItem>
-                <asp:ListItem>SH-T1</asp:ListItem>
-                <asp:ListItem>SH-T2</asp:ListItem>
-                <asp:ListItem>SH-T3S-KU</asp:ListItem>
-                <asp:ListItem>SH-T3S-C</asp:ListItem>
-                <asp:ListItem>SH-MP-SAT</asp:ListItem>
-                <asp:ListItem>SH-MON-KU-BAND</asp:ListItem>
-                <asp:ListItem>SH-TAR</asp:ListItem>
-                <asp:ListItem>SH-FMA-11</asp:ListItem>
-                <asp:ListItem>SH-FMA-9,8</asp:ListItem>
-                <asp:ListItem>SH-TEL</asp:ListItem>
-                <asp:ListItem>SH-16</asp:ListItem>
             </asp:DropDownList>
                 </div>
              <div class="col-lg-4 col-xs-12" style="padding-bottom:15px; ">
@@ -31,11 +20,10 @@
         </section>
     </div>
 
-<div class="col-md-12">
+<div class="col-md-12 no-padding">
         <div class="box box-primary">
         <div class="box-header with-border">
-            <asp:Label ID="lblroom" runat="server" Text="Maintenance Bulanan" Font-Size="Large" Font-Bold="true"></asp:Label>
-            <asp:Button ID="Button2" runat="server" Text="Copy From The Last" OnClick="inisialisasi_Click" CssClass="btn btn-sm btn-primary pull-right"  />
+            <asp:Label ID="lblroom" runat="server" Text="Maintenance Mingguan" Font-Size="Large" Font-Bold="true"></asp:Label>
 
             <!-- /.box-tools -->
         </div>
@@ -69,9 +57,9 @@
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
-              "rowsGroup": [0, 1, 2],
+          "rowsGroup": [0, 1],
+          "pageLength": 300,
           "ordering": false,
-          "pageLength": 100,
           "columnDefs": [
               { "orderable": false, "targets": [0] },
               { "bSort": false, "targets": [0] }

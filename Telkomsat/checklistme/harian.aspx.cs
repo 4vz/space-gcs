@@ -32,6 +32,8 @@ namespace Telkomsat.checklistme
             {
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
+                if (!IsPostBack)
+                    Session["inisialmeh"] = null;
             }
             else
             {
@@ -212,16 +214,16 @@ namespace Telkomsat.checklistme
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            Session["inisial"] = null;
             lblsave.Visible = true;
             Button1.Enabled = true;
+            Session["inisialmeh"] = null;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
             //Response.Redirect("harian.aspx");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
-            Session["inisial"] = "buka";
+            Session["inisialmeh"] = "buka";
           
         }
 
@@ -280,7 +282,7 @@ namespace Telkomsat.checklistme
 
         void tableticket()
         {
-            if (Session["inisial"] != null)
+            if (Session["inisialmeh"] != null)
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
                     where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
@@ -331,7 +333,7 @@ namespace Telkomsat.checklistme
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if(Session["inisial"] != null)
+                        if(Session["inisialmeh"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;

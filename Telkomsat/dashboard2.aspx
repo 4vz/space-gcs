@@ -115,6 +115,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="../checkhk/harian.aspx">Harkat</a></li>
                                         <li><a href="../checklistme/harian.aspx">ME</a></li>
+                                        <li><a href="../checkbjm/harian.aspx">BJM</a></li>
                                     </ul>
                                 </li>
                               </ul>
@@ -198,7 +199,7 @@
                         <a href="checkhk/harian.aspx">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box bg-aqua">
-                            <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                            <span class="info-box-icon"><i class="fa fa-calendar-o"></i></span>
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Checklist Harkat</span>
@@ -218,7 +219,7 @@
                      <a id="amalam" runat="server">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-green">
-                        <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                        <span class="info-box-icon"><i class="fa fa-star-o"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Checklist ME</span>
@@ -238,7 +239,7 @@
                     <!-- /.col --> 
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-yellow">
-                        <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+                        <span class="info-box-icon"><i class="fa fa-moon-o"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Checklist ME</span>
@@ -258,7 +259,7 @@
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box bg-red">
-                        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+                        <span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Checklist ME</span>

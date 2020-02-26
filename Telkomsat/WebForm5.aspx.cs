@@ -28,9 +28,17 @@ namespace Telkomsat
             int output1 = int.Parse(cmd4.ExecuteScalar().ToString());
             sqlCon.Close();
 
+            var sunday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+
+            var monday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+
+            var tuesday = DateTime.Today.AddDays(+(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+
+            Response.Write(", monday" + monday + ", minggu depan  " + tuesday);
+
             if (output1 >= 1)
             {
-                string queryfile = $"select * from table_log_file WHERE kategori='utama'";
+                /*string queryfile = $"select * from table_log_file WHERE kategori='utama'";
                 DataList3a.Visible = true;
                 sqlCon.Open();
                 SqlDataAdapter sqlda1 = new SqlDataAdapter(queryfile, sqlCon);
@@ -38,13 +46,13 @@ namespace Telkomsat
                 sqlda1.Fill(dtbl1);
                 sqlCon.Close();
                 DataList3a.DataSource = dtbl1;
-                DataList3a.DataBind();
+                DataList3a.DataBind();*/
             }
 
-            mytable();
+            //mytable();
         }
 
-        void mytable()
+        /*void mytable()
         {
             SqlDataAdapter da, da1;
             DataSet ds = new DataSet();
@@ -76,7 +84,7 @@ namespace Telkomsat
                 }
             }
         }
-
+        */
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {

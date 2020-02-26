@@ -11,16 +11,16 @@ using System.Text.RegularExpressions;
 
 namespace Telkomsat.checklistme.week
 {
-    public partial class isidata : System.Web.UI.Page
+    public partial class edit : System.Web.UI.Page
     {
         SqlDataAdapter da;
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, user, inisial;
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
         string[] words = { "a", "a" };
-        string[] akhir;
-        int j = 0, k, jenischeck;
+        string[] akhir, idedit;
+        int j = 0, k;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
@@ -38,34 +38,7 @@ namespace Telkomsat.checklistme.week
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
             }
-            if (Session["iduser"] != null)
-            {
-                user = Session["iduser"].ToString();
-            }
-            var mulai = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-
-            var selesai = DateTime.Today.AddDays(+(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-            string week1 = mulai.ToString("yyyy/MM/dd");
-            string week2 = selesai.ToString("yyyy/MM/dd");
-            query2 = $@"select count(*) from checkme_datawmy d left join checkme_parameterwmy r 
-						on d.id_parameter=r.id_parameter left join
-                        checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{DropDownList1.SelectedValue}' and kategori = 'week'
-						and d.tanggal >= '{week1}' and d.tanggal <= '{week2}'";
-            sqlCon.Open();
-            SqlCommand cmd5 = new SqlCommand(query2, sqlCon);
-            string output = cmd5.ExecuteScalar().ToString();
-            jenischeck = Convert.ToInt32(output);
-            sqlCon.Close();
-            if (jenischeck >= 1)
-            {
-                lbledit.Visible = true;
-                lbledit.Text = $"Data checklist sudah terisi untuk minggu ini klik untuk ";
-                LinkButton1.Visible = true;
-            }
-            else
-            {
-                tableticket();
-            }
+            tableticket();
         }
         protected void Pilih_Click(object sender, EventArgs e)
         {
@@ -75,40 +48,34 @@ namespace Telkomsat.checklistme.week
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"edit.aspx?room={room}");
+            Response.Redirect($"editharian.aspx?room={room}&waktu=6");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
-            string data = string.Join(",", akhir);
-            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai) values {data}";
-            sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(query1, sqlCon);
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            Session["inisialweek"] = null;
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                query1 = $"UPDATE checkme_datawmy SET nilai = '{akhir[i]}' WHERE id_data = '{idedit[i]}'";
+                sqlCon.Open();
+                SqlCommand cmd = new SqlCommand(query1, sqlCon);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+                string data = string.Join(",", akhir);
 
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
-            Session["inisialweek"] = "buka";
+
 
         }
 
         void tableticket()
         {
-            if (Session["inisialweek"] != null)
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameterwmy r left join
-                            checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                            where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_datawmy d LEFT join checkme_parameterwmy r 
-                            on r.id_parameter=d.id_parameter left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
-                            where p.ruangan = '{room}' and d.nilai is not null and d.jenis = 'week') and d.jenis = 'week' order by r.id_perangkat";
-            else
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join
-                        checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'week' order by r.id_perangkat";
+                query = $@"select d.nilai, d.id_data, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
+						left join checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'week' order by r.id_perangkat";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
@@ -131,6 +98,7 @@ namespace Telkomsat.checklistme.week
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
             akhir = new string[count];
+            idedit = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -151,7 +119,6 @@ namespace Telkomsat.checklistme.week
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if (Session["inisialweek"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
@@ -191,7 +158,7 @@ namespace Telkomsat.checklistme.week
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + user + "','" + looping[j] + "','" + "week" + "','" + line + "')";
+                            akhir[j] = line;
                             j++;
                         }
                     }

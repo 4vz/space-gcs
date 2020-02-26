@@ -5,13 +5,13 @@
 <div class="row">
         <!-- Left col -->
         <section class="col-lg-6 connectedSortable" style="min-height:50px">
-            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-bottom:15px; padding-right:15px">
+            <div class="col-lg-4 col-xs-12" style="padding-left:0; padding-bottom:15px; padding-right:15px">
             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" Width="100%">
                 <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
                 <asp:ListItem>RO-GST</asp:ListItem>
                 <asp:ListItem>RO-HYD</asp:ListItem>
                 <asp:ListItem>RO-BTT</asp:ListItem>
-                
+                <asp:ListItem>RO-UPS</asp:ListItem>
             </asp:DropDownList>
                 </div>
              <div class="col-lg-4 col-xs-12" style="padding-bottom:15px; ">
@@ -52,14 +52,14 @@
     </div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <!-- /.col -->
-    <script src="../assets/mylibrary/rowsgroup.js"></script>
+    <script src="../../assets/mylibrary/rowsgroup.js"></script>
     <script type="text/javascript">
        $(function () {
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
           "rowsGroup": [0, 1],
-              "pageLength": 100,
+          "pageLength": 300,
           "ordering": false,
           "columnDefs": [
               { "orderable": false, "targets": [0] },

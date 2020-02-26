@@ -17,7 +17,7 @@ namespace Telkomsat.checklistme.month
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial, start, end;
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, user, inisial, start, end;
         string[] words = { "a", "a" };
         string[] akhir;
         int j = 0, k, startmonth, endmonth, startyear, endyear;
@@ -32,6 +32,11 @@ namespace Telkomsat.checklistme.month
                 {
                     DropDownList1.Text = Session["mastersheltermemonth"].ToString();
                 }
+            }
+
+            if (Session["iduser"] != null)
+            {
+                user = Session["iduser"].ToString();
             }
 
             if (Request.QueryString["room"] != null)
@@ -93,7 +98,7 @@ namespace Telkomsat.checklistme.month
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"editharian.aspx?room={room}&waktu=6");
+            Response.Redirect($"editmonthly.aspx?room={room}");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -211,7 +216,7 @@ namespace Telkomsat.checklistme.month
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "month" + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + user + "','" + looping[j] + "','" + "month" + "','" + line + "')";
                             j++;
                         }
                     }

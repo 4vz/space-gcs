@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="isidata.aspx.cs" Inherits="Telkomsat.checklistme.month.isidata" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="editmonthly.aspx.cs" Inherits="Telkomsat.checklistme.month.editmonthly" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row">
         <!-- Left col -->
         <section class="col-lg-6 connectedSortable" style="min-height:50px">
-            <div class="col-lg-4 col-xs-12" style="padding-left:0; padding-bottom:15px; padding-right:15px">
+            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-bottom:15px; padding-right:15px">
             <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" Width="100%">
                 <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
                 <asp:ListItem>RO-CHL</asp:ListItem>
@@ -35,7 +35,6 @@
         <div class="box box-primary">
         <div class="box-header with-border">
             <asp:Label ID="lblroom" runat="server" Text="Maintenance Bulanan" Font-Size="Large" Font-Bold="true"></asp:Label>
-            <asp:Button ID="Button2" runat="server" Text="Copy From The Last" OnClick="inisialisasi_Click" CssClass="btn btn-sm btn-primary pull-right"  />
 
             <!-- /.box-tools -->
         </div>
@@ -44,7 +43,6 @@
             <div class="table-responsive mailbox-messages">
             <div class="table table-responsive">
                 <asp:Label ID="lbledit" Visible="false" runat="server" Text="Label"></asp:Label>
-                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Visible="false">lihat</asp:LinkButton>
                 <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                     </div>
             <!-- /.table -->
@@ -63,7 +61,7 @@
     </div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <!-- /.col -->
-    <script src="../../assets/mylibrary/rowsgroup.js"></script>
+    <script src="//cdn.rawgit.com/ashl1/datatables-rowsgroup/v1.0.0/dataTables.rowsGroup.js"></script>
     <script type="text/javascript">
        $(function () {
           $("#example2").DataTable({
