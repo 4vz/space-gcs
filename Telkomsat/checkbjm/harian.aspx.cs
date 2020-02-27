@@ -127,7 +127,7 @@ namespace Telkomsat.checkbjm
                         checkhk_perangkat p on p.id_perangkat = r.id_perangkat where shelter = '{room}' order by p.rack, r.id_perangkat";
 
 
-            string tanggal = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);

@@ -40,7 +40,21 @@ namespace Telkomsat.checklistme
                 Button1.Visible = false;
             }
 
-            if(Session["iduser"] != null)
+            if (Request.QueryString["inisialisasime"] == null)
+            {
+                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
+                        checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.urutan, r.id_perangkat";
+            }
+            else
+            {
+                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
+                    checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
+					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
+					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'malam' order by r.urutan, r.id_perangkat";
+            }
+
+            if (Session["iduser"] != null)
             {
                 user = Session["iduser"].ToString();
             }
@@ -98,7 +112,7 @@ namespace Telkomsat.checklistme
             }
             else
             {           
-                 tableticket();
+                tableticket();
             }
             mytable();
                
@@ -223,8 +237,7 @@ namespace Telkomsat.checklistme
 
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
-            Session["inisialmeh"] = "buka";
-          
+            Response.Redirect($"harian.aspx?room={room}&inisialisasime=ya");
         }
 
         void mytable()
@@ -234,7 +247,7 @@ namespace Telkomsat.checklistme
             DataSet ds1 = new DataSet();
             string myquery, query, color, namaall, room;
 
-            myquery = $@"select ruangan from checkme_perangkat group by ruangan";
+            myquery = $@"select ruangan from checkme_perangkat group by ruangan"; 
 
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -282,19 +295,9 @@ namespace Telkomsat.checklistme
 
         void tableticket()
         {
-            if (Session["inisialmeh"] != null)
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
-                    checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
-					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
-					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'PAGI' order by r.urutan, r.id_perangkat";
-            else
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
-                        checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.urutan, r.id_perangkat";
-
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-
+            //Response.Write(query);
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
@@ -333,7 +336,7 @@ namespace Telkomsat.checklistme
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if(Session["inisialmeh"] != null)
+                        if(Request.QueryString["inisialisasime"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;

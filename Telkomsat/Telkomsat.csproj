@@ -6873,6 +6873,8 @@
     <Content Include="asset\edit.aspx" />
     <Content Include="asset\StyleSheet1.css" />
     <Content Include="check.aspx" />
+    <Content Include="checkbjm\checkharian.aspx" />
+    <Content Include="checkbjm\dataharian.aspx" />
     <Content Include="checkbjm\harian.aspx" />
     <Content Include="checkhk\dataharian.aspx" />
     <Content Include="checkhk\editharian.aspx" />
@@ -6884,6 +6886,7 @@
     <Content Include="checklistme\checklist.aspx" />
     <Content Include="checklistme\cobadata.aspx" />
     <Content Include="checklistme\dataharian.aspx" />
+    <Content Include="checklistme\dataharian2.aspx" />
     <Content Include="checklistme\editharian.aspx" />
     <Content Include="checklistme\harian.aspx" />
     <Content Include="checklistme\month\data.aspx" />
@@ -7420,6 +7423,20 @@
     <Compile Include="check.aspx.designer.cs">
       <DependentUpon>check.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkbjm\checkharian.aspx.cs">
+      <DependentUpon>checkharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkbjm\checkharian.aspx.designer.cs">
+      <DependentUpon>checkharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkbjm\dataharian.aspx.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkbjm\dataharian.aspx.designer.cs">
+      <DependentUpon>dataharian.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checkbjm\harian.aspx.cs">
       <DependentUpon>harian.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7517,6 +7534,13 @@
     </Compile>
     <Compile Include="checklistme\dataharian.aspx.designer.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\dataharian2.aspx.cs">
+      <DependentUpon>dataharian2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\dataharian2.aspx.designer.cs">
+      <DependentUpon>dataharian2.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\editharian.aspx.cs">
       <DependentUpon>editharian.aspx</DependentUpon>

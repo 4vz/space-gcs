@@ -17,8 +17,8 @@ namespace Telkomsat
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=GCS1; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-                
+            if (Session["username"] != null)
+                Response.Redirect("dashboard.aspx");
         }
 
         static string ToMD5Hash(string source)
