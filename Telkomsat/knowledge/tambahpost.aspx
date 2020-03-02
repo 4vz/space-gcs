@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Tambah Postingan</title>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="../assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
@@ -20,27 +20,7 @@
     <link href="knowledge.css" rel="stylesheet" />
     <script src="./assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#tr2").hide();
-    $("#tr3").hide();
-    $("#tr4").hide();
-    var i = 0;
-    $("#show").click(function () {
-        i = i + 1;
-        if (i == 1) {
-            $("#tr2").show(700);
-        }
-        if (i == 2) {
-            $("#tr3").show(700);
-        }
-        if (i == 3) {
-            $("#tr4").show(700);
-        }
-    
-  });
-});
-</script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -87,20 +67,6 @@ $(document).ready(function(){
     <div class="divtabel" style="margin-left:80px;">
         <table>
             <tr>
-                <td class="tdtext" style="padding-bottom:10px; padding-right:70px; height: 32px;">
-                    <asp:Label ID="Label17" class="lbl" runat="server">Tanggal</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; height: 32px;" class="titikdua">
-                    <asp:Label ID="Label18" runat="server" >:</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; height: 32px;" class="tdtext">
-                    <asp:TextBox ID="txtWaktu" class="tb1" runat="server" Width="130px"></asp:TextBox>
-                </td>
-                <td style="padding-bottom:10px; height: 32px;" class="titikdua">
-                    <asp:Label ID="Label19" runat="server" Text="yyyy/mm/dd" ></asp:Label>
-                </td>
-            </tr>
-            <tr>
                 <td class="tdtext" style="padding-bottom:10px; padding-right:70px;">
                     <asp:Label ID="Label1" class="lbl" runat="server">Nama</asp:Label>
                 </td>
@@ -130,7 +96,12 @@ $(document).ready(function(){
                     <asp:Label ID="Label6" runat="server">:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px; vertical-align:top;" class="tdtext">
-                    <asp:TextBox ID="txtKategori" class="tb1" runat="server" Width="160px"></asp:TextBox>
+                    <asp:DropDownList ID="ddlkategori" runat="server" CssClass="tb1" Width="160px">
+                        <asp:ListItem>RF</asp:ListItem>
+                        <asp:ListItem>Komputer</asp:ListItem>
+                        <asp:ListItem>ME</asp:ListItem>
+                        <asp:ListItem>Lain-lain</asp:ListItem>
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
@@ -152,46 +123,13 @@ $(document).ready(function(){
                     <asp:Label ID="Label8" runat="server">:</asp:Label>
                 </td>
                 <td style="padding-bottom:10px; padding-right:10px;" class="tdtext">
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <asp:FileUpload ID="FileUpload1" AllowMultiple="true" runat="server" />
                 </td>
                 <td style="padding-bottom:10px; white-space:nowrap; width:400px;" class="tdtext" >
                     <button id="show" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> 
                 </td>
             </tr>
-            <tr id="tr2">
-                <td class="tdtext" style="padding-bottom:10px; vertical-align:top">
-                    <asp:Label ID="Label11" runat="server" class="lbl">Upload Gambar </asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="titikdua">
-                    <asp:Label ID="Label12" runat="server">:</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="tdtext">
-                    <asp:FileUpload ID="FileUpload2" runat="server" />
-                </td>
-            </tr>
-            <tr id="tr3">
-                <td class="tdtext" style="padding-bottom:10px; vertical-align:top">
-                    <asp:Label ID="Label13" runat="server" class="lbl">Upload Gambar</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="titikdua">
-                    <asp:Label ID="Label14" runat="server">:</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="tdtext">
-                    <asp:FileUpload ID="FileUpload3" runat="server" />
-                </td>
-            </tr>
-            <tr id="tr4">
-                <td class="tdtext" style="padding-bottom:10px; vertical-align:top">
-                    <asp:Label ID="Label15" runat="server" class="lbl">Upload Gambar</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="titikdua">
-                    <asp:Label ID="Label16" runat="server">:</asp:Label>
-                </td>
-                <td style="padding-bottom:10px; vertical-align:top;" class="tdtext">
-                    <asp:FileUpload ID="FileUpload4" runat="server" />
-                </td>
-            </tr>
-
+           
             <tr>
                 <td class="auto-style1">
                     

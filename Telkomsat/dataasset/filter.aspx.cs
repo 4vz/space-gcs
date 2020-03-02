@@ -208,7 +208,7 @@ namespace Telkomsat.dataasset
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
             htmlTable.Append("<tr><th>Equipment</th><th>Device</th><th>Merk</th><th>Tipe</th><th>Model</th><th>P/N</th><th>S/N</th><th>Site</th>" +
-                 "<th>Gedung</th><th>Ruangan</th><th>Rak</th><th>Fungsi</th><th>Status</th><th>Satelit</th><th>Tahun</th><th>Action</th>");
+                 "<th>Gedung</th><th>Ruangan</th><th>Rak</th><th>Fungsi</th><th>Status Perangkat</th><th>Satelit</th><th>Tahun</th><th>Action</th>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");

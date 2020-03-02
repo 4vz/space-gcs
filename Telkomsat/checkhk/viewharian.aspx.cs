@@ -39,7 +39,8 @@ namespace Telkomsat.checkhk
             {
                 query = $@"select p.shelter, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
-					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59' order by p.shelter, p.rack, p.sn";
+					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} where p.id_perangkat not like
+					'%' + 'bjm' + '%'  23:59:59' order by p.shelter, p.rack, p.sn";
                 tableticket();
             }
 
@@ -56,7 +57,8 @@ namespace Telkomsat.checkhk
             query = $@"select p.shelter, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
 					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59'
-                    where p.shelter = {room} order by p.shelter, p.rack, p.sn";
+                    where p.shelter = {room} and p.id_perangkat not like
+					'%' + 'bjm' + '%' order by p.shelter, p.rack, p.sn";
             tableticket();
         }
 

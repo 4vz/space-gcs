@@ -72,7 +72,7 @@
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
-          "rowsGroup": [0, 1],
+          "rowsGroup": [0, 1, 2],
             "pageLength": 100,
             "ordering": false
           });

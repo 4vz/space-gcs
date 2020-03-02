@@ -74,7 +74,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <label for="inputEmail3" class="pull-right">Status</label>
+                    <label for="inputEmail3" class="pull-right">Status Perangkat</label>
                 </div>   
                 <div class="col-sm-10">
                     <asp:DropDownList ID="txstatus" runat="server" CssClass="form-control">

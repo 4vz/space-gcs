@@ -204,7 +204,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-4 control-label">Status</label>
+                <label for="inputEmail3" class="col-sm-4 control-label">Status Perangkat</label>
                 <div class="col-sm-8">
                     <asp:Label ID="lblstatus" runat="server" Text="Label"></asp:Label>
                 </div>
@@ -257,7 +257,7 @@
         <div class="col-md-5 col-lg-5 col-sm-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h4 class="box-title">History Fungsional</h4>
+                    <h4 class="box-title">History Fungsi dan Status Perangkat</h4>
                 </div>
                 <div class="box-body">
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  

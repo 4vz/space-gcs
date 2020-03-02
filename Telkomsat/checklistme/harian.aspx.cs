@@ -42,12 +42,12 @@ namespace Telkomsat.checklistme
 
             if (Request.QueryString["inisialisasime"] == null)
             {
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
+                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.alias, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
                         checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.urutan, r.id_perangkat";
             }
             else
             {
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
+                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.alias, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
                     where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
 					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
@@ -308,7 +308,7 @@ namespace Telkomsat.checklistme
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th style=\"min-width:100px\">Nilai Parameter</th><th>Satuan</th></tr>");
+            htmlTable.Append("<tr><th>Perangkat</th><th>Serial Number</th><th>AS</th><th>Parameter</th><th style=\"min-width:100px\">Nilai Parameter</th><th>Satuan</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -343,6 +343,7 @@ namespace Telkomsat.checklistme
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Perangkat + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + SN + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["alias"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
                         if (tipe == "N")
                             htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");

@@ -30,7 +30,7 @@
                             <th>Ruangan</th>
                             <th>Rak</th>
                             <th>Fungsi</th>
-                            <th>Status</th>
+                            <th>Status Perangkat</th>
                             <th>Satelit</th>
                             <th>Tahun</th>
                             <th>Action</th>
