@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Web.Services;
+using System.Configuration;
 
 namespace Telkomsat.datalogbook
 {
@@ -25,7 +27,59 @@ namespace Telkomsat.datalogbook
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT nama, id_profile from Profile where jenis not in ('SCA', 'SCO', 'ORBITAL', 'admin') order by jenis, id_profile"))
+                    {
+                        cmd.Connection = con;
+                        List<inisial> mydata = new List<inisial>();
+                        con.Open();
+                        SqlDataReader rdr = cmd.ExecuteReader();
+                        
+                        DropDownList1.DataSource = rdr;
+                        DropDownList1.DataBind();
+                        DropDownList1.Items.Insert(0, new ListItem(""));
+                    }
+                }
+            }
             
+        }
+
+        public class inisial
+        {
+            public string idprofile { get; set; }
+            public string nama { get; set; }
+        }
+
+        [WebMethod]
+        public static List<inisial> GetID()
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT nama, id_profile from Profile where jenis not in ('SCA', 'SCO', 'ORBITAL', 'admin') order by jenis, id_profile"))
+                {
+                    cmd.Connection = con;
+                    List<inisial> mydata = new List<inisial>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            mydata.Add(new inisial
+                            {
+                                idprofile = sdr["id_profile"].ToString(),
+                                nama = sdr["nama"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return mydata;
+                }
+            }
         }
 
         protected void submit_click(object sender, EventArgs e)
@@ -52,6 +106,11 @@ namespace Telkomsat.datalogbook
             if (txtpicext.Text != "")
             {
                 sqlcmd.Parameters.AddWithValue("@external", txtpicext.Text);
+            }
+
+            if(DropDownList1.Text != "")
+            {
+                sqlcmd.Parameters.AddWithValue("@nama", DropDownList1.Text);
             }
 
             if (txtmulai.Text != "")
@@ -189,7 +248,7 @@ namespace Telkomsat.datalogbook
                             "</div></td>" + "<td style=\"padding-left:15px\">" + $"<span class=\"badge {stylebg}\">{tampil}%</span>" +
                             "</td>");
                         }
-                        htmlTable.Append("</tr>" +
+                        htmlTable.Append("</tr>" + "<tr>" + $"<td style=\"{style1}\">" + "Dibuat Oleh" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + ds.Tables[0].Rows[i]["nama"].ToString() + "</td>" + "</tr>" +
                             "<tr>" + $"<td style=\"{style1}\">" + "Agenda" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + dataagenda + "</td>" + "</tr>" +
                             "<tr>");
                         if (jumlahlog > 0)

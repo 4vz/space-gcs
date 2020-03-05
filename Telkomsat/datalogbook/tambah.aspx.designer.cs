@@ -517,6 +517,51 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.TextBox txtKet;
         
         /// <summary>
+        /// txtsdatemain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtsdatemain;
+        
+        /// <summary>
+        /// txtedatemain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtedatemain;
+        
+        /// <summary>
+        /// ddlstatusmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstatusmain;
+        
+        /// <summary>
+        /// txtketmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtketmain;
+        
+        /// <summary>
+        /// fileuploadmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileuploadmain;
+        
+        /// <summary>
         /// txtsdatekonf control.
         /// </summary>
         /// <remarks>

@@ -65,6 +65,42 @@ namespace Telkomsat.datalogbook
 
         }
 
+        protected void Maintenance_ServerClick2(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
+                               ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
+            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
+            
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+            if (filekonfig.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in filekonfig.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+        }
+
+
         protected void Konfigurasi_ServerClick2(object sender, EventArgs e)
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
@@ -72,9 +108,8 @@ namespace Telkomsat.datalogbook
             string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
                                ('{iduser}', '{txtidl.Text}', 'Konfigurasi', '{txtKetKonfig.Text}', '{txtsdatekonf.Value}', '{txtedatekonf.Value}', '{ddlstatuskonf.Text}', '{datetime1}'); Select Scope_Identity();";
             SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            sqlcmd5.ExecuteNonQuery();
-            sqlCon.Close();
             int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
             if (filekonfig.HasFiles)
             {
                 string physicalpath = Server.MapPath("~/fileupload/");
@@ -107,9 +142,8 @@ namespace Telkomsat.datalogbook
             string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
                                ('{iduser}', '{txtidl.Text}', 'Lain-lain', '{txtketeranganlain.Text}', '{txtsdatelain.Value}', '{txtedatelain.Value}', '{ddlstatuslain.Text}', '{datetime1}'); Select Scope_Identity();";
             SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            sqlcmd5.ExecuteNonQuery();
-            sqlCon.Close();
             int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
             if (FileLain.HasFiles)
             {
                 string physicalpath = Server.MapPath("~/fileupload/");
@@ -156,7 +190,7 @@ namespace Telkomsat.datalogbook
                 {
                     filecount += 1;
                     string filename = Path.GetFileName(file.FileName);
-                    string extension = Path.GetExtension(filename);
+                    string extension = Path.GetExtension(file.FileName);
                     string filepath = "~/fileupload/" + filename;
                     file.SaveAs(physicalpath + filename);
                     string s = Convert.ToString(i);
@@ -559,6 +593,7 @@ namespace Telkomsat.datalogbook
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalfungsi\" id=\"btnstatus\">Status Asset</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnlain\">Maintenance</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modallainlain\" id=\"btnlain\">Lain-lain</a></li>" +
                             "</ul></li></ul></td>" +
                             "</tr></table>" + "</td>");

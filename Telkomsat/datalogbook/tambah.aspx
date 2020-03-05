@@ -307,6 +307,59 @@
             <!-- /.modal-content -->
           </div>
         </div>
+        
+        <div class="modal fade" id="modalmaintenance">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Maintenance</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Status :</label>
+                                <asp:DropDownList ID="ddlstatusmain" runat="server" CssClass="form-control">
+                                    <asp:ListItem>--Pilih Status--</asp:ListItem>
+                                    <asp:ListItem>On Progress</asp:ListItem>
+                                    <asp:ListItem>Selesai</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div>
+                      <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Keterangan :</label>
+                                <asp:TextBox ID="txtketmain" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
+                            </div> 
+                      </div>
+                      <div class="col-md-12">
+                            <label for="exampleInputFile">Lampiran</label>
+                            <asp:FileUpload ID="fileuploadmain" runat="server" AllowMultiple="true"/>
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Maintenance_ServerClick2">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
 
 
        <div class="modal fade" id="modalkonfigurasi">
@@ -725,6 +778,23 @@
         }).on('changeDate', function (selected) {
             var minDate = new Date(selected.date.valueOf());
             $('#<%=txtsdate.ClientID%>').datepicker('setEndDate', minDate);
+            });
+
+        $('#<%=txtsdatemain.ClientID%>').datepicker({
+            autoclose: true,
+            format: 'yyyy/mm/dd',
+            orientation: "bottom"
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#<%=txtedatemain.ClientID%>').datepicker('setStartDate', minDate);
+        });
+        $('#' + '<%=txtedatemain.ClientID%>').datepicker({
+            autoclose: true,
+            format: 'yyyy/mm/dd',
+            orientation: "bottom"
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#<%=txtsdatemain.ClientID%>').datepicker('setEndDate', minDate);
             });
 
         $('#<%=txtsdatekonf.ClientID%>').datepicker({

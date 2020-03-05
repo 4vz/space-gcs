@@ -15,15 +15,17 @@ namespace Telkomsat.datalogbook
 {
     public partial class detail : System.Web.UI.Page
     {
-        SqlDataAdapter da, damutasi, da1, dakonfigurasi, dafungsi, dalain, dafkon, daflain;
+        SqlDataAdapter da, damutasi, da1, dakonfigurasi, dafungsi, dalain, damain, dafkon, daflain, dafmain;
         DataSet ds = new DataSet();
         DataSet dspekerjaan = new DataSet();
         DataSet dsmutasi = new DataSet();
         DataSet dskonfigurasi = new DataSet();
         DataSet dsfungsi = new DataSet();
         DataSet dslain = new DataSet();
+        DataSet dsmain = new DataSet();
         DataSet dsfkon = new DataSet();
         DataSet dsflain = new DataSet();
+        DataSet dsfmain = new DataSet();
         string query, iduser, tanggal, style1, style3, style2, agenda, dataagenda, idlog, style, querymutasi, queryhistory, querylain, querykonfig, queryfungsi, addwork, queryfilekon, queryfilelain;
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
@@ -31,6 +33,7 @@ namespace Telkomsat.datalogbook
         StringBuilder htmlTableKonfigurasi = new StringBuilder();
         StringBuilder htmlTableFungsi = new StringBuilder();
         StringBuilder htmlTableLain = new StringBuilder();
+        StringBuilder htmlTableMain = new StringBuilder();
         int output1, outputtotal, outputbagi;
         double hasil, tampil;
         string stylecolor, stylebg;
@@ -70,6 +73,8 @@ namespace Telkomsat.datalogbook
                 likonfig.Attributes.Add("class", "active");
             else if (addwork == "L")
                 lilain.Attributes.Add("class", "active");
+            else if (addwork == "N")
+                limain.Attributes.Add("class", "active");
 
 
             tableticket();
@@ -78,6 +83,7 @@ namespace Telkomsat.datalogbook
             tablekonfigurasi();
             tablelain();
             mytable();
+            tablemain();
 
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
@@ -149,6 +155,44 @@ namespace Telkomsat.datalogbook
                 + e.CommandArgument);
             Response.End();
         }
+
+        protected void Maintenance_ServerClick2(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
+                               ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
+            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+            if (filekonfig.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in filekonfig.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "enablebtn()", true);
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
+
+        }
+
 
         void tableticket()
         {
@@ -270,14 +314,19 @@ namespace Telkomsat.datalogbook
                             addwork = "";
                             htmlTable.Append("<td colspan=\"4\" style=\"color:red; font-size14px;\"></td>");
                         }
-                        htmlTable.Append("<td></td>" + "<td>" +
+                        if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser || Session["previllage"].ToString() == "super")
+                        {
+                            htmlTable.Append("<td></td>" + "<td>" +
                             "<ul><li class=\"dropdown\"> <button type=\"button\" class=\"btn btn-block btn-primary dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"fa fa-plus\"></i>  Tambah Pekerjaan <span class=\"caret\"></span></button>" +
                             "<ul class=\"dropdown-menu\"><li role=\"presentation\" ><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"5\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalfungsi\" id=\"btnstatus\">Status Asset</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnlain\">Maintenance</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modallainlain\" id=\"btnlain\">Lain-lain</a></li>" +
                             "</ul></li></ul></td>" +
                             "</tr></table>" + "</td>");
+                        }
+                        
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
@@ -389,7 +438,10 @@ namespace Telkomsat.datalogbook
                         
                         htmlTableKonfigurasi.Append("<tr>");
                         htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
-                        htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        if (dskonfigurasi.Tables[0].Rows[i]["status"].ToString() == "Selesai")
+                            htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        else
+                            htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\">" + dskonfigurasi.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
                         htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
                         htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
@@ -427,6 +479,90 @@ namespace Telkomsat.datalogbook
             }
         }
 
+        void tablemain()
+        {
+            querylain = $@"select * from table_pekerjaan where jenis_pekerjaan = 'Maintenance' and id_logbook = '{idlog}'";
+            string statuskerja;
+            SqlCommand cmd = new SqlCommand(querylain, sqlCon);
+            damain = new SqlDataAdapter(cmd);
+            damain.Fill(dsmain);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            style = "font-size:12px; font-weight:normal";
+            htmlTableMain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableMain.Append("<thead>");
+            htmlTableMain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th><th>Action</th>");
+            htmlTableMain.Append("</thead>");
+
+            htmlTableMain.Append("<tbody>");
+            if (!object.Equals(dsmain.Tables[0], null))
+            {
+                if (dsmain.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < dsmain.Tables[0].Rows.Count; i++)
+                    {
+                        dsfmain.Clear();
+                        queryfilelain = $"select * from table_log_file WHERE id_pekerjaan = '{dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}' and kategori='Maintenance'";
+                        SqlCommand cmd1 = new SqlCommand(queryfilelain, sqlCon);
+                        dafmain = new SqlDataAdapter(cmd1);
+                        dafmain.Fill(dsfmain);
+                        sqlCon.Open();
+                        cmd1.ExecuteNonQuery();
+                        sqlCon.Close();
+                        statuskerja = dsmain.Tables[0].Rows[i]["status"].ToString();
+                        DateTime start = (DateTime)dsmain.Tables[0].Rows[i]["startdate"];
+                        string mulai = start.ToString("dd/MM/yyyy");
+                        DateTime end = (DateTime)dsmain.Tables[0].Rows[i]["enddate"];
+                        string akhir = end.ToString("dd/MM/yyyy");
+                        DateTime waktu = (DateTime)dsmain.Tables[0].Rows[i]["tanggal"];
+                        string tgl = waktu.ToString("dd/MM/yyyy");
+                        htmlTableMain.Append("<tr>");
+                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
+                        if(dsmain.Tables[0].Rows[i]["status"].ToString() == "Selesai")
+                            htmlTableMain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        else
+                            htmlTableMain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTableMain.Append("<td>" + $"<label style=\"{style}\">" + dsmain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
+                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
+                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
+                        if (dsfmain.Tables[0].Rows.Count >= 1)
+                        {
+                            int count = dsfmain.Tables[0].Rows.Count;
+                            string looping = "";
+                            string ulawal = "<ul>";
+                            string ulakhir = "</ul>";
+                            for (int j = 0; j < dsfmain.Tables[0].Rows.Count; j++)
+                            {
+                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsfmain.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsfmain.Tables[0].Rows[j]["namafiles"].ToString() + "</a>" + "</li>";
+                            }
+                            htmlTableMain.Append($"<td>" + ulawal + looping + ulakhir + "</td>");
+                        }
+                        else
+                        {
+                            htmlTableMain.Append("<td>-</td>");
+                        }
+                        if (dsmain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                            htmlTableMain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        else
+                            htmlTableMain.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        htmlTableMain.Append("</tr>");
+                    }
+                    htmlTableMain.Append("</tbody>");
+                    htmlTableMain.Append("</table>");
+                    PlaceHolderMain.Controls.Add(new Literal { Text = htmlTableMain.ToString() });
+                }
+                else
+                {
+                    lblmain.Visible = true;
+                    lblmain.Text = "Tidak ada tambahan pekerjaan maintenance";
+                }
+
+            }
+        }
+
+
         void tablelain()
         {
             querylain = $@"select * from table_pekerjaan where jenis_pekerjaan = 'Lain-lain' and id_logbook = '{idlog}'";
@@ -440,7 +576,7 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableLain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableLain.Append("<thead>");
-            htmlTableLain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Action</th>");
+            htmlTableLain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th><th>Action</th>");
             htmlTableLain.Append("</thead>");
 
             htmlTableLain.Append("<tbody>");
@@ -468,7 +604,10 @@ namespace Telkomsat.datalogbook
                         string tgl = waktu.ToString("dd/MM/yyyy");
                         htmlTableLain.Append("<tr>");
                         htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
-                        htmlTableLain.Append("<td>" + $"<label style=\"{style}\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        if (dslain.Tables[0].Rows[i]["status"].ToString() == "Selesai")
+                            htmlTableLain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        else
+                            htmlTableLain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         htmlTableLain.Append("<td>" + $"<label style=\"{style}\">" + dslain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
                         htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
                         htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
@@ -792,6 +931,7 @@ namespace Telkomsat.datalogbook
             sqlcmd1.ExecuteNonQuery();
             sqlCon.Close();
             Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=F");
+
         }
         protected void Konfigurasi_ServerClick2(object sender, EventArgs e)
         {

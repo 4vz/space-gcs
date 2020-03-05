@@ -111,6 +111,12 @@
                 <h4>Equipment</h4>
             </div>
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">Kategori Equipment</label>
+                <div class="col-sm-8">
+                    <asp:Label ID="lblkategoriequip" runat="server" Text="Label"></asp:Label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Jenis Equipment</label>
                 <div class="col-sm-8">
                     <asp:Label ID="lblequipment" runat="server" Text="Label"></asp:Label>

@@ -51,7 +51,7 @@ namespace Telkomsat.checklistme.month
 
             query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
                     checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                    where '{start}' <= d.tanggal and d.tanggal < '{end}' and p.ruangan = {room} and d.jenis='month' order by r.id_perangkat";
+                    where '{start}' <= d.tanggal and d.tanggal < '{end}' and p.ruangan = {room} and d.jenis='month' order by r.id_perangkat, r.id_parameter";
             tableticket();
         }
 

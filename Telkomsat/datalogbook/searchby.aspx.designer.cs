@@ -13,13 +13,13 @@ namespace Telkomsat.datalogbook {
     public partial class searchby {
         
         /// <summary>
-        /// txtdevice control.
+        /// txtprofile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdevice;
+        protected global::System.Web.UI.WebControls.TextBox txtprofile;
         
         /// <summary>
         /// txtruangan control.
@@ -47,6 +47,15 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtsatelit;
+        
+        /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
         /// UserPanel control.
@@ -83,6 +92,15 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlstatus;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
         /// txtpicint control.

@@ -49,7 +49,7 @@ namespace Telkomsat.dataasset
             }
 
             idaset = IDdata;
-            query5 = $@"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
+            query5 = $@"select w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, e.nama_jenis_equipment, e.kategori_equipment, m.nama_merk, d.nama_jenis_device, r.image, p.* 
                     from as_perangkat p join as_jenis_device d on p.id_jenis_device = d.id_jenis_device left
                     join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
 					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
@@ -70,6 +70,7 @@ namespace Telkomsat.dataasset
                     idruangan = ds.Tables[0].Rows[0]["id_ruangan"].ToString();
                     idrak = ds.Tables[0].Rows[0]["id_rak"].ToString();
                     lblequipment.Text = ds.Tables[0].Rows[0]["nama_jenis_equipment"].ToString();
+                    lblkategoriequip.Text = ds.Tables[0].Rows[0]["kategori_equipment"].ToString();
                     lbldevice.Text = ds.Tables[0].Rows[0]["nama_jenis_device"].ToString();
                     lblsite.Text = ds.Tables[0].Rows[0]["nama_wilayah"].ToString();
                     lblgedung.Text = ds.Tables[0].Rows[0]["nama_bangunan"].ToString();

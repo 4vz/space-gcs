@@ -22,6 +22,7 @@
                             <th>Device</th>
                             <th>Merk</th>
                             <th>Tipe</th>
+                            <th>Kategori</th>
                             <th>Model</th>
                             <th>Product Number</th>
                             <th>Serial Number</th>
@@ -42,6 +43,7 @@
                             <th>Device</th>
                             <th>Merk</th>
                             <th>Tipe</th>
+                            <th>Kategori</th>
                             <th>Model</th>
                             <th>Product Number</th>
                             <th>Serial Number</th>
@@ -81,6 +83,7 @@
                     { 'data': 'device' },
                     { 'data': 'merk' },
                     { 'data': 'tipe' },
+                    { 'data': 'kategori' },
                     { 'data': 'model' },
                     { 'data': 'pn' },
                     { 'data': 'sn' },
@@ -105,11 +108,12 @@
             datatableInstance.column('3').visible(!datatableInstance.column('3').visible());
             datatableInstance.column('4').visible(!datatableInstance.column('4').visible());
             datatableInstance.column('5').visible(!datatableInstance.column('5').visible());
-            datatableInstance.column('8').visible(!datatableInstance.column('8').visible());
-            datatableInstance.column('10').visible(!datatableInstance.column('10').visible());
-            datatableInstance.column('12').visible(!datatableInstance.column('12').visible());
-            datatableInstance.column('13').visible(!datatableInstance.column('13').visible());
-            datatableInstance.column('14').visible(!datatableInstance.column('14').visible());
+            datatableInstance.column('5').visible(!datatableInstance.column('6').visible());
+            datatableInstance.column('8').visible(!datatableInstance.column('9').visible());
+            datatableInstance.column('10').visible(!datatableInstance.column('11').visible());
+            datatableInstance.column('12').visible(!datatableInstance.column('13').visible());
+            datatableInstance.column('13').visible(!datatableInstance.column('14').visible());
+            datatableInstance.column('14').visible(!datatableInstance.column('15').visible());
 
             var isExpand=false;
             $('.showHideColumn').on('click', function (e) {
@@ -127,12 +131,12 @@
                 datatableInstance.column('3').visible(!datatableInstance.column('3').visible());
                 datatableInstance.column('4').visible(!datatableInstance.column('4').visible());
                 datatableInstance.column('5').visible(!datatableInstance.column('5').visible());
-                datatableInstance.column('8').visible(!datatableInstance.column('8').visible());
-                datatableInstance.column('8').visible(!datatableInstance.column('10').visible());
-                datatableInstance.column('10').visible(!datatableInstance.column('10').visible());
-                datatableInstance.column('12').visible(!datatableInstance.column('12').visible());
-                datatableInstance.column('13').visible(!datatableInstance.column('13').visible());
-                datatableInstance.column('14').visible(!datatableInstance.column('14').visible());
+                datatableInstance.column('5').visible(!datatableInstance.column('6').visible());
+                datatableInstance.column('8').visible(!datatableInstance.column('9').visible());
+                datatableInstance.column('10').visible(!datatableInstance.column('11').visible());
+                datatableInstance.column('12').visible(!datatableInstance.column('13').visible());
+                datatableInstance.column('13').visible(!datatableInstance.column('14').visible());
+                datatableInstance.column('14').visible(!datatableInstance.column('15').visible());
 
             });
         });

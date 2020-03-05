@@ -138,7 +138,9 @@
                       <li id="limutasi" runat="server"><a href="#mutasi" data-toggle="tab">Mutasi</a></li>
                       <li id="listatus" runat="server"><a href="#status" data-toggle="tab">Status</a></li>
                         <li id="likonfig" runat="server"><a href="#konfigurasi" data-toggle="tab">Konfigurasi</a></li>
+                        <li id="limain" runat="server"><a href="#maintenance" data-toggle="tab">Maintenance</a></li>
                         <li id="lilain" runat="server"><a href="#lainlain" data-toggle="tab">Lain-lain</a></li>
+                        
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Pekerjaan</li>
                     </ul>
               
@@ -158,6 +160,10 @@
                      <div id="lainlain" class="tab-pane fade">
                         <asp:PlaceHolder ID="PlaceHolderLain" runat="server"></asp:PlaceHolder>  
                          <asp:Label ID="lblinfolain" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="maintenance" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderMain" runat="server"></asp:PlaceHolder>  
+                         <asp:Label ID="lblmain" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
                 </div>
                
@@ -250,12 +256,66 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Mutasi_ServerClick1">Save</button>
+                <button type="button" id="btnmutasi" class="btn btn-success pull-left" runat="server" onserverclick="Mutasi_ServerClick1">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
         </div>
+
+            <div class="modal fade" id="modalmaintenance">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Maintenance</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Status :</label>
+                                <asp:DropDownList ID="ddlstatusmain" runat="server" CssClass="form-control">
+                                    <asp:ListItem>--Pilih Status--</asp:ListItem>
+                                    <asp:ListItem>On Progress</asp:ListItem>
+                                    <asp:ListItem>Selesai</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div>
+                      <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Keterangan :</label>
+                                <asp:TextBox ID="txtketmain" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
+                            </div> 
+                      </div>
+                      <div class="col-md-12">
+                            <label for="exampleInputFile">Lampiran</label>
+                            <asp:FileUpload ID="fileuploadmain" runat="server" AllowMultiple="true"/>
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnmain" class="btn btn-success pull-left" runat="server" onserverclick="Maintenance_ServerClick2">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+
 
         <div class="modal fade" id="modalfungsi">
           <div class="modal-dialog">
@@ -339,7 +399,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Fungsi_ServerClick1">Save</button>
+                <button type="button" id="btnfungsi" class="btn btn-success pull-left" runat="server" onserverclick="Fungsi_ServerClick1">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -393,7 +453,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2">Save</button>
+                <button type="button" id="btnkonfig" class="btn btn-success pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -446,7 +506,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Lain_ServerClick3">Save</button>
+                <button type="button" id="btnlain" class="btn btn-success pull-left" runat="server" onserverclick="Lain_ServerClick3">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -465,7 +525,24 @@
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
             }
-          }
+        }
+
+        function enablebtn() {
+            document.getElementById("<%=btnlain.ClientID %>").disabled = false;
+            document.getElementById("<%=btnmain.ClientID %>").disabled = false;
+            document.getElementById("<%=btnkonfig.ClientID %>").disabled = false;
+            document.getElementById("<%=btnfungsi.ClientID %>").disabled = false;
+            document.getElementById("<%=btnmutasi.ClientID %>").disabled = false;
+        }
+
+        function DisableButton() {
+            document.getElementById("<%=btnlain.ClientID %>").disabled = true;
+            document.getElementById("<%=btnmain.ClientID %>").disabled = true;
+            document.getElementById("<%=btnkonfig.ClientID %>").disabled = true;
+            document.getElementById("<%=btnfungsi.ClientID %>").disabled = true;
+            document.getElementById("<%=btnmutasi.ClientID %>").disabled = true;
+        }
+        window.onbeforeunload = DisableButton;
         
                 // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];

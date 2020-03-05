@@ -129,10 +129,10 @@ namespace Telkomsat.checklistme.month
                             checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
                             where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_datawmy d LEFT join checkme_parameterwmy r 
                             on r.id_parameter=d.id_parameter left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
-                            where p.ruangan = '{room}' and d.nilai is not null) and d.jenis = 'month' order by r.id_perangkat";
+                            where p.ruangan = '{room}' and d.nilai is not null) and d.jenis = 'month' order by r.id_perangkat, r.id_parameter";
             else
                 query = $@"select r.id_parameter, p.Perangkat, p.alias, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join
-                        checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'month' order by r.id_perangkat";
+                        checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'month' order by r.id_perangkat, r.id_parameter";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");

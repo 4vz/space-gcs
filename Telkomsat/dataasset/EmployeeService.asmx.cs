@@ -41,6 +41,7 @@ namespace Telkomsat.dataasset
             public string action { get; set; }
             public string tipe { get; set; }
             public string tipesn { get; set; }
+            public string kategori { get; set; }
         }
 
         public class inisial
@@ -138,7 +139,7 @@ namespace Telkomsat.dataasset
             int filteredCount = 0;
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("serverside", con);
+                SqlCommand cmd = new SqlCommand("serverside2", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter paramDisplayLength = new SqlParameter()
@@ -191,6 +192,7 @@ namespace Telkomsat.dataasset
                     employee.ruangan = rdr["nama_ruangan"].ToString();
                     employee.rak = rdr["nama_rak"].ToString();
                     employee.equipment = rdr["nama_jenis_equipment"].ToString();
+                    employee.kategori = rdr["kategori_equipment"].ToString();
                     employee.model = rdr["model"].ToString();
                     employee.pn = rdr["pn"].ToString();
                     employee.satelit = rdr["satelit"].ToString();

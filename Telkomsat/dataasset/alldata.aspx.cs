@@ -26,7 +26,7 @@ namespace Telkomsat.dataasset
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                string query = @"select e.nama_jenis_equipment, d.nama_jenis_device, m.nama_merk, p.tipe_perangkat, p.model,p.pn, p.sn, 
+                string query = @"select e.nama_jenis_equipment, e.kategori_equipment, d.nama_jenis_device, m.nama_merk, p.tipe_perangkat, p.model,p.pn, p.sn, 
 					w.nama_wilayah, b.nama_bangunan, r.nama_ruangan, k.nama_rak, 
 					p.satelit, p.tahun_pengadaan, p.fungsi, p.status, p.info, p.tanggal 
                     from as_perangkat p join as_jenis_device d on p.id_jenis_device = d.id_jenis_device left

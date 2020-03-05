@@ -220,6 +220,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl likonfig;
         
         /// <summary>
+        /// limain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl limain;
+        
+        /// <summary>
         /// lilain control.
         /// </summary>
         /// <remarks>
@@ -299,6 +308,24 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblinfolain;
+        
+        /// <summary>
+        /// PlaceHolderMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderMain;
+        
+        /// <summary>
+        /// lblmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmain;
         
         /// <summary>
         /// txtruang control.
@@ -409,6 +436,69 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.HtmlControls.HtmlSelect slrak;
         
         /// <summary>
+        /// btnmutasi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnmutasi;
+        
+        /// <summary>
+        /// txtsdatemain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtsdatemain;
+        
+        /// <summary>
+        /// txtedatemain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtedatemain;
+        
+        /// <summary>
+        /// ddlstatusmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstatusmain;
+        
+        /// <summary>
+        /// txtketmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtketmain;
+        
+        /// <summary>
+        /// fileuploadmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileuploadmain;
+        
+        /// <summary>
+        /// btnmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnmain;
+        
+        /// <summary>
         /// txtsnfung control.
         /// </summary>
         /// <remarks>
@@ -490,6 +580,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.TextBox txtKet;
         
         /// <summary>
+        /// btnfungsi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnfungsi;
+        
+        /// <summary>
         /// txtsdatekonf control.
         /// </summary>
         /// <remarks>
@@ -535,6 +634,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.FileUpload filekonfig;
         
         /// <summary>
+        /// btnkonfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnkonfig;
+        
+        /// <summary>
         /// txtsdatelain control.
         /// </summary>
         /// <remarks>
@@ -578,5 +686,14 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileLain;
+        
+        /// <summary>
+        /// btnlain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnlain;
     }
 }
