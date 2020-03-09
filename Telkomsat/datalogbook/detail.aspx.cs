@@ -36,7 +36,7 @@ namespace Telkomsat.datalogbook
         StringBuilder htmlTableMain = new StringBuilder();
         int output1, outputtotal, outputbagi;
         double hasil, tampil;
-        string stylecolor, stylebg;
+        string stylecolor, stylebg, user;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -208,6 +208,7 @@ namespace Telkomsat.datalogbook
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table\">");
            
             htmlTable.Append("<tbody>");
+            user = ds.Tables[0].Rows[0]["id_user"].ToString();
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -408,8 +409,10 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableKonfigurasi.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableKonfigurasi.Append("<thead>");
-            htmlTableKonfigurasi.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th><th>Action</th>");
-            htmlTableKonfigurasi.Append("</thead>");
+            htmlTableKonfigurasi.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            if (user == iduser || Session["previllage"].ToString() == "super")
+                htmlTableKonfigurasi.Append("<th>Action</th>");
+            htmlTableKonfigurasi.Append("</tr></thead>");
 
             htmlTableKonfigurasi.Append("<tbody>");
             if (!object.Equals(dskonfigurasi.Tables[0], null))
@@ -461,10 +464,15 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTableKonfigurasi.Append("<td>-</td>");
                         }
-                        if(dskonfigurasi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                            htmlTableKonfigurasi.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
-                        else
-                            htmlTableKonfigurasi.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        if (user == iduser || Session["previllage"].ToString() == "super")
+                        {
+                            if (dskonfigurasi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                                htmlTableKonfigurasi.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                            else
+                                htmlTableKonfigurasi.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=K')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                        }
+                            
                         htmlTableKonfigurasi.Append("</tr>");
                     }
                     htmlTableKonfigurasi.Append("</tbody>");
@@ -492,8 +500,10 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableMain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableMain.Append("<thead>");
-            htmlTableMain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th><th>Action</th>");
-            htmlTableMain.Append("</thead>");
+            htmlTableMain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            if (user == iduser || Session["previllage"].ToString() == "super")
+                htmlTableMain.Append("<th>Action</th>");
+            htmlTableMain.Append("</tr></thead>");
 
             htmlTableMain.Append("<tbody>");
             if (!object.Equals(dsmain.Tables[0], null))
@@ -543,10 +553,15 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTableMain.Append("<td>-</td>");
                         }
-                        if (dsmain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                            htmlTableMain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
-                        else
-                            htmlTableMain.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        if (user == iduser || Session["previllage"].ToString() == "super")
+                        {
+                            if (dsmain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                                htmlTableMain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                            else
+                                htmlTableMain.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=N')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                        }
+                            
                         htmlTableMain.Append("</tr>");
                     }
                     htmlTableMain.Append("</tbody>");
@@ -576,8 +591,10 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableLain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableLain.Append("<thead>");
-            htmlTableLain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th><th>Action</th>");
-            htmlTableLain.Append("</thead>");
+            htmlTableLain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            if (user == iduser || Session["previllage"].ToString() == "super")
+                htmlTableLain.Append("<th>Action</th>");
+            htmlTableLain.Append("</tr></thead>");
 
             htmlTableLain.Append("<tbody>");
             if (!object.Equals(dslain.Tables[0], null))
@@ -627,10 +644,15 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTableLain.Append("<td>-</td>");
                         }
-                        if (dslain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                            htmlTableLain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
-                        else
-                            htmlTableLain.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        if(user == iduser || Session["previllage"].ToString() == "super")
+                        {
+                            if (dslain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                                htmlTableLain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" +  "</td>");
+                            else
+                                htmlTableLain.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=L')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                        }
+                        
                         htmlTableLain.Append("</tr>");
                     }
                     htmlTableLain.Append("</tbody>");

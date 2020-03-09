@@ -115,7 +115,9 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="../checkhk/harian.aspx">Harkat</a></li>
                                         <li><a href="../checklistme/harian.aspx">ME</a></li>
-                                        <li><a href="../checkbjm/harian.aspx">BJM</a></li>
+                                        <li><a href="../checkbjm/harian.aspx">Banjarmasin</a></li>
+                                        <li><a href="#">Medan</a></li>
+                                        <li><a href="#">Manado</a></li>
                                     </ul>
                                 </li>
                               </ul>

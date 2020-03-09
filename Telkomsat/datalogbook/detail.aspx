@@ -881,7 +881,7 @@
             })
         });
 
-        function confirmdelete(deleteurl) {
+        function confirmhapus(deleteurl) {
             swal({
                 title: 'Apakah Anda Yakin ?',
                 text: 'Data yang dihapus tidak akan kembali lagi',
@@ -900,7 +900,7 @@
                 title: 'Apakah Anda Yakin ?',
                 text: 'Data tidak bisa diubah on-progress lagi',
                 buttons: true,
-                dangerMode: true,
+                icon: "success",
 
             }).then((willDelete)=>{
                 if (willDelete) {

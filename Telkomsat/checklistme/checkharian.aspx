@@ -67,13 +67,8 @@
         <i class="fa fa-database"></i> Checklist Harian
     </div>
     <div class="box-body">
-        <!-- Morris chart - Sales -->
-        <div class="table-responsive mailbox-messages">
-            <div class="table table-responsive">
+
                 <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
-            </div>
-    <!-- /.table -->
-        </div>
     </div>
     </div>
 </div>
@@ -102,7 +97,6 @@
           $("#example3").DataTable({
           "paging": true,
           "searching": true,
-          "autoWidth": true,
           "scrollX": true,
           "order": [[ 0, 'desc' ]]
           });

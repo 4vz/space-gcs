@@ -34,7 +34,7 @@ namespace Telkomsat.knowledge
             sqlCon.Close();
             sqlCon.Open();
             string myquery = $@"INSERT INTO Posting(waktu, NAMA, JUDUL, KATEGORI, POSTING)
-                        VALUES('{tanggal}', '{txtNama.Text.Trim()}', '{ddlkategori.Text.Trim()}', '{txtJudul.Text.Trim()}', '{txtAktivitas.Text.Trim()}'); Select Scope_Identity();";
+                        VALUES('{tanggal}', '{txtNama.Text.Trim()}', '{txtJudul.Text.Trim()}', '{ddlkategori.Text.Trim()}', '{txtAktivitas.Text.Trim()}'); Select Scope_Identity();";
             SqlCommand cmdLog = new SqlCommand(myquery, sqlCon);
             i = Convert.ToInt32(cmdLog.ExecuteScalar());
             sqlCon.Close();

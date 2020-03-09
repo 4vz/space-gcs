@@ -78,17 +78,23 @@ namespace Telkomsat.checklistme
 
         void tabledata()
         {
+            SqlDataAdapter dapagi, dasiang, damalam;
+            DataSet dspagi = new DataSet();
+            DataSet dssiang = new DataSet();
+            DataSet dsmalam = new DataSet();
+            string querypagi, querysiang, querymalam;
+
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
             sqlCon.Open();
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-
+            double hasil1, tampil1, hasil2, tampil2, hasil3, tampil3;
             htmlTable1.Append("<table id=\"example3\" width=\"100%\" class=\"table table-bordered\">");
             htmlTable1.Append("<thead style=\"background-color:#40cfd8\">");
             htmlTable1.Append("<tr><th style=\"vertical-align : middle;text-align:center\" rowspan=\"2\">Tanggal</th><th colspan=\"3\" style=\"text-align:center\">Petugas</th><th style=\"vertical-align : middle;text-align:center\" rowspan=\"2\">Action</th>");
-            htmlTable1.Append("<tr><th style=\"background-color:#40cfd8\">Pagi</th><th style=\"background-color:#40cfd8\">Siang</th><th style=\"background-color:#40cfd8\">Malam</th></tr>");
+            htmlTable1.Append("<tr><th style=\"background-color:#40cfd8;text-align:center\">Pagi</th><th style=\"background-color:#40cfd8;text-align:center\">Siang</th><th style=\"background-color:#40cfd8;text-align:center\">Malam</th></tr>");
             htmlTable1.Append("</thead>");
 
             htmlTable1.Append("<tbody>");
@@ -96,17 +102,60 @@ namespace Telkomsat.checklistme
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-
+                    
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = date1.ToString("yyyy/MM/dd");
 
+                        querypagi = $@"select count(*) as pagi from (select tanggal, ruangan, nama, waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and d.waktu = 'pagi' 
+									group by d.tanggal, ruangan, nama, waktu) q1";
+                        querysiang = $@"select count(*) as siang from (select tanggal, ruangan, nama, waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and d.waktu = 'siang' 
+									group by d.tanggal, ruangan, nama, waktu) q1";
+                        querymalam = $@"select count(*) as malam from (select tanggal, ruangan, nama, waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and d.waktu = 'malam' 
+									group by d.tanggal, ruangan, nama, waktu) q1";
+
+                        SqlCommand cmdpagi = new SqlCommand(querypagi, sqlCon);
+                        dapagi = new SqlDataAdapter(cmdpagi);
+                        dapagi.Fill(dspagi);
+                        sqlCon.Open();
+                        cmdpagi.ExecuteNonQuery();
+                        sqlCon.Close();
+
+                        SqlCommand cmdsiang = new SqlCommand(querysiang, sqlCon);
+                        dasiang = new SqlDataAdapter(cmdsiang);
+                        dasiang.Fill(dssiang);
+                        sqlCon.Open();
+                        cmdsiang.ExecuteNonQuery();
+                        sqlCon.Close();
+
+                        SqlCommand cmdmalam = new SqlCommand(querymalam, sqlCon);
+                        damalam = new SqlDataAdapter(cmdmalam);
+                        damalam.Fill(dsmalam);
+                        sqlCon.Open();
+                        cmdmalam.ExecuteNonQuery();
+                        sqlCon.Close();
+
+                        hasil1 = ((double)Convert.ToInt32(dspagi.Tables[0].Rows[i]["pagi"].ToString()) / 23) * 100;
+                        tampil1 = Math.Round(hasil1);
+
+                        hasil2 = ((double)Convert.ToInt32(dssiang.Tables[0].Rows[i]["siang"].ToString()) / 23) * 100;
+                        tampil2 = Math.Round(hasil2);
+
+                        hasil3 = ((double)Convert.ToInt32(dsmalam.Tables[0].Rows[i]["malam"].ToString()) / 23) * 100;
+                        tampil3 = Math.Round(hasil3);
+
                         htmlTable1.Append("<tr>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                            tampil1 + "%" + "</span>" + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                            tampil2 + "%" + "</span>"  + "</td>");
+                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                            tampil3 + "%" + "</span>" + "</td>");
                         htmlTable1.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checklistme/dataharian.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable1.Append("</tr>");
                     }

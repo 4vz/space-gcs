@@ -58,7 +58,7 @@
           "autoWidth": true,
           "scrollX": true,
           "rowsGroup": [0, 1, 2],
-            "pageLength": 100,
+            "pageLength": 200,
               "ordering": false,
               "lengthChange": false,
             "searching": false

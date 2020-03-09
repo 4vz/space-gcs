@@ -23,6 +23,18 @@ namespace Telkomsat.datalogbook
             string idmutasi = Request.QueryString["idm"];
             string idfungsi = Request.QueryString["idf"];
             string idlog = Request.QueryString["idlog"];
+            string delete = Request.QueryString["del"];
+            string tipe = Request.QueryString["tipe"];
+
+            if (delete != null)
+            {
+                string query = $"DELETE table_pekerjaan WHERE id_pekerjaan = '{delete}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add={tipe}");
+            }
 
             if (hapus != null)
             {
