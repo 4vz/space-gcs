@@ -1,5 +1,15 @@
 ﻿<%@ Page Title="Checklist Data ME" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="checkharian.aspx.cs" Inherits="Telkomsat.checklistme.checkharian" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .link{
+            color:black;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .link:hover{
+            color:black;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
@@ -35,14 +45,14 @@
                             <asp:ListItem Value="putra">Pratama Putra</asp:ListItem>
                             <asp:ListItem Value="herman">Herman</asp:ListItem>
                             <asp:ListItem Value="maman">Maman</asp:ListItem>
-                            <asp:ListItem Value="carla">Carla</asp:ListItem>
+                            <asp:ListItem Value="charla">Charla</asp:ListItem>
                             <asp:ListItem Value="soeryana">Soeryana</asp:ListItem>
                             <asp:ListItem Value="radius">Radius</asp:ListItem>
                             <asp:ListItem Value="saepul">Saepul</asp:ListItem>
                             <asp:ListItem Value="dodo">Dodo</asp:ListItem>
                             <asp:ListItem Value="ibnu">Ibnu</asp:ListItem>
                             <asp:ListItem Value="syehab">Syehab</asp:ListItem>
-                            <asp:ListItem Value="Badru">Badrudin</asp:ListItem>
+                            <asp:ListItem Value="Badrudin">Badrudin</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ namespace Telkomsat
         DataSet dspekerjaan = new DataSet();
         string query, iduser, tanggal, style1, style, style3, agenda, dataagenda, pilihicon, icon1, queryaddev, queryev, IDdata;
 
-        
+        int output, output1, output2, output3;
         string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user;
         StringBuilder htmlTableShift = new StringBuilder();
         StringBuilder htmlDeadline = new StringBuilder();
@@ -63,6 +63,7 @@ namespace Telkomsat
             lognow();
             checklist();
             ticket();
+            
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)
@@ -205,7 +206,7 @@ namespace Telkomsat
 
                         if (deskripsi.Length >= 40)
                         {
-                            datadeskripsi = deskripsi.Substring(0, 40) + ".....";
+                            datadeskripsi = deskripsi.Substring(0, 40) + "....";
                         }
                         else
                         {
@@ -238,7 +239,7 @@ namespace Telkomsat
                             htmlDeadline.Append("<tr>");
                             htmlDeadline.Append("<td>" + $"<label class=\"{style3}\">" + enddate + "</label>" + "</td>");
                             htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}\">" + ds.Tables[0].Rows[i]["jenis_pekerjaan"].ToString() + "</label>" + "</td>");
-                            htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}\">" + datadeskripsi + "</label>" + "</td>");
+                            htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}; white-space:pre-line; position:relative\">" + datadeskripsi + "</label>" + "</td>");
                             htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}\">" + $"<a href=\"../datalogbook/detail.aspx?idlog={IDdata}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");
                             htmlDeadline.Append("</tr>");
                         }        
@@ -258,24 +259,26 @@ namespace Telkomsat
             string mytanggal = wib.ToString("yyyy/MM/dd");
 
             sqlCon.Open();
-            string querycheck = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
-                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggalku}' and d.waktu = 'siang' group by ruangan, nama, waktu
-                                    order by waktu desc";
+            string querycheck = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+                        join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile  where d.tanggal='{tanggalku}' 
+                        and d.nilai != '' and d.waktu='siang'
+                        group by d.tanggal, nama";
             DataSet ds5 = new DataSet();
             SqlCommand cmd = new SqlCommand(querycheck, sqlCon);
             da5 = new SqlDataAdapter(cmd);
             da5.Fill(ds5);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            int output = ds5.Tables[0].Rows.Count;
+            if(ds5.Tables[0].Rows.Count > 0)
+                output = Convert.ToInt32(ds5.Tables[0].Rows[0]["total"].ToString());
             double hasil, tampil;
             if (output > 0)
             {
-                hasil = ((double)output / 23) * 100;
+                hasil = ((double)output / 409) * 100;
                 tampil = Math.Round(hasil);
                 divsiang.Style.Add("width", $"{tampil}%");
                 lblsiangme.Text = $"{tampil}% oleh {ds5.Tables[0].Rows[0]["nama"].ToString()}";
-                asiang.Attributes["href"] = $"../checklistme/view.aspx?waktu=siang&tanggal={mytanggal}";
+                asiang.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=siang&tanggal={mytanggal}";
             }
             else
             {
@@ -284,24 +287,26 @@ namespace Telkomsat
 
             
             sqlCon.Open();
-            string querycheckpagi = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
-                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggalku}' and d.waktu = 'pagi' group by ruangan, nama, waktu
-                                    order by waktu desc";
+            string querycheckpagi = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+                        join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile 
+                        where d.tanggal='{tanggalku}' and d.nilai != '' and d.waktu='pagi'
+                        group by d.tanggal, nama";
             DataSet ds6 = new DataSet();
             SqlCommand cmd1 = new SqlCommand(querycheckpagi, sqlCon);
             da6 = new SqlDataAdapter(cmd1);
             da6.Fill(ds6);
             cmd1.ExecuteNonQuery();
             sqlCon.Close();
-            int output1 = ds6.Tables[0].Rows.Count;
+            if (ds6.Tables[0].Rows.Count > 0)
+                output1 = Convert.ToInt32(ds6.Tables[0].Rows[0]["total"].ToString());
             double hasil1, tampil1;
             if (output1 > 0)
             {
-                hasil1 = ((double)output1 / 23) * 100;
+                hasil1 = ((double)output1 / 409) * 100;
                 tampil1 = Math.Round(hasil1);
                 divpagi.Style.Add("width", $"{tampil1}%");
                 lblpagime.Text = $"{tampil1}% oleh {ds6.Tables[0].Rows[0]["nama"].ToString()}";
-                apagi.Attributes["href"] = $"../checklistme/view.aspx?waktu=pagi&tanggal={mytanggal}";
+                apagi.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=pagi&tanggal={mytanggal}";
             }
             else
             {
@@ -309,24 +314,26 @@ namespace Telkomsat
             }
 
             sqlCon.Open();
-            string querycheckmalam = $@"select nama, ruangan, d.waktu from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
-                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggalkumalam}' and d.waktu = 'malam' group by ruangan, nama, waktu
-                                    order by waktu desc";
+            string querycheckmalam = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+                        join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile 
+                        where d.tanggal='{tanggalkumalam}' and d.nilai != '' and d.waktu='malam'
+                        group by d.tanggal, nama";
             DataSet ds7 = new DataSet();
             SqlCommand cmd2 = new SqlCommand(querycheckmalam, sqlCon);
             da7 = new SqlDataAdapter(cmd2);
             da7.Fill(ds7);
             cmd2.ExecuteNonQuery();
             sqlCon.Close();
-            int output2 = ds7.Tables[0].Rows.Count;
+            if (ds7.Tables[0].Rows.Count > 0)
+                output2 = Convert.ToInt32(ds7.Tables[0].Rows[0]["total"].ToString());
             double hasil2, tampil2;
             if (output2 > 0)
             {
-                hasil2 = ((double)output2 / 23) * 100;
+                hasil2 = ((double)output2 / 409) * 100;
                 tampil2 = Math.Round(hasil2);
                 divmalam.Style.Add("width", $"{tampil2}%");
                 lblmalamme.Text = $"{tampil2}% oleh {ds7.Tables[0].Rows[0]["nama"].ToString()}";
-                amalam.Attributes["href"] = $"../checklistme/view.aspx?waktu=malam&tanggal={tanggalkumalam}";
+                amalam.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=malam&tanggal={tanggalkumalam}";
             }
             else
             {
@@ -335,23 +342,29 @@ namespace Telkomsat
 
 
             sqlCon.Open();
-            string querycheckhk = $@"select nama, Shelter from checkhk_data d left join checkhk_parameter r on r.id_parameter=d.id_parameter left join checkhk_perangkat p 
-                                    on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where 
-									d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59' group by nama, shelter";
+            string querycheckhk = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile
+                                    where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
+                                    group by CAST(d.tanggal as date), nama";
             DataSet ds8 = new DataSet();
             SqlCommand cmd3 = new SqlCommand(querycheckhk, sqlCon);
             da8 = new SqlDataAdapter(cmd3);
             da8.Fill(ds8);
             cmd3.ExecuteNonQuery();
             sqlCon.Close();
-            int output3 = ds8.Tables[0].Rows.Count;
+            if(ds8.Tables[0].Rows.Count > 0)
+                output3 = Convert.ToInt32(ds8.Tables[0].Rows[0]["total"].ToString());
             double hasil3, tampil3;
             if (output3 > 0)
             {
-                hasil3 = ((double)output3 / 9) * 100;
+                hasil3 = ((double)output3 / 892) * 100;
                 tampil3 = Math.Round(hasil3);
                 divhk.Style.Add("width", $"{tampil3}%");
                 lblchharkat.Text = $"{tampil3}% oleh {ds8.Tables[0].Rows[0]["nama"].ToString()}";
+                aharkat.Attributes["href"] = $"../checkhk/dashboard.aspx?tanggal={tanggalku}";
+            }
+            else
+            {
+                aharkat.Attributes["href"] = $"../checkhk/dashboard.aspx?tanggal={tanggalku}";
             }
             //Response.Write(output);
         }

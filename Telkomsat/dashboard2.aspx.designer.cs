@@ -121,6 +121,15 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.TextBox txtaccept;
         
         /// <summary>
+        /// aharkat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aharkat;
+        
+        /// <summary>
         /// divhk control.
         /// </summary>
         /// <remarks>

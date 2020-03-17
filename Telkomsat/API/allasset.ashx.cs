@@ -15,6 +15,7 @@ namespace Telkomsat
     /// </summary>
     public class allasset : IHttpHandler
     {
+        EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
         string query;
         public class Employee
         {

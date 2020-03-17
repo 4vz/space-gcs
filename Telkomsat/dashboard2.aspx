@@ -113,8 +113,8 @@
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Checklist <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../checkhk/harian.aspx">Harkat</a></li>
-                                        <li><a href="../checklistme/harian.aspx">ME</a></li>
+                                        <li><a href="../checkhk/dataharian.aspx">Harkat</a></li>
+                                        <li><a href="../checklistme/checkharian.aspx">ME</a></li>
                                         <li><a href="../checkbjm/harian.aspx">Banjarmasin</a></li>
                                         <li><a href="#">Medan</a></li>
                                         <li><a href="#">Manado</a></li>
@@ -198,8 +198,8 @@
                 <!-- Main content -->
                 <section class="content no-padding">
                     <div class="row">
-                        <a href="checkhk/harian.aspx">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <a id="aharkat" runat="server">
+                        <div class="col-md-3 col-sm-6 col-xs-12"> 
                             <div class="info-box bg-aqua">
                             <span class="info-box-icon"><i class="fa fa-calendar-o"></i></span>
 

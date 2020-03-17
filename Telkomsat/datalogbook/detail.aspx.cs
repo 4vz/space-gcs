@@ -271,7 +271,7 @@ namespace Telkomsat.datalogbook
                         htmlTable.Append("<td>" + "<label style=\"font-size:18px\">" + ds.Tables[0].Rows[i]["judul_logbook"].ToString() + "</label>");
                         if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser || Session["previllage"].ToString() == "super")
                         {
-                            htmlTable.Append($"<a class=\"btn btn-sm btn-danger pull-right\" onclick=\"confirmdelete('../datalogbook/action.aspx?hapus={ds.Tables[0].Rows[i]["id_logbook"].ToString()}')\" style=\"margin-right:10px\">" + "Hapus" + "</a>");
+                            htmlTable.Append($"<a class=\"btn btn-sm btn-danger pull-right\" onclick=\"confirmhapus('../datalogbook/action.aspx?hapus={ds.Tables[0].Rows[i]["id_logbook"].ToString()}')\" style=\"margin-right:10px\">" + "Hapus" + "</a>");
                             htmlTable.Append($"<a class=\"btn btn-sm btn-info pull-right\" href=\"../datalogbook/edit.aspx?idlog={ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" style=\"margin-right:10px\">" + "Edit" + "</a>");
                         }
                         htmlTable.Append("<br />" + "<label style=\"font-size:16px; color:gray;\">" + ds.Tables[0].Rows[i]["tipe_logbook"].ToString() + "</label>" + "<br/>" +

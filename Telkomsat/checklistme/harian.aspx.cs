@@ -18,7 +18,7 @@ namespace Telkomsat.checklistme
         StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string saat, user, datee;
+        string saat, user, datee ;
         
         string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
         string[] words = { "a", "a" };
@@ -40,7 +40,7 @@ namespace Telkomsat.checklistme
                 Button1.Visible = false;
             }
 
-            if (Request.QueryString["inisialisasime"] == null)
+            if (Request.QueryString["inisialmeh"] == null)
             {
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.alias, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameter r left join
                         checkme_perangkat p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' order by r.urutan, r.id_perangkat";
@@ -49,9 +49,9 @@ namespace Telkomsat.checklistme
             {
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.alias, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal)-1 from checkme_data d LEFT join checkme_parameter r 
 					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
-					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'malam' order by r.urutan, r.id_perangkat";
+					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'siang' order by r.urutan, r.id_perangkat";
             }
 
             if (Session["iduser"] != null)
@@ -59,7 +59,7 @@ namespace Telkomsat.checklistme
                 user = Session["iduser"].ToString();
             }
 
-            TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
+            TimeSpan satu = new TimeSpan(5, 0, 0); //10 o'clock
             TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
             TimeSpan tiga = new TimeSpan(19, 0, 0); //12 o'clock
             TimeSpan empat = new TimeSpan(24, 0, 0);
@@ -158,7 +158,7 @@ namespace Telkomsat.checklistme
         {
             DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
 
-            TimeSpan satu = new TimeSpan(6, 0, 0); //10 o'clock
+            TimeSpan satu = new TimeSpan(5, 0, 0); //10 o'clock
             TimeSpan dua = new TimeSpan(13, 0, 0); //12 o'clock
             TimeSpan tiga = new TimeSpan(19, 0, 0); //12 o'clock
             TimeSpan empat = new TimeSpan(24, 0, 0);
@@ -232,12 +232,12 @@ namespace Telkomsat.checklistme
             Button1.Enabled = true;
             Session["inisialmeh"] = null;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
-            //Response.Redirect("harian.aspx");
+            Response.Redirect($"dashboard.aspx?tanggal={mydate}&waktu={DropDownList1.Text}");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"harian.aspx?room={room}&inisialisasime=ya");
+            Response.Redirect($"harian.aspx?room={room}&inisialmeh=ya");
         }
 
         void mytable()
@@ -336,7 +336,7 @@ namespace Telkomsat.checklistme
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if(Request.QueryString["inisialisasime"] != null)
+                        if(Request.QueryString["inisialmeh"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;

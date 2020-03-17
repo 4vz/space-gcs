@@ -128,7 +128,8 @@ namespace Telkomsat.superadmin
             //string bulan = "10";
             divdata.Visible = true;
             bulan = ddlBulan.SelectedValue;
-            int day = DateTime.DaysInMonth(2020, 02);
+            int numberbulan = Convert.ToInt32(bulan);
+            int day = DateTime.DaysInMonth(2020, numberbulan);
             int days, j;
             j = 16;
             days = day - 15;

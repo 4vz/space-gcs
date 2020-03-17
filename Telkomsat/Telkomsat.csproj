@@ -6876,15 +6876,18 @@
     <Content Include="checkbjm\checkharian.aspx" />
     <Content Include="checkbjm\dataharian.aspx" />
     <Content Include="checkbjm\harian.aspx" />
+    <Content Include="checkhk\dashboard.aspx" />
     <Content Include="checkhk\dataharian.aspx" />
     <Content Include="checkhk\editharian.aspx" />
     <Content Include="checkhk\harian.aspx" />
+    <Content Include="checkhk\view.aspx" />
     <Content Include="checkhk\viewharian.aspx" />
     <Content Include="checklist.css" />
     <Content Include="checklistme\chart.aspx" />
     <Content Include="checklistme\checkharian.aspx" />
     <Content Include="checklistme\checklist.aspx" />
     <Content Include="checklistme\cobadata.aspx" />
+    <Content Include="checklistme\dashboard.aspx" />
     <Content Include="checklistme\dataharian.aspx" />
     <Content Include="checklistme\dataharian2.aspx" />
     <Content Include="checklistme\editharian.aspx" />
@@ -6895,6 +6898,7 @@
     <Content Include="checklistme\semester\data.aspx" />
     <Content Include="checklistme\semester\isidata.aspx" />
     <Content Include="checklistme\view.aspx" />
+    <Content Include="checklistme\view2.aspx" />
     <Content Include="checklistme\viewharian.aspx" />
     <Content Include="checklistme\week\data.aspx" />
     <Content Include="checklistme\week\data2.aspx" />
@@ -7444,6 +7448,13 @@
     <Compile Include="checkbjm\harian.aspx.designer.cs">
       <DependentUpon>harian.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkhk\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checkhk\dataharian.aspx.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7464,6 +7475,13 @@
     </Compile>
     <Compile Include="checkhk\harian.aspx.designer.cs">
       <DependentUpon>harian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkhk\view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\view.aspx.designer.cs">
+      <DependentUpon>view.aspx</DependentUpon>
     </Compile>
     <Compile Include="checkhk\viewharian.aspx.cs">
       <DependentUpon>viewharian.aspx</DependentUpon>
@@ -7527,6 +7545,13 @@
     </Compile>
     <Compile Include="checklistme\cobadata.aspx.designer.cs">
       <DependentUpon>cobadata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\dataharian.aspx.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
@@ -7597,6 +7622,13 @@
     </Compile>
     <Compile Include="checklistme\view.aspx.designer.cs">
       <DependentUpon>view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\view2.aspx.cs">
+      <DependentUpon>view2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\view2.aspx.designer.cs">
+      <DependentUpon>view2.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\viewharian.aspx.cs">
       <DependentUpon>viewharian.aspx</DependentUpon>

@@ -150,11 +150,11 @@ namespace Telkomsat.checklistme
 
                         htmlTable1.Append("<tr>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:12px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                        htmlTable1.Append("<td>" + $"<a class=\"link\" href=\"../checklistme/dashboard.aspx?waktu=pagi&tanggal={tanggal}\" style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["pagi"].ToString() + "</a>" + "<span style=\"float:right; padding-right:5px\">" +
                             tampil1 + "%" + "</span>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                        htmlTable1.Append("<td>" + $"<a class=\"link\" href=\"../checklistme/dashboard.aspx?waktu=siang&tanggal={tanggal}\" style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["siang"].ToString() + "</a>" + "<span style=\"float:right; padding-right:5px\">" +
                             tampil2 + "%" + "</span>"  + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</label>" + "<span style=\"float:right; padding-right:5px\">" +
+                        htmlTable1.Append("<td>" + $"<a class=\"link\" href=\"../checklistme/dashboard.aspx?waktu=malam&tanggal={tanggal}\" style=\"font-size:12px;\">" + ds.Tables[0].Rows[i]["malam"].ToString() + "</a>" + "<span style=\"float:right; padding-right:5px\">" +
                             tampil3 + "%" + "</span>" + "</td>");
                         htmlTable1.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checklistme/dataharian.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable1.Append("</tr>");

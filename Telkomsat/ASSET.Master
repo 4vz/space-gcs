@@ -148,10 +148,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=UP-CONVERTER"><i class="fa fa-circle-o"></i> Up Converter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DOWN-CONVERTER"><i class="fa fa-circle-o"></i> Down Converter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=HPA"><i class="fa fa-circle-o"></i> HPA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=LNA"><i class="fa fa-circle-o"></i> LNA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=UP-CONVERTER"><i class="fa fa-circle-o"></i> Up Converter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DOWN-CONVERTER"><i class="fa fa-circle-o"></i> Down Converter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=HPA"><i class="fa fa-circle-o"></i> HPA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=LNA"><i class="fa fa-circle-o"></i> LNA</a></li>
               </ul>
             </li>
 
@@ -161,8 +161,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=BASEBAND"><i class="fa fa-circle-o"></i> Baseband</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MODEM"><i class="fa fa-circle-o"></i> Modem</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=BASEBAND"><i class="fa fa-circle-o"></i> Baseband</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MODEM"><i class="fa fa-circle-o"></i> Modem</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Accesories
@@ -171,19 +171,19 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=AMPLIFIER"><i class="fa fa-circle-o"></i> Amplifier</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=CONVERTER"><i class="fa fa-circle-o"></i> Converter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=CPU"><i class="fa fa-circle-o"></i> CPU</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DEHYDRATOR"><i class="fa fa-circle-o"></i> Dehydrator</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=EXHAUST-FAN"><i class="fa fa-circle-o"></i> Exhaust Fan</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FAN-BLOWER"><i class="fa fa-circle-o"></i> Fan Blower</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FIBER-OPTIK"><i class="fa fa-circle-o"></i> Fiber Optik</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=HARD-DISK"><i class="fa fa-circle-o"></i> Hard Disk</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MODULE"><i class="fa fa-circle-o"></i> Modul</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=POWER-SUPPLY"><i class="fa fa-circle-o"></i> Power Supply</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=(RCU)"><i class="fa fa-circle-o"></i> RCU</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SWITCH"><i class="fa fa-circle-o"></i> Switch</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=TLT"><i class="fa fa-circle-o"></i> TLT</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AMPLIFIER"><i class="fa fa-circle-o"></i> Amplifier</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=CONVERTER"><i class="fa fa-circle-o"></i> Converter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=CPU"><i class="fa fa-circle-o"></i> CPU</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DEHYDRATOR"><i class="fa fa-circle-o"></i> Dehydrator</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=EXHAUST-FAN"><i class="fa fa-circle-o"></i> Exhaust Fan</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FAN-BLOWER"><i class="fa fa-circle-o"></i> Fan Blower</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FIBER-OPTIK"><i class="fa fa-circle-o"></i> Fiber Optik</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=HARD-DISK"><i class="fa fa-circle-o"></i> Hard Disk</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MODULE"><i class="fa fa-circle-o"></i> Modul</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=POWER-SUPPLY"><i class="fa fa-circle-o"></i> Power Supply</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=REDUNDANCY-CONTROL-UNIT-(RCU)"><i class="fa fa-circle-o"></i> RCU</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SWITCH"><i class="fa fa-circle-o"></i> Switch</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=TEST-LOOP-TRANSLATOR-(TLT)"><i class="fa fa-circle-o"></i> TLT</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Server & NE
@@ -192,17 +192,17 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SERVER-UNIT"><i class="fa fa-circle-o"></i> Server Unit</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DIGITAL-I/O"><i class="fa fa-circle-o"></i> Digital I/O Module</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ETHERNET"><i class="fa fa-circle-o"></i> Ethernet</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FIREWALL"><i class="fa fa-circle-o"></i> Firewall</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ROUTER"><i class="fa fa-circle-o"></i> Router</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=KVM"><i class="fa fa-circle-o"></i> KVM</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=COMPASS-SERVER"><i class="fa fa-circle-o"></i> Compass Server</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DEVICE-MASTER"><i class="fa fa-circle-o"></i> Device Master</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=NETWORK-SERIAL"><i class="fa fa-circle-o"></i> Network Serial Adapter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ID-SERVER"><i class="fa fa-circle-o"></i> Sat ID Server</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SERVER-UNIT"><i class="fa fa-circle-o"></i> Server Unit</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DIGITAL-I/O-MODULE-(ADAM-UNIT) "><i class="fa fa-circle-o"></i> Digital I/O Module</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ETHERNET"><i class="fa fa-circle-o"></i> Ethernet</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FIREWALL"><i class="fa fa-circle-o"></i> Firewall</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ROUTER"><i class="fa fa-circle-o"></i> Router</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=KVM"><i class="fa fa-circle-o"></i> KVM</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=COMPASS-SERVER"><i class="fa fa-circle-o"></i> Compass Server</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DEVICE-MASTER"><i class="fa fa-circle-o"></i> Device Master</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=NETWORK-SERIAL-ADAPTER"><i class="fa fa-circle-o"></i> Network Serial Adapter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SAT-ID-SERVER"><i class="fa fa-circle-o"></i> Sat ID Server</a></li>
               </ul>
             </li>
                 
@@ -212,20 +212,19 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=(ACU)"><i class="fa fa-circle-o"></i> Antena Control Unit</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ANTENNA"><i class="fa fa-circle-o"></i> Antena</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=(ADU)"><i class="fa fa-circle-o"></i> Antena Drive Unit</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=LIMIT-SWITCH"><i class="fa fa-circle-o"></i> Limit Switch</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MOTOR"><i class="fa fa-circle-o"></i> Motor</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MANUAL-CONTROL"><i class="fa fa-circle-o"></i> Manual Control Unit</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DIGITAL-TRACKING"><i class="fa fa-circle-o"></i> Digital Tracking Receiver</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MONOPULSE"><i class="fa fa-circle-o"></i> Monopulse TR</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DUAL-CHANNEL"><i class="fa fa-circle-o"></i> Dual Channel DC</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SERVO-DRIVES"><i class="fa fa-circle-o"></i> Servo Drives</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=OPTICAL-ENCODER"><i class="fa fa-circle-o"></i> Optical Encoder</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=(ACB)"><i class="fa fa-circle-o"></i> Antena Control Board</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=(BDC)"><i class="fa fa-circle-o"></i> Block Down Control</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=PHASE-SHIFTER"><i class="fa fa-circle-o"></i> Phase Shifter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ANTENNA-CONTROL-UNIT-(ACU)"><i class="fa fa-circle-o"></i> Antenna Control Unit</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ANTENNA"><i class="fa fa-circle-o"></i> Antenna</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ANTENNA-DRIVE-UNIT-(ADU)"><i class="fa fa-circle-o"></i> Antenna Drive Unit</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=LIMIT-SWITCH"><i class="fa fa-circle-o"></i> Limit Switch</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MOTOR"><i class="fa fa-circle-o"></i> Motor</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MANUAL-CONTROL-UNIT (MCU)"><i class="fa fa-circle-o"></i> Manual Control Unit</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DIGITAL-TRACKING-RECEIVER-(DTR)"><i class="fa fa-circle-o"></i> Digital Tracking Receiver</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MONOPULSE-TRACKING-RECEIVER-(MTR)"><i class="fa fa-circle-o"></i> Monopulse TR</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SERVO-DRIVES"><i class="fa fa-circle-o"></i> Servo Drives</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=OPTICAL-ENCODER"><i class="fa fa-circle-o"></i> Optical Encoder</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ANTENA-CONTROL-BOARD-(ACB)"><i class="fa fa-circle-o"></i> Antenna Control Board</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=BLOCK-DOWN-CONVERTER (BDC)"><i class="fa fa-circle-o"></i> Block Down Control</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=PHASE-SHIFTER"><i class="fa fa-circle-o"></i> Phase Shifter</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Alat Ukur
@@ -234,16 +233,16 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=COMMUNICATION-ANALYZER"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SPECTRUM"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SYNTHESIZER"><i class="fa fa-circle-o"></i> Synthesizer Sweeper</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=POWER-METER"><i class="fa fa-circle-o"></i> Power Meter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=BATTERY-TESTER"><i class="fa fa-circle-o"></i> Battery Tester</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MULTIMETER"><i class="fa fa-circle-o"></i> Multimeter</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=NETWORK-ANALYZER"><i class="fa fa-circle-o"></i> Network Analyzer</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=OSCILLOSCOPE"><i class="fa fa-circle-o"></i> Oscilloscope</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=SIGNAL-GENERATOR"><i class="fa fa-circle-o"></i> Signal Generator</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FREQUENCY-COUNTER"><i class="fa fa-circle-o"></i> Frequency Counter </a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=COMMUNICATION-ANALYZER"><i class="fa fa-circle-o"></i> Communication Analyzer</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SPECTRUM-ANALYZER"><i class="fa fa-circle-o"></i> Spektrum Analyzer</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SYNTHESIZER-SWEEPER"><i class="fa fa-circle-o"></i> Synthesizer Sweeper</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=POWER-METER"><i class="fa fa-circle-o"></i> Power Meter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=BATTERY-TESTER"><i class="fa fa-circle-o"></i> Battery Tester</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MULTIMETER"><i class="fa fa-circle-o"></i> Multimeter</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=NETWORK-ANALYZER"><i class="fa fa-circle-o"></i> Network Analyzer</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=OSCILLOSCOPE"><i class="fa fa-circle-o"></i> Oscilloscope</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=SIGNAL-GENERATOR"><i class="fa fa-circle-o"></i> Signal Generator</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FREQUENCY-COUNTER"><i class="fa fa-circle-o"></i> Frequency Counter </a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Workstation
@@ -252,9 +251,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=WORKSTATION-OPERASIONAL"><i class="fa fa-circle-o"></i> WS Operasional</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=WORKSTATION- ENGINEERING"><i class="fa fa-circle-o"></i> WS Engineering</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FLIGHT-DYNAMICS"><i class="fa fa-circle-o"></i> WS Flight Dynamics</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=WORKSTATION-OPERASIONAL"><i class="fa fa-circle-o"></i> WS Operasional</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=WORKSTATION-ENGINEERING"><i class="fa fa-circle-o"></i> WS Engineering</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=WORKSTATION-FLIGHT-DYNAMICS"><i class="fa fa-circle-o"></i> WS Flight Dynamics</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> License
@@ -263,9 +262,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=EPOCH-CLIENT"><i class="fa fa-circle-o"></i> Epoch Client Licenses</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=EPOCH-SERVER"><i class="fa fa-circle-o"></i> Epoch Server Licenses</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ARES"><i class="fa fa-circle-o"></i> Ares Licenses</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=EPOCH-CLIENT"><i class="fa fa-circle-o"></i> Epoch Client Licenses</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=EPOCH-SERVER"><i class="fa fa-circle-o"></i> Epoch Server Licenses</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ARES"><i class="fa fa-circle-o"></i> Ares Licenses</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Electrical
@@ -274,16 +273,16 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=CUBICLE"><i class="fa fa-circle-o"></i> Cubicle</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=TRAFO"><i class="fa fa-circle-o"></i> Trafo</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MDP-Essential"><i class="fa fa-circle-o"></i> MDP Essential</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MDP-NON-ESSENTIAL"><i class="fa fa-circle-o"></i> MDP Non Essential</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FEEDER"><i class="fa fa-circle-o"></i> Feeder</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=MOTOR-PUMP"><i class="fa fa-circle-o"></i> Motor Pump</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=PANEL-CONTROL"><i class="fa fa-circle-o"></i> Panel Control</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AIR-COMPRESSOR"><i class="fa fa-circle-o"></i> Air Compressor</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=ESSENSIAL-PANEL"><i class="fa fa-circle-o"></i> Essensial Panel</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=CUBICLE"><i class="fa fa-circle-o"></i> Cubicle</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=TRAFO"><i class="fa fa-circle-o"></i> Trafo</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MDP-Essential"><i class="fa fa-circle-o"></i> MDP Essential</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MDP-NON-ESSENTIAL"><i class="fa fa-circle-o"></i> MDP Non Essential</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ATS"><i class="fa fa-circle-o"></i> ATS</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FEEDER"><i class="fa fa-circle-o"></i> Feeder</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=MOTOR-PUMP"><i class="fa fa-circle-o"></i> Motor Pump</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=PANEL-CONTROL"><i class="fa fa-circle-o"></i> Panel Control</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AIR-COMPRESSOR"><i class="fa fa-circle-o"></i> Air Compressor</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=ESSENSIAL-PANEL"><i class="fa fa-circle-o"></i> Essensial Panel</a></li>
               </ul>
             </li>
 
@@ -293,12 +292,12 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=125-KVA"><i class="fa fa-circle-o"></i> Genset 125 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=250-KVA"><i class="fa fa-circle-o"></i> Genset 250 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=625-KVA"><i class="fa fa-circle-o"></i> Genset 625 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=1500-KVA"><i class="fa fa-circle-o"></i> Genset 1500 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=BBM-TANK"><i class="fa fa-circle-o"></i> BBM Tank</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DAILY-TANK"><i class="fa fa-circle-o"></i> Daily Tank</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=125-KVA"><i class="fa fa-circle-o"></i> Genset 125 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=250-KVA"><i class="fa fa-circle-o"></i> Genset 250 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=625-KVA"><i class="fa fa-circle-o"></i> Genset 625 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=1500-KVA"><i class="fa fa-circle-o"></i> Genset 1500 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=BBM-TANK"><i class="fa fa-circle-o"></i> BBM Tank</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DAILY-TANK"><i class="fa fa-circle-o"></i> Daily Tank</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> UPS
@@ -307,15 +306,15 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=310-KVA"><i class="fa fa-circle-o"></i> UPS 310 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=330-KVA"><i class="fa fa-circle-o"></i> UPS 330 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=3.1-KVA"><i class="fa fa-circle-o"></i> UPS 3.1 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=5-KVA"><i class="fa fa-circle-o"></i> UPS 5 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=10-KVA"><i class="fa fa-circle-o"></i> UPS 10 KVA</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=BATTERY-UPS"><i class="fa fa-circle-o"></i> Battery UPS</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=APOTRANS"><i class="fa fa-circle-o"></i> Apotrans</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=Panel-Rectifier"><i class="fa fa-circle-o"></i> Panel Rectifier</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=UPS-MODULE"><i class="fa fa-circle-o"></i> UPS Module</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=310-KVA"><i class="fa fa-circle-o"></i> UPS 310 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=330-KVA"><i class="fa fa-circle-o"></i> UPS 330 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=3.1-KVA"><i class="fa fa-circle-o"></i> UPS 3.1 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=5-KVA"><i class="fa fa-circle-o"></i> UPS 5 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=10-KVA"><i class="fa fa-circle-o"></i> UPS 10 KVA</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=BATTERY-UPS"><i class="fa fa-circle-o"></i> Battery UPS</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=APOTRANS"><i class="fa fa-circle-o"></i> Apotrans</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=Panel-Rectifier"><i class="fa fa-circle-o"></i> Panel Rectifier</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=UPS-MODULE"><i class="fa fa-circle-o"></i> UPS Module</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Air Conditioning
@@ -324,15 +323,15 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=AC-CHILLER"><i class="fa fa-circle-o"></i> AC Chiller</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AHU"><i class="fa fa-circle-o"></i> AHU</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=DEHUMIDIFIER"><i class="fa fa-circle-o"></i> Dehumidifier</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AC-PRECISION"><i class="fa fa-circle-o"></i> AC Precision</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AC-STANDING-FLOOR"><i class="fa fa-circle-o"></i> AC Standing Floor</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AC-PORTABLE"><i class="fa fa-circle-o"></i> AC Portable</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AC-SPLIT"><i class="fa fa-circle-o"></i> AC Split</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=COMPRESSOR"><i class="fa fa-circle-o"></i> Compressor</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=AC-PACKAGE"><i class="fa fa-circle-o"></i> AC Package</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-CHILLER"><i class="fa fa-circle-o"></i> AC Chiller</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AHU"><i class="fa fa-circle-o"></i> AHU</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DEHUMIDIFIER"><i class="fa fa-circle-o"></i> Dehumidifier</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-PRECISION"><i class="fa fa-circle-o"></i> AC Precision</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-STANDING-FLOOR"><i class="fa fa-circle-o"></i> AC Standing Floor</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-PORTABLE"><i class="fa fa-circle-o"></i> AC Portable</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-SPLIT"><i class="fa fa-circle-o"></i> AC Split</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=COMPRESSOR"><i class="fa fa-circle-o"></i> Compressor</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=AC-PACKAGE"><i class="fa fa-circle-o"></i> AC Package</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Hydrant
@@ -341,8 +340,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=DIESEL-ENGINE"><i class="fa fa-circle-o"></i> Diesel Engine</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=WATER-TANK"><i class="fa fa-circle-o"></i> Water Tank</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=DIESEL-ENGINE"><i class="fa fa-circle-o"></i> Diesel Engine</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=WATER-TANK"><i class="fa fa-circle-o"></i> Water Tank</a></li>
               </ul>
             </li>
               <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Fire Alarm Protection
@@ -351,8 +350,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../dataasset/filter.aspx?ID=HSSD"><i class="fa fa-circle-o"></i> HSSD</a></li>
-                  <li><a href="../dataasset/filter.aspx?ID=FM200"><i class="fa fa-circle-o"></i> FM 200</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=HSSD"><i class="fa fa-circle-o"></i> HSSD</a></li>
+                  <li><a href="../dataasset/filter.aspx?IDdevice=FM200"><i class="fa fa-circle-o"></i> FM 200</a></li>
               </ul>
             </li>
           </ul>
@@ -366,23 +365,23 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../dataasset/filter.aspx?ID=CIBINONG"><i class="fa fa-circle-o"></i> Cibinong</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=BANJARMASIN"><i class="fa fa-circle-o"></i> Banjarmasin</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=MEDAN"><i class="fa fa-circle-o"></i> Medan</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=MANADO"><i class="fa fa-circle-o"></i> Manado</a></li>
+            <li><a href="../dataasset/filter.aspx?IDlokasi=CIBINONG"><i class="fa fa-circle-o"></i> Cibinong</a></li>
+            <li><a href="../dataasset/filter.aspx?IDlokasi=BANJARMASIN"><i class="fa fa-circle-o"></i> Banjarmasin</a></li>
+            <li><a href="../dataasset/filter.aspx?IDlokasi=MEDAN"><i class="fa fa-circle-o"></i> Medan</a></li>
+            <li><a href="../dataasset/filter.aspx?IDlokasi=MANADO"><i class="fa fa-circle-o"></i> Manado</a></li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Bangunan Cibinong
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                    <li><a href="../dataasset/filter.aspx?ID=ANTENNA"><i class="fa fa-circle-o"></i> Antenna</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-D3"><i class="fa fa-circle-o"></i> Gedung D3</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-D4"><i class="fa fa-circle-o"></i> Gedung D4</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-ME"><i class="fa fa-circle-o"></i> Gedung ME</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-UTAMA"><i class="fa fa-circle-o"></i> Gedung Utama</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GUDANG"><i class="fa fa-circle-o"></i> Gudang</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=SHELTER"><i class="fa fa-circle-o"></i> Shelter</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=ANTENNA"><i class="fa fa-circle-o"></i> Antenna</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-D3"><i class="fa fa-circle-o"></i> Gedung D3</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-D4"><i class="fa fa-circle-o"></i> Gedung D4</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-ME"><i class="fa fa-circle-o"></i> Gedung ME</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-UTAMA"><i class="fa fa-circle-o"></i> Gedung Utama</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GUDANG"><i class="fa fa-circle-o"></i> Gudang</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=SHELTER"><i class="fa fa-circle-o"></i> Shelter</a></li>
               </ul>
             </li>
             <li  class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Bangunan Banjarmasin
@@ -391,11 +390,11 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                   <li><a href="../dataasset/filter.aspx?ID=ANTENNA"><i class="fa fa-circle-o"></i> Antenna</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-BJM"><i class="fa fa-circle-o"></i> Gedung BJM</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GEDUNG-ME"><i class="fa fa-circle-o"></i> Gedung ME</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=GUDUNG-ME"><i class="fa fa-circle-o"></i> Gudung BJM</a></li>
-                    <li><a href="../dataasset/filter.aspx?ID=TOWER"><i class="fa fa-circle-o"></i> Tower</a></li>
+                   <li><a href="../dataasset/filter.aspx?IDlokasi=ANTENNA"><i class="fa fa-circle-o"></i> Antenna</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-BJM"><i class="fa fa-circle-o"></i> Gedung BJM</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GEDUNG-ME"><i class="fa fa-circle-o"></i> Gedung ME</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=GUDUNG-ME"><i class="fa fa-circle-o"></i> Gudung BJM</a></li>
+                    <li><a href="../dataasset/filter.aspx?IDlokasi=TOWER"><i class="fa fa-circle-o"></i> Tower</a></li>
               </ul>
             </li>
           </ul>
@@ -409,9 +408,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../dataasset/filter.aspx?ID=baik"><i class="fa fa-circle-o"></i> Baik</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=Perbaikan"><i class="fa fa-circle-o"></i> Perbaikan</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=rusak"><i class="fa fa-circle-o"></i> Rusak</a></li>
+            <li><a href="../dataasset/filter.aspx?IDstatus=baik"><i class="fa fa-circle-o"></i> Baik</a></li>
+            <li><a href="../dataasset/filter.aspx?IDstatus=Perbaikan"><i class="fa fa-circle-o"></i> Perbaikan</a></li>
+            <li><a href="../dataasset/filter.aspx?IDstatus=rusak"><i class="fa fa-circle-o"></i> Rusak</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -422,9 +421,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../dataasset/filter.aspx?ID=TELKOM-2"><i class="fa fa-circle-o"></i> Telkom 2</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=TELKOM-3S"><i class="fa fa-circle-o"></i> Telkom 3S</a></li>
-            <li><a href="../dataasset/filter.aspx?ID=MPSAT"><i class="fa fa-circle-o"></i> Telkom 4</a></li>
+            <li><a href="../dataasset/filter.aspx?IDsatelit=TELKOM-2"><i class="fa fa-circle-o"></i> Telkom 2</a></li>
+            <li><a href="../dataasset/filter.aspx?IDsatelit=TELKOM-3S"><i class="fa fa-circle-o"></i> Telkom 3S</a></li>
+            <li><a href="../dataasset/filter.aspx?IDsatelit=MPSAT"><i class="fa fa-circle-o"></i> Telkom 4</a></li>
           </ul>
         </li>
         </ul>

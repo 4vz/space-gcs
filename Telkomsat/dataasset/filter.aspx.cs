@@ -19,18 +19,18 @@ namespace Telkomsat.dataasset
         SqlDataAdapter da;
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", wilayah = "st", style1 = "a", query, divisi = "", style2 = "a", style3, prioritas = "a", statusticket = "a", tanggal, queydel, jenisview = "";
-        string bangunan1, result;
+        string IDdevice = "kitaa", wilayah = "st", style1 = "a", query, divisi = "", style2 = "a", style3, prioritas = "a", statusticket = "a", tanggal, queydel, jenisview = "";
+        string bangunan1, resultdevice, resultlokasi, resultstatus, resultsatelit, IDlokasi ="", IDstatus="", IDsatelit="";
         string statusreply = "a", divisireply = "A";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Request.QueryString["ID"] != null)
+            if(Request.QueryString["IDdevice"] != null)
             {
-                IDdata = Request.QueryString["ID"].ToString();
+                IDdevice = Request.QueryString["IDdevice"].ToString();
 
-                char[] array = IDdata.ToCharArray();
+                char[] array = IDdevice.ToCharArray();
                 for (int i = 0; i < array.Length; i++)
                 {
                     char let = array[i];
@@ -43,11 +43,77 @@ namespace Telkomsat.dataasset
                         array[i] = '-';
                     }
                 }
-                result = new string(array);
-                lblfilter.Text = "Hasil pencarian " + '"' + result + '"';
+                resultdevice = new string(array);
+                lblfilter.Text = "Hasil pencarian " + '"' + resultdevice + '"';
                 tableticket();
             }
-            
+
+            if (Request.QueryString["IDlokasi"] != null)
+            {
+                IDlokasi = Request.QueryString["IDlokasi"].ToString();
+
+                char[] array = IDlokasi.ToCharArray();
+                for (int i = 0; i < array.Length; i++)
+                {
+                    char let = array[i];
+                    if (let == '-')
+                    {
+                        array[i] = ' ';
+                    }
+                    else if (let == '+')
+                    {
+                        array[i] = '-';
+                    }
+                }
+                resultlokasi = new string(array);
+                lblfilter.Text = "Hasil pencarian " + '"' + resultlokasi + '"';
+                tableticket();
+            }
+
+            if (Request.QueryString["IDstatus"] != null)
+            {
+                IDstatus = Request.QueryString["IDstatus"].ToString();
+
+                char[] array = IDstatus.ToCharArray();
+                for (int i = 0; i < array.Length; i++)
+                {
+                    char let = array[i];
+                    if (let == '-')
+                    {
+                        array[i] = ' ';
+                    }
+                    else if (let == '+')
+                    {
+                        array[i] = '-';
+                    }
+                }
+                resultstatus = new string(array);
+                lblfilter.Text = "Hasil pencarian " + '"' + resultstatus + '"';
+                tableticket();
+            }
+
+            if (Request.QueryString["IDsatelit"] != null)
+            {
+                IDsatelit = Request.QueryString["IDsatelit"].ToString();
+
+                char[] array = IDsatelit.ToCharArray();
+                for (int i = 0; i < array.Length; i++)
+                {
+                    char let = array[i];
+                    if (let == '-')
+                    {
+                        array[i] = ' ';
+                    }
+                    else if (let == '+')
+                    {
+                        array[i] = '-';
+                    }
+                }
+                resultsatelit = new string(array);
+                lblfilter.Text = "Hasil pencarian " + '"' + resultsatelit + '"';
+                tableticket();
+            }
+
         }
 
         protected void ExportExcel(object sender, EventArgs e)
@@ -62,11 +128,11 @@ namespace Telkomsat.dataasset
                     join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
 					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
                      join as_jenis_equipment e on e.id_jenis_equipment = d.id_jenis_equipment join as_wilayah w on w.id_wilayah = b.id_wilayah where
-                        nama_jenis_device LIKE '%' + '{result}' + '%' OR
-						nama_wilayah LIKE '%' + '{result}' + '%' OR
-						nama_bangunan LIKE '%' + '{result}' + '%' OR
-						status LIKE '%' + '{result}' + '%' OR 
-						satelit LIKE '%' + '{result}' + '%'";
+                        nama_jenis_device = '{resultdevice}' OR
+						nama_wilayah = '{resultlokasi}' OR
+						nama_bangunan = '{resultlokasi}' OR
+						status = '{resultstatus}' OR 
+						satelit = '{resultsatelit}'";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
 
                 using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -191,11 +257,11 @@ namespace Telkomsat.dataasset
                     join as_ruangan r on p.id_ruangan = r.id_ruangan left join as_rak k on k.id_rak = p.id_rak join as_bangunan b 
 					on b.id_bangunan = r.id_bangunan left join as_merk m on p.id_merk=m.id_merk
                      join as_jenis_equipment e on e.id_jenis_equipment = d.id_jenis_equipment join as_wilayah w on w.id_wilayah = b.id_wilayah where
-                        nama_jenis_device LIKE '%' + '{result}' + '%' OR
-						nama_wilayah LIKE '%' + '{result}' + '%' OR
-						nama_bangunan LIKE '%' + '{result}' + '%' OR
-						status LIKE '%' + '{result}' + '%' OR 
-						satelit LIKE '%' + '{result}' + '%'";
+                        nama_jenis_device = '{resultdevice}' OR
+						nama_wilayah = '{resultlokasi}' OR
+						nama_bangunan = '{resultlokasi}' OR
+						status = '{resultstatus}' OR 
+						satelit = '{resultsatelit}'";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -219,7 +285,7 @@ namespace Telkomsat.dataasset
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        IDdata = ds.Tables[0].Rows[i]["id_perangkat"].ToString();
+                        IDdevice = ds.Tables[0].Rows[i]["id_perangkat"].ToString();
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_jenis_equipment"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["nama_merk"].ToString() + "</label>" + "</td>");
@@ -235,7 +301,7 @@ namespace Telkomsat.dataasset
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["satelit"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["tahun_pengadaan"].ToString() + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<a href=\"../dataasset/detail.aspx?id={IDdata}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<a href=\"../dataasset/detail.aspx?id={IDdevice}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");
 
                         htmlTable.Append("</tr>");
                     }
