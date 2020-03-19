@@ -7192,6 +7192,10 @@
     <Content Include="logbook\tampildata.aspx" />
     <Content Include="login.aspx" />
     <Content Include="knowledge\details.aspx" />
+    <Content Include="maintenancehk\bulanan\isidata.aspx" />
+    <Content Include="maintenancehk\semester\isidata.aspx" />
+    <Content Include="maintenancehk\tahunan\isidata.aspx" />
+    <Content Include="maintenancehk\tigabulan\isidata.aspx" />
     <Content Include="password\edit.aspx" />
     <Content Include="password\semuahardware.aspx" />
     <Content Include="password\semuasoftware.aspx" />
@@ -8497,6 +8501,41 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MAINTENANCEHK.Master.cs">
+      <DependentUpon>MAINTENANCEHK.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MAINTENANCEHK.Master.designer.cs">
+      <DependentUpon>MAINTENANCEHK.Master</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\bulanan\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\bulanan\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\semester\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\semester\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\tahunan\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\tahunan\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\isidata.aspx.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\isidata.aspx.designer.cs">
+      <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
     <Compile Include="password\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9323,6 +9362,7 @@
     <Content Include="assets\plugins\ionicons\fonts\ionicons.woff" />
     <Content Include="API\allasset.ashx" />
     <Content Include="CHECKLISTBJM.Master" />
+    <Content Include="MAINTENANCEHK.Master" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <Content Include="TICKETMASTER.Master" />

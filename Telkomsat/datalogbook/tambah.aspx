@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" Debug="true" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.datalogbook.tambah" %>
+﻿<%@ Page Title="Tambah Logbook" Language="C#" Debug="true" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.datalogbook.tambah" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <style type="text/css">

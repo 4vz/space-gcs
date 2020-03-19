@@ -36,7 +36,7 @@ namespace Telkomsat.datalogbook
                 link = Request.QueryString["tipe"].ToString();
                 if (link == "status")
                     link = "Fungsi & Status";
-                myquery = $@"select l.* from tabel_logbook l left join table_pekerjaan p on l.id_logbook=p.id_logbook where p.jenis_pekerjaan = '{link}' and l.status = 'On Progress'
+                myquery = $@"select l.* from tabel_logbook l left join table_pekerjaan p on l.id_logbook=p.id_logbook where p.jenis_pekerjaan = '{link}' and p.status = 'On Progress'
                             group by l.agenda, l.due_date, l.id_logbook, l.id_user, l.judul_logbook, l.lampiran, l.pic_eksternal, l.pic_internal, l.status,
                             l.tanggal, l.tipe_logbook, l.unit, l.waktu_action";
                 lblHeading.Text = $"Data logbook on progress {link}";

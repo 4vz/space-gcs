@@ -205,7 +205,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Checklist Harkat</span>
-                                <span class="info-box-number">-</span>
+                                <span class="info-box-number">Reguler</span>
 
                             <div class="progress">
                             <div class="progress-bar" runat="server" id="divhk" style="width: 0%"></div>

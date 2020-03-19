@@ -10,7 +10,7 @@
 namespace Telkomsat {
     
     
-    public partial class CHECKLISTHK {
+    public partial class MAINTENANCEHK {
         
         /// <summary>
         /// head control.

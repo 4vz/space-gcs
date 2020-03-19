@@ -40,6 +40,8 @@ namespace Telkomsat.datalogbook
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             if (Request.QueryString["idlog"] != null)
             {
                 idlog = Request.QueryString["idlog"].ToString();
@@ -209,6 +211,7 @@ namespace Telkomsat.datalogbook
            
             htmlTable.Append("<tbody>");
             user = ds.Tables[0].Rows[0]["id_user"].ToString();
+            Page.Title = ds.Tables[0].Rows[0]["judul_logbook"].ToString();
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
