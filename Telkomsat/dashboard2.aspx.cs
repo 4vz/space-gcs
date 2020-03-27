@@ -12,12 +12,12 @@ namespace Telkomsat
 {
     public partial class dashboard2 : System.Web.UI.Page
     {
-        SqlDataAdapter dashift, da1, da5, da6, da7, da8;
+        SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm;
         DataSet dsshift = new DataSet();
         DataSet dspekerjaan = new DataSet();
         string query, iduser, tanggal, style1, style, style3, agenda, dataagenda, pilihicon, icon1, queryaddev, queryev, IDdata;
 
-        int output, output1, output2, output3;
+        int output, output1, output2, output3, output4;
         string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user;
         StringBuilder htmlTableShift = new StringBuilder();
         StringBuilder htmlDeadline = new StringBuilder();
@@ -341,9 +341,11 @@ namespace Telkomsat
             }
 
 
-            sqlCon.Open();
-            string querycheckhk = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile
+            sqlCon.Open();              //Harkat cibinong
+            string querycheckhk = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
+									on r.id_parameter=d.id_parameter
                                     where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
+									and r.id_perangkat not like '%' + 'bjm' + '%' and d.data != ''
                                     group by CAST(d.tanggal as date), nama";
             DataSet ds8 = new DataSet();
             SqlCommand cmd3 = new SqlCommand(querycheckhk, sqlCon);
@@ -356,7 +358,7 @@ namespace Telkomsat
             double hasil3, tampil3;
             if (output3 > 0)
             {
-                hasil3 = ((double)output3 / 892) * 100;
+                hasil3 = ((double)output3 / 764) * 100;
                 tampil3 = Math.Round(hasil3);
                 divhk.Style.Add("width", $"{tampil3}%");
                 lblchharkat.Text = $"{tampil3}% oleh {ds8.Tables[0].Rows[0]["nama"].ToString()}";
@@ -365,6 +367,35 @@ namespace Telkomsat
             else
             {
                 aharkat.Attributes["href"] = $"../checkhk/dashboard.aspx?tanggal={tanggalku}";
+            }
+
+
+            sqlCon.Open();              //Harkat Banjarmasin
+            string querycheckbjm = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
+									on r.id_parameter=d.id_parameter
+                                    where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
+									and r.id_perangkat like '%' + 'bjm' + '%' and d.data != ''
+                                    group by CAST(d.tanggal as date), nama";
+            DataSet dsbjm = new DataSet();
+            SqlCommand cmdbjm = new SqlCommand(querycheckbjm, sqlCon);
+            dabjm = new SqlDataAdapter(cmdbjm);
+            dabjm.Fill(dsbjm);
+            cmdbjm.ExecuteNonQuery();
+            sqlCon.Close();
+            if (dsbjm.Tables[0].Rows.Count > 0)
+                output4 = Convert.ToInt32(dsbjm.Tables[0].Rows[0]["total"].ToString());
+            double hasilbjm, tampilbjm;
+            if (output4 > 0)
+            {
+                hasilbjm = ((double)output4 / 128) * 100;
+                tampilbjm = Math.Round(hasilbjm);
+                divbjm.Style.Add("width", $"{tampilbjm}%");
+                lblbjm.Text = $"{tampilbjm}% oleh {dsbjm.Tables[0].Rows[0]["nama"].ToString()}";
+                a1.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
+            }
+            else
+            {
+                a1.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
             }
             //Response.Write(output);
         }

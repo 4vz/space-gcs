@@ -129,7 +129,7 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            htmlTable1.Append("<ul>");
+            htmlTable1.AppendLine("<ul>");
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -141,7 +141,7 @@ namespace Telkomsat.datalogbook
                         ext = Path.GetExtension(namaall);
                         htmlTable1.Append($"<li class=\"gambar\"><img style=\"display:block\" class=\"myImg\" src=\"{namafile}\" height=\"200\" /></li>");
                     }
-                    htmlTable.Append("</ul>");
+                    htmlTable.AppendLine("</ul>");
                     PlaceHolder1.Controls.Add(new Literal { Text = htmlTable1.ToString() });
                 }
             }
@@ -207,9 +207,9 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style1 = "font-size:14px; padding-bottom:10px";
-            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table\">");
+            htmlTable.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table\">");
            
-            htmlTable.Append("<tbody>");
+            htmlTable.AppendLine("<tbody>");
             user = ds.Tables[0].Rows[0]["id_user"].ToString();
             Page.Title = ds.Tables[0].Rows[0]["judul_logbook"].ToString();
             if (!object.Equals(ds.Tables[0], null))
@@ -271,13 +271,13 @@ namespace Telkomsat.datalogbook
                         txtstart.Text = start.ToString("yyyy/MM/dd");
                         txtend.Text = end.ToString("yyyy/MM/dd");
                         //Response.Write(queryhistory);
-                        htmlTable.Append("<td>" + "<label style=\"font-size:18px\">" + ds.Tables[0].Rows[i]["judul_logbook"].ToString() + "</label>");
+                        htmlTable.AppendLine("<td>" + "<label style=\"font-size:18px\">" + ds.Tables[0].Rows[i]["judul_logbook"].ToString() + "</label>");
                         if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser || Session["previllage"].ToString() == "super")
                         {
                             htmlTable.Append($"<a class=\"btn btn-sm btn-danger pull-right\" onclick=\"confirmhapus('../datalogbook/action.aspx?hapus={ds.Tables[0].Rows[i]["id_logbook"].ToString()}')\" style=\"margin-right:10px\">" + "Hapus" + "</a>");
                             htmlTable.Append($"<a class=\"btn btn-sm btn-info pull-right\" href=\"../datalogbook/edit.aspx?idlog={ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" style=\"margin-right:10px\">" + "Edit" + "</a>");
                         }
-                        htmlTable.Append("<br />" + "<label style=\"font-size:16px; color:gray;\">" + ds.Tables[0].Rows[i]["tipe_logbook"].ToString() + "</label>" + "<br/>" +
+                        htmlTable.AppendLine("<br />" + "<label style=\"font-size:16px; color:gray;\">" + ds.Tables[0].Rows[i]["tipe_logbook"].ToString() + "</label>" + "<br/>" +
                             "<table style=\"width:100%\">" +
                             "<tr>" + $"<td style=\"{style1}; width:20%;\">" + "Unit" + "</td>" + $"<td style=\"{style1}; width:5%;\">" + ":" + "</td>" + $"<td style=\"{style1}; width:25%;\">" + ds.Tables[0].Rows[i]["unit"].ToString() + "</td>" +
                             $"<td style=\"{style1}; width:20%;\">" + "Mulai Kegiatan" + "</td>" + $"<td style=\"{style1}; width:5%;\">" + ":" + "</td>" + $"<td style=\"{style1}; width:25%;\">" + mulai + "</td>" + "</tr>" +
@@ -297,7 +297,7 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTable.Append($"<td colspan\"3\">" + ds.Tables[0].Rows[i]["status"].ToString() + "</td>");
                         }
-                        htmlTable.Append("</tr>" + "<tr>" + $"<td style=\"{style1}\">" + "Dibuat Oleh" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + ds.Tables[0].Rows[i]["nama"].ToString() + "</td>" + "</tr>" +
+                        htmlTable.AppendLine("</tr>" + "<tr>" + $"<td style=\"{style1}\">" + "Dibuat Oleh" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}\">" + ds.Tables[0].Rows[i]["nama"].ToString() + "</td>" + "</tr>" +
                             "<tr>" + $"<td style=\"{style1}\">" + "Agenda" + "</td>" + $"<td style=\"{style1}\">" + ":" + "</td>" + $"<td colspan=\"4\" style=\"{style1}; white-space: pre-line;\">" + dataagenda + "</td>" + "</tr>" +
                             "<tr>");
                         if (jumlahlog > 0)
@@ -316,11 +316,11 @@ namespace Telkomsat.datalogbook
                         else
                         {
                             addwork = "";
-                            htmlTable.Append("<td colspan=\"4\" style=\"color:red; font-size14px;\"></td>");
+                            htmlTable.AppendLine("<td colspan=\"4\" style=\"color:red; font-size14px;\"></td>");
                         }
                         if (ds.Tables[0].Rows[i]["id_user"].ToString() == iduser || Session["previllage"].ToString() == "super")
                         {
-                            htmlTable.Append("<td></td>" + "<td>" +
+                            htmlTable.AppendLine("<td></td>" + "<td>" +
                             "<ul><li class=\"dropdown\"> <button type=\"button\" class=\"btn btn-block btn-primary dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"fa fa-plus\"></i>  Tambah Pekerjaan <span class=\"caret\"></span></button>" +
                             "<ul class=\"dropdown-menu\"><li role=\"presentation\" ><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"5\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
@@ -331,10 +331,10 @@ namespace Telkomsat.datalogbook
                             "</tr></table>" + "</td>");
                         }
                         
-                        htmlTable.Append("</tr>");
+                        htmlTable.AppendLine("</tr>");
                     }
-                    htmlTable.Append("</tbody>");
-                    htmlTable.Append("</table>");
+                    htmlTable.AppendLine("</tbody>");
+                    htmlTable.AppendLine("</table>");
                     DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
                 }
             }
@@ -361,13 +361,13 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style = "font-size:12px; font-weight:normal";
-            htmlTableMutasi.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
-            htmlTableMutasi.Append("<thead>");
-            htmlTableMutasi.Append("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Wilayah After</th><th>Ruangan After</th>" +
+            htmlTableMutasi.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableMutasi.AppendLine("<thead>");
+            htmlTableMutasi.AppendLine("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Wilayah After</th><th>Ruangan After</th>" +
                 "<th>Rak After</th><th>Wilayah Before</th><th>Ruangan Before</th><th>Rak After</th></tr>");
-            htmlTableMutasi.Append("</thead>");
+            htmlTableMutasi.AppendLine("</thead>");
 
-            htmlTableMutasi.Append("<tbody>");
+            htmlTableMutasi.AppendLine("<tbody>");
             if (!object.Equals(dsmutasi.Tables[0], null))
             {
                 if (dsmutasi.Tables[0].Rows.Count > 0)
@@ -375,20 +375,20 @@ namespace Telkomsat.datalogbook
 
                     for (int i = 0; i < dsmutasi.Tables[0].Rows.Count; i++)
                     {
-                        htmlTableMutasi.Append("<tr>");
-                        htmlTableMutasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + dsmutasi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsmutasi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsmutasi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_before"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_before"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_before"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.Append("</tr>");
+                        htmlTableMutasi.AppendLine("<tr>");
+                        htmlTableMutasi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + dsmutasi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsmutasi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsmutasi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_after"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_after"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_after"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_before"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_before"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_before"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("</tr>");
                     }
-                    htmlTableMutasi.Append("</tbody>");
-                    htmlTableMutasi.Append("</table>");
+                    htmlTableMutasi.AppendLine("</tbody>");
+                    htmlTableMutasi.AppendLine("</table>");
                     PlaceHolderMutasi.Controls.Add(new Literal { Text = htmlTableMutasi.ToString() });
                 }
                 else
@@ -410,14 +410,14 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style = "font-size:12px; font-weight:normal";
-            htmlTableKonfigurasi.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
-            htmlTableKonfigurasi.Append("<thead>");
-            htmlTableKonfigurasi.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            htmlTableKonfigurasi.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableKonfigurasi.AppendLine("<thead>");
+            htmlTableKonfigurasi.AppendLine("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
             if (user == iduser || Session["previllage"].ToString() == "super")
-                htmlTableKonfigurasi.Append("<th>Action</th>");
-            htmlTableKonfigurasi.Append("</tr></thead>");
+                htmlTableKonfigurasi.AppendLine("<th>Action</th>");
+            htmlTableKonfigurasi.AppendLine("</tr></thead>");
 
-            htmlTableKonfigurasi.Append("<tbody>");
+            htmlTableKonfigurasi.AppendLine("<tbody>");
             if (!object.Equals(dskonfigurasi.Tables[0], null))
             {
                 if (dskonfigurasi.Tables[0].Rows.Count > 0)
@@ -442,15 +442,15 @@ namespace Telkomsat.datalogbook
                         string tgl = waktu.ToString("dd/MM/yyyy");
 
                         
-                        htmlTableKonfigurasi.Append("<tr>");
-                        htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
+                        htmlTableKonfigurasi.AppendLine("<tr>");
+                        htmlTableKonfigurasi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
                         if (dskonfigurasi.Tables[0].Rows[i]["status"].ToString() == "Selesai")
-                            htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                            htmlTableKonfigurasi.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         else
-                            htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
-                        htmlTableKonfigurasi.Append("<td>" + $"<label style=\"{style}\">" + dskonfigurasi.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
-                        htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
-                        htmlTableKonfigurasi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
+                            htmlTableKonfigurasi.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dskonfigurasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTableKonfigurasi.AppendLine("<td>" + $"<label style=\"{style}; white-space: pre-line;\">" + dskonfigurasi.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
+                        htmlTableKonfigurasi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
+                        htmlTableKonfigurasi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
                         if(dsfkon.Tables[0].Rows.Count >= 1)
                         {
                             int count = dsfkon.Tables[0].Rows.Count;
@@ -465,21 +465,21 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            htmlTableKonfigurasi.Append("<td>-</td>");
+                            htmlTableKonfigurasi.AppendLine("<td>-</td>");
                         }
                         if (user == iduser || Session["previllage"].ToString() == "super")
                         {
                             if (dskonfigurasi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                                htmlTableKonfigurasi.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                htmlTableKonfigurasi.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                             else
-                                htmlTableKonfigurasi.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=K')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableKonfigurasi.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=K')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                             
-                        htmlTableKonfigurasi.Append("</tr>");
+                        htmlTableKonfigurasi.AppendLine("</tr>");
                     }
-                    htmlTableKonfigurasi.Append("</tbody>");
-                    htmlTableKonfigurasi.Append("</table>");
+                    htmlTableKonfigurasi.AppendLine("</tbody>");
+                    htmlTableKonfigurasi.AppendLine("</table>");
                     PlaceHolderKonfigurasi.Controls.Add(new Literal { Text = htmlTableKonfigurasi.ToString() });
                 }
                 else
@@ -501,14 +501,14 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style = "font-size:12px; font-weight:normal";
-            htmlTableMain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
-            htmlTableMain.Append("<thead>");
-            htmlTableMain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            htmlTableMain.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableMain.AppendLine("<thead>");
+            htmlTableMain.AppendLine("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
             if (user == iduser || Session["previllage"].ToString() == "super")
-                htmlTableMain.Append("<th>Action</th>");
-            htmlTableMain.Append("</tr></thead>");
+                htmlTableMain.AppendLine("<th>Action</th>");
+            htmlTableMain.AppendLine("</tr></thead>");
 
-            htmlTableMain.Append("<tbody>");
+            htmlTableMain.AppendLine("<tbody>");
             if (!object.Equals(dsmain.Tables[0], null))
             {
                 if (dsmain.Tables[0].Rows.Count > 0)
@@ -531,15 +531,15 @@ namespace Telkomsat.datalogbook
                         string akhir = end.ToString("dd/MM/yyyy");
                         DateTime waktu = (DateTime)dsmain.Tables[0].Rows[i]["tanggal"];
                         string tgl = waktu.ToString("dd/MM/yyyy");
-                        htmlTableMain.Append("<tr>");
-                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
+                        htmlTableMain.AppendLine("<tr>");
+                        htmlTableMain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
                         if(dsmain.Tables[0].Rows[i]["status"].ToString() == "Selesai")
-                            htmlTableMain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                            htmlTableMain.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         else
-                            htmlTableMain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
-                        htmlTableMain.Append("<td>" + $"<label style=\"{style}\">" + dsmain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
-                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
-                        htmlTableMain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
+                            htmlTableMain.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTableMain.AppendLine("<td>" + $"<label style=\"{style}; white-space: pre-line;\">" + dsmain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
+                        htmlTableMain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
+                        htmlTableMain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
                         if (dsfmain.Tables[0].Rows.Count >= 1)
                         {
                             int count = dsfmain.Tables[0].Rows.Count;
@@ -554,21 +554,21 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            htmlTableMain.Append("<td>-</td>");
+                            htmlTableMain.AppendLine("<td>-</td>");
                         }
                         if (user == iduser || Session["previllage"].ToString() == "super")
                         {
                             if (dsmain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                                htmlTableMain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                htmlTableMain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                             else
-                                htmlTableMain.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=N')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableMain.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=N')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                             
-                        htmlTableMain.Append("</tr>");
+                        htmlTableMain.AppendLine("</tr>");
                     }
-                    htmlTableMain.Append("</tbody>");
-                    htmlTableMain.Append("</table>");
+                    htmlTableMain.AppendLine("</tbody>");
+                    htmlTableMain.AppendLine("</table>");
                     PlaceHolderMain.Controls.Add(new Literal { Text = htmlTableMain.ToString() });
                 }
                 else
@@ -592,14 +592,14 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style = "font-size:12px; font-weight:normal";
-            htmlTableLain.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
-            htmlTableLain.Append("<thead>");
-            htmlTableLain.Append("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
+            htmlTableLain.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableLain.AppendLine("<thead>");
+            htmlTableLain.AppendLine("<tr><th>Tanggal</th><th>Status</th><th>Deskripsi</th><th>Startdate</th><th>Enddate</th><th>Lampiran</th>");
             if (user == iduser || Session["previllage"].ToString() == "super")
-                htmlTableLain.Append("<th>Action</th>");
-            htmlTableLain.Append("</tr></thead>");
+                htmlTableLain.AppendLine("<th>Action</th>");
+            htmlTableLain.AppendLine("</tr></thead>");
 
-            htmlTableLain.Append("<tbody>");
+            htmlTableLain.AppendLine("<tbody>");
             if (!object.Equals(dslain.Tables[0], null))
             {
                 if (dslain.Tables[0].Rows.Count > 0)
@@ -622,15 +622,15 @@ namespace Telkomsat.datalogbook
                         string akhir = end.ToString("dd/MM/yyyy");
                         DateTime waktu = (DateTime)dslain.Tables[0].Rows[i]["tanggal"];
                         string tgl = waktu.ToString("dd/MM/yyyy");
-                        htmlTableLain.Append("<tr>");
-                        htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
+                        htmlTableLain.AppendLine("<tr>");
+                        htmlTableLain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
                         if (dslain.Tables[0].Rows[i]["status"].ToString() == "Selesai")
-                            htmlTableLain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                            htmlTableLain.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         else
-                            htmlTableLain.Append("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
-                        htmlTableLain.Append("<td>" + $"<label style=\"{style}\">" + dslain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
-                        htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
-                        htmlTableLain.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
+                            htmlTableLain.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dslain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTableLain.AppendLine("<td>" + $"<label style=\"{style}; white-space: pre-line;\">" + dslain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
+                        htmlTableLain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + mulai + "</label>" + "</td>");
+                        htmlTableLain.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + akhir + "</label>" + "</td>");
                         if (dsflain.Tables[0].Rows.Count >= 1)
                         {
                             int count = dsflain.Tables[0].Rows.Count;
@@ -645,21 +645,21 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            htmlTableLain.Append("<td>-</td>");
+                            htmlTableLain.AppendLine("<td>-</td>");
                         }
                         if(user == iduser || Session["previllage"].ToString() == "super")
                         {
                             if (dslain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                                htmlTableLain.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                htmlTableLain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" +  "</td>");
                             else
-                                htmlTableLain.Append("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=L')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableLain.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=L')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                         
-                        htmlTableLain.Append("</tr>");
+                        htmlTableLain.AppendLine("</tr>");
                     }
-                    htmlTableLain.Append("</tbody>");
-                    htmlTableLain.Append("</table>");
+                    htmlTableLain.AppendLine("</tbody>");
+                    htmlTableLain.AppendLine("</table>");
                     PlaceHolderLain.Controls.Add(new Literal { Text = htmlTableLain.ToString() });
                 }
                 else
@@ -683,12 +683,12 @@ namespace Telkomsat.datalogbook
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             style = "font-size:12px; font-weight:normal";
-            htmlTableFungsi.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
-            htmlTableFungsi.Append("<thead>");
-            htmlTableFungsi.Append("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Fungsi</th><th>Status Asset</th><th>#</th>");
-            htmlTableFungsi.Append("</thead>");
+            htmlTableFungsi.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTableFungsi.AppendLine("<thead>");
+            htmlTableFungsi.AppendLine("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Fungsi</th><th>Status Asset</th><th>#</th>");
+            htmlTableFungsi.AppendLine("</thead>");
 
-            htmlTableFungsi.Append("<tbody>");
+            htmlTableFungsi.AppendLine("<tbody>");
             if (!object.Equals(dsfungsi.Tables[0], null))
             {
                 if (dsfungsi.Tables[0].Rows.Count > 0)
@@ -696,20 +696,20 @@ namespace Telkomsat.datalogbook
 
                     for (int i = 0; i < dsfungsi.Tables[0].Rows.Count; i++)
                     {
-                        htmlTableFungsi.Append("<tr>");
-                        htmlTableFungsi.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + dsfungsi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
-                        htmlTableFungsi.Append("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
-                        htmlTableFungsi.Append("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsfungsi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsfungsi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
-                        htmlTableFungsi.Append("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["fungsi"].ToString() + "</label>" + "</td>");
-                        htmlTableFungsi.Append("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        htmlTableFungsi.AppendLine("<tr>");
+                        htmlTableFungsi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + dsfungsi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
+                        htmlTableFungsi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
+                        htmlTableFungsi.AppendLine("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsfungsi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsfungsi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
+                        htmlTableFungsi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["fungsi"].ToString() + "</label>" + "</td>");
+                        htmlTableFungsi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsfungsi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         if (dsfungsi.Tables[0].Rows[i]["statuskerja"].ToString() != "Selesai")
-                            htmlTableFungsi.Append("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dsfungsi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                            htmlTableFungsi.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dsfungsi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
                         else
-                            htmlTableFungsi.Append("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
-                        htmlTableFungsi.Append("</tr>");
+                            htmlTableFungsi.AppendLine("<td>" + $"<a class=\"label label-primary\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        htmlTableFungsi.AppendLine("</tr>");
                     }
-                    htmlTableFungsi.Append("</tbody>");
-                    htmlTableFungsi.Append("</table>");
+                    htmlTableFungsi.AppendLine("</tbody>");
+                    htmlTableFungsi.AppendLine("</table>");
                     PlaceHolderStatus.Controls.Add(new Literal { Text = htmlTableFungsi.ToString() });
                 }
                 else

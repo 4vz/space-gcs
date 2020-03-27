@@ -133,7 +133,8 @@
         <!-- ./col -->
         <div class="col-lg-2 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua-active" id="divbulanan" runat="server">
+            <a href="../maintenancehk/bulanan/isidata.aspx">         
+                <div class="small-box bg-aqua-active" id="divbulanan" runat="server">
             <div class="inner" style="text-align:center">
               <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
 
@@ -141,6 +142,8 @@
             </div>
             
           </div>
+                </a>
+
         </div>
         <!-- ./col -->
         <div class="col-lg-2 col-xs-6">

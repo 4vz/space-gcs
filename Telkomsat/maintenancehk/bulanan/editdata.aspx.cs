@@ -13,39 +13,46 @@ using System.Text.RegularExpressions;
 
 namespace Telkomsat.maintenancehk.bulanan
 {
-    public partial class isidata : System.Web.UI.Page
+    public partial class editdata : System.Web.UI.Page
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string[] akhir;
-        string query, query1, room, idddl, nilai, value, user;
+        string query, query1, room, idddl, nilai, value, user, dataa;
         int j = 0;
+        string[] dataku;
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*DateTime now = DateTime.Now;
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            string start = startDate.ToString("yyyy/MM/dd");
+            string end = endDate.ToString("yyyy/MM/dd");*/
+            DateTime now = DateTime.Now;
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            string start = startDate.ToString("yyyy/MM/dd");
+            string end = endDate.ToString("yyyy/MM/dd");
+
+            string querytest = $"select count(*) from checkhk_bulan_data where tanggal >= '{start}' and tanggal <= '{end}'";
+            sqlCon.Open();
+            SqlCommand cmdtest = new SqlCommand(querytest, sqlCon);
+            int UserExist = (int)cmdtest.ExecuteScalar();
+            //Response.Write(UserExist);
+            sqlCon.Close();
             if (Request.QueryString["room"] != null)
             {
                 room = Request.QueryString["room"].ToString();
-                DateTime now = DateTime.Now;
-                var startDate = new DateTime(now.Year, now.Month, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
-                string start = startDate.ToString("yyyy/MM/dd");
-                string end = endDate.ToString("yyyy/MM/dd");
+            }
 
-                string querytest = $"select count(*) from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main" +
-                    $" where tanggal >= '{start}' and tanggal <= '{end}' and ruangan='{room}'";
-                sqlCon.Open();
-                SqlCommand cmdtest = new SqlCommand(querytest, sqlCon);
-                int UserExist = (int)cmdtest.ExecuteScalar();
-                sqlCon.Close();
-                if (UserExist > 0)
-                {
-                    Response.Redirect($"editdata.aspx?room={room}");
-                }
+            if (UserExist == 0)
+            {
+                Response.Redirect($"isidata.aspx?room={room}");
+            }
 
-            }            
-            
-            query = $@"select * from checkhk_bulan_perangkat where ruangan = '{room}'";
 
-         
+            query = $@"select * from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
+                    where d.tanggal >= '{start}' and d.tanggal <= '{end}' and ruangan = '{room}'";
+
             lblroom.Text = " " + room;
 
             tableticket();
@@ -87,16 +94,38 @@ namespace Telkomsat.maintenancehk.bulanan
 
         protected void Save_Click(object sender, EventArgs e)
         {
-           
-            sqlCon.Close();
-            string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_bulan_data (tanggal, id_profile, id_main, data) values {data}";
+            string query5, myid;
+            SqlDataAdapter da2;
+            DataSet ds2 = new DataSet();
+            query5 = $@"select id_data from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
+                    where tanggal >= '2020-03-01' and tanggal <= '2020-03-30' and ruangan = '{room}'";
+
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+
+            SqlCommand cmd = new SqlCommand(query5, sqlCon);
+            da2 = new SqlDataAdapter(cmd);
+            da2.Fill(ds2);
             sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            
-            //Response.Write(query1);
+            int p;
+            if (!object.Equals(ds2.Tables[0], null))
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+                    {
+                        myid = ds2.Tables[0].Rows[i]["id_data"].ToString();
+                        string myquery1 = $@"UPDATE checkhk_bulan_data SET data = '{dataku[i]}' WHERE id_data = '{myid}'";
+                        sqlCon.Open();
+                        SqlCommand sqlcmd = new SqlCommand(myquery1, sqlCon);
+                        sqlcmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                }
+            }
+            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 
         protected void Filter_ServerClick(object sender, EventArgs e)
@@ -137,6 +166,7 @@ namespace Telkomsat.maintenancehk.bulanan
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
             akhir = new string[count];
+            dataku = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -144,9 +174,10 @@ namespace Telkomsat.maintenancehk.bulanan
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        IDdata = ds.Tables[0].Rows[i]["id_main"].ToString();
+                        IDdata = ds.Tables[0].Rows[i]["id_data"].ToString();
                         lokasi = ds.Tables[0].Rows[i]["lokasi"].ToString();
                         sn = ds.Tables[0].Rows[i]["sn"].ToString();
+                        dataa = ds.Tables[0].Rows[i]["data"].ToString();
                         ruangan = ds.Tables[0].Rows[i]["ruangan"].ToString();
                         rack = ds.Tables[0].Rows[i]["rack"].ToString();
                         tipe = ds.Tables[0].Rows[i]["tipe"].ToString();
@@ -164,7 +195,9 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + rack + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + perangkat + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + sn + "</label>" + "</td>");
-                        if (tipe == "cu")
+                        if(dataa == "Clean")
+                            htmlTable.AppendLine("<td>" + "<input type=\"text\" runat=\"server\" class=\"form-control\" style=\"background-color:#0932ff\" value=\"Clean\" name=\"idticket\" readonly />" + "</td>");
+                        else
                             htmlTable.AppendLine("<td>" + $"<select class=\"form-control dropdown selectcolor\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Unclean\" > Unclean </option><option value =\"Clean\"> Clean </option></select >" + "</td>");
                         htmlTable.AppendLine("</tr>");
                         value = Request.Form["idticket"];
@@ -183,7 +216,8 @@ namespace Telkomsat.maintenancehk.bulanan
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "12" + "','" + looping[j] + "','" + line + "')";
+                            akhir[j] = "('" + looping[j] + "','" + line + "')";
+                            dataku[j] = line;
                             j++;
                         }
                     }
@@ -195,6 +229,5 @@ namespace Telkomsat.maintenancehk.bulanan
                 }
             }
         }
-
     }
 }

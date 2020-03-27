@@ -66,12 +66,12 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="checkharian.aspx">Harian</a></li>
-                <li><a href="week/data.aspx">3 Bulanan</a></li>
-                <li><a href="semester/data.aspx">Semester</a></li>
-                <li><a href="year/data.aspx">Tahunan</a></li>
+                <li><a href="#">3 Bulanan</a></li>
+                <li><a href="#">Semester</a></li>
+                <li><a href="#">Tahunan</a></li>
               </ul>
             </li>
-            <li><a href="../checkhk/harian.aspx">Harkat</a></li>
+            <li><a href="../checkhk/harian.aspx">Harkat CBI</a></li>
             <li><a href="../checklistme/harian.aspx">ME</a></li>
           </ul>
           
@@ -142,7 +142,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-             <a href="month/isidata.aspx">
+             <a href="#">
           <div class="small-box bg-aqua-active">
             <div class="inner" style="text-align:center">
               <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
@@ -156,7 +156,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-            <a href="semester/isidata.aspx">
+            <a href="#">
           <div class="small-box bg-aqua-active">
             <div class="inner" style="text-align:center">
               <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>
@@ -170,7 +170,7 @@
 
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-            <a href="year/isidata.aspx">
+            <a href="#">
           <div class="small-box bg-aqua-active">
             <div class="inner" style="text-align:center">
               <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>

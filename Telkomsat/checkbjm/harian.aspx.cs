@@ -88,6 +88,7 @@ namespace Telkomsat.checkbjm
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             querytanggal = $"insert into checkhk_tanggal (tanggalhk, id_profile) values ('{date}', '3')";
             //Console.Write(query1);
             sqlCon.Open();
@@ -106,6 +107,7 @@ namespace Telkomsat.checkbjm
             Session["inisialbjm"] = null;
             Button1.Enabled = true;
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+            Response.Redirect($"dashboardbjm.aspx?tanggal={tanggal}");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)

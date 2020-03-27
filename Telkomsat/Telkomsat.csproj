@@ -6874,6 +6874,7 @@
     <Content Include="asset\StyleSheet1.css" />
     <Content Include="check.aspx" />
     <Content Include="checkbjm\checkharian.aspx" />
+    <Content Include="checkbjm\dashboardbjm.aspx" />
     <Content Include="checkbjm\dataharian.aspx" />
     <Content Include="checkbjm\harian.aspx" />
     <Content Include="checkhk\dashboard.aspx" />
@@ -7192,6 +7193,7 @@
     <Content Include="logbook\tampildata.aspx" />
     <Content Include="login.aspx" />
     <Content Include="knowledge\details.aspx" />
+    <Content Include="maintenancehk\bulanan\editdata.aspx" />
     <Content Include="maintenancehk\bulanan\isidata.aspx" />
     <Content Include="maintenancehk\semester\isidata.aspx" />
     <Content Include="maintenancehk\tahunan\isidata.aspx" />
@@ -7437,6 +7439,13 @@
     </Compile>
     <Compile Include="checkbjm\checkharian.aspx.designer.cs">
       <DependentUpon>checkharian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkbjm\dashboardbjm.aspx.cs">
+      <DependentUpon>dashboardbjm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkbjm\dashboardbjm.aspx.designer.cs">
+      <DependentUpon>dashboardbjm.aspx</DependentUpon>
     </Compile>
     <Compile Include="checkbjm\dataharian.aspx.cs">
       <DependentUpon>dataharian.aspx</DependentUpon>
@@ -8507,6 +8516,13 @@
     </Compile>
     <Compile Include="MAINTENANCEHK.Master.designer.cs">
       <DependentUpon>MAINTENANCEHK.Master</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\bulanan\editdata.aspx.cs">
+      <DependentUpon>editdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\bulanan\editdata.aspx.designer.cs">
+      <DependentUpon>editdata.aspx</DependentUpon>
     </Compile>
     <Compile Include="maintenancehk\bulanan\isidata.aspx.cs">
       <DependentUpon>isidata.aspx</DependentUpon>

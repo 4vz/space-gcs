@@ -48,6 +48,8 @@ namespace Telkomsat.checklistme
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             Session["inisial"] = null;*/
+            string mydate;
+            mydate = DateTime.Now.ToString("yyyy/MM/dd");
             query5 = $@"select d.id_datame, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
                     where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data) and d.waktu = '{waktu}' order by  r.urutan, r.id_perangkat";
@@ -83,6 +85,7 @@ namespace Telkomsat.checklistme
                 }
             }
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+            Response.Redirect($"dashboard.aspx?tanggal={mydate}&waktu={waktu}");
         }
 
         void tableticket()

@@ -29,6 +29,7 @@ namespace Telkomsat.checkhk
             if (!IsPostBack)
             {
                 query = @"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+						join checkhk_parameter r on r.id_parameter=d.id_parameter where r.id_perangkat not like '%' + 'bjm' + '%'
                         group by CAST(d.tanggal AS DATE), nama order by CAST(d.tanggal AS DATE) desc";
                 tableticket();
             }
@@ -61,7 +62,7 @@ namespace Telkomsat.checkhk
                         petugas = ds.Tables[0].Rows[i]["nama"].ToString();
 
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + "<label style=\"font-size:13px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + petugas + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checkhk/dashboard.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
@@ -80,9 +81,10 @@ namespace Telkomsat.checkhk
                 start = txtsdate.Value;
             if (dateend.Value != "")
                 end = dateend.Value;
-            query = $@"select d.tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-                            where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama like + '%' + {ddlKategori.SelectedValue}
-                            group by tanggal, nama order by d.tanggal desc";
+            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile join checkhk_parameter r on r.id_parameter=d.id_parameter
+                            where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama like '%' + '{ddlKategori.SelectedValue}' + '%'
+                            and r.id_perangkat not like '%' + 'bjm' + '%'
+                            group by (CAST(d.tanggal AS DATE)), nama order by (CAST(d.tanggal AS DATE)) desc";
             tableticket();
         }
     }

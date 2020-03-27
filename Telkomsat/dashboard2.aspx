@@ -113,11 +113,11 @@
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Checklist <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../checkhk/dataharian.aspx">Harkat</a></li>
-                                        <li><a href="../checklistme/checkharian.aspx">ME</a></li>
-                                        <li><a href="../checkbjm/harian.aspx">Banjarmasin</a></li>
-                                        <li><a href="#">Medan</a></li>
-                                        <li><a href="#">Manado</a></li>
+                                        <li><a href="../checkhk/dataharian.aspx">Harkat CBI</a></li>
+                                        <li><a href="../checklistme/checkharian.aspx">ME CBI</a></li>
+                                        <li><a href="../checkbjm/checkharian.aspx">Harkat BJM</a></li>
+                                        <li><a href="#">Harkat MDN</a></li>
+                                        <li><a href="#">Harkat MDO</a></li>
                                     </ul>
                                 </li>
                               </ul>
@@ -279,6 +279,39 @@
                             </a>
                     <!-- /.col -->
                     </div>
+                <div class="row">
+                        <a id="a1" runat="server">
+                            <div class="col-md-3 col-sm-6 col-xs-12"> 
+                                <div class="info-box bg-blue">
+                                <span class="info-box-icon"><i class="fa fa-calendar-o"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Checklist Harkat BJM</span>
+                                    <span class="info-box-number">Reguler</span>
+
+                                <div class="progress">
+                                <div class="progress-bar" runat="server" id="divbjm" style="width: 0%"></div>
+                                </div>
+                            <asp:Label ID="lblbjm" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        </a>
+                    <div class="col-lg-9 col-sm-12 col-xs-12">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-purple-active"><i class="ion ion-ios-gear-outline"></i></span>
+
+                        <div class="info-box-content">
+                          <span class="info-box-text">Maintenance</span>
+                          <span class="info-box-number">Sedang on progress untuk dashboard maintenance</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                    </div>
+                </div>
                         
                     <div class="row">
                     <div class="col-lg-8 col-md-12">

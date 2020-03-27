@@ -10,7 +10,7 @@
 namespace Telkomsat.maintenancehk.bulanan {
     
     
-    public partial class isidata {
+    public partial class editdata {
         
         /// <summary>
         /// TextBox2 control.

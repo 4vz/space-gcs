@@ -49,9 +49,9 @@ namespace Telkomsat.checklistme
             {
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.alias, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameter r left join
                     checkme_perangkat p on p.id_perangkat = r.id_perangkat left join checkme_data d on d.id_parameter = r.id_parameter
-                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal)-1 from checkme_data d LEFT join checkme_parameter r 
+                    where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_data d LEFT join checkme_parameter r 
 					on r.ID_Parameter=d.id_parameter left join checkme_perangkat p on p.ID_Perangkat = r.ID_Perangkat
-					where p.ruangan = '{room}' and d.nilai is not null) and d.waktu = 'siang' order by r.urutan, r.id_perangkat";
+					where p.ruangan = '{room}' and d.nilai is not null and d.waktu='siang') and d.waktu = 'siang' order by r.urutan, r.id_perangkat";
             }
 
             if (Session["iduser"] != null)
@@ -165,13 +165,13 @@ namespace Telkomsat.checklistme
             TimeSpan wibTime = wib.TimeOfDay;
             string mydate = wib.ToString("yyyy/MM/dd");
 
-            querytanggal = $"insert into checkme_tanggal (me_tanggal, id_profile) values ('{date}', '3')";
+            /*querytanggal = $"insert into checkme_tanggal (me_tanggal, id_profile) values ('{date}', '3')";
             
                 //Console.Write(query1);
             sqlCon.Open();
             SqlCommand cmd7 = new SqlCommand(querytanggal, sqlCon);
             cmd7.ExecuteNonQuery();
-            sqlCon.Close();
+            sqlCon.Close();*/
 
             string myquery = $"SELECT * FROM checkme_rekap WHERE tanggal = '{mydate}'";
             string myquery2;
