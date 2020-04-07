@@ -22,7 +22,7 @@
         </div>
         <div class="box-footer no-padding">
             <div class="mailbox-controls">
-            <a href="siteadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
+            <a href="deviceadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
             <!-- /.pull-right -->
             </div>
         </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="modal-body">
                   <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">ID Wilayah :</label>
+                    <label style="font-size:16px; font-weight:bold">ID Equipment :</label>
                     <asp:Label ID="lblid" runat="server" style="font-size:16px; font-weight:bold"></asp:Label>
                 </div>
                 <div class="form-group">

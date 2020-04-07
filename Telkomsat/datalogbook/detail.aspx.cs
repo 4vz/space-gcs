@@ -115,12 +115,12 @@ namespace Telkomsat.datalogbook
 
         void mytable()
         {
-            SqlDataAdapter da, da1;
+            SqlDataAdapter da, da1; 
             DataSet ds = new DataSet();
             DataSet ds1 = new DataSet();
             string myquery, query, color, namaall, ext, namafile;
 
-            myquery = $@"select * from table_log_file WHERE  id_logbook = '{idlog}' and kategori='utama' and (ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg'))";
+            myquery = $@"select * from table_log_file WHERE  id_logbook = '{idlog}' and kategori='utama' and (ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
 
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -139,7 +139,8 @@ namespace Telkomsat.datalogbook
                         namaall = ds.Tables[0].Rows[i]["files"].ToString();
                         namafile = namaall.Replace("~", "..");
                         ext = Path.GetExtension(namaall);
-                        htmlTable1.Append($"<li class=\"gambar\"><img style=\"display:block\" class=\"myImg\" src=\"{namafile}\" height=\"200\" /></li>");
+                        htmlTable1.Append($"<li class=\"gambar\"><img style=\"display:block\" class=\"myImg\" src=\"{namafile}\" height=\"200\" /><br />" +
+                            $"<label style=\"text-align:center; width:100%; white-space:pre-line; font-size:11px\" >{ds.Tables[0].Rows[i]["caption"].ToString()}</label></li>");
                     }
                     htmlTable.AppendLine("</ul>");
                     PlaceHolder1.Controls.Add(new Literal { Text = htmlTable1.ToString() });
@@ -157,44 +158,6 @@ namespace Telkomsat.datalogbook
                 + e.CommandArgument);
             Response.End();
         }
-
-        protected void Maintenance_ServerClick2(object sender, EventArgs e)
-        {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
-            sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
-            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
-            sqlCon.Close();
-            if (filekonfig.HasFiles)
-            {
-                string physicalpath = Server.MapPath("~/fileupload/");
-                if (!Directory.Exists(physicalpath))
-                    Directory.CreateDirectory(physicalpath);
-
-                int filecount = 0;
-                foreach (HttpPostedFile file in filekonfig.PostedFiles)
-                {
-                    filecount += 1;
-                    string filename = Path.GetFileName(file.FileName);
-                    string filepath = "~/fileupload/" + filename;
-                    file.SaveAs(physicalpath + filename);
-                    string s = Convert.ToString(i);
-                    sqlCon.Open();
-                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
-                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
-                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
-
-                    sqlCmd1.ExecuteNonQuery();
-                    sqlCon.Close();
-                }
-            }
-            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "enablebtn()", true);
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
-
-        }
-
 
         void tableticket()
         {
@@ -322,11 +285,11 @@ namespace Telkomsat.datalogbook
                         {
                             htmlTable.AppendLine("<td></td>" + "<td>" +
                             "<ul><li class=\"dropdown\"> <button type=\"button\" class=\"btn btn-block btn-primary dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"fa fa-plus\"></i>  Tambah Pekerjaan <span class=\"caret\"></span></button>" +
-                            "<ul class=\"dropdown-menu\"><li role=\"presentation\" ><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"5\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
+                            "<ul class=\"dropdown-menu\"><li role=\"presentation\" ><a role=\"menuitem\" tabindex=\"-1\" class=\"btkonfig\" href=\"#\" data-toggle=\"modal\" data-id=\"5\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalfungsi\" id=\"btnstatus\">Status Asset</a></li>" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnlain\">Maintenance</a></li>" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modallainlain\" id=\"btnlain\">Lain-lain</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" class=\"btmain\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnmain\">Maintenance</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" class=\"btlain\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modallainlain\" id=\"btnlain\">Lain-lain</a></li>" +
                             "</ul></li></ul></td>" +
                             "</tr></table>" + "</td>");
                         }
@@ -471,9 +434,11 @@ namespace Telkomsat.datalogbook
                         {
                             if (dskonfigurasi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
                                 htmlTableKonfigurasi.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idk={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                    $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datakonfig\" data-toggle=\"modal\" data-target=\"#modalkonfigurasi\" id=\"edit\">" + "Edit" + "</button>" + 
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                             else
-                                htmlTableKonfigurasi.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=K')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableKonfigurasi.AppendLine("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datakonfig\" data-toggle=\"modal\" data-target=\"#modalkonfigurasi\" id=\"edit\">" + "Edit" + "</button>" + 
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dskonfigurasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=K')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                             
                         htmlTableKonfigurasi.AppendLine("</tr>");
@@ -559,10 +524,12 @@ namespace Telkomsat.datalogbook
                         if (user == iduser || Session["previllage"].ToString() == "super")
                         {
                             if (dsmain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                                htmlTableMain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                htmlTableMain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idn={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                    $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Edit" + "</button>" +
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                             else
-                                htmlTableMain.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=N')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableMain.AppendLine("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Edit" + "</button>" + 
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dsmain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=N')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                             
                         htmlTableMain.AppendLine("</tr>");
@@ -579,7 +546,6 @@ namespace Telkomsat.datalogbook
 
             }
         }
-
 
         void tablelain()
         {
@@ -650,10 +616,12 @@ namespace Telkomsat.datalogbook
                         if(user == iduser || Session["previllage"].ToString() == "super")
                         {
                             if (dslain.Tables[0].Rows[i]["status"].ToString() != "Selesai")
-                                htmlTableLain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" +
+                                htmlTableLain.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idl={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + 
+                                    $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datalain\" data-toggle=\"modal\" data-target=\"#modallainlain\" id=\"edit\">" + "Edit" + "</button>" +
                                     $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" +  "</td>");
                             else
-                                htmlTableLain.AppendLine("<td>" + $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=L')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
+                                htmlTableLain.AppendLine("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}\" class=\"btn btn-sm btn-warning datalain\" data-toggle=\"modal\" data-target=\"#modallainlain\" id=\"edit\">" + "Edit" + "</button>" + 
+                                    $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?del={dslain.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}&tipe=L')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">" + "HAPUS" + "</a>" + "</td>");
                         }
                         
                         htmlTableLain.AppendLine("</tr>");
@@ -720,6 +688,121 @@ namespace Telkomsat.datalogbook
                 
             }
         }
+
+        public class dataedit
+        {
+            public string idlain { get; set; }
+            public string awallain { get; set; }
+            public string akhirlain { get; set; }
+            public string statuslain { get; set; }
+            public string keteranganlain { get; set; }
+
+            public string idmain { get; set; }
+            public string awalmain { get; set; }
+            public string akhirmain { get; set; }
+            public string statusmain { get; set; }
+            public string keteranganmain { get; set; }
+
+            public string idkonfig { get; set; }
+            public string awalkonfig { get; set; }
+            public string akhirkonfig { get; set; }
+            public string statuskonfig { get; set; }
+            public string keterangankonfig { get; set; }
+        }
+
+        [WebMethod]
+        public static List<dataedit> GetLain(string videoid)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM table_pekerjaan where id_pekerjaan = '{videoid}'"))
+                {
+                    cmd.Connection = con;
+                    List<dataedit> dadevices = new List<dataedit>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            dadevices.Add(new dataedit
+                            {
+                                idlain = sdr["id_pekerjaan"].ToString(),
+                                awallain = sdr["startdate"].ToString(),
+                                akhirlain = sdr["enddate"].ToString(),
+                                statuslain = sdr["status"].ToString(),
+                                keteranganlain = sdr["deskripsi"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return dadevices;
+                }
+            }
+        }
+
+        [WebMethod]
+        public static List<dataedit> Getmain(string videoid)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM table_pekerjaan where id_pekerjaan = '{videoid}'"))
+                {
+                    cmd.Connection = con;
+                    List<dataedit> dadevices = new List<dataedit>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            dadevices.Add(new dataedit
+                            {
+                                idmain = sdr["id_pekerjaan"].ToString(),
+                                awalmain = sdr["startdate"].ToString(),
+                                akhirmain = sdr["enddate"].ToString(),
+                                statusmain = sdr["status"].ToString(),
+                                keteranganmain = sdr["deskripsi"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return dadevices;
+                }
+            }
+        }
+
+        [WebMethod]
+        public static List<dataedit> Getkonfig(string videoid)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM table_pekerjaan where id_pekerjaan = '{videoid}'"))
+                {
+                    cmd.Connection = con;
+                    List<dataedit> dadevices = new List<dataedit>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            dadevices.Add(new dataedit
+                            {
+                                idkonfig = sdr["id_pekerjaan"].ToString(),
+                                awalkonfig = sdr["startdate"].ToString(),
+                                akhirkonfig = sdr["enddate"].ToString(),
+                                statuskonfig = sdr["status"].ToString(),
+                                keterangankonfig = sdr["deskripsi"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return dadevices;
+                }
+            }
+        }
+
 
         public class inisial
         {
@@ -995,6 +1078,42 @@ namespace Telkomsat.datalogbook
             Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=K");
         }
 
+        protected void Konfigurasi_ServerClick2_Edit(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string query = $@"UPDATE table_pekerjaan SET deskripsi='{txtKetKonfig.Text}', startdate='{txtsdatekonf.Value}', 
+                            enddate='{txtedatekonf.Value}', status='{ddlstatuskonf.Text}' WHERE id_pekerjaan='{txtidkonfig.Text}' ";
+            SqlCommand sqlcmd5 = new SqlCommand(query, sqlCon);
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+
+            if (filekonfig.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in filekonfig.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{idlog}', '{txtidkonfig.Text}', '{filepath}', '{filename}', 'konfigurasi')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+        }
+
         protected void Lain_ServerClick3(object sender, EventArgs e)
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
@@ -1030,6 +1149,117 @@ namespace Telkomsat.datalogbook
             }
             Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
         }
+
+        protected void Lain_ServerClick3_Edit(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string query = $@"UPDATE table_pekerjaan SET deskripsi='{txtketeranganlain.Text}', startdate='{txtsdatelain.Value}', 
+                            enddate='{txtedatelain.Value}', status='{ddlstatuslain.Text}' WHERE id_pekerjaan='{txtidlain.Text}' ";
+            SqlCommand sqlcmd5 = new SqlCommand(query, sqlCon);
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+
+            if (FileLain.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in FileLain.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{idlog}', '{txtidlain.Text}', '{filepath}', '{filename}', 'Lain-lain')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+        }
+
+        protected void Maintenance_ServerClick2(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
+                               ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
+            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+            if (fileuploadmain.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in fileuploadmain.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "enablebtn()", true);
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
+
+        }
+
+        protected void Maintenance_ServerClick2_Edit(object sender, EventArgs e)
+        {
+            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            sqlCon.Open();
+            string query = $@"UPDATE table_pekerjaan SET deskripsi='{txtketmain.Text}', startdate='{txtsdatemain.Value}', 
+                            enddate='{txtedatemain.Value}', status='{ddlstatusmain.Text}' WHERE id_pekerjaan='{txtidmain.Text}' ";
+            SqlCommand sqlcmd5 = new SqlCommand(query, sqlCon);
+            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
+            sqlCon.Close();
+
+            if (fileuploadmain.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/fileupload/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in fileuploadmain.PostedFiles)
+                {
+                    filecount += 1;
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/fileupload/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                    string s = Convert.ToString(i);
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
+                                        VALUES ('{idlog}', '{txtidmain.Text}', '{filepath}', '{filename}', 'Maintenance')";
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+        }
+
+
 
         protected void Mutasi_ServerClick1(object sender, EventArgs e)
         {

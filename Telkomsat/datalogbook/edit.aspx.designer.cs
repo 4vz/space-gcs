@@ -274,12 +274,21 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.TextBox txtAktivitas;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        
+        /// <summary>
+        /// tableku control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tableku;
     }
 }

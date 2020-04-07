@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <script src="../assets/mylibrary/sweetalert.min.js"></script>
-
+<div class="row">
     <div class="col-md-9">
         <div class="box box-danger">
         <div class="box-header with-border">
@@ -22,7 +22,7 @@
         </div>
         <div class="box-footer no-padding">
             <div class="mailbox-controls">
-            <a href="siteadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
+            <a href="bangunanadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
             <!-- /.pull-right -->
             </div>
         </div>
@@ -30,6 +30,7 @@
         </div>
         <!-- /. box -->
     </div>
+</div>
     <asp:HiddenField ID="HiddenField1" runat="server" Value="bisa" />
     <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
     <div class="modal fade" id="modalupdate">

@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="rack.aspx.cs" Inherits="Telkomsat.dataasset.rack" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="merk.aspx.cs" Inherits="Telkomsat.dataasset.merk" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script src="../assets/mylibrary/sweetalert.min.js"></script>
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
 <div class="row">
     <div class="col-md-9">
         <div class="box box-danger">
         <div class="box-header with-border">
-            <h3 class="box-title">Rack</h3>
+            <h3 class="box-title">Ruangan</h3>
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
@@ -22,7 +22,7 @@
         </div>
         <div class="box-footer no-padding">
             <div class="mailbox-controls">
-            <a href="rackadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
+            <a href="merkadd.aspx" class=" btn btn-danger btn-sm pull-right"> Tambah</a>
             <!-- /.pull-right -->
             </div>
         </div>
@@ -43,19 +43,16 @@
               </div>
               <div class="modal-body">
                   <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">ID Wilayah :</label>
+                    <label style="font-size:16px; font-weight:bold">ID Device :</label>
                     <asp:Label ID="lblid" runat="server" style="font-size:16px; font-weight:bold"></asp:Label>
                 </div>
                 <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">Nama Ruangan :</label>
+                    <label style="font-size:16px; font-weight:bold">Merk :</label>
                     <asp:TextBox ID="txtwiayah" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
+                
                 <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">QR Ruangan :</label>
-                    <asp:TextBox ID="txtqr" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label style="font-size:16px">Nama Wilayah :</label>
+                    <label style="font-size:16px">Device :</label>
                     <select id="so2" runat="server" class="form-control" style="width: 100%;">
                         <option></option>
                     </select>
@@ -70,7 +67,6 @@
         <asp:TextBox ID="TextBox2" CssClass="hidden" runat="server"></asp:TextBox>
           <!-- /.modal-dialog -->
         </div>
-
     <script type="text/javascript">
         $('#<%=so2.ClientID %>').change(function () {
             var id = $(this).val();
@@ -93,23 +89,25 @@
               { "bSort": false, "targets": [0] }
           ]
           });
-            $('.dataTables_length').addClass('bs-select');
+           $('.dataTables_length').addClass('bs-select');
+        });
 
-            $.ajax({
+
+        $.ajax({
             type: "POST",
-            url: "Ruangan.aspx/GetID",
+            url: "merk.aspx/GetID",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
                 var customers = response.d;
                 $('#<%=so2.ClientID %>').empty();
-                $('#<%=so2.ClientID %>').append('<option>' + '--Pilih Ruangan--' + '</option>');
+                $('#<%=so2.ClientID %>').append('<option>' + '--Pilih Device--' + '</option>');
                 $(customers).each(function () {
-                    console.log(this.idwilayah);
+                    console.log(this.iddevice);
                     $('#<%=so2.ClientID %>').append($('<option>',
-                     {
-                        value: this.idruangan,
-                        text : this.ruangan1, 
+                        {
+                            value: this.iddevice,
+                            text : this.device, 
                     }));
                 });
             },
@@ -121,10 +119,6 @@
                 alert(response.d);
             }
             });
-        });
-
-
-        
 
 
         $(document).ready(function () {
@@ -154,7 +148,7 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "ruangan.aspx/Getbangunan",
+                url: "merk.aspx/Getmerk",
                 contentType: "application/json; charset=utf-8",
                 data: '{videoid:"' + id + '"}',
                 dataType: "json",
@@ -162,11 +156,10 @@
                     //console.log(response);
                     var data = response.d;
                     $(data).each(function () {
-                        console.log(this.bangunan);
-                        $('#<%=txtwiayah.ClientID %>').val(this.ruangan);
-                        $('#<%=txtqr.ClientID %>').val(this.qr);
-                        $('#<%=lblid.ClientID %>').html(this.rak);
-                        $('#<%=txtid.ClientID %>').val(this.idrak);
+                        console.log(this.equipment);
+                        $('#<%=txtwiayah.ClientID %>').val(this.merk);
+                        $('#<%=lblid.ClientID %>').html(this.idmerk);
+                        $('#<%=txtid.ClientID %>').val(this.idmerk);
                     });
 
                 },

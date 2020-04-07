@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.datalogbook {
+namespace Telkomsat.logbook {
     
     
-    public partial class tambah {
+    public partial class tesuploadimg {
         
         /// <summary>
         /// txtdevice control.

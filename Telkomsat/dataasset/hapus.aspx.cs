@@ -19,7 +19,8 @@ namespace Telkomsat.dataasset
             string ruangan = Request.QueryString["idruangan"];
             string rak = Request.QueryString["idrak"];
             string equipment = Request.QueryString["idequipment"];
-
+            string device = Request.QueryString["iddevice"];
+            string merk = Request.QueryString["idmerk"];
 
             if (equipment != null)
             {
@@ -29,6 +30,24 @@ namespace Telkomsat.dataasset
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
                 Response.Redirect("../dataasset/equipment.aspx");
+            }
+            if (device != null)
+            {
+                string query = $"DELETE FROM as_jenis_device WHERE id_jenis_device = '{device}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("../dataasset/device.aspx");
+            }
+            if (merk != null)
+            {
+                string query = $"DELETE FROM as_merk WHERE id_merk = '{merk}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("../dataasset/merk.aspx");
             }
             if (wilayah != null)
             {

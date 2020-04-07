@@ -7,14 +7,14 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Services;
 using System.Configuration;
 using System.IO;
-using System.Text.RegularExpressions;
 
-namespace Telkomsat.datalogbook
+namespace Telkomsat.logbook
 {
-    public partial class tambah : System.Web.UI.Page
+    public partial class tesuploadimg : System.Web.UI.Page
     {
         SqlDataAdapter da, da1;
         DataSet ds = new DataSet();
@@ -22,20 +22,14 @@ namespace Telkomsat.datalogbook
         string query, iduser, tanggal, style1, style3, style2, agenda, dataagenda;
         string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, addwork, stylecolor, stylebg;
         StringBuilder htmlTable = new StringBuilder();
-        string[] myket;
-        int output1, outputtotal, outputbagi, a = 0;
+        int a = 0;
+        int output1, outputtotal, outputbagi;
         double hasil, tampil;
-
+        string[] myket;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            this.Form.Enctype = "multipart/form-data";
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["iduser"] != null)
+            if (Session["iduser"] != null)
             {
                 iduser = Session["iduser"].ToString();
             }
@@ -43,7 +37,7 @@ namespace Telkomsat.datalogbook
             {
                 tableticket();
             }
-            
+
         }
 
         protected void Fungsi_ServerClick1(object sender, EventArgs e)
@@ -79,7 +73,7 @@ namespace Telkomsat.datalogbook
             string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
                                ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
             SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            
+
             int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
             sqlCon.Close();
             if (filekonfig.HasFiles)
@@ -179,6 +173,7 @@ namespace Telkomsat.datalogbook
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
             myket = new string[Request.Files.Count];
+            
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             query = $@"insert into tabel_logbook(id_user, tanggal, judul_logbook, waktu_action, due_date, tipe_logbook, unit, status, pic_internal, pic_eksternal, agenda) values
                       ('{iduser}', '{tanggal}', '{txtjudul.Text}', '{txtstartdate.Text}', '{txtduedate.Text}', '{ddlkategori.Text}', '{ddlunit.Text}', '{ddlstatus.Text}', '{txtint.Text}', '{txtext.Text}', '{txtAktivitas.Text}'); Select Scope_Identity();";
@@ -209,8 +204,6 @@ namespace Telkomsat.datalogbook
                     string extension = Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("~/fileupload/") + Path.GetFileName(file.FileName));
                     string s = Convert.ToString(i);
-                    if (myket[j] == "")
-                        myket[j] = filename;
                     sqlCon.Open();
                     string queryfile = $@"INSERT INTO table_log_file (id_logbook, files, namafiles, kategori, ekstension, caption)
                                         VALUES ('{s}', '{filepath}', '{filename}', 'utama', '{extension}', '{myket[j]}')";
@@ -498,7 +491,7 @@ namespace Telkomsat.datalogbook
                         sqlCon.Close();
                         agenda = ds.Tables[0].Rows[i]["agenda"].ToString();
 
-                        
+
 
 
                         sqlCon.Open();
@@ -523,7 +516,7 @@ namespace Telkomsat.datalogbook
                         tampil = Math.Round(hasil);
                         jumlahlog = dspekerjaan.Tables[0].Rows.Count;
 
-                     
+
 
                         if (tampil == 100)
                         {
@@ -625,6 +618,5 @@ namespace Telkomsat.datalogbook
                 }
             }
         }
-
     }
 }

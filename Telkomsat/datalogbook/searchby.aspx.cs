@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Web.Services;
 using System.Configuration;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace Telkomsat.datalogbook
 {
@@ -81,6 +83,83 @@ namespace Telkomsat.datalogbook
                 }
             }
         }
+
+        protected void ExportExcel(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                sqlCon.Open();
+                SqlCommand sqlcmd = new SqlCommand("logbooksearchbyexcel", sqlCon);
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                if (ddlunit.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@divisi", ddlunit.Text);
+                }
+                if (ddlkategori.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@kategori", ddlkategori.Text);
+                }
+                if (ddlstatus.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@status", ddlstatus.Text);
+                }
+                if (txtpicint.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@internal", txtpicint.Text);
+                }
+                if (txtpicext.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@external", txtpicext.Text);
+                }
+
+                if (DropDownList1.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@nama", DropDownList1.Text);
+                }
+
+                if (txtmulai.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@mulai", txtmulai.Text);
+                }
+                if (txtsampai.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@selesai", txtsampai.Text);
+                }
+                else
+                {
+                    sqlcmd.Parameters.AddWithValue("@selesai", txtmulai.Text);
+                }
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sqlcmd.Connection = con;
+                    sda.SelectCommand = sqlcmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            wb.Worksheets.Add(dt, "Logbook");
+
+                            Response.Clear();
+                            Response.Buffer = true;
+                            Response.Charset = "";
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            Response.AddHeader("content-disposition", "attachment;filename=Logbook.xlsx");
+                            using (MemoryStream MyMemoryStream = new MemoryStream())
+                            {
+                                wb.SaveAs(MyMemoryStream);
+                                MyMemoryStream.WriteTo(Response.OutputStream);
+                                Response.Flush();
+                                Response.End();
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
 
         protected void submit_click(object sender, EventArgs e)
         {

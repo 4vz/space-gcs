@@ -88,6 +88,8 @@
                                 <asp:ListItem>Perbaikan</asp:ListItem>
                                 <asp:ListItem>Perawatan</asp:ListItem>
                                 <asp:ListItem>Penggantian</asp:ListItem>
+                                <asp:ListItem>Troubleshot</asp:ListItem>
+                                <asp:ListItem>Update/Upgrade</asp:ListItem>
                                 <asp:ListItem>Lain-lain</asp:ListItem>
                             </asp:DropDownList>
                         </div>
@@ -99,10 +101,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <label for="exampleInputFile">Lampiran</label>
-                            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true"/>
+                        <div class="col-md-6">
+                            <label>Lampiran Gambar</label>
+                            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                         </div>
+                    </div>
+                    <br />
+                        <div class="col-md-6 col-sm-12">
+                            <label>Tambah Lampiran</label>
+                            <div id="dvfiles">
+                                <table class="table table-bordered kita" id="tableku" runat="server">
+                                    <thead>
+                                        <tr>
+                                            <th>File</th>
+                                            <th>Caption</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
                     </div>
                 </div>
             </div>
@@ -113,6 +133,24 @@
     </div>
    
     <script>
+        var i = 1;
+
+        $(document).ready(function() {
+            $("#addfile").click(function () {
+                var markup = "<tr><td><input name=" + i + "fu type=file /></td><td><input type='text' name='caption' class='form-control' /></td>" +
+                    "<td> <button type='button' name='record' onclick='newtest2(this)' class='btn-sm btn-default delete-row'><i class=fa>X</i></button></td></tr>";
+                $('#' + '<%= tableku.ClientID%>').append(markup);
+                i++;
+                console.log('add');
+            });
+            
+        });   
+
+        function newtest2(e) {              //Add e as parameter
+            $(e).parents('tr').remove();   //Use the e to delete
+            //console.log('klkl');
+        }
+
         $(function () {
             //CKEDITOR.replace('<txtAktivitas.ClientID%>');
         })

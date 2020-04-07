@@ -157,6 +157,33 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
         
         /// <summary>
+        /// txtidlain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtidlain;
+        
+        /// <summary>
+        /// txtidmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtidmain;
+        
+        /// <summary>
+        /// txtidkonfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtidkonfig;
+        
+        /// <summary>
         /// DBDataPlaceHolder control.
         /// </summary>
         /// <remarks>
@@ -499,6 +526,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnmain;
         
         /// <summary>
+        /// btneditmain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btneditmain;
+        
+        /// <summary>
         /// txtsnfung control.
         /// </summary>
         /// <remarks>
@@ -643,6 +679,15 @@ namespace Telkomsat.datalogbook {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnkonfig;
         
         /// <summary>
+        /// btneditkonfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btneditkonfig;
+        
+        /// <summary>
         /// txtsdatelain control.
         /// </summary>
         /// <remarks>
@@ -695,5 +740,14 @@ namespace Telkomsat.datalogbook {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnlain;
+        
+        /// <summary>
+        /// btneditlain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btneditlain;
     }
 }

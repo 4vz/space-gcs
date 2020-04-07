@@ -6979,6 +6979,8 @@
     <Content Include="dataasset\equipmentadd.aspx" />
     <Content Include="dataasset\filter.aspx" />
     <Content Include="dataasset\hapus.aspx" />
+    <Content Include="dataasset\merk.aspx" />
+    <Content Include="dataasset\merkadd.aspx" />
     <Content Include="dataasset\rack.aspx" />
     <Content Include="dataasset\rackadd.aspx" />
     <Content Include="dataasset\ruangan.aspx" />
@@ -7191,6 +7193,7 @@
     <Content Include="logbook\isilogbook.aspx" />
     <Content Include="logbook\log.css" />
     <Content Include="logbook\tampildata.aspx" />
+    <Content Include="logbook\tesuploadimg.aspx" />
     <Content Include="login.aspx" />
     <Content Include="knowledge\details.aspx" />
     <Content Include="maintenancehk\bulanan\editdata.aspx" />
@@ -7238,6 +7241,7 @@
     </Content>
     <Content Include="WebForm4.aspx" />
     <Content Include="WebForm5.aspx" />
+    <Content Include="WebForm6.aspx" />
     <Content Include="WebFormregis.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -7908,6 +7912,20 @@
     <Compile Include="dataasset\hapus.aspx.designer.cs">
       <DependentUpon>hapus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="dataasset\merk.aspx.cs">
+      <DependentUpon>merk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\merk.aspx.designer.cs">
+      <DependentUpon>merk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataasset\merkadd.aspx.cs">
+      <DependentUpon>merkadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dataasset\merkadd.aspx.designer.cs">
+      <DependentUpon>merkadd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dataasset\rack.aspx.cs">
       <DependentUpon>rack.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8001,7 +8019,6 @@
     </Compile>
     <Compile Include="datalogbook\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="datalogbook\edit.aspx.designer.cs">
       <DependentUpon>edit.aspx</DependentUpon>
@@ -8503,6 +8520,13 @@
     <Compile Include="logbook\tampildata.aspx.designer.cs">
       <DependentUpon>tampildata.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logbook\tesuploadimg.aspx.cs">
+      <DependentUpon>tesuploadimg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logbook\tesuploadimg.aspx.designer.cs">
+      <DependentUpon>tesuploadimg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8783,6 +8807,13 @@
     </Compile>
     <Compile Include="WebForm5.aspx.designer.cs">
       <DependentUpon>WebForm5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm6.aspx.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm6.aspx.designer.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFormregis.aspx.cs">
       <DependentUpon>WebFormregis.aspx</DependentUpon>

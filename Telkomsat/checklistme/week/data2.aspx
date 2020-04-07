@@ -18,9 +18,10 @@
                         <label for="exampleInputEmail1">Ruangan</label>
                         <asp:DropDownList ID="ddlruang" CssClass="form-control" runat="server" onchange="status(this)">
                             <asp:ListItem Value="ruangan">-Semua Ruangan-</asp:ListItem>
-                            <asp:ListItem>RO-TRF</asp:ListItem>
+                            <asp:ListItem>RO-BTT</asp:ListItem>
+                            <asp:ListItem>RO-GST</asp:ListItem>
                             <asp:ListItem>RO-HYD</asp:ListItem>
-                            <asp:ListItem>CBI</asp:ListItem>
+                            <asp:ListItem>RO-UPS</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

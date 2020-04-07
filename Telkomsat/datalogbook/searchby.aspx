@@ -73,6 +73,8 @@
                         <asp:ListItem>Perbaikan</asp:ListItem>
                         <asp:ListItem>Perawatan</asp:ListItem>
                         <asp:ListItem>Penggantian</asp:ListItem>
+                        <asp:ListItem>Troubleshot</asp:ListItem>
+                        <asp:ListItem>Update/Upgrade</asp:ListItem>
                         <asp:ListItem>Lain-lain</asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -164,6 +166,12 @@
             </div>
             <!-- /.table -->
             <!-- /.mail-box-messages -->
+        </div>
+        </div>
+            <div class="box-footer">
+                <asp:Button ID="Button2" runat="server" Text="Export to Excel" CssClass="btn btn-default pull-right" OnClick="ExportExcel" />
+            </div>
+        <!-- /.box-body -->
         </div>
         <!-- /.box-body -->
         </div>

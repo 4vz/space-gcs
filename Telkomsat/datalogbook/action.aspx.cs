@@ -20,6 +20,7 @@ namespace Telkomsat.datalogbook
             string hapus = Request.QueryString["hapus"];
             string idkonfig = Request.QueryString["idk"];
             string idlain = Request.QueryString["idl"];
+            string idmain = Request.QueryString["idn"];
             string idmutasi = Request.QueryString["idm"];
             string idfungsi = Request.QueryString["idf"];
             string idlog = Request.QueryString["idlog"];
@@ -136,6 +137,35 @@ namespace Telkomsat.datalogbook
                 }
 
                 Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=l");
+            }
+
+            if (idmain != null)
+            {
+                string query = $"UPDATE table_pekerjaan SET status = 'Selesai' WHERE id_pekerjaan = '{idlain}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+
+                string querybef = $"select p.* from table_pekerjaan p left join tabel_logbook l on l.id_logbook=p.id_logbook where l.id_logbook = '{idlog}' and p.status = 'On Progress'";
+                DataSet ds5 = new DataSet();
+                sqlCon.Open();
+                SqlCommand cmd = new SqlCommand(querybef, sqlCon);
+                SqlDataAdapter da5 = new SqlDataAdapter(cmd);
+                da5.Fill(ds5);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                int output = ds5.Tables[0].Rows.Count;
+                if (output == 0)
+                {
+                    queryupdatel = $"UPDATE tabel_logbook SET status = 'Selesai' WHERE id_logbook = '{idlog}'";
+                    SqlCommand sqlcmd2 = new SqlCommand(queryupdatel, sqlCon);
+                    sqlCon.Open();
+                    sqlcmd2.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+
+                Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=n");
             }
 
             if (idmutasi != null)

@@ -35,7 +35,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label style="font-size:16px">Nama Wilayah :</label>
+                    <label style="font-size:16px">Nama Bangunan :</label>
                     <select id="so3" runat="server" class="select2 form-control" style="width: 100%;">
                         <option></option>
                     </select>

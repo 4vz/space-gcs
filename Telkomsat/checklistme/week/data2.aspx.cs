@@ -16,7 +16,7 @@ namespace Telkomsat.checklistme.week
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", tanggalku = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, start, end, inisial, siang = "", malam = "", tanggal1;
+        string Parameter = "a", query2 = "A", tanggalku = "s", value = "1", myroom2 = "A", myroom = "", ruangan, tipe, satuan, room, start, end, inisial, siang = "", malam = "", tanggal1;
         string[] words = { "a", "a" };
         string[] akhir;
         int j = 0, endtahun, endbulan;
@@ -29,21 +29,35 @@ namespace Telkomsat.checklistme.week
                 tanggal1 = Request.QueryString["tanggal"];
             }
             tanggalku = tanggal1;
-            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+            if (Request.QueryString["ruangan"] != null)
+            {
+                myroom = Request.QueryString["ruangan"].ToString();
+                if (myroom == "ruangan")
+                    myroom = "ruangan";
+                else
+                    myroom = "'" + myroom + "'";
+
+                if (myroom == "ruangan")
+                    ddlruang.Text = "-Semua Ruangan-";
+                else
+                    ddlruang.Text = Request.QueryString["ruangan"].ToString();
+                query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+                    checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
+                    and d.tanggal = '{tanggalku}' where r.kategori='week' and p.ruangan={myroom} order by r.id_perangkat";
+            }
+            else
+            {
+                query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
                     checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
                     and d.tanggal = '{tanggalku}' where r.kategori='week' order by r.id_perangkat";
+            } 
             tableticket();
         }
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
-            if (ddlruang.SelectedValue == "ruangan")
-                room = "ruangan";
-            else
-                room = "'" + ddlruang.Text + "'";
-
-            
-            tableticket();
+            room = ddlruang.SelectedValue;
+            Response.Redirect($"data2.aspx?ruangan={room}");
         }
 
         void tableticket()

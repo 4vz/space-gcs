@@ -1,0 +1,81 @@
+﻿T2-1des;T2-1de;Status
+T2-1dePr;T2-1de;Pressure
+T2-1mos;T2-1mo;Status
+T2-1mofr;T2-1mo;IF Frekuensi
+T2-1mopo;T2-1mo;IF Power
+T2-1rcus;T2-1rcu;Status
+T2-1rcu1S;T2-1rcu1;Status
+T2-1rcu1Co;T2-1rcu1;Converter
+T2-1rcu1Fr;T2-1rcu1;Frekuensi
+T2-1rcu1Pr;T2-1rcu1;Priority
+T2-1rcu1Ad;T2-1rcu1;Address
+T2-1rcu1At;T2-1rcu1;Attenuation
+T2-1uc1St;T2-1uc1;Status
+T2-1uc2Fr;T2-1uc2;Frekuensi
+T2-1uc3At;T2-1uc3;Attenuation
+T2-1uc2S;T2-1uc2;Status
+T2-1uc3Fr;T2-1uc3;Frekuensi
+T2-1uc4At;T2-1uc4;Attenuation
+T2-1uc3S;T2-1uc3;Status
+T2-1uc4Fr;T2-1uc4;Frekuensi
+T2-1uc5At;T2-1uc5;Attenuation
+T2-2acuS;T2-2acu;Status
+T2-2acuFr;T2-2acu;Frekuensi
+T2-2acuAz;T2-2acu;Azimuth
+T2-2acuEl;T2-2acu;Elevation
+T2-2acuPo;T2-2acu;Polarization
+T2-2acuRfI;T2-2acu;RF Input
+T2-2dcS;T2-2dc;Status
+T2-2dcFr;T2-2dc;Frekuensi
+T2-2dcAt;T2-2dc;Attenuation
+T2-2dc1S;T2-2dc1;Status
+T2-2dc1Fr;T2-2dc1;Frekuensi
+T2-2dc1At;T2-2dc1;Attenuation
+T2-2dc2S;T2-2dc2;Status
+T2-2dc2Fr;T2-2dc2;Frekuensi
+T2-2dc2At;T2-2dc2;Attenuation
+T2-2dtrFr;T2-2dtr;Frekuensi
+T2-2dtrCNo;T2-2dtr;C/No
+T2-2dtrTx;T2-2dtr;TX Level
+T2-2dtrDac;T2-2dtr;DAC 1
+T2-1mrcS;T2-1mrc;Status
+T2-2pmS;T2-2pm;Status
+T2-2pmLv;T2-2pm;Level
+T2-2rcuS;T2-2rcu;Status
+T2-2rcuCon;T2-2rcu;Converter
+T2-2rcuFr;T2-2rcu;Frekuensi
+T2-2rcuPri;T2-2rcu;Priority
+T2-2rcuAd;T2-2rcu;Address
+T2-2rcuAt;T2-2rcu;Attenuation
+T2-2rsS;T2-2rs;Status
+T2-2tltS;T2-2tlt;Status
+T2-3apsS;T2-3aps;Status
+T2-3hpa1S;T2-3hpa1;Status
+T2-3hpa1Rf;T2-3hpa1;RF Output
+T2-3hpa1At;T2-3hpa1;Attenuation
+T2-3hpa1BV;T2-3hpa1;Beam Voltage
+T2-3hpa1Hv;T2-3hpa1;Heater Voltage
+T2-3hpa1RRf;T2-3hpa1;Reflected RF
+T2-3hpa1Bc;T2-3hpa1;Body Current
+T2-3hpa1KC;T2-3hpa1;Klystron Channel
+T2-3hpa1BeC;T2-3hpa1;Beam Current
+T2-3hpa1CT;T2-3hpa1;Cabinet Temperature
+T2-3hpa1Ot;T2-3hpa1;Outlet Temperature
+T2-4hpa1S;T2-4hpa1;Status
+T2-4hpa1Rf;T2-4hpa1;RF Output
+T2-4hpa1At;T2-4hpa1;Attenuation
+T2-4hpa1BV;T2-4hpa1;Beam Voltage
+T2-4hpa1Hv;T2-4hpa1;Heater Voltage
+T2-4hpa1RRf;T2-4hpa1;Reflected RF
+T2-4hpa1Bc;T2-4hpa1;Body Current
+T2-4hpa1KC;T2-4hpa1;Klystron Channel
+T2-4hpa1BeC;T2-4hpa1;Beam Current
+T2-4hpa1CT;T2-4hpa1;Cabinet Temperature
+T2-4hpa1Ot;T2-4hpa1;Outlet Temperature
+T2-4hpa2S;T2-4hpa2;Status
+T2-4hpa2RF;T2-4hpa2;RF Output
+T2-4hpa2At;T2-4hpa2;Attenuation
+T2-4hpa2RRf;T2-4hpa2;Reflected RF
+T2-4hpa2HC;T2-4hpa2;Helix Current
+T2-4hpa2HV;T2-4hpa2;Helix Voltage
+T2-4ps1SS;T2-4ps1;Status

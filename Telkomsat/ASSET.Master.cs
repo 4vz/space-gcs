@@ -71,7 +71,8 @@ namespace Telkomsat
             else
             {
                 if (thisURL.ToLower().IsIn(new string[]{ "edit.aspx", "bangunan.aspx", "bangunanadd.aspx", "equipment.aspx", "rack.aspx", "rackadd.aspx",
-                "ruangan.aspx", "ruanganadd.aspx", "site.aspx", "siteadd.aspx", "equipment.aspx", "equipmentadd.aspx", "device.aspx", "deviceadd.aspx"}))
+                "ruangan.aspx", "ruanganadd.aspx", "site.aspx", "siteadd.aspx", "equipment.aspx", "equipmentadd.aspx", "device.aspx", "deviceadd.aspx"
+                , "merk.aspx", "merkadd.aspx"}))
                 {
                     Response.Redirect("alldata.aspx");
                 }
