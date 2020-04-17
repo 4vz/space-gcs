@@ -84,8 +84,9 @@ namespace Telkomsat.datalogbook
             tablefungsi();
             tablekonfigurasi();
             tablelain();
-            mytable();
             tablemain();
+            mytable();
+            
 
             if (sqlCon.State == ConnectionState.Closed)
                 sqlCon.Open();
@@ -418,11 +419,19 @@ namespace Telkomsat.datalogbook
                         {
                             int count = dsfkon.Tables[0].Rows.Count;
                             string looping = "";
+                            string loopingdelete = "";
                             string ulawal = "<ul>";
                             string ulakhir = "</ul>";
                             for (int j = 0; j < dsfkon.Tables[0].Rows.Count; j++)
                             {
-                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsfkon.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsfkon.Tables[0].Rows[j]["namafiles"].ToString() + "</a>" + "</li>";
+                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsfkon.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsfkon.Tables[0].Rows[j]["namafiles"].ToString() + "</a>";
+                                if (user == iduser || Session["previllage"].ToString() == "super")
+                                {
+                                    looping += $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?idfilekonfig={dsfkon.Tables[0].Rows[j]["id_file"].ToString()}&idlog={idlog}')\" class=\"pull-right tooltips\" style=\"margin-right:10px\">" + "(x)" + 
+                                       "<span class=\"tooltiptexts\">" + "Hapus lampiran" + "</span>" + "</a>" + "</li>";
+                                }               
+                                else
+                                    looping += "</li>";
                             }
                             htmlTableKonfigurasi.Append($"<td>" + ulawal + looping + ulakhir + "</td>");
                         }
@@ -513,7 +522,14 @@ namespace Telkomsat.datalogbook
                             string ulakhir = "</ul>";
                             for (int j = 0; j < dsfmain.Tables[0].Rows.Count; j++)
                             {
-                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsfmain.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsfmain.Tables[0].Rows[j]["namafiles"].ToString() + "</a>" + "</li>";
+                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsfmain.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsfmain.Tables[0].Rows[j]["namafiles"].ToString() + "</a>";
+                                if (user == iduser || Session["previllage"].ToString() == "super")
+                                {
+                                    looping += $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?idfilemain={dsfmain.Tables[0].Rows[j]["id_file"].ToString()}&idlog={idlog}')\" class=\"pull-right tooltips\" style=\"margin-right:10px\">" + "(x)" +
+                                       "<span class=\"tooltiptexts\">" + "Hapus lampiran" + "</span>" + "</a>" + "</li>";
+                                }
+                                else
+                                    looping += "</li>";
                             }
                             htmlTableMain.Append($"<td>" + ulawal + looping + ulakhir + "</td>");
                         }
@@ -605,7 +621,14 @@ namespace Telkomsat.datalogbook
                             string ulakhir = "</ul>";
                             for (int j = 0; j < dsflain.Tables[0].Rows.Count; j++)
                             {
-                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsflain.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsflain.Tables[0].Rows[j]["namafiles"].ToString() + "</a>" + "</li>";
+                                looping += "<li>" + $"<a href=\"../datalogbook/download.aspx?file={dsflain.Tables[0].Rows[j]["namafiles"].ToString()}\">" + dsflain.Tables[0].Rows[j]["namafiles"].ToString() + "</a>";
+                                if (user == iduser || Session["previllage"].ToString() == "super")
+                                {
+                                    looping += $"<a onclick=\"confirmhapus('../datalogbook/action.aspx?idfilelain={dsflain.Tables[0].Rows[j]["id_file"].ToString()}&idlog={idlog}')\" class=\"pull-right tooltips\" style=\"margin-right:10px\">" + "(x)" +
+                                       "<span class=\"tooltiptexts\">" + "Hapus lampiran" + "</span>" + "</a>" + "</li>";
+                                }
+                                else
+                                    looping += "</li>";
                             }
                             htmlTableLain.Append($"<td>" + ulawal + looping + ulakhir + "</td>");
                         }
@@ -1111,7 +1134,7 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=K");
         }
 
         protected void Lain_ServerClick3(object sender, EventArgs e)
@@ -1256,7 +1279,7 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
         }
 
 

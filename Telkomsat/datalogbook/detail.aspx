@@ -2,6 +2,28 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <style>
+        .tooltips {
+          border-bottom: 1px dotted red;
+          cursor:pointer;
+        }
+
+        .tooltips .tooltiptexts {
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+
+          /* Position the tooltip */
+          position: absolute;
+          z-index: 1;
+        }
+
+        .tooltips:hover .tooltiptexts {
+          visibility: visible;
+        }
         .ui-autocomplete { z-index:2147483647; }
         .gambar {
           float: left;
@@ -178,7 +200,7 @@
             </div>
             </div>
           
-        </div>
+    </div>
     <div class="modal fade" id="modalupdate">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -271,7 +293,7 @@
           </div>
         </div>
 
-            <div class="modal fade" id="modalmaintenance">
+       <div class="modal fade" id="modalmaintenance">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -741,6 +763,9 @@
             }
             else if ($('#<%=txtaddwork.ClientID %>').val() == 'L') {
                 $('#lainlain').addClass('in active')
+            }
+            else if ($('#<%=txtaddwork.ClientID %>').val() == 'N') {
+                $('#maintenance').addClass('in active')
             }
 
             var select = false;

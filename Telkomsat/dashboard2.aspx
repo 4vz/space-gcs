@@ -111,7 +111,7 @@
                                 <li><a href="../datalogbook/data.aspx">Logbook</a></li>
                                 <li><a href="../admin/dashboard.aspx">Administrator</a></li>
                                 <li class="dropdown-submenu">
-                                    <a class="test" tabindex="-1" href="#">Checklist <span class="caret"></span></a>
+                                    <a class="test" tabindex="-1" href="#">Checklist & Maintenance<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="../checkhk/dataharian.aspx">Harkat CBI</a></li>
                                         <li><a href="../checklistme/checkharian.aspx">ME CBI</a></li>

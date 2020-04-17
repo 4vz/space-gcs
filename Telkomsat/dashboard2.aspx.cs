@@ -253,10 +253,38 @@ namespace Telkomsat
 
         void checklist()
         {
+            SqlDataAdapter counthk, countme, countbjm;
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
             string tanggalkumalam = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
             DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
             string mytanggal = wib.ToString("yyyy/MM/dd");
+
+            sqlCon.Open();
+            string srcountme = "select count(*) as total from checkme_parameter";
+            DataSet dscountme = new DataSet();
+            SqlCommand cmdme = new SqlCommand(srcountme, sqlCon);
+            countme = new SqlDataAdapter(cmdme);
+            countme.Fill(dscountme);
+            sqlCon.Close();
+            int totalme = Convert.ToInt32(dscountme.Tables[0].Rows[0]["total"]);
+
+            sqlCon.Open();
+            string srcounthk = "select count(*) as total from checkhk_parameter where id_perangkat not like '%' + 'bjm' + '%'";
+            DataSet dscounthk = new DataSet();
+            SqlCommand cmdhk = new SqlCommand(srcounthk, sqlCon);
+            counthk = new SqlDataAdapter(cmdhk);
+            counthk.Fill(dscounthk);
+            sqlCon.Close();
+            int totalhk = Convert.ToInt32(dscounthk.Tables[0].Rows[0]["total"]);
+
+            sqlCon.Open();
+            string srcountbjm = "select count(*) as total from checkhk_parameter where id_perangkat like '%' + 'bjm' + '%'";
+            DataSet dscountbjm = new DataSet();
+            SqlCommand cmdbjm = new SqlCommand(srcountbjm, sqlCon);
+            countbjm = new SqlDataAdapter(cmdbjm);
+            countbjm.Fill(dscountbjm);
+            sqlCon.Close();
+            int totalbjm = Convert.ToInt32(dscountbjm.Tables[0].Rows[0]["total"]);
 
             sqlCon.Open();
             string querycheck = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
@@ -274,7 +302,7 @@ namespace Telkomsat
             double hasil, tampil;
             if (output > 0)
             {
-                hasil = ((double)output / 409) * 100;
+                hasil = ((double)output / totalme) * 100;
                 tampil = Math.Round(hasil);
                 divsiang.Style.Add("width", $"{tampil}%");
                 lblsiangme.Text = $"{tampil}% oleh {ds5.Tables[0].Rows[0]["nama"].ToString()}";
@@ -302,7 +330,7 @@ namespace Telkomsat
             double hasil1, tampil1;
             if (output1 > 0)
             {
-                hasil1 = ((double)output1 / 409) * 100;
+                hasil1 = ((double)output1 / totalme) * 100;
                 tampil1 = Math.Round(hasil1);
                 divpagi.Style.Add("width", $"{tampil1}%");
                 lblpagime.Text = $"{tampil1}% oleh {ds6.Tables[0].Rows[0]["nama"].ToString()}";
@@ -329,7 +357,7 @@ namespace Telkomsat
             double hasil2, tampil2;
             if (output2 > 0)
             {
-                hasil2 = ((double)output2 / 409) * 100;
+                hasil2 = ((double)output2 / totalme) * 100;
                 tampil2 = Math.Round(hasil2);
                 divmalam.Style.Add("width", $"{tampil2}%");
                 lblmalamme.Text = $"{tampil2}% oleh {ds7.Tables[0].Rows[0]["nama"].ToString()}";
@@ -358,7 +386,7 @@ namespace Telkomsat
             double hasil3, tampil3;
             if (output3 > 0)
             {
-                hasil3 = ((double)output3 / 764) * 100;
+                hasil3 = ((double)output3 / totalhk) * 100;
                 tampil3 = Math.Round(hasil3);
                 divhk.Style.Add("width", $"{tampil3}%");
                 lblchharkat.Text = $"{tampil3}% oleh {ds8.Tables[0].Rows[0]["nama"].ToString()}";
@@ -377,17 +405,17 @@ namespace Telkomsat
 									and r.id_perangkat like '%' + 'bjm' + '%' and d.data != ''
                                     group by CAST(d.tanggal as date), nama";
             DataSet dsbjm = new DataSet();
-            SqlCommand cmdbjm = new SqlCommand(querycheckbjm, sqlCon);
-            dabjm = new SqlDataAdapter(cmdbjm);
+            SqlCommand cmdbjm2 = new SqlCommand(querycheckbjm, sqlCon);
+            dabjm = new SqlDataAdapter(cmdbjm2);
             dabjm.Fill(dsbjm);
-            cmdbjm.ExecuteNonQuery();
+            cmdbjm2.ExecuteNonQuery();
             sqlCon.Close();
             if (dsbjm.Tables[0].Rows.Count > 0)
                 output4 = Convert.ToInt32(dsbjm.Tables[0].Rows[0]["total"].ToString());
             double hasilbjm, tampilbjm;
             if (output4 > 0)
             {
-                hasilbjm = ((double)output4 / 128) * 100;
+                hasilbjm = ((double)output4 / totalbjm) * 100;
                 tampilbjm = Math.Round(hasilbjm);
                 divbjm.Style.Add("width", $"{tampilbjm}%");
                 lblbjm.Text = $"{tampilbjm}% oleh {dsbjm.Tables[0].Rows[0]["nama"].ToString()}";

@@ -26,6 +26,50 @@ namespace Telkomsat.datalogbook
             string idlog = Request.QueryString["idlog"];
             string delete = Request.QueryString["del"];
             string tipe = Request.QueryString["tipe"];
+            string fileid = Request.QueryString["fileid"];
+            string filelain = Request.QueryString["idfilelain"];
+            string filemain = Request.QueryString["idfilemain"];
+            string filekonfig = Request.QueryString["idfilekonfig"];
+
+            if (filelain != null)
+            {
+                string query = $"DELETE table_log_file WHERE id_file = '{filelain}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=L");
+            }
+
+            if (filemain != null)
+            {
+                string query = $"DELETE table_log_file WHERE id_file = '{filemain}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
+            }
+
+            if (filekonfig != null)
+            {
+                string query = $"DELETE table_log_file WHERE id_file = '{filekonfig}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=K");
+            }
+
+            if (fileid != null)
+            {
+                string query = $"DELETE table_log_file WHERE id_file = '{fileid}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../datalogbook/edit.aspx?idlog={idlog}");
+            }
 
             if (delete != null)
             {

@@ -131,7 +131,7 @@
             <button type="submit" class="btn btn-default pull-right" runat="server" onserverclick="Unnamed_ServerClick">Submit</button>
         </div>
     </div>
-   
+   <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         var i = 1;
 
@@ -173,7 +173,20 @@
             $('#<%=txtstartdate.ClientID%>').datepicker('setEndDate', minDate);
             });
 
-        
+        function confirmhapus(deleteurl) {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data yang dihapus tidak akan kembali lagi',
+                buttons: true,
+                dangerMode: true,
+
+            }).then((willDelete)=>{
+                if (willDelete) {
+                    document.location = deleteurl;
+                }
+            });
+        }
+
 
     </script>
 </asp:Content>
