@@ -54,7 +54,7 @@
         
       <div class="container">
         <div class="navbar-header">
-          <a href="../dashboard2.aspx" class="navbar-brand"> <b>Telkomsat</b></a>
+          <a href="../dashboard2.aspx" class="navbar-brand"><i class="fa fa-home"> </i> <b>ME</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -73,8 +73,6 @@
                 <li><a href="year/data.aspx">Tahunan</a></li>
               </ul>
             </li>
-            <li><a href="../checkhk/harian.aspx">Harkat</a></li>
-            <li><a href="../checklistme/harian.aspx">ME</a></li>
           </ul>
           
         </div>

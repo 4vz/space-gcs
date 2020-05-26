@@ -730,6 +730,13 @@
             $('#<%=txtjenispekerjaan.ClientID %>').val('Mutasi');
         });
 
+        $(document).on("click", "#btnmain", function () {
+            var id = $(this).data('id');
+            console.log(id);
+            $("#id").val(id);
+            $('#<%=txtidl.ClientID %>').val(id);
+        });
+
         $(document).on("click", "#btnkonfigurasi", function () {
             var id = $(this).data('id');
             console.log(id);

@@ -121,6 +121,15 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.DropDownList txstatus;
         
         /// <summary>
+        /// ddlsatelit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsatelit;
+        
+        /// <summary>
         /// txtmulai control.
         /// </summary>
         /// <remarks>

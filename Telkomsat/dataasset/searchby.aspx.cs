@@ -64,6 +64,10 @@ namespace Telkomsat.dataasset
                 {
                     sqlcmd.Parameters.AddWithValue("@ruang", txtruang.Text);
                 }
+                if (ddlsatelit.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@satelit", ddlsatelit.Text);
+                }
 
                 if (txtmulai.Text != "")
                 {
@@ -198,7 +202,11 @@ namespace Telkomsat.dataasset
             {
                 sqlcmd.Parameters.AddWithValue("@ruang", txtruang.Text);
             }
-            
+            if (ddlsatelit.Text != "")
+            {
+                sqlcmd.Parameters.AddWithValue("@satelit", ddlsatelit.Text);
+            }
+
             if (txtmulai.Text != "")
             {
                 sqlcmd.Parameters.AddWithValue("@awal", txtmulai.Text);

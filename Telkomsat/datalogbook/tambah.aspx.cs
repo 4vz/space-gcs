@@ -69,6 +69,7 @@ namespace Telkomsat.datalogbook
             SqlCommand sqlcmd1 = new SqlCommand(queryupdate, sqlCon);
             sqlcmd1.ExecuteNonQuery();
             sqlCon.Close();
+            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=F");
 
         }
 
@@ -105,6 +106,7 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }
+            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=N");
         }
 
 
@@ -140,6 +142,7 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }
+            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=K");
         }
 
         protected void Lain_ServerClick3(object sender, EventArgs e)
@@ -174,6 +177,7 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }
+            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=L");
         }
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
@@ -249,7 +253,7 @@ namespace Telkomsat.datalogbook
             sqlcmd1.ExecuteNonQuery();
             sqlCon.Close();
 
-            Response.Redirect($"../datalogbook/tambah.aspx");
+            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=M");
         }
 
         public class inisial

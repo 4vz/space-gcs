@@ -117,6 +117,21 @@
                     <asp:TextBox ID="txtpicext" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="inputEmail3" class="pull-right">Sub Pekerjaan</label>
+                </div>   
+                <div class="col-sm-10">
+                    <asp:DropDownList ID="ddlpekerjaan" runat="server" CssClass="form-control">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>Mutasi</asp:ListItem>
+                        <asp:ListItem>Fungsi & Status</asp:ListItem>
+                        <asp:ListItem>Konfigurasi</asp:ListItem>
+                        <asp:ListItem>Maintenance</asp:ListItem>
+                        <asp:ListItem>Lain-lain</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
             
             <h4>Tanggal</h4>
             </div>

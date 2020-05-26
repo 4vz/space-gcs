@@ -15,13 +15,17 @@ namespace Telkomsat.checkhk
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string tanggal, waktu, tanggal1;
+        bool v = false;
         DateTime wib;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
             tanggal = Request.QueryString["tanggal"];
-            tablepersen();
+            
+            if (Request.QueryString["view"] != null)
+                v = true;
 
+            tablepersen();
         }
 
         void tablepersen()
@@ -95,7 +99,7 @@ namespace Telkomsat.checkhk
                         htmltable.Append("<div class=\"col-md-6\">");
                     }
                     htmltable.Append("<div class=\"progress-group\">");
-                    if (tanggal == tanggal1)
+                    if (tanggal == tanggal1 && !v)
                         htmltable.Append($"<a class=\"link\" href=\"../checkhk/harian.aspx?room={ruang}&tanggal={tanggal}\" style=\"font-size:12px;\">" + ruang + "</a>");
                     else
                         htmltable.Append($"<a class=\"link\" href=\"../checkhk/view.aspx?ruangan={ruang}&tanggal={tanggal}\" style=\"font-size:12px;\">" + ruang + "</a>");

@@ -748,11 +748,14 @@ namespace Telkomsat.datalogbook
                     {
                         while (sdr.Read())
                         {
+                            DateTime start = (DateTime)sdr["startdate"];
+                            DateTime end = (DateTime)sdr["enddate"];
                             dadevices.Add(new dataedit
                             {
+
                                 idlain = sdr["id_pekerjaan"].ToString(),
-                                awallain = sdr["startdate"].ToString(),
-                                akhirlain = sdr["enddate"].ToString(),
+                                awallain = start.ToString("yyyy/MM/dd"),
+                                akhirlain = end.ToString("yyyy/MM/dd"),
                                 statuslain = sdr["status"].ToString(),
                                 keteranganlain = sdr["deskripsi"].ToString(),
                             });
@@ -779,11 +782,14 @@ namespace Telkomsat.datalogbook
                     {
                         while (sdr.Read())
                         {
+                            DateTime start = (DateTime)sdr["startdate"];
+                            DateTime end = (DateTime)sdr["enddate"];
                             dadevices.Add(new dataedit
                             {
+                                
                                 idmain = sdr["id_pekerjaan"].ToString(),
-                                awalmain = sdr["startdate"].ToString(),
-                                akhirmain = sdr["enddate"].ToString(),
+                                awalmain = start.ToString("yyyy/MM/dd"),
+                                akhirmain = end.ToString("yyyy/MM/dd"),
                                 statusmain = sdr["status"].ToString(),
                                 keteranganmain = sdr["deskripsi"].ToString(),
                             });
@@ -810,11 +816,14 @@ namespace Telkomsat.datalogbook
                     {
                         while (sdr.Read())
                         {
+                            DateTime start = (DateTime)sdr["startdate"];
+                            DateTime end = (DateTime)sdr["enddate"];
                             dadevices.Add(new dataedit
                             {
+                                
                                 idkonfig = sdr["id_pekerjaan"].ToString(),
-                                awalkonfig = sdr["startdate"].ToString(),
-                                akhirkonfig = sdr["enddate"].ToString(),
+                                awalkonfig = start.ToString("yyyy/MM/dd"),
+                                akhirkonfig = end.ToString("yyyy/MM/dd"),
                                 statuskonfig = sdr["status"].ToString(),
                                 keterangankonfig = sdr["deskripsi"].ToString(),
                             });

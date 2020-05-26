@@ -10,6 +10,7 @@ using System.Web.Services;
 using System.Configuration;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Telkomsat.maintenancehk.bulanan
 {
@@ -17,9 +18,9 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string[] akhir;
-        string query, query1, room, idddl, nilai, value, user, dataa;
-        int j = 0;
-        string[] dataku;
+        string query, query1, room, idddl, nilai, value, user, dataa, bulan, valuetgl;
+        int j = 0, m = 0;
+        string[] dataku, loopingtgl;
         protected void Page_Load(object sender, EventArgs e)
         {
             /*DateTime now = DateTime.Now;
@@ -48,10 +49,10 @@ namespace Telkomsat.maintenancehk.bulanan
             {
                 Response.Redirect($"isidata.aspx?room={room}");
             }
-
+            bulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 
             query = $@"select * from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
-                    where d.tanggal >= '{start}' and d.tanggal <= '{end}' and ruangan = '{room}'";
+                    where bulan='{bulan}' and ruangan = '{room}'";
 
             lblroom.Text = " " + room;
 
@@ -98,7 +99,7 @@ namespace Telkomsat.maintenancehk.bulanan
             SqlDataAdapter da2;
             DataSet ds2 = new DataSet();
             query5 = $@"select id_data from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
-                    where tanggal >= '2020-03-01' and tanggal <= '2020-03-30' and ruangan = '{room}'";
+                    where bulan='{bulan}' and ruangan = '{room}'";
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 
@@ -117,7 +118,7 @@ namespace Telkomsat.maintenancehk.bulanan
                     for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
                     {
                         myid = ds2.Tables[0].Rows[i]["id_data"].ToString();
-                        string myquery1 = $@"UPDATE checkhk_bulan_data SET data = '{dataku[i]}' WHERE id_data = '{myid}'";
+                        string myquery1 = $@"UPDATE checkhk_bulan_data SET data = '{dataku[i]}', tanggal = '{loopingtgl[i]}' WHERE id_data = '{myid}'";
                         sqlCon.Open();
                         SqlCommand sqlcmd = new SqlCommand(myquery1, sqlCon);
                         sqlcmd.ExecuteNonQuery();
@@ -128,17 +129,7 @@ namespace Telkomsat.maintenancehk.bulanan
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 
-        protected void Filter_ServerClick(object sender, EventArgs e)
-        {
-            if (TextBox2.Text == "")
-            {
-                lblwarning.Visible = true;
-                lblwarning.Text = "  Pilih ruangan terlebih dahulu";
-            }
-            string room;
-            room = TextBox2.Text;
-            Response.Redirect($"isidata.aspx?room={room}");
-        }
+       
 
         void tableticket()
         {
@@ -146,7 +137,7 @@ namespace Telkomsat.maintenancehk.bulanan
             SqlDataAdapter da;
             DataSet ds = new DataSet();
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            string IDdata, ruangan, rack, tipe, sn, lokasi, style3, perangkat;
+            string IDdata, ruangan, rack, tipe, sn, lokasi, style3, perangkat, tgl;
             //Response.Write(query);
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -158,13 +149,14 @@ namespace Telkomsat.maintenancehk.bulanan
 
             htmlTable.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.AppendLine("<thead>");
-            htmlTable.AppendLine("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"min-width:100px\">Nilai Parameter</th></tr>");
+            htmlTable.AppendLine("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"min-width:100px\">Nilai Parameter</th><th>Tanggal Pengerjaan</th></tr>");
             htmlTable.AppendLine("</thead>");
 
             htmlTable.AppendLine("<tbody>");
 
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
+            loopingtgl = new string[count];
             akhir = new string[count];
             dataku = new string[count];
             if (!object.Equals(ds.Tables[0], null))
@@ -189,6 +181,13 @@ namespace Telkomsat.maintenancehk.bulanan
 
                         if (Request.QueryString["inisialmeh"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
+
+                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
+                        tgl = date1.ToString("yyyy/MM/dd");
+
+                        if (tgl == "1900/01/01")
+                            tgl = "";
+
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.AppendLine("<tr>");
@@ -199,15 +198,26 @@ namespace Telkomsat.maintenancehk.bulanan
                             htmlTable.AppendLine("<td>" + "<input type=\"text\" runat=\"server\" class=\"form-control\" style=\"background-color:#0932ff\" value=\"Clean\" name=\"idticket\" readonly />" + "</td>");
                         else
                             htmlTable.AppendLine("<td>" + $"<select class=\"form-control dropdown selectcolor\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Unclean\" > Unclean </option><option value =\"Clean\"> Clean </option></select >" + "</td>");
+                        htmlTable.Append("<td>" + $"<input type=\"text\" value=\"{tgl}\" class=\"form-control tgldata\" name=\"tgl\" autocomplete=\"off\" />" + "</td>");
                         htmlTable.AppendLine("</tr>");
                         value = Request.Form["idticket"];
                         //Response.Write(value);
-
+                        valuetgl = Request.Form["tgl"];
                         looping[i] = IDdata;
 
                         //Response.Write( "bisa" + words[1]);
                         int j = i - 1;
 
+                    }
+                    if (valuetgl != null)
+                    {
+                        string[] datelines = Regex.Split(valuetgl, ",");
+
+                        foreach (string dateline in datelines)
+                        {
+                            loopingtgl[m] = dateline;
+                            m++;
+                        }
                     }
                     if (value != null)
                     {

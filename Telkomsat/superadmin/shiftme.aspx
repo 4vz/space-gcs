@@ -15,7 +15,6 @@
     <link href="../assets/plugins/AdminLTE/skins/_all-skins.min.css" rel="stylesheet" />
     <link href="../assets/plugins/pace/pace.min.css" rel="stylesheet" />
     <link href="../assets/css/style.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
     <link href="../Style2.css" rel="stylesheet" />
     <link href="../Style1.css?version2" rel="stylesheet" />
     <link href="../stylepagination.css?version=2" rel="stylesheet" />

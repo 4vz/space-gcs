@@ -19,7 +19,10 @@ namespace Telkomsat
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string tanggal;
+            tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             lblProfile1.Text = Session["nama1"].ToString();
+            aharian.Attributes["href"] = $"checkhk/dashboard.aspx?tanggal={tanggal}";
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

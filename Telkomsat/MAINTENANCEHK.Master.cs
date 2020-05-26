@@ -20,11 +20,14 @@ namespace Telkomsat
         protected void Page_Load(object sender, EventArgs e)
         {
             lblProfile1.Text = Session["nama1"].ToString();
+            string tanggal;
+            tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 2];
             if (thisURL.ToLower() == "bulanan/") divbulanan.Attributes.Add("class", "small-box bg-aqua-gradient");
             if (thisURL.ToLower() == "tigabulan/") divtiga.Attributes.Add("class", "small-box bg-aqua-gradient");
             if (thisURL.ToLower() == "semester/") divsemester.Attributes.Add("class", "small-box bg-aqua-gradient");
             if (thisURL.ToLower() == "tahunan/") divtahun.Attributes.Add("class", "small-box bg-aqua-gradient");
+            aharian.Attributes["href"] = $"checkhk/dashboard.aspx?tanggal={tanggal}";
             //Response.Write(thisURL);
         }
 

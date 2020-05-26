@@ -269,7 +269,8 @@ namespace Telkomsat
             int totalme = Convert.ToInt32(dscountme.Tables[0].Rows[0]["total"]);
 
             sqlCon.Open();
-            string srcounthk = "select count(*) as total from checkhk_parameter where id_perangkat not like '%' + 'bjm' + '%'";
+            string srcounthk = @"select count(*) as total from checkhk_parameter r join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
+                                where t.id_perangkat not like '%' + 'bjm' + '%' ";
             DataSet dscounthk = new DataSet();
             SqlCommand cmdhk = new SqlCommand(srcounthk, sqlCon);
             counthk = new SqlDataAdapter(cmdhk);
@@ -278,7 +279,8 @@ namespace Telkomsat
             int totalhk = Convert.ToInt32(dscounthk.Tables[0].Rows[0]["total"]);
 
             sqlCon.Open();
-            string srcountbjm = "select count(*) as total from checkhk_parameter where id_perangkat like '%' + 'bjm' + '%'";
+            string srcountbjm = @"select count(*) as total from checkhk_parameter r join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
+                                where t.id_perangkat like '%' + 'bjm' + '%' ";
             DataSet dscountbjm = new DataSet();
             SqlCommand cmdbjm = new SqlCommand(srcountbjm, sqlCon);
             countbjm = new SqlDataAdapter(cmdbjm);

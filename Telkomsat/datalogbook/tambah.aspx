@@ -100,13 +100,13 @@
                     </div>
                      <div class="row">
                         <div class="col-md-12">
-                            <asp:Label ID="Label9" runat="server" Text="Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
+                            <asp:Label ID="Label9" runat="server" Text="Deskripsi Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
                             <asp:TextBox ID="txtAktivitas" TextMode="MultiLine" runat="server" Height="100px" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <label for="exampleInputFile">Lampiran</label>
+                            <label for="exampleInputFile">Lampiran</label><span style="color:red"> *</span>
                             <div id="dvfiles">
                                 <table class="table table-bordered kita" id="tableku" runat="server">
                                     <thead>
@@ -518,6 +518,13 @@
         $(document).on("click", "#btnkonfigurasi", function () {
             $(".datepick").datepicker({startDate:null,autoclose: true,
             format: 'yyyy/mm/dd' ,endDate :null});
+            var id = $(this).data('id');
+            console.log(id);
+            $("#id").val(id);
+            $('#<%=txtidl.ClientID %>').val(id);
+        });
+
+        $(document).on("click", "#btnmain", function () {
             var id = $(this).data('id');
             console.log(id);
             $("#id").val(id);

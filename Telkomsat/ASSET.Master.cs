@@ -67,12 +67,16 @@ namespace Telkomsat
 
             if (Session["previllage"].ToString() == "adminme" || Session["previllage"].ToString() == "adminhk" || Session["previllage"].ToString() == "super"
                 || Session["previllage"].ToString() == "bendahara")
+            {
+                divtambah.Visible = true;
                 divadmin.Visible = true;
+            }
+                
             else
             {
                 if (thisURL.ToLower().IsIn(new string[]{ "edit.aspx", "bangunan.aspx", "bangunanadd.aspx", "equipment.aspx", "rack.aspx", "rackadd.aspx",
                 "ruangan.aspx", "ruanganadd.aspx", "site.aspx", "siteadd.aspx", "equipment.aspx", "equipmentadd.aspx", "device.aspx", "deviceadd.aspx"
-                , "merk.aspx", "merkadd.aspx"}))
+                , "merk.aspx", "merkadd.aspx", "tambahdata.aspx"}))
                 {
                     Response.Redirect("alldata.aspx");
                 }

@@ -85,6 +85,19 @@
                 </asp:DropDownList>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="inputEmail3" class="pull-right">Kelompok Satelit</label>
+                </div>   
+                <div class="col-sm-10">
+                    <asp:DropDownList ID="ddlsatelit" runat="server" CssClass="form-control">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>Telkom 2</asp:ListItem>
+                        <asp:ListItem>Telkom 3S</asp:ListItem>
+                        <asp:ListItem>MPSat</asp:ListItem>
+                </asp:DropDownList>
+                </div>
+            </div>
             <h4>Tahun Pengadaan</h4>
             </div>
             <div class="row">

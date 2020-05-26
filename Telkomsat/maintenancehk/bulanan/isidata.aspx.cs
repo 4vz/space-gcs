@@ -10,6 +10,7 @@ using System.Web.Services;
 using System.Configuration;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Telkomsat.maintenancehk.bulanan
 {
@@ -17,8 +18,8 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string[] akhir;
-        string query, query1, room, idddl, nilai, value, user;
-        int j = 0;
+        string query, query1, room, idddl, nilai, value, user, idtgl, valuetgl, bulan, angkabulan;
+        int j = 0, m=0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["room"] != null)
@@ -41,8 +42,10 @@ namespace Telkomsat.maintenancehk.bulanan
                     Response.Redirect($"editdata.aspx?room={room}");
                 }
 
-            }            
-            
+            }
+            angkabulan = DateTime.Now.Month.ToString();
+            bulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+
             query = $@"select * from checkhk_bulan_perangkat where ruangan = '{room}'";
 
          
@@ -90,25 +93,13 @@ namespace Telkomsat.maintenancehk.bulanan
            
             sqlCon.Close();
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_bulan_data (tanggal, id_profile, id_main, data) values {data}";
+            query1 = $"insert into checkhk_bulan_data (id_profile, id_main, tanggal, bulan, data, angkabulan) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            
             //Response.Write(query1);
-        }
-
-        protected void Filter_ServerClick(object sender, EventArgs e)
-        {
-            if (TextBox2.Text == "")
-            {
-                lblwarning.Visible = true;
-                lblwarning.Text = "  Pilih ruangan terlebih dahulu";
-            }
-            string room;
-            room = TextBox2.Text;
-            Response.Redirect($"isidata.aspx?room={room}");
+            //Response.Write(query1);
         }
 
         void tableticket()
@@ -129,13 +120,14 @@ namespace Telkomsat.maintenancehk.bulanan
 
             htmlTable.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.AppendLine("<thead>");
-            htmlTable.AppendLine("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"min-width:100px\">Nilai Parameter</th></tr>");
+            htmlTable.AppendLine("<tr><th>Rack</th><th>Perangkat</th><th>Serial Number</th><th style=\"min-width:100px\">Nilai Parameter</th><th>Tanggal Pengerjaan</th></tr>");
             htmlTable.AppendLine("</thead>");
 
             htmlTable.AppendLine("<tbody>");
 
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
+            string[] loopingtgl = new string[count];
             akhir = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
@@ -155,6 +147,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         style3 = "font-weight:normal; font-size:12px;";
 
                         idddl = "ddl" + IDdata;
+                        idddl = "tgl" + IDdata;
 
                         if (Request.QueryString["inisialmeh"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
@@ -166,8 +159,10 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + sn + "</label>" + "</td>");
                         if (tipe == "cu")
                             htmlTable.AppendLine("<td>" + $"<select class=\"form-control dropdown selectcolor\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Unclean\" > Unclean </option><option value =\"Clean\"> Clean </option></select >" + "</td>");
+                        htmlTable.Append("<td>" + $"<input type=\"text\" class=\"form-control tgldata\" name=\"tgl\" id=\"{idtgl}\" autocomplete=\"off\" />" + "</td>");
                         htmlTable.AppendLine("</tr>");
                         value = Request.Form["idticket"];
+                        valuetgl = Request.Form["tgl"];
                         //Response.Write(value);
 
                         looping[i] = IDdata;
@@ -176,6 +171,16 @@ namespace Telkomsat.maintenancehk.bulanan
                         int j = i - 1;
 
                     }
+                    if (valuetgl != null)
+                    {
+                        string[] datelines = Regex.Split(valuetgl, ",");
+
+                        foreach (string dateline in datelines)
+                        {
+                            loopingtgl[m] = dateline;
+                            m++;
+                        }
+                    }
                     if (value != null)
                     {
                         string[] lines = Regex.Split(value, ",");
@@ -183,7 +188,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "12" + "','" + looping[j] + "','" + line + "')";
+                            akhir[j] = "('" +  "12" + "','" + looping[j] + "','"  + loopingtgl[j] + "','" + bulan + "','" + line + "','" + angkabulan + "')";
                             j++;
                         }
                     }

@@ -124,7 +124,7 @@
         <li class="treeview"><a href="../dataasset/alldata.aspx">
             <i class="fa fa-database"></i><span><b>All Data</b></span></a></li>
           
-        <li class="treeview"><a href="../dataasset/tambahdata.aspx">
+        <li class="treeview" id="divtambah" runat="server" visible="false"><a href="../dataasset/tambahdata.aspx">
             <i class="fa fa-plus"></i><span><b>Tambah Data</b></span></a></li>
           <li class="treeview"><a href="../dataasset/searchby.aspx">
             <i class="fa fa-filter"></i><span><b>Search By</b></span></a></li>

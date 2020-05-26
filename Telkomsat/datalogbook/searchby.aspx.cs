@@ -112,7 +112,10 @@ namespace Telkomsat.datalogbook
                 {
                     sqlcmd.Parameters.AddWithValue("@external", txtpicext.Text);
                 }
-
+                if (ddlpekerjaan.Text != "")
+                {
+                    sqlcmd.Parameters.AddWithValue("@pekerjaan", ddlpekerjaan.Text);
+                }
                 if (DropDownList1.Text != "")
                 {
                     sqlcmd.Parameters.AddWithValue("@nama", DropDownList1.Text);
@@ -192,6 +195,10 @@ namespace Telkomsat.datalogbook
                 sqlcmd.Parameters.AddWithValue("@nama", DropDownList1.Text);
             }
 
+            if (ddlpekerjaan.Text != "")
+            {
+                sqlcmd.Parameters.AddWithValue("@pekerjaan", ddlpekerjaan.Text);
+            }
             if (txtmulai.Text != "")
             {
                 sqlcmd.Parameters.AddWithValue("@mulai", txtmulai.Text);
