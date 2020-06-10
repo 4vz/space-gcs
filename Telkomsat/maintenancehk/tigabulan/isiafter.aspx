@@ -6,6 +6,7 @@
         <div class="box box-primary">
         <div class="box-header with-border">
             <asp:Label ID="lblroom" runat="server" Text="Maintenance Semester Harkat" Font-Size="Large" Font-Bold="true"></asp:Label>
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Edit Data Before" CssClass="btn btn-sm btn-primary pull-right" />
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->

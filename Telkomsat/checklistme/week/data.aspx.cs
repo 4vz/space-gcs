@@ -16,7 +16,7 @@ namespace Telkomsat.checklistme.week
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", tanggalku = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, start, end, inisial, siang = "", malam = "", tanggal1;
+        string mingguan = "a", bulanan = "A", tanggalku = "s", tahunan = "1", idtxt = "A", loop = "", ruangan, tipe, tahun, room, start, end, bulan, siang = "", malam = "", tanggal1;
         string[] words = { "a", "a" };
         string[] akhir;
         string tanggal, petugas;
@@ -30,8 +30,9 @@ namespace Telkomsat.checklistme.week
                 tanggal1 = Request.QueryString["tanggal"];
             }
             tanggalku = tanggal1;
-            query = $@"select d.tanggal, p.nama from checkme_datawmy d left join Profile p on d.id_profile = p.id_profile where d.jenis = 'week'
-                    group by tanggal, nama order by d.tanggal desc";
+            query = $@"select week, d.month, d.tahun from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
+                    where r.kategori = 'week' group by week, month, tahun order by week desc, tahun";
+
             if(!IsPostBack)
             {
                 tableticket();
@@ -41,55 +42,19 @@ namespace Telkomsat.checklistme.week
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
-            start = ddltahun.Text + "/" + ddlbulan.SelectedValue + "/01";
-            if(ddlbulan.SelectedValue != "bulan")
-                endbulan = Convert.ToInt32(ddlbulan.SelectedValue) + 1;
-            if(ddltahun.SelectedValue !="tahun")
-                endtahun = Convert.ToInt32(ddltahun.Text);
-            if (ddlbulan.SelectedValue == "12")
-            {
-                if (ddltahun.SelectedValue == "tahun")
-                {
-                    start = "2019" + "/" + "01" + "/01";
-                    end = "2035" + "/" + "01" + "/01";
-                }
-                else
-                {
-                    endtahun = Convert.ToInt32(ddltahun.Text) + 1;
-                    endbulan = 1;
-                    end = endtahun + "/" + endbulan + "/01";
-                }
-                
-            }
-            else if(ddlbulan.SelectedValue == "bulan")
-            {
-                if (ddltahun.SelectedValue == "tahun")
-                {
-                    start = "2019" + "/" + "01" + "/01";
-                    end = "2035" + "/" + "01" + "/01";
-                }
-                else
-                {
-                    endtahun = Convert.ToInt32(ddltahun.Text) + 1;
-                    start = ddltahun.Text + "/" + "01" + "/01";
-                    end = endtahun + "/" + "01" + "/01";
-                }            
-            }
+            if (ddlbulan.SelectedValue == "bulan")
+                bulan = "month";
             else
-            {
-                end = endtahun + "/" + endbulan + "/01";
-            }
-            
-            if(ddltahun.SelectedValue == "tahun")
-            {
-                start = "2019" + "/" + "01" + "/01";
-                end = "2035" + "/" + "01" + "/01";
-            }
+                bulan = "'" + ddlbulan.Text + "'";
 
+            if (ddltahun.SelectedValue == "tahun")
+                tahun = "tahun";
+            else
+                tahun = "'" + ddltahun.Text + "'";
 
-            query = $@"select d.tanggal, p.nama from checkme_datawmy d left join Profile p on d.id_profile = p.id_profile where d.jenis = 'week' and
-                    '{start}' <= d.tanggal and d.tanggal < '{end}'
-                    group by tanggal, nama order by d.tanggal desc";
+            query = $@"select week, d.month, d.tahun from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
+                    where r.kategori = 'week' and month = {bulan} and tahun = {tahun}
+                    group by week, d.month, d.tahun order by week desc";
             tableticket();
         }
 
@@ -104,7 +69,7 @@ namespace Telkomsat.checklistme.week
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Petugas</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>#</th><th>Minggu</th><th>Bulan</th><th>Tahun</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -115,14 +80,16 @@ namespace Telkomsat.checklistme.week
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
-                        tanggal = date1.ToString("yyyy/MM/dd");
-                        petugas = ds.Tables[0].Rows[i]["nama"].ToString();
+                        mingguan = ds.Tables[0].Rows[i]["week"].ToString();
+                        bulanan = ds.Tables[0].Rows[i]["month"].ToString();
+                        tahunan = ds.Tables[0].Rows[i]["tahun"].ToString();
 
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + petugas + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checklistme/week/data2.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.AppendLine("<td>" + "<label style=\"font-size:13px\">" + (i + 1) + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + "Minggu ke- " + mingguan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + bulanan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + tahunan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checklistme/week/data2.aspx?minggu={mingguan}&tahun={tahunan}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

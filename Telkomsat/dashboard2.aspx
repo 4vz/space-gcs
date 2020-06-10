@@ -27,12 +27,12 @@
     <style type="text/css">
         @media all and (min-width:1500px) {
             .container {
-                width:1330px;
+                width:1200px;
             }
         }
         @media all and (min-width:1700px) {
             .container {
-                width: 1560px;
+                width: 1460px;
             }
         }
 
@@ -78,12 +78,46 @@
         .dropdown-submenu {
           position: relative;
         }
-
+            
         .dropdown-submenu .dropdown-menu {
           top: 0;
           left: 100%;
           margin-top: -1px;
         }
+
+        .progress{
+            margin-bottom:5px;
+            background-color:rgba(0,0,0,0.1);
+        }
+
+        .info-box-icon {
+            height:70px;
+            width:70px;
+            border-top-left-radius: 0;
+            line-height: 70px;
+        }
+
+        .warnaputih{
+            color:white;
+        
+        }
+
+        .bg-black-gradient{
+            background-color:aliceblue !important;
+        }
+
+        .progress.sm, .progress-sm{
+            height:4px;
+        }
+
+        .carousel-control.right{
+                background-image: linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,0) 100%);
+        }
+
+        .carousel-control.left{
+                background-image: linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,0) 100%);
+        }
+
     </style>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -189,7 +223,7 @@
                     <asp:Label CssClass="breadcrumb waktuu" ID="lblwaktu1" runat="server" Text="Label" Font-Bold="true" ForeColor="#808080" Font-Size="Large"></asp:Label>
         
                 </section>
-            <asp:TextBox ID="txtpie" CssClass="hidden" runat="server" Text=""></asp:TextBox>
+                <asp:TextBox ID="txtpie" CssClass="hidden" runat="server" Text=""></asp:TextBox>
                 <asp:TextBox ID="txtsent" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtconfirm" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtcomplete" CssClass="hidden" runat="server"></asp:TextBox>
@@ -198,121 +232,179 @@
                 <!-- Main content -->
                 <section class="content no-padding">
                     <div class="row">
-                        <a id="aharkat" runat="server">
-                        <div class="col-md-3 col-sm-6 col-xs-12"> 
-                            <div class="info-box bg-aqua">
-                            <span class="info-box-icon"><i class="fa fa-calendar-o"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Checklist Harkat</span>
-                                <span class="info-box-number">Reguler</span>
-
-                            <div class="progress">
-                            <div class="progress-bar" runat="server" id="divhk" style="width: 0%"></div>
-                            </div>
-                        <asp:Label ID="lblchharkat" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
-                        </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    </a>
-            <!-- /.col -->
-                     <a id="amalam" runat="server">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box bg-green">
-                        <span class="info-box-icon"><i class="fa fa-star-o"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Checklist ME</span>
-                            <span class="info-box-number">Malam</span>
-
-                            <div class="progress">
-                            <div class="progress-bar" runat="server" id="divmalam" style="width: 0%"></div>
-                            </div>
-                                <asp:Label ID="lblmalamme" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
-                        </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                        </a>
-                        <a id="apagi" runat="server">
-                    <!-- /.col --> 
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box bg-yellow">
-                        <span class="info-box-icon"><i class="fa fa-moon-o"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Checklist ME</span>
-                            <span class="info-box-number">Pagi</span>
-
-                            <div class="progress">
-                            <div class="progress-bar" runat="server" id="divpagi" style="width: 0%"></div>
-                            </div>
-                                <asp:Label ID="lblpagime" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
-                        </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                       </a>
-                        <a id="asiang" runat="server">   
-                    <!-- /.col -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box bg-red">
-                        <span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Checklist ME</span>
-                            <span class="info-box-number">Siang</span>
-
-                            <div class="progress">
-                            <div class="progress-bar" runat="server" id="divsiang" style="width: 0%"></div>
-                            </div>
-                                <asp:Label ID="lblsiangme" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
-                        </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                            </a>
-                    <!-- /.col -->
-                    </div>
-                <div class="row">
-                        <a id="a1" runat="server">
-                            <div class="col-md-3 col-sm-6 col-xs-12"> 
-                                <div class="info-box bg-blue">
-                                <span class="info-box-icon"><i class="fa fa-calendar-o"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Checklist Harkat BJM</span>
-                                    <span class="info-box-number">Reguler</span>
-
-                                <div class="progress">
-                                <div class="progress-bar" runat="server" id="divbjm" style="width: 0%"></div>
+                        <div class="col-md-3">
+                            <div class="box"  style="height:100%">
+                                <div class="box-header with-border" style="background-color:#009abf">
+                                    <span style="color:white">Checklist Harkat</span>
                                 </div>
-                            <asp:Label ID="lblbjm" CssClass="progress-description" runat="server" Text="Tidak ada data checklist"></asp:Label>
-                            </div>
-                            <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        </a>
-                    <div class="col-lg-9 col-sm-12 col-xs-12">
-                      <div class="info-box">
-                        <span class="info-box-icon bg-purple-active"><i class="ion ion-ios-gear-outline"></i></span>
+                                <div class="box-body bg-aqua">
+                                    <a id="aharkat" runat="server" style="color:black">
+                                    <span class="info-box-icon warnaputih"><i class="fa fa-calendar-o"></i></span>
+                                        </a>
+                                    <div class="info-box-content">
+                                        
+                                            <span class="info-box-number warnaputih">Cibinong</span>
 
-                        <div class="info-box-content">
-                          <span class="info-box-text">Maintenance</span>
-                          <span class="info-box-number">Sedang on progress untuk dashboard maintenance</span>
+                                        <div class="progress sm">
+                                        <div class="progress-bar" runat="server" id="divhk" style="width: 0%; background-color:whitesmoke"></div>
+                                        </div>
+                                    <asp:Label ID="lblchharkat" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                            
+                                    </div>
+                                    <br />
+                                    <a id="a1" runat="server" style="color:black">
+                                    <span class="info-box-icon warnaputih"><i class="fa fa-calendar-o"></i></span>
+                                        </a>
+                                    <div class="info-box-content" style="padding-bottom:91px">
+                                        <span class="info-box-number warnaputih">Banjarmasin</span>
+
+                                        <div class="progress sm">
+                                        <div class="progress-bar progress-bar-red" runat="server" id="divbjm" style="width: 0%; background-color:whitesmoke"></div>
+                                        </div>
+                                    <asp:Label ID="lblbjm" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                </div>
-                        
+                        <div class="col-md-3">
+                            <div class="box" style="height:100%">
+                                <div class="box-header with-border" style="background-color:#cc4659">
+                                    <span style="color:white">Checklist ME</span>
+                                </div>
+                                <div class="box-body" style="background-color:#ff576f">
+                                    <a id="amalam" runat="server" style="color:black">
+                                        <span class="info-box-icon" style="color:white"><i class="fa fa-star-o"></i></span>
+                                        </a>
+                                        <div class="info-box-content">
+                                                <span class="info-box-number warnaputih">Malam</span>
+
+                                                <div class="progress sm">
+                                                <div class="progress-bar progress-bar-red" runat="server" id="divmalam" style="width: 0%; background-color:whitesmoke"></div>
+                                                </div>
+                                                    <asp:Label ID="lblmalamme" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                        </div>
+                                    
+                                        <br />
+                                        <a id="apagi" runat="server"  style="color:black">
+                                         <span class="info-box-icon warnaputih"><i class="fa fa-moon-o"></i></span>
+                                            </a>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number warnaputih">Pagi</span>
+
+                                                <div class="progress sm" style="margin-bottom:0px">
+                                                <div class="progress-bar progress-bar-red" runat="server" id="divpagi" style="width: 80%; background-color:whitesmoke"></div>
+                                                </div>
+                                                    <asp:Label ID="lblpagime" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                        </div>
+                                        <br />
+                                        <a id="asiang" runat="server" style="color:black">
+                                        <span class="info-box-icon warnaputih"><i class="fa fa-sun-o"></i></span>
+                                        </a>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number warnaputih">Siang</span>
+
+                                                <div class="progress sm">
+                                                <div class="progress-bar progress-bar-green" runat="server" id="divsiang" style="width: 0%; background-color:whitesmoke"></div>
+                                                </div>
+                                                    <asp:Label ID="lblsiangme" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                        </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="box">
+                                <div class="box-header" style="background-color:#00426a">
+                                    <span style="color:white">Maintenance Harkat</span>
+                                </div>
+                                <div class="box-body bg-blue-active" style="padding-bottom:3px;">
+                                    <div style="min-height:220px">
+                                        <table class="table">
+                                            <tr>
+                                                <td rowspan="2"><a id="ahkbulan" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="ihkbulan"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lblbulanhk" runat="server" Text="Bulanan "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divhkbulanan" style="width: 30%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblhkbulan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="ahktriwulan" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="ihktriwulan"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lbltriwulan" runat="server" Text="Triwulan "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divhktriwulan" style="width: 30%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblhktriwulan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label> </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="ahksemester" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="ihksemester"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lblsemester" runat="server" Text="Semester "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divhksemester" style="width: 30%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblhksemester" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label> </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="ahktahunan" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="ihktahunan"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lbltahunn" runat="server" Text="Tahun "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divhktahunan" style="width: 30%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblhktahunan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       <div class="col-md-3 col-sm-6">
+                            <div class="box">
+                                <div class="box-header" style="background-color:#c27d0e">
+                                    <span style="color:white">Maintenance ME</span>
+                                </div>
+                                <div class="box-body bg-yellow" style="padding-bottom:3px">
+                                    <div style="min-height:220px">
+                                        <table class="table">
+                                            <tr>
+                                                <td rowspan="2"><a id="ameminggu" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="imeminggu"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lblminggume" runat="server" Text="Minggu "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divmeminggu" style="width: 80%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblmemingguan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="amebulan" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="imebulan"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lblbulananme" runat="server" Text="Bulanan "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divmebulanan" style="width: 80%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblmebulanan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="amesemester" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="imesemester"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lblsemesterme" runat="server" Text="Semester "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divmesemester" style="width: 80%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblmesemester" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><a id="ametahunan" runat="server" style="color:black"><span class="info-box-icon warnaputih" style="height:38px; width:38px; line-height:38px; font-size:23px; padding-right:0px"><i runat="server" id="imetahun"></i></span></a></td>
+                                                <td style="font-size:14px; font-weight:bold; padding-bottom:0px;" colspan="3"><asp:Label ID="lbltahunanme" runat="server" Text="Tahun "></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:14px; padding-top:0px;" colspan="3"><div class="progress sm"><div class="progress-bar progress-bar-red" runat="server" id="divmetahunan" style="width: 80%; background-color:whitesmoke"></div></div></td>
+                                                <td style="font-size:14px; padding-top:0px;"><asp:Label ID="lblmetahunan" CssClass="progress-description warnaputih" runat="server" Text=" 0%"></asp:Label></td>
+                                            </tr>
+                                        </table>                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>                        
                     <div class="row">
                     <div class="col-lg-8 col-md-12">
                         <div class="box box-danger">
@@ -386,26 +478,26 @@
  
 			                <!-- deklarasi carousel -->
 			                <div class="carousel-inner" role="listbox" style="padding-bottom:5px">
-                                <div class="item" style="background-color:darkseagreen">
-                                    <p class="tengah" style="font-size:22px; font-weight:bold">Kemarin</p>
-					                <p class="text-bold tengah">Shift Pagi</p>
-                                    <p class="tengah" id="pagikemaren" runat="server">(data belum diisi)</p><br />
-                                    <p class="text-bold tengah">Shift Sore</p>
-                                    <p class="tengah" runat="server" id="sorekemaren">(data belum diisi)</p>
+                                <div class="item" style="background-color:#9da42a">
+                                    <p class="tengah warnaputih" style="font-size:22px; font-weight:bold">Kemarin</p>
+					                <p class="text-bold tengah warnaputih">Shift Pagi</p>
+                                    <p class="tengah warnaputih" id="pagikemaren" runat="server">(data belum diisi)</p><br />
+                                    <p class="text-bold tengah warnaputih">Shift Sore</p>
+                                    <p class="tengah warnaputih" runat="server" id="sorekemaren">(data belum diisi)</p>
                                 </div>
-				                <div class="item active" style="background-color:floralwhite">
-                                    <p class="tengah" style="font-size:22px; font-weight:bold">Hari ini</p>
-					                <p class="text-bold tengah">Shift Pagi</p>
-                                    <p class="tengah" runat="server" id="paginow">(data belum diisi)</p><br />
-                                    <p class="text-bold tengah">Shift Sore</p>
-                                    <p class="tengah" runat="server" id="sorenow">(data belum diisi)</p>
+				                <div class="item active" style="background-color:#c17256">
+                                    <p class="tengah warnaputih" style="font-size:22px; font-weight:bold">Hari ini</p>
+					                <p class="text-bold tengah warnaputih">Shift Pagi</p>
+                                    <p class="tengah warnaputih" runat="server" id="paginow">(data belum diisi)</p><br />
+                                    <p class="text-bold tengah warnaputih">Shift Sore</p>
+                                    <p class="tengah warnaputih" runat="server" id="sorenow">(data belum diisi)</p>
 				                </div>
-                                <div class="item" style="background-color:cyan">
-                                    <p class="tengah" style="font-size:22px; font-weight:bold">Besok</p>
-					                <p class="text-bold tengah">Shift Pagi</p>
-                                    <p class="tengah" id="pagitomorrow" runat="server">(data belum diisi)</p><br />
-                                    <p class="text-bold tengah">Shift Sore</p>
-                                    <p class="tengah" runat="server" id="soretomorrow">(data belum diisi)</p>
+                                <div class="item" style="background-color:#3b5459">
+                                    <p class="tengah warnaputih" style="font-size:22px; font-weight:bold">Besok</p>
+					                <p class="text-bold tengah warnaputih">Shift Pagi</p>
+                                    <p class="tengah warnaputih" id="pagitomorrow" runat="server">(data belum diisi)</p><br />
+                                    <p class="text-bold tengah warnaputih">Shift Sore</p>
+                                    <p class="tengah warnaputih" runat="server" id="soretomorrow">(data belum diisi)</p>
                                 </div>
 			                </div>
  
@@ -640,7 +732,7 @@
                       <label>Nama Event</label>
                   </td>
                   <td style="padding-left:40px; padding-bottom:15px;"" colspan="3">
-                      <asp:TextBox ID="txtEven" class="form-control" runat="server" Width="300px" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                      <asp:TextBox ID="txtEven" class="form-control" runat="server" Width="450px" TextMode="MultiLine" Height="60px"></asp:TextBox>
                   </td>
               </tr>
               <tr>
@@ -648,7 +740,7 @@
                       <label style="text-align:right">Lokasi</label>
                   </td>
                   <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
-                      <asp:TextBox ID="txtLokasi" class="form-control" runat="server" Width="300px"></asp:TextBox>
+                      <asp:TextBox ID="txtLokasi" class="form-control" runat="server" Width="450px"></asp:TextBox>
                   </td>
               </tr>
               <tr>
@@ -668,7 +760,7 @@
                       <label style="text-align:right">PIC</label>
                   </td>
                   <td colspan="3" style="padding-left:40px; padding-bottom:15px;"">
-                      <asp:TextBox ID="txtPenyelenggara" class="form-control" runat="server" Width="300px"></asp:TextBox>
+                      <asp:TextBox ID="txtPenyelenggara" class="form-control" runat="server" Width="450px"></asp:TextBox>
                   </td>
               </tr>
           </table>

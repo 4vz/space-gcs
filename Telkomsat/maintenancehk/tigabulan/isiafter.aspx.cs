@@ -110,6 +110,11 @@ namespace Telkomsat.maintenancehk.tigabulan
 
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"editbefore.aspx?satelit={satelit}&lokasi={lokasi}&equipment={equipment}");
+        }
+
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
             Response.Redirect($"isiafter.aspx?satelit={satelit}&lokasi={lokasi}&equipment={equipment}&inisialisasi=inisialisasi");
@@ -211,9 +216,6 @@ namespace Telkomsat.maintenancehk.tigabulan
                         idddl = "ddl" + IDdata;
                         idtgl = "tgl" + IDdata;
 
-                        if (Request.QueryString["inisialisasi"] != null)
-                            nilai = ds.Tables[0].Rows[i]["data_bef"].ToString();
-                        //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + device + "</label>" + "</td>");

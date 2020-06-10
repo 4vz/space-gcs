@@ -15,7 +15,25 @@ namespace Telkomsat
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;//yourdatetime
+            int weekOfMonth = (dt.Day + ((int)dt.DayOfWeek)) / 7 + 1;
+            DateTime firstDay = new DateTime(DateTime.Now.Year, 1, 1);
+            bool isItFirstMonday = DateTime.Today.DayOfWeek == DayOfWeek.Monday
+                         && DateTime.Today.Day <= 7;
 
+            DateTime dta = new DateTime(2020, 6, 7);
+            while (dta.DayOfWeek != DayOfWeek.Monday)
+            {
+                dta = dta.AddDays(1);
+            }
+            var mulai = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+
+            var selesai = DateTime.Today.AddDays(+(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            string week1 = mulai.ToString("yyyy/MM/dd");
+            string week2 = selesai.ToString("yyyy/MM/dd");
+            Response.Write("mulai : " + dta.ToString("dd/MM/yyyy") + "           akhir : " + (int)DayOfWeek.Monday);
+
+            Response.Write("  mli " + (Convert.ToInt32(DateTime.Now.DayOfYear) - (Convert.ToInt32(dta.ToString("dd")))) / 7);
         }
 
         protected void Upload(object sender, EventArgs e)

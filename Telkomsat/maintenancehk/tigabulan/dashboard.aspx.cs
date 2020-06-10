@@ -98,7 +98,7 @@ namespace Telkomsat.maintenancehk.tigabulan
                     queryisi = $@"SELECT count(*) as isi from mainhk_3m_data d join mainhk_3m_parameter r on
                                     r.id_parameter=d.id_parameter join mainhk_3m_perangkat t on
 									t.id_perangkat=r.id_perangkat where '{start} 00:00:00' <= d.tanggal and 
-                                    d.tanggal < '{end} 23:59:59' and d.data_bef != '' and equipment='{equipment}' group by equipment";
+                                    d.tanggal < '{end} 23:59:59' and d.data_bef != '' and equipment='{equipment}' and lokasi='{lokasi}' and satelit='{satelit}' group by equipment";
                     sqlcon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlcon);
                     dabar = new SqlDataAdapter(cmdisi);
@@ -109,7 +109,7 @@ namespace Telkomsat.maintenancehk.tigabulan
                     queryaft = $@"SELECT count(*) as isi from mainhk_3m_data d join mainhk_3m_parameter r on
                                     r.id_parameter=d.id_parameter join mainhk_3m_perangkat t on
 									t.id_perangkat=r.id_perangkat where '{start} 00:00:00' <= d.tanggal and 
-                                    d.tanggal < '{end} 23:59:59' and d.data_bef != '' and equipment='{equipment}' group by equipment";
+                                    d.tanggal < '{end} 23:59:59' and d.data_bef != '' and equipment='{equipment}' and lokasi='{lokasi}' and satelit='{satelit}' group by equipment";
                     sqlcon.Open();
                     SqlCommand cmdaft = new SqlCommand(queryaft, sqlcon);
                     daaft = new SqlDataAdapter(cmdisi);

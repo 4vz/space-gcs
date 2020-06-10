@@ -57,7 +57,7 @@ namespace Telkomsat.maintenancehk.tahunan
             queryisi = $@"SELECT COUNT(*) as isi FROM maintenancehk_data d join maintenancehk_parameter r on d.id_parameter=
                                 r.id_parameter join maintenancehk_perangkat t on r.id_perangkat=t.id_perangkat where 
                                 '{start} 00:00:00' <= d.tanggal and d.tanggal < '{end} 23:59:59' and d.data != '' and 
-                                t.device = '{rdevice}' and t.alias ='{ralias}' and d.data not like '%' + 'un' + '%' and t.jenis = 'TAHUNAN' GROUP BY t.device, t.alias";
+                                t.device = '{rdevice}' and t.alias ='{ralias}' and d.data not like '%' + 'un' + '%' or d.data != 'TROUBLE' or d.data != 'NOT YET' and t.jenis = 'TAHUNAN' GROUP BY t.device, t.alias";
             sqlCon.Open();
             SqlCommand cmdisi = new SqlCommand(queryisi, sqlCon);
             dabar = new SqlDataAdapter(cmdisi);
@@ -102,7 +102,7 @@ namespace Telkomsat.maintenancehk.tahunan
         protected void Button1_Click(object sender, EventArgs e)
         {
             string data = string.Join(",", akhir);
-            query1 = $"insert into maintenancehk_data (tanggal, id_profile, id_parameter, data, tanggal_kerja, tahun) values {data}";
+            query1 = $"insert into maintenancehk_data (tanggal, id_profile, id_parameter, data, tanggal_kerja, tahun, kategori) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
@@ -184,23 +184,23 @@ namespace Telkomsat.maintenancehk.tahunan
                         if (tipe == "N")
                             htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");
                         else if (tipe == "CK")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNCHECK\"> UNCHECK </option><option value=\"CHECK\" > CHECK </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNCHECKED\"> UNCHECKED </option><option value=\"CHECKED\" > CHECKED </option></select > " + " </td>");
                         else if (tipe == "CU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNCLEAN\"> UNCLEAN </option><option value=\"CLEAN\" > CLEAN </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNCLEANED\"> UNCLEANED </option><option value=\"CLEANED\" > CLEANED </option></select > " + " </td>");
                         else if (tipe == "DU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNDONE\"> UNDONE </option><option value=\"DONE\" > DONE </option><option value=\"TRANSMIT INHIBIT\" > TRANSMIT INHIBIT </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NOT YET\"> NOT YET </option><option value=\"DONE\" > DONE </option></select > " + " </td>");
                         else if (tipe == "GT")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNGOOD\"> UNGOOD </option><option value=\"GOOD\" > GOOD </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"TROUBLE\"> TROUBLE </option><option value=\"GOOD\" > GOOD </option></select > " + " </td>");
                         else if (tipe == "GU")
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNGREASE\"> UNGREASE </option><option value=\"GREASE\" > GREASE </option></select > " + " </td>");
                         else if (tipe == "OU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNOIL\"> UNOIL </option><option value=\"OIL\" > OIL </option><option value=\"ALARM\"> ALARM </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNLUBRICATED\"> UNLUBRICATED </option><option value=\"LUBRICATED\" > LUBRICATED </option></select > " + " </td>");
                         else if (tipe == "PU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNPOINT\"> UNPOINT </option><option value=\"POINT\" > POINT </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNPAINTED\"> UNPAINTED </option><option value=\"PAINTED\" > PAINTED </option></select > " + " </td>");
                         else if (tipe == "TU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNTEST\"> UNTEST </option><option value=\"TEST\" > TEST </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNTESTED\"> UNTESTED </option><option value=\"TESTED\" > TESTED </option></select > " + " </td>");
                         else if (tipe == "WU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNWASH\"> UNWASH </option><option value=\"WASH\" > WASH </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNWASHED\"> UNWASHED </option><option value=\"WASHED\" > WASHED </option></select > " + " </td>");
 
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<input type=\"text\" class=\"form-control tgldata\" name=\"tgl\" id=\"{idtgl}\" autocomplete=\"off\" />" + "</td>");
@@ -232,7 +232,7 @@ namespace Telkomsat.maintenancehk.tahunan
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + loopingtgl[j] + "','" + tahun + "')";
+                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + loopingtgl[j] + "','" + tahun + "','" + "tahunan" + "')";
                             j++;
                         }
                     }

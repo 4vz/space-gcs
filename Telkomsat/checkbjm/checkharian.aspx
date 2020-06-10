@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Checklist Harian Banjarmasin" Language="C#" MasterPageFile="~/CHECKLISTBJM.Master" AutoEventWireup="true" CodeBehind="checkharian.aspx.cs" Inherits="Telkomsat.checkbjm.checkharian" %>
+﻿<%@ Page Title="Checklist Harian Banjarmasin" Language="C#" MasterPageFile="~/CHECKLISTHK.Master" AutoEventWireup="true" CodeBehind="checkharian.aspx.cs" Inherits="Telkomsat.checkbjm.checkharian" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -79,7 +79,7 @@
     </script>
     <script>
         $(function () {
-          $("#example3").DataTable({
+          $("#example2").DataTable({
           "paging": true,
           "searching": true,
           "autoWidth": true,

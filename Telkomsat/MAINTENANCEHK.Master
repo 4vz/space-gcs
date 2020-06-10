@@ -66,7 +66,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="../../checkhk/dataharian.aspx">Harian</a></li>
+                <li><a href="../../checkhk/dataharian.aspx">Harian CBI</a></li>
+                <li><a href="../../checkbjm/checkharian.aspx">Harian BJM</a></li>
                 <li><a href="../../maintenancehk/bulanan/checkdata.aspx">Bulanan</a></li>
                 <li><a href="../../maintenancehk/tigabulan/checkdata.aspx">3 Bulanan</a></li>
                 <li><a href="../../maintenancehk/semester/checkdata.aspx">Semester</a></li>
@@ -126,18 +127,32 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
           
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-2 col-xs-6">
             <a href="" id="aharian" runat="server">
           <!-- small box -->
           <div class="small-box bg-aqua-active">
             <div class="inner" style="text-align:center">
-              <span style="font-size:19px; font-weight:bold">CHECKLIST</span>
+              <span style="font-size:19px; font-weight:bold">CHECKLIST CBI</span>
 
               <p>Harian</p>
 
             </div>
           </div>
           </a>
+        </div>
+
+        <div class="col-lg-2 col-xs-6">
+            <a href="" id="abjm" runat="server">
+          <!-- small box -->
+          <div class="small-box bg-aqua-active" id="divbjm" runat="server">
+            <div class="inner" style="text-align:center">
+              <span style="font-size:19px; font-weight:bold">CHECKLIST BJM</span>
+
+              <p>Harian</p>
+
+            </div>
+          </div>
+                </a>
         </div>
         <!-- ./col -->
           
@@ -188,7 +203,7 @@
         </div>
           
               
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-2 col-xs-6">
           <!-- small box -->
             <a href="../../maintenancehk/tahunan/dashboard.aspx">
           <div class="small-box bg-aqua-active"  id="divtahun" runat="server">

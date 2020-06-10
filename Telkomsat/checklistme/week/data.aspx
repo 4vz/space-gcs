@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="data.aspx.cs" Inherits="Telkomsat.checklistme.week.data" %>
+﻿<%@ Page Title="Data Maintenance ME Mingguan" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="data.aspx.cs" Inherits="Telkomsat.checklistme.week.data" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -19,18 +19,18 @@
                         <label for="exampleInputEmail1">Bulan</label>
                         <asp:DropDownList ID="ddlbulan" CssClass="form-control" runat="server" onchange="status(this)">
                             <asp:ListItem Value="bulan">-Bulan-</asp:ListItem>
-                            <asp:ListItem Value="1">Januari</asp:ListItem>
-                            <asp:ListItem Value="2">Februari</asp:ListItem>
-                            <asp:ListItem Value="3">Maret</asp:ListItem>
-                            <asp:ListItem Value="4">April</asp:ListItem>
-                            <asp:ListItem Value="5">Mei</asp:ListItem>
-                            <asp:ListItem Value="6">Juni</asp:ListItem>
-                            <asp:ListItem Value="7">Juli</asp:ListItem>
-                            <asp:ListItem Value="8">Agustus</asp:ListItem>
-                            <asp:ListItem Value="9">September</asp:ListItem>
-                            <asp:ListItem Value="10">Oktober</asp:ListItem>
-                            <asp:ListItem Value="11">November</asp:ListItem>
-                            <asp:ListItem Value="12">Desember</asp:ListItem>
+                            <asp:ListItem>Januari</asp:ListItem>
+                            <asp:ListItem>Februari</asp:ListItem>
+                            <asp:ListItem>Maret</asp:ListItem>
+                            <asp:ListItem>April</asp:ListItem>
+                            <asp:ListItem>Mei</asp:ListItem>
+                            <asp:ListItem>Juni</asp:ListItem>
+                            <asp:ListItem>Juli</asp:ListItem>
+                            <asp:ListItem>Agustus</asp:ListItem>
+                            <asp:ListItem>September</asp:ListItem>
+                            <asp:ListItem>Oktober</asp:ListItem>
+                            <asp:ListItem>November</asp:ListItem>
+                            <asp:ListItem>Desember</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

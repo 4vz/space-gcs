@@ -306,7 +306,7 @@ namespace Telkomsat.datalogbook
 
         void tablemutasi()
         {
-            querymutasi = $@"select n.id_pekerjaan, h.tanggal, d.nama_jenis_device, p.sn, r.nama_ruangan as ruangan_after, w.nama_wilayah as wilayah_after,
+            querymutasi = $@"select n.id_pekerjaan, n.status, h.tanggal, d.nama_jenis_device, p.sn, r.nama_ruangan as ruangan_after, w.nama_wilayah as wilayah_after,
 					    k.nama_rak as rak_after, r1.nama_ruangan as ruangan_before, p.id_perangkat,
 						k1.nama_rak as rak_before, w1.nama_wilayah as wilayah_before,
 						h.rak_before from as_history_lokasi h full join as_perangkat p on
@@ -327,9 +327,10 @@ namespace Telkomsat.datalogbook
             style = "font-size:12px; font-weight:normal";
             htmlTableMutasi.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTableMutasi.AppendLine("<thead>");
-            htmlTableMutasi.AppendLine("<tr><th>Tanggal</th><th>Device</th><th>S/N</th><th>Wilayah After</th><th>Ruangan After</th>" +
-                "<th>Rak After</th><th>Wilayah Before</th><th>Ruangan Before</th><th>Rak After</th></tr>");
-            htmlTableMutasi.AppendLine("</thead>");
+            htmlTableMutasi.AppendLine("<tr><th>Tanggal</th><th>Status</th><th>Device</th><th>S/N</th><th>Sebelum Mutasi</th><th>Setelah Mutasi</th>");
+            if (user == iduser || Session["previllage"].ToString() == "super")
+                htmlTableMutasi.AppendLine("<th>Action</th>");
+            htmlTableMutasi.AppendLine("</tr></thead>");
 
             htmlTableMutasi.AppendLine("<tbody>");
             if (!object.Equals(dsmutasi.Tables[0], null))
@@ -340,15 +341,35 @@ namespace Telkomsat.datalogbook
                     for (int i = 0; i < dsmutasi.Tables[0].Rows.Count; i++)
                     {
                         htmlTableMutasi.AppendLine("<tr>");
-                        htmlTableMutasi.AppendLine("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + dsmutasi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + "<label style=\"font-size:13px; color:#a9a9a9; font-color width:70px;\">" + dsmutasi.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
+                        if (dsmutasi.Tables[0].Rows[i]["status"].ToString() == "Selesai")
+                            htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-success\">" + dsmutasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
+                        else
+                            htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dsmutasi.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["nama_jenis_device"].ToString() + "</label>" + "</td>");
                         htmlTableMutasi.AppendLine("<td>" + $"<a style=\"cursor:pointer\" href=\"../dataasset/detail.aspx?id={dsmutasi.Tables[0].Rows[i]["id_perangkat"].ToString()}\">" + $"<label class=\"label label-sm label-primary\">" + dsmutasi.Tables[0].Rows[i]["sn"].ToString() + "</label>" + "</a>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_after"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["wilayah_before"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["ruangan_before"].ToString() + "</label>" + "</td>");
-                        htmlTableMutasi.AppendLine("<td>" + $"<label style=\"{style}\">" + dsmutasi.Tables[0].Rows[i]["rak_before"].ToString() + "</label>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + "<table style=\"width:100%\">" +
+                            "<tr>" +
+                            "<td>" + "Wilayah" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["wilayah_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Ruangan" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["ruangan_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Rak" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["rak_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" + "</table>" + "</td>");
+                        htmlTableMutasi.AppendLine("<td>" + "<table style=\"width:100%\">" +
+                            "<tr>" +
+                            "<td>" + "Wilayah" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["wilayah_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Ruangan" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["ruangan_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Rak" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + dsmutasi.Tables[0].Rows[i]["rak_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" + "</table>" + "</td>");
+                        if (user == iduser || Session["previllage"].ToString() == "super")
+                        {
+                            if (dsmutasi.Tables[0].Rows[i]["status"].ToString() != "Selesai")
+                                htmlTableMutasi.AppendLine("<td>" + $"<a onclick=\"confirmselesai('../datalogbook/action.aspx?idm={dsmutasi.Tables[0].Rows[i]["id_pekerjaan"].ToString()}&idlog={idlog}')\" class=\"btn btn-sm btn-default\" style=\"margin-right:10px\">" + "SELESAI" + "</a>" + "</td>");
+                        }
+
                         htmlTableMutasi.AppendLine("</tr>");
                     }
                     htmlTableMutasi.AppendLine("</tbody>");

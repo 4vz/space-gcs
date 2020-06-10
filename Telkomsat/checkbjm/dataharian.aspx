@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTBJM.Master" AutoEventWireup="true" CodeBehind="dataharian.aspx.cs" Inherits="Telkomsat.checkbjm.dataharian" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTHK.Master" AutoEventWireup="true" CodeBehind="dataharian.aspx.cs" Inherits="Telkomsat.checkbjm.dataharian" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

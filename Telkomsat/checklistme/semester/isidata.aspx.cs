@@ -13,11 +13,12 @@ namespace Telkomsat.checklistme.semester
 {
     public partial class isidata : System.Web.UI.Page
     {
-        SqlDataAdapter da;
+        SqlDataAdapter da, da5;
         DataSet ds = new DataSet();
+        DataSet ds5 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial,tahun, semester;
         string[] words = { "a", "a" };
         string[] akhir;
         int j = 0, k;
@@ -25,6 +26,9 @@ namespace Telkomsat.checklistme.semester
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query5;
+
+
             if (!IsPostBack)
             {
                 if (Session["mastersheltermesemester"] != null)
@@ -38,6 +42,34 @@ namespace Telkomsat.checklistme.semester
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
             }
+
+            DateTime now = DateTime.Now;
+            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime middate = new DateTime(DateTime.Now.Year, 6, 30);
+            DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
+            tahun = DateTime.Now.Year.ToString();
+
+            if (now > startdate && now <= middate)
+            {
+                semester = "1";
+            }
+            else if (now > middate && now <= enddate)
+            {
+                semester = "2";
+            }
+
+            query5 = $@"select * from checkme_datawmy d join checkme_parameterwmy r on r.id_parameter=d.id_parameter join
+                        checkme_perangkatwmy p on p.id_perangkat=r.id_perangkat where semester = '1' and tahun = '2020' and ruangan='ro-ups' order by r.id_perangkat";
+            sqlCon.Open();
+            SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
+            da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(ds5);
+            cmd5.ExecuteNonQuery();
+            sqlCon.Close();
+
+            if (ds5.Tables[0].Rows.Count > 0)
+                Response.Redirect($"updatedata.aspx?room={room}");
+
             tableticket();
         }
         protected void Pilih_Click(object sender, EventArgs e)
@@ -55,7 +87,7 @@ namespace Telkomsat.checklistme.semester
         {
 
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai) values {data}";
+            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai, semester, tahun) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
@@ -63,12 +95,7 @@ namespace Telkomsat.checklistme.semester
             Session["inisialsemester"] = null;
 
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
-        }
-
-        protected void inisialisasi_Click(object sender, EventArgs e)
-        {
-            Session["inisialsemester"] = "buka";
-
+            Response.Redirect($"checkdata.aspx");
         }
 
         void tableticket()
@@ -124,8 +151,6 @@ namespace Telkomsat.checklistme.semester
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if (Session["inisialsemester"] != null)
-                            nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
@@ -135,13 +160,13 @@ namespace Telkomsat.checklistme.semester
                         if (tipe == "N")
                             htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");
                         else if (tipe == "BN")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"BIR\" > BIR </option><option value =\"NO BIR\"> NO BIR </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NO BIR\"> NO BIR </option><option value=\"BIR\" > BIR </option></select > " + " </td>");
                         else if (tipe == "OC")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"OPEN\" > OPEN </option><option value =\"CLOSE\"> CLOSE </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"CLOSE\"> CLOSE </option><option value=\"OPEN\" > OPEN </option></select > " + " </td>");
                         else if (tipe == "FL")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"FULL\" > FULL </option><option value =\"LOW\"> LOW </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"LOW\"> LOW </option><option value=\"FULL\" > FULL </option></select > " + " </td>");
                         else if (tipe == "AN")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"ALREADY\" > ALREADY </option><option value =\"NOT YET\"> NOT YET </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NOT YET\"> NOT YET </option><option value=\"ALREADY\" > ALREADY </option></select > " + " </td>");
 
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
                         htmlTable.Append("</tr>");
@@ -164,7 +189,7 @@ namespace Telkomsat.checklistme.semester
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "semester" + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "semester" + "','" + line + "','" + semester + "','" + tahun + "')";
                             j++;
                         }
                     }

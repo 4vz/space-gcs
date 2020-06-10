@@ -340,7 +340,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" id="btnmain" class="btn btn-success pull-left" runat="server" onserverclick="Maintenance_ServerClick2">Save</button>
-                  <button type="button" id="btneditmain" class="btn btn-warning pull-left" runat="server" onserverclick="Maintenance_ServerClick2_Edit">Edit</button>
+                  <button type="button" id="btneditmain" class="btn btn-warning pull-left" runat="server" onserverclick="Maintenance_ServerClick2_Edit">Submit</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -485,7 +485,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" id="btnkonfig" class="btn btn-success pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2">Save</button>
-                  <button type="button" id="btneditkonfig" class="btn btn-warning pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2_Edit">Edit</button>
+                  <button type="button" id="btneditkonfig" class="btn btn-warning pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2_Edit">Submit</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -539,7 +539,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" id="btnlain" class="btn btn-success pull-left" runat="server" onserverclick="Lain_ServerClick3">Save</button>
-                  <button type="button" id="btneditlain" class="btn btn-warning pull-left" runat="server" onserverclick="Lain_ServerClick3_Edit">Edit</button>
+                  <button type="button" id="btneditlain" class="btn btn-warning pull-left" runat="server" onserverclick="Lain_ServerClick3_Edit">Submit</button>
               </div>
             </div>
             <!-- /.modal-content -->

@@ -58,14 +58,290 @@ namespace Telkomsat
             dtEvent.DataSource = dtbl4;
             dtEvent.DataBind();
             sqlCon.Close();
+
+            ahkbulan.Attributes["href"] = "../maintenancehk/bulanan/dashboard.aspx";
+            ahksemester.Attributes["href"] = "../maintenancehk/semester/dashboard.aspx";
+            ahktahunan.Attributes["href"] = "../maintenancehk/tahunan/dashboard.aspx";
+            ahktriwulan.Attributes["href"] = "../maintenancehk/tigabulan/dashboard.aspx";
+            amebulan.Attributes["href"] = "../checklistme/month/dashboard.aspx";
+            ameminggu.Attributes["href"] = "../checklistme/week/isidata.aspx";
+            amesemester.Attributes["href"] = "../checklistme/semester/isidata.aspx";
+            ametahunan.Attributes["href"] = "../checklistme/year/isidata.aspx";
+
             logbookonprogress();
             logdeadline();
             lognow();
             checklist();
             ticket();
-            
+            maintenance();
+
         }
 
+        void maintenance()
+        {
+            string angkaminggu, triwulan, thisday;
+            int angkabulan;
+            double hasilhkbulan, hasilhktriwulan, hasilhksemester, hasilhktahunan, hasilmemingguan, hasilmebulanan, hasilmesemester, hasilmetahunan;
+            SqlDataAdapter dahk, dadata;
+
+            sqlCon.Open();
+            string queryhk = @"SELECT (SELECT COUNT(*) from mainhk_3m_parameter) as triwulan,
+                            (SELECT COUNT(*) FROM mainhk_bbu_parameter) AS bbu,
+                            (SELECT COUNT(*) FROM checkhk_bulan_perangkat) AS bulanan,
+		                    (SELECT COUNT(*) FROM maintenancehk_parameter r join 
+			                    maintenancehk_perangkat t on t.id_perangkat=r.id_perangkat where t.jenis='SEMESTER' ) AS semester,
+		                    (SELECT COUNT(*) FROM maintenancehk_parameter r join 
+			                    maintenancehk_perangkat t on t.id_perangkat=r.id_perangkat where t.jenis='TAHUNAN' ) AS tahunan,
+                            (SELECT COUNT(*) from checkme_parameterwmy where kategori = 'week') as minggume,
+                            (SELECT COUNT(*) from checkme_parameterwmy where kategori = 'month') as bulananme,
+		                    (SELECT COUNT(*) from checkme_parameterwmy where kategori = 'semester') as semesterme,
+		                    (SELECT COUNT(*) from checkme_parameterwmy where kategori = 'year') as tahunanme";
+            DataSet dshk = new DataSet();
+            SqlCommand cmdhk = new SqlCommand(queryhk, sqlCon);
+            dahk = new SqlDataAdapter(cmdhk);
+            dahk.Fill(dshk);
+            sqlCon.Close();
+            int hksemester = Convert.ToInt32(dshk.Tables[0].Rows[0]["semester"]);
+            int hktriwulan = Convert.ToInt32(dshk.Tables[0].Rows[0]["triwulan"]);
+            int hkbbu = Convert.ToInt32(dshk.Tables[0].Rows[0]["bbu"]);
+            int hkbulanan = Convert.ToInt32(dshk.Tables[0].Rows[0]["bulanan"]);
+            int hktahunan = Convert.ToInt32(dshk.Tables[0].Rows[0]["tahunan"]);
+            int mesemester = Convert.ToInt32(dshk.Tables[0].Rows[0]["semesterme"]);
+            int meminggu = Convert.ToInt32(dshk.Tables[0].Rows[0]["minggume"]);
+            int mebulanan = Convert.ToInt32(dshk.Tables[0].Rows[0]["bulananme"]);
+            int metahunan = Convert.ToInt32(dshk.Tables[0].Rows[0]["tahunanme"]);
+
+            DateTime now = DateTime.Now;
+            DateTime first = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime second = new DateTime(DateTime.Now.Year, 3, 30);
+            DateTime third = new DateTime(DateTime.Now.Year, 4, 1);
+            DateTime fourth = new DateTime(DateTime.Now.Year, 6, 30);
+            DateTime fifth = new DateTime(DateTime.Now.Year, 7, 1);
+            DateTime sixth = new DateTime(DateTime.Now.Year, 9, 30);
+            DateTime seventh = new DateTime(DateTime.Now.Year, 10, 1);
+            DateTime eighth = new DateTime(DateTime.Now.Year, 12, 30);
+            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime middate = new DateTime(DateTime.Now.Year, 6, 30);
+            DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
+            string tahun = DateTime.Now.Year.ToString();
+
+            if (now > startdate && now <= middate)
+            {
+                lblsemester.Text += " [1]";
+                lblsemesterme.Text += " [1]";
+            }
+            else if (now > middate && now <= enddate)
+            {
+                lblsemester.Text += " [2]";
+                lblsemesterme.Text += " [2]";
+            }
+
+            lbltahunn.Text += " [" + tahun + "]";
+            lbltahunanme.Text += " [" + tahun + "]";
+
+            //double hari = Convert.ToInt32(DateTime.Now.DayOfYear.ToString());
+            DateTime dta = new DateTime(2020, 1, 1);
+            while (dta.DayOfWeek != DayOfWeek.Monday)
+            {
+                dta = dta.AddDays(1);
+            }
+
+            //Response.Write("  mli " + (Convert.ToInt32(DateTime.Now.DayOfYear) - (Convert.ToInt32(dta.ToString("dd")))));
+            double hari = Convert.ToInt32(DateTime.Now.DayOfYear) - Convert.ToInt32(dta.ToString("dd"));
+
+            double minggu = (double)Math.Ceiling(hari / 7);
+            //Response.Write(minggu);
+            lblminggume.Text += " [" + minggu + "]";
+
+            if (now > first && now <= second)
+            {
+                lbltriwulan.Text += " [1]";
+            }
+            else if (now > third && now <= fourth)
+            {
+                lbltriwulan.Text += " [2]";
+            }
+            else if (now > fifth && now <= sixth)
+            {
+                lbltriwulan.Text += " [3]";
+            }
+            else if (now > seventh && now <= eighth)
+            {
+                lbltriwulan.Text += " [4]";
+            }
+            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
+            angkabulan = DateTime.Now.Month;
+            lblbulanhk.Text += " [" + bulan[angkabulan - 1] + "]";
+            lblbulananme.Text += " [" + bulan[angkabulan - 1] + "]";
+
+            //lblbulanhk.Text += " [" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + "]";
+            //lblbulananme.Text += " [" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + "]";
+
+            string querydata = @"SELECT (SELECT COUNT(*) from mainhk_3m_data where triwulan = 'triwulan 2') as triwulan,
+		                        (SELECT COUNT(*) FROM mainhk_bbu_data where triwulan = 'triwulan 2') AS bbu,
+		                        (SELECT COUNT(*) FROM checkhk_bulan_data where angkabulan = '5' and data not like 'un' and tahun = '2020') AS bulanan,
+		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'semester' and semester = 'Semester 1' and tahun = '2020') AS semester,
+		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'tahunan' and tahun = '2020') AS tahunan,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'week' and week = '6' and tahun = '2020' and nilai != '') AS me_week,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'month' and numbermonth = '4' and tahun = '2020' and nilai != '') AS me_month,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'semester' and semester = '1' and tahun = '2020' and nilai not like '%' + 'no' + '%') AS me_semester,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'year' and tahun = '2020' and nilai != '') AS me_year";
+            DataSet dsdata = new DataSet();
+            SqlCommand cmddata = new SqlCommand(querydata, sqlCon);
+            dadata = new SqlDataAdapter(cmddata);
+            dadata.Fill(dsdata);
+            sqlCon.Close();
+            int datahksemester = Convert.ToInt32(dsdata.Tables[0].Rows[0]["semester"]);
+            int datahktriwulan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["triwulan"]);
+            int datahkbbu = Convert.ToInt32(dsdata.Tables[0].Rows[0]["bbu"]);
+            int datahkbulanan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["bulanan"]);
+            int datahktahunan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["tahunan"]);
+            int datametahunan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["me_year"]);
+            int datamesemester = Convert.ToInt32(dsdata.Tables[0].Rows[0]["me_semester"]);
+            int datamebulanan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["me_month"]);
+            int datamemingguan = Convert.ToInt32(dsdata.Tables[0].Rows[0]["me_week"]);
+
+            hasilhkbulan = ((double)datahkbulanan / hkbulanan) * 100;
+            hasilhktriwulan = ((double)datahktriwulan / hktriwulan) * 100;
+            hasilhksemester = ((double)datahksemester / hksemester) * 100;
+            hasilhktahunan = ((double)datahktahunan / hktahunan) * 100;
+            hasilmebulanan = ((double)datamebulanan / mebulanan) * 100;
+            hasilmesemester = ((double)datamesemester / mesemester) * 100;
+            hasilmemingguan = ((double)datamemingguan / meminggu) * 100;
+            hasilmetahunan = ((double)datametahunan / metahunan) * 100;
+
+            divhkbulanan.Style.Add("width", $"{Math.Round(hasilhkbulan)}%");
+            divhktriwulan.Style.Add("width", $"{Math.Round(hasilhktriwulan)}%");
+            divhksemester.Style.Add("width", $"{Math.Round(hasilhksemester)}%");
+            divhktahunan.Style.Add("width", $"{Math.Round(hasilhktahunan)}%");
+            divmebulanan.Style.Add("width", $"{Math.Round(hasilmebulanan)}%");
+            divmeminggu.Style.Add("width", $"{Math.Round(hasilmemingguan)}%");
+            divmesemester.Style.Add("width", $"{Math.Round(hasilmesemester)}%");
+            divmetahunan.Style.Add("width", $"{Math.Round(hasilmetahunan)}%");
+
+            lblhkbulan.Text = Math.Round(hasilhkbulan) + "%";
+            lblhktriwulan.Text = Math.Round(hasilhktriwulan) + "%";
+            lblhksemester.Text = Math.Round(hasilhksemester) + "%";
+            lblhktahunan.Text = Math.Round(hasilhktahunan) + "%";
+            lblmebulanan.Text = Math.Round(hasilmebulanan) + "%";
+            lblmemingguan.Text = Math.Round(hasilmemingguan) + "%";
+            lblmesemester.Text = Math.Round(hasilmesemester) + "%";
+            lblmetahunan.Text = Math.Round(hasilmetahunan) + "%";
+
+            if (Math.Round(hasilhkbulan) > 0)
+                ihkbulan.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilhkbulan) == 0)
+                ihkbulan.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilhkbulan) == 100)
+                ihkbulan.Attributes.Add("class", "fa fa-check-circle");
+            else
+                ihkbulan.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilhktriwulan) > 0)
+                ihktriwulan.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilhktriwulan) == 0)
+                ihktriwulan.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilhktriwulan) == 100)
+                ihktriwulan.Attributes.Add("class", "fa fa-check-circle");
+            else
+                ihktriwulan.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilhksemester) > 0)
+                ihksemester.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilhksemester) == 0)
+                ihksemester.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilhksemester) == 100)
+                ihksemester.Attributes.Add("class", "fa fa-check-circle");
+            else
+                ihksemester.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilhktahunan) > 0)
+                ihktahunan.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilhktahunan) == 0)
+                ihktahunan.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilhktahunan) == 100)
+                ihktahunan.Attributes.Add("class", "fa fa-check-circle");
+            else
+                ihktahunan.Attributes.Add("class", "fa fa-warning");
+
+
+            if (Math.Round(hasilmebulanan) > 0)
+                imebulan.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilmebulanan) == 0)
+                imebulan.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilmebulanan) == 100)
+                imebulan.Attributes.Add("class", "fa fa-check-circle");
+            else
+                imebulan.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilmemingguan) > 0)
+                imeminggu.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilmemingguan) == 0)
+                imeminggu.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilmemingguan) == 100)
+                imeminggu.Attributes.Add("class", "fa fa-check-circle");
+            else
+                imeminggu.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilmesemester) > 0)
+                imesemester.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilmesemester) == 0)
+                imesemester.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilmesemester) == 100)
+                imesemester.Attributes.Add("class", "fa fa-check-circle");
+            else
+                imesemester.Attributes.Add("class", "fa fa-warning");
+
+            if (Math.Round(hasilmetahunan) > 0)
+                imetahun.Attributes.Add("class", "fa fa-hourglass-half");
+            else if (Math.Round(hasilmetahunan) == 0)
+                imetahun.Attributes.Add("class", "fa fa-minus-square");
+            else if (Math.Round(hasilmetahunan) == 100)
+                imetahun.Attributes.Add("class", "fa fa-check-circle");
+            else
+                imetahun.Attributes.Add("class", "fa fa-warning");
+
+            string MonthSemester = DateTime.Now.Month.ToString();
+
+            thisday = DateTime.Now.DayOfWeek.ToString();
+
+            DateTime firstOfNextMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1);
+            DateTime StartDateMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 25);
+            DateTime lastOfThisMonth = firstOfNextMonth.AddDays(-1);
+
+            if ((thisday=="Friday" || thisday=="Saturday" || thisday=="Sunday") && Math.Round(hasilmemingguan) < 100)
+                imeminggu.Attributes.Add("class", "fa fa-warning");
+
+            TimeSpan ts = lastOfThisMonth - now;
+            if((ts.Days <= 7) && Math.Round(hasilmebulanan) < 100)
+                imebulan.Attributes.Add("class", "fa fa-warning");
+
+            if ((ts.Days <= 7) && Math.Round(hasilhkbulan) < 100)
+                ihkbulan.Attributes.Add("class", "fa fa-warning");
+
+            if(MonthSemester == "3" || MonthSemester == "6" || MonthSemester == "9" || MonthSemester == "12")
+            {
+                if ((ts.Days <= 15) && Math.Round(hasilhktriwulan) < 100)
+                    ihktriwulan.Attributes.Add("class", "fa fa-warning");
+            }
+
+            if(MonthSemester == "6" || MonthSemester == "12")
+            {
+                if ((ts.Days <= 25) && Math.Round(hasilhksemester) < 100)
+                    ihksemester.Attributes.Add("class", "fa fa-warning");
+                if ((ts.Days <= 25) && Math.Round(hasilmesemester) < 100)
+                    imesemester.Attributes.Add("class", "fa fa-warning");
+            }
+
+            if(MonthSemester == "12")
+            {
+                if(Math.Round(hasilmetahunan) < 100)
+                    imesemester.Attributes.Add("class", "fa fa-warning");
+
+                if (Math.Round(hasilhktahunan) < 100)
+                    ihktahunan.Attributes.Add("class", "fa fa-warning");
+            }
+        }
         protected void btnSignOut_Click(object sender, EventArgs e)
         {
             Session.Abandon();
@@ -90,7 +366,7 @@ namespace Telkomsat
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            if(ds.Tables[0].Rows.Count > 0)
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 lbutama.Text = ds.Tables[0].Rows[0]["Utama"].ToString();
                 lbkonfig.Text = ds.Tables[0].Rows[0]["konfigurasi"].ToString();
@@ -98,7 +374,7 @@ namespace Telkomsat
                 lblain.Text = ds.Tables[0].Rows[0]["lain-lain"].ToString();
                 lbStatus.Text = ds.Tables[0].Rows[0]["status"].ToString();
             }
-            
+
         }
 
         void lognow()
@@ -218,7 +494,7 @@ namespace Telkomsat
 
                         DateTime start = (DateTime)ds.Tables[0].Rows[i]["enddate"];
                         TimeSpan t = start - sekarang;
-                        if(t.Days == 1)
+                        if (t.Days == 1)
                         {
                             enddate = "1 hari";
                             style3 = "label label-warning";
@@ -228,13 +504,13 @@ namespace Telkomsat
                             enddate = "0 hari";
                             style3 = "label label-danger";
                         }
-                        else if(t.Days <= -1)
+                        else if (t.Days <= -1)
                         {
                             enddate = "melebihi";
                             style3 = "label label-danger";
                         }
 
-                        if(t.Days <= 1)
+                        if (t.Days <= 1)
                         {
                             htmlDeadline.Append("<tr>");
                             htmlDeadline.Append("<td>" + $"<label class=\"{style3}\">" + enddate + "</label>" + "</td>");
@@ -242,7 +518,7 @@ namespace Telkomsat
                             htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}; white-space:pre-line; position:relative\">" + datadeskripsi + "</label>" + "</td>");
                             htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}\">" + $"<a href=\"../datalogbook/detail.aspx?idlog={IDdata}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");
                             htmlDeadline.Append("</tr>");
-                        }        
+                        }
                     }
                     htmlDeadline.Append("</tbody>");
                     htmlDeadline.Append("</table>");
@@ -299,7 +575,7 @@ namespace Telkomsat
             da5.Fill(ds5);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            if(ds5.Tables[0].Rows.Count > 0)
+            if (ds5.Tables[0].Rows.Count > 0)
                 output = Convert.ToInt32(ds5.Tables[0].Rows[0]["total"].ToString());
             double hasil, tampil;
             if (output > 0)
@@ -315,7 +591,7 @@ namespace Telkomsat
                 asiang.Attributes["href"] = "../checklistme/harian.aspx";
             }
 
-            
+
             sqlCon.Open();
             string querycheckpagi = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
                         join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile 
@@ -383,7 +659,7 @@ namespace Telkomsat
             da8.Fill(ds8);
             cmd3.ExecuteNonQuery();
             sqlCon.Close();
-            if(ds8.Tables[0].Rows.Count > 0)
+            if (ds8.Tables[0].Rows.Count > 0)
                 output3 = Convert.ToInt32(ds8.Tables[0].Rows[0]["total"].ToString());
             double hasil3, tampil3;
             if (output3 > 0)

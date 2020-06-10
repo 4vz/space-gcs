@@ -13,13 +13,13 @@ namespace Telkomsat.checklistme.week {
     public partial class data2 {
         
         /// <summary>
-        /// ddlruang control.
+        /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlruang;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
         
         /// <summary>
         /// lblkosong control.

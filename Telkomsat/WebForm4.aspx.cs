@@ -50,9 +50,6 @@ namespace Telkomsat
 		            FROM shiftme s
 	            left JOIN shiftme_petugas p ON s.id_petugas=p.id_petugas
 	                group by p.petugas";
-
-
-
             //Response.Write(query1);
             //Response.Write(t.Days);
             //Response.Write(akhir);

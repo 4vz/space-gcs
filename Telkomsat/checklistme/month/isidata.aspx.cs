@@ -16,7 +16,7 @@ namespace Telkomsat.checklistme.month
         SqlDataAdapter da;
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
+        string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", tahun, query, ruang = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
         string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, user, inisial, start, end;
         string[] words = { "a", "a" };
         string[] akhir;
@@ -26,13 +26,8 @@ namespace Telkomsat.checklistme.month
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if (Session["mastersheltermemonth"] != null)
-                {
-                    DropDownList1.Text = Session["mastersheltermemonth"].ToString();
-                }
-            }
+            if (Request.QueryString["room"] != null)
+                ruang = Request.QueryString["room"].ToString();
 
             if (Session["iduser"] != null)
             {
@@ -68,7 +63,7 @@ namespace Telkomsat.checklistme.month
 
                 query2 = $@"select count(*) from checkme_parameterwmy r left join
                         checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                        where p.ruangan = '{DropDownList1.SelectedValue}' AND '{start}' <= d.tanggal and d.tanggal < '{end}' and d.jenis = 'month'";
+                        where p.ruangan = '{ruang}' AND '{start}' <= d.tanggal and d.tanggal < '{end}' and d.jenis = 'month'";
                 sqlCon.Open();
                 SqlCommand cmd5 = new SqlCommand(query2, sqlCon);
                 string output = cmd5.ExecuteScalar().ToString();
@@ -89,12 +84,6 @@ namespace Telkomsat.checklistme.month
             
 
         }
-        protected void Pilih_Click(object sender, EventArgs e)
-        {
-            Response.Write("ihjkj");
-            Session["mastersheltermemonth"] = DropDownList1.Text;
-            Response.Redirect($"~/checklistme/month/isidata.aspx?room={DropDownList1.SelectedValue}", true);
-        }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
@@ -105,14 +94,14 @@ namespace Telkomsat.checklistme.month
         {
 
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai) values {data}";
+            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai, numbermonth, month, tahun) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             Session["inisialmonth"] = null;
 
-            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+            Response.Redirect("dashboard.aspx");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
@@ -134,7 +123,11 @@ namespace Telkomsat.checklistme.month
                 query = $@"select r.id_parameter, p.Perangkat, p.alias, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join
                         checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'month' order by r.id_perangkat, r.id_parameter";
 
-
+            string angkabulan = DateTime.Now.Month.ToString();
+            int angka = DateTime.Now.Month;
+            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
+            string months = bulan[angka - 1];
+            tahun = DateTime.Now.Year.ToString();
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
@@ -216,7 +209,7 @@ namespace Telkomsat.checklistme.month
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + user + "','" + looping[j] + "','" + "month" + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + user + "','" + looping[j] + "','" + "month" + "','" + line + "','" + angkabulan + "','" + months + "','" + tahun + "')";
                             j++;
                         }
                     }

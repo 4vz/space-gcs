@@ -68,8 +68,8 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="checkharian.aspx">Harian</a></li>
                 <li><a href="week/data.aspx">Mingguan</a></li>
-                <li><a href="month/data.aspx">Bulanan</a></li>
-                <li><a href="semester/data.aspx">Semester</a></li>
+                <li><a href="month/checkdata.aspx">Bulanan</a></li>
+                <li><a href="semester/checkdata.aspx">Semester</a></li>
                 <li><a href="year/data.aspx">Tahunan</a></li>
               </ul>
             </li>
@@ -156,7 +156,7 @@
         <!-- ./col -->
         <div class="col-lg-2 col-xs-6">
           <!-- small box -->
-             <a href="month/isidata.aspx">
+             <a href="month/dashboard.aspx">
           <div class="small-box bg-aqua-active">
             <div class="inner" style="text-align:center">
               <span style="font-size:19px; font-weight:bold">MAINTENANCE</span>

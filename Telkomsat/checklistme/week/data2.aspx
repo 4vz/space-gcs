@@ -1,42 +1,42 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="data2.aspx.cs" Inherits="Telkomsat.checklistme.week.data2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .link{
+            color:black;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .link:hover{
+            color:black;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="row" style="padding:20px">
-<div class="nav-tabs-custom col-lg-12">
+<div class="row">
+        <!-- Left col -->
+        <div class="nav-tabs-custom col-lg-12 no-padding">
     <!-- Tabs within a box -->
-    <ul class="nav nav-tabs pull-right">
-        <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>
-    </ul>
-    <div class="tab-content no-padding">
-        <!-- Morris chart - Sales -->
-        <div class="box-body">
+            <ul class="nav nav-tabs pull-right">
+                <li class="pull-left header"><i class="fa fa-filter"></i> Ruangan </li>
+            </ul>
+            <div class="tab-content no-padding">
+                <!-- Morris chart - Sales -->
+                <div class="box-body">
         
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Ruangan</label>
-                        <asp:DropDownList ID="ddlruang" CssClass="form-control" runat="server" onchange="status(this)">
-                            <asp:ListItem Value="ruangan">-Semua Ruangan-</asp:ListItem>
-                            <asp:ListItem>RO-BTT</asp:ListItem>
-                            <asp:ListItem>RO-GST</asp:ListItem>
-                            <asp:ListItem>RO-HYD</asp:ListItem>
-                            <asp:ListItem>RO-UPS</asp:ListItem>
-                        </asp:DropDownList>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                        </div>
+               
+                <!-- /.table -->
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Filter</label>
-                        <br />
-                        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Filter_ServerClick" >Submit</button>
-                    </div>
-                </div>
-        <!-- /.table -->
             </div>
         </div>
-    </div>
 </div>
+
+<div class="row" style="padding:20px">
+
 
 <div class="col-lg-12 connectedSortable">
         <!-- Custom tabs (Charts with tabs)-->

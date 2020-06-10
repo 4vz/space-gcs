@@ -18,7 +18,7 @@ namespace Telkomsat.maintenancehk.bulanan
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string IDdata = "kitaa", total = "", petugas, tanggal = "", query, tanggalend, semester, bulan;
+        string IDdata = "kitaa", total = "", petugas, tanggal = "", query, tahun, semester, bulan;
         string start = "01/01/2019", end = "01/12/2048";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         int rek1harkat, rek2harkat, rek1me, rek2me, harkat, j;
@@ -27,8 +27,9 @@ namespace Telkomsat.maintenancehk.bulanan
         {
             if (!IsPostBack)
             {
-                query = @"select d.bulan, angkabulan from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
-                            group by bulan, angkabulan order by angkabulan desc";
+                query = @"select YEAR(d.tanggal) as tahun, d.bulan, angkabulan from checkhk_bulan_data d join checkhk_bulan_perangkat t on t.id_main=d.id_main
+							where YEAR(d.tanggal) != '1900'
+                            group by bulan, angkabulan, YEAR(d.tanggal) order by angkabulan desc";
                 tableticket();
             }
         }
@@ -45,7 +46,7 @@ namespace Telkomsat.maintenancehk.bulanan
 
             htmlTable.AppendLine("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.AppendLine("<thead>");
-            htmlTable.AppendLine("<tr><th>#</th><th>Bulan</th><th>Action</th></tr>");
+            htmlTable.AppendLine("<tr><th>#</th><th>Bulan</th><th>Tahun</th><th>Action</th></tr>");
             htmlTable.AppendLine("</thead>");
 
             htmlTable.AppendLine("<tbody>");
@@ -56,11 +57,13 @@ namespace Telkomsat.maintenancehk.bulanan
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         bulan = ds.Tables[0].Rows[i]["bulan"].ToString();
+                        tahun = ds.Tables[0].Rows[i]["tahun"].ToString();
 
                         htmlTable.AppendLine("<tr>");
                         htmlTable.AppendLine("<td>" + "<label style=\"font-size:13px\">" + (i + 1) + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + "<label style=\"font-size:12px;\">" + bulan + "</label>" + "</td>");
-                        htmlTable.AppendLine("<td>" + $"<a  style=\"cursor:pointer\" href=\"data.aspx?semester={semester}&bulan={bulan}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.AppendLine("<td>" + "<label style=\"font-size:12px;\">" + tahun + "</label>" + "</td>");
+                        htmlTable.AppendLine("<td>" + $"<a  style=\"cursor:pointer\" href=\"data.aspx?tahun={tahun}&bulan={bulan}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.AppendLine("</tr>");
                     }
                     htmlTable.AppendLine("</tbody>");

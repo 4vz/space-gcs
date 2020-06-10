@@ -28,6 +28,7 @@ namespace Telkomsat
             if (thisURL.ToLower() == "semester/") divsemester.Attributes.Add("class", "small-box bg-aqua-gradient");
             if (thisURL.ToLower() == "tahunan/") divtahun.Attributes.Add("class", "small-box bg-aqua-gradient");
             aharian.Attributes["href"] = $"checkhk/dashboard.aspx?tanggal={tanggal}";
+            abjm.Attributes["href"] = $"checkbjm/dashboardbjm.aspx?tanggal={tanggal}";
             //Response.Write(thisURL);
         }
 

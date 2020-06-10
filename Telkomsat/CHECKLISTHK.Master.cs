@@ -23,6 +23,10 @@ namespace Telkomsat
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             lblProfile1.Text = Session["nama1"].ToString();
             aharian.Attributes["href"] = $"checkhk/dashboard.aspx?tanggal={tanggal}";
+            abjm.Attributes["href"] = $"checkbjm/dashboardbjm.aspx?tanggal={tanggal}";
+            string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 2];
+            if (thisURL.ToLower() == "checkhk/") divcbi.Attributes.Add("class", "small-box bg-aqua-gradient");
+            if (thisURL.ToLower() == "checkbjm/") divbjm.Attributes.Add("class", "small-box bg-aqua-gradient");
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

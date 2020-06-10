@@ -23,7 +23,6 @@
         <div class="box box-primary">
         <div class="box-header with-border">
             <asp:Label ID="lblroom" runat="server" Text="Maintenance Tahunan" Font-Size="Large" Font-Bold="true"></asp:Label>
-            <asp:Button ID="Button2" runat="server" Text="Copy From The Last" OnClick="inisialisasi_Click" CssClass="btn btn-sm btn-primary pull-right"  />
 
             <!-- /.box-tools -->
         </div>

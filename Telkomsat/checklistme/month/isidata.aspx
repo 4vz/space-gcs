@@ -3,34 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-6 connectedSortable" style="min-height:50px">
-            <div class="col-lg-4 col-xs-12" style="padding-left:0; padding-bottom:15px; padding-right:15px">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" Width="100%">
-                <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
-                <asp:ListItem>RO-CHL</asp:ListItem>
-                <asp:ListItem>RO-HPA</asp:ListItem>
-                <asp:ListItem>RO-BBRC</asp:ListItem>
-                <asp:ListItem>RO-UPS</asp:ListItem>
-                <asp:ListItem>SH-T1</asp:ListItem>
-                <asp:ListItem>SH-T2</asp:ListItem>
-                <asp:ListItem>SH-T3S-KU</asp:ListItem>
-                <asp:ListItem>SH-T3S-C</asp:ListItem>
-                <asp:ListItem>SH-MP-SAT</asp:ListItem>
-                <asp:ListItem>SH-MON-KU-BAND</asp:ListItem>
-                <asp:ListItem>SH-TAR</asp:ListItem>
-                <asp:ListItem>SH-FMA-11</asp:ListItem>
-                <asp:ListItem>SH-FMA-9,8</asp:ListItem>
-                <asp:ListItem>SH-TEL</asp:ListItem>
-                <asp:ListItem>SH-16</asp:ListItem>
-            </asp:DropDownList>
-                </div>
-             <div class="col-lg-4 col-xs-12" style="padding-bottom:15px; ">
-            <asp:Button ID="Button1" runat="server" Text="Pilih" CssClass="btn btn-success btn-sm" OnClick="Pilih_Click" Width="100%"/>
-            </div>
-        </section>
-    </div>
-
 <div class="col-md-12">
         <div class="box box-primary">
         <div class="box-header with-border">
@@ -61,6 +33,7 @@
         </div>
         <!-- /. box -->
     </div>
+</div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <!-- /.col -->
     <script src="../../assets/mylibrary/rowsgroup.js"></script>

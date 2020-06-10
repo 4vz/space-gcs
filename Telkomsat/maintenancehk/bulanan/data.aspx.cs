@@ -15,15 +15,15 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string tanggal, waktu, tanggal1, ruangan, bulan;
+        string tanggal, waktu, tanggal1, ruangan, bulan, tahun;
         DateTime wib;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
-            tanggal = Request.QueryString["tanggal"];
+            tahun = Request.QueryString["tahun"];
             bulan = Request.QueryString["bulan"];
             tablepersen();
-
+            lbltitle.Text = "Data Maintenance Bulan " + bulan + tahun;
         }
 
         void tablepersen()
@@ -36,7 +36,7 @@ namespace Telkomsat.maintenancehk.bulanan
             DataSet dsheader = new DataSet();
             DataSet dspersen = new DataSet();
             DataSet dsbar = new DataSet();
-            string queryheader = $@"SELECT ruangan from checkhk_bulan_perangkat where lokasi = 'CIBINONG' group by ruangan";
+            string queryheader = $@"SELECT lokasi, ruangan from checkhk_bulan_perangkat group by lokasi, ruangan order by lokasi";
             sqlcon.Open();
             SqlCommand cmdheader = new SqlCommand(queryheader, sqlcon);
             daheader = new SqlDataAdapter(cmdheader);
@@ -52,7 +52,7 @@ namespace Telkomsat.maintenancehk.bulanan
                 {
                     dsbar.Clear();
                     ruang = dsheader.Tables[0].Rows[i]["ruangan"].ToString();
-                    querytotal = $@"SELECT count(*) as total from checkhk_bulan_perangkat where lokasi = 'CIBINONG' group by ruangan";
+                    querytotal = $@"SELECT count(*) as total from checkhk_bulan_perangkat where ruangan = '{ruang}' group by ruangan";
                     sqlcon.Open();
                     SqlCommand cmdruang = new SqlCommand(querytotal, sqlcon);
                     dapersen = new SqlDataAdapter(cmdruang);
@@ -61,7 +61,7 @@ namespace Telkomsat.maintenancehk.bulanan
                     sqlcon.Close();
 
                     queryisi = $@"SELECT count(*) as isi from checkhk_bulan_data d join checkhk_bulan_perangkat t on 
-                                t.id_main=d.id_main where lokasi = 'CIBINONG' and ruangan='{ruang}' and data != 'Unclean' and d.data != '' and d.bulan='{bulan}' group by ruangan";
+                                t.id_main=d.id_main where ruangan='{ruang}' and data != 'Unclean' and d.data != '' and d.bulan='{bulan}' group by ruangan";
                     sqlcon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlcon);
                     dabar = new SqlDataAdapter(cmdisi);

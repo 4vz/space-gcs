@@ -14,7 +14,7 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string tanggal, waktu, tanggal1, ruangan;
+        string tanggal, waktu, tanggal1, lokasi;
         DateTime wib;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace Telkomsat.maintenancehk.bulanan
             DataSet dsheader = new DataSet();
             DataSet dspersen = new DataSet();
             DataSet dsbar = new DataSet();
-            string queryheader = $@"SELECT ruangan from checkhk_bulan_perangkat where lokasi = 'CIBINONG' group by ruangan";
+            string queryheader = $@"SELECT lokasi, ruangan from checkhk_bulan_perangkat group by lokasi, ruangan order by lokasi";
             sqlcon.Open();
             SqlCommand cmdheader = new SqlCommand(queryheader, sqlcon);
             daheader = new SqlDataAdapter(cmdheader);
@@ -51,7 +51,8 @@ namespace Telkomsat.maintenancehk.bulanan
                 {
                     dsbar.Clear();
                     ruang = dsheader.Tables[0].Rows[i]["ruangan"].ToString();
-                    querytotal = $@"SELECT count(*) as total from checkhk_bulan_perangkat where lokasi = 'CIBINONG' group by ruangan";
+                    lokasi = dsheader.Tables[0].Rows[i]["lokasi"].ToString();
+                    querytotal = $@"SELECT count(*) as total from checkhk_bulan_perangkat where ruangan = '{ruang}' group by ruangan";
                     sqlcon.Open();
                     SqlCommand cmdruang = new SqlCommand(querytotal, sqlcon);
                     dapersen = new SqlDataAdapter(cmdruang);
@@ -61,7 +62,7 @@ namespace Telkomsat.maintenancehk.bulanan
 
                     queryisi = $@"SELECT count(*) as isi from checkhk_bulan_data d join checkhk_bulan_perangkat t on 
                                 t.id_main=d.id_main where '{startdate.ToString("yyyy/MM/dd")} 00:00:00' <= d.tanggal and d.tanggal < '{enddate.ToString("yyyy/MM/dd")} 23:59:59'
-                                and lokasi = 'CIBINONG' and ruangan='{ruang}' and data != 'Unclean' and d.data != '' group by ruangan";
+                                and ruangan='{ruang}' and data != 'Unclean' and d.data != '' group by ruangan";
                     sqlcon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlcon);
                     dabar = new SqlDataAdapter(cmdisi);
@@ -97,10 +98,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmltable.Append("<div class=\"col-md-12\">");
                     }
                     htmltable.Append("<div class=\"progress-group\">");
-                    if (tanggal == tanggal1)
-                        htmltable.Append($"<a class=\"link\" href=\"isidata.aspx?room={ruang}\" style=\"font-size:12px;\">" + ruang + "</a>");
-                    else
-                        htmltable.Append($"<a class=\"link\" href=\"isidata.aspx?room={ruang}\" style=\"font-size:12px;\">" + ruang + "</a>");
+                    htmltable.Append($"<a class=\"link\" href=\"isidata.aspx?room={ruang}\" style=\"font-size:12px;\">" + lokasi + " (" + ruang + ")" + "</a>");
                     htmltable.Append($"<span class=\"progress-number\">" + tampil + "%</span>");
                     htmltable.Append("<div class=\"progress sm\">");
                     htmltable.Append($"<div class=\"progress-bar {class1}\" style=\"width:{tampil}% \"></div>");

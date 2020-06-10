@@ -82,7 +82,7 @@ namespace Telkomsat.checkbjm
                 end = dateend.Value;
             query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile join checkhk_parameter r on r.id_parameter=d.id_parameter
                             where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103)))
-                            and r.id_perangkat not like '%' + 'bjm' + '%'
+                            and r.id_perangkat like '%' + 'bjm' + '%'
                             group by (CAST(d.tanggal AS DATE)), nama order by (CAST(d.tanggal AS DATE)) desc";
             tableticket();
         }

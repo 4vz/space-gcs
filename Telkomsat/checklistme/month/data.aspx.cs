@@ -15,7 +15,7 @@ namespace Telkomsat.checklistme.month
         SqlDataAdapter da;
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", Perangkat = "st", style1 = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
+        string IDdata = "kitaa", Perangkat = "st", tahun = "a", query, bulan = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
         string Parameter = "a", query2 = "A", tanggalku = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, start, end, inisial, siang = "", malam = "", tanggal1;
         string[] words = { "a", "a" };
         string[] akhir;
@@ -24,39 +24,22 @@ namespace Telkomsat.checklistme.month
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["tanggal"] != null)
+            if (Request.QueryString["tahun"] != null)
             {
-                tanggal1 = Request.QueryString["tanggal"];
+                tahun = Request.QueryString["tahun"];
+                bulan = Request.QueryString["bulan"];
+                room = Request.QueryString["room"];
             }
             tanggalku = tanggal1;
-        }
-
-        protected void Filter_ServerClick(object sender, EventArgs e)
-        {
-            if (ddlruang.SelectedValue == "ruangan")
-                room = "ruangan";
-            else
-                room = "'" + ddlruang.Text + "'";
-
-            start = ddltahun.Text + "/" + ddlbulan.SelectedValue + "/01";
-            endbulan = Convert.ToInt32(ddlbulan.SelectedValue) + 1;
-            endtahun = Convert.ToInt32(ddltahun.Text);
-            if (ddlbulan.SelectedValue == "12")
-            {
-                endtahun = Convert.ToInt32(ddltahun.Text) + 1;
-                endbulan = 1;
-            }
-            end = endtahun + "/" + endbulan + "/01";
-
-
-            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
-                    checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                    where '{start}' <= d.tanggal and d.tanggal < '{end}' and p.ruangan = {room} and d.jenis='month' order by r.id_perangkat, r.id_parameter";
+            lbltitle.Text += " Bulan " + bulan + " " + tahun;
             tableticket();
         }
 
         void tableticket()
         {
+            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+                    checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
+                    where month = '{bulan}' and p.ruangan = '{room}' and tahun = '{tahun}' and d.jenis='month' order by r.id_perangkat, r.id_parameter";
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
 

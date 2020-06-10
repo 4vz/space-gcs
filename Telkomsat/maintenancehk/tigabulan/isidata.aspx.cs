@@ -177,8 +177,6 @@ namespace Telkomsat.maintenancehk.tigabulan
                         idddl = "ddl" + IDdata;
                         idtgl = "tgl" + IDdata;
 
-                        if (Session["inisialhk"] != null)
-                            nilai = ds.Tables[0].Rows[i]["data"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");

@@ -185,7 +185,7 @@ namespace Telkomsat.datalogbook
 
             if (idmain != null)
             {
-                string query = $"UPDATE table_pekerjaan SET status = 'Selesai' WHERE id_pekerjaan = '{idlain}'";
+                string query = $"UPDATE table_pekerjaan SET status = 'Selesai' WHERE id_pekerjaan = '{idmain}'";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                 sqlCon.Open();
                 sqlcmd.ExecuteNonQuery();

@@ -6894,11 +6894,16 @@
     <Content Include="checklistme\dataharian2.aspx" />
     <Content Include="checklistme\editharian.aspx" />
     <Content Include="checklistme\harian.aspx" />
+    <Content Include="checklistme\month\checkdata.aspx" />
+    <Content Include="checklistme\month\dashboard.aspx" />
     <Content Include="checklistme\month\data.aspx" />
+    <Content Include="checklistme\month\databulanan.aspx" />
     <Content Include="checklistme\month\editmonthly.aspx" />
     <Content Include="checklistme\month\isidata.aspx" />
+    <Content Include="checklistme\semester\checkdata.aspx" />
     <Content Include="checklistme\semester\data.aspx" />
     <Content Include="checklistme\semester\isidata.aspx" />
+    <Content Include="checklistme\semester\updatedata.aspx" />
     <Content Include="checklistme\view.aspx" />
     <Content Include="checklistme\view2.aspx" />
     <Content Include="checklistme\viewharian.aspx" />
@@ -6965,7 +6970,9 @@
     <Content Include="cropimag\Crop_f81d520b-fed4-4e30-941d-409460c0f698.png" />
     <Content Include="cropimag\Crop_full badan.jpg" />
     <Content Include="css\bs-stepper.css" />
+    <Content Include="dash.aspx" />
     <Content Include="dashboard2.aspx" />
+    <Content Include="dashboard5.aspx" />
     <Content Include="dataasset\alldata.aspx" />
     <Content Include="dataasset\bangunan.aspx" />
     <Content Include="dataasset\bangunanadd.aspx" />
@@ -7221,6 +7228,7 @@
     <Content Include="maintenancehk\tigabulan\dashboardbbu.aspx" />
     <Content Include="maintenancehk\tigabulan\data.aspx" />
     <Content Include="maintenancehk\tigabulan\databbu.aspx" />
+    <Content Include="maintenancehk\tigabulan\editbefore.aspx" />
     <Content Include="maintenancehk\tigabulan\isiafter.aspx" />
     <Content Include="maintenancehk\tigabulan\isibbu.aspx" />
     <Content Include="maintenancehk\tigabulan\isidata.aspx" />
@@ -7630,12 +7638,33 @@
     <Compile Include="checklistme\harian.aspx.designer.cs">
       <DependentUpon>harian.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklistme\month\checkdata.aspx.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\checkdata.aspx.designer.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\month\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checklistme\month\data.aspx.cs">
       <DependentUpon>data.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="checklistme\month\data.aspx.designer.cs">
       <DependentUpon>data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\month\databulanan.aspx.cs">
+      <DependentUpon>databulanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\month\databulanan.aspx.designer.cs">
+      <DependentUpon>databulanan.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\month\editmonthly.aspx.cs">
       <DependentUpon>editmonthly.aspx</DependentUpon>
@@ -7651,6 +7680,13 @@
     <Compile Include="checklistme\month\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklistme\semester\checkdata.aspx.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\semester\checkdata.aspx.designer.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checklistme\semester\data.aspx.cs">
       <DependentUpon>data.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7664,6 +7700,13 @@
     </Compile>
     <Compile Include="checklistme\semester\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\semester\updatedata.aspx.cs">
+      <DependentUpon>updatedata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\semester\updatedata.aspx.designer.cs">
+      <DependentUpon>updatedata.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklistme\view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
@@ -7834,12 +7877,26 @@
     <Compile Include="CHECKMEWEEK.Master.designer.cs">
       <DependentUpon>CHECKMEWEEK.Master</DependentUpon>
     </Compile>
+    <Compile Include="dash.aspx.cs">
+      <DependentUpon>dash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dash.aspx.designer.cs">
+      <DependentUpon>dash.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dashboard2.aspx.cs">
       <DependentUpon>dashboard2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="dashboard2.aspx.designer.cs">
       <DependentUpon>dashboard2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboard5.aspx.cs">
+      <DependentUpon>dashboard5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard5.aspx.designer.cs">
+      <DependentUpon>dashboard5.aspx</DependentUpon>
     </Compile>
     <Compile Include="dataasset\alldata.aspx.cs">
       <DependentUpon>alldata.aspx</DependentUpon>
@@ -8739,6 +8796,13 @@
     </Compile>
     <Compile Include="maintenancehk\tigabulan\databbu.aspx.designer.cs">
       <DependentUpon>databbu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\editbefore.aspx.cs">
+      <DependentUpon>editbefore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\editbefore.aspx.designer.cs">
+      <DependentUpon>editbefore.aspx</DependentUpon>
     </Compile>
     <Compile Include="maintenancehk\tigabulan\isiafter.aspx.cs">
       <DependentUpon>isiafter.aspx</DependentUpon>

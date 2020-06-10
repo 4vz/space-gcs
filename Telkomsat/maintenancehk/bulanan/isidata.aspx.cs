@@ -18,7 +18,7 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string[] akhir;
-        string query, query1, room, idddl, nilai, value, user, idtgl, valuetgl, bulan, angkabulan;
+        string query, query1, room, idddl, nilai, value, user, idtgl, valuetgl, bulan, angkabulan, tahun;
         int j = 0, m=0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,6 +43,8 @@ namespace Telkomsat.maintenancehk.bulanan
                 }
 
             }
+
+            tahun = DateTime.Now.Year.ToString();
             angkabulan = DateTime.Now.Month.ToString();
             bulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 
@@ -93,7 +95,7 @@ namespace Telkomsat.maintenancehk.bulanan
            
             sqlCon.Close();
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_bulan_data (id_profile, id_main, tanggal, bulan, data, angkabulan) values {data}";
+            query1 = $"insert into checkhk_bulan_data (id_profile, id_main, tanggal, bulan, data, angkabulan, tahun) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
@@ -188,7 +190,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" +  "12" + "','" + looping[j] + "','"  + loopingtgl[j] + "','" + bulan + "','" + line + "','" + angkabulan + "')";
+                            akhir[j] = "('" +  "12" + "','" + looping[j] + "','"  + loopingtgl[j] + "','" + bulan + "','" + line + "','" + angkabulan + "','" + tahun + "')";
                             j++;
                         }
                     }

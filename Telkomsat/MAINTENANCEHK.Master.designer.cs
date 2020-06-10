@@ -58,6 +58,24 @@ namespace Telkomsat {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor aharian;
         
         /// <summary>
+        /// abjm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor abjm;
+        
+        /// <summary>
+        /// divbjm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divbjm;
+        
+        /// <summary>
         /// divbulanan control.
         /// </summary>
         /// <remarks>

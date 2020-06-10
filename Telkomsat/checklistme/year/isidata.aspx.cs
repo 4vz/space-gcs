@@ -17,7 +17,7 @@ namespace Telkomsat.checklistme.year
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, tahun;
         string[] words = { "a", "a" };
         string[] akhir;
         int j = 0, k;
@@ -38,6 +38,8 @@ namespace Telkomsat.checklistme.year
                 room = Request.QueryString["room"];
                 lblroom.Text = room;
             }
+
+            tahun = DateTime.Now.Year.ToString();
             tableticket();
         }
         protected void Pilih_Click(object sender, EventArgs e)
@@ -55,7 +57,7 @@ namespace Telkomsat.checklistme.year
         {
 
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai) values {data}";
+            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai, tahun) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
@@ -63,12 +65,6 @@ namespace Telkomsat.checklistme.year
             Session["inisialyear"] = null;
 
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
-        }
-
-        protected void inisialisasi_Click(object sender, EventArgs e)
-        {
-            Session["inisialyear"] = "buka";
-
         }
 
         void tableticket()
@@ -124,8 +120,6 @@ namespace Telkomsat.checklistme.year
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if (Session["inisialyear"] != null)
-                            nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
@@ -164,7 +158,7 @@ namespace Telkomsat.checklistme.year
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "year" + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "year" + "','" + line + "','" + tahun + "')";
                             j++;
                         }
                     }
