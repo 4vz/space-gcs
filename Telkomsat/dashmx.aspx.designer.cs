@@ -10,7 +10,7 @@
 namespace Telkomsat {
     
     
-    public partial class dashboard5 {
+    public partial class dashmx {
         
         /// <summary>
         /// form1 control.
@@ -29,24 +29,6 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden mylabel;
-        
-        /// <summary>
-        /// licheck control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl licheck;
-        
-        /// <summary>
-        /// spcheck control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spcheck;
         
         /// <summary>
         /// lblProfile1 control.
@@ -139,24 +121,6 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.TextBox txtaccept;
         
         /// <summary>
-        /// txtonprogress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtonprogress;
-        
-        /// <summary>
-        /// txtoverdue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtoverdue;
-        
-        /// <summary>
         /// aharkat control.
         /// </summary>
         /// <remarks>
@@ -164,24 +128,6 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor aharkat;
-        
-        /// <summary>
-        /// iappchhk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iappchhk;
-        
-        /// <summary>
-        /// lblappchhk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappchhk;
         
         /// <summary>
         /// divhk control.
@@ -211,24 +157,6 @@ namespace Telkomsat {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor a1;
         
         /// <summary>
-        /// iappchbjm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iappchbjm;
-        
-        /// <summary>
-        /// lblappchbjm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappchbjm;
-        
-        /// <summary>
         /// divbjm control.
         /// </summary>
         /// <remarks>
@@ -254,24 +182,6 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor amalam;
-        
-        /// <summary>
-        /// iappchmemlm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iappchmemlm;
-        
-        /// <summary>
-        /// lblappchmemlm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappchmemlm;
         
         /// <summary>
         /// divmalam control.
@@ -301,24 +211,6 @@ namespace Telkomsat {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor apagi;
         
         /// <summary>
-        /// iappchmepg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iappchmepg;
-        
-        /// <summary>
-        /// lblappchmepg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappchmepg;
-        
-        /// <summary>
         /// divpagi control.
         /// </summary>
         /// <remarks>
@@ -344,24 +236,6 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor asiang;
-        
-        /// <summary>
-        /// iappchmesa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iappchmesa;
-        
-        /// <summary>
-        /// lblappchmesa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappchmesa;
         
         /// <summary>
         /// divsiang control.
@@ -751,15 +625,6 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.Label lblEvent;
         
         /// <summary>
-        /// PlaceHolderDeadline control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderDeadline;
-        
-        /// <summary>
         /// PlaceholderNow control.
         /// </summary>
         /// <remarks>
@@ -767,6 +632,69 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceholderNow;
+        
+        /// <summary>
+        /// lbutama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbutama;
+        
+        /// <summary>
+        /// lbmutasi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbmutasi;
+        
+        /// <summary>
+        /// lbStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStatus;
+        
+        /// <summary>
+        /// lbkonfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbkonfig;
+        
+        /// <summary>
+        /// lblain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblain;
+        
+        /// <summary>
+        /// lbldeadline control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldeadline;
+        
+        /// <summary>
+        /// PlaceHolderDeadline control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderDeadline;
         
         /// <summary>
         /// ashiftme control.
@@ -920,68 +848,5 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnhapus;
-        
-        /// <summary>
-        /// hdlogyear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdlogyear;
-        
-        /// <summary>
-        /// hdonprogressyear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdonprogressyear;
-        
-        /// <summary>
-        /// hdlog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdlog;
-        
-        /// <summary>
-        /// hdonprogress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdonprogress;
-        
-        /// <summary>
-        /// hdmonth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdmonth;
-        
-        /// <summary>
-        /// hdmonthyear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdmonthyear;
-        
-        /// <summary>
-        /// hdlabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdlabel;
     }
 }

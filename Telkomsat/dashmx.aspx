@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard2.aspx.cs" Inherits="Telkomsat.dashboard2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashmx.aspx.cs" Inherits="Telkomsat.dashmx" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Dashboard</title>
+    <title></title>
     <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
@@ -118,19 +118,6 @@
                 background-image: linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,0) 100%);
         }
 
-        .myli {
-          float: left;
-          display: block;
-          color: black;
-          text-align: center;
-          padding: 20px;
-          text-decoration: none;
-        }
-
-        .table5>tbody>tr>td{
-            padding:2px;
-        }
-
     </style>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -160,11 +147,8 @@
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Checklist & Maintenance<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../checkhk/dataharian.aspx">Harkat CBI</a></li>
-                                        <li><a href="../checklistme/checkharian.aspx">ME CBI</a></li>
-                                        <li><a href="../checkbjm/checkharian.aspx">Harkat BJM</a></li>
-                                        <li><a href="#">Harkat MDN</a></li>
-                                        <li><a href="#">Harkat MDO</a></li>
+                                        <li><a href="../checkhk/dataharian.aspx">Harkat</a></li>
+                                        <li><a href="../checklistme/checkharian.aspx">ME</a></li>
                                     </ul>
                                 </li>
                               </ul>
@@ -179,12 +163,7 @@
                     <div class="navbar-custom-menu">
         
                     <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu" runat="server" id="licheck">
-                            <a href="../superadmin/approve.aspx" >
-                              <i class="fa fa-check-circle-o" style="font-size:19px"></i>
-                              <span class="label label-primary" runat="server" id="spcheck">0</span>
-                            </a>
-                        </li>
+            
                       <!-- Messages: style can be found in dropdown.less-->
                       <!-- User Account: style can be found in dropdown.less -->
                       <li class="dropdown user user-menu">
@@ -247,8 +226,6 @@
                 <asp:TextBox ID="txtcomplete" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtreject" CssClass="hidden" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtaccept" CssClass="hidden" runat="server"></asp:TextBox>
-                <asp:TextBox ID="txtonprogress" CssClass="hidden" runat="server"></asp:TextBox>
-                <asp:TextBox ID="txtoverdue" CssClass="hidden" runat="server"></asp:TextBox>
                 <!-- Main content -->
                 <section class="content no-padding">
                     <div class="row">
@@ -263,8 +240,8 @@
                                         </a>
                                     <div class="info-box-content">
                                         
-                                            <span class="warnaputih">CBI</span>
-                                        <span class="warnaputih"><i runat="server" id="iappchhk"></i></span> <asp:Label ID="lblappchhk" runat="server" Text=""></asp:Label>
+                                            <span class="info-box-number warnaputih">Cibinong</span>
+
                                         <div class="progress sm">
                                         <div class="progress-bar" runat="server" id="divhk" style="width: 0%; background-color:whitesmoke"></div>
                                         </div>
@@ -275,9 +252,9 @@
                                     <a id="a1" runat="server" style="color:black">
                                     <span class="info-box-icon warnaputih"><i class="fa fa-calendar-o"></i></span>
                                         </a>
-                                    <div class="info-box-content" style="padding-bottom:99px">
-                                        <span class="warnaputih">BJM</span>
-                                        <span class="warnaputih"><i runat="server" id="iappchbjm"></i></span> <asp:Label ID="lblappchbjm" runat="server" Text=""></asp:Label>
+                                    <div class="info-box-content" style="padding-bottom:91px">
+                                        <span class="info-box-number warnaputih">Banjarmasin</span>
+
                                         <div class="progress sm">
                                         <div class="progress-bar progress-bar-red" runat="server" id="divbjm" style="width: 0%; background-color:whitesmoke"></div>
                                         </div>
@@ -297,8 +274,8 @@
                                         <span class="info-box-icon" style="color:white"><i class="fa fa-star-o"></i></span>
                                         </a>
                                         <div class="info-box-content">
-                                                <span class="warnaputih">Malam</span>
-                                                <span class="warnaputih"><i runat="server" id="iappchmemlm"></i></span> <asp:Label ForeColor="White" ID="lblappchmemlm" runat="server" Text=""></asp:Label>
+                                                <span class="info-box-number warnaputih">Malam</span>
+
                                                 <div class="progress sm">
                                                 <div class="progress-bar progress-bar-red" runat="server" id="divmalam" style="width: 0%; background-color:whitesmoke"></div>
                                                 </div>
@@ -310,8 +287,8 @@
                                          <span class="info-box-icon warnaputih"><i class="fa fa-moon-o"></i></span>
                                             </a>
                                         <div class="info-box-content">
-                                            <span class="warnaputih">Pagi</span>
-                                            <span class="warnaputih"><i runat="server" id="iappchmepg"></i></span> <asp:Label ForeColor="White" ID="lblappchmepg" runat="server" Text=""></asp:Label>
+                                            <span class="info-box-number warnaputih">Pagi</span>
+
                                                 <div class="progress sm" style="margin-bottom:0px">
                                                 <div class="progress-bar progress-bar-red" runat="server" id="divpagi" style="width: 80%; background-color:whitesmoke"></div>
                                                 </div>
@@ -321,9 +298,9 @@
                                         <a id="asiang" runat="server" style="color:black">
                                         <span class="info-box-icon warnaputih"><i class="fa fa-sun-o"></i></span>
                                         </a>
-                                        <div class="info-box-content" style="padding-bottom:25px">
-                                            <span class="warnaputih">Siang</span>
-                                            <span class="warnaputih"><i runat="server" id="iappchmesa"></i></span> <asp:Label ForeColor="White" ID="lblappchmesa" runat="server" Text=""></asp:Label>
+                                        <div class="info-box-content">
+                                            <span class="info-box-number warnaputih">Siang</span>
+
                                                 <div class="progress sm">
                                                 <div class="progress-bar progress-bar-green" runat="server" id="divsiang" style="width: 0%; background-color:whitesmoke"></div>
                                                 </div>
@@ -338,7 +315,7 @@
                                 <div class="box-header" style="background-color:#00426a">
                                     <span style="color:white">Maintenance Harkat</span>
                                 </div>
-                                <div class="box-body bg-blue-active" style="padding-bottom:0px;">
+                                <div class="box-body bg-blue-active" style="padding-bottom:3px;">
                                     <div style="min-height:220px">
                                         <table class="table">
                                             <tr>
@@ -384,7 +361,7 @@
                                 <div class="box-header" style="background-color:#c27d0e">
                                     <span style="color:white">Maintenance ME</span>
                                 </div>
-                                <div class="box-body bg-yellow" style="padding-bottom:0px">
+                                <div class="box-body bg-yellow" style="padding-bottom:3px">
                                     <div style="min-height:220px">
                                         <table class="table">
                                             <tr>
@@ -433,33 +410,47 @@
                                     <div class="col-md-12" style="min-height:220px;">
                                         <h5><b>Logbook hari ini</b></h5>
                                         <asp:Label ID="lblEvent" runat="server" Text="Tidak ada logbook hari ini" CssClass="waktudashboard2"></asp:Label>
-                                        <asp:PlaceHolder ID="PlaceHolderDeadline" runat="server"></asp:PlaceHolder>
                                         <asp:PlaceHolder ID="PlaceholderNow" runat="server"></asp:PlaceHolder>
                                     </div>
                                     <div class="col-md-6" style="min-height:220px">
                                         <h5><b>Logbook On Progress</b></h5>
-                                            <div class="chart-responsive"  style="width: 100%; margin-left: auto;  margin-right: auto; text-align:center">
-                                                    <canvas id="ChartLogbook" height="150" width="370"></canvas>
-                                            </div>
-                                            <div style="width: 100%; margin-left: auto;  margin-right: auto; text-align:center">
-                                                <ul style="margin: 0 auto; padding-right: 25px; text-align:center; display: inline-block;">
-                                                    <li class="myli"><i class="fa fa-circle text-yellow"></i> On Target</li>
-                                                    <li class="myli"><i class="fa fa-circle text-red"></i> Overdue</li>
-                                                </ul>
-                                            </div>
-                                            
+                                        <table class="table">
+                                            <tr>
+                                                <td >Utama</td>
+                                                <td >:</td>
+                                                <td><asp:Label ID="lbutama" runat="server" Text="0"></asp:Label></td>
+                                                <td><a style="font-size:12px; font-weight:normal" href="datalogbook/onprogress.aspx">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Mutasi Asset</td>
+                                                <td >:</td>
+                                                <td><asp:Label ID="lbmutasi" runat="server" Text="0"></asp:Label></td>
+                                                <td><a style="font-size:12px; font-weight:normal" href="datalogbook/onprogress.aspx?tipe=mutasi">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Status Asset</td>
+                                                <td >:</td>
+                                                <td><asp:Label ID="lbStatus" runat="server" Text="0"></asp:Label></td>
+                                                <td><a style="font-size:12px; font-weight:normal" href="datalogbook/onprogress.aspx?tipe=status">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Konfigurasi</td>
+                                                <td >:</td>
+                                                <td><asp:Label ID="lbkonfig" runat="server" Text="0"></asp:Label></td>
+                                                <td><a style="font-size:12px; font-weight:normal" href="datalogbook/onprogress.aspx?tipe=konfigurasi">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Lain-lain</td>
+                                                <td >:</td>
+                                                <td><asp:Label ID="lblain" runat="server" Text="0"></asp:Label></td>
+                                                <td><a style="font-size:12px; font-weight:normal" href="datalogbook/onprogress.aspx?tipe=lain-lain">View</a></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                     <div class="col-md-6">
-                                        <h5><b>Logbook</b></h5>
-                                        <div class="chart-responsive"  style="width: 100%; margin-left: auto;  margin-right: auto; text-align:center">
-                                                    <canvas id="canvas" height="123"></canvas>
-                                            </div>
-                                        <div style="width: 100%; margin-left: auto;  margin-right: auto; text-align:center">
-                                                <ul style="margin: 0 auto; padding-right: 25px; text-align:center; display: inline-block;">
-                                                    <li class="myli"><i class="fa fa-circle" style="color:#dfdfdf"></i> Semua Logbook</li>
-                                                    <li class="myli"><i class="fa fa-circle" style="color:#acc9d7"></i> On Progress</li>
-                                                </ul>
-                                            </div>
+                                        <h5><b>Logbook Deadline</b></h5>
+                                        <asp:Label ID="lbldeadline" runat="server" Text="Tidak ada logbook deadline" CssClass="waktudashboard2"></asp:Label>
+                                        <asp:PlaceHolder ID="PlaceHolderDeadline" runat="server"></asp:PlaceHolder>
                                     </div>
                                 </div>
                             </div>
@@ -781,41 +772,6 @@
       </div>
   </div>
 
-<button type="button" id="btnmodal" class="hidden" data-toggle="modal" data-target="#modal-default">Button</button>
-
-<div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Logbook Tahunan</h4>
-              </div>
-              <div class="modal-body">
-                    <canvas id="canvasyear" style="z-index:2147483647; width:100%"></canvas>
-                    <div style="width: 100%; margin-left: auto;  margin-right: auto; text-align:center">
-                        <ul style="margin: 0 auto; padding-right: 25px; text-align:center; display: inline-block;">
-                            <li class="myli" style="padding:7px"><i class="fa fa-circle" style="color:#dfdfdf"></i> Logbook</li>
-                            <li class="myli" style="padding:7px"><i class="fa fa-circle" style="color:#acc9d7"></i> On Progress</li>
-                        </ul>
-                    </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-
-        <asp:HiddenField runat="server" ID="hdlogyear" value=""/>
-        <asp:HiddenField runat="server" ID="hdonprogressyear" value=""/>
-        <asp:HiddenField runat="server" ID="hdlog" value=""/>
-        <asp:HiddenField runat="server" ID="hdonprogress" value=""/>
-        <asp:HiddenField runat="server" ID="hdmonth" value=""/>
-        <asp:HiddenField runat="server" ID="hdmonthyear" value=""/>
-        <asp:HiddenField runat="server" ID="hdlabel" value="'Januari',Februari,Maret,April"/>
         
         <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../assets/bower_components/PACE/pace.min.js"></script>
@@ -829,84 +785,6 @@
         <script src="../assets/bower_components/chart.js/Chart.js"></script>
         <script type="text/javascript" src="../assets/mylibrary/js.js"></script>
         <script>
-            var hdonprogress = document.getElementById("hdonprogress").value;
-            var mdonprogreaa = hdonprogress.split(',');
-            var hdlog = document.getElementById("hdlog").value;
-            var mdlog = hdlog.split(',');
-            var hdmonth = document.getElementById("hdmonth").value;
-            var mdmonth = hdmonth.split(',');
-            
-            var barChartData = {
-		            labels : mdmonth,
-		            datasets : [
-			            {
-				            fillColor : "rgba(220,220,220,0.5)",
-				            strokeColor : "rgba(220,220,220,0.8)",
-				            highlightFill: "rgba(220,220,220,0.75)",
-				            highlightStroke: "rgba(220,220,220,1)",
-				            data : mdlog
-			            },
-			            {
-				            fillColor : "rgba(151,187,205,0.5)",
-				            strokeColor : "rgba(151,187,205,0.8)",
-				            highlightFill : "rgba(151,187,205,0.75)",
-				            highlightStroke : "rgba(151,187,205,1)",
-				            data : mdonprogreaa
-			            }
-		            ]
-
-	            }
-	            window.onload = function(){
-		            var ctx = document.getElementById("canvas").getContext("2d");
-                    window.myBar = new Chart(ctx).Bar(barChartData, {
-                        responsive: true
-                    });
-                }
-            $('#modal-default').on('shown.bs.modal', function (event) {
-                var hdonprogressyear = $("#hdonprogressyear").val();
-                var mdonprogreaayear = hdonprogressyear.split(',');
-                var hdlogyear = $("#hdlogyear").val();
-                var mdlogyear = hdlogyear.split(',');
-                var hdmonthyear = $("#hdmonthyear").val();
-                var mdmonthyear = hdmonthyear.split(',');
-                console.log("hdlog" + mdmonthyear);
-                var modal = $(this);
-                var canvas = modal.find('.modal-body canvas');
-                var ctx = canvas[0].getContext("2d");
-                var chart = new Chart(ctx).Bar({
-                    responsive: true,
-                    labels: mdmonthyear,
-                    datasets: [
-                        {
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: mdlogyear
-                        },
-                        {
-                            fillColor: "rgba(151,187,205,0.5)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
-                            data: mdonprogreaayear
-                        }
-                    ]
-
-                }, {});
-            }).on('hidden.bs.modal',function(event){
-                // reset canvas size
-                var modal = $(this);
-                var canvas = modal.find('.modal-body canvas');
-                canvas.attr('width','568px').attr('height','300px');
-                // destroy modal
-                $(this).data('bs.modal', null);
-            });
-
-            
-
-            var LogData;
-
             $(function () {
                  $(".datepick").datepicker({startDate:null,autoclose: true,
                     format: 'yyyy/mm/dd', endDate: null
@@ -916,7 +794,6 @@
                 var test3 = test.split(',');
                 console.log(test3);
 
-                var pieCanvas = $('#pieChart');
                 var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
                 var pieChart       = new Chart(pieChartCanvas);
                 var PieData        = [
@@ -956,7 +833,7 @@
                     value: 1,
                     color: '#bebebe',
                     highlight: '#f56954',
-                    label: 'Rek. Harkat 1'                    
+                    label: 'Rek. Harkat 1'
                 }];
                 var pieOptions     = {
                 // Boolean - Whether we should show a stroke on each segment
@@ -978,9 +855,7 @@
                 // Boolean - whether to make the chart responsive to window resizing
                 responsive           : true,
                 // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-                maintainAspectRatio: false,
-
-                type: 'pie',
+                maintainAspectRatio  : false,
 
                 };
                 // Create pie or douhnut chart
@@ -991,53 +866,8 @@
                 else {
                     pieChart.Doughnut(PieData, pieOptions);
                 }
-
-                var LogChartCanvas = $('#ChartLogbook').get(0).getContext('2d');
-                var LogChart       = new Chart(LogChartCanvas);
-                LogData        = [
-                    {
-                        value: $('#<%=txtoverdue.ClientID %>').val(),
-                        color    : '#f56954',
-                        highlight: '#f56954',
-                        label    : 'Overdue'
-                    },
-                    {
-                        value    : $('#<%=txtonprogress.ClientID %>').val(),
-                        color    : '#f39c12',
-                        highlight: '#f39c12',
-                        label    : 'On Target'
-                    }
-                ];
-
-                LogChart.Pie(LogData);
                 
             })
-
-            $(document).ready(
-              function() {
-                  var canvas = document.getElementById("ChartLogbook");
-                  var canvasbar = document.getElementById("canvas");
-                  var ctxbar = canvasbar.getContext("2d");
-                  var ctx = canvas.getContext("2d");
-                  var myNewChart = new Chart(ctx);
-                  var myNewChart2 = myNewChart.Pie(LogData);
-
-                  canvas.onclick = function (evt) {
-                      //alert("bisa");
-                      var activePoints = myNewChart2.getSegmentsAtEvent(evt);
-                      if (activePoints[0]) {
-                          var url = "datalogbook/onprogress.aspx?tipe=" + activePoints[0].label;
-                          window.location = url
-                           // alert(url);
-                      }
-                  };
-
-                  canvasbar.onclick = function (evt) {
-                      document.getElementById("btnmodal").click();
-                  };
-              }
-            );
-
 
             $(document).on("click", "#btnadd", function () {
                 $('#<%=btntambah.ClientID %>').show();
@@ -1053,5 +883,4 @@
         </script>
     </form>
 </body>
-
 </html>

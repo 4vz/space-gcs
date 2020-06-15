@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="checkdata.aspx.cs" Inherits="Telkomsat.checklistme.month.checkdata" %>
+﻿<%@ Page Title="Data Maintenance ME Bulanan" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="checkdata.aspx.cs" Inherits="Telkomsat.checklistme.month.checkdata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

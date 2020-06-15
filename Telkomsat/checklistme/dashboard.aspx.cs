@@ -23,8 +23,32 @@ namespace Telkomsat.checklistme
             tanggal = Request.QueryString["tanggal"];
             waktu = Request.QueryString["waktu"];
             tablepersen();
-                
+            approval();
         }
+
+        void approval()
+        {
+            string petugas, thistime, query;
+            SqlDataAdapter da;
+            DataSet ds = new DataSet();
+            query = $@"select d.tanggal, p.nama, d.pic from checkme_data d inner join Profile p on d.id_profile = p.id_profile
+					where d.tanggal='{tanggal}' and waktu = '{waktu}' group by tanggal, nama, pic order by d.tanggal desc";
+            sqlcon.Open();
+            SqlCommand cmd = new SqlCommand(query, sqlcon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlcon.Close();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                lbltanggal.Text = ds.Tables[0].Rows[0]["tanggal"].ToString();
+                lblpetugas.Text = ds.Tables[0].Rows[0]["nama"].ToString();
+                if (ds.Tables[0].Rows[0]["pic"].ToString() == null || ds.Tables[0].Rows[0]["pic"].ToString() == "")
+                    lblapproval.Text = "Belum di approve";
+                else
+                    lblapproval.Text = ds.Tables[0].Rows[0]["pic"].ToString();
+            }
+        }
+
 
         void tablepersen()
         {

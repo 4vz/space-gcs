@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Telkomsat.checklistme.dashboard" %>
+﻿<%@ Page Title="Checklist ME" Language="C#" MasterPageFile="~/CHECKLISTME.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Telkomsat.checklistme.dashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .link{
@@ -12,6 +12,28 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="box box-primary" runat="server" id="divdata">
+        <div class="box-header">
+            Checklist Harkat Cibinong
+        </div>
+        <div class="box-body">
+            <div class="col-md-12 col-xs-12">
+                <table class="table">
+                    <tr>
+                    <th>Tanggal</th>
+                    <th>Petugas</th>
+                    <th>Approval</th>
+                    </tr>
+                    <tr style="background-color:white">
+                    <td><asp:Label ID="lbltanggal" runat="server" Text="Label"></asp:Label></td>
+                    <td><asp:Label ID="lblpetugas" runat="server" Text="Label"></asp:Label></td>
+                    <td><asp:Label ID="lblapproval" runat="server" Text="Label"></asp:Label></td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div> 
     <div class="box box-primary">
         <div class="box-header">
             Checklist ME

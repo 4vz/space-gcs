@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MAINTENANCEHK.Master" AutoEventWireup="true" CodeBehind="editbefore.aspx.cs" Inherits="Telkomsat.maintenancehk.tigabulan.editbefore" %>
+﻿<%@ Page Title="Maintenance Triwulan" Language="C#" MasterPageFile="~/MAINTENANCEHK.Master" AutoEventWireup="true" CodeBehind="editbefore.aspx.cs" Inherits="Telkomsat.maintenancehk.tigabulan.editbefore" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

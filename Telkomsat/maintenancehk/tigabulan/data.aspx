@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MAINTENANCEHK.Master" AutoEventWireup="true" CodeBehind="data.aspx.cs" Inherits="Telkomsat.maintenancehk.tigabulan.data" %>
+﻿<%@ Page Title="Maintenance Triwulan" Language="C#" MasterPageFile="~/MAINTENANCEHK.Master" AutoEventWireup="true" CodeBehind="data.aspx.cs" Inherits="Telkomsat.maintenancehk.tigabulan.data" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style>
         .link{

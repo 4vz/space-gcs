@@ -7,18 +7,17 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Globalization;
 
 namespace Telkomsat
 {
-    public partial class dashboard5 : System.Web.UI.Page
+    public partial class dashmx : System.Web.UI.Page
     {
         SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm;
         DataSet dsshift = new DataSet();
         DataSet dspekerjaan = new DataSet();
-        string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata;
+        string query, iduser, tanggal, style1, style, style3, agenda, dataagenda, pilihicon, icon1, queryaddev, queryev, IDdata;
 
-        int output, output1, output2, output3, output4, j;
+        int output, output1, output2, output3, output4;
         string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user;
         StringBuilder htmlTableShift = new StringBuilder();
         StringBuilder htmlDeadline = new StringBuilder();
@@ -69,55 +68,13 @@ namespace Telkomsat
             amesemester.Attributes["href"] = "../checklistme/semester/isidata.aspx";
             ametahunan.Attributes["href"] = "../checklistme/year/isidata.aspx";
 
-            string queryuser;
-
-            SqlDataAdapter da;
-            DataSet ds = new DataSet();
-            queryuser = $"select approval from Profile where user_name='{Session["username"].ToString()}'";
-            SqlCommand cmd2 = new SqlCommand(queryuser, sqlCon);
-            sqlCon.Open();
-            da = new SqlDataAdapter(cmd2);
-            da.Fill(ds);
-            sqlCon.Close();
-
-            if (ds.Tables[0].Rows[0]["approval"].ToString() == "HK")
-                licheck.Visible = true;
-
             logbookonprogress();
             logdeadline();
             lognow();
             checklist();
             ticket();
             maintenance();
-            approve();
-        }
 
-        void approve()
-        {
-            SqlDataAdapter da;
-            sqlCon.Open();              //Harkat Banjarmasin
-            string query = $@"with cte as (select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-						join checkhk_parameter r on r.id_parameter=d.id_parameter where d.approval is null or d.approval = '' 
-						group by CAST(d.tanggal AS DATE), nama),
-
-                                    cte2 as (select d.tanggal, p.nama, d.waktu from checkme_data d inner join Profile p on d.id_profile = p.id_profile
-						                                    where approve is null or approve = ''
-                                                            group by tanggal, nama, d.waktu)
-
-                                    SELECT (select COUNT(*) from cte) [HK], (select COUNT(*) from cte2) [ME]";
-            DataSet ds = new DataSet();
-            SqlCommand cmd = new SqlCommand(query, sqlCon);
-            da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                double harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["HK"]);
-                double me = Convert.ToInt32(ds.Tables[0].Rows[0]["ME"]);
-                double total = harkat + me;
-                spcheck.InnerText = total.ToString();
-            }
         }
 
         void maintenance()
@@ -273,7 +230,7 @@ namespace Telkomsat
 
             if (Math.Round(hasilhkbulan) > 0)
                 ihkbulan.Attributes.Add("class", "fa fa-hourglass-half");
-            else if(Math.Round(hasilhkbulan) == 0)
+            else if (Math.Round(hasilhkbulan) == 0)
                 ihkbulan.Attributes.Add("class", "fa fa-minus-square");
             else if (Math.Round(hasilhkbulan) == 100)
                 ihkbulan.Attributes.Add("class", "fa fa-check-circle");
@@ -394,15 +351,12 @@ namespace Telkomsat
 
         void logbookonprogress()
         {
-            string thistime, tahun;
-            int tahunint;
-
-            tahun = DateTime.Now.Year.ToString();
-            tahunint = Convert.ToInt32(tahun);
-            thistime = DateTime.Now.ToString("yyyy/MM/dd");
-            string myquery = $@"select(select count(*) from tabel_logbook where STATUS='On Progress')[On_Progress],
-		                        (select count(*) from tabel_logbook where STATUS='On Progress' and due_date < '{thistime}')[Overdue],
-		                        (select count(*) from tabel_logbook where STATUS='On Progress' and due_date >= '{thistime}')[On_Target]";
+            string myquery = @"select top 1 (SELECT count(status)[total] from tabel_logbook where status='On Progress')[Utama], 
+                                (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan = 'konfigurasi')[konfigurasi],
+                                (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan = 'mutasi')[mutasi],
+                                (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan= 'lain-lain')[lain-lain],
+                                (select count(*) from table_pekerjaan p where p.status = 'On Progress' and p.jenis_pekerjaan= 'fungsi & status')[status]
+                                from tabel_logbook l full join table_pekerjaan p on p.id_logbook=l.id_logbook";
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             SqlDataAdapter da;
             DataSet ds = new DataSet();
@@ -414,110 +368,13 @@ namespace Telkomsat
 
             if (ds.Tables[0].Rows.Count > 0)
             {
-                txtonprogress.Text = ds.Tables[0].Rows[0]["On_Target"].ToString();
-                txtoverdue.Text = ds.Tables[0].Rows[0]["Overdue"].ToString();
+                lbutama.Text = ds.Tables[0].Rows[0]["Utama"].ToString();
+                lbkonfig.Text = ds.Tables[0].Rows[0]["konfigurasi"].ToString();
+                lbmutasi.Text = ds.Tables[0].Rows[0]["mutasi"].ToString();
+                lblain.Text = ds.Tables[0].Rows[0]["lain-lain"].ToString();
+                lbStatus.Text = ds.Tables[0].Rows[0]["status"].ToString();
             }
 
-            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
-            string[] angkabulan = new string[4];
-            string[] abulan = new string[4];
-            string[] angkabulan2 = new string[12];
-            string[] abulan2 = new string[12];
-
-            for (int i = -3; i < 1; i++)
-            {
-                angkabulan[j] = DateTime.Now.AddMonths(i).Month.ToString();
-                abulan[j] = bulan[Convert.ToInt32(angkabulan[j]) - 1];
-                j++;
-            }
-
-            for (int i = 0; i < 12; i++)
-            {
-                abulan2[i] = bulan[i];
-            }
-
-            databulan = string.Join(",", abulan);
-            databulan2 = string.Join(",", abulan2);
-
-            string querylog = $@"select(select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}') [satu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}') [dua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}') [tiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}') [empat],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}' and status='On Progress') [opsatu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}' and status='On Progress') [opdua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}' and status='On Progress') [optiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}' and status='On Progress') [opempat]";
-            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
-            SqlDataAdapter dalog;
-            DataSet dslog = new DataSet();
-            dalog = new SqlDataAdapter(cmdlog);
-            dalog.Fill(dslog);
-            sqlCon.Open();
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-
-            if (dslog.Tables[0].Rows.Count > 0)
-            {
-                hdlog.Value = $@"{dslog.Tables[0].Rows[0]["satu"].ToString()},{dslog.Tables[0].Rows[0]["dua"].ToString()},
-                                {dslog.Tables[0].Rows[0]["tiga"].ToString()},{dslog.Tables[0].Rows[0]["empat"].ToString()}";
-
-                hdonprogress.Value = $@"{dslog.Tables[0].Rows[0]["opsatu"].ToString()},{dslog.Tables[0].Rows[0]["opdua"].ToString()},
-                                {dslog.Tables[0].Rows[0]["optiga"].ToString()},{dslog.Tables[0].Rows[0]["opempat"].ToString()}";
-
-                hdmonth.Value = databulan;
-            }
-
-            string querylogyear = $@"select(select count(*) from tabel_logbook where waktu_action >= '{tahun}-{1}-01' and waktu_action <= '{tahun}-{1}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(1))}') [satu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{2}-01' and waktu_action <= '{tahun}-{2}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(2))}') [dua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{3}-01' and waktu_action <= '{tahun}-{3}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(3))}') [tiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{4}-01' and waktu_action <= '{tahun}-{4}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(4))}') [empat],
-                        (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{5}-01' and waktu_action <= '{tahun}-{5}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(5))}') [lima],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{6}-01' and waktu_action <= '{tahun}-{6}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(6))}') [enam],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{7}-01' and waktu_action <= '{tahun}-{7}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(7))}') [tujuh],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{8}-01' and waktu_action <= '{tahun}-{8}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(8))}') [delapan],
-                        (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{9}-01' and waktu_action <= '{tahun}-{9}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(9))}') [sembilan],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{10}-01' and waktu_action <= '{tahun}-{10}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(10))}') [sepuluh],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{11}-01' and waktu_action <= '{tahun}-{11}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(11))}') [sebelas],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{12}-01' and waktu_action <= '{tahun}-{12}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(12))}') [duabelas],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{1}-01' and waktu_action <= '{tahun}-{1}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(1))}' and status='On Progress') [opsatu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{2}-01' and waktu_action <= '{tahun}-{2}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(2))}' and status='On Progress') [opdua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{3}-01' and waktu_action <= '{tahun}-{3}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(3))}' and status='On Progress') [optiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{4}-01' and waktu_action <= '{tahun}-{4}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(4))}' and status='On Progress') [opempat],
-                        (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{5}-01' and waktu_action <= '{tahun}-{5}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(5))}' and status='On Progress') [oplima],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{6}-01' and waktu_action <= '{tahun}-{6}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(6))}' and status='On Progress') [openam],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{7}-01' and waktu_action <= '{tahun}-{7}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(7))}' and status='On Progress') [optujuh],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{8}-01' and waktu_action <= '{tahun}-{8}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(8))}' and status='On Progress') [opdelapan],
-                        (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{9}-01' and waktu_action <= '{tahun}-{9}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(9))}' and status='On Progress') [opsembilan],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{10}-01' and waktu_action <= '{tahun}-{10}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(10))}' and status='On Progress') [opsepuluh],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{11}-01' and waktu_action <= '{tahun}-{11}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(11))}' and status='On Progress') [opsebelas],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{12}-01' and waktu_action <= '{tahun}-{12}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(12))}' and status='On Progress') [opduabelas]";
-            SqlCommand cmdlogyear = new SqlCommand(querylogyear, sqlCon);
-            SqlDataAdapter dalogyear;
-            DataSet dslogyear = new DataSet();
-            dalogyear = new SqlDataAdapter(cmdlogyear);
-            dalogyear.Fill(dslogyear);
-            sqlCon.Open();
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-
-            if (dslogyear.Tables[0].Rows.Count > 0)
-            {
-                hdlogyear.Value = $@"{dslogyear.Tables[0].Rows[0]["satu"].ToString()},{dslogyear.Tables[0].Rows[0]["dua"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["tiga"].ToString()},{dslogyear.Tables[0].Rows[0]["empat"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["lima"].ToString()},{dslogyear.Tables[0].Rows[0]["enam"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["tujuh"].ToString()},{dslogyear.Tables[0].Rows[0]["delapan"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["sembilan"].ToString()},{dslogyear.Tables[0].Rows[0]["sepuluh"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["sebelas"].ToString()},{dslogyear.Tables[0].Rows[0]["duabelas"].ToString()}";
-
-                hdonprogressyear.Value = $@"{dslogyear.Tables[0].Rows[0]["opsatu"].ToString()},{dslogyear.Tables[0].Rows[0]["opdua"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["optiga"].ToString()},{dslogyear.Tables[0].Rows[0]["opempat"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["oplima"].ToString()},{dslogyear.Tables[0].Rows[0]["openam"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["optujuh"].ToString()},{dslogyear.Tables[0].Rows[0]["opdelapan"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["opsembilan"].ToString()},{dslogyear.Tables[0].Rows[0]["opsepuluh"].ToString()},
-                                {dslogyear.Tables[0].Rows[0]["opsebelas"].ToString()},{dslogyear.Tables[0].Rows[0]["opduabelas"].ToString()}";
-
-                hdmonthyear.Value = databulan2;
-            }
         }
 
         void lognow()
@@ -532,7 +389,7 @@ namespace Telkomsat
             sqlda.Fill(ds);
             sqlCon.Close();
 
-            htmlNow.Append("<table id=\"example2\" width=\"100%\" class=\"table table5\">");
+            htmlNow.Append("<table id=\"example2\" width=\"100%\" class=\"table\">");
             htmlNow.Append("<thead>");
             htmlNow.Append("<tr><th>Unit</th><th>Tipe</th><th>Judul</th><th>Action</th>");
             htmlNow.Append("</thead>");
@@ -612,13 +469,13 @@ namespace Telkomsat
             sqlda.Fill(ds);
             sqlCon.Close();
 
-            htmlDeadline.Append("<table id=\"example2\" width=\"100%\" class=\"table table5\">");
+            htmlDeadline.Append("<table id=\"example2\" width=\"100%\" class=\"table\">");
             htmlDeadline.Append("<tbody>");
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    //lblEvent.Visible = false;
+                    lbldeadline.Visible = false;
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         deskripsi = ds.Tables[0].Rows[i]["deskripsi"].ToString();
@@ -655,7 +512,6 @@ namespace Telkomsat
 
                         if (t.Days <= 1)
                         {
-                            lblEvent.Visible = false;
                             htmlDeadline.Append("<tr>");
                             htmlDeadline.Append("<td>" + $"<label class=\"{style3}\">" + enddate + "</label>" + "</td>");
                             htmlDeadline.Append("<td>" + $"<label style=\"{stylebg}\">" + ds.Tables[0].Rows[i]["jenis_pekerjaan"].ToString() + "</label>" + "</td>");
@@ -709,10 +565,10 @@ namespace Telkomsat
             int totalbjm = Convert.ToInt32(dscountbjm.Tables[0].Rows[0]["total"]);
 
             sqlCon.Open();
-            string querycheck = $@"select count(*) as total, nama, d.pic, d.approve from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+            string querycheck = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
                         join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile  where d.tanggal='{tanggalku}' 
                         and d.nilai != '' and d.waktu='siang'
-                        group by d.tanggal, nama, d.pic, d.approve";
+                        group by d.tanggal, nama";
             DataSet ds5 = new DataSet();
             SqlCommand cmd = new SqlCommand(querycheck, sqlCon);
             da5 = new SqlDataAdapter(cmd);
@@ -729,13 +585,6 @@ namespace Telkomsat
                 divsiang.Style.Add("width", $"{tampil}%");
                 lblsiangme.Text = $"{tampil}% oleh {ds5.Tables[0].Rows[0]["nama"].ToString()}";
                 asiang.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=siang&tanggal={mytanggal}";
-                iappchmesa.Attributes.Add("class", "fa fa-hourglass-half");
-                if (ds5.Tables[0].Rows[0]["approve"].ToString() == "approve")
-                {
-                    iappchmesa.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchmesa.Text = "by " + ds5.Tables[0].Rows[0]["pic"].ToString();
-                }
-                    
             }
             else
             {
@@ -744,10 +593,10 @@ namespace Telkomsat
 
 
             sqlCon.Open();
-            string querycheckpagi = $@"select count(*) as total, nama, d.pic, d.approve from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+            string querycheckpagi = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
                         join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile 
                         where d.tanggal='{tanggalku}' and d.nilai != '' and d.waktu='pagi'
-                        group by d.tanggal, nama, d.pic, d.approve";
+                        group by d.tanggal, nama";
             DataSet ds6 = new DataSet();
             SqlCommand cmd1 = new SqlCommand(querycheckpagi, sqlCon);
             da6 = new SqlDataAdapter(cmd1);
@@ -764,13 +613,6 @@ namespace Telkomsat
                 divpagi.Style.Add("width", $"{tampil1}%");
                 lblpagime.Text = $"{tampil1}% oleh {ds6.Tables[0].Rows[0]["nama"].ToString()}";
                 apagi.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=pagi&tanggal={mytanggal}";
-                iappchmepg.Attributes.Add("class", "fa fa-hourglass-half");
-                if (ds6.Tables[0].Rows[0]["approve"].ToString() == "approve")
-                {
-                    iappchmepg.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchmepg.Text = "by " + ds6.Tables[0].Rows[0]["pic"].ToString();
-                }
-                    
             }
             else
             {
@@ -778,10 +620,10 @@ namespace Telkomsat
             }
 
             sqlCon.Open();
-            string querycheckmalam = $@"select count(*) as total, nama, d.pic, d.approve from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
+            string querycheckmalam = $@"select count(*) as total, nama from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
                         join checkme_perangkat p on p.id_perangkat=r.id_perangkat join Profile pro on pro.id_profile=d.id_profile 
                         where d.tanggal='{tanggalkumalam}' and d.nilai != '' and d.waktu='malam'
-                        group by d.tanggal, nama, d.pic, d.approve";
+                        group by d.tanggal, nama";
             DataSet ds7 = new DataSet();
             SqlCommand cmd2 = new SqlCommand(querycheckmalam, sqlCon);
             da7 = new SqlDataAdapter(cmd2);
@@ -798,13 +640,6 @@ namespace Telkomsat
                 divmalam.Style.Add("width", $"{tampil2}%");
                 lblmalamme.Text = $"{tampil2}% oleh {ds7.Tables[0].Rows[0]["nama"].ToString()}";
                 amalam.Attributes["href"] = $"../checklistme/dashboard.aspx?waktu=malam&tanggal={tanggalkumalam}";
-                iappchmemlm.Attributes.Add("class", "fa fa-hourglass-half");
-                if (ds7.Tables[0].Rows[0]["approve"].ToString() == "approve")
-                {
-                    iappchmemlm.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchmemlm.Text = "by " + ds7.Tables[0].Rows[0]["pic"].ToString();
-                }
-                    
             }
             else
             {
@@ -813,11 +648,11 @@ namespace Telkomsat
 
 
             sqlCon.Open();              //Harkat cibinong
-            string querycheckhk = $@"select count(*) as total, nama, d.pic, d.approval from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
+            string querycheckhk = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
 									on r.id_parameter=d.id_parameter
                                     where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
 									and r.id_perangkat not like '%' + 'bjm' + '%' and d.data != ''
-                                    group by CAST(d.tanggal as date), nama, d.pic, d.approval";
+                                    group by CAST(d.tanggal as date), nama";
             DataSet ds8 = new DataSet();
             SqlCommand cmd3 = new SqlCommand(querycheckhk, sqlCon);
             da8 = new SqlDataAdapter(cmd3);
@@ -834,12 +669,6 @@ namespace Telkomsat
                 divhk.Style.Add("width", $"{tampil3}%");
                 lblchharkat.Text = $"{tampil3}% oleh {ds8.Tables[0].Rows[0]["nama"].ToString()}";
                 aharkat.Attributes["href"] = $"../checkhk/dashboard.aspx?tanggal={tanggalku}";
-                iappchhk.Attributes.Add("class", "fa fa-hourglass-half");
-                if (ds8.Tables[0].Rows[0]["approval"].ToString() == "approve")
-                {
-                    iappchhk.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchhk.Text = "by " + ds8.Tables[0].Rows[0]["pic"].ToString();
-                }
             }
             else
             {
@@ -848,11 +677,11 @@ namespace Telkomsat
 
 
             sqlCon.Open();              //Harkat Banjarmasin
-            string querycheckbjm = $@"select count(*) as total, nama, d.pic, d.approval from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
+            string querycheckbjm = $@"select count(*) as total, nama from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
 									on r.id_parameter=d.id_parameter
                                     where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
 									and r.id_perangkat like '%' + 'bjm' + '%' and d.data != ''
-                                    group by CAST(d.tanggal as date), nama, d.pic, d.approval";
+                                    group by CAST(d.tanggal as date), nama";
             DataSet dsbjm = new DataSet();
             SqlCommand cmdbjm2 = new SqlCommand(querycheckbjm, sqlCon);
             dabjm = new SqlDataAdapter(cmdbjm2);
@@ -869,12 +698,6 @@ namespace Telkomsat
                 divbjm.Style.Add("width", $"{tampilbjm}%");
                 lblbjm.Text = $"{tampilbjm}% oleh {dsbjm.Tables[0].Rows[0]["nama"].ToString()}";
                 a1.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
-                iappchbjm.Attributes.Add("class", "fa fa-hourglass-half");
-                if (dsbjm.Tables[0].Rows[0]["approval"].ToString() == "approve")
-                {
-                    iappchbjm.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchbjm.Text = "by " + dsbjm.Tables[0].Rows[0]["pic"].ToString();
-                }
             }
             else
             {

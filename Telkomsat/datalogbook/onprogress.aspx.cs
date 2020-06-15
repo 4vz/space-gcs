@@ -31,15 +31,25 @@ namespace Telkomsat.datalogbook
 
         void tableticket()
         {
+            string thistime;
+            thistime = DateTime.Now.ToString("yyyy/MM/dd");
             if(Request.QueryString["tipe"] != null)
             {
-                link = Request.QueryString["tipe"].ToString();
+                /*link = Request.QueryString["tipe"].ToString();
                 if (link == "status")
                     link = "Fungsi & Status";
                 myquery = $@"select l.* from tabel_logbook l left join table_pekerjaan p on l.id_logbook=p.id_logbook where p.jenis_pekerjaan = '{link}' and p.status = 'On Progress'
                             group by l.agenda, l.due_date, l.id_logbook, l.id_user, l.judul_logbook, l.lampiran, l.pic_eksternal, l.pic_internal, l.status,
                             l.tanggal, l.tipe_logbook, l.unit, l.waktu_action";
-                lblHeading.Text = $"Data logbook on progress {link}";
+                lblHeading.Text = $"Data logbook on progress {link}";*/
+                if(Request.QueryString["tipe"].ToString() == "On Target")
+                {
+                    myquery = $"select * from tabel_logbook where status = 'On Progress' and due_date >= '{thistime}' order by tanggal desc";
+                }
+                else if (Request.QueryString["tipe"].ToString() == "Overdue")
+                {
+                    myquery = $"select * from tabel_logbook where status = 'On Progress' and due_date < '{thistime}' order by tanggal desc";
+                }
             }
             else
             {

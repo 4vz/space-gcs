@@ -6973,6 +6973,7 @@
     <Content Include="dash.aspx" />
     <Content Include="dashboard2.aspx" />
     <Content Include="dashboard5.aspx" />
+    <Content Include="dashmx.aspx" />
     <Content Include="dataasset\alldata.aspx" />
     <Content Include="dataasset\bangunan.aspx" />
     <Content Include="dataasset\bangunanadd.aspx" />
@@ -7247,6 +7248,9 @@
     <Content Include="Style2.css" />
     <Content Include="StyleLogBook.css" />
     <Content Include="stylepagination.css" />
+    <Content Include="superadmin\action.aspx" />
+    <Content Include="superadmin\approve.aspx" />
+    <Content Include="superadmin\checklistme.aspx" />
     <Content Include="superadmin\hapus.aspx" />
     <Content Include="superadmin\manuver.aspx" />
     <Content Include="superadmin\shiftme.aspx" />
@@ -7422,6 +7426,13 @@
       <DependentUpon>alldata.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\ValuesController1.cs" />
+    <Compile Include="APPROVAL.Master.cs">
+      <DependentUpon>APPROVAL.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="APPROVAL.Master.designer.cs">
+      <DependentUpon>APPROVAL.Master</DependentUpon>
+    </Compile>
     <Compile Include="ASSET.Master.cs">
       <DependentUpon>ASSET.Master</DependentUpon>
     </Compile>
@@ -7897,6 +7908,13 @@
     </Compile>
     <Compile Include="dashboard5.aspx.designer.cs">
       <DependentUpon>dashboard5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashmx.aspx.cs">
+      <DependentUpon>dashmx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashmx.aspx.designer.cs">
+      <DependentUpon>dashmx.aspx</DependentUpon>
     </Compile>
     <Compile Include="dataasset\alldata.aspx.cs">
       <DependentUpon>alldata.aspx</DependentUpon>
@@ -8896,6 +8914,27 @@
     <Compile Include="searchby.aspx.designer.cs">
       <DependentUpon>searchby.aspx</DependentUpon>
     </Compile>
+    <Compile Include="superadmin\action.aspx.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\action.aspx.designer.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\approve.aspx.cs">
+      <DependentUpon>approve.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\approve.aspx.designer.cs">
+      <DependentUpon>approve.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="superadmin\checklistme.aspx.cs">
+      <DependentUpon>checklistme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="superadmin\checklistme.aspx.designer.cs">
+      <DependentUpon>checklistme.aspx</DependentUpon>
+    </Compile>
     <Compile Include="superadmin\hapus.aspx.cs">
       <DependentUpon>hapus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9673,6 +9712,7 @@
     <Content Include="API\allasset.ashx" />
     <Content Include="CHECKLISTBJM.Master" />
     <Content Include="MAINTENANCEHK.Master" />
+    <Content Include="APPROVAL.Master" />
     <None Include="packages.config" />
     <Content Include="template.Master" />
     <Content Include="TICKETMASTER.Master" />

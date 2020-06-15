@@ -13,8 +13,14 @@ namespace Telkomsat
 {
     public partial class WebForm6 : System.Web.UI.Page
     {
+        string databulan;
+        int j = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string[] angkabulan = new string[4];
+            string[] abulan = new string[4];
+            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
+            
             DateTime dt = DateTime.Now;//yourdatetime
             int weekOfMonth = (dt.Day + ((int)dt.DayOfWeek)) / 7 + 1;
             DateTime firstDay = new DateTime(DateTime.Now.Year, 1, 1);
@@ -31,9 +37,20 @@ namespace Telkomsat
             var selesai = DateTime.Today.AddDays(+(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
             string week1 = mulai.ToString("yyyy/MM/dd");
             string week2 = selesai.ToString("yyyy/MM/dd");
-            Response.Write("mulai : " + dta.ToString("dd/MM/yyyy") + "           akhir : " + (int)DayOfWeek.Monday);
-
-            Response.Write("  mli " + (Convert.ToInt32(DateTime.Now.DayOfYear) - (Convert.ToInt32(dta.ToString("dd")))) / 7);
+            ///Response.Write("mulai : " + dta.ToString("dd/MM/yyyy") + "           akhir : " + (int)DayOfWeek.Monday);
+            for(int i=-3; i<1; i++)
+            {
+                angkabulan[j] = DateTime.Now.AddMonths(i).Month.ToString();
+                abulan[j] = bulan[Convert.ToInt32(angkabulan[j]) - 1];
+                //databulan += bulan[Convert.ToInt32(angkabulan[j]) - 1];
+                j++;
+            }
+            
+            databulan = string.Join(",", abulan);
+            //Response.Write("satu " + angkabulan[0] + "dua " + angkabulan[2]);
+            //Response.Write(DateTime.Now.AddMonths(1).AddDays(-1).Day);
+            Response.Write(DateTime.DaysInMonth(2020, 6));
+            //Response.Write("  mli " + (Convert.ToInt32(DateTime.Now.DayOfYear) - (Convert.ToInt32(dta.ToString("dd")))) / 7);
         }
 
         protected void Upload(object sender, EventArgs e)

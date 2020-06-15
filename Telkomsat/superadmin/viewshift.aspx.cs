@@ -119,9 +119,7 @@ namespace Telkomsat.superadmin
                 row.Cells.Add(cell);
                 gvContact.Controls[0].Controls.AddAt(0, row);
             }
-
         }
-
 
         protected void lbnextt3s_Click(object sender, EventArgs e)
         {
