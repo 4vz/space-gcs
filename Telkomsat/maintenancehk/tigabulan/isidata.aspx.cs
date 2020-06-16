@@ -17,7 +17,7 @@ namespace Telkomsat.maintenancehk.tigabulan
         DataSet ds = new DataSet();
         DataSet dsbar = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        string IDdata = "kitaa", equipment, start = "a", query, end = "", nilai, style3, SN = "a", satelit, lokasi, jenisview = "";
+        string IDdata = "kitaa", equipment, start = "a", query, end = "", nilai, style3, SN = "a", satelit, lokasi, jenisview = "", tahun;
         string triwulan;
 
         string Parameter, iduser, query2 = "A", idddl = "s", idtgl, value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, rdevice, ralias, query1, date, inisial, device, alias, tanggal, valuetgl;
@@ -46,6 +46,7 @@ namespace Telkomsat.maintenancehk.tigabulan
                 iduser = Session["iduser"].ToString();
             }
 
+            tahun = DateTime.Now.Year.ToString();
             date = DateTime.Now.ToString("yyyy/MM/dd");
              
             DateTime now = DateTime.Now;
@@ -110,7 +111,7 @@ namespace Telkomsat.maintenancehk.tigabulan
         protected void Button1_Click(object sender, EventArgs e)
         {
             string data = string.Join(",", akhir);
-            query1 = $"insert into mainhk_3m_data (tanggal, id_profile, id_parameter, data_bef, triwulan, kategori) values {data}";
+            query1 = $"insert into mainhk_3m_data (tanggal, id_profile, id_parameter, data_bef, triwulan, kategori, tahun) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
@@ -233,7 +234,7 @@ namespace Telkomsat.maintenancehk.tigabulan
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + triwulan + "','" + "before" + "')";
+                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + triwulan + "','" + "before" + "','" + tahun + "')";
                             j++;
                         }
                     }

@@ -15,10 +15,10 @@ namespace Telkomsat
         SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm;
         DataSet dsshift = new DataSet();
         DataSet dspekerjaan = new DataSet();
-        string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata;
+        string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata, semester, tahun;
 
         int output, output1, output2, output3, output4, j;
-        string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user;
+        string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user, triwulan;
         StringBuilder htmlTableShift = new StringBuilder();
         StringBuilder htmlDeadline = new StringBuilder();
         StringBuilder htmlNow = new StringBuilder();
@@ -121,7 +121,7 @@ namespace Telkomsat
 
         void maintenance()
         {
-            string angkaminggu, triwulan, thisday;
+            string angkaminggu, thisday;
             int angkabulan;
             double hasilhkbulan, hasilhktriwulan, hasilhksemester, hasilhktahunan, hasilmemingguan, hasilmebulanan, hasilmesemester, hasilmetahunan;
             SqlDataAdapter dahk, dadata;
@@ -165,17 +165,19 @@ namespace Telkomsat
             DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
             DateTime middate = new DateTime(DateTime.Now.Year, 6, 30);
             DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
-            string tahun = DateTime.Now.Year.ToString();
+            tahun = DateTime.Now.Year.ToString();
 
             if (now > startdate && now <= middate)
             {
                 lblsemester.Text += " [1]";
                 lblsemesterme.Text += " [1]";
+                semester = "semester 1";
             }
             else if (now > middate && now <= enddate)
             {
                 lblsemester.Text += " [2]";
                 lblsemesterme.Text += " [2]";
+                semester = "semester 2";
             }
 
             lbltahunn.Text += " [" + tahun + "]";
@@ -198,18 +200,22 @@ namespace Telkomsat
             if (now > first && now <= second)
             {
                 lbltriwulan.Text += " [1]";
+                triwulan = "triwulan 1";
             }
             else if (now > third && now <= fourth)
             {
                 lbltriwulan.Text += " [2]";
+                triwulan = "triwulan 2";
             }
             else if (now > fifth && now <= sixth)
             {
                 lbltriwulan.Text += " [3]";
+                triwulan = "triwulan 3";
             }
             else if (now > seventh && now <= eighth)
             {
                 lbltriwulan.Text += " [4]";
+                triwulan = "triwulan 4";
             }
             string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
             angkabulan = DateTime.Now.Month;
@@ -219,15 +225,15 @@ namespace Telkomsat
             //lblbulanhk.Text += " [" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + "]";
             //lblbulananme.Text += " [" + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month) + "]";
 
-            string querydata = @"SELECT (SELECT COUNT(*) from mainhk_3m_data where triwulan = 'triwulan 2') as triwulan,
-		                        (SELECT COUNT(*) FROM mainhk_bbu_data where triwulan = 'triwulan 2') AS bbu,
-		                        (SELECT COUNT(*) FROM checkhk_bulan_data where angkabulan = '5' and data not like 'un' and tahun = '2020') AS bulanan,
-		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'semester' and semester = 'Semester 1' and tahun = '2020') AS semester,
-		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'tahunan' and tahun = '2020') AS tahunan,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'week' and week = '6' and tahun = '2020' and nilai != '') AS me_week,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'month' and numbermonth = '4' and tahun = '2020' and nilai != '') AS me_month,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'semester' and semester = '1' and tahun = '2020' and nilai not like '%' + 'no' + '%') AS me_semester,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'year' and tahun = '2020' and nilai != '') AS me_year";
+            string querydata = $@"SELECT (SELECT COUNT(*) from mainhk_3m_data where triwulan = '{triwulan}' and tahun = '{tahun}') as triwulan,
+		                        (SELECT COUNT(*) FROM mainhk_bbu_data where triwulan = '{triwulan}' and tahun = '{tahun}') AS bbu,
+		                        (SELECT COUNT(*) FROM checkhk_bulan_data where angkabulan = '{angkabulan}' and data not like 'un' and tahun = '{tahun}') AS bulanan,
+		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'semester' and semester = '{semester}' and tahun = '{tahun}') AS semester,
+		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'tahunan' and tahun = '{tahun}') AS tahunan,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'week' and week = '{minggu}' and tahun = '{tahun}' and nilai != '') AS me_week,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'month' and numbermonth = '{angkabulan}' and tahun = '{tahun}' and nilai != '') AS me_month,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'semester' and semester = '{semester}' and tahun = '{tahun}' and nilai not like '%' + 'no' + '%') AS me_semester,
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'year' and tahun = '{tahun}' and nilai != '') AS me_year";
             DataSet dsdata = new DataSet();
             SqlCommand cmddata = new SqlCommand(querydata, sqlCon);
             dadata = new SqlDataAdapter(cmddata);
