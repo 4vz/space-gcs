@@ -107,6 +107,29 @@ namespace Telkomsat.checkhk
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string query5 = $"select * from log where judul='harian cibinong' and tanggal = '{tanggalku}'";
+            SqlDataAdapter da5;
+            DataSet ds5 = new DataSet();
+            SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
+            da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(ds5);
+            sqlCon.Open();
+            cmd5.ExecuteNonQuery();
+            sqlCon.Close();
+
+
+            if (ds5.Tables[0].Rows.Count == 0)
+            {
+                string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{iduser}', '{tanggalku}', 'tch', 'checklist harian cibinong')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+                
+
             //Response.Write(data);
             Session["inisialhk"] = null;
             Button1.Enabled = true;

@@ -58,8 +58,7 @@
     </div>
 </div>
 </div>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../assets/bower_components/PACE/pace.min.js"></script>
@@ -68,18 +67,14 @@
     <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="//cdn.rawgit.com/ashl1/datatables-rowsgroup/v1.0.0/dataTables.rowsGroup.js"></script>
+    <script src="../../assets/mylibrary/rowsgroup.js"></script>
     <script type="text/javascript">
        $(function () {
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
-          "rowsGroup": [0, 1, 2, 3],
-          "pageLength": 100,
-          "columnDefs": [
-              { "orderable": false, "targets": [0] },
-              { "bSort": false, "targets": [0] }
-          ]
+          "rowsGroup": [0, 1, 2],
+          "pageLength": 300
           });
            $('.dataTables_length').addClass('bs-select');
         });

@@ -101,6 +101,14 @@ namespace Telkomsat.checklistme.month
             sqlCon.Close();
             Session["inisialmonth"] = null;
 
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'mainme', 'maintenance bulanan ME')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
+
             Response.Redirect("dashboard.aspx");
         }
 

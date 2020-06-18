@@ -109,6 +109,14 @@ namespace Telkomsat.maintenancehk.semester
                     }
                 }
             }
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{iduser}', '{tanggalku}', 'mainhk', 'maintenance semester Harkat')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
+
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
 
             Response.Redirect($"dashboard.aspx");

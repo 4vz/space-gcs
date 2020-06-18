@@ -35,7 +35,7 @@ namespace Telkomsat.checklistme.month
             DataSet dsheader = new DataSet();
             DataSet dspersen = new DataSet();
             DataSet dsbar = new DataSet();
-            string queryheader = $@"sselect ruangan from checkme_perangkatwmy t join checkme_parameterwmy r on t.id_perangkat=r.id_perangkat
+            string queryheader = $@"select ruangan from checkme_perangkatwmy t join checkme_parameterwmy r on t.id_perangkat=r.id_perangkat
                                     where r.kategori='month' group by ruangan";
             sqlcon.Open();
             SqlCommand cmdheader = new SqlCommand(queryheader, sqlcon);

@@ -69,7 +69,7 @@ namespace Telkomsat.checklistme.week
             query2 = $@"select count(*) from checkme_datawmy d left join checkme_parameterwmy r 
 						on d.id_parameter=r.id_parameter left join
                         checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where kategori = 'week'
-						and d.tanggal >= '{week1}' and d.tanggal <= '{week2}'";
+						and week='{mingguan}' and month='{bulanan}' and tahun='{tahunan}' and ruangan='{room}'";
             sqlCon.Open();
             SqlCommand cmd5 = new SqlCommand(query2, sqlCon);
             string output = cmd5.ExecuteScalar().ToString();
@@ -78,7 +78,7 @@ namespace Telkomsat.checklistme.week
             if (jenischeck >= 1)
             {
                 lbledit.Visible = true;
-                lbledit.Text = $"Data checklist sudah terisi untuk minggu ini klik untuk ";
+                lbledit.Text = $"Data checklist ruangan {room} sudah terisi untuk minggu ini klik untuk ";
                 LinkButton1.Visible = true;
             }
             else
@@ -128,7 +128,7 @@ namespace Telkomsat.checklistme.week
                     sqlCon.Close();
 
                     queryisi = $@"select COUNT(*) as isi from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
-                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and d.nilai != '' and week='{mingguan}'and month='{bulanan}' and tahun='{tahunan}'";
+                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and d.nilai != '' and week='{mingguan}' and month='{bulanan}' and tahun='{tahunan}'";
                     sqlCon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlCon);
                     dabar = new SqlDataAdapter(cmdisi);
@@ -193,7 +193,7 @@ namespace Telkomsat.checklistme.week
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"edit.aspx?room={room}");
+            Response.Redirect($"edit.aspx?room={room}&week={mingguan}");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -207,24 +207,31 @@ namespace Telkomsat.checklistme.week
             sqlCon.Close();
             Session["inisialweek"] = null;
 
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'mainme', 'maintenance mingguan ME')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
+
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
             Response.Redirect("isidata.aspx");
         }
 
         protected void inisialisasi_Click(object sender, EventArgs e)
         {
-            Session["inisialweek"] = "buka";
-
+            Response.Redirect($"isidata.aspx?room={room}&inisial=ya");
         }
 
         void tableticket()
         {
-            if (Session["inisialweek"] != null)
+            if (Request.QueryString["inisial"] != null)
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameterwmy r left join
                             checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                            where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_datawmy d LEFT join checkme_parameterwmy r 
-                            on r.id_parameter=d.id_parameter left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
-                            where p.ruangan = '{room}' and d.nilai is not null and d.jenis = 'week') and d.jenis = 'week' order by r.id_perangkat";
+                            where ruangan = '{room}' AND d.week = (select max(week) from checkme_datawmy d LEFT join checkme_parameterwmy r 
+                            on r.id_parameter=d.id_parameter  left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
+							where p.ruangan = '{room}') and d.jenis = 'week' order by r.id_perangkat";
             else
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join
                         checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'week' order by r.id_perangkat";
@@ -270,7 +277,7 @@ namespace Telkomsat.checklistme.week
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
-                        if (Session["inisialweek"] != null)
+                        if (Request.QueryString["inisial"] != null)
                             nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
@@ -279,7 +286,7 @@ namespace Telkomsat.checklistme.week
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + SN + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
                         if (tipe == "N")
-                            htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");
+                            htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" autocomplete=\"off\" id={idtxt}>" + "</td>");
                         else if (tipe == "BN")
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"BIR\" > BIR </option><option value =\"NO BIR\"> NO BIR </option></select > " + " </td>");
                         else if (tipe == "OC")

@@ -88,6 +88,7 @@ namespace Telkomsat.checkbjm
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             querytanggal = $"insert into checkhk_tanggal (tanggalhk, id_profile) values ('{date}', '3')";
             //Console.Write(query1);
@@ -102,6 +103,28 @@ namespace Telkomsat.checkbjm
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
+
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string query5 = $"select * from log where judul='harian banjarmasin' and tanggal = '{tanggalku}'";
+            SqlDataAdapter da5;
+            DataSet ds5 = new DataSet();
+            SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
+            da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(ds5);
+            sqlCon.Open();
+            cmd5.ExecuteNonQuery();
+            sqlCon.Close();
+
+
+            if (ds5.Tables[0].Rows.Count == 0)
+            {
+                string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{iduser}', '{tanggalku}', 'tch', 'checklist harian banjarmasin')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
+                sqlCon.Close();
+            }
 
             //Response.Write(data);
             Session["inisialbjm"] = null;

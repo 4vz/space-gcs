@@ -160,11 +160,8 @@
                                 <li class="dropdown-submenu">
                                     <a class="test" tabindex="-1" href="#">Checklist & Maintenance<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../checkhk/dataharian.aspx">Harkat CBI</a></li>
-                                        <li><a href="../checklistme/checkharian.aspx">ME CBI</a></li>
-                                        <li><a href="../checkbjm/checkharian.aspx">Harkat BJM</a></li>
-                                        <li><a href="#">Harkat MDN</a></li>
-                                        <li><a href="#">Harkat MDO</a></li>
+                                        <li><a href="../checkhk/dataharian.aspx">Harkat</a></li>
+                                        <li><a href="../checklistme/checkharian.aspx">ME</a></li>
                                     </ul>
                                 </li>
                               </ul>
@@ -221,7 +218,7 @@
                       </li>
                       <!-- Control Sidebar Toggle Button -->
                       <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        <a href="../activity.aspx"><i class="fa fa-list-ul"></i></a>
                       </li>
                     </ul>
                   </div>

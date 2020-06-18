@@ -213,6 +213,14 @@ namespace Telkomsat.datalogbook
                     sqlCon.Close();
                 }
             }*/
+
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{iduser}', '{tanggalku}', 'tlog', '{txtjudul.Text}')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
             divsuccess.Visible = true;
             Response.Redirect($"detail.aspx?idlog={idlog}");
         }

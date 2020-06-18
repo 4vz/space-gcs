@@ -17,7 +17,7 @@ namespace Telkomsat.checklistme.week
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, inisial;
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, date, mingguan;
         string[] words = { "a", "a" };
         string[] akhir, idedit;
         int j = 0, k;
@@ -36,6 +36,7 @@ namespace Telkomsat.checklistme.week
             if (Request.QueryString["room"] != null)
             {
                 room = Request.QueryString["room"];
+                mingguan = Request.QueryString["week"];
                 lblroom.Text = room;
             }
             tableticket();
@@ -75,7 +76,7 @@ namespace Telkomsat.checklistme.week
         void tableticket()
         {
                 query = $@"select d.nilai, d.id_data, r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
-						left join checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'week' order by r.id_perangkat";
+						left join checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and week='{mingguan}' and kategori = 'week' order by r.id_perangkat";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");

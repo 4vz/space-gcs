@@ -73,7 +73,7 @@ namespace Telkomsat.superadmin
                         htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checklistme/dashboard.aspx?waktu={waktu}&tanggal={tanggal}\">" + "view" + "</a>");
                         if (pic == "ME")
                         {
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=me&tanggal={tanggal}&waktu={waktu}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=me&tanggal={tanggal}&waktu={waktu}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
                         }
                         htmlTable.Append("</td>");
                         htmlTable.Append("</tr>");

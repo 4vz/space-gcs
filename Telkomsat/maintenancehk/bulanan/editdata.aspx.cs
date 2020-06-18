@@ -45,6 +45,11 @@ namespace Telkomsat.maintenancehk.bulanan
                 room = Request.QueryString["room"].ToString();
             }
 
+            if (Session["iduser"] != null)
+            {
+                user = Session["iduser"].ToString();
+            }
+
             if (UserExist == 0)
             {
                 Response.Redirect($"isidata.aspx?room={room}");
@@ -126,6 +131,15 @@ namespace Telkomsat.maintenancehk.bulanan
                     }
                 }
             }
+
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'mainhk', 'maintenance bulanan Harkat')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
+
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
         }
 

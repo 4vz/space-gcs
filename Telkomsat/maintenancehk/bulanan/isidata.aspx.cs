@@ -44,6 +44,11 @@ namespace Telkomsat.maintenancehk.bulanan
 
             }
 
+            if (Session["iduser"] != null)
+            {
+                user = Session["iduser"].ToString();
+            }
+
             tahun = DateTime.Now.Year.ToString();
             angkabulan = DateTime.Now.Month.ToString();
             bulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
@@ -99,6 +104,14 @@ namespace Telkomsat.maintenancehk.bulanan
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
+            sqlCon.Close();
+
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'mainhk', 'maintenance bulanan harkat')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
             sqlCon.Close();
             //Response.Write(query1);
             //Response.Write(query1);

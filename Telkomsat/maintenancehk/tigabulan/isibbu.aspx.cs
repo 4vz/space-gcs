@@ -103,7 +103,16 @@ namespace Telkomsat.maintenancehk.tigabulan
             //Response.Write(data);
             Session["inisialhk"] = null;
             Button1.Enabled = true;
-            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+            //this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
+                                ('{iduser}', '{tanggalku}', 'mainhk', 'maintenance triwulan bbu Harkat')";
+            sqlCon.Open();
+            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+            cmdlog.ExecuteNonQuery();
+            sqlCon.Close();
+
             Response.Redirect($"dashboardbbu.aspx");
             //Response.Write(query1);
         }

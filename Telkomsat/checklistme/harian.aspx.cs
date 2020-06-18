@@ -228,6 +228,28 @@ namespace Telkomsat.checklistme
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
+            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+            string query5 = $"select * from log where judul='harian me' and tanggal = '{tanggalku}' and keterangan = '{DropDownList1.Text}'";
+            SqlDataAdapter da5;
+            DataSet ds5 = new DataSet();
+            SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
+            da5 = new SqlDataAdapter(cmd5);
+            da5.Fill(ds5);
+            sqlCon.Open();
+            cmd5.ExecuteNonQuery();
+            sqlCon.Close();
+
+
+            if (ds5.Tables[0].Rows.Count == 0)
+            {
+                string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul, keterangan) values
+                                ('{user}', '{tanggalku}', 'tchme', 'checklist harian me', '{DropDownList1.Text}' )";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+
             lblsave.Visible = true;
             Button1.Enabled = true;
             Session["inisialmeh"] = null;

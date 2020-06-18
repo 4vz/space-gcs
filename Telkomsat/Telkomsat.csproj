@@ -164,6 +164,7 @@
   <ItemGroup>
     <Content Include="3monthhk\add.aspx" />
     <Content Include="3monthhk\isidata.aspx" />
+    <Content Include="activity.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\approve.aspx" />
     <Content Include="admin\bendahara.aspx" />
@@ -7000,6 +7001,7 @@
     <Content Include="dataasset\siteadd.aspx" />
     <Content Include="dataasset\tambahdata.aspx" />
     <Content Include="datalogbook\action.aspx" />
+    <Content Include="datalogbook\add.aspx" />
     <Content Include="datalogbook\data.aspx" />
     <Content Include="datalogbook\detail.aspx" />
     <Content Include="datalogbook\download.aspx" />
@@ -7302,6 +7304,13 @@
     </Compile>
     <Compile Include="3monthhk\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="activity.aspx.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="activity.aspx.designer.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
     </Compile>
     <Compile Include="ADMIN.Master.cs">
       <DependentUpon>ADMIN.Master</DependentUpon>
@@ -8102,6 +8111,13 @@
     </Compile>
     <Compile Include="datalogbook\action.aspx.designer.cs">
       <DependentUpon>action.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
     </Compile>
     <Compile Include="datalogbook\data.aspx.cs">
       <DependentUpon>data.aspx</DependentUpon>

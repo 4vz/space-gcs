@@ -617,7 +617,7 @@ namespace Telkomsat
             sqlda.Fill(ds);
             sqlCon.Close();
 
-            htmlDeadline.Append("<table id=\"example2\" width=\"100%\" class=\"table table5\">");
+            htmlDeadline.Append("<table id=\"example2\" width=\"100%\" class=\"table table5\" style=\"margin-bottom:5px\">");
             htmlDeadline.Append("<tbody>");
             if (!object.Equals(ds.Tables[0], null))
             {

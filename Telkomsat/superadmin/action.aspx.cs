@@ -20,6 +20,7 @@ namespace Telkomsat.superadmin
             string waktu = Request.QueryString["waktu"];
             string filemain = Request.QueryString["idfilemain"];
             string filekonfig = Request.QueryString["idfilekonfig"];
+            string petugas = Request.QueryString["petugas"];
 
             string queryuser;
 
@@ -40,6 +41,13 @@ namespace Telkomsat.superadmin
                 sqlCon.Open();
                 sqlcmd2.ExecuteNonQuery();
                 sqlCon.Close();
+                string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+                string querylog = $@"Insert into log (pic, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'app', '{tanggal}')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
+                sqlCon.Close();
                 Response.Redirect("approve.aspx");
             }
 
@@ -50,6 +58,13 @@ namespace Telkomsat.superadmin
                 SqlCommand sqlcmd2 = new SqlCommand(queryupdate, sqlCon);
                 sqlCon.Open();
                 sqlcmd2.ExecuteNonQuery();
+                sqlCon.Close();
+                string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+                string querylog = $@"Insert into log (pic, tanggal, tipe, judul, keterangan) values
+                                ('{user}', '{tanggalku}', 'appme', '{tanggal}', '{waktu}')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
                 sqlCon.Close();
                 Response.Redirect("checklistme.aspx");
             }

@@ -70,7 +70,7 @@ namespace Telkomsat.superadmin
                         htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkhk/dashboard.aspx?tanggal={tanggal}&view=view\">" + "view" + "</a>");
                         if(pic == "HK")
                         {
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkat&tanggal={tanggal}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkat&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
                         }
                         htmlTable.Append("</td>");
                         htmlTable.Append("</tr>");
