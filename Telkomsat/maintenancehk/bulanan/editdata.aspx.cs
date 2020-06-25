@@ -209,7 +209,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + perangkat + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + $"<label style=\"{style3}\">" + sn + "</label>" + "</td>");
                         if(dataa == "Clean")
-                            htmlTable.AppendLine("<td>" + "<input type=\"text\" runat=\"server\" class=\"form-control\" style=\"background-color:#0932ff\" value=\"Clean\" name=\"idticket\" readonly />" + "</td>");
+                            htmlTable.AppendLine("<td>" + "<input type=\"text\" runat=\"server\" class=\"form-control\" style=\"background-color:#8bff99\" value=\"Clean\" name=\"idticket\" readonly />" + "</td>");
                         else
                             htmlTable.AppendLine("<td>" + $"<select class=\"form-control dropdown selectcolor\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Unclean\" > Unclean </option><option value =\"Clean\"> Clean </option></select >" + "</td>");
                         htmlTable.Append("<td>" + $"<input type=\"text\" value=\"{tgl}\" class=\"form-control tgldata\" name=\"tgl\" autocomplete=\"off\" />" + "</td>");

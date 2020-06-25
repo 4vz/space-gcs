@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.checkbjm {
+namespace Telkomsat.checklistme.year {
     
     
-    public partial class dataharian {
+    public partial class checkdata {
         
         /// <summary>
-        /// lbltanggal control.
+        /// lblkosong control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltanggal;
+        protected global::System.Web.UI.WebControls.Label lblkosong;
         
         /// <summary>
         /// DBDataPlaceHolder control.

@@ -57,7 +57,7 @@ namespace Telkomsat.dataasset
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            string query = $@"INSERT INTO as_jenis_device (id_jenis_device ,nama_jenis_device, tanggal) VALUES
+            string query = $@"INSERT INTO as_jenis_device (id_jenis_equipment ,nama_jenis_device, tanggal) VALUES
                                ('{TextBox2.Text}', '{txtbangunan.Text}', '{datetime1}')";
             SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
             sqlcmd.ExecuteNonQuery();

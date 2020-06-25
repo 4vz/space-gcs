@@ -1,11 +1,112 @@
-﻿<%@ Page Title="Tambah Logbook" Language="C#" Debug="true" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="tambah.aspx.cs" Inherits="Telkomsat.datalogbook.tambah" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LOGBOOK.Master" AutoEventWireup="true" CodeBehind="dets.aspx.cs" Inherits="Telkomsat.datalogbook.dets" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <style type="text/css">
-        .row{
-            padding-bottom:16px;
+    <style>
+        .tooltips {
+          border-bottom: 1px dotted red;
+          cursor:pointer;
+        }
+
+        .tooltips .tooltiptexts {
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+
+          /* Position the tooltip */
+          position: absolute;
+          z-index: 1;
+        }
+
+        .tooltips:hover .tooltiptexts {
+          visibility: visible;
         }
         .ui-autocomplete { z-index:2147483647; }
+        .gambar {
+          float: left;
+          padding:10px;
+        }
+        .myImg {
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .rows{
+            padding:7px;
+        }
+
+        .myImg:hover {opacity: 0.7;}
+
+        /* The Modal (background) */
+        .modal1 {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* Modal Content (image) */
+        .modal-content1 {
+          margin: auto;
+          display: block;
+          width: 80%;
+          max-width: 700px;
+        }
+
+        
+        /* Add Animation */
+        .modal-content1, #caption {  
+          -webkit-animation-name: zoom;
+          -webkit-animation-duration: 0.6s;
+          animation-name: zoom;
+          animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+          from {-webkit-transform:scale(0)} 
+          to {-webkit-transform:scale(1)}
+        }
+
+        @keyframes zoom {
+          from {transform:scale(0)} 
+          to {transform:scale(1)}
+        }
+
+        /* The Close Button */
+        .close1 {
+            position: absolute;
+            top: 65px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+            .close1:hover,
+            .close1:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px) {
+            .modal-content1 {
+                width: 100%;
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -21,128 +122,86 @@
     <asp:TextBox ID="txtidpfung" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtjenispekerjaan" runat="server" CssClass="hidden"></asp:TextBox>
-    <asp:TextBox ID="txtstart" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtaddwork" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtend" runat="server" CssClass="hidden"></asp:TextBox>
-    <div class="box box-default">
+    <asp:TextBox ID="txtstart" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidlain" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidmain" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidkonfig" runat="server" CssClass="hidden"></asp:TextBox>
+     <div class="box box-default">
         <div class="box-header">
-            <h4>Tambah Logbook</h4>
-        </div>
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
-                        <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <asp:Label ID="Label1" runat="server" Text="Mulai Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:TextBox ID="txtstartdate" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label2" runat="server" Text="Perkiraan selesai" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:TextBox ID="txtduedate" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <asp:Label ID="Label3" runat="server" Text="Judul Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:TextBox ID="txtjudul" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <asp:Label ID="Label4" runat="server" Text="Unit Divisi" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:DropDownList ID="ddlunit" runat="server" CssClass="form-control">
-                                <asp:ListItem>--Pilih Divisi--</asp:ListItem>
-                                <asp:ListItem>Harkat</asp:ListItem>
-                                <asp:ListItem>ME</asp:ListItem>
-                                <asp:ListItem>SCO</asp:ListItem>
-                                <asp:ListItem>Andat</asp:ListItem>
-                                <asp:ListItem>Orbital</asp:ListItem>
-                                <asp:ListItem>STS</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <asp:Label ID="Label5" runat="server" Text="Status Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:DropDownList ID="ddlstatus" runat="server" CssClass="form-control">
-                                <asp:ListItem>--Pilih Status--</asp:ListItem>
-                                <asp:ListItem>On Progress</asp:ListItem>
-                                <asp:ListItem>Selesai</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <asp:Label ID="Label6" runat="server" Text="PIC Internal" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:TextBox ID="txtint" placeholder="PIC bisa lebih dari 1 (pisahkan dengan tanda ;)" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label7" runat="server" Text="PIC External" Font-Bold="true"></asp:Label>
-                            <asp:TextBox ID="txtext" placeholder="PIC bisa lebih dari 1 (pisahkan dengan tanda ;)" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <asp:Label ID="Label8" runat="server" Text="Kategori Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:DropDownList ID="ddlkategori" runat="server" CssClass="form-control">
-                                <asp:ListItem>--Pilih Kategori Kegiatan--</asp:ListItem>
-                                <asp:ListItem>Pointing Antena</asp:ListItem>
-                                <asp:ListItem>Perbaikan</asp:ListItem>
-                                <asp:ListItem>Perawatan</asp:ListItem>
-                                <asp:ListItem>Penggantian</asp:ListItem>
-                                <asp:ListItem>Troubleshot</asp:ListItem>
-                                <asp:ListItem>Update/Upgrade</asp:ListItem>
-                                <asp:ListItem>Lain-lain</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                     <div class="row">
-                        <div class="col-md-12">
-                            <asp:Label ID="Label9" runat="server" Text="Deskripsi Kegiatan" Font-Bold="true"></asp:Label><span style="color:red"> *</span>
-                            <asp:TextBox ID="txtAktivitas" TextMode="MultiLine" runat="server" Height="100px" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <label for="exampleInputFile">Lampiran</label><span style="color:red"> *</span>
-                            <div id="dvfiles">
-                                <table class="table table-bordered kita" id="tableku" runat="server">
-                                    <thead>
-                                        <tr>
-                                            <th>File</th>
-                                            <th>Caption</th>
-                                            <th>#</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box-footer">
-            <button type="submit" class="btn btn-default pull-right" runat="server" onserverclick="Unnamed_ServerClick">Submit</button>
-        </div>
-    </div>
-    <div class="box box-solid">
-        <div class="box-header">
-            <h4>Logbook Hari Ini</h4>
+            <h4>Detail</h4>
         </div>
         <div class="box-body">
             <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+            <br />
+            <h4 runat="server" id="hlampiran" style="font-weight:bold">Lampiran-lampiran</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+            </div>
+            <br />
+            <asp:GridView ID="DataList3a" runat="server" AutoGenerateColumns="False" style="margin:0;" Font-Size="13px" BackColor="White"
+                BorderColor="White" BorderStyle="None" BorderWidth="0px" Visible="false" OnRowCommand="GridView1_RowCommand">
+                <Columns>
+                    <asp:TemplateField HeaderText="File">
+                        <ItemTemplate>
+                            <span class="fa fa-check" style="width:20px"></span>
+                            <asp:LinkButton ID ="InkView" runat ="server" CssClass="rows" CommandArgument='<%# Eval("namafiles") %>' CommandName="Download" Text='<%# Eval("namafiles") %>'></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField ="caption" HeaderText="Deskripsi" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
+                    </Columns>
+            <RowStyle BackColor="White" ForeColor="#1b1b1b" />
+            </asp:GridView>
         </div>
-        <div class="box-footer">
-
-        </div>
-     </div>
-
-   <div class="modal fade" id="modalupdate">
+    </div>
+    <div class="modal modal1" id="myModal">
+          <span class="close close1">&times;</span>
+            <img class="modal-content modal-content1" id="img01" src=""/>
+          <div id="caption"></div>
+    </div>
+    <div class="row" style="height:auto">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                      <li id="limutasi" runat="server"><a href="#mutasi" data-toggle="tab">Mutasi</a></li>
+                      <li id="listatus" runat="server"><a href="#status" data-toggle="tab">Status</a></li>
+                        <li id="likonfig" runat="server"><a href="#konfigurasi" data-toggle="tab">Konfigurasi</a></li>
+                        <li id="limain" runat="server"><a href="#maintenance" data-toggle="tab">Maintenance</a></li>
+                        <li id="lilain" runat="server"><a href="#lainlain" data-toggle="tab">Lain-lain</a></li>
+                        
+                      <li class="pull-left header"><i class="fa fa-inbox"></i> Pekerjaan</li>
+                    </ul>
+              
+                <div class="tab-content no-padding">
+                    <div id="status" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderStatus" runat="server"></asp:PlaceHolder>
+                        <asp:Label ID="lblinfostatus" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="mutasi" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderMutasi" runat="server"></asp:PlaceHolder>  
+                        <asp:Label ID="lblinfomutasi" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                     <div id="konfigurasi" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderKonfigurasi" runat="server"></asp:PlaceHolder>  
+                         <asp:Label ID="lblinfokonfig" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                     <div id="lainlain" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderLain" runat="server"></asp:PlaceHolder>  
+                         <asp:Label ID="lblinfolain" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="maintenance" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolderMain" runat="server"></asp:PlaceHolder>  
+                         <asp:Label ID="lblmain" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                </div>
+               
+            </div>
+            </div>
+          
+    </div>
+    <div class="modal fade" id="modalupdate">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -227,12 +286,67 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Mutasi_ServerClick1">Save</button>
+                <button type="button" id="btnmutasi" class="btn btn-success pull-left" runat="server" onserverclick="Mutasi_ServerClick1">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
         </div>
+
+       <div class="modal fade" id="modalmaintenance">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Maintenance</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatemain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Status :</label>
+                                <asp:DropDownList ID="ddlstatusmain" runat="server" CssClass="form-control">
+                                    <asp:ListItem>--Pilih Status--</asp:ListItem>
+                                    <asp:ListItem>On Progress</asp:ListItem>
+                                    <asp:ListItem>Selesai</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div>
+                      <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Keterangan :</label>
+                                <asp:TextBox ID="txtketmain" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
+                            </div> 
+                      </div>
+                      <div class="col-md-12">
+                            <label for="exampleInputFile">Lampiran</label>
+                            <asp:FileUpload ID="fileuploadmain" runat="server" AllowMultiple="true"/>
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnmain" class="btn btn-success pull-left" runat="server" onserverclick="Maintenance_ServerClick2">Save</button>
+                  <button type="button" id="btneditmain" class="btn btn-warning pull-left" runat="server" onserverclick="Maintenance_ServerClick2_Edit">Submit</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+
 
         <div class="modal fade" id="modalfungsi">
           <div class="modal-dialog">
@@ -253,13 +367,13 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
-                             <input type="text" class="form-control pull-right" id="txtsdatefung" autocomplete="off" runat="server"/>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatefung" autocomplete="off" runat="server"/>
                         </div>
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
                             <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
-                             <input type="text" class="form-control pull-right" id="txtedatefung" autocomplete="off" runat="server"/>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatefung" autocomplete="off" runat="server"/>
                         </div>
                       </div>
                       <div class="col-md-12">
@@ -316,49 +430,41 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Fungsi_ServerClick1">Save</button>
+                <button type="button" id="btnfungsi" class="btn btn-success pull-left" runat="server" onserverclick="Fungsi_ServerClick1">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
         </div>
-        
-        <div class="modal fade" id="modalmaintenance">
+
+
+       <div class="modal fade" id="modalkonfigurasi">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Maintenance</h3>
+                <h3 class="modal-title">Konfigurasi</h3>
               </div>
               <div class="modal-body">
                   <div class="row">
                       <div class="col-md-6">
                           <div class="form-group">
                             <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
-                             <input type="text" class="form-control pull-right datepick" id="txtsdatemain" autocomplete="off" runat="server"/>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatekonf" autocomplete="off" runat="server"/>
                         </div>
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
                             <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
-                             <input type="text" class="form-control pull-right datepick" id="txtedatemain" autocomplete="off" runat="server"/>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatekonf" autocomplete="off" runat="server"/>
                         </div>
                       </div>
                       <div class="col-md-12">
                           <div class="form-group">
-                                <label style="font-size:16px; font-weight:bold">Kategori :</label>
-                                <asp:DropDownList ID="ddlkategorimain" runat="server" CssClass="form-control">
-                                    <asp:ListItem>Konfigurasi</asp:ListItem>
-                                    <asp:ListItem>Maintenance</asp:ListItem>
-                                    <asp:ListItem>Lain-lain</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                      </div>
-                      <div class="col-md-12">
-                          <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Status :</label>
-                                <asp:DropDownList ID="ddlstatusmain" runat="server" CssClass="form-control">
+                                <asp:DropDownList ID="ddlstatuskonf" runat="server" CssClass="form-control">
+                                    <asp:ListItem>--Pilih Status--</asp:ListItem>
                                     <asp:ListItem>On Progress</asp:ListItem>
                                     <asp:ListItem>Selesai</asp:ListItem>
                                 </asp:DropDownList>
@@ -367,56 +473,254 @@
                       <div class="col-md-12">
                             <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Keterangan :</label>
-                                <asp:TextBox ID="txtketmain" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtKetKonfig" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
                             </div> 
                       </div>
                       <div class="col-md-12">
                             <label for="exampleInputFile">Lampiran</label>
-                            <asp:FileUpload ID="fileuploadmain" runat="server" AllowMultiple="true"/>
+                            <asp:FileUpload ID="filekonfig" runat="server" AllowMultiple="true"/>
                         </div>
                   </div>
                   
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Maintenance_ServerClick2">Save</button>
+                <button type="button" id="btnkonfig" class="btn btn-success pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2">Save</button>
+                  <button type="button" id="btneditkonfig" class="btn btn-warning pull-left" runat="server" onserverclick="Konfigurasi_ServerClick2_Edit">Submit</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
         </div>
 
+           <div class="modal fade" id="modallainlain">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Lain-lain</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Awal :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtsdatelain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal Akhir :</label>
+                             <input type="text" class="form-control pull-right datepick" id="txtedatelain" autocomplete="off" runat="server"/>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Status :</label>
+                                <asp:DropDownList ID="ddlstatuslain" runat="server" CssClass="form-control">
+                                    <asp:ListItem>--Pilih Status--</asp:ListItem>
+                                    <asp:ListItem>On Progress</asp:ListItem>
+                                    <asp:ListItem>Selesai</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div>
+                      <div class="col-md-12">
+                            <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Keterangan :</label>
+                                <asp:TextBox ID="txtketeranganlain" CssClass="form-control" TextMode="MultiLine" Height="150px" runat="server"></asp:TextBox>
+                            </div> 
+                      </div>
+                      <div class="col-md-12">
+                            <label for="exampleInputFile">Lampiran</label>
+                            <asp:FileUpload ID="FileLain" runat="server" AllowMultiple="true"/>
+                        </div>
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnlain" class="btn btn-success pull-left" runat="server" onserverclick="Lain_ServerClick3">Save</button>
+                  <button type="button" id="btneditlain" class="btn btn-warning pull-left" runat="server" onserverclick="Lain_ServerClick3_Edit">Submit</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
 
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
-        var i = 1;
+        $(document).ready(function () {
+            $('#<%=btnlain.ClientID %>').show();
+            $('#<%=btneditlain.ClientID %>').hide();
+        });
+
+        $('.btlain').click(function () {
+            $('#<%=btnlain.ClientID %>').show();
+            $('#<%=btneditlain.ClientID %>').hide();
+            $('#<%=txtidlain.ClientID %>').val(this.idlain);
+            $('#<%=txtsdatelain.ClientID %>').val('');
+            $('#<%=txtedatelain.ClientID %>').val('');
+            $('#<%=ddlstatuslain.ClientID %>').val('');
+            $('#<%=txtketeranganlain.ClientID %>').val('');
+        });
+
+        $('.btkonfig').click(function () {
+            $('#<%=btnkonfig.ClientID %>').show();
+            $('#<%=btneditkonfig.ClientID %>').hide();
+            $('#<%=txtidkonfig.ClientID %>').val(this.idkonfig);
+            $('#<%=txtsdatekonf.ClientID %>').val('');
+            $('#<%=txtedatekonf.ClientID %>').val('');
+            $('#<%=ddlstatuskonf.ClientID %>').val('');
+            $('#<%=txtKetKonfig.ClientID %>').val('');
+        });
 
         $('.btmain').click(function () {
+            $('#<%=btnmain.ClientID %>').show();
+            $('#<%=btneditmain.ClientID %>').hide();
+            $('#<%=txtidmain.ClientID %>').val(this.idmain);
             $('#<%=txtsdatemain.ClientID %>').val('');
             $('#<%=txtedatemain.ClientID %>').val('');
             $('#<%=ddlstatusmain.ClientID %>').val('');
-            $('#<%=ddlkategorimain.ClientID %>').val('');
             $('#<%=txtketmain.ClientID %>').val('');
         });
 
+        $('.datalain').click(function () {
+            var id = $(this).val();
+            $('#<%=btnlain.ClientID %>').hide();
+            $('#<%=btneditlain.ClientID %>').show();
+            $.ajax({
+                type: "POST",
+                url: "detail.aspx/GetLain",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.d;
+                    $(data).each(function () {
+                        console.log(this.keteranganlain);
+                        $('#<%=txtidlain.ClientID %>').val(this.idlain);
+                        $('#<%=txtsdatelain.ClientID %>').val(this.awallain);
+                        $('#<%=txtsdatelain.ClientID %>').val(this.awallain);
+                        $('#<%=txtedatelain.ClientID %>').val(this.akhirlain);
+                        $('#<%=ddlstatuslain.ClientID %>').val(this.statuslain);
+                        $('#<%=txtketeranganlain.ClientID %>').val(this.keteranganlain);
+                    });
 
-        $(document).ready(function() {
-            $("#addfile").click(function () {
-                var markup = "<tr><td><input name=" + i + "fu type=file /></td><td><input type='text' name='caption' class='form-control' /></td>" +
-                    "<td> <button type='button' name='record' onclick='newtest2(this)' class='btn-sm btn-default delete-row'><i class=fa>X</i></button></td></tr>";
-                $('#' + '<%= tableku.ClientID%>').append(markup);
-                i++;
-                console.log('add');
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
             });
-            
-        });   
+        });
 
-        function newtest2(e) {              //Add e as parameter
-            $(e).parents('tr').remove();   //Use the e to delete
-            //console.log('klkl');
+        $('.datakonfig').click(function () {
+            var id = $(this).val();
+            $('#<%=btnkonfig.ClientID %>').hide();
+            $('#<%=btneditkonfig.ClientID %>').show();
+            $.ajax({
+                type: "POST",
+                url: "detail.aspx/Getkonfig",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.d;
+                    $(data).each(function () {
+                        console.log(this.keterangankonfig);
+                        $('#<%=txtidkonfig.ClientID %>').val(this.idkonfig);
+                        $('#<%=txtsdatekonf.ClientID %>').val(this.awalkonfig);
+                        $('#<%=txtsdatekonf.ClientID %>').val(this.awalkonfig);
+                        $('#<%=txtedatekonf.ClientID %>').val(this.akhirkonfig);
+                        $('#<%=ddlstatuskonf.ClientID %>').val(this.statuskonfig);
+                        $('#<%=txtKetKonfig.ClientID %>').val(this.keterangankonfig);
+                    });
+
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+        $('.datamain').click(function () {
+            var id = $(this).val();
+            $('#<%=btnmain.ClientID %>').hide();
+            $('#<%=btneditmain.ClientID %>').show();
+            $.ajax({
+                type: "POST",
+                url: "detail.aspx/Getmain",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.d;
+                    $(data).each(function () {
+                        console.log(this.keteranganmain);
+                        $('#<%=txtidmain.ClientID %>').val(this.idmain);
+                        $('#<%=txtsdatemain.ClientID %>').val(this.awalmain);
+                        $('#<%=txtsdatemain.ClientID %>').val(this.awalmain);
+                        $('#<%=txtedatemain.ClientID %>').val(this.akhirmain);
+                        $('#<%=ddlstatusmain.ClientID %>').val(this.statusmain);
+                        $('#<%=txtketmain.ClientID %>').val(this.keteranganmain);
+                    });
+
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+        var modal = document.getElementById("myModal");
+        var img = document.getElementsByClassName("myImg");
+        var modalImg = document.getElementById("img01");
+        var i;
+        for (i = 0; i < img.length; i++) {
+            img[i].onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+            }
         }
 
-        $(function () {
-            //CKEDITOR.replace('<txtAktivitas.ClientID%>');
-        })
+        function enablebtn() {
+            document.getElementById("<%=btnlain.ClientID %>").disabled = false;
+            document.getElementById("<%=btnmain.ClientID %>").disabled = false;
+            document.getElementById("<%=btnkonfig.ClientID %>").disabled = false;
+            document.getElementById("<%=btnfungsi.ClientID %>").disabled = false;
+            document.getElementById("<%=btnmutasi.ClientID %>").disabled = false;
+        }
+
+        function DisableButton() {
+            document.getElementById("<%=btnlain.ClientID %>").disabled = true;
+            document.getElementById("<%=btnmain.ClientID %>").disabled = true;
+            document.getElementById("<%=btnkonfig.ClientID %>").disabled = true;
+            document.getElementById("<%=btnfungsi.ClientID %>").disabled = true;
+            document.getElementById("<%=btnmutasi.ClientID %>").disabled = true;
+        }
+        window.onbeforeunload = DisableButton;
+        
+                // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+
 
         $(document).on("click", "#btnmutasi", function () {
             var id = $(this).data('id');
@@ -426,16 +730,14 @@
             $('#<%=txtjenispekerjaan.ClientID %>').val('Mutasi');
         });
 
-        $(document).on("click", "#btnkonfigurasi", function () {
-            $(".datepick").datepicker({startDate:null,autoclose: true,
-            format: 'yyyy/mm/dd' ,endDate :null});
+        $(document).on("click", "#btnmain", function () {
             var id = $(this).data('id');
             console.log(id);
             $("#id").val(id);
             $('#<%=txtidl.ClientID %>').val(id);
         });
 
-        $(document).on("click", "#btnmain", function () {
+        $(document).on("click", "#btnkonfigurasi", function () {
             var id = $(this).data('id');
             console.log(id);
             $("#id").val(id);
@@ -457,6 +759,22 @@
         });
 
         $(document).ready(function () {
+            if ($('#<%=txtaddwork.ClientID %>').val() == 'M') {
+                $('#mutasi').addClass('in active')
+            }
+            else if ($('#<%=txtaddwork.ClientID %>').val() == 'F') {
+                $('#status').addClass('in active')
+            }
+            else if ($('#<%=txtaddwork.ClientID %>').val() == 'K') {
+                $('#konfigurasi').addClass('in active')
+            }
+            else if ($('#<%=txtaddwork.ClientID %>').val() == 'L') {
+                $('#lainlain').addClass('in active')
+            }
+            else if ($('#<%=txtaddwork.ClientID %>').val() == 'N') {
+                $('#maintenance').addClass('in active')
+            }
+
             var select = false;
             var select1 = false;
 
@@ -466,12 +784,12 @@
                 selectFirst: true,
                 open: function(event, ui) { if(select) select=false; },
                 select: function (event, ui) {
-                    console.log(ui.item);
+                    console.log(ui);
                     if (ui.item) {                     
                         var id = ui.item.value;
                         $.ajax({
                             type: "POST",
-                            url: "tambah.aspx/Getsn",
+                            url: "detail.aspx/Getsn",
                             contentType: "application/json; charset=utf-8",
                             data: '{videoid:"' + id + '"}',
                             dataType: "json",
@@ -497,14 +815,14 @@
                         });
                     }
                     select = true;
-                },
+                }
             }).blur(function(){
                 if (!select) {
                     $('#<%=txtruang.ClientID %>').val($('ul.ui-autocomplete li.ui-menu-item:first div').text());
                     var id = $('ul.ui-autocomplete li.ui-menu-item:first div').text();
                     $.ajax({
                         type: "POST",
-                        url: "tambah.aspx/Getsn",
+                        url: "detail.aspx/Getsn",
                         contentType: "application/json; charset=utf-8",
                         data: '{videoid:"' + id + '"}',
                         dataType: "json",
@@ -535,21 +853,21 @@
                 source: '../dataasset/HandlerSN.ashx',
                 autoFocus: true,
                 selectFirst: true,
-                open: function(event, ui) { if(select1) select1=false; },
+                open: function (event, ui) { if (select1) select1 = false; },
                 select: function (event, ui) {
                     console.log(ui.item);
-                    if (ui.item) {                     
+                    if (ui.item) {
                         var id = ui.item.value;
                         $.ajax({
                             type: "POST",
-                            url: "tambah.aspx/Getfungsi",
+                            url: "detail.aspx/Getfungsi",
                             contentType: "application/json; charset=utf-8",
                             data: '{idf:"' + id + '"}',
                             dataType: "json",
                             success: function (response) {
                                 var customers = response.d;
                                 $(customers).each(function () {
-                                     $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
+                                    $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
                                     $('#<%=lbstatus.ClientID %>').html(this.status);
                                     $('#<%=txtdevice1.ClientID %>').val(this.devicefung);
                                     $('#<%=txtidpfung.ClientID %>').val(this.idperangkatfung);
@@ -571,17 +889,17 @@
                     var id = $('ul.ui-autocomplete li.ui-menu-item:first div').text();
                     $.ajax({
                         type: "POST",
-                        url: "tambah.aspx/Getfungsi",
+                        url: "detail.aspx/Getfungsi",
                         contentType: "application/json; charset=utf-8",
                         data: '{idf:"' + id + '"}',
                         dataType: "json",
                         success: function (response) {
                             var customers = response.d;
                             $(customers).each(function () {
-                                 $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
-                                    $('#<%=lbstatus.ClientID %>').html(this.status);
-                                    $('#<%=txtdevice1.ClientID %>').val(this.devicefung);
-                                    $('#<%=txtidpfung.ClientID %>').val(this.idperangkatfung);
+                                $('#<%=lbfungsi.ClientID %>').html(this.fungsi);
+                                $('#<%=lbstatus.ClientID %>').html(this.status);
+                                $('#<%=txtdevice1.ClientID %>').val(this.devicefung);
+                                $('#<%=txtidpfung.ClientID %>').val(this.idperangkatfung);
                             });
                         },
                         failure: function (response) {
@@ -596,7 +914,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "tambah.aspx/Getwilayah",
+                url: "detail.aspx/Getwilayah",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -622,7 +940,7 @@
                 var id = $(this).val();
                 $.ajax({
                     type: "POST",
-                    url: "tambah.aspx/Getbangunan",
+                    url: "detail.aspx/Getbangunan",
                     contentType: "application/json; charset=utf-8",
                     data: '{videoid:"' + id + '"}',
                     dataType: "json",
@@ -648,7 +966,7 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "tambah.aspx/Getruangan",
+                url: "detail.aspx/Getruangan",
                 contentType: "application/json; charset=utf-8",
                 data: '{sobangunan:"' + id + '"}',
                 dataType: "json",
@@ -675,7 +993,7 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "tambah.aspx/Getrak",
+                url: "detail.aspx/Getrak",
                 contentType: "application/json; charset=utf-8",
                 data: '{soruangan:"' + id + '"}',
                 dataType: "json",
@@ -697,76 +1015,14 @@
             });
         });
 
-        $('#<%=txtstartdate.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtduedate.ClientID%>').datepicker('setStartDate', minDate);
-        });
-        $('#' + '<%=txtduedate.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtstartdate.ClientID%>').datepicker('setEndDate', minDate);
-            });
-
-        $('#<%=txtsdate.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtedate.ClientID%>').datepicker('setStartDate', minDate);
-        });
-        $('#' + '<%=txtedate.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtsdate.ClientID%>').datepicker('setEndDate', minDate);
-            });
-
-        $('#<%=txtsdatemain.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtedatemain.ClientID%>').datepicker('setStartDate', minDate);
-        });
-        $('#' + '<%=txtedatemain.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtsdatemain.ClientID%>').datepicker('setEndDate', minDate);
-            });
-
         
-        $('#<%=txtsdatefung.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtedatefung.ClientID%>').datepicker('setStartDate', minDate);
-        });
-        $('#' + '<%=txtedatefung.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtsdatefung.ClientID%>').datepicker('setEndDate', minDate);
-            });
+        $(".datepick").datepicker({startDate:$('#<%=txtstart.ClientID %>').val(),autoclose: true,
+            format: 'yyyy/mm/dd' ,endDate :$('#<%=txtend.ClientID %>').val()});
 
-        
+        console.log($('#<%=txtstart.ClientID %>').val());
+        console.log($('#<%=txtend.ClientID %>').val());
+
+
         $('#<%=slsite.ClientID %>').change(function () {
             var id = $(this).val();
             $('#<%=txtsite.ClientID %>').val(id);
@@ -788,5 +1044,48 @@
         });
 
 
+    </script>
+    <script>
+        $(function () {
+            $('.toggle-two').bootstrapToggle({
+                on: 'Selesai',
+                off: 'On-Progress'
+            });
+
+            $('.toggle-two').change(function () {
+                var id = $(this).data('id');
+                if ($(this).prop('checked')) {
+                    alert(id);
+                }
+            })
+        });
+
+        function confirmhapus(deleteurl) {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data yang dihapus tidak akan kembali lagi',
+                buttons: true,
+                dangerMode: true,
+
+            }).then((willDelete)=>{
+                if (willDelete) {
+                    document.location = deleteurl;
+                }
+            });
+        }
+
+        function confirmselesai(deleteurl) {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data tidak bisa diubah on-progress lagi',
+                buttons: true,
+                icon: "success",
+
+            }).then((willDelete)=>{
+                if (willDelete) {
+                    document.location = deleteurl;
+                }
+            });
+        }
     </script>
 </asp:Content>

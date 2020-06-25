@@ -16,7 +16,7 @@ namespace Telkomsat.datalogbook
         DataSet ds = new DataSet();
         DataSet dspekerjaan = new DataSet();
         string query, iduser, tanggal, style1, style3, style2, agenda, dataagenda;
-        string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, addwork, stylecolor, stylebg;
+        string bwilayah, bruangan, brak, queryhistory, queryfungsi, noaddwork, addwork, stylecolor, stylebg;
         StringBuilder htmlTable = new StringBuilder();
         int output1, outputtotal, outputbagi;
         double hasil, tampil;
@@ -173,6 +173,9 @@ namespace Telkomsat.datalogbook
                             }
                             htmlTable.Append($"<td colspan=\"4\"><label class=\"label label-sm label-danger\" style=\"pointer-events:none; width:70px;\">Terdapat subpekerjaan {string.Join(", ", looping)}</label></td>");
                             addwork = string.Join(",", looping).Substring(0, 1);
+                            noaddwork = string.Join(",", looping).Substring(0, 4);
+                            if (noaddwork == "Main")
+                                addwork = "N";
                             //looping = null;
                         }
                         else

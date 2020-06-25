@@ -108,15 +108,15 @@ namespace Telkomsat.checklistme
                         DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = date1.ToString("yyyy/MM/dd");
 
-                        querypagi = $@"select count(*) as pagi from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+                        querypagi = $@"SELECT (select count(*) as pagi from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
                                     on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and 
-									d.waktu = 'pagi' and d.nilai != '') q1";
-                        querysiang = $@"select count(*) as siang from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+									d.waktu = 'pagi' and d.nilai != '') q1) [pagi],
+		                        (select count(*) as pagi from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
                                     on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and 
-									d.waktu = 'siang' and d.nilai != '') q1";
-                        querymalam = $@"select count(*) as malam from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
+									d.waktu = 'siang' and d.nilai != '') q1) [siang],
+		                        (select count(*) as pagi from (select d.nilai from checkme_data d left join checkme_parameter r on r.id_parameter=d.id_parameter left join checkme_perangkat p 
                                     on p.id_perangkat=r.id_perangkat left join Profile l on l.id_profile=d.id_profile where d.tanggal = '{tanggal}' and 
-									d.waktu = 'malam' and d.nilai != '') q1";
+									d.waktu = 'malam' and d.nilai != '') q1) [malam]";
 
                         SqlCommand cmdpagi = new SqlCommand(querypagi, sqlCon);
                         dapagi = new SqlDataAdapter(cmdpagi);
@@ -125,27 +125,13 @@ namespace Telkomsat.checklistme
                         cmdpagi.ExecuteNonQuery();
                         sqlCon.Close();
 
-                        SqlCommand cmdsiang = new SqlCommand(querysiang, sqlCon);
-                        dasiang = new SqlDataAdapter(cmdsiang);
-                        dasiang.Fill(dssiang);
-                        sqlCon.Open();
-                        cmdsiang.ExecuteNonQuery();
-                        sqlCon.Close();
-
-                        SqlCommand cmdmalam = new SqlCommand(querymalam, sqlCon);
-                        damalam = new SqlDataAdapter(cmdmalam);
-                        damalam.Fill(dsmalam);
-                        sqlCon.Open();
-                        cmdmalam.ExecuteNonQuery();
-                        sqlCon.Close();
-
                         hasil1 = ((double)Convert.ToInt32(dspagi.Tables[0].Rows[i]["pagi"].ToString()) / 409) * 100;
                         tampil1 = Math.Round(hasil1);
 
-                        hasil2 = ((double)Convert.ToInt32(dssiang.Tables[0].Rows[i]["siang"].ToString()) / 409) * 100;
+                        hasil2 = ((double)Convert.ToInt32(dspagi.Tables[0].Rows[i]["siang"].ToString()) / 409) * 100;
                         tampil2 = Math.Round(hasil2);
 
-                        hasil3 = ((double)Convert.ToInt32(dsmalam.Tables[0].Rows[i]["malam"].ToString()) / 409) * 100;
+                        hasil3 = ((double)Convert.ToInt32(dspagi.Tables[0].Rows[i]["malam"].ToString()) / 409) * 100;
                         tampil3 = Math.Round(hasil3);
 
                         htmlTable1.Append("<tr>");

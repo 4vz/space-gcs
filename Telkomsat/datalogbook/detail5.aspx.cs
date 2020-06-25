@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Telkomsat.datalogbook
 {
-    public partial class detail : System.Web.UI.Page
+    public partial class detail5 : System.Web.UI.Page
     {
         SqlDataAdapter da, damutasi, da1, dakonfigurasi, dafungsi, dalain, damain, dafkon, daflain, dafmain;
         DataSet ds = new DataSet();
@@ -257,7 +257,7 @@ namespace Telkomsat.datalogbook
                         }
                         else
                         {
-                            if (ds.Tables[0].Rows[i]["status"].ToString() == "Selesai")
+                            if(ds.Tables[0].Rows[i]["status"].ToString() == "Selesai")
                             {
                                 htmlTable.Append($"<td colspan\"3\" style=\"{style1}\">" +
                                     "<div class=\"progress progress-xs\">" +
@@ -302,7 +302,7 @@ namespace Telkomsat.datalogbook
                             "<ul class=\"dropdown-menu\">" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalfungsi\" id=\"btnstatus\">Status Asset</a></li>" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" class=\"btmain\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnmain\">Sub Pekerjaan</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" class=\"btmain\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnmain\">Maintenance</a></li>" +
                             "</ul></li></ul></td>" +
                             "</tr></table>" + "</td>");
                         }
@@ -434,19 +434,19 @@ namespace Telkomsat.datalogbook
                         sqlCon.Close();
                         statuskerja = dsmain.Tables[0].Rows[i]["status"].ToString();
                         DateTime start = (DateTime)dsmain.Tables[0].Rows[i]["startdate"];
-                        string mulai = start.ToString("dd MMM");
+                        string mulai = start.ToString("dd/MM/yyyy");
                         DateTime end = (DateTime)dsmain.Tables[0].Rows[i]["enddate"];
-                        string akhir = end.ToString("dd MMM");
-                        if (dsmain.Tables[0].Rows[i]["tanggal_selesai"] == null || dsmain.Tables[0].Rows[i]["tanggal_selesai"].ToString() == "")
+                        string akhir = end.ToString("dd/MM/yyyy");
+                        if(dsmain.Tables[0].Rows[i]["tanggal_selesai"] == null || dsmain.Tables[0].Rows[i]["tanggal_selesai"].ToString() == "")
                         {
                             selesai = "-";
                         }
                         else
                         {
                             done = (DateTime)dsmain.Tables[0].Rows[i]["tanggal_selesai"];
-                            selesai = end.ToString("dd MMM");
+                            selesai = end.ToString("dd/MM/yyyy");
                         }
-
+                      
                         DateTime waktu = (DateTime)dsmain.Tables[0].Rows[i]["tanggal"];
 
                         jenis = dsmain.Tables[0].Rows[i]["jenis_pekerjaan"].ToString();
@@ -469,7 +469,7 @@ namespace Telkomsat.datalogbook
                         else
                             htmlTableMain.AppendLine("<td>" + $"<label style=\"{style}\" class=\"label label-warning\">" + dsmain.Tables[0].Rows[i]["status"].ToString() + "</label>" + "</td>");
                         htmlTableMain.AppendLine("<td>" + $"<label style=\"{style}; white-space: pre-line;\">" + dsmain.Tables[0].Rows[i]["deskripsi"].ToString() + "</label>" + "</td>");
-
+                        
                         if (dsfmain.Tables[0].Rows.Count >= 1)
                         {
                             int count = dsfmain.Tables[0].Rows.Count;
@@ -513,7 +513,7 @@ namespace Telkomsat.datalogbook
                 else
                 {
                     lblmain.Visible = true;
-                    lblmain.Text = "Tidak ada tambahan pekerjaan";
+                    lblmain.Text = "Tidak ada tambahan pekerjaan maintenance";
                 }
 
             }
@@ -838,7 +838,7 @@ namespace Telkomsat.datalogbook
 
             sqlCon.Open();
             string query = $@"INSERT INTO as_history_fungsi (id_profile, id_perangkat, id_reference, fungsi, status, keterangan, tanggal) VALUES
-                               ('{iduser}', '{txtidpfung.Text}', '{txtidl.Text}', '{txtbeffungsi.Text}', '{txtbefstatus.Text}', '{txtKet.Text}', '{datetime1}')";
+                               ('{iduser}', '{txtidpfung.Text}', '{txtidl.Text}', '{ddlFungsifung.Text}', '{ddlStatusfung.Text}', '{txtKet.Text}', '{datetime1}')";
             SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
             sqlcmd.ExecuteNonQuery();
             sqlCon.Close();
@@ -853,14 +853,14 @@ namespace Telkomsat.datalogbook
             if (ddlstatusmut.Text == "On Progress")
             {
                 string query4;
-                query4 = $"update tabel_logbook set status = 'On Progress' where id_logbook = '{txtidl.Text}'";
+                query4 = $"update tabel_logbook set status = 'On Progress' where id_logbook = '{idlog}'";
                 sqlCon.Open();
                 SqlCommand cmd4 = new SqlCommand(query4, sqlCon);
                 cmd4.ExecuteNonQuery();
                 sqlCon.Close();
             }
 
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=F");
+            Response.Redirect($"../datalogbook/detail5.aspx?idlog={idlog}&add=F");
 
         }
 
@@ -868,7 +868,7 @@ namespace Telkomsat.datalogbook
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            if (ddlstatusmain.Text == "Selesai")
+            if(ddlstatusmain.Text == "Selesai")
             {
                 querymain = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal, tanggal_selesai) VALUES
                                ('{iduser}', '{txtidl.Text}', '{ddlkategori.Text}', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}', '{txtedatemain.Value}'); Select Scope_Identity();";
@@ -878,7 +878,7 @@ namespace Telkomsat.datalogbook
                 querymain = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
                                ('{iduser}', '{txtidl.Text}', '{ddlkategori.Text}', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
             }
-
+            
             SqlCommand sqlcmd5 = new SqlCommand(querymain, sqlCon);
             int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
             sqlCon.Close();
@@ -898,7 +898,7 @@ namespace Telkomsat.datalogbook
                     string s = Convert.ToString(i);
                     sqlCon.Open();
                     string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
-                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', '{ddlkategori.Text}')";
+                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
                     sqlCmd1.ExecuteNonQuery();
@@ -906,7 +906,7 @@ namespace Telkomsat.datalogbook
                 }
             }
 
-            if (ddlstatusmain.Text == "On Progress")
+            if(ddlstatusmain.Text == "On Progress")
             {
                 string query4;
                 query4 = $"update tabel_logbook set status = 'On Progress' where id_logbook = '{idlog}'";
@@ -917,7 +917,7 @@ namespace Telkomsat.datalogbook
             }
 
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "enablebtn()", true);
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
+            Response.Redirect($"../datalogbook/detail5.aspx?idlog={idlog}&add=N");
 
         }
 
@@ -964,7 +964,7 @@ namespace Telkomsat.datalogbook
                 cmd4.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=N");
+            Response.Redirect($"../datalogbook/detail5.aspx?idlog={idlog}&add=N");
         }
 
 
@@ -986,7 +986,7 @@ namespace Telkomsat.datalogbook
             sqlcmd5.ExecuteNonQuery();
             sqlCon.Close();
 
-            sqlCon.Open();
+            sqlCon.Open(); 
             string queryupdate = $@"update as_perangkat set id_ruangan='{txtruangan.Text}', id_rak='{txtrak.Text}', tanggal='{datetime1}'
                                     where id_perangkat = '{txtidp.Text}'";
             SqlCommand sqlcmd1 = new SqlCommand(queryupdate, sqlCon);
@@ -1003,8 +1003,7 @@ namespace Telkomsat.datalogbook
                 sqlCon.Close();
             }
 
-            Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add=M");
+            Response.Redirect($"../datalogbook/detail5.aspx?idlog={idlog}&add=M");
         }
-
     }
 }

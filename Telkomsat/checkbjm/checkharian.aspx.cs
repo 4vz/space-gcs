@@ -65,7 +65,7 @@ namespace Telkomsat.checkbjm
                         htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + petugas + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + approval + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checkbjm/dataharian.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checkbjm/dashboardbjm.aspx?tanggal={tanggal}&view=view\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

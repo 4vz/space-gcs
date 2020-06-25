@@ -1,9 +1,20 @@
 ﻿<%@ Page Title="Data Tahunan" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="data.aspx.cs" Inherits="Telkomsat.checklistme.year.data" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .link{
+            color:black;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .link:hover{
+            color:black;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="row" style="padding:20px">
-<div class="nav-tabs-custom col-lg-12">
+<div class="row">
+        <!-- Left col -->
+        <div class="nav-tabs-custom col-lg-12 no-padding">
     <!-- Tabs within a box -->
     <ul class="nav nav-tabs pull-right">
         <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>
@@ -13,50 +24,16 @@
         <div class="box-body">
         
             <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Ruangan</label>
-                        <asp:DropDownList ID="ddlruang" CssClass="form-control" runat="server" onchange="status(this)">
-                            <asp:ListItem Value="ruangan">-Semua Ruangan-</asp:ListItem>
-                            <asp:ListItem>RO-TRF</asp:ListItem>
-                            <asp:ListItem>RO-HYD</asp:ListItem>
-                            <asp:ListItem>CBI</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
+                <div class="col-md-12">
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tahun</label>
-                        <asp:DropDownList ID="ddltahun" CssClass="form-control" runat="server" onchange="status(this)">
-                            <asp:ListItem >-Tahun-</asp:ListItem>
-                            <asp:ListItem >2019</asp:ListItem>
-                            <asp:ListItem >2020</asp:ListItem>
-                            <asp:ListItem >2021</asp:ListItem>
-                            <asp:ListItem >2022</asp:ListItem>
-                            <asp:ListItem >2023</asp:ListItem>
-                            <asp:ListItem >2024</asp:ListItem>
-                            <asp:ListItem >2025</asp:ListItem>
-                            <asp:ListItem >2026</asp:ListItem>
-                            <asp:ListItem >2027</asp:ListItem>
-                            <asp:ListItem >2028</asp:ListItem>
-                            <asp:ListItem >2029</asp:ListItem>
-                            <asp:ListItem >2030</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Filter</label>
-                        <br />
-                        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Filter_ServerClick" >Submit</button>
-                    </div>
-                </div>
+               
         <!-- /.table -->
             </div>
         </div>
     </div>
 </div>
-
+    </div>
 <div class="col-lg-12 connectedSortable">
         <!-- Custom tabs (Charts with tabs)-->
     <div class="box box-primary">

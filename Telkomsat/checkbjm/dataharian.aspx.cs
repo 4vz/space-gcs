@@ -32,6 +32,7 @@ namespace Telkomsat.checkbjm
             if (Request.QueryString["tanggal"] != null)
             {
                 tanggal1 = Request.QueryString["tanggal"];
+                room = Request.QueryString["ruangan"];
             }
             tanggalku = tanggal1;
             if (!IsPostBack)
@@ -39,7 +40,7 @@ namespace Telkomsat.checkbjm
                 query = $@"select p.shelter, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
 					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59' where p.id_perangkat like 
-					'%' + 'bjm' + '%' order by p.shelter, p.rack, p.sn";
+					'%' + 'bjm' + '%' and p.shelter = '{room}' order by p.shelter, p.rack, p.sn";
                 tableticket();
             }
 
@@ -48,7 +49,7 @@ namespace Telkomsat.checkbjm
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
-            if (ddlKategori.SelectedValue == "ruangan")
+            /*if (ddlKategori.SelectedValue == "ruangan")
                 room = "ruangan";
             else
                 room = "'" + ddlKategori.Text + "'";
@@ -57,7 +58,7 @@ namespace Telkomsat.checkbjm
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
 					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59'
                     where p.shelter = {room} and p.id_perangkat like '%' + 'bjm' + '%' order by p.shelter, p.rack, p.sn";
-            tableticket();
+            tableticket();*/
         }
 
         void tableticket()

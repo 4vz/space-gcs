@@ -44,7 +44,7 @@
     <div class="box box-primary">
     <!-- Tabs within a box -->
     <div class="box-header">
-        <i class="fa fa-database"></i> Data Maintenance Semester
+        <i class="fa fa-database"></i> <asp:Label ID="lblroom" runat="server" Text="Data Maintenance Semester"></asp:Label> <asp:Label ID="lblsemester" CssClass="pull-right" runat="server" Text="Data Maintenance Semester"></asp:Label>
     </div>
     <div class="box-body">
         <!-- Morris chart - Sales -->

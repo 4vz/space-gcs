@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Isi Tahunan" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="isidata.aspx.cs" Inherits="Telkomsat.checklistme.year.isidata" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="updatedata.aspx.cs" Inherits="Telkomsat.checklistme.year.updatedata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .link{

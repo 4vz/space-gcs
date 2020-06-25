@@ -9,27 +9,25 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Telkomsat.checklistme.semester
+namespace Telkomsat.checklistme.year
 {
-    public partial class isidata : System.Web.UI.Page
+    public partial class updatedata : System.Web.UI.Page
     {
         SqlDataAdapter da, da5;
         DataSet ds = new DataSet();
         DataSet ds5 = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
-        string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", style3, SN = "a", statusticket = "a", queryfav, queydel, jenisview = "";
-        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, valuetgl, inisial,tahun, semester, user, tanggal1;
+        string IDdata = "kitaa", Perangkat = "st", querytanggal = "a", query, waktu = "", nilai = "", style4 = "a", query5, SN = "a", statusticket = "a", queryfav, user, valuetgl = "";
+        string Parameter = "a", query2 = "A", idddl = "s", value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, query1, style3, tahun, tanggalkerja, pilih;
         string[] words = { "a", "a" };
-        string[] akhir;
+        string[] akhir, loopingtgl;
         double hasil, tampil, total, diisi, weeknumber, weeknum;
-        int j = 0, k, m;
+        int j = 0, m;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string query5;
-
             if (Request.QueryString["room"] != null)
             {
                 room = Request.QueryString["room"];
@@ -41,34 +39,10 @@ namespace Telkomsat.checklistme.semester
                 user = Session["iduser"].ToString();
             }
 
-            DateTime now = DateTime.Now;
-            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime middate = new DateTime(DateTime.Now.Year, 6, 30);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
             tahun = DateTime.Now.Year.ToString();
 
-            if (now > startdate && now <= middate)
-            {
-                semester = "1";
-            }
-            else if (now > middate && now <= enddate)
-            {
-                semester = "2";
-            }
-
-            query5 = $@"select * from checkme_datawmy d join checkme_parameterwmy r on r.id_parameter=d.id_parameter join
-                        checkme_perangkatwmy p on p.id_perangkat=r.id_perangkat where semester = '{semester}' and tahun = '{tahun}' and ruangan='{room}' order by r.id_perangkat";
-            sqlCon.Open();
-            SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
-            da5 = new SqlDataAdapter(cmd5);
-            da5.Fill(ds5);
-            cmd5.ExecuteNonQuery();
-            sqlCon.Close();
-
-            if (ds5.Tables[0].Rows.Count > 0)
-                Response.Redirect($"updatedata.aspx?room={room}");
-            tablepersen();
             tableticket();
+            tablepersen();
         }
 
         void tablepersen()
@@ -86,7 +60,7 @@ namespace Telkomsat.checklistme.semester
             double minggu = (double)Math.Ceiling(hari / 7);
 
             string queryheader = $@"select ruangan from checkme_perangkatwmy t join checkme_parameterwmy r on t.id_perangkat=r.id_perangkat
-                                    where r.kategori='semester' group by ruangan";
+                                    where r.kategori='year' group by ruangan";
             sqlCon.Open();
             SqlCommand cmdheader = new SqlCommand(queryheader, sqlCon);
             daheader = new SqlDataAdapter(cmdheader);
@@ -95,14 +69,14 @@ namespace Telkomsat.checklistme.semester
             sqlCon.Close();
             style = "font-weight:bold";
             wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
-            tanggal1 = wib.ToString("yyyy/MM/dd");
+
             if (dsheader.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < dsheader.Tables[0].Rows.Count; ++i)
                 {
                     dsbar.Clear();
                     ruang = dsheader.Tables[0].Rows[i]["ruangan"].ToString();
-                    querytotal = $@"select COUNT(*) as total from checkme_parameterwmy r join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and r.kategori='semester'";
+                    querytotal = $@"select COUNT(*) as total from checkme_parameterwmy r join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and r.kategori='year'";
                     sqlCon.Open();
                     SqlCommand cmdruang = new SqlCommand(querytotal, sqlCon);
                     dapersen = new SqlDataAdapter(cmdruang);
@@ -111,7 +85,8 @@ namespace Telkomsat.checklistme.semester
                     sqlCon.Close();
 
                     queryisi = $@"select COUNT(*) as isi from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
-                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and d.nilai not like '%' + 'no' + '%' and semester='{semester}' and tahun='{tahun}'";
+                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and (d.nilai = 'BIR' or d.nilai = 'ALREADY' or
+                                    d.nilai = 'GOOD' or d.nilai ='GREEN') and r.kategori='year' and tahun='{tahun}'";
                     sqlCon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlCon);
                     dabar = new SqlDataAdapter(cmdisi);
@@ -144,7 +119,7 @@ namespace Telkomsat.checklistme.semester
                     {
                         if (i > 1)
                             htmlTable2.Append("</div>");
-                        htmlTable2.Append("<div class=\"col-md-12\">");
+                        htmlTable2.Append("<div class=\"col-md-6\">");
                     }
                     htmlTable2.Append("<div class=\"progress-group\">");
                     htmlTable2.Append($"<a class=\"link\" href=\"isidata.aspx?room={ruang}\" style=\"font-size:12px;\">" + ruang + "</a>");
@@ -168,11 +143,6 @@ namespace Telkomsat.checklistme.semester
         }
 
 
-        protected void Pilih_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             Response.Redirect($"editharian.aspx?room={room}&waktu=6");
@@ -180,38 +150,57 @@ namespace Telkomsat.checklistme.semester
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkme_datawmy (tanggal, id_profile, id_parameter, jenis, nilai, semester, tahun, tanggal_kerja) values {data}";
+
+            string query5, myid;
+            SqlDataAdapter da2;
+            DataSet ds2 = new DataSet();
+            query5 = $@"select d.id_data, r.id_parameter, d.nilai, d.tanggal_kerja, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_datawmy d join checkme_parameterwmy r 
+						ON d.id_parameter=r.id_parameter left join checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat 
+						where ruangan = '{room}' and tahun='{tahun}' and kategori = 'year' order by r.id_perangkat";
+
+            string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+
+            SqlCommand cmd = new SqlCommand(query5, sqlCon);
+            da2 = new SqlDataAdapter(cmd);
+            da2.Fill(ds2);
             sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
-            Session["inisialsemester"] = null;
+            int p;
+            if (!object.Equals(ds2.Tables[0], null))
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
 
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+                    {
+                        myid = ds2.Tables[0].Rows[i]["id_data"].ToString();
+                        string myquery1 = $@"UPDATE checkme_datawmy SET nilai = '{akhir[i]}', tanggal_kerja='{loopingtgl[i]}' WHERE id_data = '{myid}'";
+                        sqlCon.Open();
+                        SqlCommand sqlcmd = new SqlCommand(myquery1, sqlCon);
+                        sqlcmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                }
+            }
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
             string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul) values
-                                ('{user}', '{tanggalku}', 'mainme', 'maintenance semester ME')";
+                                ('{user}', '{tanggalku}', 'mainme', 'maintenance tahunan ME')";
             sqlCon.Open();
             SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
             cmdlog.ExecuteNonQuery();
             sqlCon.Close();
-
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
+
             Response.Redirect($"checkdata.aspx");
         }
 
         void tableticket()
         {
-            if (Session["inisialsemester"] != null)
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe, d.nilai from checkme_parameterwmy r left join
-                            checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
-                            where ruangan = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkme_datawmy d LEFT join checkme_parameterwmy r 
-                            on r.id_parameter=d.id_parameter left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
-                            where p.ruangan = '{room}' and d.nilai is not null) and d.jenis = 'semester' order by r.id_perangkat";
-            else
-                query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join
-                        checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat where ruangan = '{room}' and kategori = 'semester' order by r.id_perangkat";
+            query = $@"select r.id_parameter, d.nilai, d.tanggal_kerja, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_datawmy d join checkme_parameterwmy r 
+						ON d.id_parameter=r.id_parameter left join checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat 
+						where ruangan = '{room}' and tahun='{tahun}' and kategori = 'year' order by r.id_perangkat";
 
 
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
@@ -226,15 +215,15 @@ namespace Telkomsat.checklistme.semester
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th style=\"min-width:100px\">Nilai</th><th>Satuan</th><th>Tanggal Kerja</th></tr>");
+            htmlTable.Append("<tr><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th style=\"min-width:100px\">Nilai</th><th>Tanggal Kerja</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
 
             int count = ds.Tables[0].Rows.Count;
             string[] looping = new string[count];
-            string[] loopingtgl = new string[count];
             akhir = new string[count];
+            loopingtgl = new string[count];
             if (!object.Equals(ds.Tables[0], null))
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -249,12 +238,23 @@ namespace Telkomsat.checklistme.semester
                         ruangan = ds.Tables[0].Rows[i]["ruangan"].ToString();
                         tipe = ds.Tables[0].Rows[i]["tipe"].ToString();
                         satuan = ds.Tables[0].Rows[i]["satuan"].ToString();
+                        nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
 
                         style3 = "font-weight:normal";
 
                         idtxt = "txt" + IDdata;
                         idddl = "ddl" + IDdata;
 
+                        DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal_kerja"];
+                        tanggalkerja = date1.ToString("yyyy/MM/dd");
+
+                        if (tanggalkerja == "1900/01/01")
+                            tanggalkerja = "";
+
+                        if (nilai == "NOT YET" || nilai == "NO BIR" || nilai == "BAD" || nilai == "RED")
+                            pilih = "";
+                        else
+                            pilih = "selected";
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
@@ -264,16 +264,15 @@ namespace Telkomsat.checklistme.semester
                         if (tipe == "N")
                             htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");
                         else if (tipe == "BN")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NO BIR\"> NO BIR </option><option value=\"BIR\" > BIR </option></select > " + " </td>");
-                        else if (tipe == "OC")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"CLOSE\"> CLOSE </option><option value=\"OPEN\" > OPEN </option></select > " + " </td>");
-                        else if (tipe == "FL")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"LOW\"> LOW </option><option value=\"FULL\" > FULL </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><optionvalue =\"NO BIR\"> NO BIR </option><option value=\"BIR\" {pilih} > BIR </option></select > " + " </td>");
+                        else if (tipe == "GB")
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"BAD\"> BAD </option><option value=\"GOOD\" {pilih} > GOOD </option></select > " + " </td>");
+                        else if (tipe == "GRB")
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"RED\"> RED </option><option value=\"GREEN\" {pilih} > GREEN </option></select > " + " </td>");
                         else if (tipe == "AN")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NOT YET\"> NOT YET </option><option value=\"ALREADY\" > ALREADY </option></select > " + " </td>");
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"NOT YET\"> NOT YET </option><option value=\"ALREADY\" {pilih} > ALREADY </option></select > " + " </td>");
 
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<input type=\"text\" class=\"form-control tgldata\" name=\"tgl\" autocomplete=\"off\" />" + "</td>");
+                        htmlTable.Append("<td>" + $"<input type=\"text\" value=\"{tanggalkerja}\" class=\"form-control tgldata\" name=\"tgl\" autocomplete=\"off\" />" + "</td>");
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];
                         //Response.Write(value);
@@ -305,7 +304,7 @@ namespace Telkomsat.checklistme.semester
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + "3" + "','" + looping[j] + "','" + "semester" + "','" + line + "','" + semester + "','" + tahun + "','" + loopingtgl[j] + "')";
+                            akhir[j] = line;
                             j++;
                         }
                     }

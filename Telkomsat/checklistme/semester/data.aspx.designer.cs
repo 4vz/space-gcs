@@ -22,6 +22,24 @@ namespace Telkomsat.checklistme.semester {
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
         
         /// <summary>
+        /// lblroom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblroom;
+        
+        /// <summary>
+        /// lblsemester control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsemester;
+        
+        /// <summary>
         /// lblkosong control.
         /// </summary>
         /// <remarks>

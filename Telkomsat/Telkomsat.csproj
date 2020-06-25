@@ -6883,6 +6883,7 @@
     <Content Include="checkhk\dataharian.aspx" />
     <Content Include="checkhk\editharian.aspx" />
     <Content Include="checkhk\harian.aspx" />
+    <Content Include="checkhk\isiharian.aspx" />
     <Content Include="checkhk\view.aspx" />
     <Content Include="checkhk\viewharian.aspx" />
     <Content Include="checklist.css" />
@@ -6913,8 +6914,10 @@
     <Content Include="checklistme\week\edit.aspx" />
     <Content Include="checklistme\week\isidata.aspx" />
     <Content Include="checklistme\week\tes.aspx" />
+    <Content Include="checklistme\year\checkdata.aspx" />
     <Content Include="checklistme\year\data.aspx" />
     <Content Include="checklistme\year\isidata.aspx" />
+    <Content Include="checklistme\year\updatedata.aspx" />
     <Content Include="checklist\check.css" />
     <Content Include="checklist\checklist.aspx" />
     <Content Include="checklist\checklistgcs.aspx" />
@@ -7004,6 +7007,8 @@
     <Content Include="datalogbook\add.aspx" />
     <Content Include="datalogbook\data.aspx" />
     <Content Include="datalogbook\detail.aspx" />
+    <Content Include="datalogbook\detail5.aspx" />
+    <Content Include="datalogbook\dets.aspx" />
     <Content Include="datalogbook\download.aspx" />
     <Content Include="datalogbook\edit.aspx" />
     <Content Include="datalogbook\filter.aspx" />
@@ -7553,6 +7558,13 @@
     <Compile Include="checkhk\harian.aspx.designer.cs">
       <DependentUpon>harian.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkhk\isiharian.aspx.cs">
+      <DependentUpon>isiharian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkhk\isiharian.aspx.designer.cs">
+      <DependentUpon>isiharian.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checkhk\view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7784,6 +7796,13 @@
     <Compile Include="checklistme\week\tes.aspx.designer.cs">
       <DependentUpon>tes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checklistme\year\checkdata.aspx.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\year\checkdata.aspx.designer.cs">
+      <DependentUpon>checkdata.aspx</DependentUpon>
+    </Compile>
     <Compile Include="checklistme\year\data.aspx.cs">
       <DependentUpon>data.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7797,6 +7816,13 @@
     </Compile>
     <Compile Include="checklistme\year\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checklistme\year\updatedata.aspx.cs">
+      <DependentUpon>updatedata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checklistme\year\updatedata.aspx.designer.cs">
+      <DependentUpon>updatedata.aspx</DependentUpon>
     </Compile>
     <Compile Include="checklist\checklist.aspx.cs">
       <DependentUpon>checklist.aspx</DependentUpon>
@@ -8132,6 +8158,20 @@
     </Compile>
     <Compile Include="datalogbook\detail.aspx.designer.cs">
       <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\detail5.aspx.cs">
+      <DependentUpon>detail5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\detail5.aspx.designer.cs">
+      <DependentUpon>detail5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="datalogbook\dets.aspx.cs">
+      <DependentUpon>dets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="datalogbook\dets.aspx.designer.cs">
+      <DependentUpon>dets.aspx</DependentUpon>
     </Compile>
     <Compile Include="datalogbook\download.aspx.cs">
       <DependentUpon>download.aspx</DependentUpon>

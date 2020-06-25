@@ -12,9 +12,6 @@
                     <div class="box-body">
                         <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                     </div>
-                        <div class="box-footer">
-                        <a class="btn btn-danger" href="viewshift.aspx">View</a>
-                    </div>
                 </div>
             </section>
         </div>

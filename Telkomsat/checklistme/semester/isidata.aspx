@@ -1,21 +1,38 @@
 ﻿<%@ Page Title="Maintenance ME Semester" Language="C#" MasterPageFile="~/CHECKMEWEEK.Master" AutoEventWireup="true" CodeBehind="isidata.aspx.cs" Inherits="Telkomsat.checklistme.semester.isidata" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .link{
+            color:black;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .link:hover{
+            color:black;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="row">
         <!-- Left col -->
-        <section class="col-lg-6 connectedSortable" style="min-height:50px">
-            <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-bottom:15px; padding-right:15px">
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" Width="100%">
-                <asp:ListItem>-Pilih Ruangan-</asp:ListItem>
-                <asp:ListItem>RO-GST</asp:ListItem>
-                <asp:ListItem>RO-UPS</asp:ListItem>
-            </asp:DropDownList>
+        <div class="nav-tabs-custom col-lg-12 no-padding">
+    <!-- Tabs within a box -->
+    <ul class="nav nav-tabs pull-right">
+        <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>
+    </ul>
+    <div class="tab-content no-padding">
+        <!-- Morris chart - Sales -->
+        <div class="box-body">
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                 </div>
-             <div class="col-lg-4 col-xs-12" style="padding-bottom:15px; ">
-            <asp:Button ID="Button1" runat="server" Text="Pilih" CssClass="btn btn-success btn-sm" OnClick="Pilih_Click" Width="100%"/>
+               
+        <!-- /.table -->
             </div>
-        </section>
+        </div>
+    </div>
+</div>
     </div>
 
 <div class="col-md-12">
@@ -69,6 +86,11 @@
         function fungsi() {
             alert("Berhasil Disimpan");
         }
+        $('.tgldata').datepicker({
+            autoclose: true,
+            format: 'yyyy/mm/dd',
+            orientation: "bottom"
+        });
       
     </script>
 </asp:Content>

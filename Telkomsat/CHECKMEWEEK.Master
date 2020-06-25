@@ -17,6 +17,7 @@
     <link href="./assets/css/style.min.css" rel="stylesheet" />
     <link href="checklist/check.css?version=8" rel="stylesheet"/>
     <link rel="stylesheet" href="./assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
     <style type="text/css">
         tr:nth-child(even) {
@@ -39,7 +40,7 @@
     <script src="../../assets/dist/js/demo.js"></script>
     <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
+    <script src="../../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -70,7 +71,7 @@
                 <li><a href="../week/data.aspx">Mingguan</a></li>
                 <li><a href="../month/checkdata.aspx">Bulanan</a></li>
                 <li><a href="../semester/checkdata.aspx">Semester</a></li>
-                <li><a href="../year/data.aspx">Tahunan</a></li>
+                <li><a href="../year/checkdata.aspx">Tahunan</a></li>
               </ul>
             </li>
           </ul>

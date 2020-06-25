@@ -15,7 +15,7 @@ namespace Telkomsat
         SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm;
         DataSet dsshift = new DataSet();
         DataSet dspekerjaan = new DataSet();
-        string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata, semester, tahun;
+        string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata, semester, tahun, semesterme;
 
         int output, output1, output2, output3, output4, j;
         string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, enddate, datadeskripsi, stylebg, deskripsi, judul, datajudul, user, triwulan;
@@ -172,12 +172,14 @@ namespace Telkomsat
                 lblsemester.Text += " [1]";
                 lblsemesterme.Text += " [1]";
                 semester = "semester 1";
+                semesterme = "1";
             }
             else if (now > middate && now <= enddate)
             {
                 lblsemester.Text += " [2]";
                 lblsemesterme.Text += " [2]";
                 semester = "semester 2";
+                semesterme = "2";
             }
 
             lbltahunn.Text += " [" + tahun + "]";
@@ -232,8 +234,9 @@ namespace Telkomsat
 		                        (SELECT COUNT(*) FROM maintenancehk_data where kategori = 'tahunan' and tahun = '{tahun}') AS tahunan,
 								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'week' and week = '{minggu}' and tahun = '{tahun}' and nilai != '') AS me_week,
 								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'month' and numbermonth = '{angkabulan}' and tahun = '{tahun}' and nilai != '') AS me_month,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'semester' and semester = '{semester}' and tahun = '{tahun}' and nilai not like '%' + 'no' + '%') AS me_semester,
-								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'year' and tahun = '{tahun}' and nilai != '') AS me_year";
+								(SELECT COUNT(*) FROM checkme_datawmy where jenis = 'semester' and semester = '{semesterme}' and tahun = '{tahun}' and nilai not like '%' + 'no' + '%') AS me_semester,
+								(SELECT COUNT(*) FROM checkme_datawmy d where jenis = 'year' and tahun = '{tahun}' and (d.nilai = 'BIR' or d.nilai = 'ALREADY' or
+                                    d.nilai = 'GOOD' or d.nilai ='GREEN')) AS me_year";
             DataSet dsdata = new DataSet();
             SqlCommand cmddata = new SqlCommand(querydata, sqlCon);
             dadata = new SqlDataAdapter(cmddata);
@@ -276,7 +279,7 @@ namespace Telkomsat
             lblmesemester.Text = Math.Round(hasilmesemester) + "%";
             lblmetahunan.Text = Math.Round(hasilmetahunan) + "%";
 
-            if (Math.Round(hasilhkbulan) > 0)
+            if (Math.Round(hasilhkbulan) > 0 && Math.Round(hasilhkbulan) < 100)
                 ihkbulan.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilhkbulan) == 0)
                 ihkbulan.Attributes.Add("class", "fa fa-minus-square");
@@ -285,7 +288,7 @@ namespace Telkomsat
             else
                 ihkbulan.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilhktriwulan) > 0)
+            if (Math.Round(hasilhktriwulan) > 0 && Math.Round(hasilhktriwulan) < 100)
                 ihktriwulan.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilhktriwulan) == 0)
                 ihktriwulan.Attributes.Add("class", "fa fa-minus-square");
@@ -294,7 +297,7 @@ namespace Telkomsat
             else
                 ihktriwulan.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilhksemester) > 0)
+            if (Math.Round(hasilhksemester) > 0 && Math.Round(hasilhksemester) < 100)
                 ihksemester.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilhksemester) == 0)
                 ihksemester.Attributes.Add("class", "fa fa-minus-square");
@@ -303,7 +306,7 @@ namespace Telkomsat
             else
                 ihksemester.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilhktahunan) > 0)
+            if (Math.Round(hasilhktahunan) > 0 && Math.Round(hasilhktahunan) < 100)
                 ihktahunan.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilhktahunan) == 0)
                 ihktahunan.Attributes.Add("class", "fa fa-minus-square");
@@ -313,7 +316,7 @@ namespace Telkomsat
                 ihktahunan.Attributes.Add("class", "fa fa-warning");
 
 
-            if (Math.Round(hasilmebulanan) > 0)
+            if (Math.Round(hasilmebulanan) > 0 && Math.Round(hasilmebulanan) < 100)
                 imebulan.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilmebulanan) == 0)
                 imebulan.Attributes.Add("class", "fa fa-minus-square");
@@ -322,7 +325,7 @@ namespace Telkomsat
             else
                 imebulan.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilmemingguan) > 0)
+            if (Math.Round(hasilmemingguan) > 0 && Math.Round(hasilmemingguan) < 100)
                 imeminggu.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilmemingguan) == 0)
                 imeminggu.Attributes.Add("class", "fa fa-minus-square");
@@ -331,7 +334,7 @@ namespace Telkomsat
             else
                 imeminggu.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilmesemester) > 0)
+            if (Math.Round(hasilmesemester) > 0 && Math.Round(hasilmesemester) < 100)
                 imesemester.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilmesemester) == 0)
                 imesemester.Attributes.Add("class", "fa fa-minus-square");
@@ -340,7 +343,7 @@ namespace Telkomsat
             else
                 imesemester.Attributes.Add("class", "fa fa-warning");
 
-            if (Math.Round(hasilmetahunan) > 0)
+            if (Math.Round(hasilmetahunan) > 0 && Math.Round(hasilmetahunan) < 100)
                 imetahun.Attributes.Add("class", "fa fa-hourglass-half");
             else if (Math.Round(hasilmetahunan) == 0)
                 imetahun.Attributes.Add("class", "fa fa-minus-square");
@@ -364,7 +367,7 @@ namespace Telkomsat
             if ((ts.Days <= 7) && Math.Round(hasilmebulanan) < 100)
                 imebulan.Attributes.Add("class", "fa fa-warning");
 
-            if ((ts.Days <= 7) && Math.Round(hasilhkbulan) < 100)
+            if ((ts.Days <= 7) && Math.Round(hasilhkbulan) < 99)
                 ihkbulan.Attributes.Add("class", "fa fa-warning");
 
             if (MonthSemester == "3" || MonthSemester == "6" || MonthSemester == "9" || MonthSemester == "12")

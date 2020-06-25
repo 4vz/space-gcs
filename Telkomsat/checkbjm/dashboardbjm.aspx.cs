@@ -15,14 +15,47 @@ namespace Telkomsat.checkbjm
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string tanggal, waktu, tanggal1;
+        bool v = false;
         DateTime wib;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
             tanggal = Request.QueryString["tanggal"];
-            tablepersen();
 
+            if (Request.QueryString["view"] != null)
+                v = true;
+
+            if (Request.QueryString["view"] == "view")
+                divdata.Visible = true;
+
+            tablepersen();
+            approval();
         }
+
+        void approval()
+        {
+            string petugas, aprrove, query;
+            SqlDataAdapter da;
+            DataSet ds = new DataSet();
+            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+						join checkhk_parameter r on r.id_parameter=d.id_parameter where r.id_perangkat like '%' + 'bjm' + '%'
+                        and (CAST(d.tanggal AS DATE))='{tanggal}' group by CAST(d.tanggal AS DATE), nama, d.pic";
+            sqlcon.Open();
+            SqlCommand cmd = new SqlCommand(query, sqlcon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlcon.Close();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                lbltanggal.Text = ds.Tables[0].Rows[0]["tanggal"].ToString();
+                lblpetugas.Text = ds.Tables[0].Rows[0]["nama"].ToString();
+                if (ds.Tables[0].Rows[0]["pic"].ToString() == null || ds.Tables[0].Rows[0]["pic"].ToString() == "")
+                    lblapproval.Text = "Belum di approve";
+                else
+                    lblapproval.Text = ds.Tables[0].Rows[0]["pic"].ToString();
+            }
+        }
+
 
         void tablepersen()
         {
@@ -95,10 +128,10 @@ namespace Telkomsat.checkbjm
                         htmltable.AppendLine("<div class=\"col-md-12\">");
                     }
                     htmltable.AppendLine("<div class=\"progress-group\">");
-                    if (tanggal == tanggal1)
+                    if (tanggal == tanggal1 && !v)
                         htmltable.AppendLine($"<a class=\"link\" href=\"../checkbjm/harian.aspx?room={ruang}&tanggal={tanggal}\" style=\"font-size:14px;\">" + ruang + "</a>");
                     else
-                        htmltable.AppendLine($"<a class=\"link\" href=\"../checkhk/view.aspx?ruangan={ruang}&tanggal={tanggal}\" style=\"font-size:14px;\">" + ruang + "</a>");
+                        htmltable.AppendLine($"<a class=\"link\" href=\"../checkbjm/dataharian.aspx?ruangan={ruang}&tanggal={tanggal}\" style=\"font-size:14px;\">" + ruang + "</a>");
                     htmltable.AppendLine($"<span class=\"progress-number\">" + tampil + "%</span>");
                     htmltable.AppendLine("<div class=\"progress sm\">");
                     htmltable.AppendLine($"<div class=\"progress-bar {class1}\" style=\"width:{tampil}% \"></div>");

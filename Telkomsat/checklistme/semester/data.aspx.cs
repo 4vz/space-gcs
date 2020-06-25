@@ -37,8 +37,11 @@ namespace Telkomsat.checklistme.semester
             {
                 room = Request.QueryString["room"].ToString();
             }
+
+            lblroom.Text = room;
+            lblsemester.Text = "Data Semester " + semester + " " + tahunan;
             tanggalku = tanggal1;
-            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal, d.tanggal_kerja from checkme_parameterwmy r left join
                     checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
                     and d.semester = '{semester}' and d.tahun = '{tahunan}' where ruangan='{room}' and r.kategori='semester' order by r.id_perangkat";
             tablepersen();
@@ -175,7 +178,7 @@ namespace Telkomsat.checklistme.semester
             start = ddltahun.Text + "/" + startsemester + "/01";
             end = endint + "/" + endsemester + "/01";
             */
-            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+            query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal, d.tanggal_kerja from checkme_parameterwmy r left join
                     checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
                     where '{start}' <= d.tanggal and d.tanggal < '{end}' and p.ruangan = {room} and d.jenis='semester' order by r.id_perangkat";
             tableticket();
@@ -196,7 +199,7 @@ namespace Telkomsat.checklistme.semester
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Ruangan</th><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th>Nilai</th><th>Satuan</th></tr>");
+            htmlTable.Append("<tr><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th>Nilai</th><th>Tanggal Kerja</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -211,7 +214,7 @@ namespace Telkomsat.checklistme.semester
                     lblkosong.Visible = false;
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        DateTime odate = Convert.ToDateTime(ds.Tables[0].Rows[i]["tanggal"].ToString());
+                        DateTime odate = (DateTime)ds.Tables[0].Rows[i]["tanggal_kerja"];
                         tanggal = odate.ToString("dd/MM/yyyy");
                         IDdata = ds.Tables[0].Rows[i]["id_parameter"].ToString();
                         Perangkat = ds.Tables[0].Rows[i]["Perangkat"].ToString();
@@ -221,17 +224,18 @@ namespace Telkomsat.checklistme.semester
                         tipe = ds.Tables[0].Rows[i]["tipe"].ToString();
                         satuan = ds.Tables[0].Rows[i]["satuan"].ToString();
 
+                        if (tanggal == "01/01/1900")
+                            tanggal = "";
+
                         style3 = "font-weight:normal";
                         nilai = ds.Tables[0].Rows[i]["nilai"].ToString();
 
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ruangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Perangkat + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + SN + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + nilai + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];
                     }

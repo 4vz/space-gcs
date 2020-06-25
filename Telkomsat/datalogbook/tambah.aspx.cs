@@ -20,7 +20,7 @@ namespace Telkomsat.datalogbook
         DataSet ds = new DataSet();
         DataSet dspekerjaan = new DataSet();
         string query, iduser, tanggal, style1, style3, style2, agenda, dataagenda;
-        string bwilayah, bruangan, brak, queryhistory, queryfungsi, querylain, addwork, stylecolor, stylebg;
+        string bwilayah, bruangan, brak, queryhistory, queryfungsi, querymain, addwork, stylecolor, stylebg;
         StringBuilder htmlTable = new StringBuilder();
         string[] myket;
         int output1, outputtotal, outputbagi, a = 0;
@@ -77,20 +77,28 @@ namespace Telkomsat.datalogbook
         {
             var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidl.Text}', 'Maintenance', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
-            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            
+            if (ddlstatusmain.Text == "Selesai")
+            {
+                querymain = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal, tanggal_selesai) VALUES
+                               ('{iduser}', '{txtidl.Text}', '{ddlkategorimain.Text}', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}', '{txtedatemain.Value}'); Select Scope_Identity();";
+            }
+            else
+            {
+                querymain = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
+                               ('{iduser}', '{txtidl.Text}', '{ddlkategorimain.Text}', '{txtketmain.Text}', '{txtsdatemain.Value}', '{txtedatemain.Value}', '{ddlstatusmain.Text}', '{datetime1}'); Select Scope_Identity();";
+            }
+
+            SqlCommand sqlcmd5 = new SqlCommand(querymain, sqlCon);
             int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
             sqlCon.Close();
-            if (filekonfig.HasFiles)
+            if (fileuploadmain.HasFiles)
             {
                 string physicalpath = Server.MapPath("~/fileupload/");
                 if (!Directory.Exists(physicalpath))
                     Directory.CreateDirectory(physicalpath);
 
                 int filecount = 0;
-                foreach (HttpPostedFile file in filekonfig.PostedFiles)
+                foreach (HttpPostedFile file in fileuploadmain.PostedFiles)
                 {
                     filecount += 1;
                     string filename = Path.GetFileName(file.FileName);
@@ -99,95 +107,28 @@ namespace Telkomsat.datalogbook
                     string s = Convert.ToString(i);
                     sqlCon.Open();
                     string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
-                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Maintenance')";
+                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', '{ddlkategorimain.Text}')";
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
                     sqlCmd1.ExecuteNonQuery();
                     sqlCon.Close();
                 }
             }
-            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=N");
-        }
 
-
-        protected void Konfigurasi_ServerClick2(object sender, EventArgs e)
-        {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
-            sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidl.Text}', 'Konfigurasi', '{txtKetKonfig.Text}', '{txtsdatekonf.Value}', '{txtedatekonf.Value}', '{ddlstatuskonf.Text}', '{datetime1}'); Select Scope_Identity();";
-            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
-            sqlCon.Close();
-            if (filekonfig.HasFiles)
+            if (ddlstatusmain.Text == "On Progress")
             {
-                string physicalpath = Server.MapPath("~/fileupload/");
-                if (!Directory.Exists(physicalpath))
-                    Directory.CreateDirectory(physicalpath);
-
-                int filecount = 0;
-                foreach (HttpPostedFile file in filekonfig.PostedFiles)
-                {
-                    filecount += 1;
-                    string filename = Path.GetFileName(file.FileName);
-                    string filepath = "~/fileupload/" + filename;
-                    file.SaveAs(physicalpath + filename);
-                    string s = Convert.ToString(i);
-                    sqlCon.Open();
-                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
-                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'konfigurasi')";
-                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
-
-                    sqlCmd1.ExecuteNonQuery();
-                    sqlCon.Close();
-                }
-            }
-            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=K");
-        }
-
-        protected void Lain_ServerClick3(object sender, EventArgs e)
-        {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
-            sqlCon.Open();
-            string querykonfig = $@"INSERT INTO table_pekerjaan (id_profile, id_logbook, jenis_pekerjaan, deskripsi, startdate, enddate, status, tanggal) VALUES
-                               ('{iduser}', '{txtidl.Text}', 'Lain-lain', '{txtketeranganlain.Text}', '{txtsdatelain.Value}', '{txtedatelain.Value}', '{ddlstatuslain.Text}', '{datetime1}'); Select Scope_Identity();";
-            SqlCommand sqlcmd5 = new SqlCommand(querykonfig, sqlCon);
-            int i = Convert.ToInt32(sqlcmd5.ExecuteScalar());
-            sqlCon.Close();
-            if (FileLain.HasFiles)
-            {
-                string physicalpath = Server.MapPath("~/fileupload/");
-                if (!Directory.Exists(physicalpath))
-                    Directory.CreateDirectory(physicalpath);
-
-                int filecount = 0;
-                foreach (HttpPostedFile file in FileLain.PostedFiles)
-                {
-                    filecount += 1;
-                    string filename = Path.GetFileName(file.FileName);
-                    string filepath = "~/fileupload/" + filename;
-                    file.SaveAs(physicalpath + filename);
-                    string s = Convert.ToString(i);
-                    sqlCon.Open();
-                    string queryfile = $@"INSERT INTO table_log_file (id_logbook, id_pekerjaan, files, namafiles, kategori)
-                                        VALUES ('{txtidl.Text}', '{s}', '{filepath}', '{filename}', 'Lain-lain')";
-                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
-
-                    sqlCmd1.ExecuteNonQuery();
-                    sqlCon.Close();
-                }
+                string query4;
+                query4 = $"update tabel_logbook set status = 'On Progress' where id_logbook = '{txtidl.Text}'";
+                sqlCon.Open();
+                SqlCommand cmd4 = new SqlCommand(query4, sqlCon);
+                cmd4.ExecuteNonQuery();
+                sqlCon.Close();
             }
 
-            string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
-            string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul, keterangan) values
-                                ('{iduser}', '{tanggalku}', 'esp', 'lain-lain', '{txtketeranganlain.Text}')";
-            sqlCon.Open();
-            SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
-            cmdlog.ExecuteNonQuery();
-            sqlCon.Close();
-
-            Response.Redirect($"detail.aspx?idlog={txtidl.Text}&add=L");
+            this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "enablebtn()", true);
+            Response.Redirect($"../datalogbook/detail.aspx?idlog={txtidl.Text}&add=N");
         }
+
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
@@ -637,11 +578,9 @@ namespace Telkomsat.datalogbook
                         htmlTable.Append("<td></td><td></td><td></td><td></td>" + "<td>" +
                             "<ul><li class=\"dropdown\"> <button type=\"button\" class=\"btn btn-block btn-primary dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"fa fa-plus\"></i>  Tambah Pekerjaan <span class=\"caret\"></span></button>" +
                             $"<ul class=\"dropdown-menu\">" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalkonfigurasi\" id=\"btnkonfigurasi\"> Konfigurasi </ a ></ li >" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalupdate\" id=\"btnmutasi\">Mutasi Asset</a></li>" +
                             $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalfungsi\" id=\"btnstatus\">Status Asset</a></li>" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnlain\">Maintenance</a></li>" +
-                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modallainlain\" id=\"btnlain\">Lain-lain</a></li>" +
+                            $"<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\" class=\"btmain\" data-toggle=\"modal\" data-id=\"{ds.Tables[0].Rows[i]["id_logbook"].ToString()}\" data-target=\"#modalmaintenance\" id=\"btnmain\">Sub Pekerjaan</a></li>" +
                             "</ul></li></ul></td>" +
                             "</tr></table>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<a href=\"../datalogbook/detail.aspx?idlog={ds.Tables[0].Rows[i]["id_logbook"].ToString()}&add={addwork}\" style=\"margin-right:10px\">" + "View" + "</a>" + "</td>");

@@ -78,6 +78,33 @@ namespace Telkomsat.datalogbook
                 sqlCon.Open();
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
+
+                string querybef = $"select p.* from table_pekerjaan p left join tabel_logbook l on l.id_logbook=p.id_logbook where l.id_logbook = '{idlog}' and p.status = 'On Progress'";
+                DataSet ds5 = new DataSet();
+                sqlCon.Open();
+                SqlCommand cmd = new SqlCommand(querybef, sqlCon);
+                SqlDataAdapter da5 = new SqlDataAdapter(cmd);
+                da5.Fill(ds5);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                int output = ds5.Tables[0].Rows.Count;
+                if (output == 0)
+                {
+                    queryupdatel = $"UPDATE tabel_logbook SET status = 'Selesai' WHERE id_logbook = '{idlog}'";
+                    SqlCommand sqlcmd2 = new SqlCommand(queryupdatel, sqlCon);
+                    sqlCon.Open();
+                    sqlcmd2.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+                else
+                {
+                    queryupdatel = $"UPDATE tabel_logbook SET status = 'On Progress' WHERE id_logbook = '{idlog}'";
+                    SqlCommand sqlcmd2 = new SqlCommand(queryupdatel, sqlCon);
+                    sqlCon.Open();
+                    sqlcmd2.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+
                 Response.Redirect($"../datalogbook/detail.aspx?idlog={idlog}&add={tipe}");
             }
 

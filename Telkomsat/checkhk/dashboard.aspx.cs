@@ -34,12 +34,12 @@ namespace Telkomsat.checkhk
 
         void approval()
         {
-            string petugas, tanggal, aprrove, query;
+            string petugas, aprrove, query;
             SqlDataAdapter da;
             DataSet ds = new DataSet();
             query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile
 						join checkhk_parameter r on r.id_parameter=d.id_parameter where r.id_perangkat not like '%' + 'bjm' + '%'
-                        and (CAST(d.tanggal AS DATE))='2020-06-12' group by CAST(d.tanggal AS DATE), nama, d.pic";
+                        and (CAST(d.tanggal AS DATE))='{tanggal}' group by CAST(d.tanggal AS DATE), nama, d.pic";
             sqlcon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlcon);
             da = new SqlDataAdapter(cmd);

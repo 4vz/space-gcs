@@ -119,7 +119,7 @@ namespace Telkomsat.dataasset
 
         void tablelokasi()
         {
-            queryhl = $@"select h.tanggal, h.id_reference, e.user_name, d.nama_jenis_device, p.sn, r.nama_ruangan as ruangan_after, w.nama_wilayah as wilayah_after,
+            queryhl = $@"select h.tanggal, h.id_reference, e.nama, d.nama_jenis_device, p.sn, r.nama_ruangan as ruangan_after, w.nama_wilayah as wilayah_after,
 					    k.nama_rak as rak_after, r1.nama_ruangan as ruangan_before, p.id_perangkat,
 						k1.nama_rak as rak_before, w1.nama_wilayah as wilayah_before,
 						h.rak_before from as_history_lokasi h full join as_perangkat p on
@@ -140,8 +140,7 @@ namespace Telkomsat.dataasset
             style = "font-size:12px; font-weight:normal";
             htmlTable1.Append("<table id=\"example1\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable1.Append("<thead>");
-            htmlTable1.Append("<tr><th></th><th></th><th colspan=\"3\" style=\"text-align:center\">Sebelum Mutasi</th><th colspan=\"3\" style=\"text-align:center\">Sesudah Mutasi</th>");
-            htmlTable1.Append("<tr><th>Tanggal</th><th>PIC</th><th>Wilayah</th><th>Ruangan</th><th>Rak</th><th>Wilayah</th><th>Ruangan</th><th>Rak</th><th>Ke Logbook</th></tr>");
+            htmlTable1.Append("<tr><th>Tanggal</th><th>PIC</th><th>Sebelum Mutasi</th><th>Sesudah Mutasi</th><th>Ke Logbook</th>");
             htmlTable1.Append("</thead>");
             
             htmlTable1.Append("<tbody>");
@@ -154,13 +153,23 @@ namespace Telkomsat.dataasset
                     {
                         htmlTable1.Append("<tr>");
                         htmlTable1.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + ds1.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["user_name"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["wilayah_before"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["ruangan_before"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["rak_before"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["wilayah_after"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["ruangan_after"].ToString() + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["rak_after"].ToString() + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"{style}\">" + ds1.Tables[0].Rows[i]["nama"].ToString() + "</label>" + "</td>");
+                        htmlTable1.AppendLine("<td>" + "<table class=\"table\">" +
+                            "<tr>" +
+                            "<td>" + "Wilayah" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["wilayah_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Ruangan" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["ruangan_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Rak" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["rak_before"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" + "</table>" + "</td>");
+                        htmlTable1.AppendLine("<td>" + "<table class=\"table\">" +
+                            "<tr>" +
+                            "<td>" + "Wilayah" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["wilayah_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Ruangan" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["ruangan_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" +
+                            "<td>" + "Rak" + "</td>" + "<td>" + ":" + "</td>" + "<td>" + ds1.Tables[0].Rows[i]["rak_after"].ToString() + "</td>" +
+                            "</tr>" + "<tr>" + "</table>" + "</td>");
                         htmlTable1.Append("<td>" + $"<a style=\"cursor:pointer\" href=\"../datalogbook/detail.aspx?idlog={ds1.Tables[0].Rows[i]["id_reference"].ToString()}&add=M\">" + $"<label class=\"label label-sm label-primary\">" + "View" + "</label>" + "</a>" + "</td>");
                         htmlTable1.Append("</tr>");
                     }
@@ -178,7 +187,7 @@ namespace Telkomsat.dataasset
 
         void tableticket()
         {
-            queryhf = $@"select p.id_perangkat, f.id_reference, l.user_name, p.sn, f.* from as_history_fungsi f join as_perangkat p on p.id_perangkat = f.id_perangkat join
+            queryhf = $@"select p.id_perangkat, f.id_reference, l.nama, p.sn, f.* from as_history_fungsi f join as_perangkat p on p.id_perangkat = f.id_perangkat join
                     as_jenis_device d on d.id_jenis_device = p.id_jenis_device join Profile l on l.id_profile=f.id_profile
 					  where f.id_perangkat = '{idaset}' order by tanggal desc";
 
@@ -208,7 +217,7 @@ namespace Telkomsat.dataasset
                         htanggal = ds2.Tables[0].Rows[i]["tanggal"].ToString();
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + ds2.Tables[0].Rows[i]["tanggal"] + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style}\">" + ds2.Tables[0].Rows[i]["user_name"].ToString() + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style}\">" + ds2.Tables[0].Rows[i]["nama"].ToString() + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hfungsi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hstatus + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style}\">" + hketerangan + "</label>" + "</td>");
