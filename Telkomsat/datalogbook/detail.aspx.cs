@@ -261,7 +261,7 @@ namespace Telkomsat.datalogbook
                             {
                                 htmlTable.Append($"<td colspan\"3\" style=\"{style1}\">" +
                                     "<div class=\"progress progress-xs\">" +
-                                      $"<div class=\"progress-bar {stylecolor}\" style=\"width: 100%\"></div>" +
+                                      $"<div class=\"progress-bar progress-bar-success\" style=\"width: 100%\"></div>" +
                                     "</div></td>" + "<td style=\"padding-left:15px\">" + $"<span class=\"badge bg-green\">100%</span>" +
                                     "</td>");
                             }
@@ -269,7 +269,7 @@ namespace Telkomsat.datalogbook
                             {
                                 htmlTable.Append($"<td colspan\"3\" style=\"{style1}\">" +
                                     "<div class=\"progress progress-xs\">" +
-                                      $"<div class=\"progress-bar {stylecolor}\" style=\"width: 0%\"></div>" +
+                                      $"<div class=\"progress-bar progress-bar-red\" style=\"width: 0%\"></div>" +
                                     "</div></td>" + "<td style=\"padding-left:15px\">" + $"<span class=\"badge bg-red\">0%</span>" +
                                     "</td>");
                             }

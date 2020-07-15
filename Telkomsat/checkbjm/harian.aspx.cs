@@ -98,14 +98,14 @@ namespace Telkomsat.checkbjm
             sqlCon.Close();
 
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_data (tanggal, id_profile, id_parameter, data) values {data}";
+            query1 = $"insert into checkhk_data (tanggal, id_profile, id_parameter, data, lokasi) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
-            string query5 = $"select * from log where judul='harian banjarmasin' and tanggal = '{tanggalku}'";
+            string query5 = $"select * from log where judul='checklist harian banjarmasin' and tanggal = '{tanggalku}'";
             SqlDataAdapter da5;
             DataSet ds5 = new DataSet();
             SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
@@ -236,7 +236,7 @@ namespace Telkomsat.checkbjm
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + "bjm" + "')";
                             j++;
                         }
                     }

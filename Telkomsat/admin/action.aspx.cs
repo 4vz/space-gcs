@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Telkomsat.admin
+{
+    public partial class action : System.Web.UI.Page
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+        string queryupdate, queryupdatel, queryupdatem, queryapp;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            string hapusreferensi = Request.QueryString["idref"];
+            string kategori = Request.QueryString["kategori"];
+            string jenis = Request.QueryString["jenis"];
+            string idapp = Request.QueryString["idapp"];
+
+            if (hapusreferensi != null)
+            {
+                string query = $"DELETE AdminReference WHERE AR_ID = '{hapusreferensi}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/reference.aspx?kategori={kategori.ToString()}");
+            }
+
+            if (jenis != null)
+            {
+                if(jenis == "diajukan")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'diajukan' WHERE AJ_ID = '{idapp}'";
+                }
+                else if (jenis == "manager")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'manager' WHERE AJ_ID = '{idapp}'";
+                }
+                else if (jenis == "gm")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'gm' WHERE AJ_ID = '{idapp}'";
+                }
+                else if (jenis == "admin")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'admin' WHERE AJ_ID = '{idapp}'";
+                }
+
+                SqlCommand sqlcmd = new SqlCommand(queryapp, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/approvement.aspx?jenis={jenis}");
+            }
+        }
+    }
+}

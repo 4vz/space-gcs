@@ -101,14 +101,14 @@ namespace Telkomsat.checkhk
             sqlCon.Close();
 
             string data = string.Join(",", akhir);
-            query1 = $"insert into checkhk_data (tanggal, id_profile, id_parameter, data) values {data}";
+            query1 = $"insert into checkhk_data (tanggal, id_profile, id_parameter, data, lokasi) values {data}";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query1, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
-            string query5 = $"select * from log where judul='harian cibinong' and tanggal = '{tanggalku}'";
+            string query5 = $"select * from log where judul='checklist harian cibinong' and tanggal = '{tanggalku}'";
             SqlDataAdapter da5;
             DataSet ds5 = new DataSet();
             SqlCommand cmd5 = new SqlCommand(query5, sqlCon);
@@ -155,7 +155,7 @@ namespace Telkomsat.checkhk
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe from checkhk_parameter r left join
                         checkhk_perangkat p on p.id_perangkat = r.id_perangkat where shelter = '{room}' order by p.rack, r.id_perangkat";
 
-
+            //DataSet ds = Settings.LoadDataSet(query);
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
@@ -236,7 +236,7 @@ namespace Telkomsat.checkhk
                         foreach (string line in lines)
                         {
                             //Response.Write(line);
-                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "')";
+                            akhir[j] = "('" + tanggal + "','" + iduser + "','" + looping[j] + "','" + line + "','" + "cbi" + "')";
                             j++;
                         }
                     }

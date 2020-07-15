@@ -143,6 +143,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 </div>
             </div>
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">Tipe Perangkat</label>
+                <div class="col-sm-8">
+                    <asp:TextBox ID="txttipe" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-4 control-label">Model</label>
                 <div class="col-sm-8">
                     <asp:TextBox ID="txtmodel" runat="server" CssClass="form-control"></asp:TextBox>

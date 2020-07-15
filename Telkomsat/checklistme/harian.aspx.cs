@@ -229,7 +229,7 @@ namespace Telkomsat.checklistme
             sqlCon.Close();
 
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
-            string query5 = $"select * from log where judul='harian me' and tanggal = '{tanggalku}' and keterangan = '{DropDownList1.Text}'";
+            string query5 = $"select * from log where judul='checklist harian me' and tanggal = '{tanggalku}' and keterangan = '{DropDownList1.Text}'";
             SqlDataAdapter da5;
             DataSet ds5 = new DataSet();
             SqlCommand cmd5 = new SqlCommand(query5, sqlCon);

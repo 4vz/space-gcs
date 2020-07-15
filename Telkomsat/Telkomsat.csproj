@@ -57,6 +57,9 @@
     <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
     </Reference>
@@ -165,22 +168,38 @@
     <Content Include="3monthhk\add.aspx" />
     <Content Include="3monthhk\isidata.aspx" />
     <Content Include="activity.aspx" />
+    <Content Include="admin\action.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\approve.aspx" />
+    <Content Include="admin\approvement.aspx" />
     <Content Include="admin\bendahara.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\dashboard.js" />
     <Content Include="admin\datapemasukan.aspx" />
     <Content Include="admin\detail.aspx" />
     <Content Include="admin\detailbendahara.aspx" />
+    <Content Include="admin\detailjustifikasi.aspx" />
+    <Content Include="admin\detailrkap.aspx" />
+    <Content Include="admin\detailvendor.aspx" />
     <Content Include="admin\download.aspx" />
+    <Content Include="admin\editjustifikasi.aspx" />
+    <Content Include="admin\editrkap.aspx" />
+    <Content Include="admin\editvendor.aspx" />
+    <Content Include="admin\justifikasi.aspx" />
+    <Content Include="admin\listjustifikasi.aspx" />
     <Content Include="admin\listpengeluaran.aspx" />
+    <Content Include="admin\listrkap.aspx" />
+    <Content Include="admin\listvendor.aspx" />
     <Content Include="admin\nominal.js" />
     <Content Include="admin\pemasukan.aspx" />
     <Content Include="admin\pemindahan.aspx" />
     <Content Include="admin\pengeluaran.aspx" />
     <Content Include="admin\pengembalian.aspx" />
     <Content Include="admin\penyetoran.aspx" />
+    <Content Include="admin\perusahaan.aspx" />
+    <Content Include="admin\reference.aspx" />
+    <Content Include="admin\referenceprofile.aspx" />
+    <Content Include="admin\rkap.aspx" />
     <Content Include="alldatadua.aspx" />
     <Content Include="alldata.aspx" />
     <Content Include="anten.png" />
@@ -7324,6 +7343,13 @@
     <Compile Include="ADMIN.Master.designer.cs">
       <DependentUpon>ADMIN.Master</DependentUpon>
     </Compile>
+    <Compile Include="admin\action.aspx.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\action.aspx.designer.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\admin.aspx.cs">
       <DependentUpon>admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7337,6 +7363,13 @@
     </Compile>
     <Compile Include="admin\approve.aspx.designer.cs">
       <DependentUpon>approve.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\approvement.aspx.cs">
+      <DependentUpon>approvement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\approvement.aspx.designer.cs">
+      <DependentUpon>approvement.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\bendahara.aspx.cs">
       <DependentUpon>bendahara.aspx</DependentUpon>
@@ -7373,6 +7406,27 @@
     <Compile Include="admin\detailbendahara.aspx.designer.cs">
       <DependentUpon>detailbendahara.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\detailjustifikasi.aspx.cs">
+      <DependentUpon>detailjustifikasi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detailjustifikasi.aspx.designer.cs">
+      <DependentUpon>detailjustifikasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\detailrkap.aspx.cs">
+      <DependentUpon>detailrkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detailrkap.aspx.designer.cs">
+      <DependentUpon>detailrkap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\detailvendor.aspx.cs">
+      <DependentUpon>detailvendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detailvendor.aspx.designer.cs">
+      <DependentUpon>detailvendor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\download.aspx.cs">
       <DependentUpon>download.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7380,12 +7434,61 @@
     <Compile Include="admin\download.aspx.designer.cs">
       <DependentUpon>download.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\editjustifikasi.aspx.cs">
+      <DependentUpon>editjustifikasi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\editjustifikasi.aspx.designer.cs">
+      <DependentUpon>editjustifikasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\editrkap.aspx.cs">
+      <DependentUpon>editrkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\editrkap.aspx.designer.cs">
+      <DependentUpon>editrkap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\editvendor.aspx.cs">
+      <DependentUpon>editvendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\editvendor.aspx.designer.cs">
+      <DependentUpon>editvendor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\justifikasi.aspx.cs">
+      <DependentUpon>justifikasi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\justifikasi.aspx.designer.cs">
+      <DependentUpon>justifikasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\listjustifikasi.aspx.cs">
+      <DependentUpon>listjustifikasi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\listjustifikasi.aspx.designer.cs">
+      <DependentUpon>listjustifikasi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\listpengeluaran.aspx.cs">
       <DependentUpon>listpengeluaran.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\listpengeluaran.aspx.designer.cs">
       <DependentUpon>listpengeluaran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\listrkap.aspx.cs">
+      <DependentUpon>listrkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\listrkap.aspx.designer.cs">
+      <DependentUpon>listrkap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\listvendor.aspx.cs">
+      <DependentUpon>listvendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\listvendor.aspx.designer.cs">
+      <DependentUpon>listvendor.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\pemasukan.aspx.cs">
       <DependentUpon>pemasukan.aspx</DependentUpon>
@@ -7421,6 +7524,34 @@
     </Compile>
     <Compile Include="admin\penyetoran.aspx.designer.cs">
       <DependentUpon>penyetoran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\perusahaan.aspx.cs">
+      <DependentUpon>perusahaan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\perusahaan.aspx.designer.cs">
+      <DependentUpon>perusahaan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\reference.aspx.cs">
+      <DependentUpon>reference.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\reference.aspx.designer.cs">
+      <DependentUpon>reference.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\referenceprofile.aspx.cs">
+      <DependentUpon>referenceprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\referenceprofile.aspx.designer.cs">
+      <DependentUpon>referenceprofile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\rkap.aspx.cs">
+      <DependentUpon>rkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\rkap.aspx.designer.cs">
+      <DependentUpon>rkap.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\allasset.ashx.cs">
       <DependentUpon>allasset.ashx</DependentUpon>
@@ -8970,6 +9101,7 @@
     <Compile Include="searchby.aspx.designer.cs">
       <DependentUpon>searchby.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="superadmin\action.aspx.cs">
       <DependentUpon>action.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

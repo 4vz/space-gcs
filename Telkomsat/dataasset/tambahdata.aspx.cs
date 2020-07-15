@@ -18,7 +18,7 @@ namespace Telkomsat.dataasset
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         string IDdata = "kitaa", bangunan = "st", style1 = "a", query, divisi = "", style2 = "a", style3, prioritas = "a", statusticket = "a", tanggal, queydel, jenisview = "";
-        string ruangan1, user;
+        string ruangan1, user, iduser;
 
 
         string qr = "a", divisireply = "A";
@@ -29,6 +29,7 @@ namespace Telkomsat.dataasset
             if (Session["username"] != null)
             {
                 user = Session["nama1"].ToString();
+                iduser = Session["iduser"].ToString();
             }
         }
 
@@ -42,11 +43,18 @@ namespace Telkomsat.dataasset
             {
                 var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
                 sqlCon.Open();
-                string query = $@"INSERT INTO as_perangkat (username, id_jenis_device, id_ruangan, id_rak, id_merk, model, pn, sn, tahun_pengadaan, fungsi, status, info, satelit, tanggal) VALUES
+                string query = $@"INSERT INTO as_perangkat (username, id_jenis_device, id_ruangan, id_rak, id_merk, model, pn, sn, tahun_pengadaan, fungsi, status, info, satelit, tanggal, tipe_perangkat) VALUES
                                ('{user}', '{txtdevice.Text}', '{txtruangan.Text}', '{txtrak.Text}', '{txtmerk.Text}', '{txtmodel.Text}','{txtpn.Text}', '{txtsn.Text}', '{txttahun.Text}',
-                                '{txtfungsi.Text}', '{txtstatus.Text}', '{txtKeterangan.Text}', '{txtsatelit.Text}', '{datetime1}')";
+                                '{txtfungsi.Text}', '{txtstatus.Text}', '{txtKeterangan.Text}', '{txtsatelit.Text}', '{datetime1}', '{txttipe.Text}')";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                 sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+                string querylog = $@"Insert into log (id_profile, tanggal, tipe, judul, keterangan) values
+                                ('{iduser}', '{tanggalku}', 'tass', '{sldevice.Value}', '{txtsn.Text}')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
                 sqlCon.Close();
                 divsuccess.Visible = true;
                 Button1.Enabled = true;

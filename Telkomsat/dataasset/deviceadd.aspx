@@ -8,7 +8,7 @@
         <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
         <div class="box box-danger">
         <div class="box-header with-border">
-            <h3 class="box-title">Bangunan</h3>
+            <h3 class="box-title">Tambah Device</h3>
             
             <!-- /.box-tools -->
         </div>
@@ -21,11 +21,11 @@
             <div class="table-responsive mailbox-messages">
             <div class="table table-responsive">
                 <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">Nama Bangunan :</label>
+                    <label style="font-size:16px; font-weight:bold">Nama Device :</label>
                     <asp:TextBox ID="txtbangunan" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <label style="font-size:16px">Nama Wilayah :</label>
+                    <label style="font-size:16px">Nama Equipment :</label>
                     <select id="so2" runat="server" class="select2 form-control" style="width: 100%;">
                         <option></option>
                     </select>
@@ -89,7 +89,7 @@
             $('#<%=HiddenField1.ClientID %>').val($('#<%=so2.ClientID %>').val());
         });
 
-        $('#<%=so2.ClientID %>').select2().on('change', function () {
+        $('#<%=so2.ClientID %>').change(function () {
             var id = $(this).val();
             $('#<%=TextBox2.ClientID %>').val(id);
         });

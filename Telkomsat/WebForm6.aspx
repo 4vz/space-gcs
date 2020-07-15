@@ -53,6 +53,20 @@
 
         onclick="btnUpload_Click" />
 
+    <div>
+        <select id="sltest" runat="server" class="form-control">
+            <option value="1">satu</option>
+            <option value="2">dua</option>
+            <option value="3">tiga</option>
+        </select>
+    </div>
+
+
+    <script>
+        $('#<%=sltest.ClientID %>').change(function () {
+            console.log($('#<%=sltest.ClientID %> option:selected').text());
+        });
+    </script>
 </form>
 </body>
 </html>

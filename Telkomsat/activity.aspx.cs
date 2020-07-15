@@ -21,6 +21,7 @@ namespace Telkomsat
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
 
+            lblProfile1.Text = Session["nama1"].ToString();
             string queryuser;
 
             tablechhk();
@@ -106,6 +107,12 @@ namespace Telkomsat
                         {
                             htmlTable.AppendLine("<li>" + "<span style=\"color:black; font-size:16px; margin-right:10px\">" + "<i class=\"fa fa-book\"></i>" + "</span>" +
                                 "<a>" + nama + "</a>" + " menambahkan logbook " + "<a>" + judul + "</a>" + "</li>");
+                        }
+
+                        if (tipe == "tass")
+                        {
+                            htmlTable.AppendLine("<li>" + "<span style=\"color:red; font-size:16px; margin-right:10px\">" + "<i class=\"fa fa-database\"></i>" + "</span>" +
+                                "<a>" + nama + "</a>" + " menambahkan asset " + "<a>" + judul + "</a>" + " dengan s/n " + keterangan + "</li>");
                         }
 
                         if (tanggal != tanggalbef)

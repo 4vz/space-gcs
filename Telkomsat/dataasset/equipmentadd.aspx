@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="equipmentadd.aspx.cs" Inherits="Telkomsat.dataasset.equipmentadd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASSET.Master" AutoEventWireup="true" CodeBehind="equipmentadd.aspx.cs" Inherits="Telkomsat.dataasset.equipmentadd" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="col-md-9">
         <div class="box box-danger">
         <div class="box-header with-border">
-            <h3 class="box-title">Site</h3>
+            <h3 class="box-title">Tambah Equipment</h3>
             
             <!-- /.box-tools -->
         </div>

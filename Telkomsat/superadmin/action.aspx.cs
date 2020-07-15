@@ -36,7 +36,25 @@ namespace Telkomsat.superadmin
             if (appch == "harkat")
             {
                 string queryupdate;
-                queryupdate = $"UPDATE checkhk_data SET approval = 'approve', pic = '{user}' where tanggal >= '{tanggal} 00:00:00' and tanggal <= '{tanggal} 23:59:59'";
+                queryupdate = $"UPDATE checkhk_data SET approval = 'approve', pic = '{user}' where tanggal >= '{tanggal} 00:00:00' and tanggal <= '{tanggal} 23:59:59' and lokasi = 'cbi'";
+                SqlCommand sqlcmd2 = new SqlCommand(queryupdate, sqlCon);
+                sqlCon.Open();
+                sqlcmd2.ExecuteNonQuery();
+                sqlCon.Close();
+                string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
+                string querylog = $@"Insert into log (pic, tanggal, tipe, judul) values
+                                ('{user}', '{tanggalku}', 'app', '{tanggal}')";
+                sqlCon.Open();
+                SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
+                cmdlog.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("approve.aspx");
+            }
+
+            if (appch == "harkatbjm")
+            {
+                string queryupdate;
+                queryupdate = $"UPDATE checkhk_data SET approval = 'approve', pic = '{user}' where tanggal >= '{tanggal} 00:00:00' and tanggal <= '{tanggal} 23:59:59' and lokasi = 'bjm'";
                 SqlCommand sqlcmd2 = new SqlCommand(queryupdate, sqlCon);
                 sqlCon.Open();
                 sqlcmd2.ExecuteNonQuery();

@@ -94,13 +94,13 @@ namespace Telkomsat.dataasset {
         protected global::System.Web.UI.WebControls.Label lblmerk;
         
         /// <summary>
-        /// lbltipe control.
+        /// txttipe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltipe;
+        protected global::System.Web.UI.WebControls.TextBox txttipe;
         
         /// <summary>
         /// txtmodel control.

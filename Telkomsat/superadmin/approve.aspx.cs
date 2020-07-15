@@ -36,9 +36,9 @@ namespace Telkomsat.superadmin
             string query, tanggal, petugas;
             SqlDataAdapter da;
             DataSet ds = new DataSet();
-            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.lokasi from checkhk_data d left join Profile p on d.id_profile = p.id_profile
 						join checkhk_parameter r on r.id_parameter=d.id_parameter where d.approval is null or d.approval = '' 
-						group by CAST(d.tanggal AS DATE), nama order by CAST(d.tanggal AS DATE) desc";
+						group by CAST(d.tanggal AS DATE), nama, d.lokasi order by CAST(d.tanggal AS DATE) desc";
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
@@ -70,7 +70,10 @@ namespace Telkomsat.superadmin
                         htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkhk/dashboard.aspx?tanggal={tanggal}&view=view\">" + "view" + "</a>");
                         if(pic == "HK")
                         {
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkat&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            if(ds.Tables[0].Rows[i]["lokasi"].ToString() == "cbi")
+                                htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkat&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            else
+                                htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkatbjm&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
                         }
                         htmlTable.Append("</td>");
                         htmlTable.Append("</tr>");

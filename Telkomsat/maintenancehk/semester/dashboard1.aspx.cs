@@ -15,7 +15,7 @@ namespace Telkomsat.maintenancehk.semester
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string tanggal, waktu, tanggal1, ruangan;
-        DateTime wib;
+        DateTime wib, startdate, enddate;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,8 +33,14 @@ namespace Telkomsat.maintenancehk.semester
         void tablepersen()
         {
             DateTime now = DateTime.Now;
-            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 6, 30);
+            startdate = new DateTime(DateTime.Now.Year, 1, 1);
+            enddate = new DateTime(DateTime.Now.Year, 7, 1);
+            if(DateTime.Now.Month >= 7)
+            {
+                startdate = new DateTime(DateTime.Now.Year, 7, 1);
+                enddate = new DateTime(DateTime.Now.Year + 1, 1, 1);
+            }
+
             string style, class1, device, alias, querytotal, queryisi;
             SqlDataAdapter daheader, dapersen, dabar;
             DataSet dsheader = new DataSet();

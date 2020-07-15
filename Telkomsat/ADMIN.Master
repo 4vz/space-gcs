@@ -124,6 +124,30 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">PENGELOLAAN</li>
+          <li class="treeview" id="ligm" runat="server" visible="false">
+          <a href="../admin/approvement.aspx?jenis=gm">
+            <i class="fa fa-check-circle"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spngm">
+            <asp:Label ID="lblgm" runat="server" Text="Label"></asp:Label></span>
+          </a>
+        </li>
+          <li class="treeview" id="limanager" runat="server" visible="false">
+          <a href="../admin/approvement.aspx?jenis=manager">
+            <i class="fa fa-arrow-left"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnmanager">
+            <asp:Label ID="lblmanager" runat="server" Text="Label"></asp:Label></span>
+          </a>
+        </li>
+          <li class="treeview" id="liuser" runat="server" visible="false">
+          <a href="../admin/approvement.aspx?jenis=diajukan">
+            <i class="fa fa-arrow-left"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
+            <asp:Label ID="lbldiajukan" runat="server" Text="Label"></asp:Label></span>
+          </a>
+        </li>
+          <li class="treeview" id="liadmin" runat="server" visible="false">
+          <a href="../admin/approvement.aspx?jenis=admin">
+            <i class="fa fa-arrow-left"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnadmin">
+            <asp:Label ID="lbladmin" runat="server" Text="Label"></asp:Label></span>
+          </a>
+        </li>
         <li class="treeview" id="lipemasukan" runat="server">
           <a href="../admin/pemasukan.aspx">
             <i class="fa fa-arrow-right"></i> <span>Pemasukan</span>
@@ -141,18 +165,96 @@
         </li>
           <li class="treeview" id="lipengembalian" runat="server">
           <a href="../admin/pengembalian.aspx">
-            <i class="fa fa-exchange"></i> <span>Pengembalian</span>
+            <i class="fa fa-arrows-h"></i> <span>Pengembalian</span>
+          </a>
+        </li>
+          <li class="treeview" id="lijustifikasi" runat="server">
+          <a href="../admin/listjustifikasi.aspx">
+            <i class="fa fa-money"></i> <span>Justifikasi</span>
           </a>
         </li>
         
         </ul>
-        
+                <ul class="sidebar-menu" data-widget="tree" runat="server" id="divadmin" visible="true">
+        <li class="header">ADMIN</li>    
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cubes"></i> <span>Referensi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            <li id="li12" runat="server">
+              <a href="../admin/listrkap.aspx">
+                <i class="fa fa-th-list"></i> <span>RKAP</span>
+              </a>
+            </li>
+            <li id="li13" runat="server">
+              <a href="../admin/listvendor.aspx">
+                <i class="fa fa-th-list"></i> <span>Vendor</span>
+              </a>
+            </li>
+            </ul>           
+            </li>
+          <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cubes"></i> <span>Referensi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+            <ul class="treeview-menu">
+            <li id="li1" runat="server">
+              <a href="../admin/reference.aspx?kategori=unit">
+                <i class="fa fa-th-list"></i> <span>Unit</span>
+              </a>
+            </li>
+            <li id="li2" runat="server">
+              <a href="../admin/reference.aspx?kategori=subunit">
+                <i class="fa fa-th-list"></i> <span>Sub Unit</span>
+              </a>
+            </li>
+            <li id="li3" runat="server">
+              <a href="../admin/reference.aspx?kategori=satuan">
+                <i class="fa fa-th-list"></i> <span>Satuan</span>
+              </a>
+            </li>
+            <li id="li4" runat="server">
+              <a href="../admin/reference.aspx?kategori=namaakun">
+                <i class="fa fa-th-list"></i> <span>Nama Akun</span>
+              </a>
+            </li>
+            <li id="li5" runat="server">
+              <a href="../admin/reference.aspx?kategori=bank">
+                <i class="fa fa-th-list"></i> <span>Nama Bank</span>
+              </a>
+            </li>
+            <li id="li6" runat="server">
+              <a href="../admin/referenceprofile.aspx">
+                <i class="fa fa-th-list"></i> <span>Pemberi Tugas</span>
+              </a>
+            </li>
+            <li id="li7" runat="server">
+              <a href="../admin/reference.aspx?kategori=subdit">
+                <i class="fa fa-th-list"></i> <span>Subdit</span>
+              </a>
+            </li>
+            <li id="li8" runat="server">
+              <a href="../admin/reference.aspx?kategori=jabatan">
+                <i class="fa fa-th-list"></i> <span>Jabatan</span>
+              </a>
+            </li>
+            </ul>           
+            </li>
+        </ul>
+
     </section>
     <!-- /.sidebar -->
     
   </aside>
     
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #fbfbfb;">
         <section class="content-header">
           <h1>
             Administrator
@@ -167,12 +269,22 @@
                 </asp:ContentPlaceHolder>
             </section>
         </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+              <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright <a href="https://gcs.telkom.space">Telkomsat</a>.</strong>
+          </footer>
     </div>
+
+        
 
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/adminlte.min.js"></script>
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
+    <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     </form>
 </body>
 </html>

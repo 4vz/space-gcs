@@ -48,7 +48,7 @@ namespace Telkomsat.maintenancehk.tigabulan
 
             tahun = DateTime.Now.Year.ToString();
             date = DateTime.Now.ToString("yyyy/MM/dd");
-             
+
             DateTime now = DateTime.Now;
             DateTime first = new DateTime(DateTime.Now.Year, 1, 1);
             DateTime second = new DateTime(DateTime.Now.Year, 3, 30);
@@ -58,30 +58,31 @@ namespace Telkomsat.maintenancehk.tigabulan
             DateTime sixth = new DateTime(DateTime.Now.Year, 9, 30);
             DateTime seventh = new DateTime(DateTime.Now.Year, 10, 1);
             DateTime eighth = new DateTime(DateTime.Now.Year, 12, 30);
+            DateTime nineth = new DateTime(DateTime.Now.Year + 1, 1, 1);
 
-            if (now > first && now <= second)
+            if (now > first && now <= third)
             {
                 triwulan = "triwulan 1";
                 start = new DateTime(DateTime.Now.Year, 1, 1).ToString("yyyy/MM/dd");
-                end = new DateTime(DateTime.Now.Year, 3, 30).ToString("yyyy/MM/dd");
+                end = new DateTime(DateTime.Now.Year, 4, 1).ToString("yyyy/MM/dd");
             }
-            else if (now > third && now <= fourth)
+            else if (now > third && now <= fifth)
             {
                 triwulan = "triwulan 2";
                 start = new DateTime(DateTime.Now.Year, 4, 1).ToString("yyyy/MM/dd");
-                end = new DateTime(DateTime.Now.Year, 6, 30).ToString("yyyy/MM/dd");
+                end = new DateTime(DateTime.Now.Year, 7, 1).ToString("yyyy/MM/dd");
             }
-            else if (now > fifth && now <= sixth)
+            else if (now > fifth && now <= seventh)
             {
                 triwulan = "triwulan 3";
                 start = new DateTime(DateTime.Now.Year, 7, 1).ToString("yyyy/MM/dd");
-                end = new DateTime(DateTime.Now.Year, 9,30).ToString("yyyy/MM/dd");
+                end = new DateTime(DateTime.Now.Year, 10,1).ToString("yyyy/MM/dd");
             }
-            else if (now > seventh && now <= eighth)
+            else if (now > seventh && now <= nineth)
             {
                 triwulan = "triwulan 4";
                 start = new DateTime(DateTime.Now.Year, 10, 1).ToString("yyyy/MM/dd");
-                end = new DateTime(DateTime.Now.Year, 12, 30).ToString("yyyy/MM/dd");
+                end = new DateTime((DateTime.Now.Year + 1), 1, 1).ToString("yyyy/MM/dd");
             }
 
             queryisi = $@"select count(*) as isi from mainhk_3m_data d 
@@ -98,7 +99,6 @@ namespace Telkomsat.maintenancehk.tigabulan
 
             if (Convert.ToUInt32(dsbar.Tables[0].Rows[0]["isi"]) > 0)
                 Response.Redirect($"isiafter.aspx?satelit={satelit}&lokasi={lokasi}&equipment={equipment}");
-
 
             tableticket();
         }

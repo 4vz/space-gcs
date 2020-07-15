@@ -54,7 +54,7 @@ namespace Telkomsat.dataasset
                     lblruangan.Text = ds.Tables[0].Rows[0]["nama_ruangan"].ToString();
                     lblrak.Text = ds.Tables[0].Rows[0]["nama_rak"].ToString();
                     lblmerk.Text = ds.Tables[0].Rows[0]["nama_merk"].ToString();
-                    lbltipe.Text = ds.Tables[0].Rows[0]["tipe_perangkat"].ToString();
+                    
                     
                     lblsatelit.Text = ds.Tables[0].Rows[0]["satelit"].ToString();
                     
@@ -66,6 +66,7 @@ namespace Telkomsat.dataasset
 
                     if (!IsPostBack)
                     {
+                        txttipe.Text = ds.Tables[0].Rows[0]["tipe_perangkat"].ToString();
                         txtmodel.Text = ds.Tables[0].Rows[0]["model"].ToString();
                         txtpn.Text = ds.Tables[0].Rows[0]["pn"].ToString();
                         txtsn.Text = ds.Tables[0].Rows[0]["sn"].ToString();
@@ -74,16 +75,17 @@ namespace Telkomsat.dataasset
                     
                 }
             }
-            divsuccess.Visible = true;
+            
         }
         
         protected void Save_Click(object sender, EventArgs e)
         {
-            string myquery = $"UPDATE as_perangkat SET model='{txtmodel.Text}', pn='{txtpn.Text}', sn='{txtsn.Text}', tahun_pengadaan='{txttahunpengadaan.Text}' WHERE id_perangkat='{idaset}'";
+            string myquery = $"UPDATE as_perangkat SET model='{txtmodel.Text}', pn='{txtpn.Text}', sn='{txtsn.Text}', tahun_pengadaan='{txttahunpengadaan.Text}', tipe_perangkat='{txttipe.Text}' WHERE id_perangkat='{idaset}'";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             cmd.ExecuteNonQuery();
             sqlCon.Close();
+            divsuccess.Visible = true;
         }
     }
 }
