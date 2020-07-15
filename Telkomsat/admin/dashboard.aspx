@@ -314,8 +314,6 @@
         </div>
 
 
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>

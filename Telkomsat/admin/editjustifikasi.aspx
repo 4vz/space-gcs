@@ -188,8 +188,6 @@
     </div>
     </section>
 </div>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
