@@ -93,6 +93,7 @@ namespace Telkomsat.admin
             public string vendor { get; set; }
             public string idpic { get; set; }
             public string pic { get; set; }
+            public string pic23 { get; set; }
         }
 
         [WebMethod]
