@@ -25,7 +25,7 @@
     <section class="col-lg-12 connectedSortable">
     <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Data Vendor</h3>
+        <h3 class="box-title">Data RKAP</h3>
                 <asp:Label ID="lblstatus" runat="server" Text="Label" Visible="false"></asp:Label>
     </div>
     <!-- /.box-header -->
@@ -35,7 +35,7 @@
                 <div class="col-md-6 col-lg-6">
                     <div class="box box-comment">
                         <div class="box-header" style="text-align:center">
-                            <span style="font-weight:bold; font-size:16px">Detail Vendor</span>
+                            <span style="font-weight:bold; font-size:16px">Detail RKAP</span>
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
@@ -104,7 +104,7 @@
                    <div class="col-md-6 col-lg-6">
                     <div class="box box-comment">
                         <div class="box-header" style="text-align:center">
-                            <span style="font-weight:bold; font-size:16px">PIC Vendor</span>
+                            <span style="font-weight:bold; font-size:16px">RKAP Per Bulan</span>
                         </div>
                         <div class="box-body">
                            

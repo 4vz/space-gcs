@@ -51,7 +51,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + pic + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailvendor.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>");
                         htmlTable.Append($"<a href=\"editvendor.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</button>");
-                        htmlTable.Append($"<a onclick=\"confirmdelete('action.aspx?idref={IDdata}&kategori={kategori}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");
+                        htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idven={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

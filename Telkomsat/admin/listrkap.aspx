@@ -18,7 +18,7 @@
                 </div>
             </section>
         </div>
-
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         $(function () {
           $("#example2").DataTable({
@@ -30,5 +30,19 @@
           });
            $('.dataTables_length').addClass('bs-select');
         });
+
+        function confirmhapus(deleteurl) {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data yang dihapus tidak akan kembali lagi',
+                buttons: true,
+                dangerMode: true,
+
+            }).then((willDelete)=>{
+                if (willDelete) {
+                    document.location = deleteurl;
+                }
+            });
+        }
     </script>
 </asp:Content>

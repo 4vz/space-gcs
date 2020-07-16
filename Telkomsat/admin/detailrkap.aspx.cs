@@ -6,8 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text
-;
+using System.Text;
+using System.Globalization;
+
 namespace Telkomsat.admin
 {
     public partial class detailrkap : System.Web.UI.Page
@@ -31,14 +32,14 @@ namespace Telkomsat.admin
                     {
                         lblbg.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
                         lblcc.Text = ds.Tables[0].Rows[0]["ARK_CC"].ToString();
-                        lblharga.Text = "Rp. " + ds.Tables[0].Rows[0]["ARK_Harga"].ToString();
+                        lblharga.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_Harga"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblna.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
                         lblnamaakun.Text = ds.Tables[0].Rows[0]["ARK_NA"].ToString();
                         lblnoa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
                         lblsatuan.Text = ds.Tables[0].Rows[0]["ARK_Satuan"].ToString();
                         lblsu.Text = ds.Tables[0].Rows[0]["ARK_SU"].ToString();
                         lbltahun.Text = ds.Tables[0].Rows[0]["ARK_Tahunan"].ToString();
-                        lblgt.Text = "Rp. " + ds.Tables[0].Rows[0]["ARK_GT"].ToString();
+                        lblgt.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                     }
 
                 }
@@ -65,7 +66,7 @@ namespace Telkomsat.admin
                     //DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                     //tanggal = date1.ToString("yyyy/MM/dd");
                     volume = ds.Tables[0].Rows[i]["ARKB_Volume"].ToString();
-                    total = ds.Tables[0].Rows[i]["ARKB_Total"].ToString();
+                    total = Convert.ToInt32(ds.Tables[0].Rows[i]["ARKB_Total"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                     bulan = ds.Tables[0].Rows[i]["ARKB_Bulan"].ToString();
 
                     htmlTable.Append("<tr>");

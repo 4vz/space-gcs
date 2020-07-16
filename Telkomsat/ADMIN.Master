@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="./assets/mylibrary/jquery-ui2.css" />
     <link rel="stylesheet" href="./assets/mylibrary/fontgoogle.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -181,7 +182,7 @@
         <li class="header">ADMIN</li>    
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cubes"></i> <span>Referensi</span>
+            <i class="fa fa-adjust"></i> <span>Admin Referensi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -287,6 +288,7 @@
     <script src="../assets/plugins/AdminLTE/js/demo.js"></script>
     <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    
     </form>
 </body>
 </html>

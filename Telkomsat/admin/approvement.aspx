@@ -126,10 +126,62 @@
             <!-- /.modal-content -->
           </div>
         </div>
+        </div>
 
+    <div class="modal fade" id="modalupdate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Evidence :</label>
+                              <asp:FileUpload ID="FileUpload1" runat="server" />
+                            </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Tanggal :</label>
+                              <asp:TextBox ID="txttanggal" runat="server" CssClass="form-control datepick"></asp:TextBox>
+                            </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Kategori Penyimpanan :</label>
+                                  <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server">
+                                    <asp:ListItem>--Kategori--</asp:ListItem>
+                                    <asp:ListItem>Rek. Harkat Bendahara 1</asp:ListItem>
+                                    <asp:ListItem>Rek. Harkat Bendahara 2</asp:ListItem>
+                                    <asp:ListItem>Rek. ME Bendahara 1</asp:ListItem>
+                                    <asp:ListItem>Rek. ME Bendahara 2</asp:ListItem>
+                                    <asp:ListItem>Brankas Harkat</asp:ListItem>
+                                    <asp:ListItem>Brankas ME</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div> 
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnmutasi" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Admin">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+    <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
     
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
+    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
+        $(".datepick").datepicker({autoclose: true,
+            format: 'yyyy/mm/dd' });
+
         $(function () {
           $("#example2").DataTable({
           "autoWidth": true,
@@ -139,6 +191,13 @@
             "searching": true
           });
            $('.dataTables_length').addClass('bs-select');
+        });
+
+        $(document).on("click", "#btnadmin", function () {
+            var id = $(this).data('id');
+            console.log(id);
+            $("#id").val(id);
+            $('#<%=txtidl.ClientID %>').val(id);
         });
 
         function confirmselesai(deleteurl) {

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Globalization;
 
 namespace Telkomsat.admin
 {
@@ -44,14 +45,14 @@ namespace Telkomsat.admin
                     {
                         IDdata = ds.Tables[0].Rows[i]["ARK_ID"].ToString();
                         referensi = ds.Tables[0].Rows[i]["ARK_Aktivitas"].ToString();
-                        gt = ds.Tables[0].Rows[i]["ARK_GT"].ToString();
+                        gt = Convert.ToInt32(ds.Tables[0].Rows[i]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + gt + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>");
                         htmlTable.Append($"<a href=\"editrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</button>");
-                        htmlTable.Append($"<a onclick=\"confirmdelete('action.aspx?idref={IDdata}&kategori={kategori}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");
+                        htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

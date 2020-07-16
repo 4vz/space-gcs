@@ -39,7 +39,7 @@ namespace Telkomsat.admin
             myket = new string[Request.Files.Count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             query = $@"insert into AdminJustifikasi(AJ_AR, AJ_AV, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Comply, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Nilai) values
-                      ('{txtproker.Text}', '{txtvendor.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', '{txtnojus.Value}', '{rdcomply.Text}', '{txtket.Value}', '{txtdetail.Text}', '{txttanggal.Value}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{txtnilai.Value}'); Select Scope_Identity();";
+                      ('{txtproker.Text}', '{txtvendor.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', '{txtnojus.Value}', '{rdcomply.Text}', '{txtket.Value}', '{txtdetail.Text}', '{txttanggal.Value}', '{txttglpsm.Value}', '{txtpetugas.Text}', {txtnilai.Value}); Select Scope_Identity();";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             int i = Convert.ToInt32(cmd.ExecuteScalar());

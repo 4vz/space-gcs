@@ -19,6 +19,8 @@ namespace Telkomsat.admin
             string kategori = Request.QueryString["kategori"];
             string jenis = Request.QueryString["jenis"];
             string idapp = Request.QueryString["idapp"];
+            string idrk = Request.QueryString["idrk"];
+            string idven = Request.QueryString["idven"];
 
             if (hapusreferensi != null)
             {
@@ -54,6 +56,26 @@ namespace Telkomsat.admin
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
                 Response.Redirect($"../admin/approvement.aspx?jenis={jenis}");
+            }
+
+            if (idrk != null)
+            {
+                string query = $"DELETE AdminRKAP WHERE ARK_ID = '{idrk}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/listrkap.aspx");
+            }
+
+            if (idven != null)
+            {
+                string query = $"DELETE AdminVendor WHERE AV_ID = '{idven}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/listvendor.aspx");
             }
         }
     }

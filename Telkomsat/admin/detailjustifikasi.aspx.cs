@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Web.Services;
 using System.IO;
 using System.Text;
+using System.Globalization;
 
 namespace Telkomsat.admin
 {
@@ -42,7 +43,7 @@ namespace Telkomsat.admin
                         lblja.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                         lbljupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
                         lblket.Text = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
-                        lblnilai.Text = ds.Tables[0].Rows[0]["AJ_Nilai"].ToString();
+                        lblnilai.Text = Convert.ToInt32(ds.Tables[0].Rows[0]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblnk.Text = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
                         lblnrkap.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
                         lblnv.Text = ds.Tables[0].Rows[0]["AJ_AV"].ToString();
