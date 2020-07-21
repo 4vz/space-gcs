@@ -25,14 +25,14 @@ namespace Telkomsat.admin
 
         void referens()
         {
-            string query, IDdata, jupd, ja, kegiatan, status;
+            string query, IDdata, jupd, ja, kegiatan, status, statusapp;
             query = $"SELECT * from AdminJustifikasi";
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>#</th><th>Jenis UPD</th><th>Jenis Anggaran</th><th>Nama Kegiatan</th><th>Status Justifikasi</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>#</th><th>Nomor Justifikasi</th><th>Jenis Anggaran</th><th>Nama Kegiatan</th><th>Status Justifikasi</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -44,7 +44,7 @@ namespace Telkomsat.admin
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         IDdata = ds.Tables[0].Rows[i]["AJ_ID"].ToString();
-                        jupd = ds.Tables[0].Rows[i]["AJ_JUPD"].ToString();
+                        jupd = ds.Tables[0].Rows[i]["AJ_NJ"].ToString();
                         ja = ds.Tables[0].Rows[i]["AJ_JA"].ToString();
                         kegiatan = ds.Tables[0].Rows[i]["AJ_NK"].ToString();
                         status = ds.Tables[0].Rows[i]["AJ_Status"].ToString();
@@ -55,27 +55,22 @@ namespace Telkomsat.admin
                             warna2 = "black";
                             warna3 = "black";
                             warna4 = "black";
+                            statusapp = "menunggu approve GM";
                         }
-                        else if (status == "manager")
-                        {
-                            warna1 = "deepskyblue";
-                            warna2 = "deepskyblue";
-                            warna3 = "black";
-                            warna4 = "black";
-                        }
+                        
                         else if (status == "gm")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "deepskyblue";
-                            warna3 = "deepskyblue";
-                            warna4 = "black";
+                            warna3 = "black";
+                            statusapp = "menunggu approve Bendahara";
                         }
                         else if (status == "admin")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "deepskyblue";
                             warna3 = "deepskyblue";
-                            warna4 = "deepskyblue";
+                            statusapp = "selesai";
                         }
                         else
                         {
@@ -83,6 +78,7 @@ namespace Telkomsat.admin
                             warna2 = "black";
                             warna3 = "black";
                             warna4 = "black";
+                            statusapp = "menunggu diajukan";
                         }
 
                         htmlTable.Append("<tr>");
@@ -92,7 +88,8 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + kegiatan + "</label>" + "</td>");
                         htmlTable.Append("<td>" +
                             $"<span style=\"margin-right:5px; color:{warna1}\"><i class=\"fa fa-circle\"></i></span>" + $"<span style=\"margin-right:5px; color:{warna2}\"><i class=\"fa fa-circle\"></i></span>" +
-                            $"<span style=\"margin-right:5px; color:{warna3}\"><i class=\"fa fa-circle\"></i></span>" + $"<span style=\"margin-right:5px; color:{warna4}\"><i class=\"fa fa-circle\"></i></span>" + "</td>");
+                            $"<span style=\"margin-right:5px; color:{warna3}\"><i class=\"fa fa-circle\"></i></span>" + 
+                            $"<label style=\"font-size:13px; {style3}; display:block\">" + statusapp + "</label>" +"</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailjustifikasi.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>" + "</td>");
                         htmlTable.Append("</tr>");
                     }

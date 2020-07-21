@@ -18,9 +18,9 @@ namespace Telkomsat.admin
 {
     public partial class justifikasi : System.Web.UI.Page
     {
-        string[] myket, myvolume;
-        string tanggal, query;
-        double grandtotal;
+        string[] myket, myvolume, allnomor;
+        string tanggal, query, jenis;
+        double grandtotal, nomor;
         int a = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
@@ -36,10 +36,39 @@ namespace Telkomsat.admin
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
+            string thequery, querynomor, bulantahun, sekarang;
+
+            if(rdjupd.Text == "Panjar")
+            {
+                jenis = "P";
+            }
+            else if(rdjupd.Text == "Cash")
+            {
+                jenis = "C";
+            }
+
+            sekarang = DateTime.Now.ToString("yyyy/MM/dd");
+
+            bulantahun = DateTime.Now.ToString("MMyyyy");
+            thequery = $"select * from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}' and AJN_Nomor = (select max(AJN_Nomor) from AdminNomor)";
+            DataSet ds3 = Settings.LoadDataSet(thequery);
+            if (ds3.Tables[0].Rows.Count == 0)
+                nomor = 1;
+            else
+                nomor = Convert.ToDouble(ds3.Tables[0].Rows[0]["AJN_Nomor"]) + 1;
+
+            querynomor = $@"INSERT into AdminNomor (AJN_Tipe, AJN_Nomor, AJN_Gabungan)
+                            values ('UPD-{jenis}-{bulantahun}', '{nomor}', 'UPD-{jenis}-{bulantahun}-{nomor}'); Select Scope_Identity();";
+
+            sqlCon.Open();
+            SqlCommand cmd3 = new SqlCommand(querynomor, sqlCon);
+            int p = Convert.ToInt32(cmd3.ExecuteScalar());
+            sqlCon.Close();
+
             myket = new string[Request.Files.Count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"insert into AdminJustifikasi(AJ_AR, AJ_AV, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Comply, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Nilai) values
-                      ('{txtproker.Text}', '{txtvendor.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', '{txtnojus.Value}', '{rdcomply.Text}', '{txtket.Value}', '{txtdetail.Text}', '{txttanggal.Value}', '{txttglpsm.Value}', '{txtpetugas.Text}', {txtnilai.Value}); Select Scope_Identity();";
+            query = $@"insert into AdminJustifikasi(AJ_AR, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Nilai) values
+                      ('{txtproker.Text}',  '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{(txtnilai.Value).Replace(".", "")}'); Select Scope_Identity();";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             int i = Convert.ToInt32(cmd.ExecuteScalar());
@@ -94,6 +123,8 @@ namespace Telkomsat.admin
             public string idpic { get; set; }
             public string pic { get; set; }
             public string pic23 { get; set; }
+            public string bulan { get; set; }
+            public string angkabulan { get; set; }
         }
 
         [WebMethod]
@@ -151,12 +182,13 @@ namespace Telkomsat.admin
         }
 
         [WebMethod]
-        public static List<inisial> GetProker()
+        public static List<inisial> GetProker(string videoid)
         {
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT ARK_ID, ARK_Aktivitas, ARK_GT from AdminRKAP"))
+                using (SqlCommand cmd = new SqlCommand($@"select ARK_ID, ARK_Aktivitas from AdminRKAP r join AdminRKAPBulanan b on r.ARK_ID=b.ARKB_ARK 
+                                            where b.ARKB_Bulan = '{videoid}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();

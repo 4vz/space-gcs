@@ -38,7 +38,6 @@ namespace Telkomsat.admin
                 {
                     if (!IsPostBack)
                     {
-                        lblcom.Text = ds.Tables[0].Rows[0]["AJ_Comply"].ToString();
                         lbldetail.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
                         lblja.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                         lbljupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
@@ -46,13 +45,12 @@ namespace Telkomsat.admin
                         lblnilai.Text = Convert.ToInt32(ds.Tables[0].Rows[0]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblnk.Text = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
                         lblnrkap.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
-                        lblnv.Text = ds.Tables[0].Rows[0]["AJ_AV"].ToString();
+                        lblnojus.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
                         lblpk.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
                         
                         lbltglpt.Text = ds.Tables[0].Rows[0]["nama"].ToString();
                         lbljabatan.Text = ds.Tables[0].Rows[0]["jabatan"].ToString();
                         lblsubdit.Text = ds.Tables[0].Rows[0]["subdit"].ToString();
-                        lblnv.Text = ds.Tables[0].Rows[0]["AV_Perusahaan"].ToString();
                         lblnaa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
                         DateTime tgl = (DateTime)ds.Tables[0].Rows[0]["AJ_Tgl"];
                         DateTime tglds = (DateTime)ds.Tables[0].Rows[0]["AJ_TglDS"];
@@ -132,9 +130,7 @@ namespace Telkomsat.admin
                 {
                     previllage = ds5.Tables[0].Rows[i]["AP_Previllage"].ToString();
 
-                    if(previllage == "Manager")
-                        lblnamamanger.Text = ds5.Tables[0].Rows[i]["nama"].ToString();
-                    else if (previllage == "GM")
+                    if (previllage == "GM")
                         lblnamagm.Text = ds5.Tables[0].Rows[i]["nama"].ToString();
                     else if (previllage == "Admin Bendahara")
                         lblnamaadmin.Text = ds5.Tables[0].Rows[i]["nama"].ToString();
@@ -164,18 +160,12 @@ namespace Telkomsat.admin
                         kegiatan = ds.Tables[0].Rows[i]["AJ_NK"].ToString();
                         status = ds.Tables[0].Rows[i]["AJ_Status"].ToString();
 
-                        if (status == "manager")
+                        if (status == "gm")
                         {
-                            lblmanager.Text = ds7.Tables[0].Rows[0]["manager"].ToString();
-                        }
-                        else if (status == "gm")
-                        {
-                            lblmanager.Text = ds7.Tables[0].Rows[0]["manager"].ToString();
                             lblgm.Text = ds7.Tables[0].Rows[0]["gm"].ToString();
                         }
                         else if (status == "admin")
                         {
-                            lblmanager.Text = ds7.Tables[0].Rows[0]["manager"].ToString();
                             lblgm.Text = ds7.Tables[0].Rows[0]["gm"].ToString();
                             lblbendahara.Text = ds7.Tables[0].Rows[0]["admin"].ToString();
                         }

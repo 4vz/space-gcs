@@ -27,6 +27,12 @@ namespace Telkomsat
             bool isItFirstMonday = DateTime.Today.DayOfWeek == DayOfWeek.Monday
                          && DateTime.Today.Day <= 7;
 
+            double tester;
+
+            tester = Convert.ToDouble("1000000");
+
+            Response.Write("ini tester =  " + DateTime.Now.ToString("MMyyyy") + "  | ");
+
             DateTime dta = new DateTime(2020, 6, 7);
             while (dta.DayOfWeek != DayOfWeek.Monday)
             {

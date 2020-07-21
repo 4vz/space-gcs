@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="justifikasi.aspx.cs" Inherits="Telkomsat.admin.justifikasi" %>
+﻿<%@ Page Title="Tambah Justifikasi" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="justifikasi.aspx.cs" Inherits="Telkomsat.admin.justifikasi" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <style>
@@ -37,15 +37,9 @@
                          </asp:RadioButtonList>
                     </div>
                  </div>
-                <div class="col-md-2">
-                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tanggal</label>
-                        <input type="text" class="form-control" id="txttanggal" runat="server"/>
-                    </div>
-                 </div>
             </div>
             <div class="row">
-                 <div class="col-md-2">
+                 <div class="col-md-3">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Jenis Anggaran</label>
                         <select id="soja" runat="server" class="select2 form-control" style="width: 100%;">
@@ -54,6 +48,28 @@
                     </div>
                  </div>
                </div>     
+            <div class="row">
+                 <div class="col-md-2">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">RKAP Bulan </label>
+                        <select id="sobulan" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                            <option>Januari</option> 
+                            <option>Februari</option> 
+                            <option>Maret</option> 
+                            <option>April</option> 
+                            <option>Mei</option> 
+                            <option>Juni</option> 
+                            <option>Juli</option> 
+                            <option>Agustus</option> 
+                            <option>September</option> 
+                            <option>Oktober</option> 
+                            <option>November</option> 
+                            <option>Desember</option>
+                        </select>
+                    </div>
+                 </div>
+               </div>   
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
@@ -79,34 +95,9 @@
                          <input type="text" class="form-control" id="txtnamaket" runat="server"/>
                     </div>
                  </div>
-                <div class="col-md-3">
-                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nomor Justifikasi</label>
-                        <input type="text" class="form-control" id="txtnojus" runat="server"/>
-                    </div>
-                 </div>
+                
             </div>
-            <div class="row">
-                 <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="exampleInputPassword1">Comply</label>
-                        <asp:RadioButtonList ID="rdcomply" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
-                             <asp:ListItem>Iya</asp:ListItem>
-                             <asp:ListItem>Tidak</asp:ListItem>
-                         </asp:RadioButtonList>
-                    </div>
-                 </div>
-               </div> 
-            <div class="row">
-                 <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="exampleInputPassword1">Nama Vendor</label>
-                        <select id="sovendor" runat="server" class="select2 form-control" style="width: 100%;">
-                            <option></option>
-                        </select>
-                    </div>
-                 </div>
-               </div>  
+            
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
@@ -156,7 +147,7 @@
                  <div class="col-md-2">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Tanggal Dokumen Diserahkan</label>
-                        <input type="text" class="form-control" id="txttglpsm" runat="server"/>
+                        <input type="text" class="form-control" id="txttglpsm" runat="server" autocomplete="off"/>
                     </div>
                  </div>
                </div>  
@@ -214,63 +205,39 @@
                 }
             });
 
-            $.ajax({
-                type: "POST",
-                url: "justifikasi.aspx/GetProker",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var customers = response.d;
-                    $('#<%=soproker.ClientID %>').empty();
-                    $('#<%=soproker.ClientID %>').append('<option></option>');
-                    $(customers).each(function () {
-                        console.log(this.idbangunan);
-                        $('#<%=soproker.ClientID %>').append($('<option>',
-                            {
-                                value: this.idproker,
-                                text: this.proker,
-                            }));
-                    });
-                },
-                failure: function (response) {
+            $('#<%=sobulan.ClientID %>').change(function () {
+                $('#<%=soproker.ClientID %>').empty();
+                var id = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "justifikasi.aspx/GetProker",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{videoid:"' + id + '"}',
+                    dataType: "json",
+                    success: function (response) {
+                        var customers = response.d;
+                        $('#<%=soproker.ClientID %>').empty();
+                        $('#<%=soproker.ClientID %>').append('<option></option>');
+                        $(customers).each(function () {
+                            console.log(this.idbangunan);
+                            $('#<%=soproker.ClientID %>').append($('<option>',
+                                {
+                                    value: this.idproker,
+                                    text: this.proker,
+                                }));
+                        });
+                    },
+                    failure: function (response) {
 
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
             });
-
-            $.ajax({
-                type: "POST",
-                url: "justifikasi.aspx/GetVendor",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var customers = response.d;
-                    var vendor3 = "CV Yeka Jaya"
-                    $('#<%=sovendor.ClientID %>').empty();
-                    $('#<%=sovendor.ClientID %>').append('<option></option>');
-                    $(customers).each(function () {
-                        console.log(this.idbangunan);
-                        $('#<%=sovendor.ClientID %>').append($('<option>',
-                            {
-                                value: this.idvendor,
-                                text: this.vendor,
-                            }));
                         
-                    });
-                    $('#<%=sovendor.ClientID %>').val("1");
-                },
-                failure: function (response) {
-
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
-
+         
             $.ajax({
                 type: "POST",
                 url: "justifikasi.aspx/GetPIC",
@@ -330,11 +297,6 @@
             $('#<%=txtpetugas.ClientID%>').val(id);
         });
 
-        $('#<%=sovendor.ClientID%>').change(function () {
-            var id = $(this).val();
-            $('#<%=txtvendor.ClientID%>').val(id);
-        });
-
         $('#<%=soja.ClientID%>').change(function () {
             var id = $(this).val();
             $('#<%=txtunit.ClientID%>').val(id);
@@ -357,12 +319,6 @@
             $(e).parents('tr').remove();   //Use the e to delete
             //console.log('klkl');
         }
-
-        $('#<%=txttanggal.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        });
 
         $('#<%=txttglpsm.ClientID%>').datepicker({
             autoclose: true,

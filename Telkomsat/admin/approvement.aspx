@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
+    <style type="text/css">
+        .select2-container--default .select2-selection--multiple .select2-selection__choice{
+            background-color:deepskyblue;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
@@ -14,6 +20,7 @@
             <!-- form start -->
                     <div class="box-body">
                             <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                        <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
                 </div>
             </section>
@@ -147,10 +154,19 @@
                       <div class="col-md-12">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Tanggal :</label>
-                              <asp:TextBox ID="txttanggal" runat="server" CssClass="form-control datepick"></asp:TextBox>
+                              <asp:TextBox ID="txttanggal" autocomplete="off" runat="server" CssClass="form-control datepick"></asp:TextBox>
                             </div>
                       </div> 
                       <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Jenis Pengeluaran :</label>
+                                <select class="form-control select2" multiple="multiple" style="width: 100%;" id="slpetugas1">
+                                        <option value="1">Cash Internal</option>
+                                        <option value="2">Vendor</option>
+                                </select>
+                            </div>
+                      </div> 
+                      <div class="col-md-12" style="display:none" id="divinternal">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Kategori Penyimpanan :</label>
                                   <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server">
@@ -164,6 +180,26 @@
                                 </asp:DropDownList>
                             </div>
                       </div> 
+                     <div class="col-md-12" style="display:none" id="divvendor">
+                         <div class="form-group">
+                                <label for="exampleInputPassword1">Nama Vendor</label>
+                                <select id="sovendor" runat="server" class="select2 form-control" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                        </div>
+                     </div> 
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtextinternal">
+                                <label style="font-size:16px; font-weight:bold">Nominal Internal :</label>
+                              <asp:TextBox ID="txtnominalint" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtextvendor">
+                                <label style="font-size:16px; font-weight:bold">Nominal Vendor :</label>
+                              <asp:TextBox ID="txtnominalven" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                      </div> 
                   </div>
                   
               </div>
@@ -175,10 +211,87 @@
           </div>
         </div>
     <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txttipe" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txttotal" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtketerangan" runat="server" CssClass="hidden"></asp:TextBox>
     
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
+    <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
+        $('#slpetugas1').change(function () {
+            var id = $(this).val();
+            console.log(id);
+            if (id == "1") {
+                $("#divvendor").removeAttr("style").hide();
+                $("#divinternal").show();
+                $("#divtextvendor").removeAttr("style").hide();
+                $("#divtextinternal").removeAttr("style").hide();
+                $('#<%=txttipe.ClientID%>').val('internal');
+            }
+            else if (id == "2") {
+                $("#divinternal").removeAttr("style").hide();
+                $("#divvendor").show();
+                $("#divtextvendor").removeAttr("style").hide();
+                $("#divtextinternal").removeAttr("style").hide();
+                $('#<%=txttipe.ClientID%>').val('vendor');
+            }
+            else if (id[0] == "1" && id[1] == "2") {
+                $("#divvendor").show();
+                $("#divinternal").show();
+                $("#divtextinternal").show();
+                $("#divtextvendor").show();
+                $('#<%=txttipe.ClientID%>').val('dua');
+            }
+            else {
+                $("#divvendor").removeAttr("style").hide();
+                $("#divinternal").removeAttr("style").hide();
+                $("#divtextvendor").removeAttr("style").hide();
+                $("#divtextinternal").removeAttr("style").hide();
+                $('#<%=txttipe.ClientID%>').val('null');
+            }
+        });
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetVendor",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    var vendor3 = "CV Yeka Jaya"
+                    $('#<%=sovendor.ClientID %>').empty();
+                    $('#<%=sovendor.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.idbangunan);
+                        $('#<%=sovendor.ClientID %>').append($('<option>',
+                            {
+                                value: this.idvendor,
+                                text: this.vendor,
+                            }));
+
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+        $('#<%=sovendor.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtvendor.ClientID%>').val(id);
+        });
+
+
+        $('.select2').select2()
+
         $(".datepick").datepicker({autoclose: true,
             format: 'yyyy/mm/dd' });
 
@@ -197,7 +310,7 @@
             var id = $(this).data('id');
             console.log(id);
             $("#id").val(id);
-            $('#<%=txtidl.ClientID %>').val(id);
+            
         });
 
         function confirmselesai(deleteurl) {
@@ -243,6 +356,34 @@
                         $('#<%=lbltgl.ClientID %>').html(this.tgl);
                         $('#<%=lbltglds.ClientID %>').html(this.tglds);
                         $('#<%=lbltglpt.ClientID %>').html(this.tglpt);
+                    });
+
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+        $('.datatotal').click(function () {
+            var id = $(this).val();
+            $('#<%=txtidl.ClientID %>').val(id);
+            $.ajax({
+                type: "POST",
+                url: "approvement.aspx/GetTotal",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.d;
+                    $(data).each(function () {
+                        $('#<%=txttotal.ClientID %>').val(this.total);
+                        $('#<%=txtketerangan.ClientID %>').val(this.keterangan);
                     });
 
                 },

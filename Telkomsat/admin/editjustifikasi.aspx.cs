@@ -53,7 +53,7 @@ namespace Telkomsat.admin
                         txtket.Value = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
                         txtnamaket.Value = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
                         txtnilai.Value = ds.Tables[0].Rows[0]["AJ_Nilai"].ToString();
-                        txtnojus.Value = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
+                        lblnj.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
                         txtpetugas.Text = ds.Tables[0].Rows[0]["AP_ID"].ToString();
                         txtproker.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
                         txttanggal.Value = start.ToString("yyyy/MM/dd");
@@ -61,7 +61,6 @@ namespace Telkomsat.admin
                         txtunit.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                         txtvendor.Text = ds.Tables[0].Rows[0]["AJ_AV"].ToString();
                         rdjupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
-                        rdcomply.Text = ds.Tables[0].Rows[0]["AJ_Comply"].ToString();
                     }
 
                 }
@@ -125,7 +124,7 @@ namespace Telkomsat.admin
             myket = new string[Request.Files.Count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
-                            AJ_NJ='{txtnojus.Value}', AJ_Comply='{rdcomply.Text}', AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}', AJ_Tgl='{txttanggal.Value}',
+                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}', AJ_Tgl='{txttanggal.Value}',
                             AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{txtnilai.Value}' WHERE AJ_ID='{iddata}'";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);

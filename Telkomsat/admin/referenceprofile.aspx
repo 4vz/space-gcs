@@ -106,6 +106,7 @@
                         <asp:ListItem>Admin Bendahara</asp:ListItem>
                         <asp:ListItem>Manager</asp:ListItem>
                         <asp:ListItem>User</asp:ListItem>
+                        <asp:ListItem>SA</asp:ListItem>
                     </asp:DropDownList>
                 </div>
               </div>

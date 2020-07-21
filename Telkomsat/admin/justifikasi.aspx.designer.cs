@@ -85,15 +85,6 @@ namespace Telkomsat.admin {
         protected global::System.Web.UI.WebControls.RadioButtonList rdjupd;
         
         /// <summary>
-        /// txttanggal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txttanggal;
-        
-        /// <summary>
         /// soja control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect soja;
+        
+        /// <summary>
+        /// sobulan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sobulan;
         
         /// <summary>
         /// soproker control.
@@ -128,33 +128,6 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtnamaket;
-        
-        /// <summary>
-        /// txtnojus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnojus;
-        
-        /// <summary>
-        /// rdcomply control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdcomply;
-        
-        /// <summary>
-        /// sovendor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sovendor;
         
         /// <summary>
         /// txtnilai control.

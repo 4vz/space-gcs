@@ -136,6 +136,11 @@
                                               <td><asp:Label ID="lbljupd" runat="server" Text="Wildan Ger saputra" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                           <tr>
+                                              <th>Nomor Justifikasi</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lblnojus" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
+                                          <tr>
                                               <th>Subdit</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblsubdit" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
@@ -151,7 +156,7 @@
                                               <td><asp:Label ID="lblnaa" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                           <tr>
-                                              <th>Tanggal Kegiatan</th>
+                                              <th>Tanggal</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lbltgl" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
@@ -185,16 +190,7 @@
                                               <td>:</td>
                                               <td><asp:Label ID="lblnk" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
-                                          <tr>
-                                              <th>Comply</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lblcom" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
-                                          <tr>
-                                              <th>Nama Vendor</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lblnv" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
+                                          
                                           <tr>
                                               <th>Nilai</th>
                                               <td>:</td>
@@ -239,20 +235,12 @@
                                 </div>
                                 <div class="col-md-4 col-xs-6" style="margin-bottom:20px">
                                     <span>Verifikasi</span><br />
-                                    <span>Admin Support Unit</span><br /><br />
-                                    <asp:Label ID="lblmanager" runat="server" Text="-" Font-Bold="True" Font-Size="22px"></asp:Label><br />
-                                    <asp:Label ID="lblnamamanger" runat="server" Text="-" Font-Bold="True" Font-Size="14px"></asp:Label>
-                                </div>
-                                </div>
-                            <div class="row" style="margin-top:20px">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-5">
-                                    <span>Verifikasi</span><br />
                                     <span>Bendahara Unit</span><br /><br />
                                     <asp:Label ID="lblbendahara" runat="server" Text="-" Font-Bold="True" Font-Size="22px"></asp:Label><br />
                                     <asp:Label ID="lblnamaadmin" runat="server" Text="-" Font-Bold="True" Font-Size="14px"></asp:Label>
                                 </div>
-                            </div>
+                                </div>
+                            
                         </div>
                 </div>
                     <h4 runat="server" id="hlampiran" style="font-weight:bold">Lampiran-lampiran</h4>

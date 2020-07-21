@@ -112,33 +112,6 @@ namespace Telkomsat {
         protected global::System.Web.UI.WebControls.Label lblgm;
         
         /// <summary>
-        /// limanager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl limanager;
-        
-        /// <summary>
-        /// spnmanager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnmanager;
-        
-        /// <summary>
-        /// lblmanager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmanager;
-        
-        /// <summary>
         /// liuser control.
         /// </summary>
         /// <remarks>

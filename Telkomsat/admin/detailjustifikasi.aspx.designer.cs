@@ -76,6 +76,15 @@ namespace Telkomsat.admin {
         protected global::System.Web.UI.WebControls.Label lbljupd;
         
         /// <summary>
+        /// lblnojus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblnojus;
+        
+        /// <summary>
         /// lblsubdit control.
         /// </summary>
         /// <remarks>
@@ -166,24 +175,6 @@ namespace Telkomsat.admin {
         protected global::System.Web.UI.WebControls.Label lblnk;
         
         /// <summary>
-        /// lblcom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcom;
-        
-        /// <summary>
-        /// lblnv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnv;
-        
-        /// <summary>
         /// lblnilai control.
         /// </summary>
         /// <remarks>
@@ -236,24 +227,6 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnamagm;
-        
-        /// <summary>
-        /// lblmanager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmanager;
-        
-        /// <summary>
-        /// lblnamamanger control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnamamanger;
         
         /// <summary>
         /// lblbendahara control.

@@ -76,6 +76,15 @@ namespace Telkomsat.admin {
         protected global::System.Web.UI.WebControls.Label lblstatus;
         
         /// <summary>
+        /// lblnj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblnj;
+        
+        /// <summary>
         /// rdjupd control.
         /// </summary>
         /// <remarks>
@@ -128,24 +137,6 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtnamaket;
-        
-        /// <summary>
-        /// txtnojus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnojus;
-        
-        /// <summary>
-        /// rdcomply control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdcomply;
         
         /// <summary>
         /// sovendor control.

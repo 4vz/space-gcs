@@ -31,6 +31,7 @@ namespace Telkomsat.superadmin
 
             tablechhk();
         }
+
         void tablechhk()
         {
             string query, tanggal, petugas;
@@ -85,7 +86,5 @@ namespace Telkomsat.superadmin
                 }
             }
         }
-
-
     }
 }

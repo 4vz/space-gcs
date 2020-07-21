@@ -49,7 +49,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + gt + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>");
                         htmlTable.Append($"<a href=\"editrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</button>");
                         htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");

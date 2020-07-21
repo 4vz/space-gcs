@@ -26,10 +26,33 @@ namespace Telkomsat
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string query, previllage, user;
+            string query, previllage, user, usernamee;
             lblTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             user = Session["iduser"].ToString();
+            usernamee = Session["username"].ToString();
+
+            if (!IsPostBack)
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlCmd = new SqlDataAdapter("ProViewByUser", sqlCon);
+                sqlCmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlCmd.SelectCommand.Parameters.AddWithValue("@user", usernamee);
+                DataTable dtbl1 = new DataTable();
+                sqlCmd.Fill(dtbl1);
+                dtContact1.DataSource = dtbl1;
+                dtContact1.DataBind();
+                sqlCon.Close();
+            }
+            sqlCon.Open();
+            SqlDataAdapter sqlCmd2 = new SqlDataAdapter("ProViewByUser", sqlCon);
+            sqlCmd2.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlCmd2.SelectCommand.Parameters.AddWithValue("@user", usernamee);
+            DataTable dtbl = new DataTable();
+            sqlCmd2.Fill(dtbl);
+            dtContact1.DataSource = dtbl;
+            DataList1.DataSource = dtbl;
+            DataList1.DataBind();
 
             lblProfile.Text = Session["nama1"].ToString();
             lblProfile1.Text = Session["nama1"].ToString();
@@ -43,7 +66,6 @@ namespace Telkomsat
             if (thisURL.ToLower() == "listjustifikasi.aspx" || thisURL.ToLower() == "justifikasi.aspx" || thisURL.ToLower() == "detailjustifikasi.aspx") lijustifikasi.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvement.aspx")
             {
-                limanager.Attributes.Add("class", "active");
                 ligm.Attributes.Add("class", "active");
                 liadmin.Attributes.Add("class", "active");
                 liuser.Attributes.Add("class", "active");
@@ -55,14 +77,19 @@ namespace Telkomsat
             if (ds.Tables[0].Rows.Count > 0)
             {
                 previllage = ds.Tables[0].Rows[0]["AP_Previllage"].ToString();
-                if (previllage == "Manager")
-                    limanager.Visible = true;
-                else if (previllage == "GM")
+                if (previllage == "GM")
                     ligm.Visible = true;
                 else if (previllage == "User")
                     liuser.Visible = true;
                 else if (previllage == "Admin Bendahara")
                     liadmin.Visible = true;
+
+                if(previllage == "SA")
+                {
+                    ligm.Visible = true;
+                    liuser.Visible = true;
+                    liadmin.Visible = true;
+                }
 
                 
             }
@@ -75,14 +102,12 @@ namespace Telkomsat
             string query;
             int jenis;
             query = @"select(select count(*) from AdminJustifikasi where AJ_Status = '' or AJ_Status is null)[ajukan],
-		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[manager],
-		        (select count(*) from AdminJustifikasi where AJ_Status = 'manager')[gm],
+		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin]";
 
             DataSet ds = Settings.LoadDataSet(query);
 
             lbldiajukan.Text = ds.Tables[0].Rows[0]["ajukan"].ToString();
-            lblmanager.Text = ds.Tables[0].Rows[0]["manager"].ToString();
             lblgm.Text = ds.Tables[0].Rows[0]["gm"].ToString();
             lbladmin.Text = ds.Tables[0].Rows[0]["admin"].ToString();
 

@@ -54,7 +54,7 @@ namespace Telkomsat.admin
             DataSet ds1 = new DataSet();
             string myquery, query, color, namaall, ext, namafile;
 
-            myquery = $@"select * from AdminRKAPBulanan WHERE ARKB_ARK = '{iddata}'";
+            myquery = $@"select * from AdminRKAPBulanan WHERE ARKB_ARK = '{iddata}' order by ARKB_AB";
 
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -76,7 +76,7 @@ namespace Telkomsat.admin
                     {
                         htmlTable1.AppendLine($"<tr>");
                         htmlTable1.AppendLine($"<td><label width:100%; white-space:pre-line\" >{ds.Tables[0].Rows[i]["ARKB_Bulan"].ToString()}</label></td>");
-                        htmlTable1.AppendLine($"<td><input type=\"text\" name=\"lastvalue\" readonly value=\"{ds.Tables[0].Rows[i]["ARKB_AB"].ToString()}\"/></td>");
+                        htmlTable1.AppendLine($"<td><input type=\"text\" name=\"lastvalue\" readonly value=\"{ds.Tables[0].Rows[i]["ARKB_Volume"].ToString()}\"/></td>");
                         htmlTable1.AppendLine($"<td><a onclick=\"confirmhapus('../admin/action.aspx?fileid={ds.Tables[0].Rows[i]["ARKB_ID"].ToString()}&idj={iddata}')\" class=\"btn btn-sm btn-danger\" style=\"margin-right:10px\">Delete</a></td>");
                         htmlTable1.AppendLine("</tr>");
                     }

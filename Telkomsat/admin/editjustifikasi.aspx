@@ -28,6 +28,11 @@
     <!-- form start -->
         <div class="box-body">
             <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <asp:Label ID="lblnj" runat="server" Text="" CssClass="text-center"></asp:Label>
+                        </div>
+                    </div>
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Jenis UPD</label>
@@ -79,24 +84,9 @@
                          <input type="text" class="form-control" id="txtnamaket" runat="server"/>
                     </div>
                  </div>
-                <div class="col-md-3">
-                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nomor Justifikasi</label>
-                        <input type="text" class="form-control" id="txtnojus" runat="server"/>
-                    </div>
-                 </div>
+                
             </div>
-            <div class="row">
-                 <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="exampleInputPassword1">Comply</label>
-                        <asp:RadioButtonList ID="rdcomply" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
-                             <asp:ListItem>Iya</asp:ListItem>
-                             <asp:ListItem>Tidak</asp:ListItem>
-                         </asp:RadioButtonList>
-                    </div>
-                 </div>
-               </div> 
+            
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
@@ -226,7 +216,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "justifikasi.aspx/GetProker",
+                url: "editjustifikasi.aspx/GetProker",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {

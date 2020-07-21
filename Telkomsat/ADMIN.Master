@@ -99,7 +99,7 @@
        Sidebar user panel -->
       <div class="user-panel"> 
         <div class="pull-left image">
-          <!--<asp:DataList runat="server" id="dtContact1" Width="100%">
+          <asp:DataList runat="server" id="dtContact1" Width="100%">
         
         
         <ItemTemplate>
@@ -108,7 +108,7 @@
                 </div>
         </ItemTemplate>
 
-    </asp:DataList>-->
+    </asp:DataList>
         </div>
         <div class="pull-left info">
             <asp:Label ID="lblProfile1" runat="server" Text="Label"></asp:Label>
@@ -133,12 +133,7 @@
             <asp:Label ID="lblgm" runat="server" Text="Label"></asp:Label></span>
           </a>
         </li>
-          <li class="treeview" id="limanager" runat="server" visible="false">
-          <a href="../admin/approvement.aspx?jenis=manager">
-            <i class="fa fa-arrow-left"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnmanager">
-            <asp:Label ID="lblmanager" runat="server" Text="Label"></asp:Label></span>
-          </a>
-        </li>
+          
           <li class="treeview" id="liuser" runat="server" visible="false">
           <a href="../admin/approvement.aspx?jenis=diajukan">
             <i class="fa fa-arrow-left"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">

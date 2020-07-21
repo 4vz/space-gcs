@@ -72,7 +72,7 @@ namespace Telkomsat.admin
                     htmlTable.Append("<tr>");
                     htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + bulan + "</label>" + "</td>");
                     htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + volume + "</label>" + "</td>");
-                    htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + total + "</label>" + "</td>");
+                    htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + "Rp. " + total + "</label>" + "</td>");
                     htmlTable.Append("</tr>");
                 }
                 htmlTable.Append("</tbody>");
