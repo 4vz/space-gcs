@@ -4,50 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <div class="row" style="padding:20px">
-<div class="nav-tabs-custom col-lg-12">
-    <!-- Tabs within a box -->
-    <ul class="nav nav-tabs pull-right">
-        <li class="pull-left header"><i class="fa fa-filter"></i> Filter</li>
-    </ul>
-    <div class="tab-content no-padding">
-        <!-- Morris chart - Sales -->
-        <div class="box-body">
-        
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Start Date</label>
-                        <input type="text" class="form-control pull-right" id="txtsdate" runat="server" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">End Date</label>
-                        <input type="text" class="form-control pull-right" id="dateend" runat="server" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Status Aprroval</label>
-                        <asp:DropDownList ID="ddlpengeluaran" CssClass="form-control" runat="server">
-                            <asp:ListItem Value="approve">--All--</asp:ListItem>
-                            <asp:ListItem Value="'not approve'">Belum Approval</asp:ListItem>
-                            <asp:ListItem Value="'approve'">Approval</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Filter</label>
-                        <br />
-                        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Filter_ServerClick" >Submit</button>
-                    </div>
-                </div>
-        <!-- /.table -->
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="col-lg-12 connectedSortable">
         <!-- Custom tabs (Charts with tabs)-->
@@ -85,6 +41,31 @@
     </div>
 </div>
 </div>
+
+    <div class="modal fade" id="modalupdate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Tambah File</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <label style="font-size:16px; font-weight:bold">File :</label>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Edit_File">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+    <asp:TextBox ID="txtidl" runat="server"></asp:TextBox>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -96,21 +77,7 @@
     <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $('#<%=txtsdate.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'dd/mm/yyyy'
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=dateend.ClientID%>').datepicker('setStartDate', minDate);
-        });
-        $('#' + '<%=dateend.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'dd/mm/yyyy'
-        }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#<%=txtsdate.ClientID%>').datepicker('setEndDate', minDate);
-        });
-
+        
         function status(obj) {
             var selectbox = obj;
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
@@ -119,19 +86,38 @@
     </script>
     <script>
         $(function () {
-          $("#example2").DataTable({
-          "paging": true,
-          "searching": true,
-          "info": true,
-          "autoWidth": true,
-          "scrollX": true,
-          "order": [[ 1, 'desc' ]],
-          "columnDefs": [
-              { "orderable": false, "targets": [0] },
-              { "bSort": false, "targets": [0] }
-          ]
-          });
-           $('.dataTables_length').addClass('bs-select');
+            $("#example2").DataTable({
+                "autoWidth": true,
+                "scrollX": true,
+                "ordering": false,
+                "lengthChange": true,
+                "searching": true
+            });
+            $('.dataTables_length').addClass('bs-select');
         });
+
+        $('.datatotal').click(function () {
+            var id = $(this).val();
+            $('#<%=txtidl.ClientID %>').val(id);
+        });
+
+        var modal = document.getElementById("myModal");
+        var img = document.getElementsByClassName("myImg");
+        var modalImg = document.getElementById("img01");
+        var i;
+        for (i = 0; i < img.length; i++) {
+            img[i].onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     </script>
 </asp:Content>

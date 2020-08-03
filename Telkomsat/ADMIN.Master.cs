@@ -64,6 +64,7 @@ namespace Telkomsat
             if (thisURL.ToLower() == "pemindahan.aspx") lipemindahan.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pengembalian.aspx") lipengembalian.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "listjustifikasi.aspx" || thisURL.ToLower() == "justifikasi.aspx" || thisURL.ToLower() == "detailjustifikasi.aspx") lijustifikasi.Attributes.Add("class", "active");
+            if (thisURL.ToLower() == "approvementsa.aspx") lisa.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvement.aspx")
             {
                 ligm.Attributes.Add("class", "active");
@@ -86,12 +87,8 @@ namespace Telkomsat
 
                 if(previllage == "SA")
                 {
-                    ligm.Visible = true;
-                    liuser.Visible = true;
-                    liadmin.Visible = true;
+                    lisa.Visible = true;
                 }
-
-                
             }
             //lblProfile.Text = Session["nama1"].ToString();
             //lblProfile1.Text = Session["nama1"].ToString();
@@ -103,13 +100,15 @@ namespace Telkomsat
             int jenis;
             query = @"select(select count(*) from AdminJustifikasi where AJ_Status = '' or AJ_Status is null)[ajukan],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
-		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin]";
+		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin],
+                (select count(*) from AdminJustifikasi) [sa]";
 
             DataSet ds = Settings.LoadDataSet(query);
 
             lbldiajukan.Text = ds.Tables[0].Rows[0]["ajukan"].ToString();
             lblgm.Text = ds.Tables[0].Rows[0]["gm"].ToString();
             lbladmin.Text = ds.Tables[0].Rows[0]["admin"].ToString();
+            lblsa.Text = ds.Tables[0].Rows[0]["sa"].ToString();
 
         }
 

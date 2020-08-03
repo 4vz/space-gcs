@@ -15,7 +15,7 @@ namespace Telkomsat.admin
     {
         string[] myket, myvolume;
         string tanggal, query, angkabulan;
-        double grandtotal;
+        double grandtotal, gt;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,14 +25,14 @@ namespace Telkomsat.admin
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
             int count, a = 0, b = 0;
-            double total, gt;
+            double total;
             string nominal = txtnominal.Value.Replace(".", "");
             count = Convert.ToInt32(txtcount.Text);
             myket = new string[count];
             myvolume = new string[count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"insert into AdminRKAP(ARK_Aktivitas, ARK_SU, ARK_BG, ARK_CC, ARK_NoA, ARK_NA, ARK_Satuan, ARK_Harga, ARK_Tahunan) values
-                      ('{txtaktivitas.Value}', '{txtsubunit.Text}', '{txtunit.Text}', '{txtcc.Value}', '{txtnoakun.Value}', '{txtnamaakun.Text}', '{txtsatuan.Text}', '{nominal}', '{txtvolumetahun.Value}'); Select Scope_Identity();";
+            query = $@"insert into AdminRKAP(ARK_Aktivitas, ARK_SU, ARK_BG, ARK_CC, ARK_NoA, ARK_NA, ARK_Satuan, ARK_Harga) values
+                      ('{txtaktivitas.Value}', '{txtsubunit.Text}', '{txtunit.Text}', '{txtcc.Value}', '{txtnoakun.Value}', '{txtnamaakun.Text}', '{txtsatuan.Text}', '{nominal}'); Select Scope_Identity();";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             int i = Convert.ToInt32(cmd.ExecuteScalar());
@@ -90,6 +90,8 @@ namespace Telkomsat.admin
                 else if (myket[j] == "Desember")
                     angkabulan = "12";
 
+                gt = gt + Convert.ToDouble(myvolume[j]);
+
                 total = Convert.ToDouble(nominal) * Convert.ToDouble(myvolume[j]);
                 grandtotal = grandtotal + total;
                 sqlCon.Open();
@@ -103,12 +105,14 @@ namespace Telkomsat.admin
             }
 
             sqlCon.Open();
-            string queryupdate = $@"UPDATE AdminRKAP SET ARK_GT={grandtotal} WHERE ARK_ID='{s}'";
+            string queryupdate = $@"UPDATE AdminRKAP SET ARK_GT='{grandtotal}', ARK_GTS='{grandtotal}', ARK_Tahunan='{gt}' WHERE ARK_ID='{s}'";
             //Response.Write(queryfile); ;
             SqlCommand sqlCmd2 = new SqlCommand(queryupdate, sqlCon);
 
             sqlCmd2.ExecuteNonQuery();
             sqlCon.Close();
+
+            divsuccess.Visible = true;
         }
 
         public class inisial

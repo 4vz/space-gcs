@@ -19,7 +19,7 @@ namespace Telkomsat.admin
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string evidence;
+        string evidence, idjustifikasi;
 
         
         string querypanjar, tanggal = "", totalpanjar, input = "", pemasukan, kategori, keterangan, fileu, nominal, id;
@@ -55,17 +55,62 @@ namespace Telkomsat.admin
                     lblKategori.Text = "Pemindahan";
                 }
 
-                
+                idjustifikasi = ds.Tables[0].Rows[0]["id_aj"].ToString();
+
+
                 lblKeterangan.Text = ds.Tables[0].Rows[0]["keterangan"].ToString();
                 evidence = ds.Tables[0].Rows[0]["evidence"].ToString();
                 lbupload.Text = evidence;
+
+                justifikasi();
+
             }
 
-            tablepanjar();
+            //tablepanjar();
         }
         protected void lbupload_Click(object sender, EventArgs e)
         {
             Response.Redirect($"~/admin/download.aspx?file={evidence}");
+        }
+
+        void justifikasi()
+        {
+            string query1;
+            query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama
+                                FROM AdminJustifikasi j full join AdminProfile p on j.AJ_PT=p.AP_ID full join AdminReference r1
+                                on r1.AR_ID = p.AP_Jabatan full join AdminReference r2 on r2.AR_ID = p.AP_Subdit full join AdminRKAP k
+                                on k.ARK_ID = j.AJ_AR full join AdminVendor v on v.AV_ID=j.AJ_AV full join Profile e on e.id_profile=p.AP_Nama WHERE AJ_ID = '{idjustifikasi}'";
+            DataSet ds = Settings.LoadDataSet(query1);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (!IsPostBack)
+                {
+                    lbldetail.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
+                    lblja.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
+                    lbljupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
+                    lblket.Text = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
+                    lblnilai.Text = Convert.ToInt32(ds.Tables[0].Rows[0]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                    lblnk.Text = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
+                    lblnrkap.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
+                    lblnojus.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
+                    lblpk.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
+
+                    lbltglpt.Text = ds.Tables[0].Rows[0]["nama"].ToString();
+                    lbljabatan.Text = ds.Tables[0].Rows[0]["jabatan"].ToString();
+                    lblsubdit.Text = ds.Tables[0].Rows[0]["subdit"].ToString();
+                    lblnaa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
+                    DateTime tgl = (DateTime)ds.Tables[0].Rows[0]["AJ_Tgl"];
+                    DateTime tglds = (DateTime)ds.Tables[0].Rows[0]["AJ_TglDS"];
+
+                    lbltglds.Text = tglds.ToString("dd MMM yyyy");
+                    lbltgl.Text = tgl.ToString("dd MMM yyyy");
+                }
+
+            }
+            else
+            {
+                tbljustifikasi.Visible = false;
+            }
         }
 
         void tablepanjar()

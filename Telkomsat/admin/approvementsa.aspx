@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvementsa.aspx.cs" Inherits="Telkomsat.admin.approvementsa" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
     <style type="text/css">
@@ -8,7 +8,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
+<br />
     <div class="row">
         <section class="col-lg-12 connectedSortable">
             <div class="box box-primary">
@@ -45,7 +45,7 @@
                                               <td>:</td>
                                               <td><asp:Label ID="lbljupd" runat="server" Text="Wildan Ger saputra" CssClass="mylabel"></asp:Label></td>
                                           </tr>
-                                          <tr>
+                                        <tr>
                                               <th>Nomor Justifikasi</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblnj" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
@@ -131,7 +131,7 @@
         </div>
         </div>
 
-        <div class="modal fade" id="modalgm">
+            <div class="modal fade" id="modalgm">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -168,43 +168,6 @@
           </div>
         </div>
 
-        <div class="modal fade" id="modalgmup">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Approve</h3>
-              </div>
-              <div class="modal-body">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                                <label style="font-size:16px; font-weight:bold">Pilih Aksi :</label>
-                                  <asp:DropDownList ID="ddlaksiup" CssClass="form-control" runat="server">
-                                    <asp:ListItem></asp:ListItem>
-                                    <asp:ListItem>Reject</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                      </div> 
-                      <div class="col-md-12">
-                          <div class="form-group">
-                            <label style="font-size:16px; font-weight:bold">Alasan :</label>
-                            <asp:TextBox ID="txtalasanup" autocomplete="off" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
-                        </div>
-                      </div> 
-                  </div>
-                  
-              </div>
-              <div class="modal-footer">
-                <button type="button" id="Button2" class="btn btn-info pull-left" runat="server" onserverclick="Approve_GMUP">Save</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-        </div>
-
-
 
     <div class="modal fade" id="modalupdate">
           <div class="modal-dialog">
@@ -216,12 +179,6 @@
               </div>
               <div class="modal-body">
                   <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                                <label style="font-size:16px; font-weight:bold">Nilai Justifikasi :</label>
-                              <asp:Label ID="lbltotal" runat="server" Text=""></asp:Label>
-                            </div>
-                      </div> 
                       <div class="col-md-12">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Lampiran Evidence :</label>
@@ -268,13 +225,13 @@
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextinternal">
                                 <label style="font-size:16px; font-weight:bold">Nominal Internal :</label>
-                              <input type="text" class="form-control" id="txtnominalint1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                              <asp:TextBox ID="txtnominalint" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                       </div> 
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextvendor">
                                 <label style="font-size:16px; font-weight:bold">Nominal Vendor :</label>
-                              <input type="text" class="form-control" id="txtnominalven1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                              <asp:TextBox ID="txtnominalven" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                       </div> 
                   </div>
@@ -295,12 +252,9 @@
     <asp:TextBox ID="txtidgm" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
-    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
-    
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="nominal.js"></script>
     <script>
         $('#slpetugas1').change(function () {
             var id = $(this).val();
@@ -333,6 +287,11 @@
                 $("#divtextinternal").removeAttr("style").hide();
                 $('#<%=txttipe.ClientID%>').val('null');
             }
+        });
+
+        $('.datagm').click(function () {
+            var id = $(this).val();
+            $('#<%=txtidgm.ClientID %>').val(id);
         });
 
         $(function () {
@@ -409,21 +368,11 @@
             });
         }
 
-        $('.datagm').click(function () {
-            var id = $(this).val();
-            $('#<%=txtidgm.ClientID %>').val(id);
-        });
-
-        $('.datagmup').click(function () {
-            var id = $(this).val();
-            $('#<%=txtidgm.ClientID %>').val(id);
-        });
-
         $('.datamain').click(function () {
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "approvement.aspx/GetDetail",
+                url: "approvementsa.aspx/GetDetail",
                 contentType: "application/json; charset=utf-8",
                 data: '{videoid:"' + id + '"}',
                 dataType: "json",
@@ -465,7 +414,7 @@
             $('#<%=txtidl.ClientID %>').val(id);
             $.ajax({
                 type: "POST",
-                url: "approvement.aspx/GetTotal",
+                url: "approvementsa.aspx/GetTotal",
                 contentType: "application/json; charset=utf-8",
                 data: '{videoid:"' + id + '"}',
                 dataType: "json",
@@ -476,9 +425,7 @@
                         $('#<%=txttotal.ClientID %>').val(this.total);
                         $('#<%=txtketerangan.ClientID %>').val(this.keterangan);
                         $('#<%=txtgt.ClientID %>').val(this.gt);
-                        $('#<%=lbltotal.ClientID %>').html(this.gt);
                         $('#<%=txtidrkap.ClientID %>').val(this.idrkap);
-                        $('#<%=txtidjustifikasi.ClientID %>').val(this.idjustifikasi);
                     });
 
                 },

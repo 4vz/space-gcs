@@ -91,6 +91,11 @@
                                               <td>:</td>
                                               <td><asp:Label ID="lblgt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
+                                        <tr>
+                                              <th>Sisa Grand Total</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lblsisagt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
                                         </tbody>
                                     </table>
                                     
@@ -117,6 +122,19 @@
             </div>
         </div>
     </div>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Justifikasi</h3>
+                    <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body">
+                <div class="row">
+                    <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                </div>
+            </div>
+        </div>
     </section>
     </div>
 </asp:Content>

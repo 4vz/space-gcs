@@ -31,7 +31,16 @@ namespace Telkomsat
 
             tester = Convert.ToDouble("1000000");
 
-            Response.Write("ini tester =  " + DateTime.Now.ToString("MMyyyy") + "  | ");
+            //Response.Write("ini tester =  " + DateTime.Now.ToString("MMyyyy") + "  | ");
+
+
+            //test substring
+            string str = "akak.pdf";
+            var result = str.Substring(str.LastIndexOf('.') + 1);
+
+            Response.Write("ini tester =  " + result + "  | ");
+
+
 
             DateTime dta = new DateTime(2020, 6, 7);
             while (dta.DayOfWeek != DayOfWeek.Monday)

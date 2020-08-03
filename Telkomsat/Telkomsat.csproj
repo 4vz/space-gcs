@@ -172,6 +172,7 @@
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\approve.aspx" />
     <Content Include="admin\approvement.aspx" />
+    <Content Include="admin\approvementsa.aspx" />
     <Content Include="admin\bendahara.aspx" />
     <Content Include="admin\dashboard.aspx" />
     <Content Include="admin\dashboard.js" />
@@ -187,6 +188,7 @@
     <Content Include="admin\editvendor.aspx" />
     <Content Include="admin\justifikasi.aspx" />
     <Content Include="admin\listjustifikasi.aspx" />
+    <Content Include="admin\listpemasukan.aspx" />
     <Content Include="admin\listpengeluaran.aspx" />
     <Content Include="admin\listrkap.aspx" />
     <Content Include="admin\listvendor.aspx" />
@@ -7371,6 +7373,13 @@
     <Compile Include="admin\approvement.aspx.designer.cs">
       <DependentUpon>approvement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\approvementsa.aspx.cs">
+      <DependentUpon>approvementsa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\approvementsa.aspx.designer.cs">
+      <DependentUpon>approvementsa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\bendahara.aspx.cs">
       <DependentUpon>bendahara.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7468,6 +7477,13 @@
     </Compile>
     <Compile Include="admin\listjustifikasi.aspx.designer.cs">
       <DependentUpon>listjustifikasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\listpemasukan.aspx.cs">
+      <DependentUpon>listpemasukan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\listpemasukan.aspx.designer.cs">
+      <DependentUpon>listpemasukan.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\listpengeluaran.aspx.cs">
       <DependentUpon>listpengeluaran.aspx</DependentUpon>

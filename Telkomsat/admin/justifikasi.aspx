@@ -31,6 +31,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Jenis UPD</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="rdjupd"></asp:RequiredFieldValidator>
                          <asp:RadioButtonList ID="rdjupd" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
                              <asp:ListItem>Panjar</asp:ListItem>
                              <asp:ListItem>Cash</asp:ListItem>
@@ -52,6 +53,7 @@
                  <div class="col-md-2">
                      <div class="form-group">
                         <label for="exampleInputPassword1">RKAP Bulan </label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="sobulan" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                             <option>Januari</option> 
@@ -279,7 +281,7 @@
                 success: function (response) {
                     var customers = response.d;
                     $(customers).each(function () {
-                        $('#<%=txtnilairkap.ClientID%>').val("Rp. " + this.gt);
+                        $('#<%=txtnilairkap.ClientID%>').val("Rp. " + format(this.gt));
                     });
                 },
                 failure: function (response) {
@@ -313,7 +315,24 @@
                 console.log('add');
             });
             
-        });   
+        });  
+
+        function format(str) {
+          var length = 3,
+            separator = ".",
+            count = 0,
+            result = str.split('').reduceRight((a, c) => {
+              if (count === length) {
+                a.push(separator);
+                count = 1;
+              } else count++;
+              a.push(c);
+              return a;
+            }, []).reverse().join('');
+    
+            return result;
+        }
+
 
         function newtest2(e) {              //Add e as parameter
             $(e).parents('tr').remove();   //Use the e to delete

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Telkomsat.admin
 {
-    public partial class approvement : System.Web.UI.Page
+    public partial class approvementsa : System.Web.UI.Page
     {
         StringBuilder htmlTable = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
@@ -34,44 +34,14 @@ namespace Telkomsat.admin
                 previllage = ds2.Tables[0].Rows[0]["AP_Previllage"].ToString();
             }
 
-            if (Request.QueryString["jenis"] == "diajukan")
-            {
-                query = $@"SELECT j.*, e.nama from AdminJustifikasi j join AdminProfile p on p.AP_ID=j.AJ_PT join Profile e
-                            on e.id_profile = p.AP_Nama where AJ_Status is null or AJ_Status = ''";
+            query = $@"SELECT j.*, e.nama from AdminJustifikasi j join AdminProfile p on p.AP_ID=j.AJ_PT join Profile e
+                            on e.id_profile = p.AP_Nama";
 
-                if (previllage != "User")
-                {
-                        Response.Redirect("dashboard.aspx");
-                }
-                    
-
-            }
-            else if (Request.QueryString["jenis"] == "gm")
-            {
-                query = $"SELECT * from AdminJustifikasi WHERE AJ_Status = 'diajukan' or AJ_Status = 'reject' or AJ_Status = 'gm'";
-
-                if (previllage != "GM")
-                {
-                        Response.Redirect("dashboard.aspx");
-                }
-            }
-            else if (Request.QueryString["jenis"] == "admin")
-            {
-                query = $"SELECT * from AdminJustifikasi WHERE AJ_Status = 'gm'";
-
-                if (previllage != "Admin Bendahara")
-                {
-                        Response.Redirect("dashboard.aspx");
-                }
-            }
-            else
-            {
-                Response.Redirect("dashboard.aspx");
-            }
+            
             referens();
         }
 
-        protected void Approve_GMUP(object sender, EventArgs e)
+        protected void Approve_GM(object sender, EventArgs e)
         {
             string tgl;
             tgl = DateTime.Now.ToString("yyyy/MM/dd");
@@ -104,49 +74,13 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            Response.Redirect("approvement.aspx?jenis=gm");
+
+            Response.Redirect("approvementsa.aspx");
         }
 
-
-        protected void Approve_GM(object sender, EventArgs e)
-        {
-            string tgl;
-            tgl = DateTime.Now.ToString("yyyy/MM/dd");
-            sqlCon.Open();
-            string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ)
-                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}')";
-            //Response.Write(queryfile); ;
-            SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
-
-            sqlCmd1.ExecuteNonQuery();
-            sqlCon.Close();
-
-            if(ddlaksi.Text == "Approve")
-            {
-                sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'admin' WHERE AJ_ID='{txtidgm.Text}'";
-                //Response.Write(queryfile); ;
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-
-                sqlCmd.ExecuteNonQuery();
-                sqlCon.Close();
-            }
-            else if (ddlaksi.Text == "Reject")
-            {
-                sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'reject' WHERE AJ_ID='{txtidgm.Text}'";
-                //Response.Write(queryfile); ;
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-
-                sqlCmd.ExecuteNonQuery();
-                sqlCon.Close();
-            }
-            Response.Redirect("approvement.aspx?jenis=gm");
-        }
 
         protected void Approve_Admin(object sender, EventArgs e)
         {
-            string queryrkap;
             if (FileUpload1.HasFiles)
             {
                 string physicalpath = Server.MapPath("~/fileupload/");
@@ -164,9 +98,7 @@ namespace Telkomsat.admin
                 }
                 //lblstatus.Text = filecount + " files upload";
             }
-
-            //sqlCon.Open();
-            queryrkap = $"UPDATE AdminRKAP set ARK_GTS = '{Convert.ToDouble(txtgt.Text) - Convert.ToDouble(txttotal.Text)}' where ARK_ID = '{txtidrkap.Text}'";
+            string queryrkap = $"UPDATE AdminRKAP set ARK_GT = '{Convert.ToDouble(txtgt.Text) - Convert.ToDouble(txttotal.Text)}' where ARK_ID = '{txtidrkap.Text}'";
             SqlCommand a = Settings.ExNonQuery(queryrkap);
 
             sqlCon.Open();
@@ -196,18 +128,18 @@ namespace Telkomsat.admin
             rek1me = Convert.ToInt32(ds7.Tables[0].Rows[0]["rek_me1"].ToString());
             rek2me = Convert.ToInt32(ds7.Tables[0].Rows[0]["rek_me2"].ToString());
 
-            if(txttipe.Text == "vendor")
+            if (txttipe.Text == "vendor")
             {
                 string queryven, queryid, sekarang;
                 double totalvendor;
 
-                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom) and AVN_AV='{txtvendor.Text}'";
+                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom where AVN_AV='{txtvendor.Text}') and AVN_AV='{txtvendor.Text}'";
 
                 sekarang = DateTime.Now.ToString("yyyy/MM/dd");
 
                 DataSet dsid = Settings.LoadDataSet(queryid);
 
-                if(dsid.Tables[0].Rows.Count == 0)
+                if (dsid.Tables[0].Rows.Count == 0)
                 {
                     ventotal = 0;
                 }
@@ -227,13 +159,8 @@ namespace Telkomsat.admin
                 sqlCmdven.ExecuteNonQuery();
                 sqlCon.Close();
 
-                string query8 = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{txttotal.Text}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
-
-                SqlCommand cmd8 = Settings.ExNonQuery(query8);
-
             }
-            else if(txttipe.Text == "internal")
+            else if (txttipe.Text == "internal")
             {
                 string parse = txttotal.Text;
                 int input = Convert.ToInt32(parse);
@@ -258,33 +185,33 @@ namespace Telkomsat.admin
 
                 if (ddlKategori.Text == "Rek. Harkat Bendahara 1")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan')";
                 }
                 else if (ddlKategori.Text == "Rek. Harkat Bendahara 2")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan')";
                 }
                 else if (ddlKategori.Text == "Rek. ME Bendahara 1")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan')";
                 }
                 else if (ddlKategori.Text == "Rek. ME Bendahara 2")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan')";
                 }
                 else if (ddlKategori.Text == "Brankas Harkat")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan')";
                 }
                 else if (ddlKategori.Text == "Brankas ME")
                 {
-                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan', '{txtidjustifikasi.Text}')";
+                    queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan')";
                 }
 
                 sqlCon.Open();
@@ -292,14 +219,15 @@ namespace Telkomsat.admin
                 sqlCmd7.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if(txttipe.Text == "dua")
+            else if (txttipe.Text == "dua")
             {
                 keduanya();
             }
-            else if(txttipe.Text == "null")
+            else if (txttipe.Text == "null")
             {
                 Response.Redirect("~/error.aspx");
             }
+
 
             Response.Redirect("approvement.aspx?jenis=admin");
         }
@@ -321,26 +249,21 @@ namespace Telkomsat.admin
             }
             else
             {
-                ventotal = Convert.ToDouble(dsid.Tables[0].Rows[0]["AVN_Total"]);
+                ventotal = (double)dsid.Tables[0].Rows[0]["AVN_Total"];
             }
 
 
-            totalvendor = ventotal + Convert.ToDouble(txtnominalven1.Value.Replace(".", ""));
+            totalvendor = ventotal + Convert.ToDouble(txtnominalven.Text);
 
             queryven = $@"INSERT INTO AdminVendorNom (AVN_AV, AVN_Nominal, AVN_Total, AVN_Tanggal, AVN_NK)
-                            VALUES ('{txtvendor.Text}', '{txtnominalven1.Value.Replace(".", "")}', '{totalvendor}', '{txttanggal.Text}', '{txtketerangan.Text}')";
+                            VALUES ('{txtvendor.Text}', '{txtnominalven.Text}', '{totalvendor}', '{txttanggal.Text}', '{txtketerangan.Text}')";
 
             sqlCon.Open();
             SqlCommand sqlCmdven = new SqlCommand(queryven, sqlCon);
             sqlCmdven.ExecuteNonQuery();
             sqlCon.Close();
 
-            string query8 = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{txtnominalven1.Value.Replace(".", "")}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
-
-            SqlCommand cmd8 = Settings.ExNonQuery(query8);
-
-            string parse = txtnominalint1.Value.Replace(".", "");
+            string parse = txtnominalint.Text;
             int input = Convert.ToInt32(parse);
 
             if (FileUpload1.HasFiles)
@@ -363,33 +286,33 @@ namespace Telkomsat.admin
 
             if (ddlKategori.Text == "Rek. Harkat Bendahara 1")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan')";
             }
             else if (ddlKategori.Text == "Rek. Harkat Bendahara 2")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan')";
             }
             else if (ddlKategori.Text == "Rek. ME Bendahara 1")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan')";
             }
             else if (ddlKategori.Text == "Rek. ME Bendahara 2")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan')";
             }
             else if (ddlKategori.Text == "Brankas Harkat")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan')";
             }
             else if (ddlKategori.Text == "Brankas ME")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan', '{txtidjustifikasi.Text}')";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori)
+                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan')";
             }
 
             sqlCon.Open();
@@ -469,19 +392,12 @@ namespace Telkomsat.admin
                             $"<span style=\"margin-right:5px; color:{warna3}\"><i class=\"fa fa-circle\"></i></span>" +
                             $"<label style=\"font-size:13px; {style3}; display:block\">" + statusapp + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Detail" + "</button>");
-                        if(previllage == "User")
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
-                        else if(previllage == "Admin Bendahara")
-                            htmlTable.Append($"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\">" + "Approve" + "</button>");
-                        else if(previllage == "GM")
-                        {
-                            if(status == "diajukan")
-                                htmlTable.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datagm\" data-toggle=\"modal\" data-target=\"#modalgm\">" + "Approve" + "</button>");
-                            else if(status == "gm")
-                                htmlTable.Append($"<button type=\"button\" id=\"btngmup\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-warning datagmup\" data-toggle=\"modal\" data-target=\"#modalgmup\">" + "Update" + "</button>");
-
-                        }
-
+                        if(status == "" || status == null)
+                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenissa=ajukan')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
+                        else if (status == "diajukan")
+                            htmlTable.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-warning datagm\" data-toggle=\"modal\" data-target=\"#modalgm\">" + "Approve GM" + "</button>");
+                        else if (status == "gm")
+                            htmlTable.Append($"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\">" + "Approve AB" + "</button>");
                         htmlTable.Append("</td></tr>");
                     }
                     htmlTable.Append("</tbody>");
@@ -519,7 +435,6 @@ namespace Telkomsat.admin
             public string gt { get; set; }
             public string idrkap { get; set; }
             public string nj { get; set; }
-            public string idjustifikasi { get; set; }
         }
 
         [WebMethod]
@@ -574,7 +489,7 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"SELECT j.*, r.ARK_GTS, r.ARK_ID From AdminJustifikasi j full join AdminRKAP r on j.AJ_AR=r.ARK_ID WHERE AJ_ID = '{videoid}'"))
+                using (SqlCommand cmd = new SqlCommand($@"SELECT j.*, r.ARK_GT, r.ARK_ID From AdminJustifikasi j full join AdminRKAP r on j.AJ_AR=r.ARK_ID WHERE AJ_ID = '{videoid}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();
@@ -585,10 +500,9 @@ namespace Telkomsat.admin
                         {
                             mydata.Add(new inisial
                             {
-                                idjustifikasi = sdr["AJ_ID"].ToString(),
                                 keterangan = sdr["AJ_NK"].ToString(),
                                 total = sdr["AJ_Nilai"].ToString(),
-                                gt = sdr["ARK_GTS"].ToString(),
+                                gt = sdr["ARK_GT"].ToString(),
                                 idrkap = sdr["ARK_ID"].ToString(),
                             });
                         }

@@ -160,7 +160,7 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($"SELECT ARK_ID, ARK_Aktivitas, ARK_GT from AdminRKAP where ARK_ID='{videoid}'"))
+                using (SqlCommand cmd = new SqlCommand($"SELECT ARK_ID, ARK_Aktivitas, ARK_GTS from AdminRKAP where ARK_ID='{videoid}'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();
@@ -171,7 +171,7 @@ namespace Telkomsat.admin
                         {
                             mydata.Add(new inisial
                             {
-                                gt = sdr["ARK_GT"].ToString(),
+                                gt = sdr["ARK_GTS"].ToString(),
                             });
                         }
                     }
@@ -187,8 +187,8 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"select ARK_ID, ARK_Aktivitas from AdminRKAP r join AdminRKAPBulanan b on r.ARK_ID=b.ARKB_ARK 
-                                            where b.ARKB_Bulan = '{videoid}'"))
+                using (SqlCommand cmd = new SqlCommand($@"select ARK_ID, ARK_Aktivitas, ARK_GTS from AdminRKAP r join AdminRKAPBulanan b on r.ARK_ID=b.ARKB_ARK 
+                                            where b.ARKB_Bulan = '{videoid}' and r.ARK_GTS >= 0 "))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();

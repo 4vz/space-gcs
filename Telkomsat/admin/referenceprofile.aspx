@@ -44,6 +44,7 @@
                                             <asp:ListItem>Admin Bendahara</asp:ListItem>
                                             <asp:ListItem>Manager</asp:ListItem>
                                             <asp:ListItem>User</asp:ListItem>
+                                            <asp:ListItem>SA</asp:ListItem>
                                         </asp:DropDownList></td>
                                     <td><asp:Button ID="btnsave" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="save_click" /></td>
                                 </tr>

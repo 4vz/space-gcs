@@ -7,22 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin
-{
-
-
-    public partial class listpengeluaran
-    {
-
+namespace Telkomsat.admin {
+    
+    
+    public partial class listpemasukan {
+        
         /// <summary>
-        /// DBDataPlaceHolder control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
-
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// PlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        
         /// <summary>
         /// FileUpload1 control.
         /// </summary>
@@ -31,7 +38,7 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-
+        
         /// <summary>
         /// txtidl control.
         /// </summary>

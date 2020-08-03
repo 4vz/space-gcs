@@ -26,7 +26,7 @@ namespace Telkomsat.admin
         void referens()
         {
             string query, IDdata, referensi, gt;
-            query = $"SELECT * from AdminRKAP";
+            query = $"SELECT * from AdminRKAP order by ARK_ID desc";
 
             DataSet ds = Settings.LoadDataSet(query);
 

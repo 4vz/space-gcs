@@ -12,33 +12,20 @@ using System.IO;
 
 namespace Telkomsat.admin
 {
-    public partial class listpengeluaran : System.Web.UI.Page
+    public partial class listpemasukan : System.Web.UI.Page
     {
-        SqlDataAdapter da, da1, damodal;
+        SqlDataAdapter da;
         DataSet ds = new DataSet();
-        DataSet ds1 = new DataSet();
-        DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
-        StringBuilder htmlTable1 = new StringBuilder();
-        string IDdata = "kitaa", total = "", keterangan, tanggal = "", nominal, nama, approve, brame, style, input = "", kategori = "", style5 = "", kategori1 = "", query;
-        string start = "01/01/2019", filename, filepath, end = "01/12/2048";
-
-
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        int rek1harkat, rek2harkat, rek1me, rek2me, harkat, me;
+        string kategori, style3, filename, filepath, queryfile;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                query = @"select * from administrator where kategori = 'pengeluaran' order by tanggal desc";
-                tableticket();
-            }
-
+            referens();
         }
 
         protected void Edit_File(object sender, EventArgs e)
         {
-            string queryfile;
             if (FileUpload1.HasFiles)
             {
                 string physicalpath = Server.MapPath("~/evidence/");
@@ -62,23 +49,19 @@ namespace Telkomsat.admin
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            Response.Redirect("listpengeluaran.aspx");
+            Response.Redirect("listpemasukan.aspx");
         }
 
-        void tableticket()
+        void referens()
         {
-            string simpanan, evidence;
+            string query, IDdata, referensi, gt, tanggal, evidence, simpanan;
+            query = $"select * from administrator where kategori = 'pemasukan' order by tanggal desc";
+            style3 = "font-weight:normal";
+            DataSet ds = Settings.LoadDataSet(query);
 
-            SqlCommand cmd = new SqlCommand(query, sqlCon);
-            da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
-            sqlCon.Open();
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-
-            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Evidence</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Bukti</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -90,44 +73,34 @@ namespace Telkomsat.admin
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         IDdata = ds.Tables[0].Rows[i]["id_admin"].ToString();
-                        DateTime datee = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
-                        tanggal = datee.ToString("dd/MM/yyyy");
+                        referensi = ds.Tables[0].Rows[i]["keterangan"].ToString();
                         simpanan = ds.Tables[0].Rows[i]["simpanan"].ToString();
                         evidence = ds.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
-                        keterangan = ds.Tables[0].Rows[i]["keterangan"].ToString();
-                        nominal = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        gt = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        DateTime tgl = Convert.ToDateTime(ds.Tables[0].Rows[i]["tanggal"]);
+                        tanggal = tgl.ToString("dd-MM-yyyy");
 
-                        if (ds.Tables[0].Rows[i]["gm"].ToString() == "unread")
-                            style5 = "font-weight:bold;";
-                        else
-                            style5 = "font-weight:normal;";
-
-                        if (approve == "approve")
-                            style = "label label-info";
-                        else if (approve == "not approve")
-                            style = "label label-warning";
-
-                        htmlTable.Append($"<tr style=\"{style5}\">");
-                        htmlTable.Append("<td>" + $"<label style=\"font-size:10px; {style5} color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + simpanan + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        htmlTable.Append("<tr>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + simpanan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
                         if (evidence == "" || evidence == null)
                         {
-                            htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                            htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                         }
                         else
                         {
                             if (evidence.Substring(evidence.LastIndexOf('.') + 1).ToLower().IsIn(new string[] { "jpg", "jpeg", "png", "bmp", "jfif", "gif" }))
                             {
-                                htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
+                                htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
                             }
                             else
                             {
-                                htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                                htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                             }
                         }
-
+                        
                         htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)
                             htmlTable.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
@@ -135,8 +108,7 @@ namespace Telkomsat.admin
                     }
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
-                    DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
-
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTable.ToString() });
                 }
             }
         }

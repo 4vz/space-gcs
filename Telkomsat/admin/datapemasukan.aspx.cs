@@ -20,7 +20,7 @@ namespace Telkomsat.admin
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         string IDdata = "kitaa", total = "", keterangan, tanggal = "", rekharkat, rekme, braharkat, brame, style, input = "", kategori = "", input1 = "", kategori1 = "", query;
-        string start = "01/01/2019", end = "01/12/2048";
+        string start = "01/01/2019", end = "01/12/2048", hijau;
 
 
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
@@ -59,7 +59,8 @@ namespace Telkomsat.admin
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         IDdata = ds.Tables[0].Rows[i]["id_admin"].ToString();
-                        tanggal = ds.Tables[0].Rows[i]["tanggal"].ToString();
+                        DateTime tgl = Convert.ToDateTime(ds.Tables[0].Rows[i]["tanggal"]);
+                        tanggal = tgl.ToString("dd MMM yyyy");
                         braharkat = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(ds.Tables[0].Rows[i]["bra_harkat"].ToString()));
                         brame = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(ds.Tables[0].Rows[i]["bra_me"].ToString()));
                         rek1harkat = Convert.ToInt32(ds.Tables[0].Rows[i]["rek_harkat1"].ToString());
@@ -79,7 +80,7 @@ namespace Telkomsat.admin
                         else if (kategori == "pengeluaran")
                             style = "label-warning";
                         else if (kategori == "pemindahan")
-                            style = "label-primary";
+                            style = "label-success";
 
                         input1 = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToDecimal(ds.Tables[0].Rows[i]["input"].ToString()));
 
@@ -87,17 +88,25 @@ namespace Telkomsat.admin
                         rekme = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(me));
                         int index = Convert.ToInt32(IDdata);
 
+                        if(i == 0)
+                        {
+                            hijau = "color:green";
+                        }
+                        else
+                        {
+                            hijau = "";
+                        }
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + keterangan + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:11px; color:#a9a9a9; font-color width:70px; {hijau}\">" + tanggal + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + keterangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/admin/detail.aspx?id={IDdata}\">" + $"<label class=\"label label-sm {style}\">" + input1 + "</label>" + "</a>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + rekharkat + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + rekme + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + braharkat + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + brame + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + total + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + rekharkat + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + rekme + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + braharkat + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + brame + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {hijau}\">" + total + "</label>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

@@ -26,7 +26,7 @@ namespace Telkomsat.admin
         void referens()
         {
             string query, IDdata, jupd, ja, kegiatan, status, statusapp;
-            query = $"SELECT * from AdminJustifikasi";
+            query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 
@@ -57,7 +57,7 @@ namespace Telkomsat.admin
                             warna4 = "black";
                             statusapp = "menunggu approve GM";
                         }
-                        
+
                         else if (status == "gm")
                         {
                             warna1 = "deepskyblue";
@@ -71,6 +71,13 @@ namespace Telkomsat.admin
                             warna2 = "deepskyblue";
                             warna3 = "deepskyblue";
                             statusapp = "selesai";
+                        }
+                        else if (status == "reject")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "red";
+                            warna3 = "black";
+                            statusapp = "ditolak";
                         }
                         else
                         {

@@ -136,14 +136,20 @@
           
           <li class="treeview" id="liuser" runat="server" visible="false">
           <a href="../admin/approvement.aspx?jenis=diajukan">
-            <i class="fa fa-arrow-left"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
+            <i class="fa fa-check-circlet"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
             <asp:Label ID="lbldiajukan" runat="server" Text="Label"></asp:Label></span>
           </a>
         </li>
           <li class="treeview" id="liadmin" runat="server" visible="false">
           <a href="../admin/approvement.aspx?jenis=admin">
-            <i class="fa fa-arrow-left"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnadmin">
+            <i class="fa fa-check-circle"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnadmin">
             <asp:Label ID="lbladmin" runat="server" Text="Label"></asp:Label></span>
+          </a>
+        </li>
+          <li class="treeview" id="lisa" runat="server" visible="false">
+          <a href="../admin/approvementsa.aspx">
+            <i class="fa fa-check-circle"></i> <span>Approvement</span><span class="badge bg-red-active pull-right" runat="server" id="spnsa">
+            <asp:Label ID="lblsa" runat="server" Text="Label"></asp:Label></span>
           </a>
         </li>
         <li class="treeview" id="lipemasukan" runat="server">

@@ -12,12 +12,13 @@ namespace Telkomsat.admin
     public partial class action : System.Web.UI.Page
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string queryupdate, queryupdatel, queryupdatem, queryapp;
+        string queryupdate, queryupdatel, queryapp2, queryapp;
         protected void Page_Load(object sender, EventArgs e)
         {
             string hapusreferensi = Request.QueryString["idref"];
             string kategori = Request.QueryString["kategori"];
             string jenis = Request.QueryString["jenis"];
+            string jenissa = Request.QueryString["jenissa"];
             string idapp = Request.QueryString["idapp"];
             string idrk = Request.QueryString["idrk"];
             string idven = Request.QueryString["idven"];
@@ -56,6 +57,24 @@ namespace Telkomsat.admin
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
                 Response.Redirect($"../admin/approvement.aspx?jenis={jenis}");
+            }
+
+            if (jenissa != null)
+            {
+                if (jenissa == "ajukan")
+                {
+                    queryapp2 = $"UPDATE AdminJustifikasi SET AJ_Status = 'diajukan' WHERE AJ_ID = '{idapp}'";
+                }
+                else if (jenissa == "gm")
+                {
+                    queryapp2 = $"UPDATE AdminJustifikasi SET AJ_Status = 'gm' WHERE AJ_ID = '{idapp}'";
+                }
+
+                SqlCommand sqlcmd = new SqlCommand(queryapp2, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/approvementsa.aspx");
             }
 
             if (idrk != null)

@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6">
                     <div class="box box-comment">
                         <div class="box-header" style="text-align:center">
                             <span style="font-weight:bold; font-size:16px">PIC Vendor</span>
@@ -138,6 +138,32 @@
             
         </div>
     </div>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Pengeluaran Untuk Vendor</h3>
+                    <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+            <div class="box-body">
+                <div class="row">
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                </div>
+            </div>
+        </div>
     </section>
     </div>
+
+    <script>
+        $(function () {
+          $("#example2").DataTable({
+          "autoWidth": true,
+          "scrollX": true,
+              "ordering": false,
+              "lengthChange": true,
+            "searching": true
+          });
+           $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
 </asp:Content>

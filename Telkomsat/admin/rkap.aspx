@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="rkap.aspx.cs" Inherits="Telkomsat.admin.rkap" %>
+﻿<%@ Page Title="Tambah RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="rkap.aspx.cs" Inherits="Telkomsat.admin.rkap" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -19,9 +19,12 @@
     <!-- /.box-header -->
     <!-- form start -->
         <div class="box-body">
-            
+            <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
+                <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
+            </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Aktivitas</label>
+                <label for="exampleInputEmail1">Nama Aktivitas</label> 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtaktivitas"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtaktivitas" runat="server"/>
             </div>
             <div class="form-group">
@@ -38,6 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Cost Center</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtcc"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtcc" runat="server"/>
             </div>
             <div class="form-group">
@@ -58,11 +62,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Harga</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnominal"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Volume dalam 1 tahun</label>
-                <input type="text" class="form-control" id="txtvolumetahun" runat="server" onkeydown='return numbersonly(this, event);' />
             </div>
             <div class="form-group">
                 <table class="table table-bordered kita" id="tableku" runat="server">

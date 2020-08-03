@@ -121,7 +121,7 @@
     <!-- form start -->
         <div class="box-body">
             <div class="row">
-                <div class="col-md-5 col-lg-5">
+                <div class="col-md-6 col-lg-6">
                     <div class="box box-comment">
                         <div class="box-header" style="text-align:center">
                             <span style="font-weight:bold; font-size:16px">Permintaan Dana</span>
@@ -219,7 +219,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="box box-comment">
                         <div class="box-header" style="text-align:center">
                             <span style="font-weight:bold; font-size:16px">Status Verifikasi</span>
