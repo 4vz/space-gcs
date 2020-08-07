@@ -98,18 +98,20 @@ namespace Telkomsat
         {
             string query;
             int jenis;
-            query = @"select(select count(*) from AdminJustifikasi where AJ_Status = '' or AJ_Status is null)[ajukan],
+            query = @"select(select count(*) from AdminJustifikasi where AJ_Status = '' or AJ_Status is null or AJ_Status = 'repair')[ajukan],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin],
-                (select count(*) from AdminJustifikasi) [sa]";
+                (select count(*) from AdminJustifikasi where AJ_Status != 'admin') [sa]";
 
             DataSet ds = Settings.LoadDataSet(query);
 
-            lbldiajukan.Text = ds.Tables[0].Rows[0]["ajukan"].ToString();
-            lblgm.Text = ds.Tables[0].Rows[0]["gm"].ToString();
-            lbladmin.Text = ds.Tables[0].Rows[0]["admin"].ToString();
-            lblsa.Text = ds.Tables[0].Rows[0]["sa"].ToString();
-
+            if(ds.Tables[0].Rows.Count > 0)
+            {
+                lbldiajukan.Text = ds.Tables[0].Rows[0]["ajukan"].ToString();
+                lblgm.Text = ds.Tables[0].Rows[0]["gm"].ToString();
+                lbladmin.Text = ds.Tables[0].Rows[0]["admin"].ToString();
+                lblsa.Text = ds.Tables[0].Rows[0]["sa"].ToString();
+            }
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

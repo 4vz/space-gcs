@@ -115,6 +115,13 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "ditolak";
                         }
+                        else if (status == "repair")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "yellow";
+                            warna3 = "black";
+                            statusapp = "ditolak";
+                        }
                         else
                         {
                             warna1 = "black";

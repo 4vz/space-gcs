@@ -50,6 +50,11 @@
                                               <td>:</td>
                                               <td><asp:Label ID="lblnj" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
+                                        <tr>
+                                              <th>Pemberi Tugas</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lbltglpt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
                                           <tr>
                                               <th>Subdit</th>
                                               <td>:</td>
@@ -75,11 +80,7 @@
                                               <td>:</td>
                                               <td><asp:Label ID="lbltglds" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
-                                          <tr>
-                                              <th>Pemberi Tugas</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lbltglpt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
+                                          
                                           <tr>
                                               <th>Jenis Anggaran</th>
                                               <td>:</td>
@@ -147,6 +148,7 @@
                                   <asp:DropDownList ID="ddlaksi" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
+                                      <asp:ListItem>Repair</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -252,6 +254,7 @@
     <asp:TextBox ID="txtidgm" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -426,6 +429,7 @@
                         $('#<%=txtketerangan.ClientID %>').val(this.keterangan);
                         $('#<%=txtgt.ClientID %>').val(this.gt);
                         $('#<%=txtidrkap.ClientID %>').val(this.idrkap);
+                        $('#<%=txtidjustifikasi.ClientID %>').val(this.idjustifikasi);
                     });
 
                 },

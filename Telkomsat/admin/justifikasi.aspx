@@ -157,6 +157,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Pemberi Tugas</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sotugas" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>

@@ -13,7 +13,7 @@
     <asp:TextBox ID="txtunit" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtproker" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtpetugas" runat="server" CssClass="hidden"></asp:TextBox>
-    <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden" Text="0"></asp:TextBox>
 
     <asp:TextBox ID="txtcount" CssClass="hidden" runat="server"></asp:TextBox>
     <div class="row">

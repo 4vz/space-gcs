@@ -37,10 +37,13 @@ namespace Telkomsat.admin
             if (Request.QueryString["jenis"] == "diajukan")
             {
                 query = $@"SELECT j.*, e.nama from AdminJustifikasi j join AdminProfile p on p.AP_ID=j.AJ_PT join Profile e
-                            on e.id_profile = p.AP_Nama where AJ_Status is null or AJ_Status = ''";
+                            on e.id_profile = p.AP_Nama where AJ_Status is null or AJ_Status = '' or AJ_Status='Repair'";
 
                 if (previllage != "User")
                 {
+                    if (previllage == "SA")
+                        Response.Redirect("approvementsa.aspx");
+                    else
                         Response.Redirect("dashboard.aspx");
                 }
                     
@@ -52,6 +55,9 @@ namespace Telkomsat.admin
 
                 if (previllage != "GM")
                 {
+                    if (previllage == "SA")
+                        Response.Redirect("approvementsa.aspx");
+                    else
                         Response.Redirect("dashboard.aspx");
                 }
             }
@@ -61,6 +67,9 @@ namespace Telkomsat.admin
 
                 if (previllage != "Admin Bendahara")
                 {
+                    if (previllage == "SA")
+                        Response.Redirect("approvementsa.aspx");
+                    else
                         Response.Redirect("dashboard.aspx");
                 }
             }
@@ -476,7 +485,12 @@ namespace Telkomsat.admin
                             $"<label style=\"font-size:13px; {style3}; display:block\">" + statusapp + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Detail" + "</button>");
                         if(previllage == "User")
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
+                        {
+                            if (status == "" || status == null || status is null)
+                                htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
+                            else if (status == "repair")
+                                htmlTable.Append($"<a href=\"editjustifikasi.aspx?id={IDdata}\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
+                        }
                         else if(previllage == "Admin Bendahara")
                             htmlTable.Append($"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\">" + "Approve" + "</button>");
                         else if(previllage == "GM")
@@ -534,7 +548,7 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama
+                using (SqlCommand cmd = new SqlCommand($@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, k.ARK_GT, v.AV_Perusahaan, AP_Nama
                                 FROM AdminJustifikasi j full join AdminProfile p on j.AJ_PT = p.AP_ID full join AdminReference r1
                                 on r1.AR_ID = p.AP_Jabatan full join AdminReference r2 on r2.AR_ID = p.AP_Subdit full join AdminRKAP k
                                 on k.ARK_ID = j.AJ_AR full join AdminVendor v on v.AV_ID = j.AJ_AV full join Profile e on e.id_profile = p.AP_Nama WHERE AJ_ID = '{videoid}'"))
@@ -555,7 +569,7 @@ namespace Telkomsat.admin
                                 ket = sdr["AJ_Ket"].ToString(),
                                 nilai = sdr["AJ_Nilai"].ToString(),
                                 nk = sdr["AJ_NK"].ToString(),
-                                nrkap = sdr["AJ_AR"].ToString(),
+                                nrkap = sdr["ARK_GT"].ToString(),
                                 pk = sdr["ARK_Aktivitas"].ToString(),
                                 tglpt = sdr["nama"].ToString(),
                                 jabatan = sdr["jabatan"].ToString(),

@@ -28,12 +28,16 @@ namespace Telkomsat.admin
             con.Open();
             sqlCmd1.ExecuteNonQuery();
             con.Close();
-            braharkat = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_harkat"].ToString());
-            brame = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_me"].ToString());
-            rek1harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat1"].ToString());
-            rek2harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat2"].ToString());
-            rek1me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me1"].ToString());
-            rek2me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me2"].ToString());
+            if(ds.Tables[0].Rows.Count > 0)
+            {
+                braharkat = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_harkat"].ToString());
+                brame = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_me"].ToString());
+                rek1harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat1"].ToString());
+                rek2harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat2"].ToString());
+                rek1me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me1"].ToString());
+                rek2me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me2"].ToString());
+
+            }
 
             datainput();
             /*if (ddlKategori1.Text == "Rek. ME Bendahara 1")

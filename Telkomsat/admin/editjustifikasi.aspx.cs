@@ -165,6 +165,8 @@ namespace Telkomsat.admin
                     sqlCon.Close();
                 }
             }
+
+            Response.Redirect("listjustifikasi.aspx");
         }
 
         public class inisial

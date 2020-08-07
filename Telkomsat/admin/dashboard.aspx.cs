@@ -44,26 +44,31 @@ namespace Telkomsat.admin
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            rek1harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat1"].ToString());
-            rek2harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat2"].ToString());
-            brankasharkat = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_harkat"].ToString());
+            if(ds.Tables[0].Rows.Count > 0)
+            {
+                rek1harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat1"].ToString());
+                rek2harkat = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_harkat2"].ToString());
+                brankasharkat = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_harkat"].ToString());
 
-            rek1me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me1"].ToString());
-            rek2me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me2"].ToString());
-            brankasme = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_me"].ToString());
+                rek1me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me1"].ToString());
+                rek2me = Convert.ToInt32(ds.Tables[0].Rows[0]["rek_me2"].ToString());
+                brankasme = Convert.ToInt32(ds.Tables[0].Rows[0]["bra_me"].ToString());
 
-            harkat = rek1harkat + rek2harkat + brankasharkat;
-            me = rek1me + rek2me + brankasme;
+                harkat = rek1harkat + rek2harkat + brankasharkat;
+                me = rek1me + rek2me + brankasme;
 
-            braharkat = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", harkat);
-            brame = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", me);
-            total = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds.Tables[0].Rows[0]["total"].ToString()));
+                braharkat = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", harkat);
+                brame = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", me);
+                total = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds.Tables[0].Rows[0]["total"].ToString()));
 
-            dashharkat.Text = braharkat;
-            dashme.Text = brame;
-            dashtotal.Text = total;
+                dashharkat.Text = braharkat;
+                dashme.Text = brame;
+                dashtotal.Text = total;
 
-            mylabel.Value = rek1harkat + "," + rek2harkat + "," + rek1me + "," + rek2me + "," + brankasharkat + "," + brankasme + ",";
+                mylabel.Value = rek1harkat + "," + rek2harkat + "," + rek1me + "," + rek2me + "," + brankasharkat + "," + brankasme + ",";
+
+            }
+
         }
 
         void modal()
@@ -77,12 +82,16 @@ namespace Telkomsat.admin
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            lblrekharkat1.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_harkat1"].ToString()));
-            lblrekharkat2.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_harkat2"].ToString()));
-            lblbraharkat.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["bra_harkat"].ToString()));
-            lblrekme1.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_me1"].ToString()));
-            lblrekme2.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_me2"].ToString()));
-            lblbrame.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["bra_me"].ToString()));
+            if(dsmodal.Tables[0].Rows.Count > 0)
+            {
+                lblrekharkat1.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_harkat1"].ToString()));
+                lblrekharkat2.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_harkat2"].ToString()));
+                lblbraharkat.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["bra_harkat"].ToString()));
+                lblrekme1.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_me1"].ToString()));
+                lblrekme2.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["rek_me2"].ToString()));
+                lblbrame.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(dsmodal.Tables[0].Rows[0]["bra_me"].ToString()));
+
+            }
         }
 
         void tableticket()
@@ -243,8 +252,6 @@ namespace Telkomsat.admin
             {
                 lblEvent.Visible = false;
             }
-
-
         }
 
     }
