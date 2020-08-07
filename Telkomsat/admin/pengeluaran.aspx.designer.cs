@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin {
-    
-    
-    public partial class pengeluaran {
-        
+namespace Telkomsat.admin
+{
+
+
+    public partial class pengeluaran
+    {
+
         /// <summary>
         /// lblstatus control.
         /// </summary>
@@ -20,25 +22,16 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblstatus;
-        
+
         /// <summary>
-        /// ddlnama control.
+        /// sotugas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlnama;
-        
-        /// <summary>
-        /// ddldivisi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldivisi;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sotugas;
+
         /// <summary>
         /// ddlKategori control.
         /// </summary>
@@ -47,7 +40,34 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKategori;
-        
+
+        /// <summary>
+        /// divvendor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divvendor;
+
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
+        /// sovendor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sovendor;
+
         /// <summary>
         /// nominal control.
         /// </summary>
@@ -56,16 +76,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText nominal;
-        
-        /// <summary>
-        /// txtreferensi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtreferensi;
-        
+
         /// <summary>
         /// keterangan control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText keterangan;
-        
+
         /// <summary>
         /// ddljenis control.
         /// </summary>
@@ -83,25 +94,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddljenis;
-        
-        /// <summary>
-        /// ddldetail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldetail;
-        
-        /// <summary>
-        /// tableku control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tableku;
-        
+
         /// <summary>
         /// FileUpload1 control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// datalist1 control.
         /// </summary>
@@ -128,5 +121,23 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList datalist1;
+
+        /// <summary>
+        /// txtpetugas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpetugas;
+
+        /// <summary>
+        /// txtvendor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtvendor;
     }
 }

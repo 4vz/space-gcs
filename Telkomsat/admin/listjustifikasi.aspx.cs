@@ -15,12 +15,48 @@ namespace Telkomsat.admin
         SqlDataAdapter da;
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
+        StringBuilder htmlTable2 = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string kategori, style3, warna1, warna2, warna3, warna4;
         protected void Page_Load(object sender, EventArgs e)
         {
             
             referens();
+            //riwayat();
+        }
+
+        void riwayat()
+        {
+            string query = $"SELECT * from AdminApprove where AA_AJ = '{txtidaj.Text}'";
+            DataSet ds = Settings.LoadDataSet(query);
+            htmlTable2.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTable2.Append("<thead>");
+            htmlTable2.Append("<tr><th>#</th><th>Tanggal</th><th>Approval</th><th>Status</th><th>Keterangan</th></tr>");
+            htmlTable2.Append("</thead>");
+
+            htmlTable2.Append("<tbody>");
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DateTime dt = Convert.ToDateTime(ds.Tables[0].Rows[0]["AA_Tanggal"]);
+                    string tanggal = dt.ToString("dd MMM yyyy");
+                    string approve = ds.Tables[0].Rows[0]["AA_Aksi"].ToString();
+                    string person = ds.Tables[0].Rows[0]["AA_Person"].ToString();
+                    string keterangan = ds.Tables[0].Rows[0]["AA_Alasan"].ToString();
+                    htmlTable2.Append("<tr>");
+                    htmlTable2.Append("<td>" + (i + 1) + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + person + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + approve + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + keterangan + "</label>" + "</td>");
+                    htmlTable2.Append("</tr>");
+                }
+                htmlTable.Append("</tbody>");
+                htmlTable.Append("</table>");
+                PlaceHolder2.Controls.Add(new Literal { Text = htmlTable2.ToString() });
+            }
         }
 
         void referens()
@@ -97,6 +133,8 @@ namespace Telkomsat.admin
                             $"<span style=\"margin-right:5px; color:{warna1}\"><i class=\"fa fa-circle\"></i></span>" + $"<span style=\"margin-right:5px; color:{warna2}\"><i class=\"fa fa-circle\"></i></span>" +
                             $"<span style=\"margin-right:5px; color:{warna3}\"><i class=\"fa fa-circle\"></i></span>" + 
                             $"<label style=\"font-size:13px; {style3}; display:block\">" + statusapp + "</label>" +"</td>");
+                        /*htmlTable.Append("<td>" + $"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datariwayat\" data-toggle=\"modal\" data-target=\"#modalriwayat\">" + 
+                            "<span><i class=\"fa fa-book\"></i></span>" + "</button>" + "</td>");*/
                         htmlTable.Append("<td>" + $"<a href=\"detailjustifikasi.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>" + "</td>");
                         htmlTable.Append("</tr>");
                     }

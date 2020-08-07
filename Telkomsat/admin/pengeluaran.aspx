@@ -15,21 +15,9 @@
 
         <div class="form-group" id="userupd">
             <label for="exampleInputPassword1">Nama</label>
-            <asp:DropDownList ID="ddlnama" runat="server" class="form-control" Width="100%" onchange="status(this)">
-                        <asp:ListItem>--user--</asp:ListItem>
-                        <asp:ListItem Value="8">Budi</asp:ListItem>
-                        <asp:ListItem Value="2">Rokhman</asp:ListItem>
-                        <asp:ListItem Value="3">Aceng</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-        <div class="form-group" id="divisi" style="display:none">
-            <label for="exampleInputPassword1">Divisi</label>
-            <asp:DropDownList ID="ddldivisi" runat="server" class="form-control" Width="100%" onchange="status(this)">
-                        <asp:ListItem>--user--</asp:ListItem>
-                        <asp:ListItem>Harkat</asp:ListItem>
-                        <asp:ListItem>ME</asp:ListItem>
-                        <asp:ListItem>Lain-lain</asp:ListItem>
-            </asp:DropDownList>
+            <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
+                <option></option>
+            </select>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Kategori</label>
@@ -43,13 +31,23 @@
                 <asp:ListItem>Brankas ME</asp:ListItem>
             </asp:DropDownList>
         </div>
+        <div class="form-group" id="divvendor" runat="server">
+            <label for="exampleInputPassword1">Jenis</label>
+            <asp:DropDownList ID="DropDownList1" runat="server" class="form-control" Width="100%" onchange="status(this)">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>Vendor</asp:ListItem>
+                        <asp:ListItem>Lain-lain</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div class="form-group" id="uservendor" style="display:none">
+            <label for="exampleInputPassword1">Vendor</label>
+            <select id="sovendor" runat="server" class="select2 form-control" style="width: 100%;">
+                <option></option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Nominal</label>
             <input type="text" class="form-control" id="nominal" runat="server" placeholder="Nominal" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Referensi</label>
-            <input type="text" class="form-control" id="txtreferensi" runat="server" placeholder="Referensi"/>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Keterangan</label>
@@ -62,29 +60,6 @@
                         <asp:ListItem>Cash</asp:ListItem>
                         <asp:ListItem>Panjar</asp:ListItem>
             </asp:DropDownList>
-        </div>
-        <div class="form-group" id="detaill" style="display:none">
-            <label for="exampleInputPassword1">Detail</label>
-            <asp:DropDownList ID="ddldetail" runat="server" class="form-control" Width="120px" onchange="detail(this)">
-                        <asp:ListItem>--detail--</asp:ListItem>
-                        <asp:ListItem>Upload</asp:ListItem>
-                        <asp:ListItem>Manual</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-        <div class="form-group" id="tabledetail"  style="display:none">
-            <label for="exampleInputPassword1">Table</label><button id="show" type="button" class="btn-xs btn-primary pull-right"><i class="fa fa-plus"></i></button> 
-            <table class="table table-bordered kita" id="tableku" runat="server">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Keterangan</th>
-                        <th>Nilai</th>
-                        <th>Bukti</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
         </div>
         <div class="form-group" id="file" style="display:none">
             <label for="exampleInputFile">File input</label>
@@ -130,6 +105,8 @@
     </div>
 </section>
 </div>
+    <asp:TextBox ID="txtpetugas" CssClass="hidden" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtvendor" CssClass="hidden" runat="server"></asp:TextBox>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
@@ -139,15 +116,16 @@
             var selectbox = obj;
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
             //alert(userinput);
-            if (statuslogbook == "Cash") {
-                document.getElementById('detaill').style.display = 'block';
-                document.getElementById('user').style.display = 'none';
+            if (statuslogbook == "Vendor") {
+                document.getElementById('uservendor').style.display = 'block';
+                document.getElementById('<%=sovendor.ClientID%>').selectedIndex = -1;
             }
             else {
-                document.getElementById('user').style.display = 'block';
-                document.getElementById('detaill').style.display = 'none';
+                document.getElementById('uservendor').style.display = 'none';
+                document.getElementById('<%=txtvendor.ClientID%>').value = '0';
                 document.getElementById('tabledetail').style.display = 'none';
-                document.getElementById('file').style.display = 'none';
+                
+                $('#<%=sovendor.ClientID %>').empty();
             }
         }
         function detail(obj) {
@@ -165,7 +143,7 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             var i = 0;
             $("#show").click(function () {
                 var myfile = $("#myfile").val();
@@ -173,25 +151,93 @@
                     "<td>" + "<input type='text' class='form-control' name='mydatapanjar' onkeydown='return numbersonly(this, event);' onkeyup='javascript:tandaPemisahTitik(this);' />" + "</td>" +
                     "<td>" + '<input type="file" class="fileku" name="fileinput"/>' + "</td>" + "</tr>";
                 console.log(myfile);
-                $('#' + '<%= tableku.ClientID%>').append(markup);
+                $('#' + '%= tableku.ClientID%>').append(markup);
                 $("#datainput").val('');
                 $("#nilaidata").val('');
             });
+        });*/
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetPIC",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=sotugas.ClientID %>').empty();
+                    $('#<%=sotugas.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.idbangunan);
+                        $('#<%=sotugas.ClientID %>').append($('<option>',
+                            {
+                                value: this.idpic,
+                                text: this.pic,
+                            }));
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetVendor",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    var vendor3 = "CV Yeka Jaya"
+                    $('#<%=sovendor.ClientID %>').empty();
+                    $('#<%=sovendor.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.idbangunan);
+                        $('#<%=sovendor.ClientID %>').append($('<option>',
+                            {
+                                value: this.idvendor,
+                                text: this.vendor,
+                            }));
+
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
         });
 
-        function remove(button) {
+        $('#<%=sovendor.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtvendor.ClientID%>').val(id);
+        });
+
+        $('#<%=sotugas.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtpetugas.ClientID%>').val(id);
+        });
+
+        /*function remove(button) {
             //Determine the reference of the Row using the Button.
             var row = $(button).closest("TR");
             var name = $("TD", row).eq(1).html();
             if (confirm("Do you want to delete: " + name)) {
  
                 //Get the reference of the Table.
-                var table = $('#' + '<%= tableku.ClientID%>')[0];
+                var table = $('#' + '%= tableku.ClientID%>')[0];
  
                 //Delete the Table row using it's Index.
                 table.deleteRow(row[0].rowIndex);
             }
-        };
+        };*/
     </script>
 
 </asp:Content>

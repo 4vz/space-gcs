@@ -110,6 +110,30 @@
           <div id="caption"></div>
     </div>
 
+    <div class="modal fade" id="modalriwayat">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Riwayat</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                      </div>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" aria-label="Close">Close</button>
+                  </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+        </div>
+
     <div class="row">
     <section class="col-lg-12 connectedSortable">
     <div class="box box-primary">
@@ -213,6 +237,7 @@
 
                         </div>
                         <div class="box-footer">
+                            <button type="button" id="btnriwayat" style="margin-right:10px" class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalriwayat">History</button>
                             <asp:Button ID="Button1" CssClass="btn btn-warning btn-sm" runat="server" Text="Edit" OnClick="Edit_Click" />
                         </div>
 

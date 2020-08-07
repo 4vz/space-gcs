@@ -22,14 +22,14 @@ namespace Telkomsat.admin
         string evidence, idjustifikasi;
 
         
-        string querypanjar, tanggal = "", totalpanjar, input = "", pemasukan, kategori, keterangan, fileu, nominal, id;
+        string querypanjar, tanggal = "", totalpanjar, input = "", vendor, kategori, keterangan, fileu, nominal, id;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Request.QueryString["id"];
             if (id != null)
             {
-                querypanjar = $@"SELECT * FROM administrator where id_admin = {id}";
+                querypanjar = $@"SELECT v.AV_Perusahaan, r.* FROM administrator r full join AdminVendor v on v.AV_ID=r.id_av where id_admin = {id}";
 
                 SqlCommand cmd = new SqlCommand(querypanjar, sqlCon);
                 da = new SqlDataAdapter(cmd);
@@ -38,8 +38,11 @@ namespace Telkomsat.admin
                 cmd.ExecuteNonQuery();
                 sqlCon.Close();
                 
+                vendor = ds.Tables[0].Rows[0]["AV_Perusahaan"].ToString();
                 input = ds.Tables[0].Rows[0]["input"].ToString();
                 kategori = ds.Tables[0].Rows[0]["kategori"].ToString();
+
+                lbldetail.Text = ds.Tables[0].Rows[0]["keterangan"].ToString();
 
                 lblNominal.Text = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "{0:N0}", Convert.ToInt32(ds.Tables[0].Rows[0]["input"].ToString()));
                 if (kategori == "pengeluaran")
@@ -55,12 +58,17 @@ namespace Telkomsat.admin
                     lblKategori.Text = "Pemindahan";
                 }
 
+                if(ds.Tables[0].Rows[0]["id_av"].ToString() == "0")
+                {
+                    lblvendor.Text = "-";
+                }
+
                 idjustifikasi = ds.Tables[0].Rows[0]["id_aj"].ToString();
 
 
                 lblKeterangan.Text = ds.Tables[0].Rows[0]["keterangan"].ToString();
                 evidence = ds.Tables[0].Rows[0]["evidence"].ToString();
-                lbupload.Text = evidence;
+                myimg.Src = ds.Tables[0].Rows[0]["evidencepath"].ToString();
 
                 justifikasi();
 
@@ -85,7 +93,7 @@ namespace Telkomsat.admin
             {
                 if (!IsPostBack)
                 {
-                    lbldetail.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
+                    lbldetailjus.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
                     lblja.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                     lbljupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
                     lblket.Text = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();

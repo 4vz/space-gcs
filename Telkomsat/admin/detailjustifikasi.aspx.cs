@@ -21,6 +21,7 @@ namespace Telkomsat.admin
         string tanggal, query, iddata, query1, style3;
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
+        StringBuilder htmlTable2 = new StringBuilder();
         double grandtotal;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
@@ -63,6 +64,7 @@ namespace Telkomsat.admin
 
                 referens();
             }
+            riwayat();
             mytable();
 
             sqlCon.Open();
@@ -84,6 +86,40 @@ namespace Telkomsat.admin
                 DataList3a.DataBind();
             }
         }
+
+        void riwayat()
+        {
+            string query = $"SELECT * from AdminApprove where AA_AJ = '{iddata}'";
+            DataSet ds = Settings.LoadDataSet(query);
+            htmlTable2.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTable2.Append("<thead>");
+            htmlTable2.Append("<tr><th>Tanggal</th><th>Approval</th><th>Status</th><th>Keterangan</th></tr>");
+            htmlTable2.Append("</thead>");
+
+            htmlTable2.Append("<tbody>");
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DateTime dt = Convert.ToDateTime(ds.Tables[0].Rows[0]["AA_Tanggal"]);
+                    string tanggal = dt.ToString("dd MMM yyyy");
+                    string approve = ds.Tables[0].Rows[0]["AA_Aksi"].ToString();
+                    string person = ds.Tables[0].Rows[0]["AA_Person"].ToString();
+                    string keterangan = ds.Tables[0].Rows[0]["AA_Alasan"].ToString();
+                    htmlTable2.Append("<tr>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + person + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + approve + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + keterangan + "</label>" + "</td>");
+                    htmlTable2.Append("</tr>");
+                }
+                htmlTable2.Append("</tbody>");
+                htmlTable2.Append("</table>");
+                PlaceHolder2.Controls.Add(new Literal { Text = htmlTable2.ToString() });
+            }
+        }
+
 
         void mytable()
         {

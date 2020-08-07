@@ -38,6 +38,11 @@ namespace Telkomsat.admin
                 if(jenis == "diajukan")
                 {
                     queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'diajukan' WHERE AJ_ID = '{idapp}'";
+                    string tgl = DateTime.Now.ToString("yyyy/MM/dd");
+                    string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', 'diajukan', '{idapp}', 'User')";
+
+                    SqlCommand cmd = Settings.ExNonQuery(queryapprove);
                 }
                 else if (jenis == "manager")
                 {
@@ -64,6 +69,11 @@ namespace Telkomsat.admin
                 if (jenissa == "ajukan")
                 {
                     queryapp2 = $"UPDATE AdminJustifikasi SET AJ_Status = 'diajukan' WHERE AJ_ID = '{idapp}'";
+                    string tgl = DateTime.Now.ToString("yyyy/MM/dd");
+                    string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', 'diajukan', '{idapp}', 'User')";
+
+                    SqlCommand cmd = Settings.ExNonQuery(queryapprove);
                 }
                 else if (jenissa == "gm")
                 {

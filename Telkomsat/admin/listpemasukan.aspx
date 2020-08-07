@@ -91,9 +91,9 @@
         <section class="col-lg-12 connectedSortable">
             <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">RKAP</h3>
+                <i class="fa fa-money"></i> Pemasukan
                         <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
-            <a href="rkap.aspx" class="btn btn-primary pull-right">Tambah</a>
+            <a href="pemasukan.aspx" class="btn btn-primary btn-sm pull-right">Tambah</a>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

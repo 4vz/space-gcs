@@ -76,8 +76,8 @@ namespace Telkomsat.admin
             string tgl;
             tgl = DateTime.Now.ToString("yyyy/MM/dd");
             sqlCon.Open();
-            string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ)
-                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}')";
+            string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}', 'GM')";
             //Response.Write(queryfile); ;
             SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
@@ -113,8 +113,8 @@ namespace Telkomsat.admin
             string tgl;
             tgl = DateTime.Now.ToString("yyyy/MM/dd");
             sqlCon.Open();
-            string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ)
-                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}')";
+            string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}', 'GM')";
             //Response.Write(queryfile); ;
             SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
@@ -124,7 +124,7 @@ namespace Telkomsat.admin
             if(ddlaksi.Text == "Approve")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'admin' WHERE AJ_ID='{txtidgm.Text}'";
+                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'gm' WHERE AJ_ID='{txtidgm.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
@@ -201,7 +201,7 @@ namespace Telkomsat.admin
                 string queryven, queryid, sekarang;
                 double totalvendor;
 
-                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom) and AVN_AV='{txtvendor.Text}'";
+                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom where AVN_AV='{txtvendor.Text}') and AVN_AV='{txtvendor.Text}'";
 
                 sekarang = DateTime.Now.ToString("yyyy/MM/dd");
 
@@ -227,8 +227,8 @@ namespace Telkomsat.admin
                 sqlCmdven.ExecuteNonQuery();
                 sqlCon.Close();
 
-                string query8 = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{txttotal.Text}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
+                string query8 = $@"INSERT INTO administrator (id_av, keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
+                                VALUES ('{txtvendor.Text}', '{txtketerangan.Text}', '{txttanggal.Text}', '{txttotal.Text}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
 
                 SqlCommand cmd8 = Settings.ExNonQuery(query8);
 
@@ -301,6 +301,12 @@ namespace Telkomsat.admin
                 Response.Redirect("~/error.aspx");
             }
 
+            string tgl = DateTime.Now.ToString("yyyy/MM/dd");
+            string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}', 'Admin')";
+
+            SqlCommand cmd = Settings.ExNonQuery(queryapprove);
+
             Response.Redirect("approvement.aspx?jenis=admin");
         }
 
@@ -335,8 +341,8 @@ namespace Telkomsat.admin
             sqlCmdven.ExecuteNonQuery();
             sqlCon.Close();
 
-            string query8 = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
-                                VALUES ('{txtketerangan.Text}', '{txttanggal.Text}', '{txtnominalven1.Value.Replace(".", "")}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
+            string query8 = $@"INSERT INTO administrator (id_av, keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, id_aj)
+                                VALUES ('{txtvendor.Text}', '{txtketerangan.Text}', '{txttanggal.Text}', '{txtnominalven1.Value.Replace(".", "")}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Eksternal', 'pengeluaran', '{txtidjustifikasi.Text}')";
 
             SqlCommand cmd8 = Settings.ExNonQuery(query8);
 

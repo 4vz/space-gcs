@@ -10,7 +10,8 @@
     <div class="box box-primary">
     <!-- Tabs within a box -->
     <div class="box-header">
-        <i class="fa fa-money"></i> Pemasukan
+        <i class="fa fa-money"></i> Pengeluaran
+        <a href="pemasukan.aspx" class="btn btn-primary btn-sm pull-right">Tambah</a>
     </div>
     <div class="box-body">
         <!-- Morris chart - Sales -->

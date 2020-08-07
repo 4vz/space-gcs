@@ -153,12 +153,12 @@
           </a>
         </li>
         <li class="treeview" id="lipemasukan" runat="server">
-          <a href="../admin/pemasukan.aspx">
+          <a href="../admin/listpemasukan.aspx">
             <i class="fa fa-arrow-right"></i> <span>Pemasukan</span>
           </a>
         </li>
         <li class="treeview" id="lipengeluaran" runat="server">
-          <a href="../admin/pengeluaran.aspx">
+          <a href="../admin/listpengeluaran.aspx">
             <i class="fa fa-arrow-left"></i> <span>Pengeluaran</span>
           </a>
         </li>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin {
-    
-    
-    public partial class detail {
-        
+namespace Telkomsat.admin
+{
+
+
+    public partial class detail
+    {
+
         /// <summary>
         /// lblstatus control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblstatus;
-        
+
         /// <summary>
         /// Label2 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-        
+
         /// <summary>
         /// lblKeterangan control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblKeterangan;
-        
+
         /// <summary>
         /// Label6 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label6;
-        
+
         /// <summary>
         /// lblNominal control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNominal;
-        
+
         /// <summary>
         /// Label3 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-        
+
         /// <summary>
         /// lblKategori control.
         /// </summary>
@@ -74,7 +76,25 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblKategori;
-        
+
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// lblvendor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblvendor;
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -83,7 +103,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// lbldetail control.
         /// </summary>
@@ -92,7 +112,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbldetail;
-        
+
         /// <summary>
         /// Label5 control.
         /// </summary>
@@ -101,16 +121,16 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label5;
-        
+
         /// <summary>
-        /// lbupload control.
+        /// myimg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbupload;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlImage myimg;
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// PlaceHolderDetail control.
         /// </summary>
@@ -128,7 +148,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderDetail;
-        
+
         /// <summary>
         /// tbljustifikasi control.
         /// </summary>
@@ -137,7 +157,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable tbljustifikasi;
-        
+
         /// <summary>
         /// lbljupd control.
         /// </summary>
@@ -146,7 +166,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbljupd;
-        
+
         /// <summary>
         /// lblnojus control.
         /// </summary>
@@ -155,7 +175,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnojus;
-        
+
         /// <summary>
         /// lblsubdit control.
         /// </summary>
@@ -164,7 +184,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblsubdit;
-        
+
         /// <summary>
         /// lbljabatan control.
         /// </summary>
@@ -173,7 +193,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbljabatan;
-        
+
         /// <summary>
         /// lblnaa control.
         /// </summary>
@@ -182,7 +202,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnaa;
-        
+
         /// <summary>
         /// lbltgl control.
         /// </summary>
@@ -191,7 +211,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltgl;
-        
+
         /// <summary>
         /// lbltglds control.
         /// </summary>
@@ -200,7 +220,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltglds;
-        
+
         /// <summary>
         /// lbltglpt control.
         /// </summary>
@@ -209,7 +229,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltglpt;
-        
+
         /// <summary>
         /// lblja control.
         /// </summary>
@@ -218,7 +238,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblja;
-        
+
         /// <summary>
         /// lblpk control.
         /// </summary>
@@ -227,7 +247,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblpk;
-        
+
         /// <summary>
         /// lblnrkap control.
         /// </summary>
@@ -236,7 +256,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnrkap;
-        
+
         /// <summary>
         /// lblnk control.
         /// </summary>
@@ -245,7 +265,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnk;
-        
+
         /// <summary>
         /// lblnilai control.
         /// </summary>
@@ -254,7 +274,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnilai;
-        
+
         /// <summary>
         /// lblket control.
         /// </summary>
@@ -263,14 +283,14 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblket;
-        
+
         /// <summary>
-        /// Label7 control.
+        /// lbldetailjus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label lbldetailjus;
     }
 }
