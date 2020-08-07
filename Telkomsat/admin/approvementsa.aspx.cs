@@ -407,7 +407,7 @@ namespace Telkomsat.admin
                         if(status == "" || status == null || status is null)
                             htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenissa=ajukan')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
                         else if (status == "repair")
-                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenissa=ajukan')\" class=\"btn btn-sm btn-primary\" id=\"btndeletea\">" + "Edit" + "</a>");
+                            htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenissa=repair')\" class=\"btn btn-sm btn-primary\" id=\"btndeletea\">" + "Edit" + "</a>");
                         else if (status == "diajukan")
                             htmlTable.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-warning datagm\" data-toggle=\"modal\" data-target=\"#modalgm\">" + "Approve GM" + "</button>");
                         else if (status == "gm")
@@ -479,7 +479,7 @@ namespace Telkomsat.admin
                                 ket = sdr["AJ_Ket"].ToString(),
                                 nilai = sdr["AJ_Nilai"].ToString(),
                                 nk = sdr["AJ_NK"].ToString(),
-                                nrkap = sdr["AJ_AR"].ToString(),
+                                nrkap = sdr["ARK_GT"].ToString(),
                                 pk = sdr["ARK_Aktivitas"].ToString(),
                                 tglpt = sdr["nama"].ToString(),
                                 jabatan = sdr["jabatan"].ToString(),

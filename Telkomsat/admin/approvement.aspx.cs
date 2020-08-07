@@ -486,10 +486,14 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Detail" + "</button>");
                         if(previllage == "User")
                         {
-                            if (status == "" || status == null || status is null)
-                                htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
-                            else if (status == "repair")
-                                htmlTable.Append($"<a href=\"editjustifikasi.aspx?id={IDdata}\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
+                            if (Session["iduser"].ToString() == ds.Tables[0].Rows[i]["AJ_Profile"].ToString();
+                            {
+                                if (status == "" || status == null || status is null)
+                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
+                                else if (status == "repair")
+                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis=repair')\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
+                            }
+                            
                         }
                         else if(previllage == "Admin Bendahara")
                             htmlTable.Append($"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\">" + "Approve" + "</button>");

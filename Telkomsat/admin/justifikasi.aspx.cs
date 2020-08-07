@@ -36,80 +36,93 @@ namespace Telkomsat.admin
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
-            string thequery, querynomor, bulantahun, sekarang;
+            double dbrkap, dbjustifikasi;
 
-            if(rdjupd.Text == "Panjar")
+            dbrkap = Convert.ToDouble(txtnilairkap.Value.Replace(".", ""));
+            dbjustifikasi = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
+
+            if(dbjustifikasi <= dbrkap)
             {
-                jenis = "P";
-            }
-            else if(rdjupd.Text == "Cash")
-            {
-                jenis = "C";
-            }
+                string thequery, querynomor, bulantahun, sekarang;
 
-            sekarang = DateTime.Now.ToString("yyyy/MM/dd");
+                if (rdjupd.Text == "Panjar")
+                {
+                    jenis = "P";
+                }
+                else if (rdjupd.Text == "Cash")
+                {
+                    jenis = "C";
+                }
 
-            bulantahun = DateTime.Now.ToString("MMyyyy");
-            thequery = $"select * from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}' and AJN_Nomor = (select max(AJN_Nomor) from AdminNomor)";
-            DataSet ds3 = Settings.LoadDataSet(thequery);
-            if (ds3.Tables[0].Rows.Count == 0)
-                nomor = 1;
-            else
-                nomor = Convert.ToDouble(ds3.Tables[0].Rows[0]["AJN_Nomor"]) + 1;
+                sekarang = DateTime.Now.ToString("yyyy/MM/dd");
 
-            querynomor = $@"INSERT into AdminNomor (AJN_Tipe, AJN_Nomor, AJN_Gabungan)
+                bulantahun = DateTime.Now.ToString("MMyyyy");
+                thequery = $"select * from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}' and AJN_Nomor = (select max(AJN_Nomor) from AdminNomor where AJN_Tipe = 'UPD-C-082020')";
+                DataSet ds3 = Settings.LoadDataSet(thequery);
+                if (ds3.Tables[0].Rows.Count == 0)
+                    nomor = 1;
+                else
+                    nomor = Convert.ToDouble(ds3.Tables[0].Rows[0]["AJN_Nomor"]) + 1;
+
+                querynomor = $@"INSERT into AdminNomor (AJN_Tipe, AJN_Nomor, AJN_Gabungan)
                             values ('UPD-{jenis}-{bulantahun}', '{nomor}', 'UPD-{jenis}-{bulantahun}-{nomor}'); Select Scope_Identity();";
 
-            sqlCon.Open();
-            SqlCommand cmd3 = new SqlCommand(querynomor, sqlCon);
-            int p = Convert.ToInt32(cmd3.ExecuteScalar());
-            sqlCon.Close();
+                sqlCon.Open();
+                SqlCommand cmd3 = new SqlCommand(querynomor, sqlCon);
+                int p = Convert.ToInt32(cmd3.ExecuteScalar());
+                sqlCon.Close();
 
-            myket = new string[Request.Files.Count];
-            tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"insert into AdminJustifikasi(AJ_AR, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Nilai) values
-                      ('{txtproker.Text}',  '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{(txtnilai.Value).Replace(".", "")}'); Select Scope_Identity();";
-            sqlCon.Open();
-            SqlCommand cmd = new SqlCommand(query, sqlCon);
-            int i = Convert.ToInt32(cmd.ExecuteScalar());
-            sqlCon.Close();
+                myket = new string[Request.Files.Count];
+                tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+                query = $@"insert into AdminJustifikasi(AJ_AR, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Profile, AJ_Nilai) values
+                      ('{txtproker.Text}',  '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}' '{(txtnilai.Value).Replace(".", "")}'); Select Scope_Identity();";
+                sqlCon.Open();
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
+                int i = Convert.ToInt32(cmd.ExecuteScalar());
+                sqlCon.Close();
 
-            string caption = Request.Form["caption"];
-            if (caption != null)
-            {
-                string[] lines = Regex.Split(caption, ",");
-
-                foreach (string line in lines)
+                string caption = Request.Form["caption"];
+                if (caption != null)
                 {
-                    myket[a] = line;
-                    a++;
+                    string[] lines = Regex.Split(caption, ",");
+
+                    foreach (string line in lines)
+                    {
+                        myket[a] = line;
+                        a++;
+                    }
                 }
-            }
-            HttpFileCollection filecolln = Request.Files;
-            for (int j = 0; j < filecolln.Count; j++)
-            {
-                HttpPostedFile file = filecolln[j];
-                if (file.ContentLength > 0)
+                HttpFileCollection filecolln = Request.Files;
+                for (int j = 0; j < filecolln.Count; j++)
                 {
-                    string filename = Path.GetFileName(file.FileName);
-                    string filepath = "~/fileupload/" + filename;
-                    string extension = Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("~/fileupload/") + Path.GetFileName(file.FileName));
-                    string s = Convert.ToString(i);
-                    if (myket[j] == "")
-                        myket[j] = filename;
-                    sqlCon.Open();
-                    string queryfile = $@"INSERT INTO AdminEvidence (AE_AJ, AE_File, AE_NamaFile, AE_Ekstension, AE_Caption)
+                    HttpPostedFile file = filecolln[j];
+                    if (file.ContentLength > 0)
+                    {
+                        string filename = Path.GetFileName(file.FileName);
+                        string filepath = "~/fileupload/" + filename;
+                        string extension = Path.GetExtension(file.FileName);
+                        file.SaveAs(Server.MapPath("~/fileupload/") + Path.GetFileName(file.FileName));
+                        string s = Convert.ToString(i);
+                        if (myket[j] == "")
+                            myket[j] = filename;
+                        sqlCon.Open();
+                        string queryfile = $@"INSERT INTO AdminEvidence (AE_AJ, AE_File, AE_NamaFile, AE_Ekstension, AE_Caption)
                                         VALUES ('{s}', '{filepath}', '{filename}', '{extension}', '{myket[j]}')";
-                    //Response.Write(queryfile); ;
-                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+                        //Response.Write(queryfile); ;
+                        SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
-                    sqlCmd1.ExecuteNonQuery();
-                    sqlCon.Close();
+                        sqlCmd1.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
                 }
-            }
 
-            Response.Redirect("approvement.aspx?jenis=diajukan");
+                Response.Redirect("approvement.aspx?jenis=diajukan");
+            }
+            else
+            {
+                divfail.Visible = true;
+                lblcompare.Visible = true;
+            }
         }
 
         public class inisial

@@ -25,14 +25,14 @@ namespace Telkomsat.admin
 
         void referens()
         {
-            string query, IDdata, referensi, gt;
+            string query, IDdata, referensi, gt, gts;
             query = $"SELECT * from AdminRKAP order by ARK_ID desc";
 
             DataSet ds = Settings.LoadDataSet(query);
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>#</th><th>Aktivitas</th><th>Grand Total</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>#</th><th>Aktivitas</th><th>Total Awal</th><th>Sisa RKAP</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -46,10 +46,12 @@ namespace Telkomsat.admin
                         IDdata = ds.Tables[0].Rows[i]["ARK_ID"].ToString();
                         referensi = ds.Tables[0].Rows[i]["ARK_Aktivitas"].ToString();
                         gt = Convert.ToInt32(ds.Tables[0].Rows[i]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        gts = Convert.ToInt32(ds.Tables[0].Rows[i]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gts + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>");
                         htmlTable.Append($"<a href=\"editrkap.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</button>");
                         htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");

@@ -44,6 +44,15 @@ namespace Telkomsat.admin
 
                     SqlCommand cmd = Settings.ExNonQuery(queryapprove);
                 }
+                else if (jenis == "repair")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'repair' WHERE AJ_ID = '{idapp}'";
+                    string tgl = DateTime.Now.ToString("yyyy/MM/dd");
+                    string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', 'repair', '{idapp}', 'User')";
+
+                    SqlCommand cmd = Settings.ExNonQuery(queryapprove);
+                }
                 else if (jenis == "manager")
                 {
                     queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'manager' WHERE AJ_ID = '{idapp}'";
@@ -72,6 +81,15 @@ namespace Telkomsat.admin
                     string tgl = DateTime.Now.ToString("yyyy/MM/dd");
                     string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_AJ, AA_Person)
                                         VALUES ('{tgl}', 'diajukan', '{idapp}', 'User')";
+
+                    SqlCommand cmd = Settings.ExNonQuery(queryapprove);
+                }
+                else if (jenis == "repair")
+                {
+                    queryapp = $"UPDATE AdminJustifikasi SET AJ_Status = 'repair' WHERE AJ_ID = '{idapp}'";
+                    string tgl = DateTime.Now.ToString("yyyy/MM/dd");
+                    string queryapprove = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_AJ, AA_Person)
+                                        VALUES ('{tgl}', 'repair', '{idapp}', 'User')";
 
                     SqlCommand cmd = Settings.ExNonQuery(queryapprove);
                 }

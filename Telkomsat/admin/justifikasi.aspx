@@ -28,6 +28,11 @@
     <!-- form start -->
         <div class="box-body">
             <div class="row">
+                <div class="alert alert-danger alert-dismissable" id="divfail" runat="server" visible="false">
+                    <h5><span class="fa fa-ban"> Nilai Justifikasi tidak boleh lebih dari nilai RKAP</span></h5>
+                </div>
+            </div>
+            <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Jenis UPD</label>
@@ -43,6 +48,7 @@
                  <div class="col-md-3">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Jenis Anggaran</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soja" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="soja" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>
@@ -76,6 +82,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Program Kerja</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soproker" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>
@@ -103,7 +110,8 @@
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nilai</label>
+                        <label for="exampleInputPassword1">Nilai</label><asp:Label ID="lblcompare" runat="server" Text=" Tidak boleh lebih dari nilai RKAP" ForeColor="Red"></asp:Label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnilai"></asp:RequiredFieldValidator>
                         <input type="text" class="form-control" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
                     </div>
                  </div>
@@ -282,7 +290,7 @@
                 success: function (response) {
                     var customers = response.d;
                     $(customers).each(function () {
-                        $('#<%=txtnilairkap.ClientID%>').val("Rp. " + format(this.gt));
+                        $('#<%=txtnilairkap.ClientID%>').val(format(this.gt));
                     });
                 },
                 failure: function (response) {
