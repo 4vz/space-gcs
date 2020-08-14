@@ -17,11 +17,44 @@ namespace Telkomsat.admin
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string kategori, style3, warna1, warna2, warna3, warna4;
+        string kategori, style3, warna1, warna2, warna3, warna4, jenis, query;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            referens();
+            jenis = Request.QueryString["jenis"];
+
+            if(jenis != null)
+            {
+                if(jenis == "diajukan")
+                {
+                    query = $"SELECT * from AdminJustifikasi where AJ_Status = 'diajukan' order by AJ_ID desc";
+                }
+                else if (jenis == "gm")
+                {
+                    query = $"SELECT * from AdminJustifikasi where AJ_Status = 'gm' order by AJ_ID desc";
+                }
+                else if (jenis == "admin")
+                {
+                    query = $"SELECT * from AdminJustifikasi where AJ_Status = 'admin' order by AJ_ID desc";
+                }
+            }
+            else
+            {
+                query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
+            }
+            string previllage;
+            string user = user = Session["iduser"].ToString();
+            string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds = Settings.LoadDataSet(query2);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                previllage = ds.Tables[0].Rows[0]["AP_Previllage"].ToString();
+                if(previllage == "User" || previllage == "User Organik" || previllage == "SA")
+                {
+                    btntambah.Visible = true;
+                }
+            }
+                referens();
             //riwayat();
         }
 
@@ -61,8 +94,7 @@ namespace Telkomsat.admin
 
         void referens()
         {
-            string query, IDdata, jupd, ja, kegiatan, status, statusapp;
-            query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
+            string IDdata, jupd, ja, kegiatan, status, statusapp;
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 

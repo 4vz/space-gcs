@@ -148,7 +148,7 @@
                                   <asp:DropDownList ID="ddlaksi" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                    <asp:ListItem>Repair</asp:ListItem>
+                                    <asp:ListItem>Revition</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -163,7 +163,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" id="Button1" class="btn btn-success pull-left" runat="server" onserverclick="Approve_GM">Save</button>
+                <button type="button" id="btngm" class="btn btn-success pull-left" runat="server" onserverclick="Approve_GM">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -186,6 +186,7 @@
                                   <asp:DropDownList ID="ddlaksiup" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
+                                      <asp:ListItem>Postpon</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                       </div> 
@@ -199,7 +200,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" id="Button2" class="btn btn-info pull-left" runat="server" onserverclick="Approve_GMUP">Save</button>
+                <button type="button" id="btngmup" class="btn btn-info pull-left" runat="server" onserverclick="Approve_GMUP">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -283,7 +284,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" id="btnmutasi" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Admin">Save</button>
+                <button type="button" id="btnadmin" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Admin">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -390,6 +391,13 @@
            $('.dataTables_length').addClass('bs-select');
         });
 
+        function DisableButton() {
+            document.getElementById("<%=btnadmin.ClientID %>").disabled = true;
+            document.getElementById("<%=btngm.ClientID %>").disabled = true;
+            document.getElementById("<%=btngmup.ClientID %>").disabled = true;
+        }
+        window.onbeforeunload = DisableButton;
+
         $(document).on("click", "#btnadmin", function () {
             var id = $(this).data('id');
             console.log(id);
@@ -402,7 +410,7 @@
                 title: 'Apakah Anda Yakin ?',
                 text: 'Data tidak bisa diubah lagi',
                 buttons: true,
-                icon: "success",
+                icon: "info",
 
             }).then((willDelete)=>{
                 if (willDelete) {
@@ -478,7 +486,7 @@
                         $('#<%=txttotal.ClientID %>').val(this.total);
                         $('#<%=txtketerangan.ClientID %>').val(this.keterangan);
                         $('#<%=txtgt.ClientID %>').val(this.gt);
-                        $('#<%=lbltotal.ClientID %>').html(this.gt);
+                        $('#<%=lbltotal.ClientID %>').html(this.total);
                         $('#<%=txtidrkap.ClientID %>').val(this.idrkap);
                         $('#<%=txtidjustifikasi.ClientID %>').val(this.idjustifikasi);
                     });

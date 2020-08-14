@@ -427,7 +427,7 @@
                     $(data).each(function () {
                         $('#<%=txttotal.ClientID %>').val(this.total);
                         $('#<%=txtketerangan.ClientID %>').val(this.keterangan);
-                        $('#<%=txtgt.ClientID %>').val(this.gt);
+                        $('#<%=txtgt.ClientID %>').val(this.total);
                         $('#<%=txtidrkap.ClientID %>').val(this.idrkap);
                         $('#<%=txtidjustifikasi.ClientID %>').val(this.idjustifikasi);
                     });

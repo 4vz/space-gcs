@@ -93,7 +93,7 @@ namespace Telkomsat.admin
             DataSet ds = Settings.LoadDataSet(query);
             htmlTable2.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable2.Append("<thead>");
-            htmlTable2.Append("<tr><th>Tanggal</th><th>Approval</th><th>Status</th><th>Keterangan</th></tr>");
+            htmlTable2.Append("<tr><td>Tanggal</td><td>Approval</td><td>Status</td><td>Keterangan</td></tr>");
             htmlTable2.Append("</thead>");
 
             htmlTable2.Append("<tbody>");
@@ -104,9 +104,9 @@ namespace Telkomsat.admin
                 {
                     DateTime dt = Convert.ToDateTime(ds.Tables[0].Rows[0]["AA_Tanggal"]);
                     string tanggal = dt.ToString("dd MMM yyyy");
-                    string approve = ds.Tables[0].Rows[0]["AA_Aksi"].ToString();
-                    string person = ds.Tables[0].Rows[0]["AA_Person"].ToString();
-                    string keterangan = ds.Tables[0].Rows[0]["AA_Alasan"].ToString();
+                    string approve = ds.Tables[0].Rows[i]["AA_Aksi"].ToString();
+                    string person = ds.Tables[0].Rows[i]["AA_Person"].ToString();
+                    string keterangan = ds.Tables[0].Rows[i]["AA_Alasan"].ToString();
                     htmlTable2.Append("<tr>");
                     htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
                     htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + person + "</label>" + "</td>");

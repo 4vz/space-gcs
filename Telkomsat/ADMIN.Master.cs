@@ -59,11 +59,10 @@ namespace Telkomsat
 
             string thisURL = Request.Url.Segments[Request.Url.Segments.Length - 1];
             if (thisURL.ToLower() == "dashboard.aspx") lidashboard.Attributes.Add("class", "active");
-            if (thisURL.ToLower() == "pemasukan.aspx") lipemasukan.Attributes.Add("class", "active");
-            if (thisURL.ToLower() == "pengeluaran.aspx") lipengeluaran.Attributes.Add("class", "active");
+            if (thisURL.ToLower().IsIn(new string[] { "listpemasukan.aspx", "pemasukan.aspx" })) lipemasukan.Attributes.Add("class", "active");
+            if (thisURL.ToLower().IsIn(new string[] { "listpengeluaran.aspx", "pengeluaran.aspx" })) lipengeluaran.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pemindahan.aspx") lipemindahan.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pengembalian.aspx") lipengembalian.Attributes.Add("class", "active");
-            if (thisURL.ToLower() == "listjustifikasi.aspx" || thisURL.ToLower() == "justifikasi.aspx" || thisURL.ToLower() == "detailjustifikasi.aspx") lijustifikasi.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvementsa.aspx") lisa.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvement.aspx")
             {
@@ -88,6 +87,69 @@ namespace Telkomsat
                 if(previllage == "SA")
                 {
                     lisa.Visible = true;
+                }
+
+                /*switch (previllage)
+                {
+                    case "User":
+                        {
+                            if (thisURL.ToLower().IsIn(new string[]{ "dashboard.aspx", "datapemasukan.aspx", "data.aspx", "pemasukan.aspx", "pengeluaran.aspx", "listpemasukan.aspx",
+                                "listpengeluaran.aspx", "tambahrkap.aspx", "pengembalian.aspx", "pemindahan.aspx"}))
+                            {
+                                Response.Redirect("listjustifikasi.aspx");
+                            }
+
+                            lidashboard.Visible = false;
+                            lidata.Visible = false;
+                        }
+                        break;
+                    case "User Organik":
+                        {
+                            if (thisURL.ToLower().IsIn(new string[] { "justifikasi.aspx"}))
+                            {
+                                Response.Redirect("dashboard.aspx");
+                            }
+
+                            lidashboard.Visible = false;
+                            lidata.Visible = false;
+                        }
+                        break;
+                }*/
+
+                if (previllage == "User")
+                {
+                    if (thisURL.ToLower().IsIn(new string[]{ "dashboard.aspx", "datapemasukan.aspx", "data.aspx", "pemasukan.aspx", "pengeluaran.aspx", "listpemasukan.aspx",
+                    "listpengeluaran.aspx", "tambahrkap.aspx", "pengembalian.aspx", "pemindahan.aspx"}))
+                    {
+                        Response.Redirect("listjustifikasi.aspx");
+                    }
+                    lipemasukan.Visible = false;
+                    lipengeluaran.Visible = false;
+                    lipemindahan.Visible = false;
+                    lipengembalian.Visible = false;
+                    lidashboard.Visible = false;
+                    lidata.Visible = false;
+                }
+                else if(previllage.ToLower().IsIn(new string[] { "User Organik", "SA", "User" }))
+                {
+                    
+                }
+                else
+                {
+                    if (thisURL.ToLower() == "justifikasi.aspx")
+                    {
+                        Response.Redirect("dashboard.aspx");
+                    }
+                }
+
+                if (previllage != "Admin Bendahara")
+                {
+                    if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pengeluaran.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
+                    {
+                        Response.Redirect("dashboard.aspx");
+                    }
+                    lipemindahan.Visible = false;
+                    lipengembalian.Visible = false;
                 }
             }
             //lblProfile.Text = Session["nama1"].ToString();

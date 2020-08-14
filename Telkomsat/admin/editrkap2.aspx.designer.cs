@@ -11,17 +11,152 @@ namespace Telkomsat.admin
 {
 
 
-    public partial class approvement
+    public partial class editrkap2
     {
 
         /// <summary>
-        /// Label1 control.
+        /// txtunit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox txtunit;
+
+        /// <summary>
+        /// txtsubunit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsubunit;
+
+        /// <summary>
+        /// txtnamaakun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtnamaakun;
+
+        /// <summary>
+        /// txtsatuan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsatuan;
+
+        /// <summary>
+        /// txtcount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcount;
+
+        /// <summary>
+        /// UserPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel UserPanel;
+
+        /// <summary>
+        /// lblstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblstatus;
+
+        /// <summary>
+        /// txtaktivitas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtaktivitas;
+
+        /// <summary>
+        /// so2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect so2;
+
+        /// <summary>
+        /// sosub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sosub;
+
+        /// <summary>
+        /// txtcc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtcc;
+
+        /// <summary>
+        /// txtnoakun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnoakun;
+
+        /// <summary>
+        /// sonamaakun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sonamaakun;
+
+        /// <summary>
+        /// sosatuan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sosatuan;
+
+        /// <summary>
+        /// txtnominal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnominal;
+
+        /// <summary>
+        /// txtvolumetahun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtvolumetahun;
 
         /// <summary>
         /// PlaceHolder1 control.
@@ -33,354 +168,237 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
 
         /// <summary>
-        /// lblgm control.
+        /// tableku control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblgm;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tableku;
 
         /// <summary>
-        /// lbljupd control.
+        /// Text1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbljupd;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
 
         /// <summary>
-        /// lblnj control.
+        /// txtjanuari control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnj;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjanuari;
 
         /// <summary>
-        /// lbltglpt control.
+        /// Text2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltglpt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text2;
 
         /// <summary>
-        /// lblsubdit control.
+        /// txtfebruari control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsubdit;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtfebruari;
 
         /// <summary>
-        /// lbljabatan control.
+        /// Text4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbljabatan;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text4;
 
         /// <summary>
-        /// lblnaa control.
+        /// txtmaret control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnaa;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtmaret;
 
         /// <summary>
-        /// lbltgl control.
+        /// Text6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltgl;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text6;
 
         /// <summary>
-        /// lbltglds control.
+        /// txtapril control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltglds;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtapril;
 
         /// <summary>
-        /// lblja control.
+        /// Text8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblja;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text8;
 
         /// <summary>
-        /// lblpk control.
+        /// txtmei control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpk;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtmei;
 
         /// <summary>
-        /// lblnrkap control.
+        /// Text10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnrkap;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text10;
 
         /// <summary>
-        /// lblnk control.
+        /// txtjuni control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnk;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjuni;
 
         /// <summary>
-        /// lblnilai control.
+        /// Text12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnilai;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text12;
 
         /// <summary>
-        /// lblket control.
+        /// txtjuli control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblket;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjuli;
 
         /// <summary>
-        /// lbldetail control.
+        /// Text14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldetail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text14;
 
         /// <summary>
-        /// ddlaksi control.
+        /// txtagustus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlaksi;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtagustus;
 
         /// <summary>
-        /// txtalasan control.
+        /// Text16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtalasan;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text16;
 
         /// <summary>
-        /// btngm control.
+        /// txtseptember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btngm;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtseptember;
 
         /// <summary>
-        /// ddlaksiup control.
+        /// Text18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlaksiup;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text18;
 
         /// <summary>
-        /// txtalasanup control.
+        /// txtoktober control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtalasanup;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtoktober;
 
         /// <summary>
-        /// btngmup control.
+        /// Text20 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btngmup;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text20;
 
         /// <summary>
-        /// lbltotal control.
+        /// txtnovemb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltotal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtnovemb;
 
         /// <summary>
-        /// FileUpload1 control.
+        /// Text22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Text22;
 
         /// <summary>
-        /// txttanggal control.
+        /// txtdesember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttanggal;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtdesember;
 
         /// <summary>
-        /// ddlKategori control.
+        /// btnsubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlKategori;
-
-        /// <summary>
-        /// sovendor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect sovendor;
-
-        /// <summary>
-        /// txtnominalint1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnominalint1;
-
-        /// <summary>
-        /// txtnominalven1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnominalven1;
-
-        /// <summary>
-        /// btnadmin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnadmin;
-
-        /// <summary>
-        /// txtidl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidl;
-
-        /// <summary>
-        /// txtvendor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtvendor;
-
-        /// <summary>
-        /// txttipe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttipe;
-
-        /// <summary>
-        /// txttotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttotal;
-
-        /// <summary>
-        /// txtketerangan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtketerangan;
-
-        /// <summary>
-        /// txtidgm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidgm;
-
-        /// <summary>
-        /// txtgt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtgt;
-
-        /// <summary>
-        /// txtidrkap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidrkap;
-
-        /// <summary>
-        /// txtidjustifikasi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidjustifikasi;
+        protected global::System.Web.UI.WebControls.Button btnsubmit;
     }
 }

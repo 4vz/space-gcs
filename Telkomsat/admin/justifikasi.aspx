@@ -35,7 +35,7 @@
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputEmail1">Jenis UPD</label>
+                        <label for="exampleInputEmail1">Jenis Usulan Permintaan Dana</label>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="rdjupd"></asp:RequiredFieldValidator>
                          <asp:RadioButtonList ID="rdjupd" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
                              <asp:ListItem>Panjar</asp:ListItem>
@@ -92,13 +92,13 @@
             <div class="row">
                  <div class="col-md-3">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nilai RKAP</label>
+                        <label for="exampleInputPassword1">Nilai Sisa RKAP</label>
                         <input type="text" class="form-control" id="txtnilairkap" runat="server" readonly/>
                     </div>
                  </div>
                </div>
             <div class="row">
-                 <div class="col-md-3">
+                 <div class="col-md-5">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Nama Kegiatan</label>
                          <input type="text" class="form-control" id="txtnamaket" runat="server"/>
@@ -110,9 +110,10 @@
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nilai</label><asp:Label ID="lblcompare" runat="server" Text=" Tidak boleh lebih dari nilai RKAP" ForeColor="Red"></asp:Label>
+                        <label for="exampleInputPassword1">Nilai</label>
+                         <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="TextBox1" controltocompare="TextBox2" ForeColor="Red" operator="LessThan" type="Integer" errormessage="Tidak boleh lebih dari nilai RKAP " />
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnilai"></asp:RequiredFieldValidator>
-                        <input type="text" class="form-control" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                        <input type="text" class="form-control nilaitext" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
                     </div>
                  </div>
                </div>
@@ -182,12 +183,37 @@
     </div>
     </section>
 </div>
+    <asp:TextBox ID="TextBox1" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
     <script>
         var j = 0;
         var rowCount = 0;
+
+        $(document).ready(function () {
+
+            //iterate through each textboxes and add keyup
+            //handler to trigger sum event
+            $(".nilaitext").each(function () {
+
+                $(this).keyup(function () {
+                    calculateSum();
+                    //alert('ss');
+                });
+            });
+
+        });
+
+        function calculateSum() {
+
+            //.toFixed() method will roundoff the final sum to 2 decimal places
+            var total = $('#<%=txtnilai.ClientID%>').val().replace(/\./g, '');
+            var gt = $('#<%=txtnilairkap.ClientID%>').val().replace(/\./g, '');
+            $('#<%=TextBox1.ClientID%>').val(total);
+            $('#<%=TextBox2.ClientID%>').val(gt);
+        }
 
         $(function () {
             $.ajax({

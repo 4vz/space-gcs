@@ -26,6 +26,18 @@ namespace Telkomsat.admin
         double ventotal;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query, user;
+
+            user = Session["iduser"].ToString();
+            query = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query);
+
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "Admin Bendahara")
+                    Response.Redirect("listpengeluaran.aspx");
+            }
+
             datainput();
         }
 
@@ -98,7 +110,7 @@ namespace Telkomsat.admin
 
 
 
-            if (ddljenis.Text == "Panjar")
+            /*if (ddljenis.Text == "Panjar")
             {
                 status = "incomplete";
                 filename = "";
@@ -124,6 +136,24 @@ namespace Telkomsat.admin
                     }
                     //lblstatus.Text = filecount + " files upload";
                 }
+            }*/
+
+            status = "done";
+            if (FileUpload1.HasFiles)
+            {
+                string physicalpath = Server.MapPath("~/evidence/");
+                if (!Directory.Exists(physicalpath))
+                    Directory.CreateDirectory(physicalpath);
+
+                int filecount = 0;
+                foreach (HttpPostedFile file in FileUpload1.PostedFiles)
+                {
+                    filecount += 1;
+                    filename = Path.GetFileName(file.FileName);
+                    filepath = "~/evidence/" + filename;
+                    file.SaveAs(physicalpath + filename);
+                }
+                //lblstatus.Text = filecount + " files upload";
             }
 
             if (ddlKategori.Text == "Rek. Harkat Bendahara 1")
@@ -162,7 +192,7 @@ namespace Telkomsat.admin
             int i = Convert.ToInt32(sqlCmd.ExecuteScalar());
             con.Close();
 
-            if (ddljenis.Text == "Panjar")
+            /*if (ddljenis.Text == "Panjar")
             {
 
                 query = $@"INSERT INTO adminuser (id_profile, id_admin)

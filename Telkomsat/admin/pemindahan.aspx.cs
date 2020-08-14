@@ -20,6 +20,18 @@ namespace Telkomsat.admin
         int rek1harkat, rek2harkat, rek1me, rek2me, braharkat, brame;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query, user;
+
+            user = Session["iduser"].ToString();
+            query = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query);
+
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "Admin Bendahara")
+                    Response.Redirect("dashboard.aspx");
+            }
+
             string querylast = @"select bra_harkat, bra_me, rek_harkat1, rek_harkat2, rek_me1, rek_me2
                                 from administrator where id_admin = (select max(id_admin) from administrator)";
             SqlCommand sqlCmd1 = new SqlCommand(querylast, con);

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Tambah RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="rkap.aspx.cs" Inherits="Telkomsat.admin.rkap" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="editrkap2.aspx.cs" Inherits="Telkomsat.admin.editrkap2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,18 +13,15 @@
     <div class="box box-primary">
      <asp:Panel ID="UserPanel" runat="server" DefaultButton="btnsubmit">
     <div class="box-header with-border">
-        <h3 class="box-title">Tambah RKAP</h3>
+        <h3 class="box-title">Edit RKAP</h3>
                 <asp:Label ID="lblstatus" runat="server" Text="Label" Visible="false"></asp:Label>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
         <div class="box-body">
-            <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
-                <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
-            </div>
+            
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Aktivitas</label> 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtaktivitas"></asp:RequiredFieldValidator>
+                <label for="exampleInputEmail1">Nama Aktivitas</label>
                 <input type="text" class="form-control" id="txtaktivitas" runat="server"/>
             </div>
             <div class="form-group">
@@ -41,7 +38,6 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Cost Center</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtcc"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtcc" runat="server"/>
             </div>
             <div class="form-group">
@@ -61,22 +57,80 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Harga Satuan</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnominal"></asp:RequiredFieldValidator>
+                <label for="exampleInputEmail1">Harga</label>
                 <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
             </div>
             <div class="form-group">
-                <table class="table table-bordered kita" id="tableku" runat="server">
+                <label for="exampleInputEmail1">Volume dalam 1 tahun</label>
+                <input type="text" class="form-control" id="txtvolumetahun" runat="server" onkeydown='return numbersonly(this, event);' />
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Volume Bulanan</label>
+                <div class="table-responsive">
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-bordered kita" id="tableku" runat="server">
                     <thead>
                         <tr>
                             <th>Volume Bulan</th>
                             <th>Jumlah Volume</th>
-                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Januari" id="Text1" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjanuari" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Februari" id="Text2" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtfebruari" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Maret" id="Text4" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtmaret" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="April" id="Text6" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtapril" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Mei" id="Text8" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtmei" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Juni" id="Text10" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjuni" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Juli" id="Text12" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjuli" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Agustus" id="Text14" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtagustus" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="September" id="Text16" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtseptember" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Oktober" id="Text18" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtoktober" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="November" id="Text20" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtnovemb" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Desember" id="Text22" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtdesember" runat="server" name="jumlah"/></td >
+                        </tr>
                     </tbody>
                 </table>
+                </div>
                 <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
             </div>
          
@@ -90,8 +144,6 @@
     </div>
     </section>
 </div>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
     <script>
@@ -116,6 +168,7 @@
                                 text: this.unit,
                             }));
                     });
+                    $('#<%=so2.ClientID %>').val($('#<%=txtunit.ClientID%>').val());
                 },
                 failure: function (response) {
 
@@ -143,6 +196,7 @@
                                 text: this.subunit,
                             }));
                     });
+                    $('#<%=sosub.ClientID %>').val($('#<%=txtsubunit.ClientID%>').val());
                 },
                 failure: function (response) {
 
@@ -160,6 +214,7 @@
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
+                    var satuan = $('#<%=txtsatuan.ClientID%>').val();
                     $('#<%=sosatuan.ClientID %>').empty();
                     $('#<%=sosatuan.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
@@ -170,6 +225,7 @@
                                 text: this.satuan,
                             }));
                     });
+                    $('#<%=sosatuan.ClientID %>').val(satuan);
                 },
                 failure: function (response) {
 
@@ -197,6 +253,7 @@
                                 text: this.namaakun,
                             }));
                     });
+                    $('#<%=sonamaakun.ClientID %>').val($('#<%=txtnamaakun.ClientID%>').val());
                 },
                 failure: function (response) {
 
@@ -265,4 +322,3 @@
         });
     </script>
 </asp:Content>
-

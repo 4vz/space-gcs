@@ -57,7 +57,7 @@ namespace Telkomsat.admin
                 sekarang = DateTime.Now.ToString("yyyy/MM/dd");
 
                 bulantahun = DateTime.Now.ToString("MMyyyy");
-                thequery = $"select * from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}' and AJN_Nomor = (select max(AJN_Nomor) from AdminNomor where AJN_Tipe = 'UPD-C-082020')";
+                thequery = $"select * from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}' and AJN_Nomor = (select max(AJN_Nomor) from AdminNomor where AJN_Tipe = 'UPD-{jenis}-{bulantahun}')";
                 DataSet ds3 = Settings.LoadDataSet(thequery);
                 if (ds3.Tables[0].Rows.Count == 0)
                     nomor = 1;
@@ -75,7 +75,7 @@ namespace Telkomsat.admin
                 myket = new string[Request.Files.Count];
                 tanggal = DateTime.Now.ToString("yyyy/MM/dd");
                 query = $@"insert into AdminJustifikasi(AJ_AR, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Profile, AJ_Nilai) values
-                      ('{txtproker.Text}',  '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}' '{(txtnilai.Value).Replace(".", "")}'); Select Scope_Identity();";
+                      ('{txtproker.Text}',  '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}', '{(txtnilai.Value).Replace(".", "")}'); Select Scope_Identity();";
                 sqlCon.Open();
                 SqlCommand cmd = new SqlCommand(query, sqlCon);
                 int i = Convert.ToInt32(cmd.ExecuteScalar());
@@ -121,7 +121,6 @@ namespace Telkomsat.admin
             else
             {
                 divfail.Visible = true;
-                lblcompare.Visible = true;
             }
         }
 

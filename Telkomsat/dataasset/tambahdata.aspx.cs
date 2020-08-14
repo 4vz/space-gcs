@@ -42,10 +42,15 @@ namespace Telkomsat.dataasset
             else
             {
                 var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+                string satelit = txtsatelit.Text;
+
+                if (txtsatelit.Text == "" || txtsatelit.Text == null)
+                    satelit = "-";
+
                 sqlCon.Open();
                 string query = $@"INSERT INTO as_perangkat (username, id_jenis_device, id_ruangan, id_rak, id_merk, model, pn, sn, tahun_pengadaan, fungsi, status, info, satelit, tanggal, tipe_perangkat) VALUES
                                ('{user}', '{txtdevice.Text}', '{txtruangan.Text}', '{txtrak.Text}', '{txtmerk.Text}', '{txtmodel.Text}','{txtpn.Text}', '{txtsn.Text}', '{txttahun.Text}',
-                                '{txtfungsi.Text}', '{txtstatus.Text}', '{txtKeterangan.Text}', '{txtsatelit.Text}', '{datetime1}', '{txttipe.Text}')";
+                                '{txtfungsi.Text}', '{txtstatus.Text}', '{txtKeterangan.Text}', '{satelit}', '{datetime1}', '{txttipe.Text}')";
                 SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();

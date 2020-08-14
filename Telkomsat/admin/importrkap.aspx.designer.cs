@@ -11,26 +11,17 @@ namespace Telkomsat.admin
 {
 
 
-    public partial class listpengeluaran
+    public partial class importrkap
     {
 
         /// <summary>
-        /// btntmbh control.
+        /// lblerror control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btntmbh;
-
-        /// <summary>
-        /// DBDataPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
+        protected global::System.Web.UI.WebControls.Label lblerror;
 
         /// <summary>
         /// FileUpload1 control.
@@ -40,14 +31,5 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-
-        /// <summary>
-        /// txtidl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidl;
     }
 }

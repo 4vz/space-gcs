@@ -11,7 +11,7 @@
     <!-- Tabs within a box -->
     <div class="box-header">
         <i class="fa fa-money"></i> Pengeluaran
-        <a href="pengeluaran.aspx" class="btn btn-primary btn-sm pull-right">Tambah</a>
+        <a href="pengeluaran.aspx" class="btn btn-primary btn-sm pull-right" runat="server" id="btntmbh" visible="false">Tambah</a>
     </div>
     <div class="box-body">
         <!-- Morris chart - Sales -->
@@ -67,16 +67,6 @@
         </div>
 
     <asp:TextBox ID="txtidl" CssClass="hidden" runat="server"></asp:TextBox>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/bower_components/PACE/pace.min.js"></script>
-    <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
         
         function status(obj) {

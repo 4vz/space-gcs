@@ -28,6 +28,17 @@ namespace Telkomsat.admin
         int rek1harkat, rek2harkat, rek1me, rek2me, harkat, me;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query2, user;
+
+            user = Session["iduser"].ToString();
+            query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query2);
+
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
+                    btntmbh.Visible = true;
+            }
             if (!IsPostBack)
             {
                 query = @"select * from administrator where kategori = 'pengeluaran' order by tanggal desc";
@@ -78,7 +89,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Evidence</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -112,7 +123,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + simpanan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
-                        if (evidence == "" || evidence == null)
+                        /*if (evidence == "" || evidence == null)
                         {
                             htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                         }
@@ -126,7 +137,7 @@ namespace Telkomsat.admin
                             {
                                 htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                             }
-                        }
+                        }*/
 
                         htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)

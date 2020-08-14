@@ -181,11 +181,14 @@
     <Content Include="admin\detailbendahara.aspx" />
     <Content Include="admin\detailjustifikasi.aspx" />
     <Content Include="admin\detailrkap.aspx" />
+    <Content Include="admin\detailrkap2.aspx" />
     <Content Include="admin\detailvendor.aspx" />
     <Content Include="admin\download.aspx" />
     <Content Include="admin\editjustifikasi.aspx" />
     <Content Include="admin\editrkap.aspx" />
+    <Content Include="admin\editrkap2.aspx" />
     <Content Include="admin\editvendor.aspx" />
+    <Content Include="admin\importrkap.aspx" />
     <Content Include="admin\justifikasi.aspx" />
     <Content Include="admin\listjustifikasi.aspx" />
     <Content Include="admin\listpemasukan.aspx" />
@@ -202,6 +205,7 @@
     <Content Include="admin\reference.aspx" />
     <Content Include="admin\referenceprofile.aspx" />
     <Content Include="admin\rkap.aspx" />
+    <Content Include="admin\tambahrkap.aspx" />
     <Content Include="alldatadua.aspx" />
     <Content Include="alldata.aspx" />
     <Content Include="anten.png" />
@@ -7292,6 +7296,7 @@
     <Content Include="ticket\favorit.aspx" />
     <Content Include="ticket\file.aspx" />
     <Content Include="ticket\prioritas.aspx" />
+    <Content Include="ticket\profile.aspx" />
     <Content Include="ticket\reject.aspx" />
     <Content Include="ticket\spam.aspx" />
     <Content Include="ticket\tambah.aspx" />
@@ -7429,6 +7434,13 @@
     <Compile Include="admin\detailrkap.aspx.designer.cs">
       <DependentUpon>detailrkap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\detailrkap2.aspx.cs">
+      <DependentUpon>detailrkap2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\detailrkap2.aspx.designer.cs">
+      <DependentUpon>detailrkap2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\detailvendor.aspx.cs">
       <DependentUpon>detailvendor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7457,12 +7469,26 @@
     <Compile Include="admin\editrkap.aspx.designer.cs">
       <DependentUpon>editrkap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\editrkap2.aspx.cs">
+      <DependentUpon>editrkap2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\editrkap2.aspx.designer.cs">
+      <DependentUpon>editrkap2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\editvendor.aspx.cs">
       <DependentUpon>editvendor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\editvendor.aspx.designer.cs">
       <DependentUpon>editvendor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\importrkap.aspx.cs">
+      <DependentUpon>importrkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\importrkap.aspx.designer.cs">
+      <DependentUpon>importrkap.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\justifikasi.aspx.cs">
       <DependentUpon>justifikasi.aspx</DependentUpon>
@@ -7568,6 +7594,13 @@
     </Compile>
     <Compile Include="admin\rkap.aspx.designer.cs">
       <DependentUpon>rkap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\tambahrkap.aspx.cs">
+      <DependentUpon>tambahrkap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\tambahrkap.aspx.designer.cs">
+      <DependentUpon>tambahrkap.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\allasset.ashx.cs">
       <DependentUpon>allasset.ashx</DependentUpon>
@@ -9243,6 +9276,13 @@
     </Compile>
     <Compile Include="ticket\prioritas.aspx.designer.cs">
       <DependentUpon>prioritas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticket\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticket\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticket\reject.aspx.cs">
       <DependentUpon>reject.aspx</DependentUpon>

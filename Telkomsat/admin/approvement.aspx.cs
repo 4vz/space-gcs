@@ -37,7 +37,7 @@ namespace Telkomsat.admin
             if (Request.QueryString["jenis"] == "diajukan")
             {
                 query = $@"SELECT j.*, e.nama from AdminJustifikasi j join AdminProfile p on p.AP_ID=j.AJ_PT join Profile e
-                            on e.id_profile = p.AP_Nama where AJ_Status is null or AJ_Status = '' or AJ_Status='Repair'";
+                            on e.id_profile = p.AP_Nama where AJ_Status is null or AJ_Status = '' or AJ_Status='revition'";
 
                 if (previllage != "User")
                 {
@@ -86,24 +86,24 @@ namespace Telkomsat.admin
             tgl = DateTime.Now.ToString("yyyy/MM/dd");
             sqlCon.Open();
             string queryfile = $@"INSERT INTO AdminApprove (AA_Tanggal, AA_Aksi, AA_Alasan, AA_AJ, AA_Person)
-                                        VALUES ('{tgl}', '{ddlaksi.Text}', '{txtalasan.Text}', '{txtidgm.Text}', 'GM')";
+                                        VALUES ('{tgl}', '{ddlaksiup.Text}', '{txtalasanup.Text}', '{txtidgm.Text}', 'GM')";
             //Response.Write(queryfile); ;
             SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
             sqlCmd1.ExecuteNonQuery();
             sqlCon.Close();
 
-            if (ddlaksi.Text == "Approve")
+            if (ddlaksiup.Text == "Postpon")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'gm' WHERE AJ_ID='{txtidgm.Text}'";
+                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'postpon' WHERE AJ_ID='{txtidgm.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if (ddlaksi.Text == "Reject")
+            else if (ddlaksiup.Text == "Reject")
             {
                 sqlCon.Open();
                 string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'reject' WHERE AJ_ID='{txtidgm.Text}'";
@@ -486,12 +486,12 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Detail" + "</button>");
                         if(previllage == "User")
                         {
-                            if (Session["iduser"].ToString() == ds.Tables[0].Rows[i]["AJ_Profile"].ToString();
+                            if (Session["iduser"].ToString() == ds.Tables[0].Rows[i]["AJ_Profile"].ToString())
                             {
                                 if (status == "" || status == null || status is null)
                                     htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
-                                else if (status == "repair")
-                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis=repair')\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
+                                else if (status == "revition")
+                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis=revition')\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
                             }
                             
                         }

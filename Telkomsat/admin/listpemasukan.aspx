@@ -7,6 +7,14 @@
           transition: 0.3s;
         }
 
+        .asText {
+        background:none;
+        border:none;
+        margin:0;
+        padding:0;
+        color:blue;
+        }
+
         .rows{
             padding:7px;
         }
@@ -93,7 +101,7 @@
             <div class="box-header with-border">
                 <i class="fa fa-money"></i> Pemasukan
                         <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
-            <a href="pemasukan.aspx" class="btn btn-primary btn-sm pull-right">Tambah</a>
+            <a href="pemasukan.aspx" class="btn btn-primary btn-sm pull-right" runat="server" id="btntmbh" visible="false">Tambah</a>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -126,8 +134,6 @@
           <!-- /.modal-dialog -->
         </div>
     <asp:TextBox ID="txtidl" CssClass="hidden" runat="server"></asp:TextBox>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         $(function () {
@@ -167,7 +173,7 @@
         for (i = 0; i < img.length; i++) {
             img[i].onclick = function(){
             modal.style.display = "block";
-            modalImg.src = this.src;
+            modalImg.src = this.value;
             captionText.innerHTML = this.alt;
             }
         }

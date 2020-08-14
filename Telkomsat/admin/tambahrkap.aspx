@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Tambah RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="rkap.aspx.cs" Inherits="Telkomsat.admin.rkap" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="tambahrkap.aspx.cs" Inherits="Telkomsat.admin.tambahrkap" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -41,7 +41,6 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Cost Center</label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtcc"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtcc" runat="server"/>
             </div>
             <div class="form-group">
@@ -71,13 +70,59 @@
                         <tr>
                             <th>Volume Bulan</th>
                             <th>Jumlah Volume</th>
-                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Januari" id="Text1" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjanuari" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Februari" id="Text2" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtfebruari" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Maret" id="Text4" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtmaret" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="April" id="Text6" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtapril" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Mei" id="Text8" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtmei" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Juni" id="Text10" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjuni" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Juli" id="Text12" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtjuli" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Agustus" id="Text14" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtagustus" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="September" id="Text16" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtseptember" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Oktober" id="Text18" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtoktober" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="November" id="Text20" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtnovemb" runat="server"  name="jumlah"/></td >
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" value="Desember" id="Text22" runat="server" readonly/></td >
+                            <td><input type="number" class="form-control" id="txtdesember" runat="server" name="jumlah"/></td >
+                        </tr>
                     </tbody>
                 </table>
-                <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
             </div>
          
         </div>
@@ -101,7 +146,7 @@
         $(function () {
             $.ajax({
                 type: "POST",
-                url: "rkap.aspx/GetUnit",
+                url: "tambahrkap.aspx/GetUnit",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -128,7 +173,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "rkap.aspx/GetSub",
+                url: "tambahrkap.aspx/GetSub",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -155,7 +200,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "rkap.aspx/GetSatuan",
+                url: "tambahrkap.aspx/GetSatuan",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -182,7 +227,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "rkap.aspx/GetNamaAkun",
+                url: "tambahrkap.aspx/GetNamaAkun",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -210,32 +255,6 @@
         });
 
 
-        $(document).ready(function () {
-            var i = 0;
-            $("#addfile").click(function () {
-                var markup = "<tr><td><select class='form-control' name='bulanan'>" +
-                                    "<option>Januari</option>" +
-                                    "<option>Februari</option>" +
-                                    "<option>Maret</option>" +
-                                    "<option>April</option>" +
-                                    "<option>Mei</option>" +
-                                    "<option>Juni</option>" +
-                                    "<option>Juli</option>" +
-                                    "<option>Agustus</option>" +
-                                    "<option>September</option>" +
-                                    "<option>Oktober</option>" +
-                                    "<option>November</option>" +
-                                    "<option>Desember</option>" +
-                             "</select ></td > " +
-                    "<td><input type='number' name='jumlah' class='form-control' /></td>" +
-                    "<td><button type='button' name='record' onclick='newtest2(this)' class='btn-sm btn-default delete-row'><i class=fa>X</i></button></td></tr>";
-
-                $('#' + '<%= tableku.ClientID%>').append(markup);
-                i++;
-                $('#' + '<%=txtcount.ClientID%>').val(i);
-            });
-            
-        });  
         function newtest2(e) {              //Add e as parameter
             $(e).parents('tr').remove();   //Use the e to delete
             //console.log('klkl');
@@ -265,4 +284,3 @@
         });
     </script>
 </asp:Content>
-

@@ -21,6 +21,17 @@ namespace Telkomsat.admin
         string kategori, style3, filename, filepath, queryfile;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query, user;
+
+            user = Session["iduser"].ToString();
+            query = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query);
+
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
+                    btntmbh.Visible = true;
+            }
             referens();
         }
 
@@ -61,7 +72,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Bukti</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Evidence</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -93,14 +104,14 @@ namespace Telkomsat.admin
                         {
                             if (evidence.Substring(evidence.LastIndexOf('.') + 1).ToLower().IsIn(new string[] { "jpg", "jpeg", "png", "bmp", "jfif", "gif" }))
                             {
-                                htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
+                                htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + $"<button style=\"display:block\" class=\"myImg asText\" value=\"{evidence}\" height=\"200\" ></button>" + "</label>" + "</td>");
                             }
                             else
                             {
                                 htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                             }
                         }
-                        
+
                         htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)
                             htmlTable.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");

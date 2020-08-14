@@ -72,6 +72,9 @@
               
                           <!-- Menu Footer-->
                           <li class="user-footer">
+                              <div class="pull-left">
+                              <a href="profile.aspx" class="btn btn-default">Add User</a>
+                               </div>
                             <div class="pull-right">
                                 <asp:Button ID="btn" runat="server" Text="Sign Out" CssClass="btn btn-default"/>
                             </div>

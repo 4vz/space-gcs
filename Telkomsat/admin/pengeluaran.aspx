@@ -45,6 +45,12 @@
                 <option></option>
             </select>
         </div>
+        <div class="form-group" id="userjustifikasi" style="display:none">
+            <label for="exampleInputPassword1">Vendor</label>
+            <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
+                <option></option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Nominal</label>
             <input type="text" class="form-control" id="nominal" runat="server" placeholder="Nominal" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
@@ -53,7 +59,7 @@
             <label for="exampleInputEmail1">Keterangan</label>
             <input type="text" class="form-control" id="keterangan" runat="server" placeholder="Keterangan"/>
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
             <label for="exampleInputPassword1">Jenis</label>
             <asp:DropDownList ID="ddljenis" runat="server" class="form-control" Width="120px" onchange="status(this)">
                         <asp:ListItem>--jenis--</asp:ListItem>
@@ -107,8 +113,6 @@
 </div>
     <asp:TextBox ID="txtpetugas" CssClass="hidden" runat="server"></asp:TextBox>
     <asp:TextBox ID="txtvendor" CssClass="hidden" runat="server"></asp:TextBox>
-    <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
     <script>
@@ -184,6 +188,36 @@
                     alert(response.d);
                 }
             });
+
+            $('#<%=soproker.ClientID %>').empty();
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetProker",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=soproker.ClientID %>').empty();
+                        $('#<%=soproker.ClientID %>').append('<option></option>');
+                        $(customers).each(function () {
+                            console.log(this.idbangunan);
+                            $('#<%=soproker.ClientID %>').append($('<option>',
+                                {
+                                    value: this.idproker,
+                                    text: this.proker,
+                                }));
+                        });
+                    },
+                    failure: function (response) {
+
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
 
             $.ajax({
                 type: "POST",
