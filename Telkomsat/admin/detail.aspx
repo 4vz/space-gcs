@@ -126,7 +126,6 @@
         <div class="form-group">
             <label for="exampleInputFile" style="width:120px;">File input</label>
             <asp:Label ID="Label5" runat="server">: </asp:Label>
-            <img style="display:block" runat="server" id="myimg" class="myImg" src="" height="200" />
         </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
@@ -137,10 +136,10 @@
                     <asp:TemplateField HeaderText="File">
                         <ItemTemplate>
                             <span class="fa fa-check" style="width:20px"></span>
-                            <asp:LinkButton ID ="InkView" runat ="server" CssClass="rows" CommandArgument='<%# Eval("namafiles") %>' CommandName="Download" Text='<%# Eval("namafiles") %>'></asp:LinkButton>
+                            <asp:LinkButton ID ="InkView" runat ="server" CssClass="rows" CommandArgument='<%# Eval("AE_NamaFile") %>' CommandName="Download" Text='<%# Eval("AE_NamaFile") %>'></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField ="caption" HeaderText="Deskripsi" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
+                    <asp:BoundField DataField ="AE_Caption" HeaderText="Deskripsi" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
                     </Columns>
             <RowStyle BackColor="White" ForeColor="#1b1b1b" />
             </asp:GridView>

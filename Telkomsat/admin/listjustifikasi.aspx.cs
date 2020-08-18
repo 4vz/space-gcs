@@ -52,6 +52,7 @@ namespace Telkomsat.admin
                 if(previllage == "User" || previllage == "User Organik" || previllage == "SA")
                 {
                     btntambah.Visible = true;
+                    btnimport.Visible = true;
                 }
             }
                 referens();

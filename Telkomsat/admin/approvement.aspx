@@ -290,16 +290,16 @@
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextvendor">
                                 <label style="font-size:16px; font-weight:bold">Nominal Vendor :</label>
-                              <input type="text" class="form-control" id="txtnominalven1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                              <input type="text" class="form-control" id="txtnominalven1" runat="server" readonly/>
                             </div>
                       </div> 
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="display:none" id="divlampem">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Lampiran Pemasukan :</label>
                               <asp:FileUpload ID="FileUpload2" runat="server" />
                             </div>
                       </div> 
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="display:none" id="divlampeng">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Lampiran Pengeluaran :</label>
                               <asp:FileUpload ID="FileUpload3" runat="server" />
@@ -323,17 +323,27 @@
     <asp:TextBox ID="txtidgm" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
-    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>  
     
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="nominal.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#<%=txtnominalint1.ClientID %>').keyup(function () {
+                var nominalinternal = $('#<%=txtnominalint1.ClientID %>').val().replace(/\./g, "");
+                var totaljus = $('#<%=txttotal.ClientID %>').val();
+                $('#<%=txtnominalven1.ClientID %>').val(totaljus - nominalinternal);
+            });
+        });
+
         $('#slpetugas1').change(function () {
             var id = $(this).val();
             console.log(id);
             if (id == "1") {
+                $("#divlampem").removeAttr("style").hide();
+                $("#divlampeng").removeAttr("style").hide();
                 $("#divvendor").removeAttr("style").hide();
                 $("#divinternal").show();
                 $("#divtextvendor").removeAttr("style").hide();
@@ -341,6 +351,8 @@
                 $('#<%=txttipe.ClientID%>').val('internal');
             }
             else if (id == "2") {
+                $("#divlampem").removeAttr("style").hide();
+                $("#divlampeng").removeAttr("style").hide();
                 $("#divinternal").removeAttr("style").hide();
                 $("#divvendor").show();
                 $("#divtextvendor").removeAttr("style").hide();
@@ -348,6 +360,8 @@
                 $('#<%=txttipe.ClientID%>').val('vendor');
             }
             else if (id[0] == "1" && id[1] == "2") {
+                $("#divlampem").show();
+                $("#divlampeng").show();
                 $("#divvendor").show();
                 $("#divinternal").show();
                 $("#divtextinternal").show();
@@ -355,6 +369,8 @@
                 $('#<%=txttipe.ClientID%>').val('dua');
             }
             else {
+                $("#divlampem").removeAttr("style").hide();
+                $("#divlampeng").removeAttr("style").hide();
                 $("#divvendor").removeAttr("style").hide();
                 $("#divinternal").removeAttr("style").hide();
                 $("#divtextvendor").removeAttr("style").hide();

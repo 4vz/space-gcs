@@ -167,7 +167,7 @@ namespace Telkomsat.admin
             DataSet ds1 = new DataSet();
             string myquery, query, color, namaall, ext, namafile;
 
-            myquery = $@"select * from AdminEvidence WHERE  AE_ID = '{id}' and (AE_Ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
+            myquery = $@"select * from AdminEvidence WHERE  AE_AD = '{id}' and (AE_Ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
 
             SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             da = new SqlDataAdapter(cmd);

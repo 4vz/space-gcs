@@ -170,8 +170,7 @@
           </div>
         </div>
 
-
-    <div class="modal fade" id="modalupdate">
+            <div class="modal fade" id="modalgmup">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -181,6 +180,50 @@
               </div>
               <div class="modal-body">
                   <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Pilih Aksi :</label>
+                                  <asp:DropDownList ID="ddlaksiup" CssClass="form-control" runat="server">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem>Reject</asp:ListItem>
+                                      <asp:ListItem>Postpon</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Alasan :</label>
+                            <asp:TextBox ID="txtalasanup" autocomplete="off" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
+                        </div>
+                      </div> 
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btngmup" class="btn btn-info pull-left" runat="server" onserverclick="Approve_GMUP">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+
+
+       <div class="modal fade" id="modalupdate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Nilai Justifikasi :</label>
+                              <asp:Label ID="lbltotal" runat="server" Text=""></asp:Label>
+                            </div>
+                      </div> 
                       <div class="col-md-12">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Lampiran Evidence :</label>
@@ -224,28 +267,54 @@
                                 </select>
                         </div>
                      </div> 
+                      
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtglint">
+                                <label style="font-size:16px; font-weight:bold">Tanggal Internal :</label>
+                              <input type="text" class="form-control datepick" id="txttglint" runat="server"/>
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtglven">
+                                <label style="font-size:16px; font-weight:bold">Tanggal Vendor :</label>
+                              <input type="text" class="form-control datepick" id="txttglven" runat="server"/>
+                            </div>
+                      </div> 
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextinternal">
                                 <label style="font-size:16px; font-weight:bold">Nominal Internal :</label>
-                              <asp:TextBox ID="txtnominalint" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                              <input type="text" class="form-control" id="txtnominalint1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
                             </div>
                       </div> 
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextvendor">
                                 <label style="font-size:16px; font-weight:bold">Nominal Vendor :</label>
-                              <asp:TextBox ID="txtnominalven" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                              <input type="text" class="form-control" id="txtnominalven1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Pemasukan :</label>
+                              <asp:FileUpload ID="FileUpload2" runat="server" />
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Pengeluaran :</label>
+                              <asp:FileUpload ID="FileUpload3" runat="server" />
                             </div>
                       </div> 
                   </div>
                   
               </div>
               <div class="modal-footer">
-                <button type="button" id="btnmutasi" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Admin">Save</button>
+                <button type="button" id="btnadmin" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Admin">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
         </div>
+
     <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txttipe" runat="server" CssClass="hidden"></asp:TextBox>

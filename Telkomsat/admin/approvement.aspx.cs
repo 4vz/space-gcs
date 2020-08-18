@@ -168,7 +168,7 @@ namespace Telkomsat.admin
             string queryrkap;
             if (FileUpload1.HasFiles)
             {
-                string physicalpath = Server.MapPath("~/fileupload/");
+                string physicalpath = Server.MapPath("~/evidence/");
                 if (!Directory.Exists(physicalpath))
                     Directory.CreateDirectory(physicalpath);
 
@@ -177,7 +177,7 @@ namespace Telkomsat.admin
                 {
                     filecount += 1;
                     filename = Path.GetFileName(file.FileName);
-                    filepath = "~/fileupload/" + filename;
+                    filepath = "~/evidence/" + filename;
                     file.SaveAs(physicalpath + filename);
                     extension = Path.GetExtension(file.FileName);
                 }
@@ -185,7 +185,7 @@ namespace Telkomsat.admin
             }
 
             //sqlCon.Open();
-            queryrkap = $"UPDATE AdminRKAP set ARK_GTS = '{Convert.ToDouble(txtgt.Text) - Convert.ToDouble(txttotal.Text)}' where ARK_ID = '{txtidrkap.Text}'";
+            queryrkap = $"UPDATE AdminRKAP set ARK_GTS = '{(Convert.ToDouble(txtgt.Text) - Convert.ToDouble(txttotal.Text))}' where ARK_ID = '{txtidrkap.Text}'";
             SqlCommand a = Settings.ExNonQuery(queryrkap);
 
             sqlCon.Open();
@@ -220,7 +220,7 @@ namespace Telkomsat.admin
                 string queryven, queryid, sekarang;
                 double totalvendor;
 
-                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom where AVN_AV='{txtvendor.Text}') and AVN_AV='{txtvendor.Text}'";
+                queryid = $@"SELECT * from AdminVendorNom WHERE AVN_ID = (SELECT MAX(AVN_ID) from AdminVendorNom where AVN_AV='{txtvendor.Text}')";
 
                 sekarang = DateTime.Now.ToString("yyyy/MM/dd");
 
