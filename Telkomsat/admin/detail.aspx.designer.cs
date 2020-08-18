@@ -132,6 +132,24 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.HtmlControls.HtmlImage myimg;
 
         /// <summary>
+        /// PlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+
+        /// <summary>
+        /// DataList3a control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DataList3a;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>

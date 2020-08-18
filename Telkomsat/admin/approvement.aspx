@@ -268,6 +268,19 @@
                                 </select>
                         </div>
                      </div> 
+                      
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtglint">
+                                <label style="font-size:16px; font-weight:bold">Tanggal Internal :</label>
+                              <input type="text" class="form-control datepick" id="txttglint" runat="server"/>
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group" style="display:none" id="divtglven">
+                                <label style="font-size:16px; font-weight:bold">Tanggal Vendor :</label>
+                              <input type="text" class="form-control datepick" id="txttglven" runat="server"/>
+                            </div>
+                      </div> 
                       <div class="col-md-6">
                           <div class="form-group" style="display:none" id="divtextinternal">
                                 <label style="font-size:16px; font-weight:bold">Nominal Internal :</label>
@@ -278,6 +291,18 @@
                           <div class="form-group" style="display:none" id="divtextvendor">
                                 <label style="font-size:16px; font-weight:bold">Nominal Vendor :</label>
                               <input type="text" class="form-control" id="txtnominalven1" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Pemasukan :</label>
+                              <asp:FileUpload ID="FileUpload2" runat="server" />
+                            </div>
+                      </div> 
+                      <div class="col-md-6">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Pengeluaran :</label>
+                              <asp:FileUpload ID="FileUpload3" runat="server" />
                             </div>
                       </div> 
                   </div>

@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Globalization;
+using System.IO;
 
 namespace Telkomsat.admin
 {
@@ -19,6 +20,7 @@ namespace Telkomsat.admin
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
+        StringBuilder htmlTable2 = new StringBuilder();
         string evidence, idjustifikasi;
 
         
@@ -68,17 +70,54 @@ namespace Telkomsat.admin
 
                 lblKeterangan.Text = ds.Tables[0].Rows[0]["keterangan"].ToString();
                 evidence = ds.Tables[0].Rows[0]["evidence"].ToString();
-                myimg.Src = ds.Tables[0].Rows[0]["evidencepath"].ToString();
+                //myimg.Src = ds.Tables[0].Rows[0]["evidencepath"].ToString();
 
                 justifikasi();
-
+                mytable();
+                listdata();
             }
 
             //tablepanjar();
         }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Response.Clear();
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "filename="
+                + e.CommandArgument);
+            Response.TransmitFile(Server.MapPath("~/evidence/")
+                + e.CommandArgument);
+            Response.End();
+        }
+
+        void listdata()
+        {
+            string queryfile = $"select * from AdminEvidence WHERE  AE_ID = '{id}' and (AE_Ekstension not in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
+            DataList3a.Visible = true;
+            sqlCon.Open();
+            SqlDataAdapter sqlda1 = new SqlDataAdapter(queryfile, sqlCon);
+            DataTable dtbl1 = new DataTable();
+            sqlda1.Fill(dtbl1);
+            sqlCon.Close();
+            DataList3a.DataSource = dtbl1;
+            DataList3a.DataBind();
+        }
         protected void lbupload_Click(object sender, EventArgs e)
         {
             Response.Redirect($"~/admin/download.aspx?file={evidence}");
+        }
+
+        void lampiran()
+        {
+            if (sqlCon.State == ConnectionState.Closed)
+                sqlCon.Open();
+            string querycountf = $"select count(*) from table_log_file WHERE id_logbook = '' and kategori = 'utama'";
+            SqlCommand cmd4 = new SqlCommand(querycountf, sqlCon);
+            int output1 = int.Parse(cmd4.ExecuteScalar().ToString());
+            sqlCon.Close();
+
+            
         }
 
         void justifikasi()
@@ -120,6 +159,42 @@ namespace Telkomsat.admin
                 tbljustifikasi.Visible = false;
             }
         }
+
+        void mytable()
+        {
+            SqlDataAdapter da, da1;
+            DataSet ds = new DataSet();
+            DataSet ds1 = new DataSet();
+            string myquery, query, color, namaall, ext, namafile;
+
+            myquery = $@"select * from AdminEvidence WHERE  AE_ID = '{id}' and (AE_Ekstension in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
+
+            SqlCommand cmd = new SqlCommand(myquery, sqlCon);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            sqlCon.Open();
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+
+            htmlTable2.AppendLine("<ul>");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        namaall = ds.Tables[0].Rows[i]["AE_File"].ToString();
+                        namafile = namaall.Replace("~", "..");
+                        ext = Path.GetExtension(namaall);
+                        htmlTable2.Append($"<li class=\"gambar\"><img style=\"display:block\" class=\"myImg\" src=\"{namafile}\" height=\"200\" /><br />" +
+                            $"<label style=\"text-align:center; width:100%; white-space:pre-line; font-size:11px\" >{ds.Tables[0].Rows[i]["AE_Caption"].ToString()}</label></li>");
+                    }
+                    htmlTable2.AppendLine("</ul>");
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTable2.ToString() });
+                }
+            }
+        }
+
 
         void tablepanjar()
         {

@@ -8,10 +8,12 @@
            margin-right: 1px;
         }
     </style>
+    <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="txtunit" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtproker" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtbulan" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtpetugas" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden" Text="0"></asp:TextBox>
 
@@ -28,32 +30,36 @@
     <!-- form start -->
         <div class="box-body">
             <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <asp:Label ID="lblnj" runat="server" Text="" CssClass="text-center"></asp:Label>
-                        </div>
+                <div class="alert alert-danger alert-dismissable" id="divfail" runat="server" visible="false">
+                    <h5><span class="fa fa-ban"> Nilai Justifikasi tidak boleh lebih dari nilai RKAP</span></h5>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-5">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Nomor Justifikasi</label>
+                        <asp:Label ID="lblnj" runat="server" Text="" CssClass="pull-right" Font-Bold="true"></asp:Label>
                     </div>
+                 </div>
+               </div>    
+            <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputEmail1">Jenis UPD</label>
+                        <label for="exampleInputEmail1">Jenis Usulan Permintaan Dana</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="rdjupd"></asp:RequiredFieldValidator>
                          <asp:RadioButtonList ID="rdjupd" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
                              <asp:ListItem>Panjar</asp:ListItem>
                              <asp:ListItem>Cash</asp:ListItem>
                          </asp:RadioButtonList>
                     </div>
                  </div>
-                <div class="col-md-2">
-                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tanggal</label>
-                        <input type="text" class="form-control" id="txttanggal" runat="server"/>
-                    </div>
-                 </div>
             </div>
             <div class="row">
-                 <div class="col-md-2">
+                 <div class="col-md-3">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Jenis Anggaran</label>
-                        <select id="soja" runat="server" class="select2 form-control" style="width: 100%;">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soja" InitialValue=""></asp:RequiredFieldValidator>
+                        <select id="soja" runat="server" class="form-control" style="width: 100%;">
                             <option></option>
                         </select>
                     </div>
@@ -63,6 +69,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Program Kerja</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soproker" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>
@@ -72,13 +79,13 @@
             <div class="row">
                  <div class="col-md-3">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nilai RKAP</label>
+                        <label for="exampleInputPassword1">Nilai Sisa RKAP</label>
                         <input type="text" class="form-control" id="txtnilairkap" runat="server" readonly/>
                     </div>
                  </div>
                </div>
             <div class="row">
-                 <div class="col-md-3">
+                 <div class="col-md-5">
                      <div class="form-group">
                         <label for="exampleInputEmail1">Nama Kegiatan</label>
                          <input type="text" class="form-control" id="txtnamaket" runat="server"/>
@@ -90,18 +97,10 @@
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nama Vendor</label>
-                        <select id="sovendor" runat="server" class="select2 form-control" style="width: 100%;">
-                            <option></option>
-                        </select>
-                    </div>
-                 </div>
-               </div>  
-            <div class="row">
-                 <div class="col-md-4">
-                     <div class="form-group">
                         <label for="exampleInputPassword1">Nilai</label>
-                        <input type="text" class="form-control" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);">
+                         <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="TextBox1" controltocompare="TextBox2" ForeColor="Red" operator="LessThan" type="Integer" errormessage="Tidak boleh lebih dari nilai RKAP " />
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnilai"></asp:RequiredFieldValidator>
+                        <input type="text" class="form-control nilaitext" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
                     </div>
                  </div>
                </div>
@@ -154,7 +153,7 @@
                  <div class="col-md-2">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Tanggal Dokumen Diserahkan</label>
-                        <input type="text" class="form-control" id="txttglpsm" runat="server"/>
+                        <input type="text" class="form-control" id="txttglpsm" runat="server" autocomplete="off"/>
                     </div>
                  </div>
                </div>  
@@ -162,6 +161,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Pemberi Tugas</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sotugas" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>
@@ -178,12 +178,26 @@
     </div>
     </section>
 </div>
+    <asp:TextBox ID="TextBox1" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
+    <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="nominal.js"></script>
     <script>
         var j = 0;
         var rowCount = 0;
+
+        function calculateSum() {
+
+            //.toFixed() method will roundoff the final sum to 2 decimal places
+            var total = $('#<%=txtnilai.ClientID%>').val().replace(/\./g, '');
+            var gt = $('#<%=txtnilairkap.ClientID%>').val().replace(/\./g, '');
+            $('#<%=TextBox1.ClientID%>').val(total);
+            $('#<%=TextBox2.ClientID%>').val(gt);
+        }
+
+        $('.select2').select2()
 
         $(function () {
             $.ajax({
@@ -232,37 +246,7 @@
                                 text: this.proker,
                             }));
                     });
-                    $('#<%=soproker.ClientID %>').val(prok);
-                },
-                failure: function (response) {
-
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "justifikasi.aspx/GetVendor",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var customers = response.d;
-                    var vendor3 = $('#<%=txtvendor.ClientID%>').val();
-                    $('#<%=sovendor.ClientID %>').empty();
-                    $('#<%=sovendor.ClientID %>').append('<option></option>');
-                    $(customers).each(function () {
-                        console.log(this.idbangunan);
-                        $('#<%=sovendor.ClientID %>').append($('<option>',
-                            {
-                                value: this.idvendor,
-                                text: this.vendor,
-                            }));
-                        
-                    });
-                    $('#<%=sovendor.ClientID %>').val(vendor3);
+                    $('#<%=soproker.ClientID %>').val(petugas);
                 },
                 failure: function (response) {
 
@@ -276,7 +260,7 @@
             $.ajax({
                 type: "POST",
                 url: "justifikasi.aspx/GetPIC",
-                contentType: "application/json; charset=utf-8",
+                contentType: "application/json; charset=utf-8", 
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
@@ -334,9 +318,9 @@
             $('#<%=txtpetugas.ClientID%>').val(id);
         });
 
-        $('#<%=sovendor.ClientID%>').change(function () {
+        $('#<%=soproker.ClientID%>').change(function () {
             var id = $(this).val();
-            $('#<%=txtvendor.ClientID%>').val(id);
+            $('#<%=txtproker.ClientID%>').val(id);
         });
 
         $('#<%=soja.ClientID%>').change(function () {
@@ -361,12 +345,6 @@
             $(e).parents('tr').remove();   //Use the e to delete
             //console.log('klkl');
         }
-
-        $('#<%=txttanggal.ClientID%>').datepicker({
-            autoclose: true,
-            format: 'yyyy/mm/dd',
-            orientation: "bottom"
-        });
 
         $('#<%=txttglpsm.ClientID%>').datepicker({
             autoclose: true,

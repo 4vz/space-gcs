@@ -30,7 +30,7 @@ namespace Telkomsat.admin
             {
                 iddata = Request.QueryString["id"].ToString();
 
-                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama
+                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama, k.ARK_GT
                                 FROM AdminJustifikasi j full join AdminProfile p on j.AJ_PT=p.AP_ID full join AdminReference r1
                                 on r1.AR_ID = p.AP_Jabatan full join AdminReference r2 on r2.AR_ID = p.AP_Subdit full join AdminRKAP k
                                 on k.ARK_ID = j.AJ_AR full join AdminVendor v on v.AV_ID=j.AJ_AV full join Profile e on e.id_profile=p.AP_Nama WHERE AJ_ID = '{iddata}'";
@@ -45,7 +45,14 @@ namespace Telkomsat.admin
                         lblket.Text = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
                         lblnilai.Text = Convert.ToInt32(ds.Tables[0].Rows[0]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblnk.Text = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
-                        lblnrkap.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
+                        if (ds.Tables[0].Rows[0]["ARK_GT"].ToString() == "" || ds.Tables[0].Rows[0]["ARK_GT"].ToString() == null)
+                        {
+
+                        }
+                        else
+                        {
+                            lblnrkap.Text = Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        }
                         lblnojus.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
                         lblpk.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
                         
@@ -89,7 +96,7 @@ namespace Telkomsat.admin
 
         void riwayat()
         {
-            string query = $"SELECT * from AdminApprove where AA_AJ = '{iddata}'";
+            string query = $"SELECT * from AdminApprove where AA_AJ = '{iddata}' order by AA_ID desc";
             DataSet ds = Settings.LoadDataSet(query);
             htmlTable2.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable2.Append("<thead>");

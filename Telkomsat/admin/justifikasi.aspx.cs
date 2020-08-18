@@ -129,6 +129,8 @@ namespace Telkomsat.admin
             public string unit { get; set; }
             public string idproker { get; set; }
             public string proker { get; set; }
+            public string idproker2 { get; set; }
+            public string proker2 { get; set; }
             public string gt { get; set; }
             public string idvendor { get; set; }
             public string vendor { get; set; }
@@ -199,8 +201,7 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($@"select ARK_ID, ARK_Aktivitas, ARK_GTS from AdminRKAP r join AdminRKAPBulanan b on r.ARK_ID=b.ARKB_ARK 
-                                            where b.ARKB_Bulan = '{videoid}' and r.ARK_GTS >= 0 "))
+                using (SqlCommand cmd = new SqlCommand($@"select * from AdminRKAP where ARK_{videoid} != '0'"))
                 {
                     cmd.Connection = con;
                     List<inisial> mydata = new List<inisial>();
@@ -213,6 +214,34 @@ namespace Telkomsat.admin
                             {
                                 idproker = sdr["ARK_ID"].ToString(),
                                 proker = sdr["ARK_Aktivitas"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return mydata;
+                }
+            }
+        }
+
+        [WebMethod]
+        public static List<inisial> GetJustifikasi()
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($@"select * from AdminRKAP"))
+                {
+                    cmd.Connection = con;
+                    List<inisial> mydata = new List<inisial>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            mydata.Add(new inisial
+                            {
+                                idproker2 = sdr["ARK_ID"].ToString(),
+                                proker2 = sdr["ARK_Aktivitas"].ToString(),
                             });
                         }
                     }

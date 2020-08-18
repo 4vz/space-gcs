@@ -161,7 +161,7 @@ namespace Telkomsat
             string query, user;
             user = Session["iduser"].ToString();
             int jenis;
-            query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'repair') and AJ_Profile = '{user}')[ajukan],
+            query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revition') and AJ_Profile = '{user}')[ajukan],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin],
                 (select count(*) from AdminJustifikasi where AJ_Status not in ('admin', 'reject')) [sa]";

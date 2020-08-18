@@ -147,12 +147,12 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "ditolak";
                         }
-                        else if (status == "repair")
+                        else if (status.ToLower() == "revition")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "yellow";
                             warna3 = "black";
-                            statusapp = "ditolak";
+                            statusapp = "menunggu diperbaiki";
                         }
                         else
                         {

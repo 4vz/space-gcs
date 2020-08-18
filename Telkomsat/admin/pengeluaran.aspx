@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
 <div class="row">
 <section class="col-lg-7 connectedSortable">
     <div class="box box-primary">
@@ -12,7 +13,9 @@
     <!-- /.box-header -->
     <!-- form start -->
         <div class="box-body">
-
+        <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
+                        <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
+                    </div>
         <div class="form-group" id="userupd">
             <label for="exampleInputPassword1">Nama</label>
             <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
@@ -45,6 +48,14 @@
                 <option></option>
             </select>
         </div>
+        <div class="form-group" id="div1" runat="server">
+            <label for="exampleInputPassword1">Justifikasi</label>
+            <asp:DropDownList ID="DropDownList2" runat="server" class="form-control" Width="100%" onchange="statusjus(this)">
+                        <asp:ListItem></asp:ListItem>
+                        <asp:ListItem>Justifikasi</asp:ListItem>
+                        <asp:ListItem>Lain-lain</asp:ListItem>
+            </asp:DropDownList>
+        </div>
         <div class="form-group" id="userjustifikasi" style="display:none">
             <label for="exampleInputPassword1">Vendor</label>
             <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
@@ -67,9 +78,9 @@
                         <asp:ListItem>Panjar</asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="form-group" id="file" style="display:none">
+        <div class="form-group" id="file">
             <label for="exampleInputFile">File input</label>
-            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="false"/>
+            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true"/>
         </div>
         <!-- /.box-body -->
 
@@ -113,7 +124,9 @@
 </div>
     <asp:TextBox ID="txtpetugas" CssClass="hidden" runat="server"></asp:TextBox>
     <asp:TextBox ID="txtvendor" CssClass="hidden" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtjustifikasi" CssClass="hidden" runat="server"></asp:TextBox>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
+    <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="nominal.js"></script>
     <script>
         function status(obj) {
@@ -130,6 +143,23 @@
                 document.getElementById('tabledetail').style.display = 'none';
                 
                 $('#<%=sovendor.ClientID %>').empty();
+            }
+        }
+
+        function statusjus(obj) {
+            var selectbox = obj;
+            var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
+            //alert(userinput);
+            if (statuslogbook == "Justifikasi") {
+                document.getElementById('userjustifikasi').style.display = 'block';
+                document.getElementById('<%=soproker.ClientID%>').selectedIndex = -1;
+            }
+            else {
+                document.getElementById('userjustifikasi').style.display = 'none';
+                document.getElementById('<%=txtjustifikasi.ClientID%>').value = '0';
+                document.getElementById('tabledetail').style.display = 'none';
+                
+                $('#<%=soproker.ClientID %>').empty();
             }
         }
         function detail(obj) {
@@ -193,7 +223,7 @@
             var id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "justifikasi.aspx/GetProker",
+                url: "justifikasi.aspx/GetJustifikasi",
                 contentType: "application/json; charset=utf-8",
                 data: '{videoid:"' + id + '"}',
                 dataType: "json",
@@ -205,8 +235,8 @@
                             console.log(this.idbangunan);
                             $('#<%=soproker.ClientID %>').append($('<option>',
                                 {
-                                    value: this.idproker,
-                                    text: this.proker,
+                                    value: this.idproker2,
+                                    text: this.proker2,
                                 }));
                         });
                     },
@@ -254,10 +284,17 @@
             $('#<%=txtvendor.ClientID%>').val(id);
         });
 
+        $('#<%=soproker.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtjustifikasi.ClientID%>').val(id);
+        });
+
         $('#<%=sotugas.ClientID%>').change(function () {
             var id = $(this).val();
             $('#<%=txtpetugas.ClientID%>').val(id);
         });
+
+        $('.select2').select2()
 
         /*function remove(button) {
             //Determine the reference of the Row using the Button.

@@ -36,7 +36,7 @@ namespace Telkomsat.admin
             {
                 iddata = Request.QueryString["id"].ToString();
 
-                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama, AP_ID
+                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama, AP_ID, k.ARK_GTS
                                 FROM AdminJustifikasi j full join AdminProfile p on j.AJ_PT=p.AP_ID full join AdminReference r1
                                 on r1.AR_ID = p.AP_Jabatan full join AdminReference r2 on r2.AR_ID = p.AP_Subdit full join AdminRKAP k
                                 on k.ARK_ID = j.AJ_AR full join AdminVendor v on v.AV_ID=j.AJ_AV full join Profile e on e.id_profile=p.AP_Nama WHERE AJ_ID = '{iddata}'";
@@ -52,11 +52,11 @@ namespace Telkomsat.admin
                         txtdetail.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
                         txtket.Value = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
                         txtnamaket.Value = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
+                        txtnilairkap.Value = "Rp. " + ds.Tables[0].Rows[0]["ARK_GTS"].ToString();
                         txtnilai.Value = ds.Tables[0].Rows[0]["AJ_Nilai"].ToString();
                         lblnj.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
                         txtpetugas.Text = ds.Tables[0].Rows[0]["AP_ID"].ToString();
                         txtproker.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();
-                        txttanggal.Value = start.ToString("yyyy/MM/dd");
                         txttglpsm.Value = tglds.ToString("yyyy/MM/dd");
                         txtunit.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                         txtvendor.Text = ds.Tables[0].Rows[0]["AJ_AV"].ToString();
@@ -121,11 +121,24 @@ namespace Telkomsat.admin
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
+            double dbnilai;
+
+            dbnilai = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
             myket = new string[Request.Files.Count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
-                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}', AJ_Tgl='{txttanggal.Value}',
-                            AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{txtnilai.Value}' WHERE AJ_ID='{iddata}'";
+            if (Request.QueryString["perbaikan"] == null)
+            {
+                query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
+                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}',
+                            AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{dbnilai}' WHERE AJ_ID='{iddata}'";
+            }
+            else
+            {
+                query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
+                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}',
+                            AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{dbnilai}', AJ_Status='diajukan' WHERE AJ_ID='{iddata}'";
+            }
+
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             int i = Convert.ToInt32(cmd.ExecuteScalar());
@@ -166,7 +179,10 @@ namespace Telkomsat.admin
                 }
             }
 
-            Response.Redirect("listjustifikasi.aspx");
+            if (Request.QueryString["perbaikan"] == null)
+                Response.Redirect("listjustifikasi.aspx");
+            else
+                Response.Redirect("approvement.aspx?jenis=diajukan");
         }
 
         public class inisial

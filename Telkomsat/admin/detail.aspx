@@ -128,6 +128,25 @@
             <asp:Label ID="Label5" runat="server">: </asp:Label>
             <img style="display:block" runat="server" id="myimg" class="myImg" src="" height="200" />
         </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                    <br />
+                <asp:GridView ID="DataList3a" runat="server" AutoGenerateColumns="False" style="margin:0;" Font-Size="13px" BackColor="White"
+                BorderColor="White" BorderStyle="None" BorderWidth="0px" Visible="false" OnRowCommand="GridView1_RowCommand">
+                <Columns>
+                    <asp:TemplateField HeaderText="File">
+                        <ItemTemplate>
+                            <span class="fa fa-check" style="width:20px"></span>
+                            <asp:LinkButton ID ="InkView" runat ="server" CssClass="rows" CommandArgument='<%# Eval("namafiles") %>' CommandName="Download" Text='<%# Eval("namafiles") %>'></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField ="caption" HeaderText="Deskripsi" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
+                    </Columns>
+            <RowStyle BackColor="White" ForeColor="#1b1b1b" />
+            </asp:GridView>
+            </div>
+            <br />
+            
         </div>
         <!-- /.box-body -->
 
@@ -139,7 +158,7 @@
 <section class="col-lg-6 connectedSortable">
     <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Table Detail</h3>
+        <h3 class="box-title">Table Justifikasi</h3>
                 <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
     </div>
     <div class="box-body" style="min-height:200px;">
