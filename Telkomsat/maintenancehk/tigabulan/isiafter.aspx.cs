@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Telkomsat.maintenancehk.tigabulan
 {
@@ -22,9 +23,14 @@ namespace Telkomsat.maintenancehk.tigabulan
 
         string Parameter, iduser, databef, dataaft, idddl = "s", idtgl, value = "1", idtxt = "A", loop = "", ruangan, tipe, satuan, room, rdevice, ralias, query1, date, inisial, device, alias, tanggal, valuetgl;
         string[] words = { "a", "a" };
-        string[] akhir;
+        string[] akhir, filearray;
         int j = 0, k, m = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.Form.Enctype = "multipart/form-data";
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -127,6 +133,23 @@ namespace Telkomsat.maintenancehk.tigabulan
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            string idfile;
+
+            HttpFileCollection filecolln = Request.Files;
+            filearray = new string[filecolln.Count];
+            for (int j = 0; j < filecolln.Count; j++)
+            {
+                HttpPostedFile file = filecolln[j];
+                string filename = Path.GetFileName(file.FileName);
+                if (file.ContentLength > 0)
+                {
+                    string filepath = "~/fileupload/" + filename;
+                    string extension = Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("~/fileupload/") + Path.GetFileName(file.FileName));
+                }
+                filearray[j] = filename;
+
+            }
             string data = string.Join(",", akhir);
 
             string query5, myid;
@@ -161,6 +184,32 @@ namespace Telkomsat.maintenancehk.tigabulan
                     }
                 }
             }
+
+            string querydisp = $@"select d.id_data, d.data_aft, r.id_parameter, t.device, t.sn, r.parameter, r.satuan, r.tipe from mainhk_3m_data d 
+                     join mainhk_3m_parameter r on r.id_parameter=d.id_parameter join mainhk_3m_perangkat t on t.id_perangkat=r.id_perangkat
+                     where t.lokasi='{lokasi}' and t.satelit= '{satelit}' and t.equipment = '{equipment}' and 
+                     r.parameter in ('Input Signal Level', 'Input C/N', 'Output Signal Level', 'Output C/N') order by r.id_parameter, t.sn";
+            SqlDataAdapter daheader;
+            DataSet dsf = new DataSet();
+            sqlCon.Open();
+            SqlCommand cmdheader = new SqlCommand(querydisp, sqlCon);
+            daheader = new SqlDataAdapter(cmdheader);
+            daheader.Fill(dsf);
+            cmdheader.ExecuteNonQuery();
+            sqlCon.Close();
+            if (dsf.Tables[0].Rows.Count > 0)
+            {
+                Response.Write("ya");
+                for (int i = 0; i < dsf.Tables[0].Rows.Count; i++)
+                {
+                    idfile = dsf.Tables[0].Rows[i]["id_data"].ToString();
+                    string queryevi = $@"update mainhk_3m_data set fileaft='{filearray[i]}' where id_data='{idfile}'";
+                    sqlCon.Open();
+                    SqlCommand cmd8 = new SqlCommand(queryevi, sqlCon);
+                    cmd8.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
             this.ClientScript.RegisterStartupScript(this.GetType(), "clientClick", "fungsi()", true);
 
             Response.Redirect($"dashboard.aspx");
@@ -186,7 +235,7 @@ namespace Telkomsat.maintenancehk.tigabulan
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><<th>Device</th><th>Serial Number</th><th>Parameter</th><th>Nilai Before</th><th>Nilai After</th><th>Satuan</th></tr>");
+            htmlTable.Append("<tr><<th>Device</th><th>Serial Number</th><th>Parameter</th><th>Nilai Before</th><th>Nilai After</th><th>Evidence</th><th>Satuan</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -244,6 +293,14 @@ namespace Telkomsat.maintenancehk.tigabulan
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value =\"UNWASH\"> UNWASH </option><option value=\"WASH\" > WASH </option></select > " + " </td>");
 
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + satuan + "</label>" + "</td>");
+                        if (Parameter.IsIn(new string[] { "Input Signal Level", "Input C/N", "Output Signal Level", "Output C/N" }))
+                        {
+                            htmlTable.Append("<td>" + $"<input name=\"files\" type=file /> " + " </td>");
+                        }
+                        else
+                        {
+                            htmlTable.Append("<td>" + $"-" + " </td>");
+                        }
                         htmlTable.Append("</tr>");
                         value = Request.Form["idticket"];
                         valuetgl = Request.Form["tgl"];

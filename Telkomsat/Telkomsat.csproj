@@ -168,6 +168,7 @@
     <Content Include="3monthhk\add.aspx" />
     <Content Include="3monthhk\isidata.aspx" />
     <Content Include="activity.aspx" />
+    <Content Include="addprofile.aspx" />
     <Content Include="admin\action.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\approve.aspx" />
@@ -7186,6 +7187,7 @@
     <Content Include="knowledge\tambah.aspx" />
     <Content Include="knowledge\tambahpost.aspx" />
     <Content Include="knowledge\tampil.aspx" />
+    <Content Include="listuser.aspx" />
     <Content Include="logbook1\details.aspx" />
     <Content Include="logbook1\editlogbook.aspx" />
     <Content Include="logbook1\filter.aspx" />
@@ -7265,7 +7267,9 @@
     <Content Include="maintenancehk\tigabulan\isiafter.aspx" />
     <Content Include="maintenancehk\tigabulan\isibbu.aspx" />
     <Content Include="maintenancehk\tigabulan\isidata.aspx" />
+    <Content Include="maintenancehk\tigabulan\savefile.aspx" />
     <Content Include="maintenancehk\tigabulan\viewdata.aspx" />
+    <Content Include="maintenancehk\tigabulan\viewdata2.aspx" />
     <Content Include="password\edit.aspx" />
     <Content Include="password\semuahardware.aspx" />
     <Content Include="password\semuasoftware.aspx" />
@@ -7342,6 +7346,13 @@
     </Compile>
     <Compile Include="activity.aspx.designer.cs">
       <DependentUpon>activity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addprofile.aspx.cs">
+      <DependentUpon>addprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addprofile.aspx.designer.cs">
+      <DependentUpon>addprofile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ADMIN.Master.cs">
       <DependentUpon>ADMIN.Master</DependentUpon>
@@ -8702,6 +8713,13 @@
     <Compile Include="knowledge\tampil.aspx.designer.cs">
       <DependentUpon>tampil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listuser.aspx.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listuser.aspx.designer.cs">
+      <DependentUpon>listuser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="logbook1\details.aspx.cs">
       <DependentUpon>details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9079,12 +9097,26 @@
     <Compile Include="maintenancehk\tigabulan\isidata.aspx.designer.cs">
       <DependentUpon>isidata.aspx</DependentUpon>
     </Compile>
+    <Compile Include="maintenancehk\tigabulan\savefile.aspx.cs">
+      <DependentUpon>savefile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\savefile.aspx.designer.cs">
+      <DependentUpon>savefile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="maintenancehk\tigabulan\viewdata.aspx.cs">
       <DependentUpon>viewdata.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="maintenancehk\tigabulan\viewdata.aspx.designer.cs">
       <DependentUpon>viewdata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\viewdata2.aspx.cs">
+      <DependentUpon>viewdata2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenancehk\tigabulan\viewdata2.aspx.designer.cs">
+      <DependentUpon>viewdata2.aspx</DependentUpon>
     </Compile>
     <Compile Include="password\edit.aspx.cs">
       <DependentUpon>edit.aspx</DependentUpon>

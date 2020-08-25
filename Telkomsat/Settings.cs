@@ -14,11 +14,12 @@ namespace Telkomsat
 
         public static DataSet LoadDataSet(string Sql)
         {
+            sqlCon.Open();
             SqlCommand cmd = new SqlCommand(Sql, sqlCon);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            sqlCon.Open();
+            
             cmd.ExecuteNonQuery();
             sqlCon.Close();
             return ds;
