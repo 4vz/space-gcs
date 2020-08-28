@@ -22,6 +22,18 @@ namespace Telkomsat.admin
             string idapp = Request.QueryString["idapp"];
             string idrk = Request.QueryString["idrk"];
             string idven = Request.QueryString["idven"];
+            string idpeng = Request.QueryString["idpeng"];
+
+
+            if (idpeng != null)
+            {
+                string query = $"UPDATE administrator SET approve = 'gm' WHERE id_admin = '{idpeng}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/approvement.aspx?jenis={jenis}");
+            }
 
             if (hapusreferensi != null)
             {

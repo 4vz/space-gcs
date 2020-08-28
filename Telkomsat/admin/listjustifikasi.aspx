@@ -8,7 +8,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Justifikasi</h3>
                         <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
-                <a href="importrkap.aspx" class="btn btn-default pull-right" id="btnimport" runat="server" visible="false">Import</a>
+                <a href="importrkap.aspx" class="btn btn-default pull-right" id="btnimport" style="padding-right:10px" runat="server" visible="false">Import</a>
             <a href="justifikasi.aspx" class="btn btn-primary pull-right" id="btntambah" runat="server" visible="false">Tambah</a>
             </div>
             <!-- /.box-header -->

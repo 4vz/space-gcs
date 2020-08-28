@@ -1,46 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="listpengeluaran.aspx.cs" Inherits="Telkomsat.admin.listpengeluaran" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <div class="row" style="padding:20px">
 
-<div class="col-lg-12 connectedSortable">
-        <!-- Custom tabs (Charts with tabs)-->
-    <div class="box box-primary">
-    <!-- Tabs within a box -->
-    <div class="box-header">
-        <i class="fa fa-money"></i> Pengeluaran
-        <a href="pengeluaran.aspx" class="btn btn-primary btn-sm pull-right" runat="server" id="btntmbh" visible="false">Tambah</a>
-    </div>
-    <div class="box-body">
-        <!-- Morris chart - Sales -->
-        <div class="table-responsive mailbox-messages">
-            <div class="table table-responsive">
-                <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+    <div class="row" style="height:auto">
+        <div class="col-md-12">
+            <a href="pengeluaran.aspx" class="btn btn-primary btn-sm pull-right" runat="server" id="btntmbh" visible="false">Tambah</a>
+          <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                      <li id="lipengeluaran" runat="server" class="active"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
+                      <li id="lidraft" runat="server"><a href="#draft" data-toggle="tab">Draft</a></li>
+                        
+                      <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
+                    </ul>
+              
+                <div class="tab-content no-padding">
+                    <div id="pengeluaran" class="tab-pane fade in active ">
+                        <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+                        <asp:Label ID="lblpeng" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="draft" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  
+                        <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    </div>
+                </div>
+               
             </div>
-    <!-- /.table -->
-        </div>
-    </div>
-    <div class="box-footer no-border" style="padding:3px;">
-        <div class="row">
-        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-            <label style="padding-right:10px">Pemasukan </label>
-            <span class="label label-info">  </span>
-        </div>
-            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-            <label style="padding-right:10px">Pemindahan </label>
-            <span class="label label-success">  </span>
-        </div>
-        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-            <label style="padding-right:10px">Pengeluaran </label>
-            <span class="label label-warning">  </span>
-        </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    </div>
-</div>
+            </div>
+
+
 </div>
 
     <div class="modal fade" id="modalupdate">
@@ -84,6 +78,14 @@
                 "lengthChange": true,
                 "searching": true
             });
+
+            $("#example3").DataTable({
+                "autoWidth": true,
+                "ordering": false,
+                "lengthChange": true,
+                "searching": true
+            });
+
             $('.dataTables_length').addClass('bs-select');
         });
 
@@ -103,6 +105,10 @@
                 captionText.innerHTML = this.alt;
             }
         }
+
+        $(document).ready(function () {
+            $('#pengeluaran').addClass('in active')
+        });
 
         var span = document.getElementsByClassName("close")[0];
 

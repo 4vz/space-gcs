@@ -15,6 +15,7 @@ namespace Telkomsat.datalogbook
         string queryupdate, queryupdatel, queryupdatem, queryupdatef;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string idpeng = Request.QueryString["idpeng"];
             string idapprove = Request.QueryString["ida"];
             string idadmin = Request.QueryString["idadmin"];
             string hapus = Request.QueryString["hapus"];
@@ -30,6 +31,7 @@ namespace Telkomsat.datalogbook
             string filelain = Request.QueryString["idfilelain"];
             string filemain = Request.QueryString["idfilemain"];
             string filekonfig = Request.QueryString["idfilekonfig"];
+
 
             if (filelain != null)
             {

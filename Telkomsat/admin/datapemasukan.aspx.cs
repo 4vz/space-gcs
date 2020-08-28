@@ -29,7 +29,7 @@ namespace Telkomsat.admin
         {
             if (!IsPostBack)
             {
-                query = @"select * from administrator order by id_admin desc";
+                query = @"select * from administrator where approve = 'admin' order by id_admin desc";
                 tableticket();
             }
             

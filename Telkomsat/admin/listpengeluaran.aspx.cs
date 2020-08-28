@@ -20,7 +20,7 @@ namespace Telkomsat.admin
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string IDdata = "kitaa", total = "", keterangan, tanggal = "", nominal, nama, approve, brame, style, input = "", kategori = "", style5 = "", kategori1 = "", query;
+        string IDdata = "kitaa", total = "", keterangan, tanggal = "", nominal, query3, approve, brame, style, input = "", kategori = "", style5 = "", kategori1 = "", query;
         string start = "01/01/2019", filename, filepath, end = "01/12/2048";
 
 
@@ -36,13 +36,15 @@ namespace Telkomsat.admin
 
             if (ds2.Tables[0].Rows.Count > 0)
             {
-                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString().IsIn((new string[] { "Admin Bendahara", "User", "SA" })))
                     btntmbh.Visible = true;
             }
             if (!IsPostBack)
             {
-                query = @"select * from administrator where kategori = 'pengeluaran' order by tanggal desc";
+                query = @"select * from administrator where kategori = 'pengeluaran' and approve='admin' order by tanggal desc";
+                query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revition') order by tanggal desc";
                 tableticket();
+                tabledraft();
             }
 
         }
@@ -151,5 +153,81 @@ namespace Telkomsat.admin
                 }
             }
         }
+
+        void tabledraft()
+        {
+            string simpanan, evidence, tanggal, keterangan, nominal, IDdata, approve;
+
+            DataSet ds1 = Settings.LoadDataSet(query3);
+
+            htmlTable1.Append("<table id=\"example3\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable1.Append("<thead>");
+            htmlTable1.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Status</th><th>Action</th></tr>");
+            htmlTable1.Append("</thead>");
+
+            htmlTable1.Append("<tbody>");
+            if (!object.Equals(ds1.Tables[0], null))
+            {
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+                        IDdata = ds1.Tables[0].Rows[i]["id_admin"].ToString();
+                        DateTime datee = (DateTime)ds1.Tables[0].Rows[i]["tanggal"];
+                        tanggal = datee.ToString("dd/MM/yyyy");
+                        simpanan = ds1.Tables[0].Rows[i]["simpanan"].ToString();
+                        evidence = ds1.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
+                        keterangan = ds1.Tables[0].Rows[i]["keterangan"].ToString();
+                        approve = ds1.Tables[0].Rows[i]["approve"].ToString();
+                        nominal = Convert.ToInt32(ds1.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+
+                        if (ds1.Tables[0].Rows[i]["gm"].ToString() == "unread")
+                            style5 = "font-weight:bold;";
+                        else
+                            style5 = "font-weight:normal;";
+
+                        if (approve == "diajukan")
+                            style = "label label-info";
+                        else if (approve == "gm")
+                            style = "label label-success";
+                        else if (approve == "revition")
+                            style = "label label-warning";
+
+                        htmlTable1.Append($"<tr style=\"{style5}\">");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:10px; {style5} color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + simpanan + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{style}\">" + approve + "</label>" + "</td>");
+                        /*if (evidence == "" || evidence == null)
+                        {
+                            htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + ds1.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                        }
+                        else
+                        {
+                            if (evidence.Substring(evidence.LastIndexOf('.') + 1).ToLower().IsIn(new string[] { "jpg", "jpeg", "png", "bmp", "jfif", "gif" }))
+                            {
+                                htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
+                            }
+                            else
+                            {
+                                htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + ds1.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                            }
+                        }*/
+
+                        htmlTable1.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
+                        if (evidence == "" || evidence == null)
+                            htmlTable1.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
+                        htmlTable1.Append("</tr>");
+                    }
+                    htmlTable1.Append("</tbody>");
+                    htmlTable1.Append("</table>");
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTable1.ToString() });
+
+                }
+            }
+        }
+
     }
 }

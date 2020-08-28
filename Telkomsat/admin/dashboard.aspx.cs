@@ -97,7 +97,7 @@ namespace Telkomsat.admin
         void tableticket()
         {
             query = @"select top 6 id_admin, status, bra_harkat, bra_me, rek_harkat1, rek_harkat2, rek_me1, rek_me2, kategori, input, tanggal, total
-                                from administrator order by id_admin desc";
+                                from administrator where approve = 'admin' order by id_admin desc";
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);

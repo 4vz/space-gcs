@@ -16,16 +16,17 @@
         <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
                         <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
                     </div>
-        <div class="form-group" id="userupd">
+        <div class="form-group hidden" id="userupd">
             <label for="exampleInputPassword1">Nama</label>
             <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                 <option></option>
             </select>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Kategori</label>
+            <label for="exampleInputPassword1">Sumber Dana</label>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="ddlKategori" InitialValue="--Sumber Dana--"></asp:RequiredFieldValidator>
             <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server">
-                <asp:ListItem>--Kategori--</asp:ListItem>
+                <asp:ListItem>--Sumber Dana--</asp:ListItem>
                 <asp:ListItem>Rek. Harkat Bendahara 1</asp:ListItem>
                 <asp:ListItem>Rek. Harkat Bendahara 2</asp:ListItem>
                 <asp:ListItem>Rek. ME Bendahara 1</asp:ListItem>
@@ -35,7 +36,8 @@
             </asp:DropDownList>
         </div>
         <div class="form-group" id="divvendor" runat="server">
-            <label for="exampleInputPassword1">Jenis</label>
+            <label for="exampleInputPassword1">Penerima Dana</label>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="DropDownList1" InitialValue=""></asp:RequiredFieldValidator>
             <asp:DropDownList ID="DropDownList1" runat="server" class="form-control" Width="100%" onchange="status(this)">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Vendor</asp:ListItem>
@@ -50,6 +52,7 @@
         </div>
         <div class="form-group" id="div1" runat="server">
             <label for="exampleInputPassword1">Justifikasi</label>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="DropDownList2" InitialValue=""></asp:RequiredFieldValidator>
             <asp:DropDownList ID="DropDownList2" runat="server" class="form-control" Width="100%" onchange="statusjus(this)">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Justifikasi</asp:ListItem>
@@ -78,14 +81,10 @@
                         <asp:ListItem>Panjar</asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="form-group" id="file">
-            <label for="exampleInputFile">File input</label>
-            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true"/>
-        </div>
         <!-- /.box-body -->
 
         <div class="box-footer">
-        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Save_ServerClick">Submit</button>
+        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Save_ServerClick">Ajukan</button>
         </div>
     </div>
     </section>

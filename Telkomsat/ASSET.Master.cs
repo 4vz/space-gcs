@@ -30,6 +30,22 @@ namespace Telkomsat
             return benarkah;
         }
 
+        public static bool NotIsIn(this string ygdicek, string[] daftar)
+        {
+            bool benarkah = false;
+
+            foreach (string d in daftar)
+            {
+                if (ygdicek != d)
+                {
+                    benarkah = true;
+                    break;
+                }
+            }
+
+            return benarkah;
+        }
+
     }
 
 

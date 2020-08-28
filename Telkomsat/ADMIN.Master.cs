@@ -77,6 +77,7 @@ namespace Telkomsat
             if (ds.Tables[0].Rows.Count > 0)
             {
                 previllage = ds.Tables[0].Rows[0]["AP_Previllage"].ToString();
+                Session["adminid"] = ds.Tables[0].Rows[0]["AP_ID"].ToString();
                 if (previllage == "GM")
                     ligm.Visible = true;
                 else if (previllage == "User")
@@ -118,13 +119,12 @@ namespace Telkomsat
 
                 if (previllage == "User")
                 {
-                    if (thisURL.ToLower().IsIn(new string[]{ "dashboard.aspx", "datapemasukan.aspx", "data.aspx", "pemasukan.aspx", "pengeluaran.aspx", "listpemasukan.aspx",
-                    "listpengeluaran.aspx", "tambahrkap.aspx", "pengembalian.aspx", "pemindahan.aspx"}))
+                    if (thisURL.ToLower().IsIn(new string[]{ "dashboard.aspx", "datapemasukan.aspx", "data.aspx", "pemasukan.aspx",  "listpemasukan.aspx",
+                    "tambahrkap.aspx", "pengembalian.aspx", "pemindahan.aspx"}))
                     {
                         Response.Redirect("listjustifikasi.aspx");
                     }
                     lipemasukan.Visible = false;
-                    lipengeluaran.Visible = false;
                     lipemindahan.Visible = false;
                     lipengembalian.Visible = false;
                     lidashboard.Visible = false;
@@ -132,7 +132,10 @@ namespace Telkomsat
                 }
                 else if(previllage.ToLower().IsIn(new string[] { "User Organik", "SA", "User" }))
                 {
-                    
+                    if (thisURL.ToLower().IsIn(new string[] { "pengeluaran.aspx"}))
+                    {
+                        Response.Redirect("dashboard.aspx");
+                    }
                 }
                 else
                 {
@@ -144,7 +147,7 @@ namespace Telkomsat
 
                 if (previllage != "Admin Bendahara")
                 {
-                    if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pengeluaran.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
+                    if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
                     {
                         Response.Redirect("dashboard.aspx");
                     }
@@ -158,7 +161,8 @@ namespace Telkomsat
 
         void approve()
         {
-            string query, user;
+            string query, user, querypeng;
+            int a = 0, b = 0, c = 0;
             user = Session["iduser"].ToString();
             int jenis;
             query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revition') and AJ_Profile = '{user}')[ajukan],
@@ -168,11 +172,24 @@ namespace Telkomsat
 
             DataSet ds = Settings.LoadDataSet(query);
 
-            if(ds.Tables[0].Rows.Count > 0)
+            querypeng = @"select(select count(*) from administrator where approve = 'reject' or approve = 'revition')[user],
+		        (select count(*) from administrator where approve = 'diajukan')[gm],
+		        (select count(*) from administrator where approve = 'gm')[admin]";
+
+            DataSet dspeng = Settings.LoadDataSet(querypeng);
+
+            if (dspeng.Tables[0].Rows.Count > 0)
             {
-                lbldiajukan.Text = ds.Tables[0].Rows[0]["ajukan"].ToString();
-                lblgm.Text = ds.Tables[0].Rows[0]["gm"].ToString();
-                lbladmin.Text = ds.Tables[0].Rows[0]["admin"].ToString();
+                a = Convert.ToInt32(dspeng.Tables[0].Rows[0]["user"].ToString());
+                b = Convert.ToInt32(dspeng.Tables[0].Rows[0]["gm"].ToString());
+                c = Convert.ToInt32(dspeng.Tables[0].Rows[0]["admin"].ToString());
+            }
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                lbldiajukan.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["ajukan"].ToString()) + a).ToString();
+                lblgm.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["gm"].ToString()) + b).ToString();
+                lbladmin.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["admin"].ToString()) + c).ToString();
                 lblsa.Text = ds.Tables[0].Rows[0]["sa"].ToString();
             }
         }
