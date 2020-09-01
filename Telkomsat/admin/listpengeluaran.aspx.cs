@@ -47,6 +47,15 @@ namespace Telkomsat.admin
                 tabledraft();
             }
 
+            if (Request.QueryString["tipe"] == "draft")
+            {
+                lidraft.Attributes.Add("class", "active");
+            }
+            else
+            {
+                lipengeluaran.Attributes.Add("class", "active");
+            }
+
         }
 
         protected void Edit_File(object sender, EventArgs e)
@@ -141,7 +150,7 @@ namespace Telkomsat.admin
                             }
                         }*/
 
-                        htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
+                        htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=3Xc5T79kLm1Oo\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)
                             htmlTable.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
                         htmlTable.Append("</tr>");

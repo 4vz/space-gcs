@@ -147,11 +147,6 @@
             <br />
             
         </div>
-        <!-- /.box-body -->
-
-        <div class="box-footer">
-        <button type="submit" class="btn btn-primary" runat="server" >Submit</button>
-        </div>
     </div>
     </section>
 <section class="col-lg-6 connectedSortable">
@@ -248,11 +243,87 @@
     </div>
     </div>
 </section>
-</div>
+            <div class="col-sm-12" runat="server" id="div1">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Pertanggungan</h3>
+                    </div>
+                    <div class="box-body">
+                        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                        <asp:Label ID="lblpertanggungan" runat="server" Text="Belum ada pertanggungan" Visible="false"></asp:Label>
+                            </div>
+                    </div>
+                   
+                </div>
+
+
+            <div class="col-sm-12" runat="server" id="divpertanggungan" visible="false">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Tambah Pertanggungan</h3>
+                    </div>
+                    <div class="box-body">
+                        <div id="dvfiles">
+                                    <table class="table table-bordered kita" id="tableku" runat="server">
+                                        <thead>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <th>Keterangan</th>
+                                                <th>Jumlah Item</th>
+                                                <th>Harga Satuan</th>
+                                                <th>Evidence</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
+                            </div>
+                    </div>
+                    <div class="box-footer">
+                        <asp:Button ID="Button1" CssClass="btn btn-primary" OnClick="Pertanggungan_Click" runat="server" Text="Submit" />
+                    </div>
+                </div>
+                
+        </div>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
+    <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
+        var i = 0;
+        $(document).ready(function () {
+            $("#addfile").click(function () {
+                var markup = "<tr><td><input type='text' name='intanggal' class='form-control datepicker' /></td>" +
+                    "<td><input type='text' name='inketerangan' class='form-control' /></td>" +
+                    "<td><input type='number' name='inpcs' class='form-control' /></td>" +
+                    "<td><input type='number' name='inharga' class='form-control' /></td>" +
+                    "<td><input name=" + i + "fu type=file /></td>" +
+                    "<td> <button type='button' name='record' onclick='newtest2(this)' class='btn-sm btn-default delete-row'><i class=fa>X</i></button></td></tr>";
+                $('#' + '<%= tableku.ClientID%>').append(markup);
+                i++;
+                console.log('add');
+            });
+            
+            $(document).on('click', '.datepicker', function () {
+                $(".datepicker").datepicker({
+                    format: 'yyyy/mm/dd', autoclose: true
+                });
+                console.log("mimi");
+            });
+
+        });
+
+        function newtest2(e) {              //Add e as parameter
+            $(e).parents('tr').remove();   //Use the e to delete
+        }
+       
+
+            //console.log('klkl');
+
         var modal = document.getElementById("myModal");
         var img = document.getElementsByClassName("myImg");
+        var btnimg = document.getElementsByClassName("btnimg");
         var modalImg = document.getElementById("img01");
         var i;
         for (i = 0; i < img.length; i++) {
@@ -260,6 +331,15 @@
             modal.style.display = "block";
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
+            }
+        }
+
+        var j;
+        for (j = 0; j < btnimg.length; j++) {
+            btnimg[j].onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.value;
+                console.log(this.value);
             }
         }
 

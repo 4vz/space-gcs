@@ -14,7 +14,7 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
-                      <li id="lijustifikasi" runat="server" class="active"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
+                      <li id="lijustifikasi" runat="server"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
                       <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
                         
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
@@ -501,16 +501,13 @@
         $(function () {
           $("#example2").DataTable({
           "autoWidth": true,
-          "scrollX": true,
               "ordering": false,
               "lengthChange": true,
             "searching": true
           });
-            $('.dataTables_length').addClass('bs-select');
 
             $("#example3").DataTable({
                 "autoWidth": true,
-                "scrollX": true,
                 "ordering": false,
                 "lengthChange": true,
                 "searching": true

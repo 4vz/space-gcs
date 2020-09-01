@@ -84,7 +84,7 @@
         <!-- /.box-body -->
 
         <div class="box-footer">
-        <button type="submit" class="btn btn-primary" runat="server" onserverclick="Save_ServerClick">Ajukan</button>
+        <button type="submit" class="btn btn-primary" runat="server" id="Button1" onserverclick="Save_ServerClick">Ajukan</button>
         </div>
     </div>
     </section>
@@ -128,6 +128,11 @@
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="nominal.js"></script>
     <script>
+        function DisableButton() {
+            document.getElementById("<%=Button1.ClientID %>").disabled = true;
+        }
+        window.onbeforeunload = DisableButton;
+
         function status(obj) {
             var selectbox = obj;
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;

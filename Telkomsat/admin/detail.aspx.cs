@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Telkomsat.admin
 {
@@ -18,14 +19,19 @@ namespace Telkomsat.admin
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
         DataSet dsmodal = new DataSet();
-        StringBuilder htmlTable = new StringBuilder();
+        StringBuilder htmlTable3 = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
         string evidence, idjustifikasi;
+        string[] myfile, intanggal, inketerangan, inpcs, inharga, inevidence;
 
-        
         string querypanjar, tanggal = "", totalpanjar, input = "", vendor, kategori, keterangan, fileu, nominal, id;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            this.Form.Enctype = "multipart/form-data";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Request.QueryString["id"];
@@ -75,6 +81,15 @@ namespace Telkomsat.admin
                 justifikasi();
                 mytable();
                 listdata();
+                tblpertanggungan();
+            }
+
+            if(Request.QueryString["tipe"] != null)
+            {
+                if(Request.QueryString["tipe"].ToString() == "3Xc5T79kLm1Oo")
+                {
+                    divpertanggungan.Visible = true;
+                }
             }
 
             //tablepanjar();
@@ -89,6 +104,88 @@ namespace Telkomsat.admin
             Response.TransmitFile(Server.MapPath("~/evidence/")
                 + e.CommandArgument);
             Response.End();
+        }
+
+        protected void Pertanggungan_Click(object sender, EventArgs e)
+        {
+            inevidence = new string[Request.Files.Count];
+            inharga = new string[Request.Files.Count];
+            inketerangan = new string[Request.Files.Count];
+            inpcs = new string[Request.Files.Count];
+            intanggal = new string[Request.Files.Count];
+
+            string fotanggal = Request.Form["intanggal"];
+            string foketerangan = Request.Form["inketerangan"];
+            string fopcs = Request.Form["inpcs"];
+            string foharga = Request.Form["inharga"];
+
+            if (fotanggal != null)
+            {
+                string[] lines = Regex.Split(fotanggal, ",");
+                int a = 0;
+                foreach (string line in lines)
+                {
+                    intanggal[a] = line;
+                    a++;
+                }
+            }
+
+            if (foketerangan != null)
+            {
+                string[] lines = Regex.Split(foketerangan, ",");
+                int a = 0;
+                foreach (string line in lines)
+                {
+                    inketerangan[a] = line;
+                    a++;
+                }
+            }
+
+            if (fopcs != null)
+            {
+                string[] lines = Regex.Split(fopcs, ",");
+                int a = 0;
+                foreach (string line in lines)
+                {
+                    inpcs[a] = line;
+                    a++;
+                }
+            }
+
+
+            if (foharga != null)
+            {
+                string[] lines = Regex.Split(foharga, ",");
+                int a = 0;
+                foreach (string line in lines)
+                {
+                    inharga[a] = line;
+                    a++;
+                }
+            }
+
+            HttpFileCollection filecolln = Request.Files;
+            for (int j = 0; j < filecolln.Count; j++)
+            {
+                HttpPostedFile file = filecolln[j];
+                if (file.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(file.FileName);
+                    string filepath = "~/evidence/" + filename;
+                    string extension = Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("~/evidence/") + Path.GetFileName(file.FileName));
+                    sqlCon.Open();
+                    string queryfile = $@"INSERT INTO AdminPertanggungan (AT_AD, AT_Keterangan, AT_Tanggal, AT_pcs, AT_harga, AT_EvidenceName, AT_EvidencePath)
+                                        VALUES ('{id}', '{inketerangan[j]}', '{intanggal[j]}', '{inpcs[j]}', '{inharga[j]}', '{filename}', '{filepath}')";
+                    //Response.Write(queryfile); ;
+                    SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                    sqlCmd1.ExecuteNonQuery();
+                    sqlCon.Close();
+                }
+            }
+
+
         }
 
         void listdata()
@@ -240,6 +337,49 @@ namespace Telkomsat.admin
             }
         }
 
+        void tblpertanggungan()
+        {
+            string dptotal, dpharga, filepath;
+            string query2 = $"select * from AdminPertanggungan where AT_AD = {id}";
 
+            DataSet ds2 = Settings.LoadDataSet(query2);
+
+            htmlTable3.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable3.Append("<thead>");
+            htmlTable3.Append("<tr><th>Tanggal</th><th>Keterangan</th><th>Jumlah Item</th><th>Harga</th><th>Total</th><th>Evidence</th></tr>");
+            htmlTable3.Append("</thead>");
+
+            htmlTable3.Append("<tbody>");
+            if (!object.Equals(ds2.Tables[0], null))
+            {
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+                    {
+                        dptotal = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_total"].ToString()));
+                        dpharga = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_harga"].ToString()));
+                        filepath = ds2.Tables[0].Rows[i]["AT_EvidencePath"].ToString().Replace("~", "..");
+
+                        htmlTable3.Append("<tr>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_tanggal"].ToString() + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_keterangan"].ToString()  + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_pcs"].ToString() + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dpharga + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dptotal + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + $"<button type=\"button\" style=\"font-size:12px;\" class=\"btn btnimg\" value=\"{filepath}\">" + "<i class=\"fa fa-paperclip\"></i>" + "</button>" + "</td>");
+                        htmlTable3.Append("</tr>");
+                    }
+                    htmlTable3.Append("</tbody>");
+                    htmlTable3.Append("</table>");
+                    PlaceHolder2.Controls.Add(new Literal { Text = htmlTable3.ToString() });
+
+                }
+                else
+                {
+                    lblpertanggungan.Visible = true;
+                }
+            }
+        }
     }
 }

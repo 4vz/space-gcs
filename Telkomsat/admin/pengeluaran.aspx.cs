@@ -269,6 +269,7 @@ namespace Telkomsat.admin
                 Response.Redirect("../admin/pengeluaran.aspx");
             }*/
             divsuccess.Visible = true;
+            Response.Redirect("listpengeluaran.aspx?tipe=draft");
         }
 
         void datainput()

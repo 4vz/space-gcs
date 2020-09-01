@@ -25,7 +25,7 @@ namespace Telkomsat.admin
         double ventotal;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string user, query2;
+            string user, query2, tipe;
             user = Session["iduser"].ToString();
 
             query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
@@ -34,6 +34,15 @@ namespace Telkomsat.admin
             if (ds2.Tables[0].Rows.Count > 0)
             {
                 previllage = ds2.Tables[0].Rows[0]["AP_Previllage"].ToString();
+            }
+
+            if (Request.QueryString["tipe"] == "pengeluaran")
+            {
+                lipengeluaran.Attributes.Add("class", "active");
+            }
+            else
+            {
+                lijustifikasi.Attributes.Add("class", "active");
             }
 
             if (Request.QueryString["jenis"] == "diajukan")
@@ -213,7 +222,7 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            Response.Redirect("approvement.aspx?jenis=gm");
+            Response.Redirect("approvement.aspx?jenis=gm&tipe=pengeluaran");
         }
 
 
@@ -424,15 +433,7 @@ namespace Telkomsat.admin
 
             //sqlCon.Open();
             
-            sqlCon.Open();
-            string queryfile = $@"INSERT INTO AdminEvidence (AE_AJ, AE_File, AE_NamaFile, AE_Ekstension, AE_Tipe)
-                                        VALUES ('{txtidl.Text}', '{filepath}', '{filename}', '{extension}', 'admin')";
-            //Response.Write(queryfile); ;
-            SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
-
-            sqlCmd1.ExecuteNonQuery();
-            sqlCon.Close();
-
+            
             sqlCon.Open();
             string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'admin', AJ_TglEv = '{txttanggal.Text}' WHERE AJ_ID='{txtidl.Text}'";
             //Response.Write(queryfile); ;
@@ -522,7 +523,7 @@ namespace Telkomsat.admin
             sqlcmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            Response.Redirect("approvement.aspx?jenis=admin");
+            Response.Redirect("approvement.aspx?jenis=admin&tipe=pengeluaran");
         }
 
 
