@@ -45,7 +45,7 @@ namespace Telkomsat.admin
         protected void Save_ServerClick(object sender, EventArgs e)
         {
             string idprofile;
-            idprofile = Session["adminid"].ToString();
+            idprofile = txtpetugas.Text;
             if (nominal.Value != "")
             {
                 parse = nominal.Value.Replace(".", "");

@@ -34,6 +34,8 @@ namespace Telkomsat.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query2, user;
+            user = Session["iduser"].ToString();
             id = Request.QueryString["id"];
             if (id != null)
             {
@@ -84,11 +86,24 @@ namespace Telkomsat.admin
                 tblpertanggungan();
             }
 
-            if(Request.QueryString["tipe"] != null)
+            query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query2);
+
+            if (Request.QueryString["tipe"] != null)
             {
                 if(Request.QueryString["tipe"].ToString() == "3Xc5T79kLm1Oo")
                 {
-                    divpertanggungan.Visible = true;
+                    if(ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "User")
+                    {
+                        divpertanggungan.Visible = true;
+                        btnsubmit.Visible = true;
+                    }
+                    
+                }
+                else if(Request.QueryString["tipe"].ToString() == "4Jo9879eTr1Rr")
+                {
+                    if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
+                        btnacc.Visible = true;
                 }
             }
 
@@ -106,6 +121,22 @@ namespace Telkomsat.admin
             Response.End();
         }
 
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            string thequery = $"Update AdminPertanggungan Set AT_Status = 'submit' where AT_AD = '{id}' and AT_Status = 'draft'";
+            SqlCommand sq = Settings.ExNonQuery(thequery);
+            Response.Redirect($"detail.aspx?id={id}&tipe=3Xc5T79kLm1Oo");
+
+        }
+
+        protected void Setujui_Click(object sender, EventArgs e)
+        {
+            string thequery = $"Update AdminPertanggungan Set AT_Status = 'close' where AT_AD = '{id}' and AT_Status = 'draft'";
+            SqlCommand sq = Settings.ExNonQuery(thequery);
+            Response.Redirect($"detail.aspx?id={id}&tipe=4Jo9879eTr1Rr");
+
+        }
+
         protected void Pertanggungan_Click(object sender, EventArgs e)
         {
             inevidence = new string[Request.Files.Count];
@@ -113,6 +144,7 @@ namespace Telkomsat.admin
             inketerangan = new string[Request.Files.Count];
             inpcs = new string[Request.Files.Count];
             intanggal = new string[Request.Files.Count];
+            int a = 0, b = 0, c = 0, d = 0;
 
             string fotanggal = Request.Form["intanggal"];
             string foketerangan = Request.Form["inketerangan"];
@@ -122,7 +154,7 @@ namespace Telkomsat.admin
             if (fotanggal != null)
             {
                 string[] lines = Regex.Split(fotanggal, ",");
-                int a = 0;
+                
                 foreach (string line in lines)
                 {
                     intanggal[a] = line;
@@ -133,22 +165,20 @@ namespace Telkomsat.admin
             if (foketerangan != null)
             {
                 string[] lines = Regex.Split(foketerangan, ",");
-                int a = 0;
                 foreach (string line in lines)
                 {
-                    inketerangan[a] = line;
-                    a++;
+                    inketerangan[b] = line;
+                    b++;
                 }
             }
 
             if (fopcs != null)
             {
                 string[] lines = Regex.Split(fopcs, ",");
-                int a = 0;
                 foreach (string line in lines)
                 {
-                    inpcs[a] = line;
-                    a++;
+                    inpcs[c] = line;
+                    c++;
                 }
             }
 
@@ -156,11 +186,10 @@ namespace Telkomsat.admin
             if (foharga != null)
             {
                 string[] lines = Regex.Split(foharga, ",");
-                int a = 0;
                 foreach (string line in lines)
                 {
-                    inharga[a] = line;
-                    a++;
+                    inharga[d] = line;
+                    d++;
                 }
             }
 
@@ -175,8 +204,8 @@ namespace Telkomsat.admin
                     string extension = Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("~/evidence/") + Path.GetFileName(file.FileName));
                     sqlCon.Open();
-                    string queryfile = $@"INSERT INTO AdminPertanggungan (AT_AD, AT_Keterangan, AT_Tanggal, AT_pcs, AT_harga, AT_EvidenceName, AT_EvidencePath)
-                                        VALUES ('{id}', '{inketerangan[j]}', '{intanggal[j]}', '{inpcs[j]}', '{inharga[j]}', '{filename}', '{filepath}')";
+                    string queryfile = $@"INSERT INTO AdminPertanggungan (AT_AD, AT_Keterangan, AT_Tanggal, AT_pcs, AT_harga, AT_EvidenceName, AT_EvidencePath, AT_Status)
+                                        VALUES ('{id}', '{inketerangan[j]}', '{intanggal[j]}', '{inpcs[j]}', '{inharga[j].Replace(".", "")}', '{filename}', '{filepath}', 'draft')";
                     //Response.Write(queryfile); ;
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
@@ -185,6 +214,7 @@ namespace Telkomsat.admin
                 }
             }
 
+            Response.Redirect($"detail.aspx?id={id}&tipe=3Xc5T79kLm1Oo");
 
         }
 
@@ -359,10 +389,11 @@ namespace Telkomsat.admin
                     {
                         dptotal = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_total"].ToString()));
                         dpharga = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_harga"].ToString()));
+                        DateTime dt = Convert.ToDateTime(ds2.Tables[0].Rows[i]["AT_tanggal"].ToString());
                         filepath = ds2.Tables[0].Rows[i]["AT_EvidencePath"].ToString().Replace("~", "..");
 
                         htmlTable3.Append("<tr>");
-                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_tanggal"].ToString() + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dt.ToString("dd MMM yyyy") + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_keterangan"].ToString()  + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_pcs"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dpharga + "</label>" + "</td>");

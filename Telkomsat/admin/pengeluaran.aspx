@@ -16,7 +16,7 @@
         <div class="alert alert-success alert-dismissable" id="divsuccess" runat="server" visible="false">
                         <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
                     </div>
-        <div class="form-group hidden" id="userupd">
+        <div class="form-group" id="userupd">
             <label for="exampleInputPassword1">Nama</label>
             <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                 <option></option>
@@ -60,7 +60,7 @@
             </asp:DropDownList>
         </div>
         <div class="form-group" id="userjustifikasi" style="display:none">
-            <label for="exampleInputPassword1">Vendor</label>
+            <label for="exampleInputPassword1">Nama Kegiatan</label>
             <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
                 <option></option>
             </select>

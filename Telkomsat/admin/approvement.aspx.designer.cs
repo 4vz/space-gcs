@@ -33,6 +33,15 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lipengeluaran;
 
         /// <summary>
+        /// lipertanggungan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lipertanggungan;
+
+        /// <summary>
         /// PlaceHolder2 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,24 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblgm;
+
+        /// <summary>
+        /// PlaceHolder3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder3;
+
+        /// <summary>
+        /// lblpertanggungan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpertanggungan;
 
         /// <summary>
         /// lbljupd control.

@@ -13,14 +13,14 @@
             <a href="pengeluaran.aspx" class="btn btn-primary btn-sm pull-right" runat="server" id="btntmbh" visible="false">Tambah</a>
           <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
-                      <li id="lipengeluaran" runat="server" class="active"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
+                      <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
                       <li id="lidraft" runat="server"><a href="#draft" data-toggle="tab">Draft</a></li>
                         
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
                     </ul>
               
                 <div class="tab-content no-padding">
-                    <div id="pengeluaran" class="tab-pane fade in active ">
+                    <div id="pengeluaran" class="tab-pane fade">
                         <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
                         <asp:Label ID="lblpeng" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
@@ -61,6 +61,7 @@
         </div>
 
     <asp:TextBox ID="txtidl" CssClass="hidden" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtliactive" CssClass="hidden" runat="server"></asp:TextBox>
     <script>
         
         function status(obj) {
@@ -73,7 +74,6 @@
         $(function () {
             $("#example2").DataTable({
                 "autoWidth": true,
-                "scrollX": true,
                 "ordering": false,
                 "lengthChange": true,
                 "searching": true
@@ -107,7 +107,15 @@
         }
 
         $(document).ready(function () {
-            $('#pengeluaran').addClass('in active')
+            if ($('#<%=txtliactive.ClientID %>').val() == 'pengeluaran') {
+                $('#pengeluaran').addClass('in active');
+                console.log('iuiui');
+
+            }
+            else if ($('#<%=txtliactive.ClientID %>').val() == 'draft') {
+                $('#draft').addClass('in active');
+                console.log('iuiui');
+            }
         });
 
         var span = document.getElementsByClassName("close")[0];

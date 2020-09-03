@@ -16,7 +16,7 @@
                     <ul class="nav nav-tabs pull-right">
                       <li id="lijustifikasi" runat="server"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
                       <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
-                        
+                       <li id="lipertanggungan" runat="server" visible="false"><a href="#pertanggungan" data-toggle="tab">Pertanggungan</a></li> 
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
                     </ul>
               
@@ -28,6 +28,10 @@
                     <div id="justifikasi" class="tab-pane in active fade">
                         <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  
                         <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="pertanggungan" class="tab-pane in fade">
+                        <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>  
+                        <asp:Label ID="lblpertanggungan" runat="server" Text="Tidak ada data pertanggungan" Visible="false"></asp:Label>
                     </div>
                     </div>
                 </div>

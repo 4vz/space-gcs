@@ -18,6 +18,7 @@ namespace Telkomsat.admin
     {
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
+        StringBuilder htmlTable3 = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string kategori, style3, warna1, warna2, warna3, warna4, query, previllage, style, style5;
         string filename, filepath, extension, queryinsert, query5, namefile, pathfile;
@@ -87,6 +88,8 @@ namespace Telkomsat.admin
                     else
                         Response.Redirect("dashboard.aspx");
                 }
+
+                lipertanggungan.Visible = true;
             }
             else
             {
@@ -94,6 +97,7 @@ namespace Telkomsat.admin
             }
             referens();
             tableticket();
+            tablepertanggungan();
         }
 
         protected void Approve_GMUP(object sender, EventArgs e)
@@ -868,6 +872,75 @@ namespace Telkomsat.admin
             }
         }
 
+        void tablepertanggungan()
+        {
+            string simpanan, evidence, IDdata, tanggal, keterangan, nominal;
+            string thequery = "select simpanan, keterangan, tanggal, input from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='submit' group by simpanan, keterangan, tanggal, input";
+            DataSet ds5 = Settings.LoadDataSet(thequery);
+
+            htmlTable3.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable3.Append("<thead>");
+            htmlTable3.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
+            htmlTable3.Append("</thead>");
+
+            htmlTable3.Append("<tbody>");
+            if (!object.Equals(ds5.Tables[0], null))
+            {
+                if (ds5.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds5.Tables[0].Rows.Count; i++)
+                    {
+                        IDdata = ds5.Tables[0].Rows[i]["id_admin"].ToString();
+                        DateTime datee = (DateTime)ds5.Tables[0].Rows[i]["tanggal"];
+                        tanggal = datee.ToString("dd/MM/yyyy");
+                        simpanan = ds5.Tables[0].Rows[i]["simpanan"].ToString();
+                        evidence = ds5.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
+                        keterangan = ds5.Tables[0].Rows[i]["keterangan"].ToString();
+                        nominal = Convert.ToInt32(ds5.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+
+                        if (ds5.Tables[0].Rows[i]["gm"].ToString() == "unread")
+                            style5 = "font-weight:bold;";
+                        else
+                            style5 = "font-weight:normal;";
+
+                        htmlTable3.Append($"<tr style=\"{style5}\">");
+                        htmlTable3.Append("<td>" + $"<label style=\"font-size:10px; {style5} color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + simpanan + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        /*if (evidence == "" || evidence == null)
+                        {
+                            htmlTable3.Append("<td>" + $"<label style=\"{style5}\">" + ds5.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                        }
+                        else
+                        {
+                            if (evidence.Substring(evidence.LastIndexOf('.') + 1).ToLower().IsIn(new string[] { "jpg", "jpeg", "png", "bmp", "jfif", "gif" }))
+                            {
+                                htmlTable3.Append("<td>" + $"<label style=\"{style5}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
+                            }
+                            else
+                            {
+                                htmlTable3.Append("<td>" + $"<label style=\"{style5}\">" + ds5.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                            }
+                        }*/
+
+                        htmlTable3.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=4Jo9879eTr1Rr\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
+                        if (evidence == "" || evidence == null)
+                            htmlTable3.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
+                        htmlTable3.Append("</tr>");
+                    }
+                    htmlTable3.Append("</tbody>");
+                    htmlTable3.Append("</table>");
+                    PlaceHolder3.Controls.Add(new Literal { Text = htmlTable3.ToString() });
+
+                }
+                else
+                {
+                    lblpertanggungan.Visible = true;
+                }
+            }
+        }
 
         public class inisial
         {

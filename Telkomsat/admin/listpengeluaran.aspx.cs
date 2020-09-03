@@ -49,10 +49,12 @@ namespace Telkomsat.admin
 
             if (Request.QueryString["tipe"] == "draft")
             {
+                txtliactive.Text = "draft";
                 lidraft.Attributes.Add("class", "active");
             }
             else
             {
+                txtliactive.Text = "pengeluaran";
                 lipengeluaran.Attributes.Add("class", "active");
             }
 
@@ -89,7 +91,7 @@ namespace Telkomsat.admin
 
         void tableticket()
         {
-            string simpanan, evidence;
+            string simpanan, evidence, status8;
 
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             da = new SqlDataAdapter(cmd);
@@ -100,7 +102,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Status</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -119,14 +121,25 @@ namespace Telkomsat.admin
                         keterangan = ds.Tables[0].Rows[i]["keterangan"].ToString();
                         nominal = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
 
+                        string query8 = $"select sum(AT_total) [total] from AdminPertanggungan where AT_AD = '{IDdata}'";
+                        DataSet ds8 = Settings.LoadDataSet(query8);
+
+                        if(ds.Tables[0].Rows[i]["input"].ToString() == ds8.Tables[0].Rows[0]["total"].ToString())
+                        {
+                            status8 = "close";
+                        }
+                        else
+                        {
+                            status8 = "waiting";
+                        }
                         if (ds.Tables[0].Rows[i]["gm"].ToString() == "unread")
                             style5 = "font-weight:bold;";
                         else
                             style5 = "font-weight:normal;";
 
-                        if (approve == "approve")
+                        if (status8 == "close")
                             style = "label label-info";
-                        else if (approve == "not approve")
+                        else if (status8 == "waiting")
                             style = "label label-warning";
 
                         htmlTable.Append($"<tr style=\"{style5}\">");
@@ -134,6 +147,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + simpanan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keterangan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{style}\">" + status8 + "</label>" + "</td>");
                         /*if (evidence == "" || evidence == null)
                         {
                             htmlTable.Append("<td>" + $"<label style=\"{style5}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");

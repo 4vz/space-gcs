@@ -247,6 +247,8 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Pertanggungan</h3>
+                        <asp:Button ID="btnsubmit" runat="server" Text="Submit" CssClass="btn btn-primary pull-right" OnClick="Submit_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
+                        <asp:Button ID="btnacc" runat="server" Text="Setujui" CssClass="btn btn-primary pull-right" OnClick="Setujui_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
                     </div>
                     <div class="box-body">
                         <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
@@ -288,8 +290,10 @@
                 </div>
                 
         </div>
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="nominal.js"></script>
     <script>
         var i = 0;
         $(document).ready(function () {
@@ -297,7 +301,7 @@
                 var markup = "<tr><td><input type='text' name='intanggal' class='form-control datepicker' /></td>" +
                     "<td><input type='text' name='inketerangan' class='form-control' /></td>" +
                     "<td><input type='number' name='inpcs' class='form-control' /></td>" +
-                    "<td><input type='number' name='inharga' class='form-control' /></td>" +
+                    "<td><input type='text' name='inharga' onkeydown='return numbersonly(this, event);' onkeyup='javascript: tandaPemisahTitik(this);' class='form-control' /></td>" +
                     "<td><input name=" + i + "fu type=file /></td>" +
                     "<td> <button type='button' name='record' onclick='newtest2(this)' class='btn-sm btn-default delete-row'><i class=fa>X</i></button></td></tr>";
                 $('#' + '<%= tableku.ClientID%>').append(markup);
@@ -313,6 +317,21 @@
             });
 
         });
+
+        function confirmselesai() {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data tidak bisa diubah lagi',
+                buttons: true,
+                icon: "info",
+
+            }).then((willDelete) => {
+                if (willDelete) {
+                    return true;
+                }
+            });
+        }
+
 
         function newtest2(e) {              //Add e as parameter
             $(e).parents('tr').remove();   //Use the e to delete
