@@ -62,6 +62,7 @@
 
     <asp:TextBox ID="txtidl" CssClass="hidden" runat="server"></asp:TextBox>
     <asp:TextBox ID="txtliactive" CssClass="hidden" runat="server"></asp:TextBox>
+    <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         
         function status(obj) {
@@ -117,6 +118,20 @@
                 console.log('iuiui');
             }
         });
+
+        function confirmselesai(deleteurl) {
+            swal({
+                title: 'Apakah Anda Yakin ?',
+                text: 'Data tidak bisa diubah lagi',
+                buttons: true,
+                icon: "info",
+
+            }).then((willDelete) => {
+                if (willDelete) {
+                    document.location = deleteurl;
+                }
+            });
+        }
 
         var span = document.getElementsByClassName("close")[0];
 

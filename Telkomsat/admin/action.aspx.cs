@@ -23,7 +23,18 @@ namespace Telkomsat.admin
             string idrk = Request.QueryString["idrk"];
             string idven = Request.QueryString["idven"];
             string idpeng = Request.QueryString["idpeng"];
+            string tipe = Request.QueryString["tipe"];
+            string id = Request.QueryString["id"];
 
+            if (tipe != null)
+            {
+                string query = $"UPDATE administrator SET approve = 'diajukan' WHERE id_admin = '{idapp}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("listpengeluaran.aspx?tipe=draft");
+            }
 
             if (idpeng != null)
             {

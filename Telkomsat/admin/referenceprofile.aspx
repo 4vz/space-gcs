@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="referenceprofile.aspx.cs" Inherits="Telkomsat.admin.referenceprofile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
@@ -17,6 +18,9 @@
             <!-- form start -->
                     <div class="box-body">
                         <asp:Panel ID="UserPanel" runat="server" DefaultButton="btnsave">
+                            <div class="alert alert-danger alert-dismissable" id="divfail" runat="server" visible="false">
+                                <h5><span class="fa fa-ban"> GM atau Admin Bendahara sudah tersedia, harap ubah yang sebelumnya</span></h5>
+                            </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -38,7 +42,8 @@
                                     <td><select id="sojabatan" runat="server" class="select2 form-control" style="width: 100%;">
                                             <option></option>
                                         </select></td>
-                                    <td><asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
+                                    <td>
+                                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
                                             <asp:ListItem></asp:ListItem>
                                             <asp:ListItem>GM</asp:ListItem>
                                             <asp:ListItem>Admin Bendahara</asp:ListItem>
@@ -123,6 +128,7 @@
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
+    <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script>
         function confirmdelete(deleteurl) {
             swal({
@@ -364,5 +370,6 @@
             $('#<%=txtjabatan.ClientID%>').val(id);
         });
 
+        $('.select2').select2()
     </script>
 </asp:Content>

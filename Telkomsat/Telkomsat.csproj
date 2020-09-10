@@ -201,6 +201,7 @@
     <Content Include="admin\pemindahan.aspx" />
     <Content Include="admin\pengeluaran.aspx" />
     <Content Include="admin\pengembalian.aspx" />
+    <Content Include="admin\pengembalian2.aspx" />
     <Content Include="admin\penyetoran.aspx" />
     <Content Include="admin\perusahaan.aspx" />
     <Content Include="admin\reference.aspx" />
@@ -7316,6 +7317,7 @@
     <Content Include="WebForm4.aspx" />
     <Content Include="WebForm5.aspx" />
     <Content Include="WebForm6.aspx" />
+    <Content Include="WebForm7.aspx" />
     <Content Include="WebFormregis.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -7570,6 +7572,13 @@
     </Compile>
     <Compile Include="admin\pengembalian.aspx.designer.cs">
       <DependentUpon>pengembalian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\pengembalian2.aspx.cs">
+      <DependentUpon>pengembalian2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\pengembalian2.aspx.designer.cs">
+      <DependentUpon>pengembalian2.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\penyetoran.aspx.cs">
       <DependentUpon>penyetoran.aspx</DependentUpon>
@@ -9392,6 +9401,13 @@
     </Compile>
     <Compile Include="WebForm6.aspx.designer.cs">
       <DependentUpon>WebForm6.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm7.aspx.cs">
+      <DependentUpon>WebForm7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm7.aspx.designer.cs">
+      <DependentUpon>WebForm7.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFormregis.aspx.cs">
       <DependentUpon>WebFormregis.aspx</DependentUpon>

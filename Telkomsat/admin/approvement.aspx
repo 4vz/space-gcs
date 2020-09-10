@@ -404,7 +404,8 @@
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtideng" runat="server" CssClass="hidden"></asp:TextBox>
-    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>  
+    <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtliactive" runat="server" CssClass="hidden"></asp:TextBox>
     
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
@@ -534,7 +535,15 @@
         });
 
         $(document).ready(function () {
-            $('#justifikasi').addClass('in active')
+            if ($('#<%=txtliactive.ClientID %>').val() == 'pengeluaran') {
+                $('#pengeluaran').addClass('in active');
+                console.log('iuiui');
+
+            }
+            else if ($('#<%=txtliactive.ClientID %>').val() == 'justifikasi') {
+                $('#justifikasi').addClass('in active');
+                console.log('iuiui');
+            }
         });
 
         function confirmselesai(deleteurl) {

@@ -40,10 +40,12 @@ namespace Telkomsat.admin
             if (Request.QueryString["tipe"] == "pengeluaran")
             {
                 lipengeluaran.Attributes.Add("class", "active");
+                txtliactive.Text = "pengeluaran";
             }
             else
             {
                 lijustifikasi.Attributes.Add("class", "active");
+                txtliactive.Text = "justifikasi";
             }
 
             if (Request.QueryString["jenis"] == "diajukan")
@@ -875,7 +877,7 @@ namespace Telkomsat.admin
         void tablepertanggungan()
         {
             string simpanan, evidence, IDdata, tanggal, keterangan, nominal;
-            string thequery = "select simpanan, keterangan, tanggal, input from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='submit' group by simpanan, keterangan, tanggal, input";
+            string thequery = "select simpanan, keterangan, tanggal, input, id_admin from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='submit' group by simpanan, keterangan, tanggal, input, id_admin";
             DataSet ds5 = Settings.LoadDataSet(thequery);
 
             htmlTable3.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
@@ -895,14 +897,8 @@ namespace Telkomsat.admin
                         DateTime datee = (DateTime)ds5.Tables[0].Rows[i]["tanggal"];
                         tanggal = datee.ToString("dd/MM/yyyy");
                         simpanan = ds5.Tables[0].Rows[i]["simpanan"].ToString();
-                        evidence = ds5.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
                         keterangan = ds5.Tables[0].Rows[i]["keterangan"].ToString();
                         nominal = Convert.ToInt32(ds5.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
-
-                        if (ds5.Tables[0].Rows[i]["gm"].ToString() == "unread")
-                            style5 = "font-weight:bold;";
-                        else
-                            style5 = "font-weight:normal;";
 
                         htmlTable3.Append($"<tr style=\"{style5}\">");
                         htmlTable3.Append("<td>" + $"<label style=\"font-size:10px; {style5} color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
@@ -926,8 +922,6 @@ namespace Telkomsat.admin
                         }*/
 
                         htmlTable3.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=4Jo9879eTr1Rr\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
-                        if (evidence == "" || evidence == null)
-                            htmlTable3.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
                         htmlTable3.Append("</tr>");
                     }
                     htmlTable3.Append("</tbody>");

@@ -22,6 +22,7 @@ namespace Telkomsat
             string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
             
             DateTime dt = DateTime.Now;//yourdatetime
+            string dts = DateTime.Now.AddHours(7).ToString("yyyy/MM/dd HH:mm:ss");
             int weekOfMonth = (dt.Day + ((int)dt.DayOfWeek)) / 7 + 1;
             DateTime firstDay = new DateTime(DateTime.Now.Year, 1, 1);
             bool isItFirstMonday = DateTime.Today.DayOfWeek == DayOfWeek.Monday
@@ -38,7 +39,7 @@ namespace Telkomsat
             string str = "akak.pdf";
             var result = str.Substring(str.LastIndexOf('.') + 1);
 
-            Response.Write("ini tester =  " + result + "  | ");
+            Response.Write("ini tester =  " + dts + "  | ");
 
 
 

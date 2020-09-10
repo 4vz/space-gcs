@@ -28,25 +28,64 @@ namespace Telkomsat.admin
 
         protected void save_click(object sender, EventArgs e)
         {
-            string querysave;
-            sqlCon.Open();
-            querysave = $@"INSERT INTO AdminProfile (AP_Nama, AP_Subdit, AP_Jabatan, AP_Previllage) values
+            string querysave, querycek, previllage;
+            int a = 0;
+
+            previllage = DropDownList1.Text;
+
+            if (previllage == "GM" || previllage == "Admin Bendahara")
+            {
+                querycek = $"select * from  AdminProfile where AP_Previllage = '{previllage}'";
+                DataSet ds5 = Settings.LoadDataSet(querycek);
+
+                a = ds5.Tables[0].Rows.Count;
+            }
+
+            if (a > 0)
+            {
+                divfail.Visible = true;
+            }
+            else
+            {
+                sqlCon.Open();
+                querysave = $@"INSERT INTO AdminProfile (AP_Nama, AP_Subdit, AP_Jabatan, AP_Previllage) values
                             ('{txtnama.Text}', '{txtsubdit.Text}', '{txtjabatan.Text}', '{DropDownList1.Text}')";
-            SqlCommand cmd = new SqlCommand(querysave, sqlCon);
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            Response.Redirect($"referenceprofile.aspx");
+                SqlCommand cmd = new SqlCommand(querysave, sqlCon);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"referenceprofile.aspx");
+
+            }
         }
 
         protected void Edit_ServerClick(object sender, EventArgs e)
         {
-            string queryedit;
-            sqlCon.Open();
-            queryedit = $@"UPdate AdminProfile SET AP_Nama='{txtnama.Text}',AP_Subdit='{txtsubdit.Text}',AP_Jabatan='{txtjabatan.Text}',AP_Previllage='{DropDownList2.Text}' where AP_ID='{txtid.Text}'";
-            SqlCommand cmd = new SqlCommand(queryedit, sqlCon);
-            cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            Response.Redirect($"referenceprofile.aspx");
+            string queryedit, querycek, previllage;
+            int a = 0;
+
+            previllage = DropDownList2.Text;
+
+            if(previllage == "GM" || previllage == "Admin Bendahara")
+            {
+                querycek = $"select * from  AdminProfile where AP_Previllage = '{previllage}'";
+                DataSet ds5 = Settings.LoadDataSet(querycek);
+
+                a = ds5.Tables[0].Rows.Count;
+            }
+
+            if(a > 0)
+            {
+                divfail.Visible = true;
+            }
+            else
+            {
+                sqlCon.Open();
+                queryedit = $@"UPdate AdminProfile SET AP_Nama='{txtnama.Text}',AP_Subdit='{txtsubdit.Text}',AP_Jabatan='{txtjabatan.Text}',AP_Previllage='{DropDownList2.Text}' where AP_ID='{txtid.Text}'";
+                SqlCommand cmd = new SqlCommand(queryedit, sqlCon);
+                cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"referenceprofile.aspx");
+            }
         }
 
         void referens()
@@ -187,7 +226,7 @@ namespace Telkomsat.admin
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Profile where jenis = 'OG'"))
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Profile"))
                 {
                     cmd.Connection = con;
                     List<datawilayah> dawilayah = new List<datawilayah>();

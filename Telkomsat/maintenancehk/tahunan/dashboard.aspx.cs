@@ -137,7 +137,7 @@ namespace Telkomsat.maintenancehk.tahunan
         {
             DateTime now = DateTime.Now;
             DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 6, 30);
+            DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
             string style, class1, device, alias, querytotal, queryisi;
             SqlDataAdapter daheader, dapersen, dabar;
             DataSet dsheader = new DataSet();

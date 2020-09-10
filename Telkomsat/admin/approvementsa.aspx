@@ -9,22 +9,36 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <br />
-    <div class="row">
-        <section class="col-lg-12 connectedSortable">
-            <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Approvement</h3>
-                        <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-                    <div class="box-body">
-                            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+    <div class="row" style="height:auto">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                      <li id="lijustifikasi" runat="server"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
+                      <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
+                       <li id="lipertanggungan" runat="server"><a href="#pertanggungan" data-toggle="tab">Pertanggungan</a></li> 
+                      <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
+                    </ul>
+              
+                <div class="tab-content no-padding">
+                    <div id="pengeluaran" class="tab-pane fade">
+                        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                        <asp:Label ID="lblpeng" runat="server" Text="Label" Visible="false"></asp:Label>
+                    </div>
+                    <div id="justifikasi" class="tab-pane in active fade">
+                        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  
                         <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
+                    <div id="pertanggungan" class="tab-pane in fade">
+                        <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>  
+                        <asp:Label ID="lblpertanggungan" runat="server" Text="Tidak ada data pertanggungan" Visible="false"></asp:Label>
+                    </div>
+                    </div>
                 </div>
-            </section>
-        </div>
+               
+            </div>
+            </div>
+
+
 
 
     <div class="modal fade" id="modalmaintenance">
@@ -148,7 +162,7 @@
                                   <asp:DropDownList ID="ddlaksi" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                      <asp:ListItem>Repair</asp:ListItem>
+                                    <asp:ListItem>Revition</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -164,6 +178,44 @@
               </div>
               <div class="modal-footer">
                 <button type="button" id="Button1" class="btn btn-success pull-left" runat="server" onserverclick="Approve_GM">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+
+    <div class="modal fade" id="modalpenggm">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Pilih Aksi :</label>
+                                  <asp:DropDownList ID="ddlaksigm" CssClass="form-control" runat="server">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem>Approve</asp:ListItem>
+                                    <asp:ListItem>Revition</asp:ListItem>
+                                    <asp:ListItem>Reject</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Alasan :</label>
+                            <asp:TextBox ID="txtalasangm" autocomplete="off" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
+                        </div>
+                      </div> 
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="Button2" class="btn btn-primary pull-left" runat="server" onserverclick="Approve_GMPeng">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -207,6 +259,33 @@
           </div>
         </div>
 
+    <div class="modal fade" id="modalpengeluaran">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                                <label style="font-size:16px; font-weight:bold">Lampiran Evidence :</label>
+                              <asp:FileUpload ID="FileUpload4" runat="server" AllowMultiple="true" />
+                            </div>
+                      </div> 
+                      
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="Button3" class="btn btn-success pull-left" runat="server" onserverclick="Approve_Pengeluaran">Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
 
        <div class="modal fade" id="modalupdate">
           <div class="modal-dialog">
@@ -322,6 +401,7 @@
     <asp:TextBox ID="txtketerangan" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidgm" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtideng" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
@@ -365,6 +445,11 @@
             var id = $(this).val();
             $('#<%=txtidgm.ClientID %>').val(id);
         });
+
+        $('.datagmup').click(function () {
+            var id = $(this).val();
+            $('#<%=txtidgm.ClientID %>').val(id);
+         });
 
         $(function () {
             $.ajax({
@@ -416,6 +501,20 @@
               "lengthChange": true,
             "searching": true
           });
+
+            $("#example3").DataTable({
+                "autoWidth": true,
+                "ordering": false,
+                "lengthChange": true,
+                "searching": true
+            });
+
+            $("#example4").DataTable({
+                "autoWidth": true,
+                "ordering": false,
+                "lengthChange": true,
+                "searching": true
+            });
            $('.dataTables_length').addClass('bs-select');
         });
 
@@ -479,6 +578,11 @@
                     alert(response.d);
                 }
             });
+        });
+
+        $('.datapeng').click(function () {
+            var id = $(this).val();
+            $('#<%=txtideng.ClientID %>').val(id);
         });
 
         $('.datatotal').click(function () {

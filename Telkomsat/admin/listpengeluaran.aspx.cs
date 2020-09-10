@@ -41,8 +41,8 @@ namespace Telkomsat.admin
             }
             if (!IsPostBack)
             {
-                query = @"select * from administrator where kategori = 'pengeluaran' and approve='admin' order by tanggal desc";
-                query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revition') order by tanggal desc";
+                query = @"select * from administrator where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
+                query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revition' or approve ='draft') order by id_admin desc";
                 tableticket();
                 tabledraft();
             }
@@ -132,10 +132,10 @@ namespace Telkomsat.admin
                         {
                             status8 = "waiting";
                         }
-                        if (ds.Tables[0].Rows[i]["gm"].ToString() == "unread")
+                        /*if (ds.Tables[0].Rows[i]["gm"].ToString() == "unread")
                             style5 = "font-weight:bold;";
                         else
-                            style5 = "font-weight:normal;";
+                            style5 = "font-weight:normal;";*/
 
                         if (status8 == "close")
                             style = "label label-info";
@@ -242,7 +242,10 @@ namespace Telkomsat.admin
                         htmlTable1.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)
                             htmlTable1.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
-                        htmlTable1.Append("</tr>");
+                        if(approve == "draft")
+                            htmlTable1.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&tipe=pengeluaran')\" class=\"btn btn-sm btn-success\" id=\"btndelete\">" + "Ajukan" + "</a>");
+
+                        htmlTable1.Append("</td></tr>");
                     }
                     htmlTable1.Append("</tbody>");
                     htmlTable1.Append("</table>");
