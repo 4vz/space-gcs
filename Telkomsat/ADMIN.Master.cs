@@ -62,7 +62,7 @@ namespace Telkomsat
             if (thisURL.ToLower().IsIn(new string[] { "listpemasukan.aspx", "pemasukan.aspx" })) lipemasukan.Attributes.Add("class", "active");
             if (thisURL.ToLower().IsIn(new string[] { "listpengeluaran.aspx", "pengeluaran.aspx" })) lipengeluaran.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pemindahan.aspx") lipemindahan.Attributes.Add("class", "active");
-            if (thisURL.ToLower() == "pengembalian.aspx") lipengembalian.Attributes.Add("class", "active");
+            if (thisURL.ToLower() == "pengembalian2.aspx") lipengembalian.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvementsa.aspx") lisa.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvement.aspx")
             {
@@ -145,14 +145,14 @@ namespace Telkomsat
                     }
                 }
 
-                if (previllage != "Admin Bendahara")
+                if (previllage.ToLower().NotIsIn(new string[] { "Admin Bendahara", "SA" }))
                 {
                     if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
                     {
                         Response.Redirect("dashboard.aspx");
                     }
                     lipemindahan.Visible = false;
-                    lipengembalian.Visible = false;
+                    lipengembalian.Visible = true;
                 }
             }
             //lblProfile.Text = Session["nama1"].ToString();

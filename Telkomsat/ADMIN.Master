@@ -202,7 +202,7 @@
           </a>
         </li>
           <li class="treeview" id="lipengembalian" runat="server">
-          <a href="../admin/pengembalian.aspx">
+          <a href="../admin/pengembalian2.aspx">
             <i class="fa fa-arrows-h"></i> <span>Pengembalian</span>
           </a>
         </li>

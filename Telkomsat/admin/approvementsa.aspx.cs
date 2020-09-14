@@ -69,7 +69,7 @@ namespace Telkomsat.admin
                 //lblstatus.Text = filecount + " files upload";
             }
 
-            idprofile = Session["adminid"].ToString();
+            
 
             queryadmin = $"select * from administrator where id_admin = '{txtideng.Text}'";
 
@@ -83,6 +83,7 @@ namespace Telkomsat.admin
                 DateTime dt = Convert.ToDateTime(ds2.Tables[0].Rows[0]["tanggal"].ToString());
                 tanggal = dt.ToString("yyyy/MM/dd");
                 aj = ds2.Tables[0].Rows[0]["id_aj"].ToString();
+                idprofile = ds2.Tables[0].Rows[0]["id_profile"].ToString();
                 jumlah = Convert.ToInt32(ds2.Tables[0].Rows[0]["input"]);
             }
 

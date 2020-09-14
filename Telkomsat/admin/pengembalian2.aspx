@@ -22,7 +22,6 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Petugas</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sotugas" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
                         </select>
@@ -85,7 +84,7 @@
                      <div class="col-md-4">
                          <div class="form-group">
                             <label for="exampleInputPassword1">Evidence</label>
-                            <asp:FileUpload ID="FileUpload4" runat="server" AllowMultiple="true" />
+                            <asp:FileUpload ID="FileUpload4" runat="server" AllowMultiple="false" />
                         </div>
                      </div>
                    </div>
@@ -96,12 +95,13 @@
         </div>
     </div>
     <div class="box-footer">
-        <button type="submit" id="mybtn" runat="server" class="btn btn-primary pull-right" visible="false">Save</button>
+        <button type="submit" id="mybtn" runat="server" class="btn btn-primary pull-right" style="display:none" onserverclick="Save_Click">Submit</button>
     </div>
     </div>
 </div>
 </div>
     <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtpetugas" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
     <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -155,14 +155,28 @@
             
         });
 
+        $('#<%=sotugas.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtpetugas.ClientID%>').val(id);
+        });
+
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
+
         $(document).ready(function () {
+            var button = document.getElementById('<%=mybtn.ClientID%>');
             $('#<%=btnid.ClientID %>').click(function () {
+                button.style.display = "block";
                 var elmnt = document.getElementById("content");
-                var btnsave = document.getElementById('#<%=mybtn.ClientID %>');
+                
                 if (elmnt.style.display === "none") {
                     elmnt.style.display = "block";
                 }
-                //btnsave.style.display = "block";
                 elmnt.scrollIntoView();
                 var favorite = [];
                 $.each($("input[name='getid']:checked"), function () {
@@ -170,6 +184,7 @@
                 });
                 //alert("My favourite sports are: " + favorite.join(","));
                 var id = favorite.join(",");
+                $('#<%=txtid.ClientID %>').val(id);
                 $.ajax({
                     type: "POST",
                     url: "pengembalian2.aspx/GetData",
@@ -178,7 +193,7 @@
                     dataType: "json",
                     success: function (response) {
                         var mydata = response.d;
-                        $('#<%=txtid.ClientID %>').val(id);
+                        
                         $('#<%=txttotal.ClientID %>').val(mydata);
                     },
                     failure: function (response) {

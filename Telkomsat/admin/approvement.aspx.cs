@@ -420,7 +420,6 @@ namespace Telkomsat.admin
                 //lblstatus.Text = filecount + " files upload";
             }
 
-            idprofile = Session["adminid"].ToString();
 
             queryadmin = $"select * from administrator where id_admin = '{txtideng.Text}'";
 
@@ -435,11 +434,13 @@ namespace Telkomsat.admin
                 tanggal = dt.ToString("yyyy/MM/dd");
                 aj = ds2.Tables[0].Rows[0]["id_aj"].ToString();
                 jumlah = Convert.ToInt32(ds2.Tables[0].Rows[0]["input"]);
+                idprofile = ds2.Tables[0].Rows[0]["id_profile"].ToString();
+
             }
 
             //sqlCon.Open();
-            
-            
+
+
             sqlCon.Open();
             string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'admin', AJ_TglEv = '{txttanggal.Text}' WHERE AJ_ID='{txtidl.Text}'";
             //Response.Write(queryfile); ;

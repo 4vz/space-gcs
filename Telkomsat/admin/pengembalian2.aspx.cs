@@ -47,7 +47,8 @@ namespace Telkomsat.admin
             //<input name=\"select_all\" value=\"1\" id=\"example-select-all\" type=\"checkbox\" />
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>#</th><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Sisa</th><th>Status</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th><input type=\"checkbox\" onclick=\"toggle(this); \" /></th>" +
+                "<th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Sisa</th><th>Status</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -138,20 +139,60 @@ namespace Telkomsat.admin
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
-            query = "select * from administrator where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
+            query = $"select * from administrator where kategori = 'pengeluaran' and approve='admin' and id_profile='{txtpetugas.Text}' order by id_admin desc";
             btnid.Visible = true;
-            mybtn.Visible = true;
             tableticket();
         }
 
         protected void Save_Click(object sender, EventArgs e)
         {
             string[] lines = Regex.Split(txtid.Text, ",");
-            Response.Write("panjang " + lines.Length);
-            /*foreach (string line in lines)
+            string[] myarray;
+            int ss = 0, a = 0;
+
+            string myquery;
+            myarray = new string[lines.Length];
+            //Response.Write("panjang " + lines.Length + " isi " + lines[0]);
+            foreach (string line in lines)
             {
-                
-            }*/
+                string query8 = $"select sum(AT_total) [total] from AdminPertanggungan where AT_AD = '{line}'";
+                DataSet ds8 = Settings.LoadDataSet(query8);
+
+                string query9 = $"select * from administrator where id_admin = '{line}'";
+                DataSet ds9 = Settings.LoadDataSet(query9);
+
+                if (ds8.Tables[0].Rows[0]["total"] == null || ds8.Tables[0].Rows[0]["total"].ToString() == "")
+                {
+                    a = 0;
+                }
+                else
+                {
+                    a = Convert.ToInt32(ds8.Tables[0].Rows[0]["total"]);
+                }
+
+                ss = Convert.ToInt32(ds9.Tables[0].Rows[0]["input"]) - a;
+
+                HttpFileCollection filecolln = Request.Files;
+                for (int j = 0; j < filecolln.Count; j++)
+                {
+                    HttpPostedFile file = filecolln[j];
+                    if (file.ContentLength > 0)
+                    {
+                        string filename = Path.GetFileName(file.FileName);
+                        string filepath = "~/evidence/" + filename;
+                        string extension = Path.GetExtension(file.FileName);
+                        file.SaveAs(Server.MapPath("~/evidence/") + Path.GetFileName(file.FileName));
+                        sqlCon.Open();
+                        string queryfile = $@"INSERT INTO AdminPertanggungan (AT_AD, AT_Keterangan, AT_Tanggal, AT_pcs, AT_harga, AT_EvidenceName, AT_EvidencePath, AT_Status)
+                                        VALUES ('{line}', '{txtket.Text}', '{txttanggal.Value}', '1', '{ss}', '{filename}', '{filepath}', 'submit')";
+                        //Response.Write(queryfile); ;
+                        SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                        sqlCmd1.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                }
+            }
         }
 
         [WebMethod]
