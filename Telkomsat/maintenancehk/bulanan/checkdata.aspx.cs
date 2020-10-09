@@ -63,7 +63,7 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmlTable.AppendLine("<td>" + "<label style=\"font-size:13px\">" + (i + 1) + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + "<label style=\"font-size:12px;\">" + bulan + "</label>" + "</td>");
                         htmlTable.AppendLine("<td>" + "<label style=\"font-size:12px;\">" + tahun + "</label>" + "</td>");
-                        htmlTable.AppendLine("<td>" + $"<a  style=\"cursor:pointer\" href=\"data.aspx?tahun={tahun}&bulan={bulan}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.AppendLine("<td>" + $"<a  style=\"cursor:pointer\" href=\"data.aspx?tahun={tahun}&bulan={bulan}&tipe=view\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.AppendLine("</tr>");
                     }
                     htmlTable.AppendLine("</tbody>");

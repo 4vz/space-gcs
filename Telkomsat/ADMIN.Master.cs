@@ -50,6 +50,7 @@ namespace Telkomsat
             sqlCmd2.SelectCommand.Parameters.AddWithValue("@user", usernamee);
             DataTable dtbl = new DataTable();
             sqlCmd2.Fill(dtbl);
+            sqlCon.Close();
             dtContact1.DataSource = dtbl;
             DataList1.DataSource = dtbl;
             DataList1.DataBind();
@@ -165,14 +166,14 @@ namespace Telkomsat
             int a = 0, b = 0, c = 0;
             user = Session["iduser"].ToString();
             int jenis;
-            query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revition') and AJ_Profile = '{user}')[ajukan],
+            query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revision') and AJ_Profile = '{user}')[ajukan],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
 		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin],
                 (select count(*) from AdminJustifikasi where AJ_Status not in ('admin', 'reject')) [sa]";
 
             DataSet ds = Settings.LoadDataSet(query);
 
-            querypeng = @"select(select count(*) from administrator where approve = 'reject' or approve = 'revition')[user],
+            querypeng = @"select(select count(*) from administrator where approve = 'reject' or approve = 'revision')[user],
 		        (select count(*) from administrator where approve = 'diajukan')[gm],
 		        (select count(*) from administrator where approve = 'gm')[admin]";
 

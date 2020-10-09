@@ -42,7 +42,7 @@ namespace Telkomsat.admin
                 query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
             }
             string previllage;
-            string user = user = Session["iduser"].ToString();
+            string user = Session["iduser"].ToString();
             string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
             DataSet ds = Settings.LoadDataSet(query2);
 
@@ -148,7 +148,7 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "ditolak";
                         }
-                        else if (status.ToLower() == "revition")
+                        else if (status.ToLower() == "revision")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "yellow";

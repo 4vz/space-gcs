@@ -42,6 +42,11 @@ namespace Telkomsat.admin
                 lipengeluaran.Attributes.Add("class", "active");
                 txtliactive.Text = "pengeluaran";
             }
+            else if (Request.QueryString["tipe"] == "pertanggungan")
+            {
+                lipertanggungan.Attributes.Add("class", "active");
+                txtliactive.Text = "pertanggungan";
+            }
             else
             {
                 lijustifikasi.Attributes.Add("class", "active");
@@ -51,9 +56,9 @@ namespace Telkomsat.admin
             if (Request.QueryString["jenis"] == "diajukan")
             {
                 query = $@"SELECT j.*, e.nama from AdminJustifikasi j join AdminProfile p on p.AP_ID=j.AJ_PT join Profile e
-                            on e.id_profile = p.AP_Nama where (AJ_Status is null or AJ_Status = '' or AJ_Status='revition') and AJ_Profile = '{user}'";
+                            on e.id_profile = p.AP_Nama where (AJ_Status is null or AJ_Status = '' or AJ_Status='revision') and AJ_Profile = '{user}'";
 
-                query5 = @"select * from administrator where kategori = 'pengeluaran' and (approve = 'reject' or approve = 'revition') order by id_admin desc";
+                query5 = @"select * from administrator where kategori = 'pengeluaran' and (approve = 'reject' or approve = 'revision') order by id_admin desc";
 
                 if (previllage != "User")
                 {
@@ -62,12 +67,14 @@ namespace Telkomsat.admin
                     else
                         Response.Redirect("dashboard.aspx");
                 }
-                    
+
+                lipertanggungan.Visible = true;
+
 
             }
             else if (Request.QueryString["jenis"] == "gm")
             {
-                query = $"SELECT * from AdminJustifikasi WHERE AJ_Status = 'diajukan' or AJ_Status = 'revition' or AJ_Status = 'gm'";
+                query = $"SELECT * from AdminJustifikasi WHERE AJ_Status = 'diajukan' or AJ_Status = 'revision' or AJ_Status = 'gm'";
                 query5 = @"select * from administrator where kategori = 'pengeluaran' and approve = 'diajukan' order by id_admin desc";
 
                 if (previllage != "GM")
@@ -172,10 +179,10 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if (ddlaksi.Text == "Revition")
+            else if (ddlaksi.Text == "Revision")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'revition' WHERE AJ_ID='{txtidgm.Text}'";
+                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'revision' WHERE AJ_ID='{txtidgm.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
@@ -218,10 +225,10 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if (ddlaksigm.Text == "Revition")
+            else if (ddlaksigm.Text == "Revision")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE administrator SET approve = 'revition' WHERE id_admin='{txtideng.Text}'";
+                string query = $@"UPDATE administrator SET approve = 'revision' WHERE id_admin='{txtideng.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
@@ -396,6 +403,18 @@ namespace Telkomsat.admin
             SqlCommand cmd = Settings.ExNonQuery(queryapprove);
 
             Response.Redirect("approvement.aspx?jenis=admin");
+        }
+
+        protected void Pertanggungan_Click(object sender, EventArgs e)
+        {
+            //Response.Write("ok " + txtidpertanggungan.Text);
+            string myquery = $"UPDATE AdminPertanggungan set AT_Status='accepted' where AT_ID in({txtidpertanggungan.Text})";
+            sqlCon.Open();
+            SqlCommand sqlCmd1 = new SqlCommand(myquery, sqlCon);
+            sqlCmd1.ExecuteNonQuery();
+            sqlCon.Close();
+
+            Response.Redirect("approvement.aspx?tipe=pertanggungan");
         }
 
         protected void Approve_Pengeluaran(object sender, EventArgs e)
@@ -748,7 +767,7 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "ditolak";
                         }
-                        else if (status.ToLower() == "revition")
+                        else if (status.ToLower() == "revision")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "yellow";
@@ -778,7 +797,7 @@ namespace Telkomsat.admin
                             {
                                 if (status == "" || status == null || status is null)
                                     htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
-                                else if (status == "revition")
+                                else if (status == "revision")
                                     htmlTable.Append($"<a href=\"editjustifikasi.aspx?id={IDdata}&perbaikan=ya\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
                             }
                             
@@ -877,11 +896,16 @@ namespace Telkomsat.admin
 
         void tablepertanggungan()
         {
-            string simpanan, evidence, IDdata, tanggal, keterangan, nominal;
-            string thequery = "select simpanan, keterangan, tanggal, input, id_admin from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='submit' group by simpanan, keterangan, tanggal, input, id_admin";
+            string simpanan, evidence, IDdata, tanggal, keterangan, nominal, thequery = "";
+
+            if(Request.QueryString["jenis"] == "admin")
+                thequery = "select simpanan, keterangan, tanggal, input, id_admin from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='submit' group by simpanan, keterangan, tanggal, input, id_admin";
+            else if(Request.QueryString["jenis"] == "diajukan")
+                thequery = "select simpanan, keterangan, tanggal, input, id_admin from administrator a inner join AdminPertanggungan p on p.AT_AD=a.id_admin where p.AT_Status='reject' group by simpanan, keterangan, tanggal, input, id_admin";
+
             DataSet ds5 = Settings.LoadDataSet(thequery);
 
-            htmlTable3.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable3.Append("<table id=\"exampl\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable3.Append("<thead>");
             htmlTable3.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
             htmlTable3.Append("</thead>");
@@ -923,7 +947,7 @@ namespace Telkomsat.admin
                         }*/
 
                         htmlTable3.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=4Jo9879eTr1Rr\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
-                        htmlTable3.Append("</tr>");
+                        htmlTable3.Append("</td></tr>");
                     }
                     htmlTable3.Append("</tbody>");
                     htmlTable3.Append("</table>");

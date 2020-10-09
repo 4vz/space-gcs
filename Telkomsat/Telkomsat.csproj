@@ -186,6 +186,7 @@
     <Content Include="admin\detailvendor.aspx" />
     <Content Include="admin\download.aspx" />
     <Content Include="admin\editjustifikasi.aspx" />
+    <Content Include="admin\editpengeluaran.aspx" />
     <Content Include="admin\editrkap.aspx" />
     <Content Include="admin\editrkap2.aspx" />
     <Content Include="admin\editvendor.aspx" />
@@ -7474,6 +7475,13 @@
     </Compile>
     <Compile Include="admin\editjustifikasi.aspx.designer.cs">
       <DependentUpon>editjustifikasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\editpengeluaran.aspx.cs">
+      <DependentUpon>editpengeluaran.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\editpengeluaran.aspx.designer.cs">
+      <DependentUpon>editpengeluaran.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\editrkap.aspx.cs">
       <DependentUpon>editrkap.aspx</DependentUpon>

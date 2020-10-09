@@ -10,6 +10,8 @@ using System.Text;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Web.Services;
+using System.Configuration;
 
 namespace Telkomsat.admin
 {
@@ -22,7 +24,7 @@ namespace Telkomsat.admin
         StringBuilder htmlTable3 = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
-        string evidence, idjustifikasi;
+        string evidence, idjustifikasi, userid;
         string[] myfile, intanggal, inketerangan, inpcs, inharga, inevidence;
 
         string querypanjar, tanggal = "", totalpanjar, input = "", vendor, kategori, keterangan, fileu, nominal, id;
@@ -47,7 +49,7 @@ namespace Telkomsat.admin
                 sqlCon.Open();
                 cmd.ExecuteNonQuery();
                 sqlCon.Close();
-                
+
                 vendor = ds.Tables[0].Rows[0]["AV_Perusahaan"].ToString();
                 input = ds.Tables[0].Rows[0]["input"].ToString();
                 kategori = ds.Tables[0].Rows[0]["kategori"].ToString();
@@ -59,7 +61,7 @@ namespace Telkomsat.admin
                 {
                     lblKategori.Text = "Pengeluaran";
                 }
-                else if (kategori =="pemasukan")
+                else if (kategori == "pemasukan")
                 {
                     lblKategori.Text = "Pemasukan";
                 }
@@ -68,9 +70,13 @@ namespace Telkomsat.admin
                     lblKategori.Text = "Pemindahan";
                 }
 
-                if(ds.Tables[0].Rows[0]["id_av"].ToString() == "0")
+                if (ds.Tables[0].Rows[0]["id_av"].ToString() == "0")
                 {
                     lblvendor.Text = "-";
+                }
+                else
+                {
+                    lblvendor.Text = vendor;
                 }
 
                 idjustifikasi = ds.Tables[0].Rows[0]["id_aj"].ToString();
@@ -80,32 +86,40 @@ namespace Telkomsat.admin
                 evidence = ds.Tables[0].Rows[0]["evidence"].ToString();
                 //myimg.Src = ds.Tables[0].Rows[0]["evidencepath"].ToString();
 
+                query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+                DataSet ds2 = Settings.LoadDataSet(query2);
+
+                if (Request.QueryString["tipe"] != null)
+                {
+                    if (Request.QueryString["tipe"].ToString() == "3Xc5T79kLm1Oo")
+                    {
+                        if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "User")
+                        {
+                            divpertanggungan.Visible = true;
+                            btnsubmit2.Visible = true;
+                        }
+
+                    }
+                    else if (Request.QueryString["tipe"].ToString() == "4Jo9879eTr1Rr")
+                    {
+                        if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
+                        {
+                            btnreject.Visible = true;
+                            btnid.Visible = true;
+                        }
+
+                    }
+                    userid = ds2.Tables[0].Rows[0]["AP_Previllage"].ToString();
+
+                }
+
                 justifikasi();
                 mytable();
                 listdata();
                 tblpertanggungan();
             }
 
-            query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
-            DataSet ds2 = Settings.LoadDataSet(query2);
 
-            if (Request.QueryString["tipe"] != null)
-            {
-                if(Request.QueryString["tipe"].ToString() == "3Xc5T79kLm1Oo")
-                {
-                    if(ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "User")
-                    {
-                        divpertanggungan.Visible = true;
-                        btnsubmit.Visible = true;
-                    }
-                    
-                }
-                else if(Request.QueryString["tipe"].ToString() == "4Jo9879eTr1Rr")
-                {
-                    if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() == "Admin Bendahara")
-                        btnacc.Visible = true;
-                }
-            }
 
             //tablepanjar();
         }
@@ -131,7 +145,7 @@ namespace Telkomsat.admin
 
         protected void Setujui_Click(object sender, EventArgs e)
         {
-            string thequery = $"Update AdminPertanggungan Set AT_Status = 'close' where AT_AD = '{id}' and AT_Status = 'draft'";
+            string thequery = $"Update AdminPertanggungan Set AT_Status = 'close' where AT_AD = '{id}' and AT_Status = 'submit'";
             SqlCommand sq = Settings.ExNonQuery(thequery);
             Response.Redirect($"detail.aspx?id={id}&tipe=4Jo9879eTr1Rr");
 
@@ -139,11 +153,11 @@ namespace Telkomsat.admin
 
         protected void Pertanggungan_Click(object sender, EventArgs e)
         {
-            inevidence = new string[Request.Files.Count];
-            inharga = new string[Request.Files.Count];
-            inketerangan = new string[Request.Files.Count];
-            inpcs = new string[Request.Files.Count];
-            intanggal = new string[Request.Files.Count];
+            inevidence = new string[Request.Files.Count - 1];
+            inharga = new string[Request.Files.Count - 1];
+            inketerangan = new string[Request.Files.Count - 1];
+            inpcs = new string[Request.Files.Count - 1];
+            intanggal = new string[Request.Files.Count - 1];
             int a = 0, b = 0, c = 0, d = 0;
 
             string fotanggal = Request.Form["intanggal"];
@@ -154,7 +168,7 @@ namespace Telkomsat.admin
             if (fotanggal != null)
             {
                 string[] lines = Regex.Split(fotanggal, ",");
-                
+
                 foreach (string line in lines)
                 {
                     intanggal[a] = line;
@@ -193,10 +207,11 @@ namespace Telkomsat.admin
                 }
             }
 
+
             HttpFileCollection filecolln = Request.Files;
-            for (int j = 0; j < filecolln.Count; j++)
+            for (int j = 0; j < filecolln.Count - 1; j++)
             {
-                HttpPostedFile file = filecolln[j];
+                HttpPostedFile file = filecolln[j + 1];
                 if (file.ContentLength > 0)
                 {
                     string filename = Path.GetFileName(file.FileName);
@@ -206,16 +221,52 @@ namespace Telkomsat.admin
                     sqlCon.Open();
                     string queryfile = $@"INSERT INTO AdminPertanggungan (AT_AD, AT_Keterangan, AT_Tanggal, AT_pcs, AT_harga, AT_EvidenceName, AT_EvidencePath, AT_Status)
                                         VALUES ('{id}', '{inketerangan[j]}', '{intanggal[j]}', '{inpcs[j]}', '{inharga[j].Replace(".", "")}', '{filename}', '{filepath}', 'draft')";
-                    //Response.Write(queryfile); ;
+                    Response.Write(queryfile);
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
                     sqlCmd1.ExecuteNonQuery();
                     sqlCon.Close();
                 }
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(GetType(), "CallMyFunction", "alert('Hello World');", true);
+                }
             }
 
             Response.Redirect($"detail.aspx?id={id}&tipe=3Xc5T79kLm1Oo");
 
+        }
+
+        protected void Edit_Click(object sender, EventArgs e)
+        {
+            if (FileUploadedit.HasFiles)
+            {
+                HttpPostedFile file = FileUploadedit.PostedFile;
+                string filename = Path.GetFileName(file.FileName);
+                string filepath = "~/evidence/" + filename;
+                string extension = Path.GetExtension(file.FileName);
+                file.SaveAs(Server.MapPath("~/evidence/") + Path.GetFileName(file.FileName));
+                sqlCon.Open();
+                string queryfile = $@"Update AdminPertanggungan set AT_Keterangan='{txteditket.Text}', AT_Tanggal='{txtedittgl.Text}', AT_pcs='{txteditji.Text}',
+                                        AT_harga='{txtediths.Text}', AT_EvidenceName='{filename}', AT_EvidencePath='{filepath}' where AT_ID='{txtid.Text}'";
+                Response.Write(queryfile);
+                SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                sqlCmd1.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+            else
+            {
+                string myquery = $@"Update AdminPertanggungan set AT_Keterangan='{txteditket.Text}', AT_Tanggal='{txtedittgl.Text}', AT_pcs='{txteditji.Text}',
+                                        AT_harga='{txtediths.Text}' where AT_ID='{txtid.Text}'";
+                sqlCon.Open();
+                SqlCommand sqlCmd1 = new SqlCommand(myquery, sqlCon);
+
+                sqlCmd1.ExecuteNonQuery();
+                sqlCon.Close();
+            }
+
+            Response.Redirect(Request.RawUrl);
         }
 
         void listdata()
@@ -244,7 +295,7 @@ namespace Telkomsat.admin
             int output1 = int.Parse(cmd4.ExecuteScalar().ToString());
             sqlCon.Close();
 
-            
+
         }
 
         void justifikasi()
@@ -367,16 +418,52 @@ namespace Telkomsat.admin
             }
         }
 
+        protected void Pertanggungan2_Click(object sender, EventArgs e)
+        {
+            Response.Write("ok " + txtidpertanggungan.Text);
+            string myquery = $"UPDATE AdminPertanggungan set AT_Status='accepted' where AT_ID in({txtidpertanggungan.Text})";
+            sqlCon.Open();
+            SqlCommand sqlCmd1 = new SqlCommand(myquery, sqlCon);
+            sqlCmd1.ExecuteNonQuery();
+            sqlCon.Close();
+
+            Response.Redirect($"detail.aspx?id={id}&tipe=4Jo9879eTr1Rr");
+        }
+
+        protected void Pertanggunganreject_Click(object sender, EventArgs e)
+        {
+            //Response.Write("ok " + txtidpertanggungan.Text);
+            string myquery = $"UPDATE AdminPertanggungan set AT_Status='reject', AT_Message='{txtalasanup.Text}' where AT_ID in({txtidpertanggungan.Text})";
+            sqlCon.Open();
+            SqlCommand sqlCmd1 = new SqlCommand(myquery, sqlCon);
+            sqlCmd1.ExecuteNonQuery();
+            sqlCon.Close();
+
+            Response.Redirect($"detail.aspx?id={id}&tipe=4Jo9879eTr1Rr");
+        }
+
+
         void tblpertanggungan()
         {
-            string dptotal, dpharga, filepath;
-            string query2 = $"select * from AdminPertanggungan where AT_AD = {id}";
+            string dptotal, dpharga, filepath, IDdata = "", query2 = "", status = "";
+
+            if (userid == "User")
+                query2 = $"select * from AdminPertanggungan where AT_AD = {id}";
+            else if (userid == "Admin Bendahara")
+                query2 = $"select * from AdminPertanggungan where AT_AD = {id} and AT_Status != 'draft'";
+            else
+                query2 = $"select * from AdminPertanggungan where AT_AD = {id}";
 
             DataSet ds2 = Settings.LoadDataSet(query2);
 
             htmlTable3.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable3.Append("<thead>");
-            htmlTable3.Append("<tr><th>Tanggal</th><th>Keterangan</th><th>Jumlah Item</th><th>Harga</th><th>Total</th><th>Evidence</th></tr>");
+            htmlTable3.Append("<tr>");
+            htmlTable3.Append("<th><input type=\"checkbox\" onclick=\"toggle(this); \" /></th>");
+            htmlTable3.Append("<th>Tanggal</th><th>Keterangan</th><th>Jumlah Item</th><th>Harga</th><th>Total</th><th>Status</th><th>Evidence</th>");
+            if(userid == "User")
+                htmlTable3.Append("<th>Action</th>");
+            htmlTable3.Append("</tr>");
             htmlTable3.Append("</thead>");
 
             htmlTable3.Append("<tbody>");
@@ -387,18 +474,24 @@ namespace Telkomsat.admin
 
                     for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
                     {
+                        IDdata = ds2.Tables[0].Rows[i]["AT_ID"].ToString();
                         dptotal = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_total"].ToString()));
                         dpharga = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(ds2.Tables[0].Rows[i]["AT_harga"].ToString()));
                         DateTime dt = Convert.ToDateTime(ds2.Tables[0].Rows[i]["AT_tanggal"].ToString());
                         filepath = ds2.Tables[0].Rows[i]["AT_EvidencePath"].ToString().Replace("~", "..");
+                        status = ds2.Tables[0].Rows[i]["AT_Status"].ToString();
 
                         htmlTable3.Append("<tr>");
+                        htmlTable3.Append("<td>" + $"<input type=\"checkbox\" value=\"{IDdata}\" name=\"getid\"> " + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dt.ToString("dd MMM yyyy") + "</label>" + "</td>");
-                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_keterangan"].ToString()  + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_keterangan"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_pcs"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dpharga + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dptotal + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_Status"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + $"<button type=\"button\" style=\"font-size:12px;\" class=\"btn btnimg\" value=\"{filepath}\">" + "<i class=\"fa fa-paperclip\"></i>" + "</button>" + "</td>");
+                        if (userid == "User" && status == "draft")
+                            htmlTable3.Append("<td>" + $"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" data-toggle=\"modal\" data-target=\"#modaledit\" id=\"edit\">Edit</button>"  + "</td>");
                         htmlTable3.Append("</tr>");
                     }
                     htmlTable3.Append("</tbody>");
@@ -409,6 +502,46 @@ namespace Telkomsat.admin
                 else
                 {
                     lblpertanggungan.Visible = true;
+                }
+            }
+        }
+
+        public class dataedit
+        {
+            public string dataid { get; set; }
+            public string editji { get; set; }
+            public string ediths { get; set; }
+            public string edittanggal { get; set; }
+            public string editketerangan { get; set; }
+        }
+
+        [WebMethod]
+        public static List<dataedit> GetReferensi(string videoid)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"select * from AdminPertanggungan where AT_ID = '{videoid}'"))
+                {
+                    cmd.Connection = con;
+                    List<dataedit> dawilayah = new List<dataedit>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            dawilayah.Add(new dataedit
+                            {
+                                dataid = sdr["AT_ID"].ToString(),
+                                ediths = sdr["AT_harga"].ToString(),
+                                editji = sdr["AT_pcs"].ToString(),
+                                editketerangan = sdr["AT_keterangan"].ToString(),
+                                edittanggal = Convert.ToDateTime(sdr["AT_Tanggal"].ToString()).ToString("yyyy/MM/dd"),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return dawilayah;
                 }
             }
         }

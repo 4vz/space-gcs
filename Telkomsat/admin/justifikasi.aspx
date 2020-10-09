@@ -177,7 +177,8 @@
         <!-- /.box-body -->
 
         <div class="box-footer">
-            <asp:Button ID="btnsubmit" CssClass="btn btn-primary" runat="server" Text="Save" OnClick="Unnamed_ServerClick" />
+            <asp:Button ID="btnsubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="Submit_ServerClick" />
+            <button id="btndraft" class="btn btn-warning" runat="server" style="margin-left:10px" onserverclick="Unnamed_ServerClick">Draft</button>
         </div>
         </asp:Panel>
     </div>

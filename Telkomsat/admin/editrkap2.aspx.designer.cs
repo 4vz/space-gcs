@@ -150,15 +150,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtnominal;
 
         /// <summary>
-        /// txtvolumetahun control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtvolumetahun;
-
-        /// <summary>
         /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>

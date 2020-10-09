@@ -1,0 +1,24 @@
+﻿ID_Logbook;ID_Asset;ID_File;ID_Image;TANGGAL;UNIT;KATEGORI;EVENT;STATUS;INFO;PIC_OS;PIC_OG;S/N;SN;ESTIMASI
+52;NULL;11;NULL;2019-06-11;Harkat;Perbaikan;GPS ERROR TELKOM 2;On Progress;sudah di adjust oleh pak erik dan mas afis, dan harus di adjust setiap bulan agustus dan awal tahun, di attachment ada file email dari mbak erni;;Halim;;NULL;NULL
+1052;NULL;NULL;NULL;2019-07-02;Harkat;Perawatan;Adjust Gain;Selesai;Adjust Gain Up Converter 2 (Command Equipment) MPSat, dari 2 dB menjadi 7 dB (tambah 5 dB). Berdasarkan permintaan unit SCO karena CMRnya drop;yosef;;60816;;
+1053;NULL;NULL;NULL;2019-03-07;Harkat;Lain-lain;Pengiriman Barang;Selesai;Pengiriman DTR (Digital Tracking Receiver) ACU Banjarmasin merk GD Satcoms S/N IPLT17030374, Hasil Perbaikan CV. Yeka Jaya;yosef;Halim;;;
+1055;NULL;NULL;NULL;2019-07-09;Harkat;Lain-lain;tes website;On Progress;melakukan perbaikan bug pada web;wildan;;;;
+1056;NULL;NULL;NULL;2019-07-09;Harkat;Lain-lain;Equipment Lent (Dipinjamkan Perangkat);On Progress;Di pinjam LNA ku-Band merk Locus Microwave S/N 2908 dengan Accesories Catuannya kepada Pa Juyadi Telkomsat;yosef;Budi Haryanto;;;
+1057;NULL;NULL;NULL;2019-07-08;Harkat;Pointing Antena;Repointing Polarisasi Antena LFT MPsat;Selesai;"Repointing Polarisasi Antena LMA 10 meter ex-T1 Monitor LFT MPSat
+Before Pol + 6.1, 
+Tembusan H ke V 1,5 dB, tembusan V ke H 2,5 dB
+After Pol + 5.5
+Tembusan H ke V 1,6 dB, tembusan V ke H 1,6 dB";yosef;;;;
+1063;NULL;NULL;NULL;2019-07-15;Harkat;Perbaikan;perbaikan website dan penambahan fitur;On Progress;;wildan;;;;
+1065;NULL;NULL;NULL;2019-05-07;Harkat;Perbaikan;test logbook;On Progress;pengetesan bug;wildan;;;;
+1066;NULL;NULL;NULL;2019-07-23;Harkat;Lain-lain;percobaan logbook 2;On Progress;melakukan pengetesan web;wildan;;;;
+1069;NULL;NULL;NULL;2019-07-23;Harkat;Lain-lain;test;On Progress;testt;wildan;;;;
+1070;NULL;NULL;NULL;2019-07-23;Harkat;Lain-lain;Perbaikan KPA 1 & KPA 2 FMA 11;Selesai;Penggantian pressure switch pada KPA 1 dan KPA 2 FMA 11 meter, penyebab alarm Low Air Flow;yosef;halim;;;
+1072;NULL;NULL;NULL;2019-05-01;Harkat;Perawatan;Grease antena FMA 11m;Selesai;;saipul;;;;
+1073;NULL;NULL;NULL;2019-08-02;Harkat;Perawatan;Grease antena 10m ex Telkom 1;Selesai;;saipul;;;;
+1074;NULL;NULL;NULL;2019-07-31;Harkat;Perawatan;Grease antena 9m T3s C-band;Selesai;pemberian grease & pembersihan hub antena;saipul;;;;
+1075;NULL;NULL;NULL;2019-07-29;Harkat;Perawatan;Grease antena 9m T3s Ku-band;Selesai;Pemberian grease & pembersihan hub antena;saipul;;;;
+1076;NULL;NULL;NULL;2019-07-22;Harkat;Perawatan;Grease antena Telkom 2;Selesai;;saipul;;;;
+2052;NULL;NULL;NULL;2019-08-05;Harkat;Lain-lain;Instal antena 2,4m baru di area bawah;Selesai;Instalasi antena 2,4m baru di area bawah sejajar dengan shelter MPsat;saipul;;;;
+2053;NULL;NULL;NULL;2019-08-06;Harkat;Lain-lain;Instal antena 2,4m baru di area bawah;Selesai;Instalasi antena 2,4m di area bawah sejajar dengan shelter MPsat;saipul;;;;
+2054;NULL;NULL;NULL;2019-08-09;Harkat;Pointing Antena;Pointeng antena 5m ex palapa D;Selesai;Repointing antena dari satelit JCSat 5A ke satelit Apstar 9;saipul;;;;

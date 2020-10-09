@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Input Pengeluaran" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="pengeluaran.aspx.cs" Inherits="Telkomsat.admin.pengeluaran" %>
+﻿<%@ Page Title="Edit Pengeluaran" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="editpengeluaran.aspx.cs" Inherits="Telkomsat.admin.editpengeluaran" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -27,12 +27,12 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="ddlKategori" InitialValue="--Sumber Dana--"></asp:RequiredFieldValidator>
             <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server">
                 <asp:ListItem>--Sumber Dana--</asp:ListItem>
-                <asp:ListItem>Rek. Harkat Bendahara 1</asp:ListItem>
-                <asp:ListItem>Rek. Harkat Bendahara 2</asp:ListItem>
-                <asp:ListItem>Rek. ME Bendahara 1</asp:ListItem>
-                <asp:ListItem>Rek. ME Bendahara 2</asp:ListItem>
-                <asp:ListItem>Brankas Harkat</asp:ListItem>
-                <asp:ListItem>Brankas ME</asp:ListItem>
+                <asp:ListItem Value="Rek. Harkat 1">Rek. Harkat Bendahara 1</asp:ListItem>
+                <asp:ListItem Value="Rek. Harkat 2">Rek. Harkat Bendahara 2</asp:ListItem>
+                <asp:ListItem Value="Rek. ME 1">Rek. ME Bendahara 1</asp:ListItem>
+                <asp:ListItem Value="Rek. ME 2">Rek. ME Bendahara 2</asp:ListItem>
+                <asp:ListItem Value="Brankas Harkat">Brankas Harkat</asp:ListItem>
+                <asp:ListItem Value="Brankas ME">Brankas ME</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="form-group" id="divvendor" runat="server">
@@ -44,7 +44,7 @@
                         <asp:ListItem>Lain-lain</asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="form-group" id="uservendor" style="display:none">
+        <div class="form-group" id="uservendor" runat="server" style="display:none">
             <label for="exampleInputPassword1">Vendor</label>
             <select id="sovendor" runat="server" class="select2 form-control" style="width: 100%;">
                 <option></option>
@@ -59,7 +59,7 @@
                         <asp:ListItem>Lain-lain</asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div class="form-group" id="userjustifikasi" style="display:none">
+        <div class="form-group" id="userjustifikasi" runat="server" style="display:none">
             <label for="exampleInputPassword1">Nama Kegiatan</label>
             <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
                 <option></option>
@@ -84,8 +84,8 @@
         <!-- /.box-body -->
 
         <div class="box-footer">
-        <button type="submit" class="btn btn-primary" runat="server" id="Button1" onserverclick="Save_ServerClick">Ajukan</button>
-            <button type="submit" class="btn btn-warning" runat="server" id="Button2" style="margin-left:10px" onserverclick="Draft_ServerClick">Draft</button>
+        <button type="submit" class="btn btn-primary" runat="server" id="Button1" onserverclick="Draft_ServerClick">Submit</button>
+            <button type="submit" class="btn btn-warning hidden" runat="server" id="Button2" style="margin-left:10px" onserverclick="Draft_ServerClick">Draft</button>
         </div>
     </div>
     </section>
@@ -139,11 +139,11 @@
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
             //alert(userinput);
             if (statuslogbook == "Vendor") {
-                document.getElementById('uservendor').style.display = 'block';
+                document.getElementById('<%=uservendor.ClientID%>').style.display = 'block';
                 document.getElementById('<%=sovendor.ClientID%>').selectedIndex = -1;
             }
             else {
-                document.getElementById('uservendor').style.display = 'none';
+                document.getElementById('<%=uservendor.ClientID%>').style.display = 'none';
                 document.getElementById('<%=txtvendor.ClientID%>').value = '0';
                 document.getElementById('tabledetail').style.display = 'none';
                 
@@ -156,11 +156,11 @@
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
             //alert(userinput);
             if (statuslogbook == "Justifikasi") {
-                document.getElementById('userjustifikasi').style.display = 'block';
+                document.getElementById('<%=userjustifikasi.ClientID%>').style.display = 'block';
                 document.getElementById('<%=soproker.ClientID%>').selectedIndex = -1;
             }
             else {
-                document.getElementById('userjustifikasi').style.display = 'none';
+                document.getElementById('<%=userjustifikasi.ClientID%>').style.display = 'none';
                 document.getElementById('<%=txtjustifikasi.ClientID%>').value = '0';
                 document.getElementById('tabledetail').style.display = 'none';
                 
@@ -207,12 +207,14 @@
                     $('#<%=sotugas.ClientID %>').empty();
                     $('#<%=sotugas.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
-                        console.log(this.idbangunan);
+                        console.log($('#<%=txtpetugas.ClientID%>').val() + " sd ");
                         $('#<%=sotugas.ClientID %>').append($('<option>',
                             {
                                 value: this.idpic,
                                 text: this.pic,
                             }));
+                        $('#<%=sotugas.ClientID %>').val($('#<%=txtpetugas.ClientID%>').val())
+
                     });
                 },
                 failure: function (response) {
@@ -243,6 +245,8 @@
                                     value: this.idjustifikasi,
                                     text: this.justifikasi,
                                 }));
+
+                            $('#<%=soproker.ClientID %>').val($('#<%=txtjustifikasi.ClientID%>').val())
                         });
                     },
                     failure: function (response) {
@@ -271,6 +275,7 @@
                                 value: this.idvendor,
                                 text: this.vendor,
                             }));
+                        $('#<%=sovendor.ClientID %>').val($('#<%=txtvendor.ClientID%>').val())
 
                     });
                 },

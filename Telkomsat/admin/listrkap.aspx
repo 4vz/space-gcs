@@ -8,7 +8,10 @@
             <div class="box-header with-border">
                 <h3 class="box-title">RKAP</h3>
                         <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
+                <a href="importrkap.aspx" class="btn btn-default pull-right" id="btnimport" style="margin-right:10px; margin-left:10px" runat="server" visible="false">Import</a>
             <a href="rkap.aspx" class="btn btn-primary pull-right">Tambah</a>
+                                <button type="button" style="margin-right:10px" class="btn btn-sm btn-warning pull-right datawil" data-toggle="modal" data-target="#modalupdate" id="edit">Filter </button>
+
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -18,6 +21,34 @@
                 </div>
             </section>
         </div>
+
+        <div class="modal fade" id="modalupdate">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Harkat</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <label style="font-size:16px; font-weight:bold">Nama Akun :</label>
+                    <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
+                        <option></option>
+                    </select>
+                </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Filter_Click">Submit</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+    <asp:TextBox ID="txtnamaakun" CssClass="hidden" runat="server"></asp:TextBox>
+
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         $(function () {
@@ -44,5 +75,41 @@
                 }
             });
         }
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "listrkap.aspx/GetNA",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=sotugas.ClientID %>').empty();
+                    $('#<%=sotugas.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log($('#<%=txtnamaakun.ClientID%>').val() + " sd ");
+                        $('#<%=sotugas.ClientID %>').append($('<option>',
+                            {
+                                value: this.namaakun,
+                                text: this.namaakun,
+                            }));
+                        $('#<%=sotugas.ClientID %>').val($('#<%=txtnamaakun.ClientID%>').val())
+
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+        $('#<%=sotugas.ClientID%>').change(function () {
+        var id = $(this).val();
+            $('#<%=txtnamaakun.ClientID%>').val(id);
+        });
     </script>
 </asp:Content>

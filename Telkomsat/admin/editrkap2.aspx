@@ -61,10 +61,6 @@
                 <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Volume dalam 1 tahun</label>
-                <input type="text" class="form-control" id="txtvolumetahun" runat="server" onkeydown='return numbersonly(this, event);' />
-            </div>
-            <div class="form-group">
                 <label for="exampleInputEmail1">Volume Bulanan</label>
                 <div class="table-responsive">
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
@@ -131,7 +127,7 @@
                     </tbody>
                 </table>
                 </div>
-                <button id="addfile" type="button" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> <br />
+                <button id="addfile" type="button" class="btn-sm btn-default" hidden="hidden"><i class="fa fa-plus"></i></button> <br />
             </div>
          
         </div>
@@ -159,16 +155,17 @@
                 success: function (response) {
                     var customers = response.d;
                     $('#<%=so2.ClientID %>').empty();
+                    var unit3 = $('#<%=txtsubunit.ClientID%>').val();
                     $('#<%=so2.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
-                        console.log(this.idbangunan);
+                        console.log(unit3 + " ini oy");
                         $('#<%=so2.ClientID %>').append($('<option>',
                             {
                                 value: this.unit,
                                 text: this.unit,
                             }));
                     });
-                    $('#<%=so2.ClientID %>').val($('#<%=txtunit.ClientID%>').val());
+                    $('#<%=so2.ClientID %>').val(unit3);
                 },
                 failure: function (response) {
 
@@ -186,17 +183,18 @@
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
+                    var unit = $('#<%=txtunit.ClientID%>').val();
                     $('#<%=sosub.ClientID %>').empty();
                     $('#<%=sosub.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
-                        console.log(this.idbangunan);
+                        console.log(unit + " oh");
                         $('#<%=sosub.ClientID %>').append($('<option>',
                             {
                                 value: this.subunit,
                                 text: this.subunit,
                             }));
                     });
-                    $('#<%=sosub.ClientID %>').val($('#<%=txtsubunit.ClientID%>').val());
+                    $('#<%=sosub.ClientID %>').val(unit);
                 },
                 failure: function (response) {
 
@@ -243,6 +241,7 @@
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
+                    var akun = $('#<%=txtnamaakun.ClientID%>').val();
                     $('#<%=sonamaakun.ClientID %>').empty();
                     $('#<%=sonamaakun.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
@@ -253,7 +252,7 @@
                                 text: this.namaakun,
                             }));
                     });
-                    $('#<%=sonamaakun.ClientID %>').val($('#<%=txtnamaakun.ClientID%>').val());
+                    $('#<%=sonamaakun.ClientID %>').val(akun);
                 },
                 failure: function (response) {
 
@@ -303,12 +302,12 @@
 
         $('#<%=so2.ClientID %>').change(function () {
             var id = $(this).val();
-            $('#<%=txtunit.ClientID %>').val(id);
+            $('#<%=txtsubunit.ClientID %>').val(id);
         });
 
         $('#<%=sosub.ClientID %>').change(function () {
             var id = $(this).val();
-            $('#<%=txtsubunit.ClientID %>').val(id);
+            $('#<%=txtunit.ClientID %>').val(id);
         });
 
         $('#<%=sosatuan.ClientID %>').change(function () {

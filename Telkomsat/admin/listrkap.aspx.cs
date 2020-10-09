@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Globalization;
+using System.Web.Services;
 
 namespace Telkomsat.admin
 {
@@ -17,16 +18,47 @@ namespace Telkomsat.admin
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string kategori, style3;
+        string query, style3;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string previllage = "";
+            string user = Session["iduser"].ToString();
+            string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds = Settings.LoadDataSet(query2);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                previllage = ds.Tables[0].Rows[0]["AP_Previllage"].ToString();
+                if (previllage == "Admin Bendahara" || previllage == "User" || previllage == "SA")
+                {
+                    btnimport.Visible = true;
+                }
+            }
+
+            if(Request.QueryString["namaakun"] == null)
+            {
+                query = $"SELECT * from AdminRKAP order by ARK_ID desc";
+            }
+            else
+            {
+                query = $"SELECT * from AdminRKAP where ARK_NA='{Request.QueryString["namaakun"].ToString()}' order by ARK_ID desc";
+
+                if(!IsPostBack)
+                    txtnamaakun.Text = Request.QueryString["namaakun"].ToString();
+            }
+
+
             referens();
+        }
+
+        protected void Filter_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"listrkap.aspx?namaakun={txtnamaakun.Text}");
         }
 
         void referens()
         {
-            string query, IDdata, referensi, gt, gts;
-            query = $"SELECT * from AdminRKAP order by ARK_ID desc";
+            string IDdata, referensi, gt, gts;
 
             DataSet ds = Settings.LoadDataSet(query);
 
@@ -60,6 +92,39 @@ namespace Telkomsat.admin
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
                     PlaceHolder1.Controls.Add(new Literal { Text = htmlTable.ToString() });
+                }
+            }
+        }
+
+        public class inisial
+        {
+            public string namaakun { get; set; }
+        }
+
+
+        [WebMethod]
+        public static List<inisial> GetNA()
+        {
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"select ARK_NA from AdminRKAP  group by ARK_NA"))
+                {
+                    cmd.Connection = con;
+                    List<inisial> mydata = new List<inisial>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            mydata.Add(new inisial
+                            {
+                                namaakun = sdr["ARK_NA"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return mydata;
                 }
             }
         }

@@ -247,8 +247,11 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Pertanggungan</h3>
-                        <asp:Button ID="btnsubmit" runat="server" Text="Submit" CssClass="btn btn-primary pull-right" OnClick="Submit_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
                         <asp:Button ID="btnacc" runat="server" Text="Setujui" CssClass="btn btn-primary pull-right" OnClick="Setujui_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
+                        <button type="button" id="btnsubmit2" class="btn btn-primary pull-right" style="margin:10px" runat="server" visible="false"  onclick="return confirm('Apakah anda yakin?')">Submit</button>
+                        <button type="button" id="btnid" class="btn btn-success pull-right" style="margin:10px" runat="server" visible="false">Accept</button>
+                        <button type="button" id="btnreject" class="btn btn-danger pull-right" style="margin:10px" runat="server" visible="false" data-toggle="modal" data-target="#modalreject">Reject</button>
+
                     </div>
                     <div class="box-body">
                         <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
@@ -257,6 +260,82 @@
                     </div>
                    
                 </div>
+        <div class="modal fade" id="modalreject">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Alasan :</label>
+                            <asp:TextBox ID="txtalasanup" autocomplete="off" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
+                        </div>
+                      </div> 
+                  </div>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btngmup" class="btn btn-info pull-left" onserverclick="Pertanggunganreject_Click" runat="server" >Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+
+        <div class="modal fade" id="modaledit">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Approve</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Tanggal :</label>
+                            <asp:TextBox ID="txtedittgl" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Keterangan :</label>
+                            <asp:TextBox ID="txteditket" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Jumlah Item :</label>
+                            <asp:TextBox ID="txteditji" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Harga Satuan :</label>
+                            <asp:TextBox ID="txtediths" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="font-size:16px; font-weight:bold">Evidence :</label>
+                              <asp:FileUpload ID="FileUploadedit" runat="server" />
+                        </div>
+                      </div> 
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="Button4" class="btn btn-info pull-left" onserverclick="Edit_Click" runat="server" >Save</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
 
 
             <div class="col-sm-12" runat="server" id="divpertanggungan" visible="false">
@@ -290,6 +369,10 @@
                 </div>
                 
         </div>
+    <button type="button" id="Button2" class="btn btn-success pull-left hidden" runat="server" onserverclick="Submit_Click" >Save</button>
+    <button type="button" id="Button3" class="btn btn-success pull-left hidden" runat="server" onserverclick="Pertanggungan2_Click">Save</button>
+    <asp:TextBox ID="txtidpertanggungan" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -316,7 +399,76 @@
                 console.log("mimi");
             });
 
+            $('#<%=btnsubmit2.ClientID %>').click(function () {
+                var favorite = [];
+                $.each($("input[name='getid']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(","));
+                var id = favorite.join(",");
+                $('#<%=txtidpertanggungan.ClientID %>').val(id);
+                $('#<%=Button2.ClientID %>').trigger("click");
+            });
+            $('#<%=btnid.ClientID %>').click(function () {
+                var favorite = [];
+                $.each($("input[name='getid']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(","));
+                var id = favorite.join(",");
+                $('#<%=txtidpertanggungan.ClientID %>').val(id);
+                $('#<%=Button3.ClientID %>').trigger("click");
+            });
+            $('#<%=btnreject.ClientID %>').click(function () {
+                var favorite = [];
+                $.each($("input[name='getid']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(","));
+                var id = favorite.join(",");
+                $('#<%=txtidpertanggungan.ClientID %>').val(id);
+                //$('#<p%=Button3.ClientID %>').trigger("click");
+            });
         });
+
+        $('.datawil').click(function () {
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "detail.aspx/GetReferensi",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.d;
+                    $(data).each(function () {
+                        console.log(this.edittanggal);
+                        $('#<%=txtid.ClientID %>').val(this.dataid);
+                        $('#<%=txtedittgl.ClientID %>').val(this.edittanggal);
+                        $('#<%=txteditket.ClientID %>').val(this.editketerangan);
+                        $('#<%=txteditji.ClientID %>').val(this.editji);
+                        $('#<%=txtediths.ClientID %>').val(this.ediths);
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
 
         function confirmselesai() {
             swal({

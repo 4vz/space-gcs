@@ -215,10 +215,10 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if (ddlaksigm.Text == "Revition")
+            else if (ddlaksigm.Text == "Revision")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE administrator SET approve = 'revition' WHERE id_admin='{txtideng.Text}'";
+                string query = $@"UPDATE administrator SET approve = 'revision' WHERE id_admin='{txtideng.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
@@ -300,10 +300,10 @@ namespace Telkomsat.admin
                 sqlCmd.ExecuteNonQuery();
                 sqlCon.Close();
             }
-            else if (ddlaksi.Text == "Revition")
+            else if (ddlaksi.Text == "Revision")
             {
                 sqlCon.Open();
-                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'revition' WHERE AJ_ID='{txtidgm.Text}'";
+                string query = $@"UPDATE AdminJustifikasi SET AJ_Status = 'revision' WHERE AJ_ID='{txtidgm.Text}'";
                 //Response.Write(queryfile); ;
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
@@ -713,7 +713,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalmaintenance\" id=\"edit\">" + "Detail" + "</button>");
                         if(status == "" || status == null || status is null)
                             htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenissa=ajukan')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
-                        else if (status == "revition")
+                        else if (status == "revision")
                             htmlTable.Append($"<a href=\"editjustifikasi.aspx?id={IDdata}&perbaikan=ya\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
                         else if (status == "diajukan")
                             htmlTable.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-warning datagm\" data-toggle=\"modal\" data-target=\"#modalgm\">" + "Approve GM" + "</button>");

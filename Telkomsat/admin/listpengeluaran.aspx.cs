@@ -42,7 +42,7 @@ namespace Telkomsat.admin
             if (!IsPostBack)
             {
                 query = @"select * from administrator where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
-                query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revition' or approve ='draft') order by id_admin desc";
+                query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revision' or approve ='draft') order by id_admin desc";
                 tableticket();
                 tabledraft();
             }
@@ -214,7 +214,7 @@ namespace Telkomsat.admin
                             style = "label label-info";
                         else if (approve == "gm")
                             style = "label label-success";
-                        else if (approve == "revition")
+                        else if (approve == "revision")
                             style = "label label-warning";
 
                         htmlTable1.Append($"<tr style=\"{style5}\">");
@@ -242,8 +242,12 @@ namespace Telkomsat.admin
                         htmlTable1.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         if (evidence == "" || evidence == null)
                             htmlTable1.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
-                        if(approve == "draft")
+                        if(approve == "draft") 
+                        {
                             htmlTable1.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&tipe=pengeluaran')\" class=\"btn btn-sm btn-success\" id=\"btndelete\">" + "Ajukan" + "</a>");
+                            htmlTable1.Append($"<a href=\"editpengeluaran.aspx?id={IDdata}\" class=\"pull-right\" id=\"btnedit\">" + "Edit" + "</a>");
+
+                        }
 
                         htmlTable1.Append("</td></tr>");
                     }

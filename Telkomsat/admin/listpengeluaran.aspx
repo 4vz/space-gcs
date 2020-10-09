@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="listpengeluaran.aspx.cs" Inherits="Telkomsat.admin.listpengeluaran" %>
+﻿<%@ Page Title="Pengeluaran" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="listpengeluaran.aspx.cs" Inherits="Telkomsat.admin.listpengeluaran" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
 

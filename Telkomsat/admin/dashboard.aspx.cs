@@ -184,8 +184,11 @@ namespace Telkomsat.admin
 
         void tablepanjar()
         {
-            querypanjar = @"select a.tanggal, a.keterangan, a.status, p.nama, a.input from administrator a left join adminuser u on a.id_admin = u.id_admin join
-                    Profile p on p.id_profile = u.id_profile where status is not null and status != 'done' order by a.id_admin desc";
+            querypanjar = @"select top 6 e.nama, r.* from administrator r join AdminProfile p on p.AP_ID=r.id_profile
+                            join Profile e on e.id_profile=p.AP_Nama 
+                             where kategori = 'pengeluaran' and approve='admin' order by tanggal asc";
+
+            string simpanan, evidence, status8, style5 = "", nominal, nama, tgl, id, ket, keter;
 
             SqlCommand cmd = new SqlCommand(querypanjar, sqlCon);
             da1 = new SqlDataAdapter(cmd);
@@ -194,9 +197,9 @@ namespace Telkomsat.admin
             cmd.ExecuteNonQuery();
             sqlCon.Close();
 
-            htmlTable1.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
+            htmlTable1.Append("<table id=\"exampl\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable1.Append("<thead>");
-            htmlTable1.Append("<tr><th>Tanggal</th><th>Keterangan</th><th>Status</th><th>Nama</th><th>input</th>");
+            htmlTable1.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
             htmlTable1.Append("</thead>");
 
             htmlTable1.Append("<tbody>");
@@ -207,25 +210,66 @@ namespace Telkomsat.admin
 
                     for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
                     {
-                        tanggal = ds1.Tables[0].Rows[i]["tanggal"].ToString();
-                        keterangan = ds1.Tables[0].Rows[i]["keterangan"].ToString();
-                        status = ds1.Tables[0].Rows[i]["status"].ToString();
+                        id = ds1.Tables[0].Rows[i]["id_admin"].ToString();
+                        DateTime datee = (DateTime)ds1.Tables[0].Rows[i]["tanggal"];
+                        tgl = datee.ToString("dd MMM yyyy");
                         nama = ds1.Tables[0].Rows[i]["nama"].ToString();
+                        evidence = ds1.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
+                        ket = ds1.Tables[0].Rows[i]["keterangan"].ToString();
+                        nominal = Convert.ToInt32(ds1.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
 
-                        if (status == "incomplete")
-                            lblcolor = "label label-danger";
-                        if (status == "complete")
-                            lblcolor = "label label-success";
+                        string query8 = $"select sum(AT_total) [total] from AdminPertanggungan where AT_AD = '{IDdata}'";
+                        DataSet ds18 = Settings.LoadDataSet(query8);
 
-                        input = ds1.Tables[0].Rows[i]["input"].ToString();
-                        totalpanjar = String.Format(CultureInfo.CreateSpecificCulture("id-id"), "Rp. {0:N0}", Convert.ToInt32(input));
+                        if (ds1.Tables[0].Rows[i]["input"].ToString() == ds18.Tables[0].Rows[0]["total"].ToString())
+                        {
+                            status8 = "close";
+                        }
+                        else
+                        {
+                            status8 = "waiting";
+                        }
+                        /*if (ds1.Tables[0].Rows[i]["gm"].ToString() == "unread")
+                            style5 = "font-weight:bold;";
+                        else
+                            style5 = "font-weight:normal;";*/
 
-                        htmlTable1.Append("<tr>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:10px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + keterangan + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{lblcolor}\">" + status + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + nama + "</label>" + "</td>");
-                        htmlTable1.Append("<td>" + "<label style=\"font-size:12px;\">" + totalpanjar + "</label>" + "</td>");
+                        if (ket.Length >= 40)
+                        {
+                            keter = ket.Substring(0, 20) + "...";
+                        }
+                        else
+                        {
+                            keter = ket;
+                        }
+
+                        if (status8 == "close")
+                            style = "label label-info";
+                        else if (status8 == "waiting")
+                            style = "label label-warning";
+
+                        htmlTable1.Append($"<tr style=\"{style5}\">");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:11px; {style5} color:#a9a9a9; font-color width:70px;\">" + tgl + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + nama + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keter + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        /*if (evidence == "" || evidence == null)
+                        {
+                            htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + ds1.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                        }
+                        else
+                        {
+                            if (evidence.Substring(evidence.LastIndexOf('.') + 1).ToLower().IsIn(new string[] { "jpg", "jpeg", "png", "bmp", "jfif", "gif" }))
+                            {
+                                htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + $"<img style=\"display:block\" class=\"myImg\" src=\"{evidence}\" height=\"200\" />" + "</label>" + "</td>");
+                            }
+                            else
+                            {
+                                htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + ds1.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
+                            }
+                        }*/
+
+                        htmlTable1.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=3Xc5T79kLm1Oo\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
                         htmlTable1.Append("</tr>");
                     }
                     htmlTable1.Append("</tbody>");

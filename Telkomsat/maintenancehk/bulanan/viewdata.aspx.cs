@@ -17,7 +17,7 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string[] akhir;
-        string query, query1, room, idddl, nilai, value, user, dataa, bulan, valuetgl, bln;
+        string query, query1, room, idddl, nilai, value, tipe, dataa, bulan, valuetgl, bln;
         int j = 0, m = 0;
         string[] dataku, loopingtgl;
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +27,10 @@ namespace Telkomsat.maintenancehk.bulanan
             var endDate = startDate.AddMonths(1).AddDays(-1);
             string start = startDate.ToString("yyyy/MM/dd");
             string end = endDate.ToString("yyyy/MM/dd");*/
+
+            if (Request.QueryString["tipe"] != null)
+                tipe = Request.QueryString["tipe"];
+
             DateTime now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
             var endDate = startDate.AddMonths(1).AddDays(-1);
@@ -45,7 +49,7 @@ namespace Telkomsat.maintenancehk.bulanan
                 bln = Request.QueryString["bulan"].ToString();
             }
 
-            if (UserExist == 0)
+            if (tipe != "view")
             {
                 Response.Redirect($"isidata.aspx?room={room}");
             }

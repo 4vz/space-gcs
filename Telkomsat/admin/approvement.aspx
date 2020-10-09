@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
+﻿<%@ Page Title="Approvement" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
     <style type="text/css">
@@ -30,6 +30,7 @@
                         <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
                     <div id="pertanggungan" class="tab-pane in fade">
+                        <button type="button" id="btnid" class="btn btn-success pull-right" style="margin:10px" runat="server" visible="false">Accept</button>
                         <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>  
                         <asp:Label ID="lblpertanggungan" runat="server" Text="Tidak ada data pertanggungan" Visible="false"></asp:Label>
                     </div>
@@ -162,7 +163,7 @@
                                   <asp:DropDownList ID="ddlaksi" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                    <asp:ListItem>Revition</asp:ListItem>
+                                    <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -200,7 +201,7 @@
                                   <asp:DropDownList ID="ddlaksigm" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                    <asp:ListItem>Revition</asp:ListItem>
+                                    <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -395,6 +396,7 @@
             <!-- /.modal-content -->
           </div>
         </div>
+
     <asp:TextBox ID="txtidl" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txttipe" runat="server" CssClass="hidden"></asp:TextBox>
@@ -406,6 +408,7 @@
     <asp:TextBox ID="txtideng" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtliactive" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidpertanggungan" runat="server" CssClass="hidden"></asp:TextBox>
     
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
@@ -418,7 +421,27 @@
                 var totaljus = $('#<%=txttotal.ClientID %>').val();
                 $('#<%=txtnominalven1.ClientID %>').val(totaljus - nominalinternal);
             });
+
+            $('#<%=btnid.ClientID %>').click(function () {
+                var favorite = [];
+                $.each($("input[name='getid']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(","));
+                var id = favorite.join(",");
+                $('#<%=txtidpertanggungan.ClientID %>').val(id);
+                //$('#<=%=Button3.ClientID %>').trigger("click");
+            });
         });
+
+
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
 
         $('#slpetugas1').change(function () {
             var id = $(this).val();
@@ -543,6 +566,9 @@
             else if ($('#<%=txtliactive.ClientID %>').val() == 'justifikasi') {
                 $('#justifikasi').addClass('in active');
                 console.log('iuiui');
+            }
+            else if ($('#<%=txtliactive.ClientID %>').val() == 'pertanggungan') {
+                $('#pertanggungan').addClass('in active');
             }
         });
 

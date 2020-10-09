@@ -14,6 +14,7 @@ namespace Telkomsat.admin
 {
     public partial class importrkap : System.Web.UI.Page
     {
+        bool format = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -41,8 +42,14 @@ namespace Telkomsat.admin
                 case ".xlsx": //Excel 07 or higher
                     conString = ConfigurationManager.ConnectionStrings["Excel07+ConString"].ConnectionString;
                     break;
+                case ".csv": //Excel 07 or higher
+                    conString = ConfigurationManager.ConnectionStrings["Excel07+ConString"].ConnectionString;
+                    break;
                 default:
-                    Response.Redirect("importrkap.aspx"); break;
+                    {
+                        format = true;
+                        lblerror.ForeColor = System.Drawing.Color.Red;
+                    } break;
 
             }
             conString = string.Format(conString, excelPath);
@@ -119,6 +126,9 @@ namespace Telkomsat.admin
                             con.Open();
                             sqlBulkCopy.WriteToServer(dtExcelData);
                             con.Close();
+                            lblerror.Text = "Berhasil di import";
+                            lblerror.Visible = true;
+                            lblerror.ForeColor = System.Drawing.Color.ForestGreen;
                         }
                     }
                 }
@@ -126,15 +136,24 @@ namespace Telkomsat.admin
             }
             catch
             {
-                lblerror.Text = "Format excel tidak cocok, harap gunakan format .xls apabila masih terjadi kesalahan";
-                lblerror.Visible = true;
+                if (!format)
+                {
+                    lblerror.Text = "Format excel tidak cocok, harap gunakan format .xls apabila masih terjadi kesalahan";
+                    lblerror.Visible = true;
+                }
+                else
+                {
+                    lblerror.Text = "Format harus ekstensi EXCEL";
+                    lblerror.Visible = true;
+                }
+
             }
-            finally
+/*            finally
             {
                 lblerror.Text = "Berhasil di import";
                 lblerror.Visible = true;
                 lblerror.ForeColor = System.Drawing.Color.ForestGreen;
-            }
+            }*/
 
         /*SkipToEnd:
             {

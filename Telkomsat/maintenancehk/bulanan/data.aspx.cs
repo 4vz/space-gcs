@@ -15,15 +15,19 @@ namespace Telkomsat.maintenancehk.bulanan
     {
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string tanggal, waktu, tanggal1, ruangan, bulan, tahun;
+        string tanggal, waktu, tanggal1, tipe, bulan, tahun;
         DateTime wib;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
             tahun = Request.QueryString["tahun"];
             bulan = Request.QueryString["bulan"];
+
+            if(Request.QueryString["tipe"] != null)
+                tipe = Request.QueryString["tipe"];
+
             tablepersen();
-            lbltitle.Text = "Data Maintenance Bulan " + bulan + tahun;
+            lbltitle.Text = "Data Maintenance Bulan " + bulan + " " + tahun;
         }
 
         void tablepersen()
@@ -97,8 +101,8 @@ namespace Telkomsat.maintenancehk.bulanan
                         htmltable.Append("<div class=\"col-md-12\">");
                     }
                     htmltable.Append("<div class=\"progress-group\">");
-                    if (tanggal == tanggal1)
-                        htmltable.Append($"<a class=\"link\" href=\"viewdata.aspx?room={ruang}&bulan={bulan}\" style=\"font-size:12px;\">" + ruang + "</a>");
+                    if (tipe == "view")
+                        htmltable.Append($"<a class=\"link\" href=\"viewdata.aspx?room={ruang}&bulan={bulan}&tipe=view\" style=\"font-size:12px;\">" + ruang + "</a>");
                     else
                         htmltable.Append($"<a class=\"link\" href=\"viewdata.aspx?room={ruang}&bulan={bulan}\" style=\"font-size:12px;\">" + ruang + "</a>");
                     htmltable.Append($"<span class=\"progress-number\">" + tampil + "%</span>");

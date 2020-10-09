@@ -162,7 +162,7 @@
                                   <asp:DropDownList ID="ddlaksi" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                    <asp:ListItem>Revition</asp:ListItem>
+                                    <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -200,7 +200,7 @@
                                   <asp:DropDownList ID="ddlaksigm" CssClass="form-control" runat="server">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Approve</asp:ListItem>
-                                    <asp:ListItem>Revition</asp:ListItem>
+                                    <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
                                 </asp:DropDownList>
                             </div>

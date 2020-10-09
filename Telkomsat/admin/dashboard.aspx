@@ -96,7 +96,7 @@
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right">
                 <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
-                <li class="pull-left header"><i class="fa fa-money"></i> Panjar</li>
+                <li class="pull-left header"><i class="fa fa-money"></i> Permintaan Dana</li>
             </ul>
             <div class="tab-content no-padding" style="min-height:300px;">
                 <!-- Morris chart - Sales -->
