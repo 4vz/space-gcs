@@ -22,6 +22,7 @@ namespace Telkomsat.admin
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            string queryco;
             Page.Form.DefaultButton = btnsubmit.UniqueID;
             if (Request.QueryString["id"] != null)
             {
@@ -70,6 +71,8 @@ namespace Telkomsat.admin
                 }
             }
             bulanan();
+
+           
         }
 
         void bulanan()
@@ -145,6 +148,37 @@ namespace Telkomsat.admin
             sqlCmd2.ExecuteNonQuery();
             sqlCon.Close();*/
         }
+
+        protected void Carry_ServerClick(object sender, EventArgs e)
+        {
+            string queryco, bulan = "", bulan2 = "";
+            int count, a = 0, b = 0, tahun;
+            double total, gt;
+            string nominal = txtnominal.Value.Replace(".", "");
+
+            queryco = $"select ARK_{slpetugas1.Value} as bulan, ARK_{slpetugas2.Value} as bulan2 from AdminRKAP where ARK_ID={iddata}";
+            DataSet ds = Settings.LoadDataSet(queryco);
+
+            if(ds.Tables[0].Rows.Count > 0)
+            {
+                bulan = ds.Tables[0].Rows[0]["bulan"].ToString();
+                bulan2 = ds.Tables[0].Rows[0]["bulan2"].ToString();
+            }
+
+            /*count = Convert.ToInt32(txtcount.Text);
+            myket = new string[count];
+            myvolume = new string[count];*/
+            tanggal = DateTime.Now.ToString("yyyy/MM/dd");
+            query = $@"UPDATE AdminRKAP SET ARK_{slpetugas1.Value}='{bulan2}', ARK_{slpetugas2.Value}='{bulan}', ARK_CarryOver='{slpetugas1.Value} carry over ke {slpetugas2.Value}' WHERE ARK_ID='{iddata}'";
+            sqlCon.Open();
+            SqlCommand cmd = new SqlCommand(query, sqlCon);
+            int i = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlCon.Close();
+
+            Response.Redirect(Request.RawUrl);
+
+        }
+
 
         public class inisial
         {

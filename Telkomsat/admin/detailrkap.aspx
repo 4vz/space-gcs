@@ -67,7 +67,7 @@
                                               <td><asp:Label ID="lblnoa" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                           <tr>
-                                              <th>Nama Akun</th>
+                                              <th>Jenis Anggaran</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblnamaakun" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>

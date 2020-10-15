@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="editrkap2.aspx.cs" Inherits="Telkomsat.admin.editrkap2" %>
+﻿<%@ Page Title="Edit RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="editrkap2.aspx.cs" Inherits="Telkomsat.admin.editrkap2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -45,7 +45,7 @@
                 <input type="text" class="form-control" id="txtnoakun" runat="server"/>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Akun</label>
+                <label for="exampleInputEmail1">Jenis Anggaran</label>
                 <select id="sonamaakun" runat="server" class="select2 form-control" style="width: 100%;">
                     <option></option>
                 </select>
@@ -58,6 +58,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Harga</label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnominal"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
             </div>
             <div class="form-group">
@@ -139,6 +140,73 @@
         </asp:Panel>
     </div>
     </section>
+    <section class="col-lg-6 connectedSortable">
+                                    <div class="box box-danger collapsed-box" style="min-height:90%">
+                                <div class="box-header">
+                                    <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
+                                                data-toggle="tooltip" title="Collapse" aria-expanded="false" style="margin-right: 5px;">
+                                          <i class="fa fa-plus"></i></button>
+                                      </div>
+                                    <h4>Carry Over</h4>
+                                   
+                                </div>
+                                <div class="box-body" style="display: none;">
+                                    <div class="alert alert-success alert-dismissable" id="div1" runat="server" visible="false">
+                                        <h4><span class="fa fa-check"> Berhasil</span></h4>
+                                        berhasil ditambahkan
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:16px; font-weight:bold">Bulan :</label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas1" InitialValue=""></asp:RequiredFieldValidator>
+                                        <select class="form-control" style="width: 100%;" id="slpetugas1" runat="server">
+                                            <option></option>
+                                              <option>Januari</option> 
+                                                <option>Februari</option> 
+                                                <option>Maret</option> 
+                                                <option>April</option> 
+                                                <option>Mei</option> 
+                                                <option>Juni</option> 
+                                                <option>Juli</option> 
+                                                <option>Agustus</option> 
+                                                <option>September</option> 
+                                                <option>Oktober</option> 
+                                                <option>November</option> 
+                                                <option>Desember</option> 
+                                        </select>
+                                    </div>
+                                   
+                                    <div>
+                                        <h5>Tukar Dengan</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:16px; font-weight:bold">Bulan :</label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas2" InitialValue=""></asp:RequiredFieldValidator>
+                                        <select class="form-control" style="width: 100%;" id="slpetugas2" runat="server">
+                                            <option></option>
+                                              <option>Januari</option> 
+                                                <option>Februari</option> 
+                                                <option>Maret</option> 
+                                                <option>April</option> 
+                                                <option>Mei</option> 
+                                                <option>Juni</option> 
+                                                <option>Juli</option> 
+                                                <option>Agustus</option> 
+                                                <option>September</option> 
+                                                <option>Oktober</option> 
+                                                <option>November</option> 
+                                                <option>Desember</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" UseSubmitBehavior="false" OnClick="Carry_ServerClick"
+                                            OnClientClick="this.disabled='true'; this.value='Please wait...';"  />
+                                    </div>
+                                </div>
+                            </div>
+
+    </section>
 </div>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
@@ -155,7 +223,7 @@
                 success: function (response) {
                     var customers = response.d;
                     $('#<%=so2.ClientID %>').empty();
-                    var unit3 = $('#<%=txtsubunit.ClientID%>').val();
+                    var unit3 = $('#<%=txtunit.ClientID%>').val();
                     $('#<%=so2.ClientID %>').append('<option></option>');
                     $(customers).each(function () {
                         console.log(unit3 + " ini oy");
@@ -183,7 +251,7 @@
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
-                    var unit = $('#<%=txtunit.ClientID%>').val();
+                    var unit = $('#<%=txtsubunit.ClientID%>').val();
                     $('#<%=sosub.ClientID %>').empty();
                     $('#<%=sosub.ClientID %>').append('<option></option>');
                     $(customers).each(function () {

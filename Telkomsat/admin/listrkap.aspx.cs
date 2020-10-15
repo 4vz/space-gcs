@@ -21,7 +21,7 @@ namespace Telkomsat.admin
         string query, style3;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string previllage = "";
+            string previllage = "", naakun = "", nabulan = "";
             string user = Session["iduser"].ToString();
             string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
             DataSet ds = Settings.LoadDataSet(query2);
@@ -35,16 +35,39 @@ namespace Telkomsat.admin
                 }
             }
 
-            if(Request.QueryString["namaakun"] == null)
+            if(Request.QueryString["namaakun"] == null && Request.QueryString["bulan"] == null)
             {
                 query = $"SELECT * from AdminRKAP order by ARK_ID desc";
             }
             else
             {
-                query = $"SELECT * from AdminRKAP where ARK_NA='{Request.QueryString["namaakun"].ToString()}' order by ARK_ID desc";
+                if (Request.QueryString["namaakun"] != null)
+                {
+                    naakun = "ARK_NA='" + Request.QueryString["namaakun"] + "'";
+                    if (Request.QueryString["namaakun"] == "0")
+                        naakun = "ARK_NA=ARK_NA";
+                }
+                else 
+                    naakun = "ARK_NA=ARK_NA";
 
-                if(!IsPostBack)
+
+                if (Request.QueryString["bulan"] != null)
+                {
+                    nabulan = $"ARK_{Request.QueryString["bulan"].ToString()}>0 and";
+                    if (Request.QueryString["bulan"].ToString() == "0")
+                        nabulan = "";
+
+                }
+                else
+                    nabulan = "";
+
+                query = $"SELECT * from AdminRKAP where {nabulan} {naakun} order by ARK_ID desc";
+
+                if (!IsPostBack)
+                {
                     txtnamaakun.Text = Request.QueryString["namaakun"].ToString();
+                    sobulan.Value = Request.QueryString["bulan"].ToString();
+                }
             }
 
 
@@ -53,7 +76,15 @@ namespace Telkomsat.admin
 
         protected void Filter_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"listrkap.aspx?namaakun={txtnamaakun.Text}");
+            string namaakun = "0", bulan = "0";
+
+            if (txtnamaakun.Text != "")
+                namaakun = txtnamaakun.Text;
+
+            if (sobulan.Value != "")
+                bulan = sobulan.Value;
+
+            Response.Redirect($"listrkap.aspx?namaakun={namaakun}&bulan={bulan}");
         }
 
         void referens()

@@ -48,7 +48,7 @@
                 <input type="text" class="form-control" id="txtnoakun" runat="server"/>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Akun</label>
+                <label for="exampleInputEmail1">Jenis Anggaran</label>
                 <select id="sonamaakun" runat="server" class="select2 form-control" style="width: 100%;">
                     <option></option>
                 </select>

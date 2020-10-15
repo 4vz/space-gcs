@@ -51,6 +51,15 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.HtmlControls.HtmlSelect sotugas;
 
         /// <summary>
+        /// sobulan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sobulan;
+
+        /// <summary>
         /// txtnamaakun control.
         /// </summary>
         /// <remarks>

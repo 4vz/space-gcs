@@ -21,6 +21,7 @@ namespace Telkomsat.admin
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            string queryco;
             if (Request.QueryString["id"] != null)
             {
                 iddata = Request.QueryString["id"].ToString();
@@ -99,6 +100,22 @@ namespace Telkomsat.admin
 
                 }
                 referens();
+
+                queryco = $"select ARK_CarryOver from AdminRKAP where ARK_ID='{iddata}'";
+
+                DataSet ds2 = Settings.LoadDataSet(queryco);
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    if (ds2.Tables[0].Rows[0]["ARK_CarryOver"].ToString() == null || ds2.Tables[0].Rows[0]["ARK_CarryOver"].ToString() == "")
+                    {
+
+                    }
+                    else
+                    {
+                        lblcarry.Text = ds2.Tables[0].Rows[0]["ARK_CarryOver"].ToString();
+                        lblcarry.Font.Bold = true;
+                    }
+                }
             }
         }
 

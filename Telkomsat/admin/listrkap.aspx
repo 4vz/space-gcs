@@ -9,7 +9,7 @@
                 <h3 class="box-title">RKAP</h3>
                         <asp:Label ID="Label1" runat="server" Text="Label" Visible="false"></asp:Label>
                 <a href="importrkap.aspx" class="btn btn-default pull-right" id="btnimport" style="margin-right:10px; margin-left:10px" runat="server" visible="false">Import</a>
-            <a href="rkap.aspx" class="btn btn-primary pull-right">Tambah</a>
+            <a href="tambahrkap.aspx" class="btn btn-primary pull-right">Tambah</a>
                                 <button type="button" style="margin-right:10px" class="btn btn-sm btn-warning pull-right datawil" data-toggle="modal" data-target="#modalupdate" id="edit">Filter </button>
 
             </div>
@@ -32,12 +32,31 @@
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                    <label style="font-size:16px; font-weight:bold">Nama Akun :</label>
+                    <label style="font-size:16px; font-weight:bold">Jenis Anggaran :</label>
                     <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
                         <option></option>
                     </select>
                 </div>
-                  
+                
+                <div class="form-group">
+                    <label style="font-size:16px; font-weight:bold">Bulan :</label>
+                    <select id="sobulan" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                            <option>Januari</option> 
+                            <option>Februari</option> 
+                            <option>Maret</option> 
+                            <option>April</option> 
+                            <option>Mei</option> 
+                            <option>Juni</option> 
+                            <option>Juli</option> 
+                            <option>Agustus</option> 
+                            <option>September</option> 
+                            <option>Oktober</option> 
+                            <option>November</option> 
+                            <option>Desember</option>
+                        </select>
+                </div>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Filter_Click">Submit</button>

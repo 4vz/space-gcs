@@ -121,7 +121,7 @@ namespace Telkomsat
                 if (previllage == "User")
                 {
                     if (thisURL.ToLower().IsIn(new string[]{ "dashboard.aspx", "datapemasukan.aspx", "data.aspx", "pemasukan.aspx",  "listpemasukan.aspx",
-                    "tambahrkap.aspx", "pengembalian.aspx", "pemindahan.aspx"}))
+                    "pengembalian.aspx", "pemindahan.aspx"}))
                     {
                         Response.Redirect("listjustifikasi.aspx");
                     }
