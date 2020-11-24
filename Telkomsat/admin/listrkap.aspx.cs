@@ -18,13 +18,14 @@ namespace Telkomsat.admin
         DataSet ds = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string query, style3;
+        string query, style3, previllage;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string previllage = "", naakun = "", nabulan = "";
+            string naakun = "", nabulan = "", tahun = "";
             string user = Session["iduser"].ToString();
             string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
             DataSet ds = Settings.LoadDataSet(query2);
+            tahun = DateTime.Now.ToString("yyyy");
 
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -115,9 +116,15 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gts + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a href=\"detailrkap2.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>");
-                        htmlTable.Append($"<a href=\"editrkap2.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</button>");
-                        htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</button></td>");
+                        htmlTable.Append("<td>" + $"<a href=\"detailrkap2.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
+
+                        if(previllage == "SA")
+                        {
+                            htmlTable.Append($"<a href=\"editrkap2.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" >" + "Edit" + "</a>");
+                            htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</a>");
+                        }
+                        if(previllage == "User Organik" || previllage == "GM")
+                            htmlTable.Append($"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalcarry\" id=\"edit\">" + "Carry Over" + "</button></td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
@@ -130,6 +137,8 @@ namespace Telkomsat.admin
         public class inisial
         {
             public string namaakun { get; set; }
+            public string bulan { get; set; }
+
         }
 
 
@@ -151,6 +160,33 @@ namespace Telkomsat.admin
                             mydata.Add(new inisial
                             {
                                 namaakun = sdr["ARK_NA"].ToString(),
+                            });
+                        }
+                    }
+                    con.Close();
+                    return mydata;
+                }
+            }
+        }
+
+        [WebMethod]
+        public static List<inisial> GetBulan(string videoid, string idbulan)
+        {
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand($"select ARK_{idbulan} as bulan from AdminRKAP where ARK_ID = '{videoid}'"))
+                {
+                    cmd.Connection = con;
+                    List<inisial> mydata = new List<inisial>();
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            mydata.Add(new inisial
+                            {
+                                bulan = sdr["bulan"].ToString(),
                             });
                         }
                     }

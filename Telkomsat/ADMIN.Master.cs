@@ -90,6 +90,10 @@ namespace Telkomsat
                 {
                     lisa.Visible = true;
                 }
+                else
+                {
+                    //divadmin.Visible = false;
+                }
 
                 /*switch (previllage)
                 {
@@ -146,13 +150,13 @@ namespace Telkomsat
                     }
                 }
 
-                if (previllage.ToLower().NotIsIn(new string[] { "Admin Bendahara", "SA" }))
+                if (!previllage.ToLower().IsIn(new string[] { "Admin Bendahara", "SA" }))
                 {
                     if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
                     {
-                        Response.Redirect("dashboard.aspx");
+                        //Response.Redirect("dashboard.aspx");
                     }
-                    lipemindahan.Visible = false;
+                    lipemindahan.Visible = true;
                     lipengembalian.Visible = true;
                 }
             }

@@ -12,6 +12,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="txtunit" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtproker" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtprogram" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtpetugas" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtvendor" runat="server" CssClass="hidden"></asp:TextBox>
 
@@ -39,29 +40,28 @@
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="rdjupd"></asp:RequiredFieldValidator>
                          <asp:RadioButtonList ID="rdjupd" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
                              <asp:ListItem>Panjar</asp:ListItem>
-                             <asp:ListItem>Cash</asp:ListItem>
+                             <asp:ListItem>Opex</asp:ListItem>
+                             <asp:ListItem>Capex</asp:ListItem>
                          </asp:RadioButtonList>
                     </div>
                  </div>
             </div>
+
             <div class="row">
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Jenis Anggaran</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soja" InitialValue=""></asp:RequiredFieldValidator>
-                        <select id="soja" runat="server" class="select2 form-control" style="width: 100%;">
-                            <option></option>
-                        </select>
+                        <label for="exampleInputEmail1">Nomor Surat</label>
+                         <input type="text" class="form-control" id="txtsurat" runat="server"/>
                     </div>
                  </div>
-               </div>     
+            </div>  
             <div class="row">
                  <div class="col-md-2">
                      <div class="form-group">
                         <label for="exampleInputPassword1">RKAP Bulan </label>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue=""></asp:RequiredFieldValidator>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue="Tahun"></asp:RequiredFieldValidator>
                         <select id="sobulan" runat="server" class="select2 form-control" style="width: 100%;">
-                            <option></option>
+                            <option value="Tahun">-</option>
                             <option>Januari</option> 
                             <option>Februari</option> 
                             <option>Maret</option> 
@@ -77,11 +77,21 @@
                         </select>
                     </div>
                  </div>
-               </div>   
+               </div>
+            <div class="row">
+                 <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Jenis Anggaran</label>
+                        <select id="sonamaakun" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Program Kerja</label>
+                        <label for="exampleInputPassword1">Program Kerja Utama</label>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soproker" InitialValue=""></asp:RequiredFieldValidator>
                         <select id="soproker" runat="server" class="select2 form-control" style="width: 100%;">
                             <option></option>
@@ -89,14 +99,52 @@
                     </div>
                  </div>
                </div>    
-            <div class="row">
+             <div class="row">
                  <div class="col-md-3">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Nilai Sisa RKAP</label>
                         <input type="text" class="form-control" id="txtnilairkap" runat="server" readonly/>
+                        <button id="addproker" type="button" style="margin-top:10px" class="btn-sm btn-default"><i class="fa fa-plus"></i></button> 
                     </div>
                  </div>
                </div>
+
+            <div class="row" style="display:none" id="divja">
+                 <div class="col-md-3" style="margin-left:35px">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Jenis Anggaran</label>
+                        <select id="soja2" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                        </select>
+                    </div>
+                 </div>
+               </div>
+            <div class="row" style="display:none" id="divfilter">
+                 <div class="col-md-3" style="margin-left:35px">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Range Sisa RKAP </label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue=""></asp:RequiredFieldValidator>
+                        <select id="sorange" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                            <option value="1">0 - 10.0000.000</option> 
+                            <option value="2">10.000.000 - 50.000.000</option> 
+                            <option value="3">50.000.000 - 100.000.000</option> 
+                            <option value="4">> 100.000.000</option> 
+                        </select>
+                    </div>
+                 </div>
+               </div>   
+            <div class="row" style="display:none" id="divproker">
+                 <div class="col-md-4" style="margin-left:35px">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Program Kerja Kedua</label>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="soproker" InitialValue=""></asp:RequiredFieldValidator>
+                        <select id="soprogram" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                        </select>
+                    </div>
+                 </div>
+               </div>    
             <div class="row">
                  <div class="col-md-5">
                      <div class="form-group">
@@ -111,7 +159,7 @@
                  <div class="col-md-4">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Nilai</label>
-                         <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="TextBox1" controltocompare="TextBox2" ForeColor="Red" operator="LessThan" type="Integer" errormessage="Tidak boleh lebih dari nilai RKAP " />
+                         <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="TextBox1" controltocompare="txtc" ForeColor="Red" operator="LessThan" type="Integer" errormessage="Tidak boleh lebih dari nilai RKAP " />
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnilai"></asp:RequiredFieldValidator>
                         <input type="text" class="form-control nilaitext" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
                     </div>
@@ -185,7 +233,13 @@
     </section>
 </div>
     <asp:TextBox ID="TextBox1" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtflag" runat="server" CssClass="hidden" Text="0"></asp:TextBox>
+    <asp:TextBox ID="txtproker2" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txta" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtb" runat="server" Text="0" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtc" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="TextBox5" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
@@ -216,18 +270,21 @@
             $('#<%=TextBox2.ClientID%>').val(gt);
         }
 
+        var idbulan = 'Tahun', idja = '', idrange, idja2, flag = '0';
+
+
         $(function () {
-            $.ajax({
+            /*$.ajax({
                 type: "POST",
                 url: "justifikasi.aspx/GetUnit",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
                     var customers = response.d;
-                    $('#<%=soja.ClientID %>').empty();
-                    $('#<%=soja.ClientID %>').append('<option></option>');
+                    $('#*%=soja.ClientID %/*').empty();
+                    $('#*%=soja.ClientID %>/*').append('<option></option>');
                     $(customers).each(function () {
-                        $('#<%=soja.ClientID %>').append($('<option>',
+                        $('#*%=soja.ClientID %>/*').append($('<option>',
                             {
                                 value: this.unit,
                                 text: this.unit,
@@ -241,27 +298,58 @@
                 error: function (response) {
                     alert(response.d);
                 }
+            });*/
+
+            $('#<%=sonamaakun.ClientID %>').change(function () {
+                $('#<%=txtunit.ClientID %>').val($(this).val())
             });
 
-            $('#<%=sobulan.ClientID %>').change(function () {
-                $('#<%=soproker.ClientID %>').empty();
-                var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "tambahrkap.aspx/GetNamaAkun",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=soja2.ClientID %>').empty();
+                    $('#<%=soja2.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.idbangunan);
+                        $('#<%=soja2.ClientID %>').append($('<option>',
+                            {
+                                value: this.namaakun,
+                                text: this.namaakun,
+                            }));
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+
+            $('#<%=soja2.ClientID %>').change(function () {
+                idja2 = $(this).val();
+                $('#<%=soprogram.ClientID %>').empty();
                 $.ajax({
                     type: "POST",
-                    url: "justifikasi.aspx/GetProker",
+                    url: "justifikasi.aspx/GetJA2",
                     contentType: "application/json; charset=utf-8",
-                    data: '{videoid:"' + id + '"}',
+                    data: '{videoid:"' + idrange + '", idrange:"' + idrange + '"}',
                     dataType: "json",
                     success: function (response) {
                         var customers = response.d;
-                        $('#<%=soproker.ClientID %>').empty();
-                        $('#<%=soproker.ClientID %>').append('<option></option>');
+                        $('#<%=soprogram.ClientID %>').empty();
+                        $('#<%=soprogram.ClientID %>').append('<option></option>');
                         $(customers).each(function () {
                             console.log(this.idbangunan);
-                            $('#<%=soproker.ClientID %>').append($('<option>',
+                            $('#<%=soprogram.ClientID %>').append($('<option>',
                                 {
-                                    value: this.idproker,
-                                    text: this.proker,
+                                    value: this.idprokersub,
+                                    text: this.prokersub,
                                 }));
                         });
                     },
@@ -273,6 +361,98 @@
                         alert(response.d);
                     }
                 });
+            });
+
+            $('#<%=sorange.ClientID %>').change(function () {
+                idrange = $(this).val();
+                $('#<%=soprogram.ClientID %>').empty();
+                $.ajax({
+                    type: "POST",
+                    url: "justifikasi.aspx/GetJA2",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{videoid:"' + idja2 + '", idrange:"' + idrange + '"}',
+                    dataType: "json",
+                    success: function (response) {
+                        var customers = response.d;
+                        $('#<%=soprogram.ClientID %>').empty();
+                        $('#<%=soprogram.ClientID %>').append('<option></option>');
+                        $(customers).each(function () {
+                            console.log(this.idbangunan);
+                            $('#<%=soprogram.ClientID %>').append($('<option>',
+                                {
+                                    value: this.idprokersub,
+                                    text: this.prokersub,
+                                }));
+                        });
+                    },
+                    failure: function (response) {
+
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+
+
+            $('#<%=sobulan.ClientID %>').change(function () {
+                idbulan = $(this).val();
+                $('#<%=soproker.ClientID %>').empty();
+                $.ajax({
+                    type: "POST",
+                    url: "justifikasi.aspx/GetJenisAnggaran",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{videoid:"' + idja + '", idbulan:"' + idbulan + '"}',
+                    dataType: "json",
+                    success: function (response) {
+                        var customers = response.d;
+                        $('#<%=soproker.ClientID %>').empty();
+                        $('#<%=soproker.ClientID %>').append('<option></option>');
+                        $(customers).each(function () {
+                            console.log(this.idbangunan);
+                            $('#<%=soproker.ClientID %>').append($('<option>',
+                                {
+                                    value: this.idproker2,
+                                    text: this.proker2,
+                                }));
+                        });
+                    },
+                    failure: function (response) {
+
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "tambahrkap.aspx/GetNamaAkun",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=sonamaakun.ClientID %>').empty();
+                    $('#<%=sonamaakun.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.idbangunan);
+                        $('#<%=sonamaakun.ClientID %>').append($('<option>',
+                            {
+                                value: this.namaakun,
+                                text: this.namaakun,
+                            }));
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
             });
                         
          
@@ -304,10 +484,36 @@
             });
         });
 
+        $('#<%=soprogram.ClientID%>').change(function () {
+            var id = $(this).val();
+            $('#<%=txtprogram.ClientID%>').val(id);
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetProkerHarga",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $(customers).each(function () {
+                        $('#<%=txtb.ClientID%>').val(this.gt);
+                        $('#<%=txtc.ClientID%>').val(parseInt($('#<%=txta.ClientID%>').val()) + parseInt($('#<%=txtb.ClientID%>').val()));
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
             
         $('#<%=soproker.ClientID%>').change(function () {
             var id = $(this).val();
             $('#<%=txtproker.ClientID%>').val(id);
+            console.log('itu ' + id); 
             $.ajax({
                 type: "POST",
                 url: "justifikasi.aspx/GetProkerHarga",
@@ -318,6 +524,9 @@
                     var customers = response.d;
                     $(customers).each(function () {
                         $('#<%=txtnilairkap.ClientID%>').val(format(this.gt));
+                        $('#<%=txta.ClientID%>').val(this.gt);
+                        $('#<%=txtc.ClientID%>').val(parseInt($('#<%=txta.ClientID%>').val()) + parseInt($('#<%=txtb.ClientID%>').val()));
+
                     });
                 },
                 failure: function (response) {
@@ -330,16 +539,46 @@
             });
         });
 
+        $('#<%=sonamaakun.ClientID%>').change(function () {
+            idja = $(this).val();
+            $('#<%=txtproker.ClientID%>').val(idja);
+            console.log('ini' + idbulan); 
+            $.ajax({
+                type: "POST",
+                url: "justifikasi.aspx/GetJenisAnggaran",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + idja + '", idbulan:"' + idbulan + '"}',
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=soproker.ClientID %>').empty();
+                    $('#<%=soproker.ClientID %>').append('<option></option>');
+                        $(customers).each(function () {
+                            console.log(this.idbangunan);
+                            $('#<%=soproker.ClientID %>').append($('<option>',
+                                {
+                                    value: this.idproker2,
+                                    text: this.proker2,
+                                }));
+                        });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+
         $('#<%=sotugas.ClientID%>').change(function () {
             var id = $(this).val();
             $('#<%=txtpetugas.ClientID%>').val(id);
         });
 
-        $('#<%=soja.ClientID%>').change(function () {
-            var id = $(this).val();
-            $('#<%=txtunit.ClientID%>').val(id);
-        });
-
+        
         var i = 0;
 
         $(document).ready(function() {
@@ -350,7 +589,27 @@
                 i++;
                 console.log('add');
             });
-            
+            var k = 0;
+            $("#addproker").click(function () {
+                if (k == 0) {
+                    flag = '1';
+                    $("#divproker").attr("style", "display:block");
+                    $("#divfilter").attr("style", "display:block");
+                    $("#divja").attr("style", "display:block");
+                    $('#<%=txtflag.ClientID%>').val(flag);
+                    k = 1;
+                }
+                else {
+                    flag = '0';
+                    $("#divproker").attr("style", "display:none");
+                    $("#divfilter").attr("style", "display:none");
+                    $("#divja").attr("style", "display:none");
+                    $('#<%=txtproker2.ClientID%>').val('');
+                    $('#<%=txtflag.ClientID%>').val(flag);
+                    k = 0;
+                }
+                
+            });
         });  
 
         function format(str) {

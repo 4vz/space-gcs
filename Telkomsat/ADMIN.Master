@@ -206,6 +206,11 @@
             <i class="fa fa-arrows-h"></i> <span>Pengembalian</span>
           </a>
         </li>
+             <li class="treeview" id="lirkap" runat="server">
+          <a href="../admin/listrkap.aspx">
+            <i class="fa fa-th-list"></i> <span>RKAP</span>
+          </a>
+        </li>
           </ul>
          
                 <ul class="sidebar-menu" data-widget="tree" runat="server" id="divadmin" visible="true">

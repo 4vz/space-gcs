@@ -44,7 +44,8 @@
           "paging": true,
           "searching": true,
           "info": true,
-          "autoWidth": true,
+              "autoWidth": true,
+              "ordering": false,
           "scrollX": true
           });
            $('.dataTables_length').addClass('bs-select');

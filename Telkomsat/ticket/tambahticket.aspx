@@ -16,13 +16,15 @@
         <div class="col-md-6" style="padding-left:0px">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama</label>
-                <input type="email" class="form-control" id="nama" runat="server" placeholder="Nama"/>
+                <select id="sonama" runat="server" class="select2 form-control" style="width: 100%;">
+                    <option></option>
+                </select>
                 </div>
         </div>
         <div class="col-md-6" style="padding-right:0px">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nomor HP</label>
-                <input type="number" class="form-control" id="nomor" runat="server" placeholder="Nomor HP"/>
+                <input type="text" class="form-control" id="nomor" runat="server"/>
             </div>
         </div>
         <div class="form-group">
@@ -83,5 +85,75 @@
         </div>
     </div>
     </div>
+
+    <asp:TextBox ID="txtnama" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtnomor" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtjenis" runat="server" CssClass="hidden"></asp:TextBox>
+
+    <script>
+        var jenis = $('#<%=txtjenis.ClientID %>').val();
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "tambahticket.aspx/GetProfile",
+                contentType: "application/json; charset=utf-8",
+                data: '{jenis:"' + jenis + '"}',
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=sonama.ClientID %>').empty();
+                    $('#<%=sonama.ClientID %>').append('<option></option>');
+                    $(customers).each(function () {
+                        console.log(this.nama);
+                        $('#<%=sonama.ClientID %>').append($('<option>',
+                            {
+                                value: this.id,
+                                text: this.nama,
+                            }));
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+
+        $('#<%=sonama.ClientID%>').change(function () {
+            var id = $(this).val();
+            var nama = $(this).find("option:selected").text();
+
+            $('#<%=txtnama.ClientID %>').val(nama);
+            $.ajax({
+                type: "POST",
+                url: "tambahticket.aspx/GetNomor",
+                contentType: "application/json; charset=utf-8",
+                data: '{videoid:"' + id + '"}',
+                dataType: "json",
+                success: function (response) {
+                    var customers = response.d;
+                    $('#<%=nomor.ClientID%>').val('');
+                    $(customers).each(function () {
+                        $('#<%=nomor.ClientID%>').val(this.nomor);
+                        $('#<%=txtnomor.ClientID %>').val(nomor);
+                        console.log(this.nomor)
+                    });
+                },
+                failure: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        });
+
+    </script>
 
 </asp:Content>

@@ -28,7 +28,7 @@ namespace Telkomsat
         }
         void tablechhk()
         {
-            string query, tanggal, petugas, judul, tipe, pic, nama, keterangan, bulan, tahun, tanggalnow;
+            string query, tanggal, petugas, judul, tipe, pic, nama, keterangan, bulan, tahun, tanggalnow, mth;
             SqlDataAdapter da;
             DataSet ds = new DataSet();
                 
@@ -54,6 +54,7 @@ namespace Telkomsat
                         DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = date1.ToString("yyyy/MM/dd");
                         tanggalnow = date1.ToString("dd");
+                        mth = date1.ToString("MMMM");
                         judul = ds.Tables[0].Rows[i]["judul"].ToString();
                         tipe = ds.Tables[0].Rows[i]["tipe"].ToString();
                         pic = ds.Tables[0].Rows[i]["pic"].ToString();
@@ -62,7 +63,7 @@ namespace Telkomsat
                         if(tanggal != tanggalbef)
                         {
                             htmlTable.AppendLine("</ul>");
-                            htmlTable.AppendLine("<div style=\"border-style:groove; border-left:2px; border-right:2px; text-align:center\">" + tanggalnow + " " + bulan  + "</div>");
+                            htmlTable.AppendLine("<div style=\"border-style:groove; border-left:2px; border-right:2px; text-align:center\">" + tanggalnow + " " + mth  + "</div>");
                             tanggalbef = tanggal;
                             htmlTable.AppendLine("<ul style=\"list-style-type: none;\">");
                         }

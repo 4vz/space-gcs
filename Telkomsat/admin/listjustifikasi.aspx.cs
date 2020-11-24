@@ -52,7 +52,6 @@ namespace Telkomsat.admin
                 if(previllage == "User" || previllage == "User Organik" || previllage == "SA")
                 {
                     btntambah.Visible = true;
-                    btnimport.Visible = true;
                 }
             }
                 referens();
@@ -134,6 +133,13 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "menunggu approve Bendahara";
                         }
+                        else if (status == "ok")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "lightskyblue";
+                            warna3 = "black";
+                            statusapp = "menunggu approve Bendahara";
+                        }
                         else if (status == "admin")
                         {
                             warna1 = "deepskyblue";
@@ -154,6 +160,20 @@ namespace Telkomsat.admin
                             warna2 = "yellow";
                             warna3 = "black";
                             statusapp = "menunggu diperbaiki";
+                        }
+                        else if (status.ToLower() == "dikembalikan")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "sandybrown";
+                            warna3 = "black";
+                            statusapp = "dikembalikan ke GM";
+                        }
+                        else if (status.ToLower() == "posponed")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "darkcyan";
+                            warna3 = "black";
+                            statusapp = "ditunda";
                         }
                         else
                         {

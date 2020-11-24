@@ -66,6 +66,11 @@
                                               <td><asp:Label ID="lblnj" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                         <tr>
+                                              <th>Nama Kegiatan</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lblnk" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
+                                        <tr>
                                               <th>Pemberi Tugas</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lbltglpt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
@@ -112,12 +117,6 @@
                                               <td><asp:Label ID="lblnrkap" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                           <tr>
-                                              <th>Nama Kegiatan</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lblnk" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
-                                          
-                                          <tr>
                                               <th>Nilai</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblnilai" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
@@ -153,7 +152,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Approve</h3>
+                <h3 class="modal-title">Update</h3>
               </div>
               <div class="modal-body">
                   <div class="row">
@@ -165,12 +164,13 @@
                                     <asp:ListItem>Approve</asp:ListItem>
                                     <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
+                                    <asp:ListItem>Posponed</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                       </div> 
                       <div class="col-md-12">
                           <div class="form-group">
-                            <label style="font-size:16px; font-weight:bold">Alasan :</label>
+                            <label style="font-size:16px; font-weight:bold">Keterangan :</label>
                             <asp:TextBox ID="txtalasan" autocomplete="off" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
                         </div>
                       </div> 
@@ -315,7 +315,7 @@
                       <div class="col-md-12">
                           <div class="form-group">
                                 <label style="font-size:16px; font-weight:bold">Tanggal :</label>
-                              <asp:TextBox ID="txttanggal" autocomplete="off" runat="server" CssClass="form-control datepick"></asp:TextBox>
+                              <asp:TextBox ID="txttanggal" autocomplete="off" runat="server" CssClass="form-control datepick" data-date-end-date="0d"></asp:TextBox>
                             </div>
                       </div> 
                       <div class="col-md-12">
@@ -524,7 +524,7 @@
         $('.select2').select2()
 
         $(".datepick").datepicker({autoclose: true,
-            format: 'yyyy/mm/dd' });
+            format: 'yyyy/mm/dd'});
 
         $(function () {
           $("#example2").DataTable({

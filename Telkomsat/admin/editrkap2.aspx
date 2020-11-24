@@ -19,7 +19,15 @@
     <!-- /.box-header -->
     <!-- form start -->
         <div class="box-body">
-            
+            <div class="form-group">
+                <label for="exampleInputEmail1">Kategori RKAP</label> 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sokategori" InitialValue=""></asp:RequiredFieldValidator>
+                        <select id="sokategori" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                            <option>Non Tematik</option> 
+                            <option>Tematik</option> 
+                        </select>
+            </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama Aktivitas</label>
                 <input type="text" class="form-control" id="txtaktivitas" runat="server"/>
@@ -158,7 +166,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label style="font-size:16px; font-weight:bold">Bulan :</label>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas1" InitialValue=""></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas1" InitialValue=""></asp:RequiredFieldValidator>
                                         <select class="form-control" style="width: 100%;" id="slpetugas1" runat="server">
                                             <option></option>
                                               <option>Januari</option> 
@@ -181,7 +189,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label style="font-size:16px; font-weight:bold">Bulan :</label>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas2" InitialValue=""></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas2" InitialValue=""></asp:RequiredFieldValidator>
                                         <select class="form-control" style="width: 100%;" id="slpetugas2" runat="server">
                                             <option></option>
                                               <option>Januari</option> 
@@ -200,7 +208,7 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" UseSubmitBehavior="false" OnClick="Carry_ServerClick"
+                                        <asp:Button ID="Button1" CssClass="btn btn-primary" runat="server" Text="Save" ValidationGroup="Group1" UseSubmitBehavior="false" OnClick="Carry_ServerClick"
                                             OnClientClick="this.disabled='true'; this.value='Please wait...';"  />
                                     </div>
                                 </div>

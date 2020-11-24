@@ -29,7 +29,7 @@
     <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Ticket</h3> <asp:Label ID="lblstatus" runat="server" Text="Label" Visible="false"></asp:Label>
-
+         <button type="button" class="btn btn-sm btn-primary pull-right" runat="server" data-toggle="modal" data-target="#modalriwayat"><i class="fa fa-history"></i> History</button>
               
     </div>
     <!-- /.box-header -->
@@ -145,10 +145,6 @@
     <div class="box-footer" id="inreply1" style="display:none">
         <div class="box-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama</label><span style="color:red">*</span>
-                <input type="email" class="form-control" id="txtnama" runat="server"/>
-            </div>
-            <div class="form-group">
                 <label for="exampleInputPassword1">Keterangan</label><span style="color:red">*</span>
                 <textarea name="keterangan" class="form-control" id="txtket" rows="10" runat="server"></textarea>
             </div>
@@ -177,6 +173,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" style="color:ghostwhite">Ticket</h4>
+               
             </header>
       <div class="panel-body">
           <div class="divtabel">
@@ -218,6 +215,32 @@
       </div>
     </div>
   </div>
+
+
+        <div class="modal fade" id="modalriwayat">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Riwayat</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+                      </div>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" aria-label="Close">Close</button>
+                  </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+        </div>
+        </div>
+
 
     <script>
         function reply() {

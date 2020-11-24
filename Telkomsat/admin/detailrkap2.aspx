@@ -41,6 +41,11 @@
                             <div class="table-responsive">
                                 <table class="table" style="border:none">
                                     <tbody>
+                                         <tr>
+                                              <th>Kategori RKAP</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lblkategori" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
                                           <tr>
                                               <th>Nama Aktivitas</th>
                                               <td>:</td>

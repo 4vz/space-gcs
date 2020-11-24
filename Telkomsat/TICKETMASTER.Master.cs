@@ -14,7 +14,7 @@ namespace Telkomsat
     public partial class TICKETMASTER : System.Web.UI.MasterPage
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
-        string query, divisi, user;
+        string query, divisi, user, jenis;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -65,6 +65,13 @@ namespace Telkomsat
 
             user = Session["username"].ToString();
             lblProfile1.Text = Session["nama1"].ToString();
+
+            jenis = Session["jenis1"].ToString();
+
+            if(jenis=="SCO" || jenis == "SCA" || jenis == "ORBITAL" || jenis == "STS")
+            {
+                adduser.Visible = true;
+            }
 
             if (!IsPostBack)
             {

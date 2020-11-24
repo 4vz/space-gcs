@@ -56,7 +56,7 @@ namespace Telkomsat.ticket
         {
             divisi = Session["jenis1"].ToString();
 
-            if (divisi == "og" || divisi == "os")
+            if (divisi == "OG" || divisi == "OS")
                 query = "SELECT * FROM ticket_user WHERE statusticket != 'delete' order by id_ticket desc";
             else
                 query = $"SELECT * FROM ticket_user WHERE statusticket != 'delete' and divisiuser = '{divisi}' order by id_ticket desc";

@@ -7319,6 +7319,7 @@
     <Content Include="WebForm5.aspx" />
     <Content Include="WebForm6.aspx" />
     <Content Include="WebForm7.aspx" />
+    <Content Include="WebForm8.aspx" />
     <Content Include="WebFormregis.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -9416,6 +9417,13 @@
     </Compile>
     <Compile Include="WebForm7.aspx.designer.cs">
       <DependentUpon>WebForm7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm8.aspx.cs">
+      <DependentUpon>WebForm8.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm8.aspx.designer.cs">
+      <DependentUpon>WebForm8.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFormregis.aspx.cs">
       <DependentUpon>WebFormregis.aspx</DependentUpon>

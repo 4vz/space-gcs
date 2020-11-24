@@ -23,6 +23,15 @@
                 <h5><span class="fa fa-check"> Berhasil ditambahkan</span></h5>
             </div>
             <div class="form-group">
+                <label for="exampleInputEmail1">Kategori RKAP</label> 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sokategori" InitialValue=""></asp:RequiredFieldValidator>
+                        <select id="sokategori" runat="server" class="select2 form-control" style="width: 100%;">
+                            <option></option>
+                            <option>Non Tematik</option> 
+                            <option>Tematik</option> 
+                        </select>
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1">Nama Aktivitas</label> 
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtaktivitas"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtaktivitas" runat="server"/>

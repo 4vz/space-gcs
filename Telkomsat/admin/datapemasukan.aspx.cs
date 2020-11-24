@@ -20,7 +20,7 @@ namespace Telkomsat.admin
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         string IDdata = "kitaa", total = "", keterangan, tanggal = "", rekharkat, rekme, braharkat, brame, style, input = "", kategori = "", input1 = "", kategori1 = "", query;
-        string start = "01/01/2019", end = "01/12/2048", hijau;
+        string start = "01/01/2018", end = "01/12/2048", hijau;
 
 
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
@@ -128,23 +128,23 @@ namespace Telkomsat.admin
                 if(ddlpengeluaran.SelectedValue == "Cash")
                 {
                     query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
-                            and kategori = 'pengeluaran' and status = 'done' order by id_admin desc";
+                            and kategori = 'pengeluaran' and status = 'done' and approve = 'admin' order by id_admin desc";
                 }
                 else if (ddlpengeluaran.SelectedValue == "Panjar")
                 {
                     query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
-                            and kategori = 'pengeluaran' and status != 'done' order by id_admin desc";
+                            and kategori = 'pengeluaran' and status != 'done' and approve = 'admin' order by id_admin desc";
                 }
                 else
                 {
                     query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
-                            and kategori = 'pengeluaran' order by id_admin desc";
+                            and kategori = 'pengeluaran' and approve = 'admin' order by id_admin desc";
                 }
             }
             else
             {
                 query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103)))
-                            and kategori = {ddlKategori.SelectedValue} order by id_admin desc";
+                            and kategori = {ddlKategori.SelectedValue} and approve = 'admin' order by id_admin desc";
             }
  
             tableticket();

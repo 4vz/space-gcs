@@ -25,6 +25,9 @@ namespace Telkomsat.admin
             string idpeng = Request.QueryString["idpeng"];
             string tipe = Request.QueryString["tipe"];
             string id = Request.QueryString["id"];
+            string idkembalikan = Request.QueryString["idkembalikan"];
+            string idteruskan = Request.QueryString["idteruskan"];
+            string idrp = Request.QueryString["idrp"];
 
             if (tipe != null)
             {
@@ -46,6 +49,26 @@ namespace Telkomsat.admin
                 Response.Redirect($"../admin/approvement.aspx?jenis={jenis}");
             }
 
+            if (idkembalikan != null)
+            {
+                string query = $"UPDATE AdminJustifikasi SET AJ_Status = 'dikembalikan' WHERE AJ_ID = '{idkembalikan}'"; ;
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("approvement.aspx?jenis=admin");
+            }
+
+            if (idteruskan != null)
+            {
+                string query = $"UPDATE AdminJustifikasi SET AJ_Status = 'gm' WHERE AJ_ID = '{idteruskan}'"; ;
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect("approvement.aspx?jenis=gm");
+            }
+
             if (hapusreferensi != null)
             {
                 string query = $"DELETE AdminReference WHERE AR_ID = '{hapusreferensi}'";
@@ -54,6 +77,16 @@ namespace Telkomsat.admin
                 sqlcmd.ExecuteNonQuery();
                 sqlCon.Close();
                 Response.Redirect($"../admin/reference.aspx?kategori={kategori.ToString()}");
+            }
+
+            if (idrp != null)
+            {
+                string query = $"DELETE AdminProfile WHERE AP_ID = '{idrp}'";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+                sqlCon.Open();
+                sqlcmd.ExecuteNonQuery();
+                sqlCon.Close();
+                Response.Redirect($"../admin/referenceprofile.aspx");
             }
 
             if (jenis != null)

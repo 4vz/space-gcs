@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.ticket {
-    
-    
-    public partial class tambahticket {
-        
+namespace Telkomsat.ticket
+{
+
+
+    public partial class tambahticket
+    {
+
         /// <summary>
         /// hfContactID control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfContactID;
-        
+
         /// <summary>
         /// lblstatus control.
         /// </summary>
@@ -29,16 +31,16 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblstatus;
-        
+
         /// <summary>
-        /// nama control.
+        /// sonama control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl nama;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sonama;
+
         /// <summary>
         /// nomor control.
         /// </summary>
@@ -46,8 +48,8 @@ namespace Telkomsat.ticket {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl nomor;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlInputText nomor;
+
         /// <summary>
         /// ddlKategori control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKategori;
-        
+
         /// <summary>
         /// subject control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText subject;
-        
+
         /// <summary>
         /// keterangan control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea keterangan;
-        
+
         /// <summary>
         /// optionsRadios1 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadios1;
-        
+
         /// <summary>
         /// optionsRadios2 control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadios2;
-        
+
         /// <summary>
         /// optionsRadios3 control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton optionsRadios3;
-        
+
         /// <summary>
         /// FileUpload1 control.
         /// </summary>
@@ -110,5 +112,32 @@ namespace Telkomsat.ticket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+
+        /// <summary>
+        /// txtnama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtnama;
+
+        /// <summary>
+        /// txtnomor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtnomor;
+
+        /// <summary>
+        /// txtjenis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtjenis;
     }
 }

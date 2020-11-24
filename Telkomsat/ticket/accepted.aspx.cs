@@ -55,7 +55,7 @@ namespace Telkomsat.ticket
         {
             divisi = Session["jenis1"].ToString();
 
-            if (Session["jenis1"].ToString() == "og" || Session["jenis1"].ToString() == "os")
+            if (Session["jenis1"].ToString() == "OG" || Session["jenis1"].ToString() == "OS")
                 query = "SELECT * FROM ticket_user WHERE status = 'accept'";
             else
                 query = $"SELECT * FROM ticket_user WHERE status = 'accept' and divisiuser = '{divisi}'";

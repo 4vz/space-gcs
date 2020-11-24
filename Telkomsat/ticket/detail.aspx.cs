@@ -7,16 +7,18 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text;
 
 namespace Telkomsat.ticket
 {
     public partial class detail : System.Web.UI.Page
     {
+        StringBuilder htmlTable2 = new StringBuilder();
         SqlConnection sqlCon2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string query, queryupdate, divisi;
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
-        string parse;
+        string parse, datetime1;
         int ID;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,18 +79,21 @@ namespace Telkomsat.ticket
                 DataList3a.DataBind();
             }
 
+            DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
+            datetime1 = wib.ToString("yyyy/MM/dd h:m:s");
 
-                /*GridViewreply.Visible=true;
-                sqlCon2.Open();
-                SqlDataAdapter sqlda3 = new SqlDataAdapter("ticketfilereplyid", sqlCon2);
-                sqlda3.SelectCommand.CommandType = CommandType.StoredProcedure;
-                sqlda3.SelectCommand.Parameters.AddWithValue("@idticketreply", parse);
-                DataTable dtbl3 = new DataTable();
-                sqlda3.Fill(dtbl3);
-                sqlCon2.Close();
-                hfContactID.Value = ID.ToString();
-                GridViewreply.DataSource = dtbl3;
-                GridViewreply.DataBind();*/
+
+            /*GridViewreply.Visible=true;
+            sqlCon2.Open();
+            SqlDataAdapter sqlda3 = new SqlDataAdapter("ticketfilereplyid", sqlCon2);
+            sqlda3.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlda3.SelectCommand.Parameters.AddWithValue("@idticketreply", parse);
+            DataTable dtbl3 = new DataTable();
+            sqlda3.Fill(dtbl3);
+            sqlCon2.Close();
+            hfContactID.Value = ID.ToString();
+            GridViewreply.DataSource = dtbl3;
+            GridViewreply.DataBind();*/
 
             if (sqlCon2.State == ConnectionState.Closed)
                 sqlCon2.Open();
@@ -177,6 +182,8 @@ namespace Telkomsat.ticket
                 {
                     lblstatus.CssClass = " btn1 btn-sm btn-success";
                 }
+
+                riwayat();
             }
         }
 
@@ -193,6 +200,7 @@ namespace Telkomsat.ticket
 
         protected void Rejected_ServerClick(object sender, EventArgs e)
         {
+            string myquery;
             sqlCon2.Open();
             queryupdate = $"UPDATE ticket_user SET status = 'reject' WHERE id_ticket = {ID}";
             SqlCommand cmd = new SqlCommand(queryupdate, sqlCon2);
@@ -202,10 +210,18 @@ namespace Telkomsat.ticket
             lblstatus.Text = " Ticket rejected";
             lblstatus.ForeColor = System.Drawing.Color.IndianRed;
 
+            sqlCon2.Open();
+            myquery = $@"INSERT INTO ticket_status (TS_Tanggal, TS_ticket, TS_Status, TS_Profile)
+                        Values ('{datetime1}', '{ID}', 'reject', '{Session["nama1"].ToString()}')";
+            SqlCommand sqlCmd5 = new SqlCommand(myquery, sqlCon2);
+
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon2.Close();
+
         }
         protected void Complete_ServerClick(object sender, EventArgs e)
         {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
+            string myquery;
             sqlCon2.Open();
             queryupdate = $"UPDATE ticket_user SET status = 'complete' WHERE id_ticket = {ID}";
             SqlCommand cmd = new SqlCommand(queryupdate, sqlCon2);
@@ -242,10 +258,19 @@ namespace Telkomsat.ticket
             lblstatus.Text = " Ticket complete";
             lblstatus.ForeColor = System.Drawing.Color.Aquamarine;
 
+            sqlCon2.Open();
+            myquery = $@"INSERT INTO ticket_status (TS_Tanggal, TS_ticket, TS_Status, TS_Profile)
+                        Values ('{datetime1}', '{ID}', 'complete', '{Session["nama1"].ToString()}')";
+            SqlCommand sqlCmd5 = new SqlCommand(myquery, sqlCon2);
+
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon2.Close();
+
         }
 
         protected void Confirm_ServerClick(object sender, EventArgs e)
         {
+            string myquery;
             sqlCon2.Open();
             queryupdate = $"UPDATE ticket_user SET status = 'close' WHERE id_ticket = {ID}";
             SqlCommand cmd = new SqlCommand(queryupdate, sqlCon2);
@@ -254,6 +279,13 @@ namespace Telkomsat.ticket
             lblstatus.Visible = true;
             lblstatus.Text = " Ticket Confirm";
             lblstatus.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            sqlCon2.Open();
+            myquery = $@"INSERT INTO ticket_status (TS_Tanggal, TS_ticket, TS_Status, TS_Profile)
+                        Values ('{datetime1}', '{ID}', 'close', '{Session["nama1"].ToString()}')";
+            SqlCommand sqlCmd5 = new SqlCommand(myquery, sqlCon2);
+
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon2.Close();
 
         }
 
@@ -267,7 +299,6 @@ namespace Telkomsat.ticket
             }
             else
             {
-                var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
                 sqlCon2.Open();
                 SqlCommand sqlCmd = new SqlCommand($@"INSERT INTO ticket_reply (id_ticket, tanggal, nama, reply)
                                             VALUES ('{parse}','{datetime1}', '{nama.Value}', '{keterangan.Value}'); Select Scope_Identity();", sqlCon2);
@@ -346,18 +377,17 @@ namespace Telkomsat.ticket
 
         protected void Reply1_ServerClick(object sender, EventArgs e)
         {
-            if (txtnama.Value == "" || txtket.Value == "")
+            if (txtket.Value == "")
             {
                 lblstatus.Visible = true;
-                lblstatus.Text = " (Pastikan tidak ada yang kosong)";
+                lblstatus.Text = " (Tidak boleh kosong)";
                 lblstatus.ForeColor = System.Drawing.Color.Red;
             }
             else
             {
-                var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
                 sqlCon2.Open();
                 SqlCommand sqlCmd = new SqlCommand($@"INSERT INTO ticket_reply (id_ticket, tanggal, nama, reply)
-                                            VALUES ('{parse}','{datetime1}', '{txtnama.Value}', '{txtket.Value}'); Select Scope_Identity();", sqlCon2);
+                                            VALUES ('{parse}','{datetime1}', '{Session["nama1"].ToString()}', '{txtket.Value}'); Select Scope_Identity();", sqlCon2);
                 int i = Convert.ToInt32(sqlCmd.ExecuteScalar());
                 sqlCon2.Close();
 
@@ -416,7 +446,6 @@ namespace Telkomsat.ticket
 
         protected void Accepted_ServerClick(object sender, EventArgs e)
         {
-            var datetime1 = DateTime.Now.ToString("yyyy/MM/dd h:m:s");
             sqlCon2.Open();
             queryupdate = $"UPDATE ticket_user SET status = 'accept' WHERE id_ticket = {ID}";
             
@@ -434,6 +463,48 @@ namespace Telkomsat.ticket
             lblstatus.Text = " Ticket Accepted";
             lblstatus.ForeColor = System.Drawing.Color.LawnGreen;
 
+            string myquery;
+            sqlCon2.Open();
+            myquery = $@"INSERT INTO ticket_status (TS_Tanggal, TS_ticket, TS_Status, TS_Profile)
+                        Values ('{datetime1}', '{ID}', 'accept', '{Session["nama1"].ToString()}')";
+            SqlCommand sqlCmd5 = new SqlCommand(myquery, sqlCon2);
+
+            sqlCmd5.ExecuteNonQuery();
+            sqlCon2.Close();
+
         }
+
+        void riwayat()
+        {
+            string query = $"SELECT * from ticket_status where TS_ticket = '{ID}' order by TS_ID desc";
+            string style3 = "";
+            DataSet ds = Settings.LoadDataSet(query);
+            htmlTable2.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTable2.Append("<thead>");
+            htmlTable2.Append("<tr><td>Tanggal</td><td>Nama</td><td>Status</td></tr>");
+            htmlTable2.Append("</thead>");
+
+            htmlTable2.Append("<tbody>");
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DateTime dt = Convert.ToDateTime(ds.Tables[0].Rows[0]["TS_Tanggal"]);
+                    string tanggal = dt.ToString("dd MMM yyyy h:m:s");
+                    string status = ds.Tables[0].Rows[i]["TS_Status"].ToString();
+                    string nama = ds.Tables[0].Rows[i]["TS_Profile"].ToString();
+                    htmlTable2.Append("<tr>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + tanggal + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + nama + "</label>" + "</td>");
+                    htmlTable2.Append("<td>" + $"<label style=\"{style3}\">" + status + "</label>" + "</td>");
+                    htmlTable2.Append("</tr>");
+                }
+                htmlTable2.Append("</tbody>");
+                htmlTable2.Append("</table>");
+                PlaceHolder2.Controls.Add(new Literal { Text = htmlTable2.ToString() });
+            }
+        }
+
     }
 }

@@ -62,6 +62,7 @@ namespace Telkomsat.admin
                         lblbg.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
                         lblcc.Text = ds.Tables[0].Rows[0]["ARK_CC"].ToString();
                         lblharga.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_Harga"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        lblkategori.Text = ds.Tables[0].Rows[0]["ARK_Kategori"].ToString();
                         lblna.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
                         lblnamaakun.Text = ds.Tables[0].Rows[0]["ARK_NA"].ToString();
                         lblnoa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
@@ -122,7 +123,7 @@ namespace Telkomsat.admin
         void referens()
         {
             string query, IDdata, jupd, ja, kegiatan, status, statusapp, nilai;
-            query = $"SELECT * from AdminJustifikasi where AJ_AR = '{iddata}'";
+            query = $"SELECT * from AdminJustifikasi where AJ_AR = '{iddata}' or AJ_AR2 = '{iddata}'";
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 

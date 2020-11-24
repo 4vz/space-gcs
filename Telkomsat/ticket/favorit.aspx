@@ -44,7 +44,7 @@
           "info": true,
           "autoWidth": true,
           "scrollX": true,
-          "order": [[ 1, 'desc' ]],
+              "ordering": false,
           "columnDefs": [
               { "orderable": false, "targets": [0] },
               { "bSort": false, "targets": [0] }

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat {
-    
-    
-    public partial class TICKETMASTER {
-        
+namespace Telkomsat
+{
+
+
+    public partial class TICKETMASTER
+    {
+
         /// <summary>
         /// head control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lblProfile1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProfile1;
-        
+
         /// <summary>
         /// dtContact1 control.
         /// </summary>
@@ -47,7 +49,16 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtContact1;
-        
+
+        /// <summary>
+        /// adduser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor adduser;
+
         /// <summary>
         /// btn control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn;
-        
+
         /// <summary>
         /// liticket control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liticket;
-        
+
         /// <summary>
         /// spnnotif control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnnotif;
-        
+
         /// <summary>
         /// lblnotif control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblnotif;
-        
+
         /// <summary>
         /// liaccept control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liaccept;
-        
+
         /// <summary>
         /// lireject control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lireject;
-        
+
         /// <summary>
         /// lifavorit control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lifavorit;
-        
+
         /// <summary>
         /// licomplete control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl licomplete;
-        
+
         /// <summary>
         /// spam control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spam;
-        
+
         /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>

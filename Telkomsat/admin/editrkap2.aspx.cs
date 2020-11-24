@@ -127,7 +127,7 @@ namespace Telkomsat.admin
             myvolume = new string[count];*/
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             query = $@"UPDATE AdminRKAP SET ARK_Aktivitas='{txtaktivitas.Value}', ARK_SU='{txtsubunit.Text}', ARK_BG='{txtunit.Text}', ARK_CC='{txtcc.Value}', ARK_NoA='{txtnoakun.Value}',
-                        ARK_NA='{txtnamaakun.Text}', ARK_Satuan='{txtsatuan.Text}', ARK_Harga='{nominal}', 
+                        ARK_NA='{txtnamaakun.Text}', ARK_Satuan='{txtsatuan.Text}', ARK_Harga='{nominal}', ARK_Kategori='{sokategori.Value}', 
                         ARK_Januari='{txtjanuari.Value}', ARK_Februari='{txtfebruari.Value}', ARK_Maret='{txtmaret.Value}', ARK_April='{txtapril.Value}',
                         ARK_Mei='{txtmei.Value}', ARK_Juni='{txtjuni.Value}', ARK_Juli='{txtjuli.Value}', ARK_Agustus='{txtagustus.Value}',
                         ARK_September='{txtseptember.Value}', ARK_Oktober='{txtoktober.Value}', ARK_November='{txtnovemb.Value}', ARK_Desember='{txtdesember.Value}' WHERE ARK_ID='{iddata}'";
@@ -136,7 +136,7 @@ namespace Telkomsat.admin
             int i = Convert.ToInt32(cmd.ExecuteScalar());
             sqlCon.Close();
 
-            /*string querydisplay = $"Select ARK_GT from AdminRKAP Where ARK_ID='{s}'";
+            string querydisplay = $"Select ARK_GT from AdminRKAP Where ARK_ID='{iddata}'";
             DataSet ds2 = Settings.LoadDataSet(querydisplay);
             string gts = ds2.Tables[0].Rows[0]["ARK_GT"].ToString();
 
@@ -146,7 +146,9 @@ namespace Telkomsat.admin
             SqlCommand sqlCmd2 = new SqlCommand(queryupdate, sqlCon);
 
             sqlCmd2.ExecuteNonQuery();
-            sqlCon.Close();*/
+            sqlCon.Close();
+
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void Carry_ServerClick(object sender, EventArgs e)
