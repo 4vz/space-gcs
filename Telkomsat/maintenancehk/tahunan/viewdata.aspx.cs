@@ -126,6 +126,8 @@ namespace Telkomsat.maintenancehk.tahunan
 
                     PlaceHolder1.Controls.Add(new Literal { Text = htmlTable.ToString() });
                 }
+                lblkosong.Visible = true;
+                lblkosong.Text = "Data belum terisi";
             }
         }
     }

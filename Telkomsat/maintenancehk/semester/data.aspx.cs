@@ -15,7 +15,7 @@ namespace Telkomsat.maintenancehk.semester
         StringBuilder htmltable = new StringBuilder();
         SqlConnection sqlcon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         string tanggal, waktu, tanggal1, ruangan, semester, tahun;
-        DateTime wib;
+        DateTime wib, startdate, enddate;
         double hasil, tampil, total, diisi;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,8 +41,13 @@ namespace Telkomsat.maintenancehk.semester
         void tablepersen()
         {
             DateTime now = DateTime.Now;
-            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 6, 30);
+            startdate = new DateTime(DateTime.Now.Year, 1, 1);
+            enddate = new DateTime(DateTime.Now.Year, 7, 1);
+            if (DateTime.Now.Month >= 7)
+            {
+                startdate = new DateTime(DateTime.Now.Year, 7, 1);
+                enddate = new DateTime(DateTime.Now.Year + 1, 1, 1);
+            }
             string style, class1, ruang, querytotal, queryisi;
             SqlDataAdapter daheader, dapersen, dabar;
             DataSet dsheader = new DataSet();
@@ -134,8 +139,13 @@ namespace Telkomsat.maintenancehk.semester
         void tableunit()
         {
             DateTime now = DateTime.Now;
-            DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 6, 30);
+            startdate = new DateTime(DateTime.Now.Year, 1, 1);
+            enddate = new DateTime(DateTime.Now.Year, 7, 1);
+            if (DateTime.Now.Month >= 7)
+            {
+                startdate = new DateTime(DateTime.Now.Year, 7, 1);
+                enddate = new DateTime(DateTime.Now.Year + 1, 1, 1);
+            }
             string style, class1, device, alias, querytotal, queryisi;
             SqlDataAdapter daheader, dapersen, dabar;
             DataSet dsheader = new DataSet();
@@ -160,7 +170,7 @@ namespace Telkomsat.maintenancehk.semester
                     device = dsheader.Tables[0].Rows[i]["device"].ToString();
                     alias = dsheader.Tables[0].Rows[i]["alias"].ToString();
                     querytotal = $@"SELECT COUNT(*) as total FROM maintenancehk_parameter r join maintenancehk_perangkat t 
-                                    on r.id_perangkat=t.id_perangkat where t.device = '{device}' and t.alias ='{alias}' and t.jenis='SEMESTER' GROUP BY t.device, t.alias";
+                                    on r.id_perangkat=t.id_perangkat where t.device = '{device}' and t.unit = '{ruangan}' and t.alias ='{alias}' and t.jenis='SEMESTER' GROUP BY t.device, t.alias";
                     sqlcon.Open();
                     SqlCommand cmdruang = new SqlCommand(querytotal, sqlcon);
                     dapersen = new SqlDataAdapter(cmdruang);
@@ -171,7 +181,7 @@ namespace Telkomsat.maintenancehk.semester
                     queryisi = $@"SELECT COUNT(*) as isi FROM maintenancehk_data d join maintenancehk_parameter r on d.id_parameter=
                                 r.id_parameter join maintenancehk_perangkat t on r.id_perangkat=t.id_perangkat where 
                                 '{startdate.ToString("yyyy/MM/dd")} 00:00:00' <= d.tanggal and d.tanggal < '{enddate.ToString("yyyy/MM/dd")} 23:59:59' and d.data != '' and 
-                                t.device = '{device}' and t.alias ='{alias}' and d.data not like '%' + 'un' + '%' and t.jenis='SEMESTER' GROUP BY t.device, t.alias";
+                                t.device = '{device}' and t.alias ='{alias}' and t.unit = '{ruangan}' and d.data not like '%' + 'un' + '%' and t.jenis='SEMESTER' GROUP BY t.device, t.alias";
                     sqlcon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlcon);
                     dabar = new SqlDataAdapter(cmdisi);

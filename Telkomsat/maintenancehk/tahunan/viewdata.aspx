@@ -9,6 +9,7 @@
         </div>
         <div class="box-body">
             <div class="table">
+                <asp:Label ID="lblkosong" runat="server" Text="" Visible="false"></asp:Label>
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
             </div>
         </div>
