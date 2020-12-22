@@ -15,6 +15,7 @@ namespace Telkomsat.knowledge
     {
         SqlConnection sqlCon2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         int ID;
+        string parse;
         StringBuilder htmlTable1 = new StringBuilder();
         //SqlConnection sqlCon2 = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=KNOWLEDGE; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
@@ -23,7 +24,7 @@ namespace Telkomsat.knowledge
                 Response.Redirect("~/login.aspx");
 
             string link = (HttpContext.Current.Request.Url.PathAndQuery);
-            string parse = link.Remove(0, 27);
+            parse = link.Remove(0, 27);
             ID = Convert.ToInt32(parse);
             if (sqlCon2.State == ConnectionState.Closed)
                 sqlCon2.Open();
@@ -97,6 +98,16 @@ namespace Telkomsat.knowledge
         protected void btnFile_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/File/dashboard.aspx");
+        }
+
+        protected void Edit_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect($"~/knowledge/edit.aspx?id={parse}");
+        }
+
+        protected void Delete_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect($"~/knowledge/action.aspx?hapuspost={parse}");
         }
     }
 }

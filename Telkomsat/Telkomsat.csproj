@@ -7165,6 +7165,7 @@
     <Content Include="js\jquery.Jcrop.js" />
     <Content Include="js\jquery.Jcrop.min.js" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="knowledge\action.aspx" />
     <Content Include="knowledge\all.aspx" />
     <Content Include="knowledge\coba.aspx" />
     <Content Include="details.aspx" />
@@ -7182,6 +7183,7 @@
     <Content Include="JavaScript.js" />
     <Content Include="knowledge\cobafile.aspx" />
     <Content Include="knowledge\details1.aspx" />
+    <Content Include="knowledge\edit.aspx" />
     <Content Include="knowledge\file.aspx" />
     <Content Include="knowledge\knowledge.css" />
     <Content Include="knowledge\posting.aspx" />
@@ -8626,6 +8628,13 @@
     <Compile Include="KnowledgeFIle.Master.designer.cs">
       <DependentUpon>KnowledgeFIle.Master</DependentUpon>
     </Compile>
+    <Compile Include="knowledge\action.aspx.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\action.aspx.designer.cs">
+      <DependentUpon>action.aspx</DependentUpon>
+    </Compile>
     <Compile Include="knowledge\all.aspx.cs">
       <DependentUpon>all.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8688,6 +8697,13 @@
     </Compile>
     <Compile Include="knowledge\details1.aspx.designer.cs">
       <DependentUpon>details1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge\edit.aspx.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge\edit.aspx.designer.cs">
+      <DependentUpon>edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="knowledge\file.aspx.cs">
       <DependentUpon>file.aspx</DependentUpon>

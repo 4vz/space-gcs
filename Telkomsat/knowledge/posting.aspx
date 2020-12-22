@@ -137,8 +137,10 @@
     <asp:HiddenField ID="hfContactID" runat="server" />
     <div class="bodyLB">
       <asp:HiddenField ID="HiddenField1" runat="server" />
+        <button class="btn btn-danger pull-right" runat="server" style="margin-right:10px" onserverclick="Delete_ServerClick">Delete</button>
+        <button class="btn btn-info pull-right" runat="server" style="margin-right:10px" onserverclick="Edit_ServerClick">Edit</button>
 
-            
+         
 
       <asp:DataList runat="server" id="dtContact" Width="650px" >
         <ItemTemplate>

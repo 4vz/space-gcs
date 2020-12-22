@@ -11,7 +11,7 @@ namespace Telkomsat.knowledge
 {
 
 
-    public partial class tambahpost
+    public partial class edit
     {
 
         /// <summary>

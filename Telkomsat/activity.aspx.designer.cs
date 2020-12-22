@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat {
-    
-    
-    public partial class activity {
-        
+namespace Telkomsat
+{
+
+
+    public partial class activity
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lblProfile1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProfile1;
-        
+
         /// <summary>
         /// dtContact1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtContact1;
-        
+
         /// <summary>
         /// btn control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn;
-        
+
         /// <summary>
         /// lichhk control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lichhk;
-        
+
         /// <summary>
         /// Span4 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span4;
-        
+
         /// <summary>
         /// lblchhk control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblchhk;
-        
+
         /// <summary>
         /// lichme control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lichme;
-        
+
         /// <summary>
         /// spnnotif control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnnotif;
-        
+
         /// <summary>
         /// lblchme control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblchme;
-        
+
         /// <summary>
         /// limthk control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl limthk;
-        
+
         /// <summary>
         /// Span1 control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
-        
+
         /// <summary>
         /// lblmthk control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmthk;
-        
+
         /// <summary>
         /// limtme control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl limtme;
-        
+
         /// <summary>
         /// Span2 control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span2;
-        
+
         /// <summary>
         /// lblmtme control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmtme;
-        
+
         /// <summary>
         /// spmonth control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spmonth;
-        
+
         /// <summary>
         /// DBDataPlaceHolder control.
         /// </summary>
@@ -173,5 +175,14 @@ namespace Telkomsat {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
+
+        /// <summary>
+        /// PlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
     }
 }

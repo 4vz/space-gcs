@@ -431,127 +431,10 @@
             $('#<%=txtketeranganlain.ClientID %>').val('');
         });
 
-        $('.btkonfig').click(function () {
-            $('#<%=btnkonfig.ClientID %>').show();
-            $('#<%=btneditkonfig.ClientID %>').hide();
-            $('#<%=txtidkonfig.ClientID %>').val(this.idkonfig);
-            $('#<%=txtsdatekonf.ClientID %>').val('');
-            $('#<%=txtedatekonf.ClientID %>').val('');
-            $('#<%=ddlstatuskonf.ClientID %>').val('');
-            $('#<%=txtKetKonfig.ClientID %>').val('');
-        });
 
-        $('.btmain').click(function () {
-            $('#<%=btnmain.ClientID %>').show();
-            $('#<%=btneditmain.ClientID %>').hide();
-            $('#<%=txtidmain.ClientID %>').val(this.idmain);
-            $('#<%=txtsdatemain.ClientID %>').val('');
-            $('#<%=txtedatemain.ClientID %>').val('');
-            $('#<%=ddlstatusmain.ClientID %>').val('');
-            $('#<%=txtketmain.ClientID %>').val('');
-        });
 
-        $('.datalain').click(function () {
-            var id = $(this).val();
-            $('#<%=btnlain.ClientID %>').hide();
-            $('#<%=btneditlain.ClientID %>').show();
-            $.ajax({
-                type: "POST",
-                url: "detail.aspx/GetLain",
-                contentType: "application/json; charset=utf-8",
-                data: '{videoid:"' + id + '"}',
-                dataType: "json",
-                success: function (response) {
-                    //console.log(response);
-                    var data = response.d;
-                    $(data).each(function () {
-                        console.log(this.keteranganlain);
-                        $('#<%=txtidlain.ClientID %>').val(this.idlain);
-                        $('#<%=txtsdatelain.ClientID %>').val(this.awallain);
-                        $('#<%=txtsdatelain.ClientID %>').val(this.awallain);
-                        $('#<%=txtedatelain.ClientID %>').val(this.akhirlain);
-                        $('#<%=ddlstatuslain.ClientID %>').val(this.statuslain);
-                        $('#<%=txtketeranganlain.ClientID %>').val(this.keteranganlain);
-                    });
 
-                },
-                failure: function (response) {
 
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
-        });
-
-        $('.datakonfig').click(function () {
-            var id = $(this).val();
-            $('#<%=btnkonfig.ClientID %>').hide();
-            $('#<%=btneditkonfig.ClientID %>').show();
-            $.ajax({
-                type: "POST",
-                url: "detail.aspx/Getkonfig",
-                contentType: "application/json; charset=utf-8",
-                data: '{videoid:"' + id + '"}',
-                dataType: "json",
-                success: function (response) {
-                    //console.log(response);
-                    var data = response.d;
-                    $(data).each(function () {
-                        console.log(this.keterangankonfig);
-                        $('#<%=txtidkonfig.ClientID %>').val(this.idkonfig);
-                        $('#<%=txtsdatekonf.ClientID %>').val(this.awalkonfig);
-                        $('#<%=txtsdatekonf.ClientID %>').val(this.awalkonfig);
-                        $('#<%=txtedatekonf.ClientID %>').val(this.akhirkonfig);
-                        $('#<%=ddlstatuskonf.ClientID %>').val(this.statuskonfig);
-                        $('#<%=txtKetKonfig.ClientID %>').val(this.keterangankonfig);
-                    });
-
-                },
-                failure: function (response) {
-
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
-        });
-
-        $('.datamain').click(function () {
-            var id = $(this).val();
-            $('#<%=btnmain.ClientID %>').hide();
-            $('#<%=btneditmain.ClientID %>').show();
-            $.ajax({
-                type: "POST",
-                url: "detail.aspx/Getmain",
-                contentType: "application/json; charset=utf-8",
-                data: '{videoid:"' + id + '"}',
-                dataType: "json",
-                success: function (response) {
-                    //console.log(response);
-                    var data = response.d;
-                    $(data).each(function () {
-                        console.log(this.keteranganmain);
-                        $('#<%=txtidmain.ClientID %>').val(this.idmain);
-                        $('#<%=txtsdatemain.ClientID %>').val(this.awalmain);
-                        $('#<%=txtsdatemain.ClientID %>').val(this.awalmain);
-                        $('#<%=txtedatemain.ClientID %>').val(this.akhirmain);
-                        $('#<%=ddlstatusmain.ClientID %>').val(this.statusmain);
-                        $('#<%=txtketmain.ClientID %>').val(this.keteranganmain);
-                    });
-
-                },
-                failure: function (response) {
-
-                    alert(response.d);
-                },
-                error: function (response) {
-                    alert(response.d);
-                }
-            });
-        });
         var modal = document.getElementById("myModal");
         var img = document.getElementsByClassName("myImg");
         var modalImg = document.getElementById("img01");
@@ -564,21 +447,6 @@
             }
         }
 
-        function enablebtn() {
-            document.getElementById("<%=btnlain.ClientID %>").disabled = false;
-            document.getElementById("<%=btnmain.ClientID %>").disabled = false;
-            document.getElementById("<%=btnkonfig.ClientID %>").disabled = false;
-            document.getElementById("<%=btnfungsi.ClientID %>").disabled = false;
-            document.getElementById("<%=btnmutasi.ClientID %>").disabled = false;
-        }
-
-        function DisableButton() {
-            document.getElementById("<%=btnlain.ClientID %>").disabled = true;
-            document.getElementById("<%=btnmain.ClientID %>").disabled = true;
-            document.getElementById("<%=btnkonfig.ClientID %>").disabled = true;
-            document.getElementById("<%=btnfungsi.ClientID %>").disabled = true;
-            document.getElementById("<%=btnmutasi.ClientID %>").disabled = true;
-        }
         window.onbeforeunload = DisableButton;
         
                 // Get the <span> element that closes the modal
@@ -590,13 +458,6 @@
         }
 
 
-        $(document).on("click", "#btnmutasi", function () {
-            var id = $(this).data('id');
-            console.log(id);
-            $("#id").val(id);
-            $('#<%=txtidl.ClientID %>').val(id);
-            $('#<%=txtjenispekerjaan.ClientID %>').val('Mutasi');
-        });
 
         $(document).on("click", "#btnkonfigurasi", function () {
             var id = $(this).data('id');

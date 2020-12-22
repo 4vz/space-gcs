@@ -35,6 +35,28 @@
         li{
             padding-bottom:10px;
         }
+        .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li.menu-open>a{
+            background-color:transparent;
+            color:cornflowerblue;
+        }
+        .skin-blue .sidebar-menu>li>.treeview-menu{
+            background-color:transparent;
+            color:cornflowerblue;
+        }
+        .skin-blue .sidebar-menu .treeview-menu>li>a{
+            color:cornflowerblue;
+        }
+        .skin-blue .sidebar-menu .treeview-menu>li.active>a, .skin-blue .sidebar-menu .treeview-menu>li>a:hover{
+            color:dodgerblue;
+        }
+        .sidebar-menu>li>a{
+            padding:6px;
+        }
+        .treeview-menu>li>a{
+            padding-top:0px;
+            padding-right:0px;
+            padding-bottom:0px;
+        }
     </style>
     <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
@@ -149,27 +171,8 @@
                 <!-- /.box-body -->
                 </div>
                 <!-- /. box -->
-                <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Priority</h3>
-
-                    <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
                 </div>
-                <div class="box-body no-padding">
-                    <ul class="nav nav-pills nav-stacked">
-                    <li><a href="../ticket/prioritas.aspx?prioritas1=High"><i class="fa fa-circle-o text-red"></i> High</a></li>
-                    <li><a href="../ticket/prioritas.aspx?prioritas1=Medium"><i class="fa fa-circle-o text-yellow"></i> Medium</a></li>
-                    <li><a href="../ticket/prioritas.aspx?prioritas1=Low"><i class="fa fa-circle-o text-light-blue"></i> Low</a></li>
-                    </ul>
-                </div>
-                <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-                </div>
-                        <div class="col-lg-7 connectedSortable">
+                        <div class="col-md-7 connectedSortable">
                             <div class="box box-danger" style="min-height:90%;">
                                 <div class="box-header">
                                     <span runat="server" style="text-align:center; font-size:16px; font-weight:bold" id="spmonth"></span>
@@ -179,6 +182,9 @@
                                 </div>
                             </div>
                         </div>
+             <div class="col-md-2">
+                 <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  
+             </div>
                     </div>
     <!-- /.row -->
         </section>

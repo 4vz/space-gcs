@@ -13,8 +13,9 @@ namespace Telkomsat
 {
     public partial class activity : System.Web.UI.Page
     {
-        string tanggalbef;
+        string tanggalbef, myquery;
         StringBuilder htmlTable = new StringBuilder();
+        StringBuilder htmlTableBulan = new StringBuilder();
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,9 +23,30 @@ namespace Telkomsat
                 Response.Redirect("~/login.aspx");
 
             lblProfile1.Text = Session["nama1"].ToString();
-            string queryuser;
+            int abulan, atahun;
+            string dbulan = "";
+            
+
+            if (Request.QueryString["bulan"] == null || Request.QueryString["tahun"] == null)
+            {
+                abulan = Convert.ToInt32(DateTime.Now.Month);
+                atahun = Convert.ToInt32(DateTime.Now.Year);
+                dbulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+            }
+            else
+            {
+                abulan = Convert.ToInt32(Request.QueryString["bulan"]);
+                atahun = Convert.ToInt32(Request.QueryString["tahun"]);
+                dbulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(abulan);
+            }
+
+            spmonth.InnerText = dbulan + " " + atahun;
+
+            myquery = $@"select l.*, nama from log l left join Profile p on p.id_profile=l.id_profile where month(l.tanggal) = {abulan} and year(l.tanggal) = {atahun}
+                           order by l.tanggal desc, l.id_log desc, l.tipe";
 
             tablechhk();
+            tablebulan();
         }
         void tablechhk()
         {
@@ -34,10 +56,10 @@ namespace Telkomsat
                 
             bulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
             tahun = DateTime.Now.Year.ToString();
-            spmonth.InnerText = bulan + " " + tahun;
+            
             query = $@"select l.*, nama from log l left join Profile p on p.id_profile=l.id_profile order by l.tanggal desc, l.id_log desc, l.tipe";
 
-            SqlCommand cmd = new SqlCommand(query, sqlCon);
+            SqlCommand cmd = new SqlCommand(myquery, sqlCon);
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
             sqlCon.Open();
@@ -127,6 +149,47 @@ namespace Telkomsat
                     }
                     DBDataPlaceHolder.Controls.Add(new Literal { Text = htmlTable.ToString() });
 
+                }
+            }
+        }
+
+        void tablebulan()
+        {
+            string tanggal, query, stbulan, btanggal = "";
+            int itbulan;
+
+            query = $@"select year(tanggal) AS tahun, month(tanggal) AS bulan from log group by year(tanggal), month(tanggal) order by year(tanggal) desc, month(tanggal) desc";
+
+            DataSet ds = Settings.LoadDataSet(query);
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        tanggal = ds.Tables[0].Rows[i]["tahun"].ToString();
+                        itbulan = Convert.ToInt32(ds.Tables[0].Rows[i]["bulan"]);
+
+                        stbulan = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(itbulan);
+
+                        if(tanggal != btanggal)
+                        {
+                            btanggal = tanggal;
+                            htmlTableBulan.AppendLine("</ul>");
+                            htmlTableBulan.AppendLine("</li>");
+                            htmlTableBulan.AppendLine("</ul>");
+                            htmlTableBulan.AppendLine("<ul class=\"sidebar-menu\" data-widget=\"tree\">");
+                            htmlTableBulan.AppendLine("<li class=\"treeview\"><a href=\"#\">");
+                            htmlTableBulan.AppendLine($"{tanggal}");
+                            htmlTableBulan.AppendLine("<span class=\"pull-right-container\">");
+                            htmlTableBulan.AppendLine("<i class=\"fa fa-angle-left pull-right\"></i>");
+                            htmlTableBulan.AppendLine("</span></a>");
+                            htmlTableBulan.AppendLine("<ul class=\"treeview-menu\">");
+                        }
+                        htmlTableBulan.AppendLine($"<li><a href=activity.aspx?bulan={itbulan}&tahun={tanggal}>" + stbulan + "</a></li>");
+                    }
+                    PlaceHolder1.Controls.Add(new Literal { Text = htmlTableBulan.ToString() });
                 }
             }
         }

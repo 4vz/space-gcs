@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tambahpost.aspx.cs" Inherits="Telkomsat.knowledge.tambahpost" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="edit.aspx.cs" Inherits="Telkomsat.knowledge.edit" %>
 
 <!DOCTYPE html>
 

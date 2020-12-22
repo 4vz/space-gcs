@@ -15,9 +15,98 @@ namespace Telkomsat.admin
     public partial class importrkap : System.Web.UI.Page
     {
         bool format = false;
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            sqlCon.Open();
+            string querycountf = $"select count(*) from AdminEvidence WHERE AE_Tipe='format_rkap_excel'";
+            SqlCommand cmd4 = new SqlCommand(querycountf, sqlCon);
+            int output1 = int.Parse(cmd4.ExecuteScalar().ToString());
+            sqlCon.Close();
 
+            if (output1 > 0)
+            {
+                string queryfile = $"select * from AdminEvidence WHERE AE_Tipe='format_rkap_excel'";
+                DataList3a.Visible = true;
+                sqlCon.Open();
+                SqlDataAdapter sqlda1 = new SqlDataAdapter(queryfile, sqlCon);
+                DataTable dtbl1 = new DataTable();
+                sqlda1.Fill(dtbl1);
+                sqlCon.Close();
+                DataList3a.DataSource = dtbl1;
+                DataList3a.DataBind();
+            }
+            string user = Session["iduser"].ToString();
+
+            string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet ds2 = Settings.LoadDataSet(query2);
+
+            string previllage = ds2.Tables[0].Rows[0]["AP_Previllage"].ToString();
+
+            if (previllage == "SA")
+            {
+                btnupload.Visible = true;
+                FileUpload2.Visible = true;
+            }
+        }
+
+        protected void UploadFormat(object sender, EventArgs e)
+        {
+            string myquery;
+            myquery = "select * from AdminEvidence where AE_Tipe='format_rkap_excel'";
+
+            DataSet ds = Settings.LoadDataSet(myquery);
+            HttpFileCollection filecolln = Request.Files;
+
+            if (ds.Tables[0].Rows.Count == 0)
+            {
+                for (int j = 0; j < filecolln.Count; j++)
+                {
+                    HttpPostedFile file = filecolln[j];
+                    if (file.ContentLength > 0)
+                    {
+                        string extension = Path.GetExtension(file.FileName);
+                        string filename = "format_rkap" + extension;
+                        string filepath = "~/fileupload/" + filename + extension;
+                        file.SaveAs(Server.MapPath("~/fileupload/") + filename + extension);
+                        sqlCon.Open();
+                        string queryfile = $@"INSERT INTO AdminEvidence (AE_File, AE_NamaFile, AE_Ekstension, AE_Tipe)
+                                    VALUES ('{filepath}', '{filename}', '{extension}', 'format_rkap_excel')";
+                        //Response.Write(queryfile); ;
+                        SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                        sqlCmd1.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                }
+            }
+            else
+            {
+                for (int j = 0; j < filecolln.Count; j++)
+                {
+                    HttpPostedFile file = filecolln[j];
+                    if (file.ContentLength > 0)
+                    {
+                        string filename = "format_rkap.xls";
+                        string extension = Path.GetExtension(file.FileName);
+                        file.SaveAs(Server.MapPath("~/fileupload/") + filename + extension);
+                    }
+                }
+            }
+
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Response.Clear();
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "filename="
+                + e.CommandArgument);
+            Response.TransmitFile(Server.MapPath("~/fileupload/")
+                + e.CommandArgument);
+            Response.End();
         }
 
         protected void Upload(object sender, EventArgs e)

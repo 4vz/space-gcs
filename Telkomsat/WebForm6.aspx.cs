@@ -39,7 +39,9 @@ namespace Telkomsat
             string str = "akak.pdf";
             var result = str.Substring(str.LastIndexOf('.') + 1);
 
-            Response.Write("ini tester =  " + dts + "  | ");
+            string btahun = DateTime.Now.Month.ToString();
+
+            Response.Write("ini tester =  " + btahun + "  | ");
 
 
 

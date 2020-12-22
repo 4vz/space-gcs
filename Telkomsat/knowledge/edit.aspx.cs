@@ -10,19 +10,40 @@ using System.IO;
 
 namespace Telkomsat.knowledge
 {
-    public partial class tambahpost : System.Web.UI.Page
+    public partial class edit : System.Web.UI.Page
     {
         int i;
+        string idpost;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
 
         //SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-K0GET7F\SQLEXPRESS; Initial Catalog=KNOWLEDGE; Integrated Security = true;");
         protected void Page_Load(object sender, EventArgs e)
         {
             lblWaktu.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-
+            idpost = Request.QueryString["id"];
             if (Session["username"] == null)
                 Response.Redirect("~/login.aspx");
+
+            detail();
         }
+
+        void detail()
+        {
+            string querydetail, id = "";
+            string link = (HttpContext.Current.Request.Url.PathAndQuery);
+            string parse = Request.QueryString["id"];
+            if(parse != null)
+            {
+                id = parse.ToString();
+            }
+            querydetail = $@"select * from Posting where ID_Post = '{id}'";
+            DataSet ds = Settings.LoadDataSet(querydetail);
+
+            txtJudul.Text = ds.Tables[0].Rows[0]["JUDUL"].ToString();
+            txtAktivitas.Text = ds.Tables[0].Rows[0]["POSTING"].ToString(); ;
+            ddlkategori.SelectedValue = ds.Tables[0].Rows[0]["KATEGORI"].ToString(); ;
+        }
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -33,8 +54,7 @@ namespace Telkomsat.knowledge
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
             sqlCon.Close();
             sqlCon.Open();
-            string myquery = $@"INSERT INTO Posting(waktu, NAMA, JUDUL, KATEGORI, POSTING, ID_Profile)
-                        VALUES('{tanggal}', '{Session["nama1"].ToString()}', '{txtJudul.Text.Trim()}', '{ddlkategori.Text.Trim()}', '{txtAktivitas.Text.Trim()}', '{Session["iduser"].ToString()}'); Select Scope_Identity();";
+            string myquery = $@"Update Posting set JUDUL='{txtJudul.Text}', POSTING='{txtAktivitas.Text}', KATEGORI='{ddlkategori.SelectedValue}' WHERE ID_Post='{idpost}'";
             SqlCommand cmdLog = new SqlCommand(myquery, sqlCon);
             i = Convert.ToInt32(cmdLog.ExecuteScalar());
             sqlCon.Close();
@@ -55,7 +75,7 @@ namespace Telkomsat.knowledge
                     string s = Convert.ToString(i);
                     sqlCon.Open();
                     string queryfile = $@"INSERT INTO postingfile (ID_Post, filepath, filename)
-                                        VALUES ('{s}', '{filepath}', '{filename}')";
+                                        VALUES ('{idpost}', '{filepath}', '{filename}')";
                     SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
 
                     sqlCmd1.ExecuteNonQuery();
@@ -64,7 +84,7 @@ namespace Telkomsat.knowledge
             }
             lblUpdate.Text = "Berhasil Menyimpan";
             lblUpdate.ForeColor = System.Drawing.Color.Green;
-            Response.Redirect("semua.aspx");
+            Response.Redirect($"posting.aspx?id={idpost}");
         }
 
         protected void btnPosting_Click(object sender, EventArgs e)

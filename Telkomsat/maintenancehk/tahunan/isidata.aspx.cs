@@ -57,7 +57,7 @@ namespace Telkomsat.maintenancehk.tahunan
             queryisi = $@"SELECT COUNT(*) as isi FROM maintenancehk_data d join maintenancehk_parameter r on d.id_parameter=
                                 r.id_parameter join maintenancehk_perangkat t on r.id_perangkat=t.id_perangkat where 
                                 '{start} 00:00:00' <= d.tanggal and d.tanggal < '{end} 23:59:59' and d.data != '' and 
-                                t.device = '{rdevice}' and t.alias ='{ralias}' and (d.data not like '%' + 'un' + '%' or d.data != 'TROUBLE' or d.data != 'NOT YET') and t.jenis = 'TAHUNAN' GROUP BY t.device, t.alias";
+                                t.device = '{rdevice}' and t.unit = '{room}' and t.alias ='{ralias}' and (d.data not like '%' + 'un' + '%' or d.data != 'TROUBLE' or d.data != 'NOT YET') and t.jenis = 'TAHUNAN' GROUP BY t.device, t.alias";
             sqlCon.Open();
             SqlCommand cmdisi = new SqlCommand(queryisi, sqlCon);
             dabar = new SqlDataAdapter(cmdisi);
