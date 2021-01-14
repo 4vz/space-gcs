@@ -88,12 +88,21 @@ namespace Telkomsat.admin
                     HttpPostedFile file = filecolln[j];
                     if (file.ContentLength > 0)
                     {
-                        string filename = "format_rkap.xls";
+                        string filename = "format_rkap";
                         string extension = Path.GetExtension(file.FileName);
                         file.SaveAs(Server.MapPath("~/fileupload/") + filename + extension);
+                        string queryfile = $@"UPDATE AdminEvidence set AE_NamaFile='{filename + extension}', AE_File = '~/fileupload/{filename + extension}',
+                                            AE_Ekstension='{extension}' where AE_Tipe='format_rkap_excel'";
+                        //Response.Write(queryfile); ;
+                        sqlCon.Open();
+                        SqlCommand sqlCmd1 = new SqlCommand(queryfile, sqlCon);
+
+                        sqlCmd1.ExecuteNonQuery();
+                        sqlCon.Close();
                     }
                 }
             }
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Insert is successfull')", true);
 
             Response.Redirect(Request.RawUrl);
         }
@@ -143,8 +152,7 @@ namespace Telkomsat.admin
             }
             conString = string.Format(conString, excelPath);
 
-            try
-            {
+       
                 using (OleDbConnection excel_con = new OleDbConnection(conString))
                 {
                     excel_con.Open();
@@ -152,28 +160,29 @@ namespace Telkomsat.admin
                     DataTable dtExcelData = new DataTable();
 
                     //[OPTIONAL]: It is recommended as otherwise the data will be considered as String by default.
-                    dtExcelData.Columns.AddRange(new DataColumn[22] { new DataColumn("Aktivitas", typeof(string)),
+                    dtExcelData.Columns.AddRange(new DataColumn[23] { new DataColumn("Aktivitas", typeof(string)),
                         new DataColumn("Tahun", typeof(string)),
                         new DataColumn("Subunit", typeof(string)),
                         new DataColumn("Unit", typeof(string)),
                         new DataColumn("Cost Center", typeof(string)),
                         new DataColumn("No Akun", typeof(string)),
+                        new DataColumn("Akun Cost", typeof(string)),
                         new DataColumn("Nama Akun", typeof(string)),
+                        new DataColumn("Kategori", typeof(string)),
                         new DataColumn("Satuan", typeof(string)),
-                        new DataColumn("Harga", typeof(string)),
-                        new DataColumn("Total", typeof(int)),
-                        new DataColumn("Januari", typeof(string)),
-                        new DataColumn("Februari", typeof(string)),
-                        new DataColumn("Maret", typeof(string)),
-                        new DataColumn("April", typeof(string)),
-                        new DataColumn("Mei", typeof(string)),
-                        new DataColumn("Juni", typeof(string)),
-                        new DataColumn("Juli", typeof(string)),
-                        new DataColumn("Agustus", typeof(string)),
-                        new DataColumn("September", typeof(string)),
-                        new DataColumn("Oktober", typeof(string)),
-                        new DataColumn("November", typeof(string)),
-                        new DataColumn("Desember", typeof(string))});
+                        new DataColumn("Total", typeof(long)),
+                        new DataColumn("Januari", typeof(long)),
+                        new DataColumn("Februari", typeof(long)),
+                        new DataColumn("Maret", typeof(long)),
+                        new DataColumn("April", typeof(long)),
+                        new DataColumn("Mei", typeof(long)),
+                        new DataColumn("Juni", typeof(long)),
+                        new DataColumn("Juli", typeof(long)),
+                        new DataColumn("Agustus", typeof(long)),
+                        new DataColumn("September", typeof(long)),
+                        new DataColumn("Oktober", typeof(long)),
+                        new DataColumn("November", typeof(long)),
+                        new DataColumn("Desember", typeof(long))});
 
                     using (OleDbDataAdapter oda = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
                     {
@@ -194,12 +203,14 @@ namespace Telkomsat.admin
                             sqlBulkCopy.ColumnMappings.Add("Aktivitas", "ARK_Aktivitas");
                             sqlBulkCopy.ColumnMappings.Add("SubUnit", "ARK_SU");
                             sqlBulkCopy.ColumnMappings.Add("Unit", "ARK_BG");
+                            sqlBulkCopy.ColumnMappings.Add("Kategori", "ARK_Kategori");
                             sqlBulkCopy.ColumnMappings.Add("Cost Center", "ARK_CC");
+                            sqlBulkCopy.ColumnMappings.Add("Akun Cost", "ARK_AC");
                             sqlBulkCopy.ColumnMappings.Add("No Akun", "ARK_NoA");
                             sqlBulkCopy.ColumnMappings.Add("Nama Akun", "ARK_NA");
                             sqlBulkCopy.ColumnMappings.Add("Satuan", "ARK_Satuan");
-                            sqlBulkCopy.ColumnMappings.Add("Harga", "ARK_Harga");
                             sqlBulkCopy.ColumnMappings.Add("Total", "ARK_GTS");
+                            sqlBulkCopy.ColumnMappings.Add("Total", "ARK_GT");
                             sqlBulkCopy.ColumnMappings.Add("Januari", "ARK_Januari");
                             sqlBulkCopy.ColumnMappings.Add("Februari", "ARK_Februari");
                             sqlBulkCopy.ColumnMappings.Add("Maret", "ARK_Maret");
@@ -222,8 +233,8 @@ namespace Telkomsat.admin
                     }
                 }
 
-            }
-            catch
+            
+            /*catch
             {
                 if (!format)
                 {
@@ -236,7 +247,7 @@ namespace Telkomsat.admin
                     lblerror.Visible = true;
                 }
 
-            }
+            }*/
 /*            finally
             {
                 lblerror.Text = "Berhasil di import";

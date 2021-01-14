@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Approvement" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
+﻿ <%@ Page Title="Approvement" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="approvement.aspx.cs" Inherits="Telkomsat.admin.approvement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
     <style type="text/css">
@@ -25,7 +25,7 @@
                         <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
                         <asp:Label ID="lblpeng" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
-                    <div id="justifikasi" class="tab-pane in active fade">
+                    <div id="justifikasi" class="tab-pane fade">
                         <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>  
                         <asp:Label ID="lblgm" runat="server" Text="Label" Visible="false"></asp:Label>
                     </div>
@@ -558,17 +558,17 @@
         });
 
         $(document).ready(function () {
+
             if ($('#<%=txtliactive.ClientID %>').val() == 'pengeluaran') {
                 $('#pengeluaran').addClass('in active');
                 console.log('iuiui');
-
-            }
-            else if ($('#<%=txtliactive.ClientID %>').val() == 'justifikasi') {
-                $('#justifikasi').addClass('in active');
-                console.log('iuiui');
-            }
+            }            
             else if ($('#<%=txtliactive.ClientID %>').val() == 'pertanggungan') {
                 $('#pertanggungan').addClass('in active');
+            }
+            else {
+                $('#justifikasi').addClass('in active');
+                console.log('iuiui');
             }
         });
 

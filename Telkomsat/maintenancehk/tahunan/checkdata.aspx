@@ -10,7 +10,7 @@
     <div class="box box-primary">
     <!-- Tabs within a box -->
     <div class="box-header">
-        <i class="fa fa-database"></i> Maintenance Semester
+        <i class="fa fa-database"></i> Maintenance Tahunan
     </div>
     <div class="box-body">
         <!-- Morris chart - Sales -->

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin {
-    
-    
-    public partial class datapemasukan {
-        
+namespace Telkomsat.admin
+{
+
+
+    public partial class datapemasukan
+    {
+
         /// <summary>
         /// txtsdate control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtsdate;
-        
+
         /// <summary>
         /// dateend control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText dateend;
-        
+
         /// <summary>
         /// ddlKategori control.
         /// </summary>
@@ -38,16 +40,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKategori;
-        
-        /// <summary>
-        /// ddlpengeluaran control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpengeluaran;
-        
+
         /// <summary>
         /// DBDataPlaceHolder control.
         /// </summary>

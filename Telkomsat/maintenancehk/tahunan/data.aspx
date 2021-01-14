@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="box box-primary">
         <div class="box-header">
-            Tambah Maintenance Semester
+            Maintenance Tahunan
         </div>
         <div class="box-body">
             <div class="row">

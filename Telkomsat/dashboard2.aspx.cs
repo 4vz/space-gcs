@@ -155,26 +155,26 @@ namespace Telkomsat
 
             DateTime now = DateTime.Now;
             DateTime first = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime second = new DateTime(DateTime.Now.Year, 3, 30);
+            DateTime second = new DateTime(DateTime.Now.Year, 3, DateTime.DaysInMonth(DateTime.Now.Year, 3));
             DateTime third = new DateTime(DateTime.Now.Year, 4, 1);
-            DateTime fourth = new DateTime(DateTime.Now.Year, 6, 30);
+            DateTime fourth = new DateTime(DateTime.Now.Year, 6, DateTime.DaysInMonth(DateTime.Now.Year, 6));
             DateTime fifth = new DateTime(DateTime.Now.Year, 7, 1);
-            DateTime sixth = new DateTime(DateTime.Now.Year, 9, 30);
+            DateTime sixth = new DateTime(DateTime.Now.Year, 9, DateTime.DaysInMonth(DateTime.Now.Year, 9));
             DateTime seventh = new DateTime(DateTime.Now.Year, 10, 1);
-            DateTime eighth = new DateTime(DateTime.Now.Year, 12, 30);
+            DateTime eighth = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12));
             DateTime startdate = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime middate = new DateTime(DateTime.Now.Year, 6, 30);
-            DateTime enddate = new DateTime(DateTime.Now.Year, 12, 30);
+            DateTime middate = new DateTime(DateTime.Now.Year, 6, DateTime.DaysInMonth(DateTime.Now.Year, 6));
+            DateTime enddate = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12));
             tahun = DateTime.Now.Year.ToString();
 
-            if (now > startdate && now <= middate)
+            if (now > startdate && now < fifth)
             {
                 lblsemester.Text += " [1]";
                 lblsemesterme.Text += " [1]";
                 semester = "semester 1";
                 semesterme = "1";
             }
-            else if (now > middate && now <= enddate)
+            else if (now > fifth && now <= enddate)
             {
                 lblsemester.Text += " [2]";
                 lblsemesterme.Text += " [2]";
@@ -199,27 +199,27 @@ namespace Telkomsat
             //Response.Write(minggu);
             lblminggume.Text += " [" + minggu + "]";
 
-            if (now > first && now <= second)
+            if (now > first && now < third)
             {
                 lbltriwulan.Text += " [1]";
                 triwulan = "triwulan 1";
             }
-            else if (now > third && now <= fourth)
+            else if (now >= third && now < fifth)
             {
                 lbltriwulan.Text += " [2]";
                 triwulan = "triwulan 2";
             }
-            else if (now > fifth && now <= sixth)
+            else if (now >= fifth && now < seventh)
             {
                 lbltriwulan.Text += " [3]";
                 triwulan = "triwulan 3";
             }
-            else if (now > seventh && now <= eighth)
+            else if (now >= seventh && now <= eighth)
             {
                 lbltriwulan.Text += " [4]";
                 triwulan = "triwulan 4";
             }
-            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
+            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
             angkabulan = DateTime.Now.Month;
             lblbulanhk.Text += " [" + bulan[angkabulan - 1] + "]";
             lblbulananme.Text += " [" + bulan[angkabulan - 1] + "]";
@@ -402,10 +402,12 @@ namespace Telkomsat
 
         void logbookonprogress()
         {
-            string thistime, tahun;
+            string thistime, tahun, tahun0, tahun1, tahun2, tahun3;
             int tahunint;
 
             tahun = DateTime.Now.Year.ToString();
+            tahun0 = tahun;
+            tahun1 = tahun2 = tahun3 = tahun;
             tahunint = Convert.ToInt32(tahun);
             thistime = DateTime.Now.ToString("yyyy/MM/dd");
             string myquery = $@"select(select count(*) from tabel_logbook where STATUS='On Progress')[On_Progress],
@@ -426,7 +428,7 @@ namespace Telkomsat
                 txtoverdue.Text = ds.Tables[0].Rows[0]["Overdue"].ToString();
             }
 
-            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" };
+            string[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
             string[] angkabulan = new string[4];
             string[] abulan = new string[4];
             string[] angkabulan2 = new string[12];
@@ -439,22 +441,37 @@ namespace Telkomsat
                 j++;
             }
 
+            int convab = Convert.ToInt32(angkabulan[2]);
+
             for (int i = 0; i < 12; i++)
             {
                 abulan2[i] = bulan[i];
             }
 
+            if(angkabulan[3] == "1")
+            {
+                tahun0 = tahun1 = tahun2 = DateTime.Now.AddYears(-1).Year.ToString();
+            }
+            if(angkabulan[3] == "2")
+            {
+                tahun0 = tahun1 = DateTime.Now.AddYears(-1).Year.ToString();
+            }
+            if(angkabulan[3] == "3")
+            {
+                tahun0 = DateTime.Now.AddYears(-1).Year.ToString();
+            }
+
             databulan = string.Join(",", abulan);
             databulan2 = string.Join(",", abulan2);
 
-            string querylog = $@"select(select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}') [satu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}') [dua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}') [tiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}') [empat],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}' and status='On Progress') [opsatu],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}' and status='On Progress') [opdua],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}' and status='On Progress') [optiga],
-		                (select count(*) from tabel_logbook where waktu_action >= '{tahun}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}' and status='On Progress') [opempat]";
+            string querylog = $@"select(select count(*) from tabel_logbook where waktu_action >= '{tahun0}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}') [satu],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun1}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}') [dua],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun2}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}') [tiga],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun3}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}') [empat],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun0}-{angkabulan[0]}-01' and waktu_action <= '{tahun}-{angkabulan[0]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[0]))}' and status='On Progress') [opsatu],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun1}-{angkabulan[1]}-01' and waktu_action <= '{tahun}-{angkabulan[1]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[1]))}' and status='On Progress') [opdua],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun2}-{angkabulan[2]}-01' and waktu_action <= '{tahun}-{angkabulan[2]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[2]))}' and status='On Progress') [optiga],
+		                (select count(*) from tabel_logbook where waktu_action >= '{tahun3}-{angkabulan[3]}-01' and waktu_action <= '{tahun}-{angkabulan[3]}-{DateTime.DaysInMonth(tahunint, Convert.ToInt32(angkabulan[3]))}' and status='On Progress') [opempat]";
             SqlCommand cmdlog = new SqlCommand(querylog, sqlCon);
             SqlDataAdapter dalog;
             DataSet dslog = new DataSet();

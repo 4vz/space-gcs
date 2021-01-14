@@ -186,15 +186,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label voljan;
 
         /// <summary>
-        /// totjan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totjan;
-
-        /// <summary>
         /// volfeb control.
         /// </summary>
         /// <remarks>
@@ -202,15 +193,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label volfeb;
-
-        /// <summary>
-        /// totfeb control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totfeb;
 
         /// <summary>
         /// volmar control.
@@ -222,15 +204,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label volmar;
 
         /// <summary>
-        /// totmar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totmar;
-
-        /// <summary>
         /// volapr control.
         /// </summary>
         /// <remarks>
@@ -238,15 +211,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label volapr;
-
-        /// <summary>
-        /// totapr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totapr;
 
         /// <summary>
         /// volmei control.
@@ -258,15 +222,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label volmei;
 
         /// <summary>
-        /// totmei control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totmei;
-
-        /// <summary>
         /// voljuni control.
         /// </summary>
         /// <remarks>
@@ -274,15 +229,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label voljuni;
-
-        /// <summary>
-        /// totjuni control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totjuni;
 
         /// <summary>
         /// voljuli control.
@@ -294,15 +240,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label voljuli;
 
         /// <summary>
-        /// totjuli control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totjuli;
-
-        /// <summary>
         /// volagu control.
         /// </summary>
         /// <remarks>
@@ -310,15 +247,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label volagu;
-
-        /// <summary>
-        /// totagu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totagu;
 
         /// <summary>
         /// volsep control.
@@ -330,15 +258,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label volsep;
 
         /// <summary>
-        /// totsep control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totsep;
-
-        /// <summary>
         /// volokt control.
         /// </summary>
         /// <remarks>
@@ -346,15 +265,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label volokt;
-
-        /// <summary>
-        /// totokt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totokt;
 
         /// <summary>
         /// volnov control.
@@ -366,15 +276,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label volnov;
 
         /// <summary>
-        /// totnov control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totnov;
-
-        /// <summary>
         /// voldes control.
         /// </summary>
         /// <remarks>
@@ -382,15 +283,6 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label voldes;
-
-        /// <summary>
-        /// totdes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totdes;
 
         /// <summary>
         /// lblcarry control.

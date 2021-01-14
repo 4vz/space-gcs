@@ -124,7 +124,7 @@
             <asp:Label ID="lbldetail" runat="server" Text=""></asp:Label>
         </div>
         <div class="form-group">
-            <label for="exampleInputFile" style="width:120px;">File input</label>
+            <label for="exampleInputFile" style="width:120px;">File</label>
             <asp:Label ID="Label5" runat="server">: </asp:Label>
         </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -139,7 +139,7 @@
                             <asp:LinkButton ID ="InkView" runat ="server" CssClass="rows" CommandArgument='<%# Eval("AE_NamaFile") %>' CommandName="Download" Text='<%# Eval("AE_NamaFile") %>'></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField ="AE_Caption" HeaderText="Deskripsi" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
+                    <asp:BoundField DataField ="AE_Caption" HeaderText="" ItemStyle-Width="200px" ItemStyle-CssClass="rows"/>
                     </Columns>
             <RowStyle BackColor="White" ForeColor="#1b1b1b" />
             </asp:GridView>
@@ -248,7 +248,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Pertanggungan</h3>
                         <asp:Button ID="btnacc" runat="server" Text="Setujui" CssClass="btn btn-primary pull-right" OnClick="Setujui_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
-                        <button type="button" id="btnsubmit2" class="btn btn-primary pull-right" style="margin:10px" runat="server" visible="false"  onclick="return confirm('Apakah anda yakin?')">Submit</button>
+                        <button type="button" id="btnsubmit2" class="btn btn-primary pull-right" style="margin:10px" runat="server" visible="false" onserverclick="Pertanggungan2_Click" onclick="return confirm('Apakah anda yakin?')">Submit</button>
                         <button type="button" id="btnid" class="btn btn-success pull-right" style="margin:10px" runat="server" visible="false">Accept</button>
                         <button type="button" id="btnreject" class="btn btn-danger pull-right" style="margin:10px" runat="server" visible="false" data-toggle="modal" data-target="#modalreject">Reject</button>
 

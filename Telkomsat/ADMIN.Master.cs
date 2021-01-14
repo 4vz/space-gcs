@@ -135,7 +135,11 @@ namespace Telkomsat
                     lidashboard.Visible = false;
                     lidata.Visible = false;
                 }
-                else if(previllage.ToLower().IsIn(new string[] { "User Organik", "SA", "User" }))
+                else if (previllage == "User Organik")
+                {
+                    lipemindahan.Visible = false;
+                }
+                else if(previllage.ToLower().IsIn(new string[] { "User Organik", "User" }))
                 {
                     if (thisURL.ToLower().IsIn(new string[] { "pengeluaran.aspx"}))
                     {
@@ -150,7 +154,7 @@ namespace Telkomsat
                     }
                 }
 
-                if (!previllage.ToLower().IsIn(new string[] { "Admin Bendahara", "SA" }))
+                if (previllage.ToLower().IsIn(new string[] { "Admin Bendahara", "SA" }))
                 {
                     if (thisURL.ToLower().IsIn(new string[]{ "pemasukan.aspx", "pemindahan.aspx", "pengembalian.aspx"}))
                     {

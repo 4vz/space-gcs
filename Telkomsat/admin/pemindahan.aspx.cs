@@ -28,8 +28,10 @@ namespace Telkomsat.admin
 
             if (ds2.Tables[0].Rows.Count > 0)
             {
-                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "Admin Bendahara")
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "Admin Bendahara" && ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "SA")
+                {
                     Response.Redirect("dashboard.aspx");
+                }
             }
 
             string querylast = @"select bra_harkat, bra_me, rek_harkat1, rek_harkat2, rek_me1, rek_me2

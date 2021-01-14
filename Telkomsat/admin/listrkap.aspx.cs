@@ -109,8 +109,8 @@ namespace Telkomsat.admin
                     {
                         IDdata = ds.Tables[0].Rows[i]["ARK_ID"].ToString();
                         referensi = ds.Tables[0].Rows[i]["ARK_Aktivitas"].ToString();
-                        gt = Convert.ToInt32(ds.Tables[0].Rows[i]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
-                        gts = Convert.ToInt32(ds.Tables[0].Rows[i]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        gt = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        gts = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");

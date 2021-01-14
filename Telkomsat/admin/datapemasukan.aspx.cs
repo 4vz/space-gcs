@@ -125,7 +125,7 @@ namespace Telkomsat.admin
                 end = dateend.Value;
             if(ddlKategori.SelectedValue == "pengeluaran")
             {
-                if(ddlpengeluaran.SelectedValue == "Cash")
+                /*if(ddlpengeluaran.SelectedValue == "Cash")
                 {
                     query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
                             and kategori = 'pengeluaran' and status = 'done' and approve = 'admin' order by id_admin desc";
@@ -134,12 +134,12 @@ namespace Telkomsat.admin
                 {
                     query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
                             and kategori = 'pengeluaran' and status != 'done' and approve = 'admin' order by id_admin desc";
-                }
+                }*//*
                 else
-                {
-                    query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
-                            and kategori = 'pengeluaran' and approve = 'admin' order by id_admin desc";
-                }
+                {*/
+                query = $@"select * from administrator where (tanggal BETWEEN (convert(datetime, '{txtsdate.Value}',103)) AND (convert(datetime, '{dateend.Value}',103)))
+                        and kategori = 'pengeluaran' and approve = 'admin' order by id_admin desc";
+                
             }
             else
             {

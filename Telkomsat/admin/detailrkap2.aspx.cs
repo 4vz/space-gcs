@@ -32,7 +32,7 @@ namespace Telkomsat.admin
                 {
                     if (!IsPostBack)
                     {
-                        double dharga = Convert.ToDouble(ds.Tables[0].Rows[0]["ARK_Harga"]);
+                        //double dharga = Convert.ToDouble(ds.Tables[0].Rows[0]["ARK_Harga"]);
                         string jan = ds.Tables[0].Rows[0]["ARK_Januari"].ToString();
                         string feb = ds.Tables[0].Rows[0]["ARK_Februari"].ToString();
                         string mar = ds.Tables[0].Rows[0]["ARK_Maret"].ToString();
@@ -46,7 +46,7 @@ namespace Telkomsat.admin
                         string nov = ds.Tables[0].Rows[0]["ARK_November"].ToString();
                         string des = ds.Tables[0].Rows[0]["ARK_Desember"].ToString();
 
-                        double djan = dharga * Convert.ToDouble(jan);
+                        /*double djan = dharga * Convert.ToDouble(jan);
                         double dfeb = dharga * Convert.ToDouble(feb);
                         double dmar = dharga * Convert.ToDouble(mar);
                         double dapr = dharga * Convert.ToDouble(apr);
@@ -57,20 +57,19 @@ namespace Telkomsat.admin
                         double dsep = dharga * Convert.ToDouble(sep);
                         double dokt = dharga * Convert.ToDouble(okt);
                         double dnov = dharga * Convert.ToDouble(nov);
-                        double ddes = dharga * Convert.ToDouble(des);
+                        double ddes = dharga * Convert.ToDouble(des);*/
 
-                        lblbg.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
+                        lblbg.Text = ds.Tables[0].Rows[0]["ARK_SU"].ToString();
                         lblcc.Text = ds.Tables[0].Rows[0]["ARK_CC"].ToString();
-                        lblharga.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_Harga"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblkategori.Text = ds.Tables[0].Rows[0]["ARK_Kategori"].ToString();
                         lblna.Text = ds.Tables[0].Rows[0]["ARK_Aktivitas"].ToString();
                         lblnamaakun.Text = ds.Tables[0].Rows[0]["ARK_NA"].ToString();
                         lblnoa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
                         lblsatuan.Text = ds.Tables[0].Rows[0]["ARK_Satuan"].ToString();
-                        lblsu.Text = ds.Tables[0].Rows[0]["ARK_SU"].ToString();
+                        lblsu.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
                         lbltahun.Text = ds.Tables[0].Rows[0]["ARK_Tahunan"].ToString();
-                        lblgt.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
-                        lblsisagt.Text = "Rp. " + Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        lblgt.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        lblsisagt.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
 
                         voljan.Text = jan;
                         volfeb.Text = feb;
@@ -84,7 +83,7 @@ namespace Telkomsat.admin
                         volokt.Text = okt;
                         volnov.Text = nov;
                         voldes.Text = des;
-
+/*
                         totjan.Text = djan.ToString();
                         totfeb.Text = dfeb.ToString();
                         totmar.Text = dmar.ToString();
@@ -96,7 +95,7 @@ namespace Telkomsat.admin
                         totsep.Text = dsep.ToString();
                         totokt.Text = dokt.ToString();
                         totnov.Text = dnov.ToString();
-                        totdes.Text = ddes.ToString();
+                        totdes.Text = ddes.ToString();*/
                     }
 
                 }
@@ -145,7 +144,7 @@ namespace Telkomsat.admin
                         ja = ds.Tables[0].Rows[i]["AJ_JA"].ToString();
                         kegiatan = ds.Tables[0].Rows[i]["AJ_NK"].ToString();
                         status = ds.Tables[0].Rows[i]["AJ_Status"].ToString();
-                        nilai = Convert.ToInt32(ds.Tables[0].Rows[i]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        nilai = Convert.ToInt64(ds.Tables[0].Rows[i]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
 
                         if (status == "diajukan")
                         {

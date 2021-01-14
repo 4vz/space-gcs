@@ -211,6 +211,7 @@ namespace Telkomsat.admin
                         {
                             lblgm.Text = ds7.Tables[0].Rows[0]["gm"].ToString();
                             lblbendahara.Text = ds7.Tables[0].Rows[0]["admin"].ToString();
+                            Button1.Visible = false;
                         }
                     }
                 }

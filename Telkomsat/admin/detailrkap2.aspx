@@ -123,7 +123,6 @@
                                     <thead>
                                         <tr>
                                             <th>Bulan</th>
-                                            <th>Volume</th>
                                             <th>Total</th>
                                         </tr>
                                     </thead>
@@ -131,62 +130,50 @@
                                         <tr>
                                             <td style="padding-bottom:10px;">Januari</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="voljan" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totjan" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Februari</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volfeb" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totfeb" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Maret</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volmar" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totmar" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">April</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volapr" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totapr" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Mei</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volmei" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totmei" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Juni</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="voljuni" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totjuni" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Juli</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="voljuli" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totjuli" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Agustus</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volagu" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totagu" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">September</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volsep" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totsep" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Oktober</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volokt" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totokt" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">November</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="volnov" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totnov" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-bottom:10px;">Desember</td>
                                             <td style="padding-bottom:10px;"><asp:Label runat="server" Id="voldes" CssClass="tdvolume"></asp:Label></td>
-                                            <td style="padding-bottom:10px;"><asp:Label runat="server" Id="totdes" CssClass="tdtotal"></asp:Label></td>
                                         </tr>
                                     </tbody>
                                 </table>

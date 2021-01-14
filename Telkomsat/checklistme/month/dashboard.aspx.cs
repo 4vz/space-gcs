@@ -63,7 +63,7 @@ namespace Telkomsat.checklistme.month
                     sqlcon.Close();
 
                     queryisi = $@"select COUNT(*) as isi from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
-                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and d.nilai != '' and month='{months}' and tahun='{tahun}'";
+                                    join checkme_perangkatwmy t on r.id_perangkat=t.id_perangkat where ruangan = '{ruang}' and d.nilai != '' and month='{months}' and tahun='{tahun}' and r.kategori='month'";
                     sqlcon.Open();
                     SqlCommand cmdisi = new SqlCommand(queryisi, sqlcon);
                     dabar = new SqlDataAdapter(cmdisi);

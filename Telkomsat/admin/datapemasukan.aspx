@@ -26,7 +26,7 @@
                         <input type="text" class="form-control pull-right" id="dateend" runat="server"/>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Kategori</label>
                         <asp:DropDownList ID="ddlKategori" CssClass="form-control" runat="server" onchange="status(this)">
@@ -38,16 +38,6 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Jenis Pengeluaran</label>
-                        <asp:DropDownList ID="ddlpengeluaran" CssClass="form-control" runat="server">
-                            <asp:ListItem>--All--</asp:ListItem>
-                            <asp:ListItem>Cash</asp:ListItem>
-                            <asp:ListItem>Panjar</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div class="col-md-2">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Filter</label>
                         <br />
@@ -122,16 +112,16 @@
             var selectbox = obj;
             var statuslogbook = selectbox.options[selectbox.selectedIndex].value;
             //alert(userinput);
-            if (statuslogbook == "'pengeluaran'") {
-                document.getElementById('<%=ddlpengeluaran.ClientID%>').disabled = false;
+            /*if (statuslogbook == "'pengeluaran'") {
+                document.getElementById('<w%=ddlpengeluaran.ClientID/*').disabled = false;
                 console.log("ksksk");
             }
             else {
-                document.getElementById('<%=ddlpengeluaran.ClientID%>').disabled = true;
-            }
+                document.getElementById('<w%=ddlpengeluaran.ClientID%>/*').disabled = true;
+            }*/
         }
 
-        window.addEventListener('load', function () { document.getElementById('<%=ddlpengeluaran.ClientID%>').disabled = true; }, true);
+        //window.addEventListener('load', function () { document.getElementById('<w%=ddlpengeluaran.ClientID%>').disabled = true; }, true);
     </script>
     <script>
         $(function () {

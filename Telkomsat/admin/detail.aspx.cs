@@ -271,7 +271,7 @@ namespace Telkomsat.admin
 
         void listdata()
         {
-            string queryfile = $"select * from AdminEvidence WHERE  AE_ID = '{id}' and (AE_Ekstension not in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
+            string queryfile = $"select * from AdminEvidence WHERE  AE_AD = '{id}' and (AE_Ekstension not in ('.jpeg', '.png', '.bmp', '.jfif', '.gif', '.jpg', '.PNG'))";
             DataList3a.Visible = true;
             sqlCon.Open();
             SqlDataAdapter sqlda1 = new SqlDataAdapter(queryfile, sqlCon);

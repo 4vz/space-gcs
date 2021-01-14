@@ -238,7 +238,7 @@
                         </div>
                         <div class="box-footer">
                             <button type="button" id="btnriwayat" style="margin-right:10px" class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalriwayat">History</button>
-                            <asp:Button ID="Button1" CssClass="btn btn-warning btn-sm" runat="server" Text="Edit" OnClick="Edit_Click" />
+                            <asp:Button ID="Button1" CssClass="btn btn-warning btn-sm" runat="server" Text="Edit" OnClick="Edit_Click" Visible="false" />
                         </div>
 
                     </div>

@@ -27,6 +27,9 @@ namespace Telkomsat
             DateTime firstDay = new DateTime(DateTime.Now.Year, 1, 1);
             bool isItFirstMonday = DateTime.Today.DayOfWeek == DayOfWeek.Monday
                          && DateTime.Today.Day <= 7;
+            DateTime middate = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12));
+
+            string jk = DateTime.Now.AddMonths(-2).Month.ToString();
 
             double tester;
 
@@ -41,7 +44,7 @@ namespace Telkomsat
 
             string btahun = DateTime.Now.Month.ToString();
 
-            Response.Write("ini tester =  " + btahun + "  | ");
+            Response.Write("ini tester =  " + jk + "  | ");
 
 
 

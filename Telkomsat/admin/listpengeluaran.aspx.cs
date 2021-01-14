@@ -38,6 +38,9 @@ namespace Telkomsat.admin
             {
                 if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString().IsIn((new string[] { "Admin Bendahara", "User", "SA" })))
                     btntmbh.Visible = true;
+
+                if (ds2.Tables[0].Rows[0]["AP_Previllage"].ToString() != "User")
+                    lidraft.Visible = false;
             }
             if (!IsPostBack)
             {
@@ -165,9 +168,9 @@ namespace Telkomsat.admin
                         }*/
 
                         htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}&tipe=3Xc5T79kLm1Oo\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
-                        if (evidence == "" || evidence == null)
+/*                        if (evidence == "" || evidence == null)
                             htmlTable.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
-                        htmlTable.Append("</tr>");
+*/                        htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
@@ -240,9 +243,9 @@ namespace Telkomsat.admin
                         }*/
 
                         htmlTable1.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
-                        if (evidence == "" || evidence == null)
+/*                        if (evidence == "" || evidence == null)
                             htmlTable1.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
-                        if(approve == "draft") 
+*/                        if(approve == "draft") 
                         {
                             htmlTable1.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&tipe=pengeluaran')\" class=\"btn btn-sm btn-success\" id=\"btndelete\">" + "Ajukan" + "</a>");
                             htmlTable1.Append($"<a href=\"editpengeluaran.aspx?id={IDdata}\" class=\"pull-right\" id=\"btnedit\">" + "Edit" + "</a>");

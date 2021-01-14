@@ -66,13 +66,13 @@ namespace Telkomsat.admin
         void referens()
         {
             string query, IDdata, referensi, gt, tanggal, evidence, simpanan;
-            query = $"select * from administrator where kategori = 'pemasukan' order by tanggal desc";
+            query = $"select * from administrator where kategori = 'pemasukan' order by tanggal desc, id_admin desc";
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Evidence</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -96,7 +96,7 @@ namespace Telkomsat.admin
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + simpanan + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
-                        if (evidence == "" || evidence == null)
+                        /*if (evidence == "" || evidence == null)
                         {
                             htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                         }
@@ -110,12 +110,12 @@ namespace Telkomsat.admin
                             {
                                 htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + ds.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
                             }
-                        }
+                        }*/
 
                         htmlTable.Append("<td>" + $"<a href=\"detail.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
-                        if (evidence == "" || evidence == null)
+/*                        if (evidence == "" || evidence == null)
                             htmlTable.Append($"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datatotal\" data-toggle=\"modal\" data-target=\"#modalupdate\" id=\"edit\">" + "<span class=\"fa fa-paperclip\"></span>" + "</button>");
-                        htmlTable.Append("</tr>");
+*/                      htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
                     htmlTable.Append("</table>");
