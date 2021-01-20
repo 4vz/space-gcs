@@ -77,24 +77,19 @@
                                               <td><asp:Label ID="lblnamaakun" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                          <tr>
-                                              <th>Satuan</th>
+                                              <th>Keterangan</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblsatuan" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
-                                          <tr>
-                                              <th>Harga</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lblharga" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
                                         <tr>
-                                              <th>Volume dalam 1 Tahun</th>
-                                              <td>:</td>
-                                              <td><asp:Label ID="lbltahun" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
-                                          </tr>
-                                        <tr>
-                                              <th>Grand Total</th>
+                                              <th>Total Awal</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblgt" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
+                                        <tr>
+                                              <th>Total Tahunan</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lbltahunan" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                         <tr>
                                               <th>Sisa Grand Total</th>

@@ -13,7 +13,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
             <div class="inner">
-                <asp:Label Font-Size="22px" ID="dashtotal" runat="server" Text="Label"></asp:Label>
+                <asp:Label Font-Size="22px" ID="dashtotal" runat="server" Text="0"></asp:Label>
                 <p>Total</p>
             </div>
             <div class="icon">
@@ -27,7 +27,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
             <div class="inner">
-                <asp:Label Font-Size="22px" ID="dashharkat" runat="server" Text="Label"></asp:Label>
+                <asp:Label Font-Size="22px" ID="dashharkat" runat="server" Text="0"></asp:Label>
 
                 <p>Harkat</p>
             </div>
@@ -42,7 +42,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
             <div class="inner">
-                <asp:Label Font-Size="22px" ID="dashme" runat="server" Text="Label"></asp:Label>
+                <asp:Label Font-Size="22px" ID="dashme" runat="server" Text="0"></asp:Label>
 
                 <p>Mechanical Electrical</p>
             </div>

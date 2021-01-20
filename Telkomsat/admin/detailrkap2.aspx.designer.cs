@@ -141,24 +141,6 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.Label lblsatuan;
 
         /// <summary>
-        /// lblharga control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblharga;
-
-        /// <summary>
-        /// lbltahun control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltahun;
-
-        /// <summary>
         /// lblgt control.
         /// </summary>
         /// <remarks>
@@ -166,6 +148,15 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblgt;
+
+        /// <summary>
+        /// lbltahunan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltahunan;
 
         /// <summary>
         /// lblsisagt control.

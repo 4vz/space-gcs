@@ -219,7 +219,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjanuari;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtjanuari;
 
         /// <summary>
         /// Text2 control.
@@ -237,7 +237,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtfebruari;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtfebruari;
 
         /// <summary>
         /// Text4 control.
@@ -255,7 +255,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtmaret;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmaret;
 
         /// <summary>
         /// Text6 control.
@@ -273,7 +273,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtapril;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtapril;
 
         /// <summary>
         /// Text8 control.
@@ -291,7 +291,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtmei;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtmei;
 
         /// <summary>
         /// Text10 control.
@@ -309,7 +309,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjuni;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtjuni;
 
         /// <summary>
         /// Text12 control.
@@ -327,7 +327,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtjuli;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtjuli;
 
         /// <summary>
         /// Text14 control.
@@ -345,7 +345,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtagustus;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtagustus;
 
         /// <summary>
         /// Text16 control.
@@ -363,7 +363,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtseptember;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtseptember;
 
         /// <summary>
         /// Text18 control.
@@ -381,7 +381,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtoktober;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtoktober;
 
         /// <summary>
         /// Text20 control.
@@ -399,7 +399,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtnovemb;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnovemb;
 
         /// <summary>
         /// Text22 control.
@@ -417,7 +417,7 @@ namespace Telkomsat.admin
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtdesember;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtdesember;
 
         /// <summary>
         /// btnsubmit control.

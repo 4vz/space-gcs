@@ -63,7 +63,6 @@ namespace Telkomsat.admin
                         txtcc.Value = ds.Tables[0].Rows[0]["ARK_CC"].ToString();
                         txtnamaakun.Text = ds.Tables[0].Rows[0]["ARK_NA"].ToString();
                         txtnoakun.Value = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
-                        txtnominal.Value = ds.Tables[0].Rows[0]["ARK_Harga"].ToString();
                         txtsatuan.Text = ds.Tables[0].Rows[0]["ARK_Satuan"].ToString();
                         txtsubunit.Text = ds.Tables[0].Rows[0]["ARK_SU"].ToString();
                         txtunit.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
@@ -120,14 +119,13 @@ namespace Telkomsat.admin
         {
             int count, a = 0, b = 0, tahun;
             double total, gt;
-            string nominal = txtnominal.Value.Replace(".", "");
 
             /*count = Convert.ToInt32(txtcount.Text);
             myket = new string[count];
             myvolume = new string[count];*/
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"UPDATE AdminRKAP SET ARK_Aktivitas='{txtaktivitas.Value}', ARK_SU='{txtsubunit.Text}', ARK_BG='{txtunit.Text}', ARK_CC='{txtcc.Value}', ARK_NoA='{txtnoakun.Value}',
-                        ARK_NA='{txtnamaakun.Text}', ARK_Satuan='{txtsatuan.Text}', ARK_Harga='{nominal}', ARK_Kategori='{sokategori.Value}', 
+            query = $@"UPDATE AdminRKAP SET ARK_Aktivitas='{txtaktivitas.Value}', ARK_BG='{txtsubunit.Text}', ARK_SU='{txtunit.Text}', ARK_CC='{txtcc.Value}', ARK_NoA='{txtnoakun.Value}',
+                        ARK_NA='{txtnamaakun.Text}', ARK_Satuan='{txtsatuan.Text}', ARK_Kategori='{sokategori.Value}', 
                         ARK_Januari='{txtjanuari.Value}', ARK_Februari='{txtfebruari.Value}', ARK_Maret='{txtmaret.Value}', ARK_April='{txtapril.Value}',
                         ARK_Mei='{txtmei.Value}', ARK_Juni='{txtjuni.Value}', ARK_Juli='{txtjuli.Value}', ARK_Agustus='{txtagustus.Value}',
                         ARK_September='{txtseptember.Value}', ARK_Oktober='{txtoktober.Value}', ARK_November='{txtnovemb.Value}', ARK_Desember='{txtdesember.Value}' WHERE ARK_ID='{iddata}'";
@@ -148,7 +146,7 @@ namespace Telkomsat.admin
             sqlCmd2.ExecuteNonQuery();
             sqlCon.Close();
 
-            Response.Redirect(Request.RawUrl);
+            Response.Redirect("listrkap.aspx");
         }
 
         protected void Carry_ServerClick(object sender, EventArgs e)
@@ -156,7 +154,6 @@ namespace Telkomsat.admin
             string queryco, bulan = "", bulan2 = "";
             int count, a = 0, b = 0, tahun;
             double total, gt;
-            string nominal = txtnominal.Value.Replace(".", "");
 
             queryco = $"select ARK_{slpetugas1.Value} as bulan, ARK_{slpetugas2.Value} as bulan2 from AdminRKAP where ARK_ID={iddata}";
             DataSet ds = Settings.LoadDataSet(queryco);

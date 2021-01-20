@@ -33,18 +33,18 @@ namespace Telkomsat.admin
                     if (!IsPostBack)
                     {
                         //double dharga = Convert.ToDouble(ds.Tables[0].Rows[0]["ARK_Harga"]);
-                        string jan = ds.Tables[0].Rows[0]["ARK_Januari"].ToString();
-                        string feb = ds.Tables[0].Rows[0]["ARK_Februari"].ToString();
-                        string mar = ds.Tables[0].Rows[0]["ARK_Maret"].ToString();
-                        string apr = ds.Tables[0].Rows[0]["ARK_April"].ToString();
-                        string mei = ds.Tables[0].Rows[0]["ARK_Mei"].ToString();
-                        string jun = ds.Tables[0].Rows[0]["ARK_Juni"].ToString();
-                        string jul = ds.Tables[0].Rows[0]["ARK_Juli"].ToString();
-                        string agu = ds.Tables[0].Rows[0]["ARK_Agustus"].ToString();
-                        string sep = ds.Tables[0].Rows[0]["ARK_September"].ToString();
-                        string okt = ds.Tables[0].Rows[0]["ARK_Oktober"].ToString();
-                        string nov = ds.Tables[0].Rows[0]["ARK_November"].ToString();
-                        string des = ds.Tables[0].Rows[0]["ARK_Desember"].ToString();
+                        string jan = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Januari"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string feb = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Februari"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string mar = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Maret"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string apr = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_April"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string mei = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Mei"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string jun = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Juni"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string jul = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Juli"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string agu = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Agustus"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string sep = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_September"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string okt = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Oktober"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string nov = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_November"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
+                        string des = Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Desember"]).ToString("N0", CultureInfo.GetCultureInfo("de")).ToString();
 
                         /*double djan = dharga * Convert.ToDouble(jan);
                         double dfeb = dharga * Convert.ToDouble(feb);
@@ -67,8 +67,8 @@ namespace Telkomsat.admin
                         lblnoa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
                         lblsatuan.Text = ds.Tables[0].Rows[0]["ARK_Satuan"].ToString();
                         lblsu.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
-                        lbltahun.Text = ds.Tables[0].Rows[0]["ARK_Tahunan"].ToString();
                         lblgt.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        lbltahunan.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Tahunan"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblsisagt.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
 
                         voljan.Text = jan;

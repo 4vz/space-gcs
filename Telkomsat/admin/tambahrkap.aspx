@@ -63,13 +63,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Satuan</label>
+                <label for="exampleInputPassword1">Keterangan</label>
                 <select id="sosatuan" runat="server" class="select2 form-control" style="width: 100%;">
                     <option></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Harga Satuan</label>
+                <label for="exampleInputEmail1">Total</label>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnominal"></asp:RequiredFieldValidator>
                 <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
             </div>
@@ -84,51 +84,51 @@
                     <tbody>
                         <tr>
                             <td><input type="text" class="form-control" value="Januari" id="Text1" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtjanuari" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtjanuari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Februari" id="Text2" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtfebruari" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtfebruari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Maret" id="Text4" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtmaret" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtmaret" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="April" id="Text6" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtapril" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtapril" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Mei" id="Text8" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtmei" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtmei" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Juni" id="Text10" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtjuni" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtjuni" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Juli" id="Text12" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtjuli" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtjuli" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Agustus" id="Text14" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtagustus" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtagustus" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="September" id="Text16" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtseptember" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtseptember" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Oktober" id="Text18" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtoktober" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtoktober" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="November" id="Text20" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtnovemb" runat="server"  name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtnovemb" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Desember" id="Text22" runat="server" readonly/></td >
-                            <td><input type="number" class="form-control" id="txtdesember" runat="server" name="jumlah"/></td >
+                            <td><input type="text" class="form-control" id="txtdesember" runat="server" name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                     </tbody>
                 </table>

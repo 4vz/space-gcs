@@ -96,7 +96,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>#</th><th>Aktivitas</th><th>Total Awal</th><th>Sisa RKAP</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>#</th><th>Aktivitas</th><th>Total RKAP</th><th>Sisa RKAP</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -109,7 +109,7 @@ namespace Telkomsat.admin
                     {
                         IDdata = ds.Tables[0].Rows[i]["ARK_ID"].ToString();
                         referensi = ds.Tables[0].Rows[i]["ARK_Aktivitas"].ToString();
-                        gt = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        gt = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_Tahunan"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         gts = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
