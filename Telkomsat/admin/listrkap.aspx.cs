@@ -75,9 +75,33 @@ namespace Telkomsat.admin
             referens();
         }
 
+        protected void Carry_over(object sender, EventArgs e)
+        {
+            string query, querysave, queryco, total1, total2, bulan1, bulan2;
+            long a, b, c;
+            query = $"select * from AdminRKAP where ARK_ID = {txtcarryover.Text}";
+            DataSet ds7 = Settings.LoadDataSet(query);
+
+            bulan1 = slbulan1.Value;
+            bulan2 = slbulan2.Value;
+
+            total1 = ds7.Tables[0].Rows[0][$"ARK_{bulan1}"].ToString();
+            total2 = ds7.Tables[0].Rows[0][$"ARK_{bulan2}"].ToString();
+
+            a = Convert.ToInt64(total1);
+            b = Convert.ToInt64(total2);
+            c = a + b;
+
+            querysave = $@"update AdminRKAP set ARK_{bulan1} = '0', ARK_{bulan2} = '{c}' where ARK_ID='{txtcarryover.Text}'";
+            SqlCommand cmd = Settings.ExNonQuery(querysave);
+
+            queryco = $"update AdminRKAP set ARK_CarryOver = CONCAT('{bulan1} ke {bulan2};', ARK_CarryOver) where ARK_ID = '{txtcarryover.Text}'";
+            SqlCommand cmdco = Settings.ExNonQuery(queryco);
+
+        }
         protected void Filter_Click(object sender, EventArgs e)
         {
-            string namaakun = "0", bulan = "0";
+            string namaakun = "0", bulan = "0", subunit = "0";
 
             if (txtnamaakun.Text != "")
                 namaakun = txtnamaakun.Text;
@@ -90,7 +114,7 @@ namespace Telkomsat.admin
 
         void referens()
         {
-            string IDdata, referensi, gt, gts;
+            string IDdata, referensi, gt, gts, carry, warna;
 
             DataSet ds = Settings.LoadDataSet(query);
 
@@ -109,13 +133,23 @@ namespace Telkomsat.admin
                     {
                         IDdata = ds.Tables[0].Rows[i]["ARK_ID"].ToString();
                         referensi = ds.Tables[0].Rows[i]["ARK_Aktivitas"].ToString();
+                        carry = ds.Tables[0].Rows[i]["ARK_CarryOver"].ToString();
                         gt = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_Tahunan"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         gts = Convert.ToInt64(ds.Tables[0].Rows[i]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+
+                        if(carry != null && carry != "")
+                        {
+                            style3 = "padding:3px;background-color:green;color:#ffffff";
+                        }
+                        else
+                        {
+                            style3 = "";
+                        }
                         htmlTable.Append("<tr>");
                         htmlTable.Append("<td>" + (i + 1) + "</td>");
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + referensi + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gt + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + "Rp. " + gts + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label>" + "Rp. " + gt + "</label>" + "</td>");
+                        htmlTable.Append("<td>" + $"<label>" + "Rp. " + gts + "</label>" + "</td>");
                         htmlTable.Append("<td>" + $"<a href=\"detailrkap2.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</a>");
 
                         if(previllage == "SA")
@@ -124,7 +158,7 @@ namespace Telkomsat.admin
                             htmlTable.Append($"<a onclick=\"confirmhapus('action.aspx?idrk={IDdata}')\" class=\"btn btn-sm btn-danger\" id=\"btndelete\">" + "Delete" + "</a>");
                         }
                         if(previllage == "User Organik" || previllage == "GM")
-                            htmlTable.Append($"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datamain\" data-toggle=\"modal\" data-target=\"#modalcarry\" id=\"edit\">" + "Carry Over" + "</button></td>");
+                            htmlTable.Append($"<button type=\"button\"  style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-default datacarry\" data-toggle=\"modal\" data-target=\"#modalcarry\" id=\"edit\">" + "Carry Over" + "</button></td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");

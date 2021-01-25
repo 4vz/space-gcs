@@ -49,7 +49,8 @@
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="rdjupd"></asp:RequiredFieldValidator>
                          <asp:RadioButtonList ID="rdjupd" runat="server" RepeatDirection="Horizontal" CssClass="rbl">
                              <asp:ListItem>Panjar</asp:ListItem>
-                             <asp:ListItem>Cash</asp:ListItem>
+                             <asp:ListItem>Opex</asp:ListItem>
+                             <asp:ListItem>Capex</asp:ListItem>
                          </asp:RadioButtonList>
                     </div>
                  </div>
@@ -97,7 +98,7 @@
             <div class="row">
                  <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Nilai</label>
+                        <label for="exampleInputPassword1">Nilai Justifikasi</label>
                          <asp:CompareValidator runat="server" id="cmpNumbers" controltovalidate="TextBox1" controltocompare="TextBox2" ForeColor="Red" operator="LessThan" type="Integer" errormessage="Tidak boleh lebih dari nilai RKAP " />
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnilai"></asp:RequiredFieldValidator>
                         <input type="text" class="form-control nilaitext" id="txtnilai" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
@@ -180,6 +181,7 @@
 </div>
     <asp:TextBox ID="TextBox1" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="TextBox2" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtja" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
@@ -202,7 +204,7 @@
         $(function () {
             $.ajax({
                 type: "POST",
-                url: "justifikasi.aspx/GetUnit",
+                url: "tambahrkap.aspx/GetNamaAkun",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -213,8 +215,8 @@
                     $(customers).each(function () {
                         $('#<%=soja.ClientID %>').append($('<option>',
                             {
-                                value: this.unit,
-                                text: this.unit,
+                                value: this.namaakun,
+                                text: this.namaakun,
                             }));
                     });
                     $('#<%=soja.ClientID %>').val(unit3);
@@ -227,6 +229,7 @@
                     alert(response.d);
                 }
             });
+
 
             $.ajax({
                 type: "POST",
@@ -246,7 +249,7 @@
                                 text: this.proker,
                             }));
                     });
-                    $('#<%=soproker.ClientID %>').val(petugas);
+                    $('#<%=soproker.ClientID %>').val(prok);
                 },
                 failure: function (response) {
 
@@ -300,7 +303,7 @@
                 success: function (response) {
                     var customers = response.d;
                     $(customers).each(function () {
-                        $('#<%=txtnilairkap.ClientID%>').val("Rp. " + this.gt);
+                        $('#<%=txtnilairkap.ClientID%>').val(format(this.gt));
                     });
                 },
                 failure: function (response) {
@@ -345,6 +348,23 @@
             $(e).parents('tr').remove();   //Use the e to delete
             //console.log('klkl');
         }
+
+        function format(str) {
+            var length = 3,
+                separator = ".",
+                count = 0,
+                result = str.split('').reduceRight((a, c) => {
+                    if (count === length) {
+                        a.push(separator);
+                        count = 1;
+                    } else count++;
+                    a.push(c);
+                    return a;
+                }, []).reverse().join('');
+
+            return result;
+        }
+
 
         $('#<%=txttglpsm.ClientID%>').datepicker({
             autoclose: true,

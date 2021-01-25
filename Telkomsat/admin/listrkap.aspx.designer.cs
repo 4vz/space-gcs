@@ -69,13 +69,13 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
-        /// slpetugas1 control.
+        /// slbulan1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slpetugas1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slbulan1;
 
         /// <summary>
         /// txtbulan control.
@@ -96,13 +96,13 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// slpetugas2 control.
+        /// slbulan2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect slpetugas2;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect slbulan2;
 
         /// <summary>
         /// txtnamaakun control.
@@ -112,5 +112,23 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtnamaakun;
+
+        /// <summary>
+        /// txtsubunit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsubunit;
+
+        /// <summary>
+        /// txtcarryover control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcarryover;
     }
 }

@@ -1,11 +1,15 @@
 ﻿<%@ Page Title="Tambah Justifikasi" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="justifikasi.aspx.cs" Inherits="Telkomsat.admin.justifikasi" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css"/>
     <style>
         .rbl input[type="radio"]
         {
            margin-left: 10px;
            margin-right: 1px;
+        }
+        .select2-container--default .select2-results>.select2-results__options{
+           max-height:400px;
         }
     </style>
 </asp:Content>
@@ -60,7 +64,7 @@
                      <div class="form-group">
                         <label for="exampleInputPassword1">RKAP Bulan </label>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue="Tahun"></asp:RequiredFieldValidator>
-                        <select id="sobulan" runat="server" class="select2 form-control" style="width: 100%;">
+                        <select id="sobulan" runat="server" class="form-control" style="width: 100%;">
                             <option value="Tahun">-</option>
                             <option>Januari</option> 
                             <option>Februari</option> 
@@ -82,7 +86,7 @@
                  <div class="col-md-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Jenis Anggaran</label>
-                        <select id="sonamaakun" runat="server" class="select2 form-control" style="width: 100%;">
+                        <select id="sonamaakun" runat="server" class="form-control" style="width: 100%;">
                             <option></option>
                         </select>
                     </div>
@@ -113,7 +117,7 @@
                  <div class="col-md-3" style="margin-left:35px">
                      <div class="form-group">
                         <label for="exampleInputPassword1">Jenis Anggaran</label>
-                        <select id="soja2" runat="server" class="select2 form-control" style="width: 100%;">
+                        <select id="soja2" runat="server" class="form-control" style="width: 100%;">
                             <option></option>
                         </select>
                     </div>
@@ -124,7 +128,7 @@
                      <div class="form-group">
                         <label for="exampleInputPassword1">Range Sisa RKAP </label>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sobulan" InitialValue=""></asp:RequiredFieldValidator>
-                        <select id="sorange" runat="server" class="select2 form-control" style="width: 100%;">
+                        <select id="sorange" runat="server" class="form-control" style="width: 100%;">
                             <option></option>
                             <option value="1">0 - 10.0000.000</option> 
                             <option value="2">10.000.000 - 50.000.000</option> 
@@ -145,6 +149,14 @@
                     </div>
                  </div>
                </div>    
+            <div class="row" style="display:none" id="divnilai">
+                 <div class="col-md-3" style="margin-left:35px">
+                     <div class="form-group">
+                        <label for="exampleInputPassword1">Nilai Sisa RKAP</label>
+                        <input type="text" class="form-control" id="txtnilai2" runat="server" readonly/>
+                    </div>
+                 </div>
+               </div>
             <div class="row">
                  <div class="col-md-5">
                      <div class="form-group">
@@ -215,7 +227,7 @@
                      <div class="form-group">
                         <label for="exampleInputPassword1">Pemberi Tugas</label>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="sotugas" InitialValue=""></asp:RequiredFieldValidator>
-                        <select id="sotugas" runat="server" class="select2 form-control" style="width: 100%;">
+                        <select id="sotugas" runat="server" class="form-control" style="width: 100%;">
                             <option></option>
                         </select>
                     </div>
@@ -226,7 +238,7 @@
 
         <div class="box-footer">
             <asp:Button ID="btnsubmit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="Submit_ServerClick" />
-            <button id="btndraft" class="btn btn-warning" runat="server" style="margin-left:10px" onserverclick="Unnamed_ServerClick">Draft</button>
+            <button id="btndraft" class="btn btn-warning" runat="server" style="margin-left:10px" onserverclick="Unnamed_ServerClick" visible="false">Draft</button>
         </div>
         </asp:Panel>
     </div>
@@ -241,6 +253,7 @@
     <asp:TextBox ID="txtc" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="TextBox5" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
     <script>
@@ -496,6 +509,7 @@
                 success: function (response) {
                     var customers = response.d;
                     $(customers).each(function () {
+                        $('#<%=txtnilai2.ClientID%>').val(format(this.gt));
                         $('#<%=txtb.ClientID%>').val(this.gt);
                         $('#<%=txtc.ClientID%>').val(parseInt($('#<%=txta.ClientID%>').val()) + parseInt($('#<%=txtb.ClientID%>').val()));
                     });
@@ -538,6 +552,7 @@
                 }
             });
         });
+        $('.select2').select2();
 
         $('#<%=sonamaakun.ClientID%>').change(function () {
             idja = $(this).val();
@@ -596,6 +611,7 @@
                     $("#divproker").attr("style", "display:block");
                     $("#divfilter").attr("style", "display:block");
                     $("#divja").attr("style", "display:block");
+                    $("#divnilai").attr("style", "display:block");
                     $('#<%=txtflag.ClientID%>').val(flag);
                     k = 1;
                 }
@@ -604,6 +620,7 @@
                     $("#divproker").attr("style", "display:none");
                     $("#divfilter").attr("style", "display:none");
                     $("#divja").attr("style", "display:none");
+                    $("#divnilai").attr("style", "display:none");
                     $('#<%=txtproker2.ClientID%>').val('');
                     $('#<%=txtflag.ClientID%>').val(flag);
                     k = 0;

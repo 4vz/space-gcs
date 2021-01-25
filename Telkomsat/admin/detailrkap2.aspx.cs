@@ -112,6 +112,7 @@ namespace Telkomsat.admin
                     }
                     else
                     {
+                        lblco.Visible = true;
                         lblcarry.Text = ds2.Tables[0].Rows[0]["ARK_CarryOver"].ToString();
                         lblcarry.Font.Bold = true;
                     }

@@ -150,10 +150,10 @@ namespace Telkomsat.checkhk
                         checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
 						where shelter = '{room}' AND d.tanggal = (SELECT MAX(tanggal) from checkhk_data d join checkhk_parameter r 
 					    on r.id_parameter=d.id_parameter left join checkhk_perangkat p on p.id_perangkat = r.id_perangkat
-					    where p.shelter = '{room}' and d.data is not null) order by p.rack, r.id_perangkat";
+					    where p.shelter = '{room}' and d.data is not null) order by p.rack, r.id_perangkat, r.id_parameter";
             else
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe from checkhk_parameter r left join
-                        checkhk_perangkat p on p.id_perangkat = r.id_perangkat where shelter = '{room}' order by p.rack, r.id_perangkat";
+                        checkhk_perangkat p on p.id_perangkat = r.id_perangkat where shelter = '{room}' order by p.rack, r.id_perangkat, r.id_parameter";
 
             //DataSet ds = Settings.LoadDataSet(query);
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");

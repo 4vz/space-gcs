@@ -164,7 +164,7 @@
                                     <asp:ListItem>Approve</asp:ListItem>
                                     <asp:ListItem>Revision</asp:ListItem>
                                     <asp:ListItem>Reject</asp:ListItem>
-                                    <asp:ListItem>Posponed</asp:ListItem>
+                                    <asp:ListItem>Pending</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                       </div> 
@@ -405,6 +405,7 @@
     <asp:TextBox ID="txtidgm" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtgt" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidrkap" runat="server" CssClass="hidden"></asp:TextBox>
+    <asp:TextBox ID="txtidrkap2" runat="server" Text="" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtideng" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtidjustifikasi" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtliactive" runat="server" CssClass="hidden"></asp:TextBox>
@@ -660,6 +661,7 @@
                         $('#<%=txtgt.ClientID %>').val(this.gt);
                         $('#<%=lbltotal.ClientID %>').html(this.total);
                         $('#<%=txtidrkap.ClientID %>').val(this.idrkap);
+                        $('#<%=txtidrkap2.ClientID %>').val(this.idrkap2);
                         $('#<%=txtidjustifikasi.ClientID %>').val(this.idjustifikasi);
                     });
 

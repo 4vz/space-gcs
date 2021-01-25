@@ -63,6 +63,7 @@ namespace Telkomsat
             if (thisURL.ToLower().IsIn(new string[] { "listpemasukan.aspx", "pemasukan.aspx" })) lipemasukan.Attributes.Add("class", "active");
             if (thisURL.ToLower().IsIn(new string[] { "listpengeluaran.aspx", "pengeluaran.aspx" })) lipengeluaran.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pemindahan.aspx") lipemindahan.Attributes.Add("class", "active");
+            if (thisURL.ToLower().IsIn(new string[] { "listjustifikasi.aspx", "justifikasi.aspx", "detailjustifikasi.aspx" })) lijustifikasi.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "pengembalian2.aspx") lipengembalian.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvementsa.aspx") lisa.Attributes.Add("class", "active");
             if (thisURL.ToLower() == "approvement.aspx")

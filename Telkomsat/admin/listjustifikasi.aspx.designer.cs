@@ -51,6 +51,42 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
 
         /// <summary>
+        /// soja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect soja;
+
+        /// <summary>
+        /// sojp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sojp;
+
+        /// <summary>
+        /// ddlstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstatus;
+
+        /// <summary>
+        /// sotugas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sotugas;
+
+        /// <summary>
         /// PlaceHolder2 control.
         /// </summary>
         /// <remarks>
@@ -67,5 +103,23 @@ namespace Telkomsat.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtidaj;
+
+        /// <summary>
+        /// txtnamaakun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtnamaakun;
+
+        /// <summary>
+        /// txtpetugas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpetugas;
     }
 }

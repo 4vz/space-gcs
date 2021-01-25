@@ -56,7 +56,6 @@
                             <option>Desember</option>
                         </select>
                 </div>
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Filter_Click">Submit</button>
@@ -78,8 +77,8 @@
               <div class="modal-body">
                 <div class="form-group">
                     <label style="font-size:16px; font-weight:bold">Bulan Asal :</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas1" InitialValue=""></asp:RequiredFieldValidator>
-                    <select class="form-control" style="width: 100%;" id="slpetugas1" runat="server">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slbulan1" InitialValue=""></asp:RequiredFieldValidator>
+                    <select class="form-control" style="width: 100%;" id="slbulan1" runat="server">
                         <option></option>
                             <option>Januari</option> 
                             <option>Februari</option> 
@@ -104,8 +103,8 @@
                 </div>
                 <div class="form-group">
                     <label style="font-size:16px; font-weight:bold">Bulan Tujuan :</label>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slpetugas2" InitialValue=""></asp:RequiredFieldValidator>
-                    <select class="form-control" style="width: 100%;" id="slpetugas2" runat="server">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="Group1" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="slbulan2" InitialValue=""></asp:RequiredFieldValidator>
+                    <select class="form-control" style="width: 100%;" id="slbulan2" runat="server">
                         <option></option>
                             <option>Januari</option> 
                             <option>Februari</option> 
@@ -124,7 +123,7 @@
                                     
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Filter_Click" validationgroup="Group1">Submit</button>
+                <button type="button" class="btn btn-success pull-left" runat="server" onserverclick="Carry_over" validationgroup="Group1">Submit</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -133,6 +132,8 @@
         </div>
 
     <asp:TextBox ID="txtnamaakun" CssClass="hidden" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtsubunit" CssClass="hidden" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtcarryover" CssClass="hidden" runat="server"></asp:TextBox>
 
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
@@ -141,6 +142,7 @@
           "autoWidth": true,
           "scrollX": true,
               "ordering": false,
+              "pageLength": 50,
               "lengthChange": true,
             "searching": true
           });
@@ -199,15 +201,16 @@
 
         var myid;
 
-        $('.datamain').click(function () {
+        $('.datacarry').click(function () {
             myid = $(this).val();
-            $('#<%=slpetugas1.ClientID%>').val('');
-            $('#<%=slpetugas2.ClientID%>').val('');
+            $('#<%=txtcarryover.ClientID%>').val(myid);
+            $('#<%=slbulan1.ClientID%>').val('');
+            $('#<%=slbulan2.ClientID%>').val('');
             $('#<%=txtbulan.ClientID%>').val('');
-            console.log(myid);
         });
 
-        $('#<%=slpetugas1.ClientID%>').change(function () {
+
+        $('#<%=slbulan1.ClientID%>').change(function () {
             var idbulan = $(this).val();
             console.log(idbulan);
             $.ajax({

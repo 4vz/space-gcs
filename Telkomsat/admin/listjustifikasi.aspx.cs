@@ -20,27 +20,71 @@ namespace Telkomsat.admin
         string kategori, style3, warna1, warna2, warna3, warna4, jenis, query;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string ja = "", jp = "", petugas = "", status = "";
             jenis = Request.QueryString["jenis"];
 
-            if(jenis != null)
+            /*if(jenis != null)
             {
                 if(jenis == "diajukan")
                 {
                     query = $"SELECT * from AdminJustifikasi where AJ_Status = 'diajukan' order by AJ_ID desc";
                 }
-                else if (jenis == "gm")
-                {
-                    query = $"SELECT * from AdminJustifikasi where AJ_Status = 'gm' order by AJ_ID desc";
-                }
-                else if (jenis == "admin")
-                {
-                    query = $"SELECT * from AdminJustifikasi where AJ_Status = 'admin' order by AJ_ID desc";
-                }
             }
             else
             {
                 query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
+            }*/
+            
+            if (Request.QueryString["ja"] == null && Request.QueryString["status"] == null)
+            {
+                query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
             }
+            else
+            {
+                if (Request.QueryString["ja"] != null)
+                {
+                    ja = "AJ_JA='" + Request.QueryString["ja"] + "'";
+                    if (Request.QueryString["ja"] == "-")
+                        ja = "AJ_JA=AJ_JA";
+                }
+                else
+                {
+                    ja = "AJ_JA=AJ_JA";
+                }
+
+                if (Request.QueryString["jp"] != null)
+                {
+                    jp = $"AJ_JUPD='" + Request.QueryString["jp"] + "' and"; ;
+                    if (Request.QueryString["jp"].ToString() == "-")
+                        jp = "";
+                }
+
+                if (Request.QueryString["petugas"] != null)
+                {
+                    petugas = $"AJ_Profile='" + Request.QueryString["petugas"] + "' and"; ;
+                    if (Request.QueryString["petugas"].ToString() == "-")
+                        petugas = "";
+                }
+
+                if (Request.QueryString["status"] != null)
+                {
+                    status = $"AJ_Status='" + Request.QueryString["status"] + "' and"; ;
+                    if (Request.QueryString["status"].ToString() == "-")
+                        status = "";
+                }
+
+                query = $"SELECT * from AdminJustifikasi where {jp} {petugas} {status} {ja} order by AJ_ID desc";
+
+                if (!IsPostBack)
+                {
+                    sojp.Value = Request.QueryString["jp"].ToString();
+                    txtnamaakun.Text = Request.QueryString["ja"].ToString();
+                    txtpetugas.Text = Request.QueryString["petugas"].ToString();
+                    ddlstatus.SelectedValue = Request.QueryString["status"].ToString();
+                }
+            }
+
+
             string previllage;
             string user = Session["iduser"].ToString();
             string query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
@@ -56,6 +100,25 @@ namespace Telkomsat.admin
             }
                 referens();
             //riwayat();
+        }
+
+        protected void Filter_Click(object sender, EventArgs e)
+        {
+            string namaakun = "-", jp = "-", kl = "-", status = "-", petugas = "-";
+
+            if (sojp.Value != "")
+                jp = sojp.Value;
+
+            if (ddlstatus.SelectedValue != "")
+                status = ddlstatus.SelectedValue;
+
+            if (txtnamaakun.Text != "")
+               namaakun = txtnamaakun.Text;
+
+            if (txtpetugas.Text != "")
+                petugas = txtpetugas.Text;
+
+            Response.Redirect($"listjustifikasi.aspx?petugas={petugas}&ja={namaakun}&jp={jp}&status={status}");
         }
 
         void riwayat()
@@ -168,7 +231,7 @@ namespace Telkomsat.admin
                             warna3 = "black";
                             statusapp = "dikembalikan ke GM";
                         }
-                        else if (status.ToLower() == "posponed")
+                        else if (status.ToLower() == "pending")
                         {
                             warna1 = "deepskyblue";
                             warna2 = "darkcyan";

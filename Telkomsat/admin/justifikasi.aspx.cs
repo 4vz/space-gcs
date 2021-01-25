@@ -36,12 +36,13 @@ namespace Telkomsat.admin
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
-            double dbrkap, dbjustifikasi, dbnilai2;
+            double dbrkap, dbjustifikasi, dbnilai2, dbrkap2;
 
             dbrkap = Convert.ToDouble(txtnilairkap.Value.Replace(".", ""));
+            dbrkap2 = Convert.ToDouble(txtc.Text.Replace(".", ""));
             dbjustifikasi = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
 
-            dbnilai2 = dbjustifikasi - dbrkap;
+            dbnilai2 = dbrkap2 - dbrkap;
             
             string thequery, querynomor, bulantahun, sekarang;
 
@@ -87,7 +88,7 @@ namespace Telkomsat.admin
             else if (txtflag.Text == "1")
             {
                 query = $@"insert into AdminJustifikasi(AJ_AR, AJ_AR2, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Profile, AJ_Nilai, AJ_Nilai2, AJ_Surat) values
-                    ('{txtproker.Text}', '{txtprogram.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}', '{dbrkap}', '{dbnilai2}', '{txtsurat.Value}'); Select Scope_Identity();";
+                    ('{txtproker.Text}', '{txtprogram.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}', '{dbjustifikasi}', '{dbnilai2}', '{txtsurat.Value}'); Select Scope_Identity();";
             }
 
             sqlCon.Open();
@@ -136,12 +137,13 @@ namespace Telkomsat.admin
 
         protected void Submit_ServerClick(object sender, EventArgs e)
         {
-            double dbrkap, dbjustifikasi, dbnilai2;
+            double dbrkap, dbjustifikasi, dbnilai2, dbrkap2;
 
             dbrkap = Convert.ToDouble(txtnilairkap.Value.Replace(".", ""));
+            dbrkap2 = Convert.ToDouble(txtc.Text.Replace(".", ""));
             dbjustifikasi = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
 
-            dbnilai2 = dbjustifikasi - dbrkap;
+            dbnilai2 = dbrkap2 - dbrkap;
 
             string thequery, querynomor, bulantahun, sekarang;
 
@@ -186,7 +188,7 @@ namespace Telkomsat.admin
             else if (txtflag.Text == "1")
             {
                 query = $@"insert into AdminJustifikasi(AJ_AR, AJ_AR2, AJ_JUPD, AJ_JA, AJ_NK, AJ_NJ, AJ_Ket, AJ_Detail, AJ_Tgl, AJ_TglDS, AJ_PT, AJ_Profile, AJ_Nilai, AJ_Nilai2, AJ_Surat) values
-                ('{txtproker.Text}', '{txtprogram.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}', '{dbrkap}', '{dbnilai2}', '{txtsurat.Value}'); Select Scope_Identity();";
+                ('{txtproker.Text}', '{txtprogram.Text}', '{rdjupd.Text}', '{txtunit.Text}', '{txtnamaket.Value}', 'UPD-{jenis}-{bulantahun}-{nomor}', '{txtket.Value}', '{txtdetail.Text}', '{sekarang}', '{txttglpsm.Value}', '{txtpetugas.Text}', '{Session["iduser"].ToString()}', '{dbjustifikasi}', '{dbnilai2}', '{txtsurat.Value}'); Select Scope_Identity();";
             }
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
@@ -338,7 +340,8 @@ namespace Telkomsat.admin
         public static List<inisial> GetJA2(string videoid, string idrange)
         {
             string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
-            int a = 0, b = 0;
+            int a = 0; 
+            long b = 0;
             if(idrange == "1")
             {
                 a = 0;
@@ -346,18 +349,18 @@ namespace Telkomsat.admin
             }
             else if (idrange == "2")
             {
-                a = 1000001;
-                b = 5000000;
+                a = 10000001;
+                b = 50000000;
             }
             else if (idrange == "3")
             {
-                a = 5000001;
-                b = 10000000;
+                a = 50000001;
+                b = 100000000;
             }
             else if (idrange == "4")
             {
-                a = 10000001;
-                b = 1000000000;
+                a = 100000001;
+                b = 90000000000;
             }
             using (SqlConnection con = new SqlConnection(constr))
             {

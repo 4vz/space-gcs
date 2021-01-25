@@ -222,6 +222,15 @@ namespace Telkomsat.admin
         protected global::System.Web.UI.HtmlControls.HtmlSelect soprogram;
 
         /// <summary>
+        /// txtnilai2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtnilai2;
+
+        /// <summary>
         /// txtnamaket control.
         /// </summary>
         /// <remarks>

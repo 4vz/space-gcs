@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Web.Services;
 using System.IO;
 using System.Text;
+using System.Globalization;
 
 namespace Telkomsat.admin
 {
@@ -36,7 +37,7 @@ namespace Telkomsat.admin
             {
                 iddata = Request.QueryString["id"].ToString();
 
-                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_NoA, v.AV_Perusahaan, AP_Nama, AP_ID, k.ARK_GTS
+                query1 = $@"SELECT j.*, r1.AR_Reference [jabatan], r2.AR_Reference [subdit], e.nama, k.ARK_Aktivitas, k.ARK_ID, k.ARK_NoA, v.AV_Perusahaan, AP_Nama, AP_ID, k.ARK_GTS
                                 FROM AdminJustifikasi j full join AdminProfile p on j.AJ_PT=p.AP_ID full join AdminReference r1
                                 on r1.AR_ID = p.AP_Jabatan full join AdminReference r2 on r2.AR_ID = p.AP_Subdit full join AdminRKAP k
                                 on k.ARK_ID = j.AJ_AR full join AdminVendor v on v.AV_ID=j.AJ_AV full join Profile e on e.id_profile=p.AP_Nama WHERE AJ_ID = '{iddata}'";
@@ -52,8 +53,9 @@ namespace Telkomsat.admin
                         txtdetail.Text = ds.Tables[0].Rows[0]["AJ_Detail"].ToString();
                         txtket.Value = ds.Tables[0].Rows[0]["AJ_Ket"].ToString();
                         txtnamaket.Value = ds.Tables[0].Rows[0]["AJ_NK"].ToString();
-                        txtnilairkap.Value = "Rp. " + ds.Tables[0].Rows[0]["ARK_GTS"].ToString();
-                        txtnilai.Value = ds.Tables[0].Rows[0]["AJ_Nilai"].ToString();
+                        txtja.Text = ds.Tables[0].Rows[0]["ARK_ID"].ToString();
+                        txtnilairkap.Value = Convert.ToInt32(ds.Tables[0].Rows[0]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+                        txtnilai.Value = Convert.ToInt32(ds.Tables[0].Rows[0]["AJ_Nilai"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lblnj.Text = ds.Tables[0].Rows[0]["AJ_NJ"].ToString();
                         txtpetugas.Text = ds.Tables[0].Rows[0]["AP_ID"].ToString();
                         txtproker.Text = ds.Tables[0].Rows[0]["AJ_AR"].ToString();

@@ -173,6 +173,7 @@
                                     </tbody>
                                 </table>
                                 <br />
+                                <asp:Label ID="lblco" runat="server" Text="Terdapat carry over " Visible="false" Font-Bold="true"></asp:Label>
                                 <asp:Label ID="lblcarry" runat="server" Text="Tidak ada carry over"></asp:Label>
                             </div>
                         </div>

@@ -134,40 +134,12 @@
           </a>
         </li>
         </ul>
-        <ul class="sidebar-menu" data-widget="tree" runat="server" id="Ul1" visible="true">
-          <li class="treeview" id="lijustifikasi" runat="server">
-          <a href="#">
-            <i class="fa fa-money"></i> <span>Justifikasi</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-            <ul class="treeview-menu">
-            <li id="li9" runat="server">
-              <a href="../admin/listjustifikasi.aspx">
-                <i class="fa fa-th-list"></i> <span>All</span>
-              </a>
-            </li>
-            <li id="li10" runat="server">
-              <a href="../admin/listjustifikasi.aspx?jenis=diajukan">
-                <i class="fa fa-th-list"></i> <span>Diajukan</span>
-              </a>
-            </li>
-                <li id="li11" runat="server">
-              <a href="../admin/listjustifikasi.aspx?jenis=gm">
-                <i class="fa fa-th-list"></i> <span>Diapprove GM</span>
-              </a>
-            </li>
-                <li id="li14" runat="server">
-              <a href="../admin/listjustifikasi.aspx?jenis=admin">
-                <i class="fa fa-th-list"></i> <span>Diapprove Bendahara</span>
-              </a>
-            </li>
-            </ul>           
-            </li>
-        
-        </ul>
          <ul class="sidebar-menu"> 
+        <li class="treeview" id="lijustifikasi" runat="server">
+          <a href="../admin/listjustifikasi.aspx">
+            <i class="fa fa-money"></i> <span>Justifikasi</span>
+          </a>
+        </li>
           <li class="treeview" id="liuser" runat="server" visible="false">
           <a href="../admin/approvement.aspx?jenis=diajukan">
             <i class="fa fa-check-circlet"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
