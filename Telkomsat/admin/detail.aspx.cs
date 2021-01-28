@@ -24,7 +24,7 @@ namespace Telkomsat.admin
         StringBuilder htmlTable3 = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
         StringBuilder htmlTable2 = new StringBuilder();
-        string evidence, idjustifikasi, userid;
+        string evidence, idjustifikasi, userid, jenis;
         string[] myfile, intanggal, inketerangan, inpcs, inharga, inevidence;
 
         string querypanjar, tanggal = "", totalpanjar, input = "", vendor, kategori, keterangan, fileu, nominal, id;
@@ -97,6 +97,7 @@ namespace Telkomsat.admin
                         {
                             divpertanggungan.Visible = true;
                             btnsubmit2.Visible = true;
+                            jenis = "user";
                         }
 
                     }
@@ -106,6 +107,7 @@ namespace Telkomsat.admin
                         {
                             btnreject.Visible = true;
                             btnid.Visible = true;
+                            jenis = "bendahara";
                         }
 
                     }
@@ -445,7 +447,7 @@ namespace Telkomsat.admin
 
         void tblpertanggungan()
         {
-            string dptotal, dpharga, filepath, IDdata = "", query2 = "", status = "";
+            string dptotal, dpharga, filepath, IDdata = "", query2 = "", status = "", style5 = "", style6="";
 
             if (userid == "User")
                 query2 = $"select * from AdminPertanggungan where AT_AD = {id}";
@@ -481,14 +483,36 @@ namespace Telkomsat.admin
                         filepath = ds2.Tables[0].Rows[i]["AT_EvidencePath"].ToString().Replace("~", "..");
                         status = ds2.Tables[0].Rows[i]["AT_Status"].ToString();
 
+                        if (status == "submit")
+                            style5 = "label label-primary";
+                        else if(status == "accepted")
+                            style5 = "label label-success";
+                        else if (status == "reject")
+                            style5 = "label label-danger";
+
+                        if(jenis == "user")
+                        {
+                            if (status == "submit")
+                                style6 = "disabled=\"disabled\"";
+                            else
+                                style6 = "";
+                        }
+                        else if(jenis == "bendahara")
+                        {
+                            if (status == "reject" || status == "accepted")
+                                style6 = "disabled=\"disabled\"";
+                            else
+                                style6 = "";
+                        }
+
                         htmlTable3.Append("<tr>");
-                        htmlTable3.Append("<td>" + $"<input type=\"checkbox\" value=\"{IDdata}\" name=\"getid\"> " + "</td>");
+                        htmlTable3.Append("<td>" + $"<input type=\"checkbox\" value=\"{IDdata}\" {style6} name=\"getid\"> " + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dt.ToString("dd MMM yyyy") + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_keterangan"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_pcs"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dpharga + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + dptotal + "</label>" + "</td>");
-                        htmlTable3.Append("<td>" + "<label style=\"font-size:12px;\">" + ds2.Tables[0].Rows[i]["AT_Status"].ToString() + "</label>" + "</td>");
+                        htmlTable3.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{style5}\">" + ds2.Tables[0].Rows[i]["AT_Status"].ToString() + "</label>" + "</td>");
                         htmlTable3.Append("<td>" + $"<button type=\"button\" style=\"font-size:12px;\" class=\"btn btnimg\" value=\"{filepath}\">" + "<i class=\"fa fa-paperclip\"></i>" + "</button>" + "</td>");
                         if (userid == "User" && status == "draft")
                             htmlTable3.Append("<td>" + $"<button type=\"button\" value=\"{IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-warning datawil\" data-toggle=\"modal\" data-target=\"#modaledit\" id=\"edit\">Edit</button>"  + "</td>");

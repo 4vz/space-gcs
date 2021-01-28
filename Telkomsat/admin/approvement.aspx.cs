@@ -854,7 +854,7 @@ namespace Telkomsat.admin
                             if (Session["iduser"].ToString() == ds.Tables[0].Rows[i]["AJ_Profile"].ToString())
                             {
                                 if (status == "" || status == null || status is null)
-                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
+                                    htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?idapp={IDdata}&jenis={Request.QueryString["jenis"].ToString()}')\" style=\"margin-right:10px\" class=\"btn btn-sm btn-primary\" id=\"btndelete\">" + "Usulkan" + "</a>");
                                 //else if (status == "revision")
                                     htmlTable.Append($"<a href=\"editjustifikasi.aspx?id={IDdata}&perbaikan=ya\" class=\"btn btn-sm btn-warning\" id=\"btndelete\">" + "Edit" + "</a>");
                             }
@@ -939,7 +939,7 @@ namespace Telkomsat.admin
                         htmlTable2.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
                         htmlTable2.Append("<td>");
                         if (previllage == "GM")
-                            htmlTable2.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datapeng\" data-toggle=\"modal\" data-target=\"#modalpenggm\">" + "Approve" + "</button>");
+                            htmlTable2.Append($"<button type=\"button\" id=\"btngm\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datapeng\" data-toggle=\"modal\" data-target=\"#modalpenggm\">" + "Action" + "</button>");
                         else if (previllage == "Admin Bendahara")
                         {
                             htmlTable2.Append($"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datapeng\" data-toggle=\"modal\" data-target=\"#modalpengeluaran\">" + "Approve" + "</button>");

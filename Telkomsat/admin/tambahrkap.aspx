@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="tambahrkap.aspx.cs" Inherits="Telkomsat.admin.tambahrkap" %>
+﻿<%@ Page Title="Tambah RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="tambahrkap.aspx.cs" Inherits="Telkomsat.admin.tambahrkap" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -63,6 +63,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="exampleInputPassword1">Jenis Proc</label>
+                <select id="sojp" runat="server" class="form-control" style="width: 100%;">
+                    <option></option>
+                    <option>OPEX</option>
+                    <option>CAPEX</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="exampleInputPassword1">Keterangan</label>
                 <select id="sosatuan" runat="server" class="select2 form-control" style="width: 100%;">
                     <option></option>
@@ -71,7 +79,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Total</label>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Wajib diisi" ForeColor="Red" ControlToValidate="txtnominal"></asp:RequiredFieldValidator>
-                <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/>
+                <input type="text" class="form-control" id="txtnominal" runat="server" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" readonly/>
             </div>
             <div class="form-group">
                 <table class="table table-bordered kita" id="tableku" runat="server">
@@ -84,51 +92,51 @@
                     <tbody>
                         <tr>
                             <td><input type="text" class="form-control" value="Januari" id="Text1" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtjanuari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtjanuari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Februari" id="Text2" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtfebruari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtfebruari" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Maret" id="Text4" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtmaret" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtmaret" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
-                            <td><input type="text" class="form-control" value="April" id="Text6" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtapril" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control" value="April keymonth" id ="Text6" runat="server" readonly/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtapril" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Mei" id="Text8" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtmei" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtmei" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Juni" id="Text10" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtjuni" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtjuni" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Juli" id="Text12" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtjuli" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtjuli" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Agustus" id="Text14" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtagustus" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtagustus" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="September" id="Text16" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtseptember" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtseptember" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Oktober" id="Text18" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtoktober" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtoktober" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="November" id="Text20" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtnovemb" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtnovemb" runat="server"  name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                         <tr>
                             <td><input type="text" class="form-control" value="Desember" id="Text22" runat="server" readonly/></td >
-                            <td><input type="text" class="form-control" id="txtdesember" runat="server" name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
+                            <td><input type="text" class="form-control keymonth" id ="txtdesember" runat="server" name="jumlah" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);"/></td >
                         </tr>
                     </tbody>
                 </table>
@@ -149,6 +157,31 @@
     <script src="../assets/bower_components/PACE/pace.min.js"></script>
     <script src="nominal.js"></script>
     <script>
+        $(document).ready(function () {
+            
+            $(".keymonth").keyup(function () {
+                var sum = 0;
+                var keyjan = $('#<%=txtjanuari.ClientID %>').val().replace(/\./g, "");
+                var keyfeb = $('#<%=txtfebruari.ClientID %>').val().replace(/\./g, "");
+                var keymar = $('#<%=txtmaret.ClientID %>').val().replace(/\./g, "");
+                var keyapr = $('#<%=txtapril.ClientID %>').val().replace(/\./g, "");
+                var keymei = $('#<%=txtmei.ClientID %>').val().replace(/\./g, "");
+                var keyjun = $('#<%=txtjuni.ClientID %>').val().replace(/\./g, "");
+                var keyjul = $('#<%=txtjuli.ClientID %>').val().replace(/\./g, "");
+                var keyagu = $('#<%=txtagustus.ClientID %>').val().replace(/\./g, "");
+                var keysep = $('#<%=txtseptember.ClientID %>').val().replace(/\./g, "");
+                var keyokt = $('#<%=txtoktober.ClientID %>').val().replace(/\./g, "");
+                var keynov = $('#<%=txtnovemb.ClientID %>').val().replace(/\./g, "");
+                var keydes = $('#<%=txtdesember.ClientID %>').val().replace(/\./g, "");
+                console.log("inikeyup");
+                $('.keymonth').each(function () {
+                    sum += Number($(this).val().replace(/\./g, ""));
+                });
+                $('#<%=txtnominal.ClientID %>').val(parseInt(sum).toLocaleString());
+                //$('#<2%=txtnominal.ClientID %>').val(Number(keyjan + keyfeb + keymar + keyapr + keymei + keyjun + keyjul + keyagu + keysep + keyokt + keynov + keydes));
+            });
+        });
+
         var j = 0;
         var rowCount = 0;
 

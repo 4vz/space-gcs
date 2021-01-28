@@ -31,7 +31,8 @@ namespace Telkomsat.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string query1;
+            string query1, query2;
+            long rkap;
             Page.Form.DefaultButton = btnsubmit.UniqueID;
             if (Request.QueryString["id"] != null)
             {
@@ -62,7 +63,35 @@ namespace Telkomsat.admin
                         txttglpsm.Value = tglds.ToString("yyyy/MM/dd");
                         txtunit.Text = ds.Tables[0].Rows[0]["AJ_JA"].ToString();
                         txtvendor.Text = ds.Tables[0].Rows[0]["AJ_AV"].ToString();
+                        txtsurat.Value = ds.Tables[0].Rows[0]["AJ_Surat"].ToString();
                         rdjupd.Text = ds.Tables[0].Rows[0]["AJ_JUPD"].ToString();
+
+                        if(ds.Tables[0].Rows[0]["AJ_AR2"].ToString() != null && ds.Tables[0].Rows[0]["AJ_AR2"].ToString() != "")
+                        {
+                            divja.Style.Add("display", "block");
+                            divproker.Style.Add("display", "block");
+                            divnilai.Style.Add("display", "block");
+                            divfilter.Style.Add("display", "block");
+
+                            query2 = $"select k.* from AdminJustifikasi j join AdminRKAP k on j.AJ_AR2=ARK_ID where ARK_ID = '{ds.Tables[0].Rows[0]["AJ_AR2"].ToString()}'";
+
+                            DataSet dsa = Settings.LoadDataSet(query2);
+
+                            txtja2.Text = dsa.Tables[0].Rows[0]["ARK_NA"].ToString();
+                            txtproker2.Text = dsa.Tables[0].Rows[0]["ARK_ID"].ToString();
+                            txtnilai2.Value = Convert.ToInt32(dsa.Tables[0].Rows[0]["ARK_GTS"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
+
+                            rkap = Convert.ToInt64(dsa.Tables[0].Rows[0]["ARK_GTS"]);
+
+                            if (rkap > 0 && rkap <= 10000000)
+                                sorange.Value = "1";
+                            else if (rkap > 10000000 && rkap <= 50000000)
+                                sorange.Value = "2";
+                            else if (rkap > 50000000 && rkap <= 100000000)
+                                sorange.Value = "3";
+                            else if (rkap > 100000000)
+                                sorange.Value = "4";
+                        }
                     }
 
                 }
@@ -123,22 +152,29 @@ namespace Telkomsat.admin
 
         protected void Unnamed_ServerClick(object sender, EventArgs e)
         {
-            double dbnilai;
+            double dbnilai, dbrkap, dbrkap2, dbjustifikasi, dbnilai2;
 
             dbnilai = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
+
+            dbrkap = Convert.ToDouble(txtnilairkap.Value.Replace(".", ""));
+            dbrkap2 = Convert.ToDouble(txtc.Text.Replace(".", ""));
+            dbjustifikasi = Convert.ToDouble(txtnilai.Value.Replace(".", ""));
+
+            dbnilai2 = dbrkap2 - dbrkap;
+
             myket = new string[Request.Files.Count];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            if (Request.QueryString["perbaikan"] == null)
+            if (txtflag.Text == "0")
             {
                 query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
-                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}',
+                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}', AJ_Surat='{txtsurat.Value}',
                             AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{dbnilai}' WHERE AJ_ID='{iddata}'";
             }
-            else
+            else if (txtflag.Text == "1")
             {
                 query = $@"UPDATE AdminJustifikasi SET AJ_AR='{txtproker.Text}', AJ_AV='{txtvendor.Text}', AJ_JUPD='{rdjupd.Text}', AJ_JA='{txtunit.Text}', AJ_NK='{txtnamaket.Value}',
-                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}',
-                            AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{dbnilai}', AJ_Status='diajukan' WHERE AJ_ID='{iddata}'";
+                            AJ_KET='{txtket.Value}', AJ_Detail='{txtdetail.Text}', AJ_Surat='{txtsurat.Value}', AJ_AR2='{txtproker2.Text}', AJ_Nilai2='{dbnilai2}',
+                            AJ_TglDS='{txttglpsm.Value}', AJ_PT='{txtpetugas.Text}', AJ_Nilai='{dbnilai}' WHERE AJ_ID='{iddata}'";
             }
 
             sqlCon.Open();

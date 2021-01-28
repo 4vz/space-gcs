@@ -5,6 +5,11 @@
         .select2-container--default .select2-selection--multiple .select2-selection__choice{
             background-color:deepskyblue;
         }
+
+        .main-header .navbar .nav>li>a>.label{
+            font-size:11px;
+            top:1px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,8 +18,8 @@
         <div class="row" style="height:auto">
         <div class="col-md-12">
           <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs pull-right">
-                      <li id="lijustifikasi" runat="server"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
+                    <ul class="nav nav-tabs navbar-nav pull-right">
+                      <li id="lijustifikasi" class="messages-menu dropdown" runat="server"><a href="#justifikasi" data-toggle="tab"><span class="label label-primary" runat="server" id="spcheck">0</span>Justifikasi</a></li>
                       <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
                        <li id="lipertanggungan" runat="server" visible="false"><a href="#pertanggungan" data-toggle="tab">Pertanggungan</a></li> 
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>

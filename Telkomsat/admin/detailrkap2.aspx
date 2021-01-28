@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="detailrkap2.aspx.cs" Inherits="Telkomsat.admin.detailrkap2" %>
+﻿<%@ Page Title="Detail RKAP" Language="C#" MasterPageFile="~/ADMIN.Master" AutoEventWireup="true" CodeBehind="detailrkap2.aspx.cs" Inherits="Telkomsat.admin.detailrkap2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
@@ -75,6 +75,11 @@
                                               <th>Jenis Anggaran</th>
                                               <td>:</td>
                                               <td><asp:Label ID="lblnamaakun" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
+                                          </tr>
+                                        <tr>
+                                              <th>Jenis Proc</th>
+                                              <td>:</td>
+                                              <td><asp:Label ID="lbljp" runat="server" Text="" CssClass="mylabel"></asp:Label></td>
                                           </tr>
                                          <tr>
                                               <th>Keterangan</th>

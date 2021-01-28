@@ -33,6 +33,7 @@ namespace Telkomsat
                 ashiftme.Visible = true;
 
             lblProfile1.Text = Session["nama1"].ToString();
+            iduser = Session["iduser"].ToString();
 
             user = Session["username"].ToString();
             if (!IsPostBack)
@@ -77,10 +78,10 @@ namespace Telkomsat
             sqlCon.Open();
             da = new SqlDataAdapter(cmd2);
             da.Fill(ds);
-            sqlCon.Close();
 
-            if (ds.Tables[0].Rows[0]["approval"].ToString() == "" || ds.Tables[0].Rows[0]["approval"].ToString() == null)
+            if (ds.Tables[0].Rows[0]["approval"] == null || ds.Tables[0].Rows[0]["approval"].ToString() == "")
                 licheck.Visible = false;
+            sqlCon.Close();
 
             logbookonprogress();
             logdeadline();
@@ -89,6 +90,76 @@ namespace Telkomsat
             ticket();
             maintenance();
             approve();
+            approveadmin();
+        }
+
+        void approveadmin()
+        {
+            string query, user, querypeng, querypert, previllage;
+            int a = 0, b = 0, c = 0, d = 0;
+            user = Session["iduser"].ToString();
+            int jenis;
+            query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revision') and AJ_Profile = '{user}')[ajukan],
+		        (select count(*) from AdminJustifikasi where AJ_Status = 'diajukan')[gm],
+		        (select count(*) from AdminJustifikasi where AJ_Status = 'gm')[admin],
+                (select count(*) from AdminJustifikasi where AJ_Status not in ('admin', 'reject')) [sa]";
+
+            DataSet ds = Settings.LoadDataSet(query);
+
+            querypeng = @"select(select count(*) from administrator where approve = 'reject' or approve = 'revision')[user],
+		        (select count(*) from administrator where approve = 'diajukan')[gm],
+		        (select count(*) from administrator where approve = 'gm')[admin]";
+
+            DataSet dspeng = Settings.LoadDataSet(querypeng);
+
+            querypert = @"select(select count(*) from AdminPertanggungan where AT_Status = 'submit')[admin]";
+
+            DataSet dspert = Settings.LoadDataSet(querypert);
+
+            if (dspeng.Tables[0].Rows.Count > 0)
+            {
+                a = Convert.ToInt32(dspeng.Tables[0].Rows[0]["user"].ToString());
+                b = Convert.ToInt32(dspeng.Tables[0].Rows[0]["gm"].ToString());
+                c = Convert.ToInt32(dspeng.Tables[0].Rows[0]["admin"].ToString());
+            }
+
+            if (dspert.Tables[0].Rows.Count > 0)
+            {
+                d = Convert.ToInt32(dspert.Tables[0].Rows[0]["admin"].ToString());
+            }
+
+            query = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet dsprofile = Settings.LoadDataSet(query);
+
+            
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (dsprofile.Tables[0].Rows.Count > 0)
+                {
+                    previllage = dsprofile.Tables[0].Rows[0]["AP_Previllage"].ToString();
+                    Session["adminid"] = dsprofile.Tables[0].Rows[0]["AP_ID"].ToString();
+                    if (previllage == "GM")
+                    {
+                        licheckadmin.Visible = true;
+                        spadmin.InnerText = (Convert.ToInt32(ds.Tables[0].Rows[0]["gm"].ToString()) + b).ToString();
+                        liapproveadmin.HRef = "~/admin/approvement.aspx?jenis=gm";
+                    }
+                        
+                    else if (previllage == "User")
+                    {
+                        licheckadmin.Visible = true;
+                        spadmin.InnerText = (Convert.ToInt32(ds.Tables[0].Rows[0]["ajukan"].ToString()) + a).ToString();
+                        liapproveadmin.HRef = "~/admin/approvement.aspx?jenis=diajukan";
+                    }
+                    else if (previllage == "Admin Bendahara")
+                    {
+                        licheckadmin.Visible = true;
+                        spadmin.InnerText = (Convert.ToInt32(ds.Tables[0].Rows[0]["admin"].ToString()) + c + d).ToString();
+                        liapproveadmin.HRef = "~/admin/approvement.aspx?jenis=admin";
+                    }
+                }
+            }
         }
 
         void approve()

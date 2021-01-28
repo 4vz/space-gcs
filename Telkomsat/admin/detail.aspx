@@ -248,7 +248,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Pertanggungan</h3>
                         <asp:Button ID="btnacc" runat="server" Text="Setujui" CssClass="btn btn-primary pull-right" OnClick="Setujui_Click" Visible="false" OnClientClick="return confirm('Apakah anda yakin?');" />
-                        <button type="button" id="btnsubmit2" class="btn btn-primary pull-right" style="margin:10px" runat="server" visible="false" onserverclick="Pertanggungan2_Click" onclick="return confirm('Apakah anda yakin?')">Submit</button>
+                        <button type="button" id="btnsubmit2" class="btn btn-primary pull-right" style="margin:10px" runat="server" visible="false">Submit</button>
                         <button type="button" id="btnid" class="btn btn-success pull-right" style="margin:10px" runat="server" visible="false">Accept</button>
                         <button type="button" id="btnreject" class="btn btn-danger pull-right" style="margin:10px" runat="server" visible="false" data-toggle="modal" data-target="#modalreject">Reject</button>
 
@@ -280,7 +280,7 @@
                   
               </div>
               <div class="modal-footer">
-                <button type="button" id="btngmup" class="btn btn-info pull-left" onserverclick="Pertanggunganreject_Click" runat="server" >Save</button>
+                <button type="button" id="btnrjk" class="btn btn-info pull-left" runat="server" >Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -371,6 +371,7 @@
         </div>
     <button type="button" id="Button2" class="btn btn-success pull-left hidden" runat="server" onserverclick="Submit_Click" >Save</button>
     <button type="button" id="Button3" class="btn btn-success pull-left hidden" runat="server" onserverclick="Pertanggungan2_Click">Save</button>
+    <button type="button" id="Button5" class="btn btn-success pull-left hidden" runat="server" onserverclick="Pertanggunganreject_Click">Save</button>
     <asp:TextBox ID="txtidpertanggungan" runat="server" CssClass="hidden"></asp:TextBox>
     <asp:TextBox ID="txtid" runat="server" CssClass="hidden"></asp:TextBox>
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
@@ -381,8 +382,8 @@
         var i = 0;
         $(document).ready(function () {
             $("#addfile").click(function () {
-                var markup = "<tr><td><input type='text' name='intanggal' class='form-control datepicker' /></td>" +
-                    "<td><input type='text' name='inketerangan' class='form-control' /></td>" +
+                var markup = "<tr><td><input type='text' name='intanggal' autocomplete='off' class='form-control datepicker dpe' /></td>" +
+                    "<td><input type='text' name='inketerangan' class='form-control ket' /></td>" +
                     "<td><input type='number' name='inpcs' class='form-control' /></td>" +
                     "<td><input type='text' name='inharga' onkeydown='return numbersonly(this, event);' onkeyup='javascript: tandaPemisahTitik(this);' class='form-control' /></td>" +
                     "<td><input name=" + i + "fu type=file /></td>" +
@@ -395,7 +396,8 @@
             $(document).on('click', '.datepicker', function () {
                 $(".datepicker").datepicker({
                     format: 'yyyy/mm/dd', autoclose: true
-                });
+                }).focus();
+                $(this).removeClass('datepicker');
                 console.log("mimi");
             });
 
@@ -407,7 +409,12 @@
                 //alert("My favourite sports are: " + favorite.join(","));
                 var id = favorite.join(",");
                 $('#<%=txtidpertanggungan.ClientID %>').val(id);
-                $('#<%=Button2.ClientID %>').trigger("click");
+                if (id != "") {
+                    $('#<%=Button2.ClientID %>').trigger("click");
+                }
+                else {
+                    alert('harap check pertanggungan untuk di submit');
+                }
             });
             $('#<%=btnid.ClientID %>').click(function () {
                 var favorite = [];
@@ -416,10 +423,17 @@
                 });
                 //alert("My favourite sports are: " + favorite.join(","));
                 var id = favorite.join(",");
+                console.log(id);
                 $('#<%=txtidpertanggungan.ClientID %>').val(id);
-                $('#<%=Button3.ClientID %>').trigger("click");
+                if (id != "") {
+                    $('#<%=Button3.ClientID %>').trigger("click");
+                }
+                else {
+                    alert('harap check pertanggungan untuk di accept');
+                }
+                
             });
-            $('#<%=btnreject.ClientID %>').click(function () {
+            $('#<%=btnrjk.ClientID %>').click(function () {
                 var favorite = [];
                 $.each($("input[name='getid']:checked"), function () {
                     favorite.push($(this).val());
@@ -427,6 +441,12 @@
                 //alert("My favourite sports are: " + favorite.join(","));
                 var id = favorite.join(",");
                 $('#<%=txtidpertanggungan.ClientID %>').val(id);
+                if (id != "") {
+                    $('#<%=Button5.ClientID %>').trigger("click");
+                }
+                else {
+                    alert('harap check pertanggungan untuk di reject');
+                }
                 //$('#<p%=Button3.ClientID %>').trigger("click");
             });
         });
@@ -465,8 +485,11 @@
         function toggle(source) {
             var checkboxes = document.querySelectorAll('input[type="checkbox"]');
             for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i] != source)
-                    checkboxes[i].checked = source.checked;
+                if (checkboxes[i] != source) {
+                    if (!checkboxes[i].disabled)
+                        checkboxes[i].checked = source.checked;
+                }
+                    
             }
         }
 

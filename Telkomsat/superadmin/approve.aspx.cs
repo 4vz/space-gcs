@@ -86,5 +86,36 @@ namespace Telkomsat.superadmin
                 }
             }
         }
+
+        protected void Approveall_Click(object sender, EventArgs e)
+        {
+            string query, queryuser, myid = "", tanggal, user, queryupdate = "";
+            queryuser = $"select alias from Profile where user_name='{Session["username"].ToString()}'";
+
+            DataSet dsuser = Settings.LoadDataSet(queryuser);
+
+            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.lokasi from checkhk_data d left join Profile p on d.id_profile = p.id_profile
+						join checkhk_parameter r on r.id_parameter=d.id_parameter where d.approval is null or d.approval = '' 
+						group by CAST(d.tanggal AS DATE), nama, d.lokasi order by CAST(d.tanggal AS DATE) desc";
+
+            DataSet ds = Settings.LoadDataSet(query);
+
+            user = dsuser.Tables[0].Rows[0]["alias"].ToString();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    DateTime date1 = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
+                    tanggal = date1.ToString("yyyy/MM/dd");
+                    if (ds.Tables[0].Rows[i]["lokasi"].ToString() == "cbi")
+                        myid = $"UPDATE checkhk_data SET approval = 'approve', pic = '{user}' where tanggal >= '{tanggal} 00:00:00' and tanggal <= '{tanggal} 23:59:59' and lokasi = 'cbi'";
+                    else
+                        myid = $"UPDATE checkhk_data SET approval = 'approve', pic = '{user}' where tanggal >= '{tanggal} 00:00:00' and tanggal <= '{tanggal} 23:59:59' and lokasi = 'bjm'";
+
+                    SqlCommand dsapp = Settings.ExNonQuery(myid);
+                }
+            }
+        }
     }
 }

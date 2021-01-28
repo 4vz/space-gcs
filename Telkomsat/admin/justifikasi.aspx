@@ -351,7 +351,7 @@
                     type: "POST",
                     url: "justifikasi.aspx/GetJA2",
                     contentType: "application/json; charset=utf-8",
-                    data: '{videoid:"' + idrange + '", idrange:"' + idrange + '"}',
+                    data: '{videoid:"' + idja2 + '", idrange:"' + idrange + '"}',
                     dataType: "json",
                     success: function (response) {
                         var customers = response.d;

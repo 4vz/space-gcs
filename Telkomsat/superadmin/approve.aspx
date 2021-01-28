@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/APPROVAL.Master" AutoEventWireup="true" CodeBehind="approve.aspx.cs" Inherits="Telkomsat.superadmin.approve" %>
+﻿<%@ Page Title="Approval Checklist" Language="C#" MasterPageFile="~/APPROVAL.Master" AutoEventWireup="true" CodeBehind="approve.aspx.cs" Inherits="Telkomsat.superadmin.approve" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,6 +8,7 @@
                 <div class="box box-danger" style="min-height:90%">
                     <div class="box-header">
                         Data
+                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-sm btn-success pull-right" OnClientClick="if (!confirmselesai()) return false" Text="Approve All" />
                     </div>
                     <div class="box-body">
                         <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
@@ -16,6 +17,8 @@
             </section>
         </div>
     </div>
+
+    <asp:Button ID="btnapprove" runat="server" Text="Button" CssClass="hidden" OnClick="Approveall_Click" />
     <script src="../assets/mylibrary/sweetalert.min.js"></script>
     <script>
         $(function () {
@@ -39,11 +42,11 @@
                 title: 'Apakah Anda Yakin ?',
                 text: 'Data tidak bisa diubah lagi',
                 buttons: true,
-                icon: "success",
+                icon: "info",
 
             }).then((willDelete)=>{
                 if (willDelete) {
-                    document.location = deleteurl;
+                    document.getElementById('<%= btnapprove.ClientID %>').click();
                 }
             });
         }

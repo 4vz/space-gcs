@@ -66,6 +66,7 @@ namespace Telkomsat.admin
                         lblnamaakun.Text = ds.Tables[0].Rows[0]["ARK_NA"].ToString();
                         lblnoa.Text = ds.Tables[0].Rows[0]["ARK_NoA"].ToString();
                         lblsatuan.Text = ds.Tables[0].Rows[0]["ARK_Satuan"].ToString();
+                        lbljp.Text = ds.Tables[0].Rows[0]["ARK_JP"].ToString();
                         lblsu.Text = ds.Tables[0].Rows[0]["ARK_BG"].ToString();
                         lblgt.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_GT"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         lbltahunan.Text = "Rp. " + Convert.ToInt64(ds.Tables[0].Rows[0]["ARK_Tahunan"]).ToString("N0", CultureInfo.GetCultureInfo("de"));

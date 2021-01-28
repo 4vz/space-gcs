@@ -171,8 +171,8 @@ namespace Telkomsat
 
         void approve()
         {
-            string query, user, querypeng;
-            int a = 0, b = 0, c = 0;
+            string query, user, querypeng, querypert;
+            int a = 0, b = 0, c = 0, d = 0;
             user = Session["iduser"].ToString();
             int jenis;
             query = $@"select(select count(*) from AdminJustifikasi where (AJ_Status = '' or AJ_Status is null or AJ_Status = 'revision') and AJ_Profile = '{user}')[ajukan],
@@ -188,6 +188,10 @@ namespace Telkomsat
 
             DataSet dspeng = Settings.LoadDataSet(querypeng);
 
+            querypert = @"select(select count(*) from AdminPertanggungan where AT_Status = 'submit')[admin]";
+
+            DataSet dspert = Settings.LoadDataSet(querypert);
+
             if (dspeng.Tables[0].Rows.Count > 0)
             {
                 a = Convert.ToInt32(dspeng.Tables[0].Rows[0]["user"].ToString());
@@ -195,11 +199,16 @@ namespace Telkomsat
                 c = Convert.ToInt32(dspeng.Tables[0].Rows[0]["admin"].ToString());
             }
 
+            if (dspert.Tables[0].Rows.Count > 0)
+            {
+                d = Convert.ToInt32(dspert.Tables[0].Rows[0]["admin"].ToString());
+            }
+
             if (ds.Tables[0].Rows.Count > 0)
             {
                 lbldiajukan.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["ajukan"].ToString()) + a).ToString();
                 lblgm.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["gm"].ToString()) + b).ToString();
-                lbladmin.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["admin"].ToString()) + c).ToString();
+                lbladmin.Text = (Convert.ToInt32(ds.Tables[0].Rows[0]["admin"].ToString()) + c + d).ToString();
                 lblsa.Text = ds.Tables[0].Rows[0]["sa"].ToString();
             }
         }

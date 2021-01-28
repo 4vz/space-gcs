@@ -16,7 +16,7 @@
                       <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
                       <li id="lidraft" runat="server"><a href="#draft" data-toggle="tab">Draft</a></li>
                         
-                      <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>
+                      <li class="pull-left header"><i class="fa fa-money"></i> Pengeluaran</li>
                     </ul>
               
                 <div class="tab-content no-padding">

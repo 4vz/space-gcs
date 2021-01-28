@@ -37,7 +37,7 @@ namespace Telkomsat.admin
             
             if (Request.QueryString["ja"] == null && Request.QueryString["status"] == null)
             {
-                query = $"SELECT * from AdminJustifikasi order by AJ_ID desc";
+                query = $"SELECT * from AdminJustifikasi where AJ_Status is not null order by AJ_ID desc";
             }
             else
             {

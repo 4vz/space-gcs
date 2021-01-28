@@ -131,6 +131,10 @@
             padding:2px;
         }
 
+        .main-header .navbar .nav>li>a>.label{
+            font-size:11px;
+        }
+
     </style>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
@@ -176,6 +180,12 @@
                     <div class="navbar-custom-menu">
         
                     <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu" runat="server" id="licheckadmin" visible="false">
+                            <a href="../admin/approvement.aspx" runat="server" id="liapproveadmin" >
+                              <i class="fa fa-money" style="font-size:19px"></i>
+                              <span class="label label-success" runat="server" id="spadmin">0</span>
+                            </a>
+                        </li>
                         <li class="dropdown messages-menu" runat="server" id="licheck">
                             <a href="../superadmin/approve.aspx" >
                               <i class="fa fa-check-circle-o" style="font-size:19px"></i>

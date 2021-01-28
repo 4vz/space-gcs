@@ -27,7 +27,7 @@ namespace Telkomsat.admin
         {
             int count, a = 0, b = 0;
             double total;
-            string nominal = txtnominal.Value.Replace(".", "");
+            string nominal = txtnominal.Value.Replace(",", "");
             string januari = txtjanuari.Value.Replace(".", "");
             string februari = txtfebruari.Value.Replace(".", "");
             string maret = txtmaret.Value.Replace(".", "");
@@ -46,11 +46,11 @@ namespace Telkomsat.admin
             myket = new string[12];
             myvolume = new string[12];
             tanggal = DateTime.Now.ToString("yyyy/MM/dd");
-            query = $@"insert into AdminRKAP(ARK_Aktivitas, ARK_SU, ARK_BG, ARK_CC, ARK_NoA, ARK_NA, ARK_Satuan, ARK_GT, ARK_Januari, ARK_Februari, ARK_Maret, ARK_April, ARK_Mei, ARK_Juni, ARK_Juli, ARK_Agustus, ARK_September, ARK_Oktober, ARK_November, ARK_Desember, ARK_Tahun, ARK_Kategori) values
+            query = $@"insert into AdminRKAP(ARK_Aktivitas, ARK_SU, ARK_BG, ARK_CC, ARK_NoA, ARK_NA, ARK_Satuan, ARK_GT, ARK_Januari, ARK_Februari, ARK_Maret, ARK_April, ARK_Mei, ARK_Juni, ARK_Juli, ARK_Agustus, ARK_September, ARK_Oktober, ARK_November, ARK_Desember, ARK_Tahun, ARK_Kategori, ARK_JP) values
                       ('{txtaktivitas.Value}', '{txtsubunit.Text}', '{txtunit.Text}', '{txtcc.Value}', '{txtnoakun.Value}',
                       '{txtnamaakun.Text}', '{txtsatuan.Text}', '{nominal}', '{januari}', '{februari}',
                       '{maret}', '{april}', '{mei}', '{juni}', '{juli}',
-                      '{agustus}', '{september}', '{oktober}', '{november}', '{desember}', '{tahun}', '{sokategori.Value}'); Select Scope_Identity();";
+                      '{agustus}', '{september}', '{oktober}', '{november}', '{desember}', '{tahun}', '{sokategori.Value}', '{sojp.Value}'); Select Scope_Identity();";
             sqlCon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlCon);
             int i = Convert.ToInt32(cmd.ExecuteScalar());
