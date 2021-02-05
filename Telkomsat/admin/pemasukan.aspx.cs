@@ -37,6 +37,13 @@ namespace Telkomsat.admin
 
         protected void Save_ServerClick(object sender, EventArgs e)
         {
+            string idprofile, user, query2, tipe;
+            user = Session["iduser"].ToString();
+
+            query2 = $"Select * from AdminProfile where AP_Nama = '{user}'";
+            DataSet dspro = Settings.LoadDataSet(query2);
+
+            idprofile = dspro.Tables[0].Rows[0]["AP_ID"].ToString();
             var datetime = DateTime.Now.ToString("yyyy/MM/dd");
             string querylast = "select * from administrator where id_admin = (select max(id_admin) from administrator)";
             SqlCommand sqlCmd1 = new SqlCommand(querylast, con);
@@ -71,33 +78,33 @@ namespace Telkomsat.admin
 
             if (ddlKategori.Text == "Rek. Harkat Bendahara 1")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan', 'admin'); Select Scope_Identity();";  
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat + input}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 1', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";  
             }
             else if (ddlKategori.Text == "Rek. Harkat Bendahara 2")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan', 'admin'); Select Scope_Identity();";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat + input}, {rek1me}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. Harkat 2', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";
             }
             else if (ddlKategori.Text == "Rek. ME Bendahara 1")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan', 'admin'); Select Scope_Identity();";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me + input}, {rek2me}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 1', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";
             }
             else if (ddlKategori.Text == "Rek. ME Bendahara 2")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan', 'admin'); Select Scope_Identity();";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me + input}, {braharkat}, {brame}, '{filename}', '{filepath}', 'Rek. ME 2', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";
             }
             else if (ddlKategori.Text == "Brankas Harkat")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan', 'admin'); Select Scope_Identity();";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat + input}, {brame}, '{filename}', '{filepath}', 'Brankas Harkat', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";
             }
             else if (ddlKategori.Text == "Brankas ME")
             {
-                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve)
-                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan', 'admin'); Select Scope_Identity();";
+                queryinsert = $@"INSERT INTO administrator (keterangan, tanggal, input, rek_harkat1, rek_harkat2, rek_me1, rek_me2, bra_harkat, bra_me, evidence, evidencepath, simpanan, kategori, approve, id_profile)
+                                VALUES ('{keterangan.Value}', '{datetime}', '{parse}', {rek1harkat}, {rek2harkat}, {rek1me}, {rek2me}, {braharkat}, {brame + input}, '{filename}', '{filepath}', 'Brankas ME', 'pemasukan', 'admin', '{idprofile}'); Select Scope_Identity();";
             }
 
             con.Open();
@@ -135,6 +142,8 @@ namespace Telkomsat.admin
             lblstatus.Visible = true;
             lblstatus.Text = "  Berhasil Menyimpan";
             lblstatus.ForeColor = System.Drawing.Color.GreenYellow;
+
+            Response.Redirect("listpemasukan.aspx");
         }
 
         void datainput()

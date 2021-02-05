@@ -41,7 +41,8 @@ namespace Telkomsat.admin
             id = Request.QueryString["id"];
             if (id != null)
             {
-                querypanjar = $@"SELECT v.AV_Perusahaan, r.* FROM administrator r full join AdminVendor v on v.AV_ID=r.id_av where id_admin = {id}";
+                querypanjar = $@"SELECT p.nama, v.AV_Perusahaan, r.* FROM administrator r full join AdminVendor v on v.AV_ID=r.id_av 
+                                join AdminProfile e on r.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama where id_admin = {id}";
 
                 SqlCommand cmd = new SqlCommand(querypanjar, sqlCon);
                 da = new SqlDataAdapter(cmd);
@@ -50,6 +51,10 @@ namespace Telkomsat.admin
                 cmd.ExecuteNonQuery();
                 sqlCon.Close();
 
+                if (ds.Tables[0].Rows[0]["nama"] == null || ds.Tables[0].Rows[0]["nama"].ToString() == "")
+                    lblpetugas.Text = "-";
+                else
+                    lblpetugas.Text = ds.Tables[0].Rows[0]["nama"].ToString();
                 vendor = ds.Tables[0].Rows[0]["AV_Perusahaan"].ToString();
                 input = ds.Tables[0].Rows[0]["input"].ToString();
                 kategori = ds.Tables[0].Rows[0]["kategori"].ToString();

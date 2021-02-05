@@ -19,7 +19,7 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs navbar-nav pull-right">
-                      <li id="lijustifikasi" class="messages-menu dropdown" runat="server"><a href="#justifikasi" data-toggle="tab"><span class="label label-primary" runat="server" id="spcheck">0</span>Justifikasi</a></li>
+                      <li id="lijustifikasi" class="messages-menu dropdown" runat="server"><a href="#justifikasi" data-toggle="tab">Justifikasi</a></li>
                       <li id="lipengeluaran" runat="server"><a href="#pengeluaran" data-toggle="tab">Pengeluaran</a></li>
                        <li id="lipertanggungan" runat="server" visible="false"><a href="#pertanggungan" data-toggle="tab">Pertanggungan</a></li> 
                       <li class="pull-left header"><i class="fa fa-inbox"></i> Approvement</li>

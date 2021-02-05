@@ -30,7 +30,12 @@ namespace Telkomsat.admin
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                query = $@"select p.nama, a.* from administrator a join AdminProfile e on a.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama
+                            where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
+                tableticket();
+            }
         }
 
         void tableticket()
@@ -48,7 +53,7 @@ namespace Telkomsat.admin
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
             htmlTable.Append("<tr><th><input type=\"checkbox\" onclick=\"toggle(this); \" /></th>" +
-                "<th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Sisa</th><th>Status</th><th>Action</th></tr>");
+                "<th>Tanggal</th><th>Nama</th><th>Keterangan</th><th>Nominal</th><th>Sisa</th><th>Status</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -62,7 +67,7 @@ namespace Telkomsat.admin
                         IDdata = ds.Tables[0].Rows[i]["id_admin"].ToString();
                         DateTime datee = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = datee.ToString("dd/MM/yyyy");
-                        simpanan = ds.Tables[0].Rows[i]["simpanan"].ToString();
+                        simpanan = ds.Tables[0].Rows[i]["nama"].ToString();
                         evidence = ds.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
                         keterangan = ds.Tables[0].Rows[i]["keterangan"].ToString();
                         nominal = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
@@ -139,7 +144,17 @@ namespace Telkomsat.admin
 
         protected void Filter_ServerClick(object sender, EventArgs e)
         {
-            query = $"select * from administrator where kategori = 'pengeluaran' and approve='admin' and id_profile='{txtpetugas.Text}' order by id_admin desc";
+            if(txtpetugas.Text == null || txtpetugas.Text == "")
+            {
+                query = $@"select p.nama, a.* from administrator a join AdminProfile e on a.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama
+                            where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
+            }
+            else
+            {
+                query = $@"select p.nama, a.* from administrator a join AdminProfile e on a.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama
+                            where kategori = 'pengeluaran' and approve='admin' and a.id_profile='{txtpetugas.Text}' order by id_admin desc";
+            }
+                
             btnid.Visible = true;
             tableticket();
         }

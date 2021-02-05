@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.admin {
-    
-    
-    public partial class dashboard {
-        
+namespace Telkomsat.admin
+{
+
+
+    public partial class dashboard
+    {
+
         /// <summary>
         /// mylabel control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden mylabel;
-        
+
         /// <summary>
         /// dashtotal control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label dashtotal;
-        
+
         /// <summary>
         /// dashharkat control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label dashharkat;
-        
+
         /// <summary>
         /// dashme control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label dashme;
-        
+
         /// <summary>
         /// DBDataPlaceHolder control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
-        
+
         /// <summary>
         /// PlaceHolderpanjar control.
         /// </summary>
@@ -65,25 +67,16 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderpanjar;
-        
+
         /// <summary>
-        /// lblEvent control.
+        /// PlaceHolderJust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEvent;
-        
-        /// <summary>
-        /// datalist1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList datalist1;
-        
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderJust;
+
         /// <summary>
         /// lblrekme1 control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblrekme1;
-        
+
         /// <summary>
         /// lblrekme2 control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblrekme2;
-        
+
         /// <summary>
         /// lblbrame control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblbrame;
-        
+
         /// <summary>
         /// lblrekharkat1 control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblrekharkat1;
-        
+
         /// <summary>
         /// lblrekharkat2 control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace Telkomsat.admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblrekharkat2;
-        
+
         /// <summary>
         /// lblbraharkat control.
         /// </summary>

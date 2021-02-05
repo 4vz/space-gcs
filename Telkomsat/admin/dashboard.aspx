@@ -56,180 +56,146 @@
         </div>
     <div class="row">
 <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
+            <div class="col-lg-7">
             <!-- Custom tabs (Charts with tabs)-->
-            <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
-                <li class="pull-left header"><i class="fa fa-money"></i> Total</li>
-            </ul>
-            <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="table-responsive mailbox-messages">
-                    <div class="table table-responsive">
-                        <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+                <div class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
+                    <li class="pull-left header"><i class="fa fa-money"></i> Total</li>
+                </ul>
+                <div class="tab-content no-padding">
+                    <!-- Morris chart - Sales -->
+                    <div class="table-responsive mailbox-messages">
+                        <div class="table table-responsive">
+                            <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  
+                        </div>
+                <!-- /.table -->
                     </div>
-            <!-- /.table -->
                 </div>
-            </div>
-            <div class="box-footer no-border" style="padding:3px;">
-                    <div class="row">
-                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                        <label style="padding-right:10px">Pemasukan </label>
-                        <span class="label label-info">  </span>
-                    </div>
+                <div class="box-footer no-border" style="padding:3px;">
+                        <div class="row">
                         <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                        <label style="padding-right:10px">Pemindahan </label>
-                        <span class="label label-success">  </span>
+                            <label style="padding-right:10px">Pemasukan </label>
+                            <span class="label label-info">  </span>
+                        </div>
+                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                            <label style="padding-right:10px">Pemindahan </label>
+                            <span class="label label-success">  </span>
+                        </div>
+                        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                            <label style="padding-right:10px">Pengeluaran </label>
+                            <span class="label label-warning">  </span>
+                        </div>
+                        </div>
+                        <!-- /.row -->
                     </div>
-                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                        <label style="padding-right:10px">Pengeluaran </label>
-                        <span class="label label-warning">  </span>
-                    </div>
-                    </div>
-                    <!-- /.row -->
                 </div>
             </div>
+            <div class="col-lg-5">
 
+                    <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Saldo</h3>
+
+                        <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                        <div class="col-md-8">
+                            <div class="chart-responsive">
+                                    <canvas id="pieChart" height="150"></canvas>
+                                  </div>
+                            <!-- ./chart-responsive -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4">
+                            <ul class="chart-legend clearfix">
+                            <li><i class="fa fa-circle-o text-red"></i> Rek. Harkat 1</li>
+                            <li><i class="fa fa-circle-o text-green"></i> Rek. Harkat 2</li>
+                            <li><i class="fa fa-circle-o text-yellow"></i> Rek. ME 1</li>
+                            <li><i class="fa fa-circle-o text-aqua"></i> Rek. ME 2</li>
+                            <li><i class="fa fa-circle-o text-light-blue"></i> Brankas Harkat</li>
+                            <li><i class="fa fa-circle-o text-gray"></i> Brankas ME</li>
+                            </ul>
+                        </div>
+                        <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Harkat
+                            <span class="pull-right text-red"> 62%</span></a></li>
+                        <li><a href="#">ME <span class="pull-right text-green"> 38%</span></a>
+                        </li>
+                    </div>
+                    <!-- /.footer -->
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+
+        </section>
+</div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
-                <li class="pull-left header"><i class="fa fa-money"></i> Permintaan Dana</li>
-            </ul>
-            <div class="tab-content no-padding" style="min-height:300px;">
-                <!-- Morris chart - Sales -->
-                <div class="table-responsive mailbox-messages">
-                    <div class="table table-responsive">
-                        <asp:PlaceHolder ID="PlaceHolderpanjar" runat="server"></asp:PlaceHolder>  
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
+                    <li class="pull-left header"><i class="fa fa-money"></i> Pertanggungan Dana</li>
+                </ul>
+                <div class="tab-content no-padding" style="min-height:300px;">
+                    <!-- Morris chart - Sales -->
+                    <div class="table-responsive mailbox-messages">
+                        <div class="table table-responsive">
+                            <asp:PlaceHolder ID="PlaceHolderpanjar" runat="server"></asp:PlaceHolder>  
+                        </div>
+                <!-- /.table -->
                     </div>
-            <!-- /.table -->
                 </div>
-            </div>
-            <div class="box-footer no-border" style="padding:3px;">
-                    <div class="row">
-                    <div class="col-xs-6 text-center" style="border-right: 1px solid #f4f4f4">
-                        <label style="padding-right:10px">Belum Melampirkan </label>
-                        <span class="label label-danger">  </span>
+                <div class="box-footer no-border" style="padding:3px;">
+
+                        <!-- /.row -->
                     </div>
-                    <div class="col-xs-6 text-center" style="border-right: 1px solid #f4f4f4">
-                        <label style="padding-right:10px">Sudah Beberapa </label>
-                        <span class="label label-success">  </span>
-                    </div>
-                    </div>
-                    <!-- /.row -->
                 </div>
-            </div>
-            
-        </section>
-        <section class="col-lg-5 connectedSortable">
 
-    <div class="box box-solid">
-    <div class="box-header">
-        <!-- tools box -->
-        <div class="pull-right box-tools">
-        <button type="button" class="btn btn-default btn-sm pull-right" data-widget="collapse"
-                data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
-            <i class="fa fa-minus"></i></button>
         </div>
-        <!-- /. tools -->
 
-        <i class="fa fa-newspaper-o"></i>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">tabel</a></li>
+                    <li class="pull-left header"><i class="fa fa-money"></i> Justifikasi </li>
+                </ul>
+                <div class="tab-content no-padding" style="min-height:300px;">
+                    <!-- Morris chart - Sales -->
+                    <div class="table-responsive mailbox-messages">
+                        <div class="table table-responsive">
+                            <asp:PlaceHolder ID="PlaceHolderJust" runat="server"></asp:PlaceHolder>  
+                        </div>
+                <!-- /.table -->
+                    </div>
+                </div>
+                <div class="box-footer no-border" style="padding:3px;">
 
-        <h3 class="box-title">
-        Update Info
-        </h3>
-    </div>
-    <div class="box-body">
-        <div style="min-height: 250px; width: 100%;">
-            <asp:Label ID="lblEvent" runat="server" Text="Tidak ada event" style="font-size:12px; color:#a9a9a9;"></asp:Label>
-            <asp:DataList runat="server" id="datalist1" CssClass="table">
-                    <ItemTemplate>
+                        <!-- /.row -->
+                    </div>
+                </div>
 
-                    <asp:Label Font-Size="16px" ID="KATEGORILabel" CssClass='<%# Eval("kategori").ToString() == "pemasukan" ? "keterangan label label-info" : Eval("kategori").ToString() == "pengeluaran" ? "keterangan label label-warning" : "keterangan label label-success" %>'
-                        runat="server" Text='<%# Eval("kategori") %>' Width="100%"  />
+        </div>
 
-                    <br />
-                        <asp:Label ID="Label1" runat="server" Font-Bold="true" Text='<%# Eval("keterangan") %>' />
-                    <br />
-                    <asp:Label ID="Label2" runat="server" class="namaLB pdg" Text="Jumlah"/>
-                    <span class="pull-right">
-                        <asp:Label ID="Label3" runat="server" class="kategoriLB" Text='<%# "Rp. " + Eval("input", "{0:N0}")%>' />
-                    </span>
-                    <br />
-                
-                    </ItemTemplate>
-            </asp:DataList>
-        </div>
     </div>
-    <!-- /.box-body-->
-    <div class="box-footer no-border">
-        <div class="row">
-        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-            <div class="knob-label">Visitors</div>
-        </div>
-        <!-- ./col -->
-        <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-            <div class="knob-label">Online</div>
-        </div>
-        <!-- ./col -->
-        <div class="col-xs-4 text-center">
-            <div class="knob-label">Exists</div>
-        </div>
-        <!-- ./col -->
-        </div>
-        <!-- /.row -->
-    </div>
-    </div>
-
-    <div class="box box-default">
-    <div class="box-header with-border">
-        <h3 class="box-title">Saldo</h3>
-
-        <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <div class="row">
-        <div class="col-md-8">
-            <div class="chart-responsive">
-                    <canvas id="pieChart" height="150"></canvas>
-                  </div>
-            <!-- ./chart-responsive -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-4">
-            <ul class="chart-legend clearfix">
-            <li><i class="fa fa-circle-o text-red"></i> Rek. Harkat 1</li>
-            <li><i class="fa fa-circle-o text-green"></i> Rek. Harkat 2</li>
-            <li><i class="fa fa-circle-o text-yellow"></i> Rek. ME 1</li>
-            <li><i class="fa fa-circle-o text-aqua"></i> Rek. ME 2</li>
-            <li><i class="fa fa-circle-o text-light-blue"></i> Brankas Harkat</li>
-            <li><i class="fa fa-circle-o text-gray"></i> Brankas ME</li>
-            </ul>
-        </div>
-        <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer no-padding">
-        <ul class="nav nav-pills nav-stacked">
-        <li><a href="#">Harkat
-            <span class="pull-right text-red"> 62%</span></a></li>
-        <li><a href="#">ME <span class="pull-right text-green"> 38%</span></a>
-        </li>
-    </div>
-    <!-- /.footer -->
-    </div>
-    <!-- /.box -->
-
-</section>
-</div>
 
         <div class="modal modal-warning fade" id="modal-warning">
           <div class="modal-dialog">
@@ -321,7 +287,7 @@
     <script>
         $(function () { 
 
-            var test = $('#' + '<%= mylabel.ClientID %>').val();
+            var test = $('#' + '<%= mylabel.ClientID %>').val().replace(/\./g, "");
             var test3 = test.split(',');
             console.log(test3);
 
@@ -333,7 +299,7 @@
           value: test3[0],
       color    : '#f56954',
       highlight: '#f56954',
-      label    : 'Rek. Harkat 1'
+          label: 'Rek. Harkat 1',
     },
     {
       value    : test3[1],
@@ -387,7 +353,6 @@
     responsive           : true,
     // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
     maintainAspectRatio  : false,
-
   };
   // Create pie or douhnut chart
   // You can switch between pie and douhnut using the method below.

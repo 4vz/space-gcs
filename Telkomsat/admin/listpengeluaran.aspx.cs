@@ -44,7 +44,8 @@ namespace Telkomsat.admin
             }
             if (!IsPostBack)
             {
-                query = @"select * from administrator where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
+                query = @"select p.nama, a.* from administrator a join AdminProfile e on a.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama
+                            where kategori = 'pengeluaran' and approve='admin' order by id_admin desc";
                 query3 = @"select * from administrator where kategori = 'pengeluaran' and (approve='diajukan' or approve='gm' or approve ='revision' or approve ='draft') order by id_admin desc";
                 tableticket();
                 tabledraft();
@@ -105,7 +106,7 @@ namespace Telkomsat.admin
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Status</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Nama</th><th>Keterangan</th><th>Nominal</th><th>Status</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -119,7 +120,7 @@ namespace Telkomsat.admin
                         IDdata = ds.Tables[0].Rows[i]["id_admin"].ToString();
                         DateTime datee = (DateTime)ds.Tables[0].Rows[i]["tanggal"];
                         tanggal = datee.ToString("dd/MM/yyyy");
-                        simpanan = ds.Tables[0].Rows[i]["simpanan"].ToString();
+                        simpanan = ds.Tables[0].Rows[i]["nama"].ToString();
                         evidence = ds.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
                         keterangan = ds.Tables[0].Rows[i]["keterangan"].ToString();
                         nominal = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));

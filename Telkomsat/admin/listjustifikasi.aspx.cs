@@ -73,7 +73,7 @@ namespace Telkomsat.admin
                         status = "";
                 }
 
-                query = $"SELECT * from AdminJustifikasi where {jp} {petugas} {status} {ja} order by AJ_ID desc";
+                query = $"SELECT * from AdminJustifikasi where AJ_Status is not null and {jp} {petugas} {status} {ja} order by AJ_ID desc";
 
                 if (!IsPostBack)
                 {

@@ -66,13 +66,14 @@ namespace Telkomsat.admin
         void referens()
         {
             string query, IDdata, referensi, gt, tanggal, evidence, simpanan;
-            query = $"select * from administrator where kategori = 'pemasukan' order by tanggal desc, id_admin desc";
+            query = $@"select p.nama, a.* from administrator a join AdminProfile e on a.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama
+                            where kategori = 'pemasukan' order by a.tanggal desc, id_admin desc";
             style3 = "font-weight:normal";
             DataSet ds = Settings.LoadDataSet(query);
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Jumlah</th><th>Action</th></tr>");
+            htmlTable.Append("<tr><th>Tanggal</th><th>Nama</th><th>Keterangan</th><th>Jumlah</th><th>Action</th></tr>");
             htmlTable.Append("</thead>");
 
             htmlTable.Append("<tbody>");
@@ -85,7 +86,7 @@ namespace Telkomsat.admin
                     {
                         IDdata = ds.Tables[0].Rows[i]["id_admin"].ToString();
                         referensi = ds.Tables[0].Rows[i]["keterangan"].ToString();
-                        simpanan = ds.Tables[0].Rows[i]["simpanan"].ToString();
+                        simpanan = ds.Tables[0].Rows[i]["nama"].ToString();
                         evidence = ds.Tables[0].Rows[i]["evidencepath"].ToString().Replace("~", "..");
                         gt = Convert.ToInt32(ds.Tables[0].Rows[i]["input"]).ToString("N0", CultureInfo.GetCultureInfo("de"));
                         DateTime tgl = Convert.ToDateTime(ds.Tables[0].Rows[i]["tanggal"]);

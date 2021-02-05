@@ -20,7 +20,8 @@ namespace Telkomsat.admin
         DataSet dsmodal = new DataSet();
         StringBuilder htmlTable = new StringBuilder();
         StringBuilder htmlTable1 = new StringBuilder();
-        string nama, status, keterangan, lblcolor, queryupdate, querymodal, style, status1, tanda = "", hijau;
+        StringBuilder htmlTablejus = new StringBuilder();
+        string nama, status, keterangan, lblcolor, queryupdate, querymodal, style, status1, tanda = "", hijau, warna1, warna2, warna3, warna4;
         string IDdata = "kitaa", total = "", querypanjar, tanggal = "", rekharkat, rekme, braharkat, brame, totalpanjar, input ="", kategori ="", input1 = "", kategori1 = "", query;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
         int rek1harkat, rek2harkat, rek1me, rek2me, harkat, me, brankasharkat, brankasme;
@@ -30,9 +31,11 @@ namespace Telkomsat.admin
 
             tablepanjar();
 
-            dataupdate();
+            //dataupdate();
 
             modal();
+
+            justifikasi();
 
             query = @"select id_admin, bra_harkat, bra_me, rek_harkat1, rek_harkat2, rek_me1, rek_me2, total
                                 from administrator where id_admin = (select max(id_admin) from administrator)";
@@ -65,7 +68,12 @@ namespace Telkomsat.admin
                 dashme.Text = brame;
                 dashtotal.Text = total;
 
-                mylabel.Value = rek1harkat + "," + rek2harkat + "," + rek1me + "," + rek2me + "," + brankasharkat + "," + brankasme + ",";
+                mylabel.Value = Convert.ToInt32(rek1harkat).ToString("N0", CultureInfo.GetCultureInfo("de")) + "," +
+                    Convert.ToInt32(rek2harkat).ToString("N0", CultureInfo.GetCultureInfo("de")) + "," +
+                    Convert.ToInt32(rek1me).ToString("N0", CultureInfo.GetCultureInfo("de")) + "," + 
+                    Convert.ToInt32(rek2me).ToString("N0", CultureInfo.GetCultureInfo("de")) + "," + 
+                    Convert.ToInt32(brankasharkat).ToString("N0", CultureInfo.GetCultureInfo("de")) + "," +
+                    Convert.ToInt32(brankasme).ToString("N0", CultureInfo.GetCultureInfo("de")) + ",";
 
             }
 
@@ -199,7 +207,7 @@ namespace Telkomsat.admin
 
             htmlTable1.Append("<table id=\"exampl\" width=\"100%\" class=\"table table - bordered table - hover table - striped\">");
             htmlTable1.Append("<thead>");
-            htmlTable1.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Action</th></tr>");
+            htmlTable1.Append("<tr><th>Tanggal</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th><th>Status</th><th>Action</th></tr>");
             htmlTable1.Append("</thead>");
 
             htmlTable1.Append("<tbody>");
@@ -253,6 +261,7 @@ namespace Telkomsat.admin
                         htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + nama + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + keter + "</label>" + "</td>");
                         htmlTable1.Append("<td>" + $"<label style=\"font-size:12px; {style5}\">" + "Rp. " + nominal + "</label>" + "</td>");
+                        htmlTable1.Append("<td>" + $"<label style=\"font-size:12px;\" class=\"{style}\">" + status8 + "</label>" + "</td>");
                         /*if (evidence == "" || evidence == null)
                         {
                             htmlTable1.Append("<td>" + $"<label style=\"{style5}\">" + ds1.Tables[0].Rows[i]["evidence"].ToString() + "</label>" + "</td>");
@@ -280,7 +289,122 @@ namespace Telkomsat.admin
             }
         }
 
-        void dataupdate()
+        void justifikasi()
+        {
+            string IDdata, jupd, ja, kegiatan, status, statusapp, style3 = "", query;
+            query = $"SELECT top 6 * from AdminJustifikasi where AJ_Status is not null order by AJ_ID desc";
+            style3 = "font-weight:normal";
+            DataSet ds = Settings.LoadDataSet(query);
+
+            htmlTablejus.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
+            htmlTablejus.Append("<thead>");
+            htmlTablejus.Append("<tr><th>#</th><th>Nomor Justifikasi</th><th>Jenis Anggaran</th><th>Nama Kegiatan</th><th>Status Justifikasi</th><th>Action</th></tr>");
+            htmlTablejus.Append("</thead>");
+
+            htmlTablejus.Append("<tbody>");
+            if (!object.Equals(ds.Tables[0], null))
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        IDdata = ds.Tables[0].Rows[i]["AJ_ID"].ToString();
+                        jupd = ds.Tables[0].Rows[i]["AJ_NJ"].ToString();
+                        ja = ds.Tables[0].Rows[i]["AJ_JA"].ToString();
+                        kegiatan = ds.Tables[0].Rows[i]["AJ_NK"].ToString();
+                        status = ds.Tables[0].Rows[i]["AJ_Status"].ToString();
+
+                        if (status == "diajukan")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "black";
+                            warna3 = "black";
+                            warna4 = "black";
+                            statusapp = "menunggu approve GM";
+                        }
+
+                        else if (status == "gm")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "deepskyblue";
+                            warna3 = "black";
+                            statusapp = "menunggu approve Bendahara";
+                        }
+                        else if (status == "ok")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "lightskyblue";
+                            warna3 = "black";
+                            statusapp = "menunggu approve Bendahara";
+                        }
+                        else if (status == "admin")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "deepskyblue";
+                            warna3 = "deepskyblue";
+                            statusapp = "selesai";
+                        }
+                        else if (status == "reject")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "red";
+                            warna3 = "black";
+                            statusapp = "ditolak";
+                        }
+                        else if (status.ToLower() == "revision")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "yellow";
+                            warna3 = "black";
+                            statusapp = "menunggu diperbaiki";
+                        }
+                        else if (status.ToLower() == "dikembalikan")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "sandybrown";
+                            warna3 = "black";
+                            statusapp = "dikembalikan ke GM";
+                        }
+                        else if (status.ToLower() == "pending")
+                        {
+                            warna1 = "deepskyblue";
+                            warna2 = "darkcyan";
+                            warna3 = "black";
+                            statusapp = "ditunda";
+                        }
+                        else
+                        {
+                            warna1 = "black";
+                            warna2 = "black";
+                            warna3 = "black";
+                            warna4 = "black";
+                            statusapp = "menunggu diajukan";
+                        }
+
+                        htmlTablejus.Append("<tr>");
+                        htmlTablejus.Append("<td>" + (i + 1) + "</td>");
+                        htmlTablejus.Append("<td>" + $"<label style=\"{style3}\">" + jupd + "</label>" + "</td>");
+                        htmlTablejus.Append("<td>" + $"<label style=\"{style3}\">" + ja + "</label>" + "</td>");
+                        htmlTablejus.Append("<td>" + $"<label style=\"{style3}\">" + kegiatan + "</label>" + "</td>");
+                        htmlTablejus.Append("<td>" +
+                            $"<span style=\"margin-right:5px; color:{warna1}\"><i class=\"fa fa-circle\"></i></span>" + $"<span style=\"margin-right:5px; color:{warna2}\"><i class=\"fa fa-circle\"></i></span>" +
+                            $"<span style=\"margin-right:5px; color:{warna3}\"><i class=\"fa fa-circle\"></i></span>" +
+                            $"<label style=\"font-size:13px; {style3}; display:block\">" + statusapp + "</label>" + "</td>");
+                        /*htmlTablejus.Append("<td>" + $"<button type=\"button\" id=\"btnadmin\" style=\"margin-right:10px\" value=\"{IDdata}\" class=\"btn btn-sm btn-primary datariwayat\" data-toggle=\"modal\" data-target=\"#modalriwayat\">" + 
+                            "<span><i class=\"fa fa-book\"></i></span>" + "</button>" + "</td>");*/
+                        htmlTablejus.Append("<td>" + $"<a href=\"detailjustifikasi.aspx?id={IDdata}\" style=\"margin-right:7px\" class=\"btn btn-sm btn-default datawil\" >" + "Detail" + "</button>" + "</td>");
+                        htmlTablejus.Append("</tr>");
+                    }
+                    htmlTablejus.Append("</tbody>");
+                    htmlTablejus.Append("</table>");
+                    PlaceHolderJust.Controls.Add(new Literal { Text = htmlTablejus.ToString() });
+                }
+            }
+        }
+
+
+        /*void dataupdate()
         {
             var datetime = DateTime.Now.ToString("yyyy/MM/dd");
             queryupdate = $@"select tanggal, kategori, input, keterangan FROM administrator where tanggal = '{datetime}' ORDER BY id_admin desc";
@@ -296,7 +420,7 @@ namespace Telkomsat.admin
             {
                 lblEvent.Visible = false;
             }
-        }
+        }*/
 
     }
 }

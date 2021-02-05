@@ -142,6 +142,7 @@
                                 text: this.pic,
                             }));
                     });
+                    $('#<%=sotugas.ClientID %>').val($('#<%=txtpetugas.ClientID %>').val());
                 },
                 failure: function (response) {
 

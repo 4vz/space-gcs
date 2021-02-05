@@ -99,6 +99,11 @@
     <!-- form start -->
         <div class="box-body">
         <div class="form-group">
+            <label for="exampleInputEmail1" style="width:120px;">Nama</label>
+            <asp:Label ID="Label7" runat="server">: </asp:Label>
+            <asp:Label ID="lblpetugas" runat="server" Text="Label"></asp:Label>
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1" style="width:120px;">Keterangan</label>
             <asp:Label ID="Label2" runat="server">: </asp:Label>
             <asp:Label ID="lblKeterangan" runat="server" Text="Label"></asp:Label>
