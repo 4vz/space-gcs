@@ -93,7 +93,7 @@ namespace Telkomsat.admin
             if (ds.Tables[0].Rows.Count > 0)
             {
                 previllage = ds.Tables[0].Rows[0]["AP_Previllage"].ToString();
-                if(previllage == "User" || previllage == "User Organik" || previllage == "SA")
+                if(previllage == "User" || previllage == "SA")
                 {
                     btntambah.Visible = true;
                 }

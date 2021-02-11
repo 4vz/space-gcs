@@ -139,12 +139,11 @@ namespace Telkomsat
                 else if (previllage == "User Organik")
                 {
                     lipemindahan.Visible = false;
-                }
-                else if(previllage.ToLower().IsIn(new string[] { "User Organik", "User" }))
-                {
-                    if (thisURL.ToLower().IsIn(new string[] { "pengeluaran.aspx"}))
+                    lidashboard.Visible = false;
+                    lidata.Visible = false;
+                    if (thisURL.ToLower().IsIn(new string[] { "pengeluaran.aspx", "datapemasukan.aspx", "dashboard.aspx", "justifikasi.aspx" }))
                     {
-                        Response.Redirect("dashboard.aspx");
+                        Response.Redirect("listjustifikasi.aspx");
                     }
                 }
                 else

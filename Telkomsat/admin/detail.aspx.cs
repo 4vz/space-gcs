@@ -42,7 +42,7 @@ namespace Telkomsat.admin
             if (id != null)
             {
                 querypanjar = $@"SELECT p.nama, v.AV_Perusahaan, r.* FROM administrator r full join AdminVendor v on v.AV_ID=r.id_av 
-                                join AdminProfile e on r.id_profile=e.AP_ID join Profile p on p.id_profile=e.AP_Nama where id_admin = {id}";
+                               full join AdminProfile e on r.id_profile=e.AP_ID full join Profile p on p.id_profile=e.AP_Nama where id_admin = {id}";
 
                 SqlCommand cmd = new SqlCommand(querypanjar, sqlCon);
                 da = new SqlDataAdapter(cmd);

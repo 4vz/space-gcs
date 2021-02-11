@@ -13,6 +13,7 @@ namespace Telkomsat.superadmin
     {
 
         string bulan { get; set; }
+        string tahun { get; set; }
         string shelter { get; set; }
         string user;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString);
@@ -166,52 +167,53 @@ namespace Telkomsat.superadmin
             total = 15;
             divdata.Visible = true;
             bulan = ddlBulan.SelectedValue;
+            tahun = ddltahun.SelectedValue;
             string query = $@"SELECT p.petugas,
             sum(case 
-				when s.tanggal_shift = '2020-{bulan}-01' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-01' and s.jadwal = 'Sore' then 2 else 0 end) as '01',
+				when s.tanggal_shift = '{tahun}-{bulan}-01' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-01' and s.jadwal = 'Sore' then 2 else 0 end) as '01',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-02' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-02' and s.jadwal = 'Sore' then 2 else 0 end) as '02',
+				when s.tanggal_shift = '{tahun}-{bulan}-02' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-02' and s.jadwal = 'Sore' then 2 else 0 end) as '02',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-03' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-03' and s.jadwal = 'Sore' then 2 else 0 end) as '03',
+				when s.tanggal_shift = '{tahun}-{bulan}-03' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-03' and s.jadwal = 'Sore' then 2 else 0 end) as '03',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-04' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-04' and s.jadwal = 'Sore' then 2 else 0 end) as '04',
+				when s.tanggal_shift = '{tahun}-{bulan}-04' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-04' and s.jadwal = 'Sore' then 2 else 0 end) as '04',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-05' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-05' and s.jadwal = 'Sore' then 2 else 0 end) as '05',
+				when s.tanggal_shift = '{tahun}-{bulan}-05' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-05' and s.jadwal = 'Sore' then 2 else 0 end) as '05',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-06' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-06' and s.jadwal = 'Sore' then 2 else 0 end) as '06',
+				when s.tanggal_shift = '{tahun}-{bulan}-06' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-06' and s.jadwal = 'Sore' then 2 else 0 end) as '06',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-07' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-07' and s.jadwal = 'Sore' then 2 else 0 end) as '07',
+				when s.tanggal_shift = '{tahun}-{bulan}-07' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-07' and s.jadwal = 'Sore' then 2 else 0 end) as '07',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-08' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-08' and s.jadwal = 'Sore' then 2 else 0 end) as '08',
+				when s.tanggal_shift = '{tahun}-{bulan}-08' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-08' and s.jadwal = 'Sore' then 2 else 0 end) as '08',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-09' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-09' and s.jadwal = 'Sore' then 2 else 0 end) as '09',
+				when s.tanggal_shift = '{tahun}-{bulan}-09' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-09' and s.jadwal = 'Sore' then 2 else 0 end) as '09',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-10' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-10' and s.jadwal = 'Sore' then 2 else 0 end) as '10',
+				when s.tanggal_shift = '{tahun}-{bulan}-10' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-10' and s.jadwal = 'Sore' then 2 else 0 end) as '10',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-11' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-11' and s.jadwal = 'Sore' then 2 else 0 end) as '11',
+				when s.tanggal_shift = '{tahun}-{bulan}-11' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-11' and s.jadwal = 'Sore' then 2 else 0 end) as '11',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-12' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-12' and s.jadwal = 'Sore' then 0 else 0 end) as '12',
+				when s.tanggal_shift = '{tahun}-{bulan}-12' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-12' and s.jadwal = 'Sore' then 0 else 0 end) as '12',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-13' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-13' and s.jadwal = 'Sore' then 2 else 0 end) as '13',
+				when s.tanggal_shift = '{tahun}-{bulan}-13' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-13' and s.jadwal = 'Sore' then 2 else 0 end) as '13',
 			sum(case
-				when s.tanggal_shift = '2020-{bulan}-14' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-14' and s.jadwal = 'Sore' then 2 else 0 end) as '14',
+				when s.tanggal_shift = '{tahun}-{bulan}-14' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-14' and s.jadwal = 'Sore' then 2 else 0 end) as '14',
 			sum(case 
-				when s.tanggal_shift = '2020-{bulan}-15' and s.jadwal = 'Pagi' then 1
-				when s.tanggal_shift = '2020-{bulan}-15' and s.jadwal = 'Sore' then 2 else 0 end) as '15'
+				when s.tanggal_shift = '{tahun}-{bulan}-15' and s.jadwal = 'Pagi' then 1
+				when s.tanggal_shift = '{tahun}-{bulan}-15' and s.jadwal = 'Sore' then 2 else 0 end) as '15'
 		            FROM shiftme s
 	            left JOIN shiftme_petugas p ON s.id_petugas=p.id_petugas
 	                group by p.petugas";

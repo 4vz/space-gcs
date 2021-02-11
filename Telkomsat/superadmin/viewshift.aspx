@@ -170,6 +170,15 @@
                         </div>
                         <div class="box-body">
                             <section class="col-lg-12 connectedSortable" style="min-height:50px">
+                                 <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-right:15px">
+                                    <asp:DropDownList ID="ddltahun" runat="server" Width="100%">
+                                        <asp:ListItem>-Pilih Tahun-</asp:ListItem>
+                                        <asp:ListItem>2019</asp:ListItem>
+                                        <asp:ListItem>2020</asp:ListItem>
+                                        <asp:ListItem>2021</asp:ListItem>
+                                        <asp:ListItem>2022</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             <div class="col-lg-4 col-xs-6" style="padding-left:0; padding-right:15px">
                                     <asp:DropDownList ID="ddlBulan" runat="server" Width="100%">
                                         <asp:ListItem>-Pilih Bulan-</asp:ListItem>

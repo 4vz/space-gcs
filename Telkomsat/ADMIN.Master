@@ -142,7 +142,7 @@
         </li>
           <li class="treeview" id="liuser" runat="server" visible="false">
           <a href="../admin/approvement.aspx?jenis=diajukan">
-            <i class="fa fa-check-circlet"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
+            <i class="fa fa-check-circle"></i> <span>Diajukan</span><span class="badge bg-red-active pull-right" runat="server" id="spndiajukan">
             <asp:Label ID="lbldiajukan" runat="server" Text="Label"></asp:Label></span>
           </a>
         </li>

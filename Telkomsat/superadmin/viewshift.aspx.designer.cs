@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.superadmin {
-    
-    
-    public partial class viewshift {
-        
+namespace Telkomsat.superadmin
+{
+
+
+    public partial class viewshift
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lblProfile1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProfile1;
-        
+
         /// <summary>
         /// dtContact control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtContact;
-        
+
         /// <summary>
         /// btn control.
         /// </summary>
@@ -47,7 +49,16 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn;
-        
+
+        /// <summary>
+        /// ddltahun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddltahun;
+
         /// <summary>
         /// ddlBulan control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBulan;
-        
+
         /// <summary>
         /// Button1 control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
+
         /// <summary>
         /// btnedit control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnedit;
-        
+
         /// <summary>
         /// divdata control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divdata;
-        
+
         /// <summary>
         /// gvContact control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvContact;
-        
+
         /// <summary>
         /// lbnextT3s control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace Telkomsat.superadmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbnextT3s;
-        
+
         /// <summary>
         /// lbprevT3s control.
         /// </summary>
