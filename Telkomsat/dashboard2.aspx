@@ -266,7 +266,7 @@
                                 </div>
                                 <div class="box-body bg-aqua">
                                     <a id="aharkat" runat="server" style="color:black">
-                                    <span class="info-box-icon warnaputih"><i class="fa fa-calendar-o"></i></span>
+                                    <span class="info-box-icon warnaputih"><i class="fa fa-check-square-o"></i></span>
                                         </a>
                                     <div class="info-box-content">
                                         
@@ -279,10 +279,23 @@
                                             
                                     </div>
                                     <br />
-                                    <a id="a1" runat="server" style="color:black">
-                                    <span class="info-box-icon warnaputih"><i class="fa fa-calendar-o"></i></span>
+                                    <a id="ait" runat="server" style="color:black">
+                                    <span class="info-box-icon warnaputih"><i class="fa fa-check-square"></i></span>
                                         </a>
-                                    <div class="info-box-content" style="padding-bottom:99px">
+                                    <div class="info-box-content">
+                                        <span class="warnaputih">IT CBI</span>
+                                        <span class="warnaputih"><i runat="server" id="iitcbi"></i></span> <asp:Label ID="lblappchit" runat="server" Text=""></asp:Label>
+                                        <div class="progress sm">
+                                        <div class="progress-bar progress-bar-red" runat="server" id="divitcbi" style="width: 0%; background-color:whitesmoke"></div>
+                                        </div>
+                                    <asp:Label ID="lblitcbi" CssClass="progress-description warnaputih" runat="server" Text="Tidak ada data checklist"></asp:Label>
+                                        
+                                    </div>
+                                    <br />
+                                    <a id="a1" runat="server" style="color:black">
+                                    <span class="info-box-icon warnaputih"><i class="fa fa-check-circle"></i></span>
+                                        </a>
+                                    <div class="info-box-content">
                                         <span class="warnaputih">BJM</span>
                                         <span class="warnaputih"><i runat="server" id="iappchbjm"></i></span> <asp:Label ID="lblappchbjm" runat="server" Text=""></asp:Label>
                                         <div class="progress sm">

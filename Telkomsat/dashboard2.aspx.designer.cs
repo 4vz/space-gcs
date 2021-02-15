@@ -231,6 +231,51 @@ namespace Telkomsat
         protected global::System.Web.UI.WebControls.Label lblchharkat;
 
         /// <summary>
+        /// ait control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ait;
+
+        /// <summary>
+        /// iitcbi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iitcbi;
+
+        /// <summary>
+        /// lblappchit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblappchit;
+
+        /// <summary>
+        /// divitcbi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divitcbi;
+
+        /// <summary>
+        /// lblitcbi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblitcbi;
+
+        /// <summary>
         /// a1 control.
         /// </summary>
         /// <remarks>

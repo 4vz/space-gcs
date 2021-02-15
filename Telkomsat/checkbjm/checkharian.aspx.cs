@@ -28,7 +28,7 @@ namespace Telkomsat.checkbjm
             if (!IsPostBack)
             {
                 query = @"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-						join checkhk_parameter r on r.id_parameter=d.id_parameter where r.id_perangkat like '%' + 'bjm' + '%'
+						join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat where t.lokasi ='bjm'
                         group by CAST(d.tanggal AS DATE), nama, d.pic order by CAST(d.tanggal AS DATE) desc";
                 tableticket();
             }
@@ -82,9 +82,10 @@ namespace Telkomsat.checkbjm
                 start = txtsdate.Value;
             if (dateend.Value != "")
                 end = dateend.Value;
-            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile join checkhk_parameter r on r.id_parameter=d.id_parameter
+            query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile 
+                            join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
                             where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103)))
-                            and r.id_perangkat like '%' + 'bjm' + '%'
+                            and t.lokasi ='bjm'
                             group by (CAST(d.tanggal AS DATE)), nama, d.pic order by (CAST(d.tanggal AS DATE)) desc";
             tableticket();
         }

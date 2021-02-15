@@ -12,7 +12,7 @@ namespace Telkomsat
 {
     public partial class dashboard2 : System.Web.UI.Page
     {
-        SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm;
+        SqlDataAdapter dashift, da1, da5, da6, da7, da8, dabjm, dait;
         DataSet dsshift = new DataSet();
         DataSet dspekerjaan = new DataSet();
         string query, iduser, tanggal, style1, style, style3, agenda, databulan, databulan2, pilihicon, icon1, queryaddev, queryev, IDdata, semester, tahun, semesterme;
@@ -769,7 +769,7 @@ namespace Telkomsat
 
         void checklist()
         {
-            SqlDataAdapter counthk, countme, countbjm;
+            SqlDataAdapter counthk, countme, countbjm, countit;
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
             string tanggalkumalam = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
             DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
@@ -786,7 +786,7 @@ namespace Telkomsat
 
             sqlCon.Open();
             string srcounthk = @"select count(*) as total from checkhk_parameter r join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
-                                where t.id_perangkat not like '%' + 'bjm' + '%' ";
+                                where t.lokasi ='cbi'";
             DataSet dscounthk = new DataSet();
             SqlCommand cmdhk = new SqlCommand(srcounthk, sqlCon);
             counthk = new SqlDataAdapter(cmdhk);
@@ -796,13 +796,23 @@ namespace Telkomsat
 
             sqlCon.Open();
             string srcountbjm = @"select count(*) as total from checkhk_parameter r join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
-                                where t.id_perangkat like '%' + 'bjm' + '%' ";
+                                where t.lokasi ='bjm' ";
             DataSet dscountbjm = new DataSet();
             SqlCommand cmdbjm = new SqlCommand(srcountbjm, sqlCon);
             countbjm = new SqlDataAdapter(cmdbjm);
             countbjm.Fill(dscountbjm);
             sqlCon.Close();
             int totalbjm = Convert.ToInt32(dscountbjm.Tables[0].Rows[0]["total"]);
+
+            sqlCon.Open();
+            string srcountit = @"select count(*) as total from checkhk_parameter r join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
+                                where t.lokasi ='itcbi' ";
+            DataSet dscountit = new DataSet();
+            SqlCommand cmdit = new SqlCommand(srcountit, sqlCon);
+            countit = new SqlDataAdapter(cmdit);
+            countit.Fill(dscountit);
+            sqlCon.Close();
+            int totalit = Convert.ToInt32(dscountit.Tables[0].Rows[0]["total"]);
 
             sqlCon.Open();
             string querycheck = $@"select count(*) as total, nama, d.pic, d.approve from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
@@ -910,9 +920,9 @@ namespace Telkomsat
 
             sqlCon.Open();              //Harkat cibinong
             string querycheckhk = $@"select count(*) as total, nama, d.pic, d.approval from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
-									on r.id_parameter=d.id_parameter
+									on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
                                     where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
-									and r.id_perangkat not like '%' + 'bjm' + '%' and d.data != ''
+									and t.lokasi ='cbi' and d.data != ''
                                     group by CAST(d.tanggal as date), nama, d.pic, d.approval";
             DataSet ds8 = new DataSet();
             SqlCommand cmd3 = new SqlCommand(querycheckhk, sqlCon);
@@ -945,9 +955,9 @@ namespace Telkomsat
 
             sqlCon.Open();              //Harkat Banjarmasin
             string querycheckbjm = $@"select count(*) as total, nama, d.pic, d.approval from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
-									on r.id_parameter=d.id_parameter
+									on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
                                     where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
-									and r.id_perangkat like '%' + 'bjm' + '%' and d.data != ''
+									and t.lokasi ='bjm' and d.data != ''
                                     group by CAST(d.tanggal as date), nama, d.pic, d.approval";
             DataSet dsbjm = new DataSet();
             SqlCommand cmdbjm2 = new SqlCommand(querycheckbjm, sqlCon);
@@ -970,6 +980,40 @@ namespace Telkomsat
                 {
                     iappchbjm.Attributes.Add("class", "fa fa-check-circle-o");
                     lblappchbjm.Text = "by " + dsbjm.Tables[0].Rows[0]["pic"].ToString();
+                }
+            }
+            else
+            {
+                a1.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
+            }
+
+            sqlCon.Open();              //Harkat Banjarmasin
+            string querycheckit = $@"select count(*) as total, nama, d.pic, d.approval from checkhk_data d join Profile p on p.id_profile=d.id_profile join checkhk_parameter r
+									on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
+                                    where d.tanggal >= '{tanggalku} 00:00:00' and d.tanggal <= '{tanggalku} 23:59:59'
+									and t.lokasi ='itcbi' and d.data != ''
+                                    group by CAST(d.tanggal as date), nama, d.pic, d.approval";
+            DataSet dsit = new DataSet();
+            SqlCommand cmdit2 = new SqlCommand(querycheckit, sqlCon);
+            dait = new SqlDataAdapter(cmdit2);
+            dait.Fill(dsit);
+            cmdit.ExecuteNonQuery();
+            sqlCon.Close();
+            if (dsit.Tables[0].Rows.Count > 0)
+                output4 = Convert.ToInt32(dsit.Tables[0].Rows[0]["total"].ToString());
+            double hasilit, tampilit;
+            if (output4 > 0)
+            {
+                hasilit = ((double)output4 / totalit) * 100;
+                tampilit = Math.Round(hasilit);
+                divitcbi.Style.Add("width", $"{tampilit}%");
+                lblitcbi.Text = $"{tampilit}% oleh {dsit.Tables[0].Rows[0]["nama"].ToString()}";
+                ait.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
+                iitcbi.Attributes.Add("class", "fa fa-hourglass-half");
+                if (dsit.Tables[0].Rows[0]["approval"].ToString() == "approve")
+                {
+                    iitcbi.Attributes.Add("class", "fa fa-check-circle-o");
+                    lblappchit.Text = "by " + dsit.Tables[0].Rows[0]["pic"].ToString();
                 }
             }
             else

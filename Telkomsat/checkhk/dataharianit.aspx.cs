@@ -7,11 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Globalization;
 
 namespace Telkomsat.checkhk
 {
-    public partial class dataharian : System.Web.UI.Page
+    public partial class dataharianit : System.Web.UI.Page
     {
         SqlDataAdapter da, da1, damodal;
         DataSet ds = new DataSet();
@@ -29,7 +28,7 @@ namespace Telkomsat.checkhk
             if (!IsPostBack)
             {
                 query = @"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-						join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat where t.lokasi ='cbi'
+						join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat where t.lokasi ='itcbi'
                         group by CAST(d.tanggal AS DATE), nama, d.pic order by CAST(d.tanggal AS DATE) desc";
                 tableticket();
             }
@@ -66,7 +65,7 @@ namespace Telkomsat.checkhk
                         htmlTable.Append("<td>" + "<label style=\"font-size:13px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + petugas + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + approval + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checkhk/dashboard.aspx?tanggal={tanggal}&view=view\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
+                        htmlTable.Append("<td>" + $"<a  style=\"cursor:pointer\" href=\"/checkhk/viewharianit.aspx?tanggal={tanggal}\">" + $"<label>" + "view" + "</label>" + "</a>" + "</td>");
                         htmlTable.Append("</tr>");
                     }
                     htmlTable.Append("</tbody>");
@@ -85,8 +84,8 @@ namespace Telkomsat.checkhk
                 end = dateend.Value;
             query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.approval from checkhk_data d left join Profile p on d.id_profile = p.id_profile 
                             join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat
-                            where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103))) and p.nama like '%' + '{ddlKategori.SelectedValue}' + '%'
-                            and t.lokasi ='cbi'
+                            where (tanggal BETWEEN (convert(datetime, '{start}',103)) AND (convert(datetime, '{end}',103)))
+                            and t.lokasi ='itcbi'
                             group by (CAST(d.tanggal AS DATE)), nama, d.approval order by (CAST(d.tanggal AS DATE)) desc";
             tableticket();
         }

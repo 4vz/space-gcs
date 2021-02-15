@@ -38,7 +38,7 @@ namespace Telkomsat.checkbjm
             SqlDataAdapter da;
             DataSet ds = new DataSet();
             query = $@"select (CAST(d.tanggal AS DATE)) as tanggal, p.nama, d.pic from checkhk_data d left join Profile p on d.id_profile = p.id_profile
-						join checkhk_parameter r on r.id_parameter=d.id_parameter where r.id_perangkat like '%' + 'bjm' + '%'
+						join checkhk_parameter r on r.id_parameter=d.id_parameter join checkhk_perangkat t on t.id_perangkat=r.id_perangkat where t.lokasi ='bjm'
                         and (CAST(d.tanggal AS DATE))='{tanggal}' group by CAST(d.tanggal AS DATE), nama, d.pic";
             sqlcon.Open();
             SqlCommand cmd = new SqlCommand(query, sqlcon);
@@ -64,7 +64,7 @@ namespace Telkomsat.checkbjm
             DataSet dsheader = new DataSet();
             DataSet dspersen = new DataSet();
             DataSet dsbar = new DataSet();
-            string queryheader = "select shelter from checkhk_perangkat p where id_perangkat like '%' + 'bjm' + '%' group by shelter order by shelter";
+            string queryheader = "select shelter from checkhk_perangkat p where lokasi = 'bjm' group by shelter order by shelter";
             sqlcon.Open();
             SqlCommand cmdheader = new SqlCommand(queryheader, sqlcon);
             daheader = new SqlDataAdapter(cmdheader);

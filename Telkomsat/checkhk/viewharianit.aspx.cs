@@ -8,9 +8,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace Telkomsat.checkbjm
+namespace Telkomsat.checkhk
 {
-    public partial class dataharian : System.Web.UI.Page
+    public partial class viewharianit : System.Web.UI.Page
     {
         SqlDataAdapter da, da2, das, dam;
         DataSet ds = new DataSet();
@@ -32,34 +32,21 @@ namespace Telkomsat.checkbjm
             if (Request.QueryString["tanggal"] != null)
             {
                 tanggal1 = Request.QueryString["tanggal"];
-                room = Request.QueryString["ruangan"];
             }
             tanggalku = tanggal1;
             if (!IsPostBack)
             {
                 query = $@"select p.shelter, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
-					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59' where p.lokasi = 'bjm' and p.shelter = '{room}' order by p.shelter, p.rack, p.sn";
+					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59'
+                    where p.shelter = {room} and p.lokasi = 'itcbi' order by p.shelter, p.rack, p.sn, r.id_parameter";
                 tableticket();
             }
 
 
         }
 
-        protected void Filter_ServerClick(object sender, EventArgs e)
-        {
-            /*if (ddlKategori.SelectedValue == "ruangan")
-                room = "ruangan";
-            else
-                room = "'" + ddlKategori.Text + "'";
-
-            query = $@"select p.shelter, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
-                    checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter = r.id_parameter
-					and '{tanggalku} 00:00:00' <= d.tanggal and d.tanggal < '{tanggalku} 23:59:59'
-                    where p.shelter = {room} and p.id_perangkat like '%' + 'bjm' + '%' order by p.shelter, p.rack, p.sn";
-            tableticket();*/
-        }
-
+        
         void tableticket()
         {
             string tanggal = DateTime.Now.ToString("yyyy/MM/dd");
@@ -74,7 +61,7 @@ namespace Telkomsat.checkbjm
 
             htmlTable.Append("<table id=\"example2\" width=\"100%\" class=\"table table-bordered table-hover table-striped\">");
             htmlTable.Append("<thead>");
-            htmlTable.Append("<tr><th>Ruangan</th><th>Perangkat</th><th>Serial Number</th><th>Parameter</th><th>Nilai</th><th>Satuan</th></tr>");
+            htmlTable.Append("<tr><th>Ruangan</th><th>Perangkat</th><th>Hostname</th><th>Parameter</th><th>Nilai</th><th>Satuan</th></tr>");
             htmlTable.Append("</thead>");
 
             lbltanggal.Visible = true;
