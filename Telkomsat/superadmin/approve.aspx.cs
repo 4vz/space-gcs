@@ -68,13 +68,24 @@ namespace Telkomsat.superadmin
                         htmlTable.Append("<td>" + "<label class=\"label label-primary\">" + "Harkat" + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:13px; color:#a9a9a9; font-color width:70px;\">" + tanggal + "</label>" + "</td>");
                         htmlTable.Append("<td>" + "<label style=\"font-size:12px;\">" + petugas + "</label>" + "</td>");
-                        htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkhk/dashboard.aspx?tanggal={tanggal}&view=view\">" + "view" + "</a>");
                         if(pic == "HK")
                         {
                             if(ds.Tables[0].Rows[i]["lokasi"].ToString() == "cbi")
+                            {
+                                htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkhk/dashboard.aspx?tanggal={tanggal}&view=view\">" + "view" + "</a>");
                                 htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkat&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            }
+                            else if (ds.Tables[0].Rows[i]["lokasi"].ToString() == "itcbi")
+                            {
+                                htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkhk/viewharianit.aspx?tanggal={tanggal}\">" + "view" + "</a>");
+                                htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkatit&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            }
                             else
+                            {
+                                htmlTable.Append("<td>" + $"<a class=\"btn btn-sm btn-primary\" style=\"cursor:pointer; margin-right:10px\" href=\"../checkbjm/dashboardbjm.aspx?tanggal={tanggal}&view=view\">" + "view" + "</a>");
                                 htmlTable.Append($"<a onclick=\"confirmselesai('action.aspx?approvalch=harkatbjm&tanggal={tanggal}&petugas={petugas}')\" class=\"btn btn-sm btn-warning\">" + "Approve" + "</a>");
+                            }
+
                         }
                         htmlTable.Append("</td>");
                         htmlTable.Append("</tr>");

@@ -132,6 +132,7 @@ namespace Telkomsat.checkhk
 
         void tableticket()
         {
+            string warning = "", alarm = "", on = "", off = "", ok = "", fail = "";
             query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.shelter, r.parameter, p.rack, r.tipe, d.data, d.tanggal from checkhk_parameter r left join
                     checkhk_perangkat p on p.id_perangkat = r.id_perangkat left join checkhk_data d on d.id_parameter=r.id_parameter
 					where shelter = '{room}' and d.tanggal > '{date} 00:00' and d.tanggal < '{date} 23:59' order by p.rack, r.id_perangkat ";
@@ -165,6 +166,7 @@ namespace Telkomsat.checkhk
 
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
+                        warning = ""; alarm = ""; on = ""; off = ""; ok = ""; fail = "";
                         IDdata = ds.Tables[0].Rows[i]["id_parameter"].ToString();
                         Perangkat = ds.Tables[0].Rows[i]["Perangkat"].ToString();
                         SN = ds.Tables[0].Rows[i]["sn"].ToString();
@@ -180,6 +182,19 @@ namespace Telkomsat.checkhk
                         idddl = "ddl" + IDdata;
 
                         nilai = ds.Tables[0].Rows[i]["data"].ToString();
+
+                        if (nilai == "Warning")
+                            warning = "selected='selected'";
+                        else if (nilai == "Alarm")
+                            alarm = "selected='selected'";
+                        else if (nilai == "On")
+                            on = "selected='selected'";
+                        else if (nilai == "Off")
+                            off = "selected='selected'";
+                        else if (nilai == "Ok")
+                            ok = "selected='selected'";
+                        else if (nilai == "Fail")
+                            fail = "selected='selected'";
                         //Response.Write(Session["jenis1"].ToString());
                         //HiddenField1.Value = IDdata;
                         htmlTable.Append("<tr>");
@@ -189,12 +204,12 @@ namespace Telkomsat.checkhk
                         htmlTable.Append("<td>" + $"<label style=\"{style3}\">" + Parameter + "</label>" + "</td>");
                         if (tipe == "N")
                             htmlTable.Append("<td>" + $"<input type =\"text\" value=\"{nilai}\" runat=\"server\" class=\"form-control\" name=\"idticket\" id={idtxt}>" + "</td>");
-                        else if (tipe == "MS")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"MASTER\" > MASTER </option><option value =\"STANDBY\"> STANDBY </option></select > " + " </td>");
-                        else if (tipe == "MU")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"MUTE\" > MUTE </option><option value =\"UNMUTE\"> UNMUTE </option></select > " + " </td>");
-                        else if (tipe == "SST")
-                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"STANDBY\" > STANDBY </option><option value =\"TRANSMIT\"> TRANSMIT </option><option value=\"TRANSMIT INHIBIT\" > TRANSMIT INHIBIT </option></select > " + " </td>");
+                        else if (tipe == "OWA")
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Ok\" > Ok </option><option value =\"Warning\"> Warning </option><option value =\"Alarm\"> Alarm </option></select > " + " </td>");
+                        else if (tipe == "OO")
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"On\" > On </option><option value =\"Off\"> Off </option></select > " + " </td>");
+                        else if (tipe == "OF")
+                            htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"Ok\" > Ok </option><option value =\"Fail\"> Fail </option></select > " + " </td>");
                         else if (tipe == "WI")
                             htmlTable.Append("<td>" + $"<select class=\"form-control dropdown\" onchange=\"SetDropDownListColor(this)\" id=\"{idddl}\" name=\"idticket\"><option value=\"1WET\" > 1WET </option><option value =\"IDL\"> IDL </option></select > " + " </td>");
                         else if (tipe == "OA")

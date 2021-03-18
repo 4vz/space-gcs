@@ -770,6 +770,7 @@ namespace Telkomsat
         void checklist()
         {
             SqlDataAdapter counthk, countme, countbjm, countit;
+            int totalit = 0;
             string tanggalku = DateTime.Now.ToString("yyyy/MM/dd");
             string tanggalkumalam = DateTime.Now.AddDays(-1).ToString("yyyy/MM/dd");
             DateTime wib = DateTime.UtcNow + new TimeSpan(7, 0, 0);
@@ -812,7 +813,12 @@ namespace Telkomsat
             countit = new SqlDataAdapter(cmdit);
             countit.Fill(dscountit);
             sqlCon.Close();
-            int totalit = Convert.ToInt32(dscountit.Tables[0].Rows[0]["total"]);
+
+            if(dscountit.Tables[0].Rows.Count > 0)
+            {
+                totalit = Convert.ToInt32(dscountit.Tables[0].Rows[0]["total"]);
+            }
+            
 
             sqlCon.Open();
             string querycheck = $@"select count(*) as total, nama, d.pic, d.approve from checkme_data d join checkme_parameter r on d.id_parameter=r.id_parameter
@@ -1000,26 +1006,30 @@ namespace Telkomsat
             cmdit.ExecuteNonQuery();
             sqlCon.Close();
             if (dsit.Tables[0].Rows.Count > 0)
-                output4 = Convert.ToInt32(dsit.Tables[0].Rows[0]["total"].ToString());
-            double hasilit, tampilit;
-            if (output4 > 0)
             {
-                hasilit = ((double)output4 / totalit) * 100;
-                tampilit = Math.Round(hasilit);
-                divitcbi.Style.Add("width", $"{tampilit}%");
-                lblitcbi.Text = $"{tampilit}% oleh {dsit.Tables[0].Rows[0]["nama"].ToString()}";
-                ait.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
-                iitcbi.Attributes.Add("class", "fa fa-hourglass-half");
-                if (dsit.Tables[0].Rows[0]["approval"].ToString() == "approve")
+                output4 = Convert.ToInt32(dsit.Tables[0].Rows[0]["total"].ToString());
+                double hasilit, tampilit;
+                if (output4 > 0)
                 {
-                    iitcbi.Attributes.Add("class", "fa fa-check-circle-o");
-                    lblappchit.Text = "by " + dsit.Tables[0].Rows[0]["pic"].ToString();
+                    hasilit = ((double)output4 / totalit) * 100;
+                    tampilit = Math.Round(hasilit);
+                    divitcbi.Style.Add("width", $"{tampilit}%");
+                    lblitcbi.Text = $"{tampilit}% oleh {dsit.Tables[0].Rows[0]["nama"].ToString()}";
+                    
+                    iitcbi.Attributes.Add("class", "fa fa-hourglass-half");
+                    if (dsit.Tables[0].Rows[0]["approval"].ToString() == "approve")
+                    {
+                        iitcbi.Attributes.Add("class", "fa fa-check-circle-o");
+                        lblappchit.Text = "by " + dsit.Tables[0].Rows[0]["pic"].ToString();
+                    }
+                }
+                else
+                {
+                    ait.Attributes["href"] = $"../checkhk/harianit.aspx?tanggal={tanggalku}";
                 }
             }
-            else
-            {
-                a1.Attributes["href"] = $"../checkbjm/dashboardbjm.aspx?tanggal={tanggalku}";
-            }
+            ait.Attributes["href"] = $"../checkhk/harianit.aspx?tanggal={tanggalku}";
+
             //Response.Write(output);
         }
 

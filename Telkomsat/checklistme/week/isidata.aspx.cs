@@ -231,6 +231,10 @@ namespace Telkomsat.checklistme.week
                             checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
                             where ruangan = '{room}' AND d.week = (select max(week) from checkme_datawmy d LEFT join checkme_parameterwmy r 
                             on r.id_parameter=d.id_parameter  left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
+							where p.ruangan = '{room}' and tahun= (select max(tahun) from checkme_datawmy d LEFT join checkme_parameterwmy r 
+                            on r.id_parameter=d.id_parameter  left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
+							where p.ruangan = '{room}')) AND d.tahun = (select max(tahun) from checkme_datawmy d LEFT join checkme_parameterwmy r 
+                            on r.id_parameter=d.id_parameter  left join checkme_perangkatwmy p on p.ID_Perangkat = r.ID_Perangkat
 							where p.ruangan = '{room}') and d.jenis = 'week' order by r.id_perangkat";
             else
                 query = $@"select r.id_parameter, p.Perangkat, r.satuan, p.sn, p.ruangan, r.parameter, r.tipe from checkme_parameterwmy r left join

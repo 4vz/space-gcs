@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using ClosedXML.Excel;
+using System.IO;
+using System.Configuration;
 
 namespace Telkomsat.checklistme.week
 {
@@ -78,6 +81,47 @@ namespace Telkomsat.checklistme.week
                     and d.tanggal = '{tanggalku}' where r.kategori='week' and p.ruangan='{room}' order by r.id_perangkat";
             tableticket();*/
         }
+
+        protected void ExportExcel(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["GCSConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = $@"select p.ruangan, r.id_parameter, p.Perangkat, r.satuan, p.sn, r.parameter, r.tipe, d.nilai, d.tanggal from checkme_parameterwmy r left join
+                    checkme_perangkatwmy p on p.id_perangkat = r.id_perangkat left join checkme_datawmy d on d.id_parameter = r.id_parameter
+                    and d.tahun = '{tahunan}' and week = '{weekk}' where r.kategori='week' and p.ruangan='{room}' order by r.id_perangkat";
+                SqlCommand sqlcmd = new SqlCommand(query, sqlCon);
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sqlcmd.Connection = con;
+                    sda.SelectCommand = sqlcmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            wb.Worksheets.Add(dt, "Asset");
+
+                            Response.Clear();
+                            Response.Buffer = true;
+                            Response.Charset = "";
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            Response.AddHeader("content-disposition", $"attachment;filename=datamaintenance_{room}.xlsx");
+                            using (MemoryStream MyMemoryStream = new MemoryStream())
+                            {
+                                wb.SaveAs(MyMemoryStream);
+                                MyMemoryStream.WriteTo(Response.OutputStream);
+                                Response.Flush();
+                                Response.End();
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
 
         void tablepersen()
         {

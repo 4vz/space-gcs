@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telkomsat.checklistme.week {
-    
-    
-    public partial class data2 {
-        
+namespace Telkomsat.checklistme.week
+{
+
+
+    public partial class data2
+    {
+
         /// <summary>
         /// PlaceHolder1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Telkomsat.checklistme.week {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
-        
+
         /// <summary>
         /// lblkosong control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Telkomsat.checklistme.week {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblkosong;
-        
+
         /// <summary>
         /// DBDataPlaceHolder control.
         /// </summary>
@@ -38,5 +40,14 @@ namespace Telkomsat.checklistme.week {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder DBDataPlaceHolder;
+
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

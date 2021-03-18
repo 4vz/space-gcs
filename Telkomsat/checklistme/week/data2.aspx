@@ -55,6 +55,9 @@
     <!-- /.table -->
         </div>
     </div>
+    <div class="box-footer">
+                <asp:Button ID="Button2" runat="server" Text="Export to Excel" CssClass="btn btn-default pull-right" OnClick="ExportExcel" />
+            </div>
     </div>
 </div>
 </div>
@@ -73,8 +76,13 @@
           $("#example2").DataTable({
           "autoWidth": true,
           "scrollX": true,
-          "rowsGroup": [0, 1, 2],
-          "pageLength": 300
+              "rowsGroup": [0, 1, 2],
+              "ordering": false,
+              "pageLength": 300,
+              "columnDefs": [
+                  { "orderable": false, "targets": [0] },
+                  { "bSort": false, "targets": [0] }
+              ]
           });
            $('.dataTables_length').addClass('bs-select');
         });

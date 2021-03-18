@@ -8,6 +8,7 @@
                 <div class="box box-danger" style="min-height:90%">
                     <div class="box-header">
                         Data
+                        <asp:Button ID="Button1" runat="server" CssClass="btn btn-sm btn-success pull-right" OnClientClick="if (!confirmselesai()) return false" Text="Approve All" />
                     </div>
                     <div class="box-body">
                         <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>  

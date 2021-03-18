@@ -31,7 +31,7 @@ namespace Telkomsat.checklistme.week
             }
             tanggalku = tanggal1;
             query = $@"select week, d.month, d.tahun from checkme_datawmy d join checkme_parameterwmy r on d.id_parameter=r.id_parameter
-                    where r.kategori = 'week' group by week, month, tahun order by week desc, tahun";
+                    where r.kategori = 'week' group by week, month, tahun order by d.tahun desc, week desc";
 
             if(!IsPostBack)
             {
