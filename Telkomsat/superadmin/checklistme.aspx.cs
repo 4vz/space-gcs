@@ -28,7 +28,8 @@ namespace Telkomsat.superadmin
             da.Fill(ds);
             sqlCon.Close();
             pic = ds.Tables[0].Rows[0]["approval"].ToString();
-
+            if (pic == "ME")
+                Button1.Visible = true;
             tablechhk();
         }
 
